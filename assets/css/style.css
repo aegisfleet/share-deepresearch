@@ -1,9 +1,12 @@
 /* 基本スタイル */
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --background-color: #f8f9fa;
-    --text-color: #333;
+    --primary-color: #ff7733;
+    --secondary-color: #a0a0a0;
+    --background-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --card-background: #2d2d2d;
+    --link-color: #ff7733;  /* オレンジ色のリンクカラー */
+    --link-hover-color: #ff9966;  /* ホバー時は明るいオレンジ */
 }
 
 body {
@@ -15,16 +18,75 @@ body {
     padding: 0;
 }
 
-.page-header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 2rem;
-    text-align: center;
+/* 絵文字のスタイル */
+.emoji {
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+    margin-right: 0.3rem;
 }
 
+.topic h1::before {
+    content: "📚 ";
+}
+
+.topic h2::before {
+    content: "✨ ";
+}
+
+.topic-list li::before {
+    content: "🔍 ";
+    margin-right: 0.5rem;
+}
+
+.tag::before {
+    content: "🏷️ ";
+}
+
+/* グローバルリンクスタイル */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+/* ヘッダーのリンクは白のまま */
 .page-header a {
     color: white;
     text-decoration: none;
+}
+
+.page-header a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.page-header {
+    background-color: #2d2d2d;
+    color: white;
+    padding: 0.5rem;  /* 1remから0.5remに縮小 */
+    text-align: center;
+}
+
+.page-header h1 {
+    margin: 0.3rem 0;  /* h1のマージンを小さく */
+    font-size: 1.5rem;  /* h1のフォントサイズを小さく */
+}
+
+.page-header p {
+    margin: 0.2rem 0;  /* descriptionのマージンを小さく */
+    font-size: 0.9rem;  /* descriptionのフォントサイズを小さく */
+}
+
+.page-header h1::before {
+    content: "🌟 ";
+}
+
+.page-header p::before {
+    content: "📝 ";
 }
 
 .main-content {
@@ -34,15 +96,15 @@ body {
 }
 
 .topic {
-    background: white;
+    background: var(--card-background);
     border-radius: 8px;
     padding: 2rem;
     margin-bottom: 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .meta {
-    color: #666;
+    color: var(--secondary-color);
     font-size: 0.9rem;
 }
 
@@ -66,23 +128,84 @@ body {
 }
 
 .topic-list li {
-    background: white;
+    background: var(--card-background);
     border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+}
+
+.topic-list li::before {
+    content: "🗂️ ";  /* フォルダアイコンを使用 */
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+/* トピックのタイプに応じて異なるアイコンを表示 */
+.topic-list li[data-type="research"]::before {
+    content: "🔬 ";  /* 研究関連のトピック */
+}
+
+.topic-list li[data-type="ai"]::before {
+    content: "🤖 ";  /* AI関連のトピック */
+}
+
+.topic-list li[data-type="code"]::before {
+    content: "💻 ";  /* コード関連のトピック */
 }
 
 .topic-list li a {
-    color: var(--primary-color);
+    color: var(--link-color);
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.topic-list li a:hover {
+    color: var(--link-hover-color);
 }
 
 .topic-list li .date {
-    color: #666;
+    color: var(--secondary-color);
     font-size: 0.9rem;
     margin-left: 1rem;
+}
+
+/* 通常のリンクスタイル */
+.topic a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.topic a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+/* フッタースタイル */
+.site-footer {
+    background-color: var(--card-background);
+    padding: 0.75rem 0;  /* 2remから0.75remに縮小 */
+    margin-top: 2rem;    /* 3remから2remに縮小 */
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;    /* 2remから1remに縮小 */
+}
+
+.site-footer p {
+    margin: 0;          /* マージンを完全に削除 */
+    font-size: 0.9rem;  /* フォントサイズを小さく */
+}
+
+.site-footer p::before {
+    content: "🌈 ";
 }
 
 /* レスポンシブデザイン */
