@@ -155,7 +155,7 @@ a:hover {
 }
 
 .topic-list li[data-category="research"]::before {
-    content: "🔬";  /* 研究カテゴリ */
+    content: "🔍";  /* 研究カテゴリ */
 }
 
 .topic-list li[data-category="code"]::before {
