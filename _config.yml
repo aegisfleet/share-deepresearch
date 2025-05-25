@@ -1,0 +1,41 @@
+title: Gemini DeepResearch
+description: Google Gemini を使用したDeepResearchの結果をまとめたサイト
+theme: jekyll-theme-cayman
+
+# GitHub Pagesの設定
+baseurl: "/share-deepresearch"
+url: ""
+
+# ナビゲーションの設定
+collections:
+  topics:
+    output: true
+    permalink: /:collection/:name
+
+defaults:
+  - scope:
+      path: ""
+      type: "topics"
+    values:
+      layout: "topic"
+
+# 音声ファイルなどのメディアファイルを含むディレクトリを指定
+include:
+  - _topics
+  - "**/*.mp3"
+  - "**/*.md"
+
+# メディアファイルの処理を許可
+keep_files:
+  - .mp3
+
+# メディアファイルの設定
+defaults:
+  - scope:
+      path: "**/*.mp3"
+    values:
+      sitemap: false
+
+# 日本語設定
+lang: ja
+encoding: UTF-8
