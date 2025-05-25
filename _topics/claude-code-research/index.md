@@ -4,6 +4,9 @@ title: "Anthropic Claude Code 詳細調査報告：VSCode及びGitHub Actions連
 date: 2025-05-25
 tags: [Anthropic,Claude Code,VSCode,GitHub Actions]
 audio: "/share-deepresearch/assets/audio/claude-code-research.mp3"
+supplementary_materials:
+  - title: "補足資料：Anthropic Claude Code 詳細調査報告 SPA"
+    url: "/share-deepresearch/topics/claude-code-research/dashboard.html"
 ---
 
 # **Anthropic Claude Code 詳細調査報告：VSCode及びGitHub Actions連携の深掘り**

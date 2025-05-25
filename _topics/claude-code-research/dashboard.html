@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropic Claude Code 詳細調査報告 SPA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Visualization & Content Choices:
+        - Report Info: Model performance in Japanese (Sec 5.1) -> Goal: Compare -> Viz: Bar Chart (Chart.js) -> Interaction: Static display -> Justification: Quick visual comparison of language proficiency.
+        - Report Info: Model API pricing (Sec 5.2) -> Goal: Compare -> Viz: Bar Chart (Chart.js) -> Interaction: Static display -> Justification: Easy understanding of relative costs.
+        - Report Info: VSCode Extension Comparison Table (Sec 3.4) -> Goal: Compare -> Presentation: HTML Table -> Interaction: Static, readable -> Justification: Structured comparison of features.
+        - Report Info: GitHub Actions Use Cases Table (Sec 4.2) -> Goal: Inform/Organize -> Presentation: HTML Table -> Interaction: Static, readable -> Justification: Clear presentation of automation examples.
+        - Report Info: Textual content -> Goal: Inform/Explain -> Presentation: Headings, lists, paragraphs, accordions, code blocks -> Interaction: Expand/collapse for details via tab navigation and accordions, scroll -> Justification: Improved readability and navigation of dense text.
+        - All interactions support the designed thematic structure by allowing users to drill down into specifics within a chosen topic.
+        - Library/Method: Chart.js for charts. HTML/Tailwind for tables and layout. Vanilla JS for tab interactivity and accordions.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .accordion-content {
+            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-content.open {
+            display: block; /* Keep display block for transition */
+            max-height: 2000px; /* Adjust as needed, should be larger than content */
+        }
+        .tab-btn.active {
+            border-bottom-width: 2px;
+            border-color: #0ea5e9; /* sky-500 */
+            color: #0c4a6e; /* sky-800 */
+            font-weight: 600;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; /* slate-300 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; /* slate-400 */
+        }
+    </style>
+</head>
+<body class="bg-stone-100 text-stone-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-sky-700">Anthropic Claude Code 詳細調査報告</h1>
+            <p class="text-stone-600 mt-2">インタラクティブ・ダッシュボード</p>
+        </header>
+
+        <nav class="mb-8 bg-stone-50 shadow-md rounded-lg overflow-x-auto">
+            <div class="flex border-b border-stone-200 whitespace-nowrap">
+                <button class="tab-btn p-4 text-stone-600 hover:bg-stone-200 focus:outline-none active" onclick="openTab(event, 'overview')">概要</button>
+                <button class="tab-btn p-4 text-stone-600 hover:bg-stone-200 focus:outline-none" onclick="openTab(event, 'vscode')">VSCode連携</button>
+                <button class="tab-btn p-4 text-stone-600 hover:bg-stone-200 focus:outline-none" onclick="openTab(event, 'github_actions')">GitHub Actions連携</button>
+                <button class="tab-btn p-4 text-stone-600 hover:bg-stone-200 focus:outline-none" onclick="openTab(event, 'comparisons')">比較と考察</button>
+                <button class="tab-btn p-4 text-stone-600 hover:bg-stone-200 focus:outline-none" onclick="openTab(event, 'conclusion')">まとめと展望</button>
+            </div>
+        </nav>
+
+        <main>
+            <div id="overview" class="tab-content active space-y-6">
+                <section class="bg-white p-6 rounded-lg shadow">
+                    <h2 class="text-2xl font-semibold text-sky-700 mb-3">1. はじめに</h2>
+                    <p class="text-stone-700 leading-relaxed">本報告書は、Anthropicによって開発されたエージェント型コーディングツール「Claude Code」に関する詳細な調査結果をまとめたものです。Claude Codeは、開発者のターミナル内で動作し、コードベース全体を理解し、自然言語コマンドを通じてコーディング作業を高速化することを目的としています [1]。特に本報告書では、Visual Studio Code (VSCode) とGitHub Actionsとの連携に焦点を当て、その機能、設定方法、具体的な使用例、そして開発ワークフローへの影響について深掘りします。</p>
+                    <p class="text-stone-700 leading-relaxed mt-2">このセクションでは、Claude Codeの基本的な機能、対応モデル、インタラクション方法、そして開発者向けSDKについて概説します。これにより、Claude Codeがどのようなツールであり、開発プロセスにどのような価値をもたらす可能性があるのかを理解することができます。</p>
+                </section>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center rounded-t-lg">
+                        <span>2.1. コア機能と特徴</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <p class="text-stone-700 leading-relaxed">Claude Codeは、開発者のターミナルに常駐し、自然言語による指示を通じてコーディングプロセスを支援するエージェント型ツールです [1]。その中核的な機能は以下の通りです。</p>
+                        <ul class="list-disc list-inside mt-2 text-stone-700 space-y-1">
+                            <li><strong>コード編集とバグ修正</strong>: コードベース全体にわたるファイルの編集やバグの修正を実行します [1]。</li>
+                            <li><strong>コード理解</strong>: コードのアーキテクチャやロジックに関する質問に回答します [1]。</li>
+                            <li><strong>テストとコマンド実行</strong>: テストの実行と修正、リンティング、その他のコマンド操作をサポートします [1]。</li>
+                            <li><strong>Git操作</strong>: Git履歴の検索、マージコンフリクトの解決、コミットやプルリクエスト（PR）の作成を自動化します [1]。</li>
+                            <li><strong>Web検索によるドキュメント参照</strong>: Web検索を用いてドキュメントやリソースを閲覧します [1]。</li>
+                            <li><strong>エンタープライズ統合</strong>: Amazon BedrockやGoogle Vertex AIとの連携により、エンタープライズレベルのセキュアなデプロイメントが可能です [1]。</li>
+                            <li><strong>コンテキスト理解と自律的行動</strong>: プロジェクトのコンテキストを理解し、手動でファイルコンテキストを追加する必要なく、必要に応じてコードベースを探索し、実際の操作（ファイル編集やコミット作成など）を実行します [1]。</li>
+                        </ul>
+                        <p class="text-stone-700 leading-relaxed mt-2">これらの機能は、開発者が反復的なタスクから解放され、より複雑で創造的な問題解決に集中できるよう支援することを目的としています。特に、コードベース全体を自律的に探索し、コンテキストを把握する能力は、大規模プロジェクトや馴染みのないコードベースを扱う際に大きな利点となります。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>2.2. 対応モデルとパフォーマンス</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <p class="text-stone-700 leading-relaxed">Claude Codeは、Anthropicの強力な基盤モデルを活用しており、特にコーディングタスクに最適化されたモデルが利用可能です。主に以下のモデルが使用されます。</p>
+                        <ul class="list-disc list-inside mt-2 text-stone-700 space-y-1">
+                            <li><strong>Claude Opus 4</strong>: 最も高性能なモデルであり、複雑な分析、多数のステップを伴うタスク、高度な数学的およびコーディングタスクに対応します [2]。</li>
+                            <li><strong>Claude Sonnet 4</strong>: インテリジェンス、コスト、速度の最適なバランスを提供し、効率的で高スループットなタスクに適しています [2]。SWE-bench Verifiedで72.7%のスコアを記録 [3]。</li>
+                            <li><strong>Claude Haiku 3.5</strong>: 最速かつ最もコスト効率の高いモデルで、軽量なアクションの実行に適しています [2]。</li>
+                        </ul>
+                        <p class="text-stone-700 leading-relaxed mt-2">これらのモデルは、タスクの複雑性や要求されるパフォーマンスに応じて選択的に利用され、Claude Codeの多様なユースケースを支えています。エンタープライズユーザーは、既存のAmazon BedrockやGoogle Cloud Vertex AIインスタンス内のモデルを利用するオプションも持っています [4]。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>2.3. インタラクションモデル：CLIとスラッシュコマンド / 2.3.1. CLAUDE.mdの重要性</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <p class="text-stone-700 leading-relaxed">Claude Codeとのインタラクションは、主にコマンドラインインターフェース（CLI）を通じて行われます [1]。ユーザーは自然言語でプロンプトを入力します。例：「`claude > how does our authentication system work?`」[1]。</p>
+                        <p class="text-stone-700 leading-relaxed mt-2">特定の操作を迅速に実行するために「スラッシュコマンド」が用意されています [5, 6]。例：`/clear`（会話履歴クリア）、`/config`（設定）、`/init`（プロジェクト初期化、`CLAUDE.md`生成）[5, 6]。</p>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">2.3.1. コンテキストインタラクションにおける`CLAUDE.md`の重要性</h4>
+                        <p class="text-stone-700 leading-relaxed">`CLAUDE.md`ファイルは、プロジェクト固有の永続的な指示セットとして機能し、Claude Codeが自動的に読み込みます [9, 10]。これにより、開発者はプロジェクト特有の側面（コーディング標準、レビュー基準、使用するシェルコマンド、テスト手順など）をClaudeに「教える」ことができます [6, 9, 10, 11, 12, 13]。これにより、Claude Codeは汎用的なアシスタントから、特定のプロジェクトに特化したアシスタントへと変化し、より正確で文脈に適したインタラクションと出力が期待できます。</p>
+                    </div>
+                </div>
+                 <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>2.4. Claude Code SDK：プログラムによる統合 / 2.4.1. スケーラブルな自動化の基盤</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <p class="text-stone-700 leading-relaxed">Claude Code SDKは、開発者がClaude Codeをサブプロセスとして実行し、自身のアプリケーションにプログラム的に統合することを可能にします [14]。これにより、AI搭載のコーディングアシスタントやカスタムツールの構築が実現します。</p>
+                        <p class="text-stone-700 leading-relaxed mt-2">現在SDKはコマンドラインでの使用をサポートし、将来的にはTypeScriptおよびPythonのSDKが提供予定です [14]。主な使用例：非インタラクティブモード実行（`-p`）、JSON形式出力（`--output-format json`）、会話継続（`--continue`）、カスタムシステムプロンプト設定など [14]。</p>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">2.4.1. スケーラブルな自動化の基盤としてのSDK</h4>
+                        <p class="text-stone-700 leading-relaxed">SDKは、スクリプト、CI/CDパイプライン、または他のアプリケーションからClaude Codeを呼び出すことを可能にし、真の自動化を実現します。JSON出力や非インタラクティブモードはプログラム的な使用を念頭に設計されています [6, 14]。これにより、自動コードレビュー、issueトリガーに基づくPR生成、カスタムpre-commitフックなどが実現可能になります [9, 11, 14]。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="vscode" class="tab-content space-y-6">
+                <section class="bg-white p-6 rounded-lg shadow">
+                    <h2 class="text-2xl font-semibold text-sky-700 mb-3">3. 深掘り：Claude CodeとVSCodeの連携</h2>
+                    <p class="text-stone-700 leading-relaxed">Visual Studio Code (VSCode) は主要な開発環境であり、Claude Codeとの連携は生産性向上に大きく寄与します。このセクションでは、Anthropic公式のVSCode連携機能、サードパーティ製の拡張機能、実用的な使用法、そして各種連携オプションの比較について詳述します。これにより、開発者は自身のニーズに最適なVSCodeでのClaude Code活用方法を見つけることができます。</p>
+                </section>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center rounded-t-lg">
+                        <span>3.1. Anthropic公式VSCode連携機能 (インストール, 主要機能, 設定, 焦点)</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <h4 class="text-lg font-semibold text-sky-600 mt-1 mb-1">3.1.1. インストールとセットアップ</h4>
+                        <p class="text-stone-700 leading-relaxed">VSCode統合ターミナルで `claude` コマンドを実行すると拡張機能が自動インストールされます [7, 8, 15]。`code` CLIがPATH設定されている必要あり [7, 8]。外部ターミナルからは `/ide` コマンド使用 [7]。</p>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">3.1.2. 主要機能</h4>
+                        <ul class="list-disc list-inside mt-2 text-stone-700 space-y-1">
+                            <li><strong>クイック起動</strong>: `Cmd+Esc` (Mac) / `Ctrl+Esc` (Win/Linux) [7, 8]。</li>
+                            <li><strong>IDE内差分表示</strong>: 変更点をVSCode差分ビューアで表示 [7, 8]。</li>
+                            <li><strong>選択コンテキスト共有</strong>: 選択範囲/アクティブタブ情報を自動共有 [7, 8]。</li>
+                            <li><strong>ファイル参照ショートカット</strong>: `Cmd+Option+K` (Mac) / `Alt+Ctrl+K` (Win/Linux) で `@File#L1-99` 形式参照挿入 [7, 8]。</li>
+                            <li><strong>診断情報共有</strong>: リンティングエラー等を自動共有 [7, 8]。</li>
+                            <li><strong>インライン編集</strong>: 提案編集をファイル内に直接インライン表示 [15]。</li>
+                        </ul>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">3.1.3. 設定</h4>
+                        <p class="text-stone-700 leading-relaxed">Claude Code内で `/config` コマンドで設定。差分表示ツールを `auto` に設定するとIDEが自動検出されます [7, 8]。</p>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">3.1.4. 公式連携の焦点：「エディタ内エクスペリエンス」と「リアルタイム補完」の不在</h4>
+                        <p class="text-stone-700 leading-relaxed">公式連携は差分表示、選択範囲共有、インライン編集に重点 [7, 15]。会話型・コマンド駆動型が基本 [1, 6]。リアルタイムコード補完（GitHub Copilotのような）は提供されません。指示を与え、結果（編集内容や差分）をエディタ内で確認する「エディタ内のエージェント」として機能します。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>3.2. 一般的なサードパーティ製VSCode拡張機能 / 3.2.1. 多様なアプローチ</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <p class="text-stone-700 leading-relaxed">Anthropic公式以外にも、コミュニティ製の拡張機能が存在します。</p>
+                        <ul class="list-disc list-inside mt-2 text-stone-700 space-y-2">
+                            <li><strong>kodu-ai製「Claude Coder」</strong> [21]: アイデアから実装、デバッグ、Web検索、デプロイ支援。無料クレジットあり。「Claude Dev」に触発。APIコスト懸念の声も [22]。</li>
+                            <li><strong>CodeFlow Studio製「Claude Code Assistant for VSCode」</strong> [23]: CLI非公式連携。サイドバー、永続セッション、画像対応、スラッシュコマンド等。</li>
+                            <li><strong>rexdotsh製「ClaudeSync」</strong> [24]: Claude.aiプロジェクトとコードを同期。Proプラン、セッショントークン要。</li>
+                            <li><strong>Claudeモデルを利用したGitHub Copilot</strong> [25, 26]: Copilot ChatでClaudeモデル（Opus 4等）を使用可能。Claude Code自体ではない。</li>
+                        </ul>
+                         <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">3.2.1. サードパーティ拡張機能における多様なアプローチ</h4>
+                        <p class="text-stone-700 leading-relaxed">サードパーティ製はCLI体験再現、特定ウェブ機能連携、一般的AIアシスタント提供など多様。公式連携がCLIエージェント能力をエディタ内フィードバック（インライン編集等）と結びつけるのに対し、サードパーティはチャットUI、画像サポート [23]、ウェブ同期 [24] など異なる方法を模索。機能断片化や品質・コストのばらつきの可能性あり [22]。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>3.3. VSCodeでの実用的な使用法とユーザーエクスペリエンス / 3.3.1. コスト管理</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <p class="text-stone-700 leading-relaxed">チュートリアルではターミナルでClaude Codeを使用しVSCodeで開く例あり [27]。VSCodeプラグイン（例：「Claude Dev」）ユーザーからは、エンドツーエンド生成は優れるがAPIコストとトークン消費が高いとの声 [22]。VSCodeターミナルのペースト制限のためファイルベースワークフロー推奨 [28]。</p>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">3.3.1. APIを利用するVSCode拡張機能におけるコスト管理の重要性</h4>
+                        <p class="text-stone-700 leading-relaxed">ユーザー報告 [22] は、特にサードパーティ製拡張機能経由でClaudeを使用する際の潜在的な高コストを強調。大量のファイルコンテンツ送信はトークン消費を高騰させる可能性。公式連携の「選択コンテキスト共有」[7] やClaude Code固有の探索能力 [1] は最適化されている可能性あり。ユーザーは拡張機能のコンテキスト管理方法を意識し、Anthropicコンソールでトークン使用量を監視することが不可欠。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>3.4. Claude Code VSCode連携機能の比較 (表)</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200 overflow-x-auto">
+                        <p class="text-stone-700 leading-relaxed mb-3">以下の表は、VSCodeでClaudeを利用するための主要な連携オプションを比較したものです。これにより、個々のニーズやワークフローに最適な統合方法を選択するための判断材料となります。</p>
+                        <table class="min-w-full divide-y divide-stone-200 border border-stone-300">
+                            <thead class="bg-stone-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">機能</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Anthropic公式連携</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Claude Coder (kodu-ai)</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">Claude Code Assistant (CodeFlow Studio)</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">ClaudeSync (rexdotsh)</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">GitHub Copilot (Claudeモデル使用)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-stone-200">
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-stone-900">インストール方法</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">統合ターミナルで`claude`実行</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">VSCode Marketplace</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">VSCode Marketplace / VSIX</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">VSCode Marketplace</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">GitHub Copilot拡張機能</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-stone-900">主要インタラクション</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">CLIエージェント型 (会話形式)</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">AIアシスタント型 (タスク指示)</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">CLIラッパー型 (サイドバーチャット)</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">Claude.aiプロジェクト同期</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">チャットベース (Copilotインターフェース)</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-stone-900">インライン編集</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">あり (提案された変更) [15]</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">不明 (コード生成が主)</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">不明 (CLIの出力を表示)</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">なし (同期が主)</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">なし (Copilotの補完とは異なる)</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-stone-900">差分表示</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">IDEビューア [7]</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">不明</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">不明</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">なし</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">なし</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-stone-900">コンテキスト管理</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">自動共有 (選択範囲/タブ) [7]</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">ユーザー指示/Web検索 [21]</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">ワークスペース/ファイル認識 [23]</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">ファイル同期 [24]</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">Copilotのコンテキスト管理</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-stone-900">画像サポート</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">CLI経由で可能 (拡張機能での直接サポートは不明) [20]</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">不明</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">あり (ドラッグ&ドロップ/ペースト) [23]</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">なし</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">なし</td>
+                                </tr>
+                                 <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-stone-900">Web検索</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">CLI経由で可能 (拡張機能での直接サポートは不明) [1, 6]</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">あり [21]</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">不明</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">なし</td>
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm text-stone-700">あり (Copilotの機能として)</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-stone-900">前提条件</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">Claude Code CLI, Anthropicアカウント</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">Anthropic Claudeモデルアクセス (無料クレジットあり) [21]</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">Claude Code CLI, Anthropicアカウント [23]</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">Claude.ai Proプラン, セッショントークン [24]</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">GitHub Copilotサブスクリプション, Anthropicモデルアクセス承認 [25, 26]</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-stone-900">コスト</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">MaxプランまたはAPIトークン [4, 31]</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">APIトークン (無料クレジット後) [21]</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">APIトークン</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">Claude.ai Proプランの費用</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">GitHub Copilot費用 + AnthropicモデルAPIトークン (設定による)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="github_actions" class="tab-content space-y-6">
+                <section class="bg-white p-6 rounded-lg shadow">
+                    <h2 class="text-2xl font-semibold text-sky-700 mb-3">4. 深掘り：Claude CodeとGitHub Actionsの連携</h2>
+                    <p class="text-stone-700 leading-relaxed">GitHub Actionsはソフトウェア開発ワークフローを自動化する強力なプラットフォームです。Claude Codeとの連携により、AIを活用した高度な自動化が実現します。このセクションでは、GitHub ActionsでのClaude Codeのセットアップ、開発ワークフローの自動化例、高度な使用法、ベストプラクティス、そして関連する問題点について解説します。これにより、開発者はCI/CDパイプラインにAIの力を組み込む方法を具体的に理解できます。</p>
+                </section>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center rounded-t-lg">
+                        <span>4.1. セットアップと設定 / 4.1.1. 2つの階層</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <p class="text-stone-700 leading-relaxed">セットアップ方法：</p>
+                        <ul class="list-disc list-inside mt-2 text-stone-700 space-y-1">
+                            <li><strong>クイックスタート</strong>: ターミナルで `/install-github-app` 実行 [11, 32, 33]。GitHub Appセットアップとシークレット作成をガイド。</li>
+                            <li><strong>手動セットアップ</strong>: 1. Claude GitHub Appインストール。 2. `ANTHROPIC_API_KEY`をシークレット追加。 3. サンプルYAMLを `.github/workflows/` にコピー [11, 32, 33]。</li>
+                        </ul>
+                        <p class="text-stone-700 leading-relaxed mt-2">ワークフローYAMLでは `anthropics/claude-code-action@beta` または `anthropics/claude-code-base-action@beta` を使用 [11, 34]。主要入力: `prompt`, `allowed_tools`, `anthropic_api_key`, `trigger_phrase` (例: `@claude`), `direct_prompt`, `model` 等 [11, 33]。トリガーイベント: `issue_comment`, `pull_request` 等 [32, 33, 35, 36]。</p>
+                        <pre class="bg-stone-800 text-sky-300 p-3 rounded-md mt-2 text-sm overflow-x-auto"><code>name: Claude PR Creation
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  create-pr:
+    if: contains(github.event.comment.body, '@claude')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anthropics/claude-code-action@beta
+        with:
+          prompt: "${{ github.event.comment.body }}"
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}</code></pre>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">4.1.1. GitHub Actionsの2つの階層：`claude-code-action` vs. `claude-code-base-action`</h4>
+                        <p class="text-stone-700 leading-relaxed">`claude-code-action` [11, 32, 33] は一般的インタラクティブユースケース向け（`@claude`メンション応答等）。`claude-code-base-action` [34] は「汎用的」で、あらゆるカスタムワークフロー内でClaude Codeを実行可能。より複雑なカスタムオートメーションや非インタラクティブワークフローには後者が適しています。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>4.2. Claude Code Actionsによる開発ワークフローの自動化 (表)</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200 overflow-x-auto">
+                        <p class="text-stone-700 leading-relaxed mb-3">Claude Code GitHub Actionsは、開発ワークフローの様々な側面を自動化します。以下の表に主要な活用例をまとめます。</p>
+                        <table class="min-w-full divide-y divide-stone-200 border border-stone-300">
+                            <thead class="bg-stone-50">
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">ユースケース</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">トリガーイベント/コメント例</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">プロンプト例</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">主要`allowed_tools`</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-stone-500 uppercase tracking-wider">期待される結果</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-stone-200">
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-2 text-sm font-medium text-stone-900">IssueからPRへの変換</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`issue_comment` (例: `@claude implement feature X`)</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`implement feature X based on the issue description`</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`View`, `GlobTool`, `GrepTool`, `Bash(git commands)`, `FileEditTool`, `FileWriteTool`</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">Claudeがコード記述、新ブランチにコミット、PR作成。</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-2 text-sm font-medium text-stone-900">自動コードレビュー</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`pull_request` (opened, synchronize)</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`direct_prompt: "Review this PR for code quality, bugs, and adherence to CLAUDE.md guidelines."`</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`View`, `GrepTool`, `Bash(git diff)`</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">ClaudeがPRにレビューコメント投稿。</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-2 text-sm font-medium text-stone-900">PRフィードバックへの対応</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`pull_request_review_comment` (例: `@claude address this feedback`)</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`address the reviewer's feedback: [feedback text]`</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`View`, `FileEditTool`, `Bash(git commit)`</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">Claudeがコード修正、PRブランチにコミット。</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-2 text-sm font-medium text-stone-900">Issueからのバグ修正</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`issue_comment` (例: `@claude fix bug described in issue #123`)</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`fix the bug described in issue #123. The error message is: [error message]`</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`View`, `GrepTool`, `FileEditTool`, `Bash(git commands)`</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">Claudeがバグ修正、新ブランチにコミット、PR作成。</td>
+                                </tr>
+                                <tr class="hover:bg-stone-50">
+                                    <td class="px-4 py-2 text-sm font-medium text-stone-900">カスタム自動タスク (direct_prompt)</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`schedule`, `workflow_dispatch`など</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`direct_prompt: "Refactor all services in the /services directory to use the new Logger interface."`</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">`View`, `GlobTool`, `FileEditTool`, `FileWriteTool`, `Bash(git commands)`</td>
+                                    <td class="px-4 py-2 text-sm text-stone-700">Claudeが指定リファクタリング実行、コミット/PR（設定による）。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                         <p class="text-stone-700 leading-relaxed mt-3">その他: PR管理と実装支援 [11, 32, 36, 39]、迅速なバグ修正 [11]、スマートなブランチ処理 [32, 33] など。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>4.3. 高度な使用例とベストプラクティス (CLAUDE.md, クラウド統合, テスト/デプロイ前チェック, コスト/セキュリティ, 問題点, CLAUDE.mdの最重要性)</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <h4 class="text-lg font-semibold text-sky-600 mt-1 mb-1">4.3.1. `CLAUDE.md`による振る舞いの誘導</h4>
+                        <p class="text-stone-700 leading-relaxed">リポジトリルートの `CLAUDE.md` でコーディング標準、レビュー基準等を定義。Claudeはこのガイドラインに従う [9, 10, 11, 12]。自動化ワークフローでClaudeの行動をプロジェクト規約に整合させる上で極めて重要 [9, 12]。</p>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">4.3.2. AWS BedrockおよびGoogle Vertex AIとの統合</h4>
+                        <p class="text-stone-700 leading-relaxed">エンタープライズ向けサポート。データ保存場所や請求管理が可能 [11, 32, 33, 34]。OIDC設定、IAMロール、カスタムGitHub Appが必要な場合あり [11, 32, 33, 34]。</p>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">4.3.3. テストケースの生成とデプロイ前チェック</h4>
+                        <p class="text-stone-700 leading-relaxed"><strong>テストケース生成</strong>: Claude Code自体は「テスト実行と修正」可能 [1]。適切プロンプトでテスト生成に拡張可能。`CLAUDE.md`でテストベストプラクティスを誘導 [13]。</p>
+                        <p class="text-stone-700 leading-relaxed mt-1"><strong>デプロイ前チェック</strong>: Claude Codeはコマンド実行可能 [1, 6]、ヘッドレスモードで「主観的リンティング、静的コード解析」実行可能 [9]。カスタムワークフローで特定チェックを実行可能。</p>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">4.3.4. コスト最適化とセキュリティ</h4>
+                        <p class="text-stone-700 leading-relaxed"><strong>コスト</strong>: Actions実行時間とAPIコストに注意 [11]。`@claude`コマンド使用、`max_turns`設定、issueテンプレート、簡潔な`CLAUDE.md`で最適化 [11]。</p>
+                        <p class="text-stone-700 leading-relaxed mt-1"><strong>セキュリティ</strong>: APIキーはGitHub Secrets使用 [11, 32, 33]。アクション権限制限、提案レビュー [11]。`allowed_tools`で操作を明示許可 [6, 9, 10, 11, 32, 33]。</p>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">4.3.5. 一般的な問題とコミュニティでの議論</h4>
+                        <p class="text-stone-700 leading-relaxed">`claude-code-action` Issues [40]: コミットツール失敗、古いバージョンインストール、PR作成問題等。Claude Code CLI全般 Issues [17, 41, 42]: 遅延、過剰API呼び出し、VSCode連携問題等。Reddit [43]: 他ツールとのコスト比較。Coder.comブログ [44]: 複雑推論に苦戦、単純タスクは良好。</p>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">4.3.6. 効果的かつ安全なGitHub Actions自動化における`CLAUDE.md`の最重要性</h4>
+                        <p class="text-stone-700 leading-relaxed">`CLAUDE.md`はAIエージェントの永続的指示・コンテキストセット。コーディングスタイル、レビュー基準、安全なシェルコマンド等を定義 [9, 13]。Claudeの振る舞いを予測可能にし、プロジェクト要件と整合。信頼性の高い自動化に不可欠。包括的な`CLAUDE.md`作成は重要ベストプラクティス。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="comparisons" class="tab-content space-y-6">
+                <section class="bg-white p-6 rounded-lg shadow">
+                    <h2 class="text-2xl font-semibold text-sky-700 mb-3">5. 言語サポート、価格設定、ライセンス、データに関する考慮事項</h2>
+                    <p class="text-stone-700 leading-relaxed">Claude Codeを導入・運用する際には、対応言語、コスト、法務・知財、そしてデータプライバシーといった側面を理解しておくことが重要です。このセクションでは、これらの要素について詳細に解説し、開発者や組織が情報に基づいた意思決定を行えるよう支援します。</p>
+                </section>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center rounded-t-lg">
+                        <span>5.1. 対応コーディング言語と自然言語インタラクション</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <p class="text-stone-700 leading-relaxed"><strong>コーディング言語</strong>: 主要プログラミング言語すべてに習熟、特にPython得意 [45]。</p>
+                        <p class="text-stone-700 leading-relaxed mt-1"><strong>自然言語</strong>: 堅牢な多言語能力。日本語性能 (英語100%時): Opus 4で96.2%、Sonnet 4で95.6% [46]。</p>
+                        <p class="text-stone-700 leading-relaxed mt-2">ユーザーは日本語でClaude Codeとインタラクション可能。多言語コンテンツ扱いは明確な言語コンテキスト提供、ネイティブスクリプト使用推奨 [46]。</p>
+                        <div class="chart-container mt-4">
+                            <canvas id="languagePerformanceChart"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-stone-500 mt-1">図1: Claudeモデルの日本語性能 (英語を100%とした場合)</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>5.2. 価格モデル / 5.2.1. コスト超過の可能性</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <p class="text-stone-700 leading-relaxed">アクセス方法:</p>
+                        <ul class="list-disc list-inside mt-2 text-stone-700 space-y-1">
+                            <li><strong>Maxサブスクリプション</strong>: 月額$100 (Pro使用量の5倍) または月額$200 (Pro使用量の20倍)。共有レート制限内でClaude Code使用 [4, 29, 31]。</li>
+                            <li><strong>Anthropic API (トークンベース)</strong>: 標準API価格でトークン消費。従量課金制 [4, 29, 31]。</li>
+                        </ul>
+                        <p class="text-stone-700 leading-relaxed mt-2">モデル価格例 (入力): Opus 4 $15/MTok, Sonnet 4 $3/MTok, Haiku 3.5 $0.80/MTok。バッチ処理50%割引 [29, 30]。</p>
+                        <div class="chart-container mt-4">
+                            <canvas id="modelPricingChart"></canvas>
+                        </div>
+                        <p class="text-xs text-center text-stone-500 mt-1">図2: ClaudeモデルのAPI価格 (入力トークンあたり、100万トークン)</p>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">5.2.1. 管理不行き届きによるコスト超過の可能性</h4>
+                        <p class="text-stone-700 leading-relaxed">ユーザーレビュー [22] やバグレポート [42] で高トークン消費とコストが言及。過剰なコンテキスト読み取りはトークン使用量急増の可能性。モデル選択もコストに大きく影響 [29, 30]。Anthropicコンソール [4, 30, 31] でトークン消費量を積極監視、モデル設定 [28]、効率的な`CLAUDE.md`使用 [9, 10, 12]、`/compact`コマンド使用 [5, 6, 16] がコスト管理に重要。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>5.3. AI生成コードの所有権と商用利用 / 5.3.1. 強固なIP権</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <p class="text-stone-700 leading-relaxed">Anthropicは規約遵守を条件に「出力」（生成コード）の全権利をユーザーに譲渡。ユーザーが出力を所有 [47]。純粋AI生成コンテンツの著作権は複雑。人間の貢献が多いほど著作権主張は強固 [47]。商用規約（2025年5月版）にはビジネスユーザー向け著作権補償あり [47]。制限: 出力を別AIトレーニングに使用不可、コアサービス再販不可等 [47]。</p>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">5.3.1. 強固なIP権のための人間とAIの協調の重要性</h4>
+                        <p class="text-stone-700 leading-relaxed">実際の著作権性は人間の関与に依存 [47]。世界の著作権法は保護に人間の著作性を要求。Claudeをドラフト生成ツールとして使用し、人間が大幅レビュー・編集・増補した場合、著作物は強固な著作権根拠を持つ。IP所有権と保護が重要な商用プロジェクトでは、Claude Codeを人間の創造性と監視を強化するアシスタントとして扱うべき。</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>5.4. データ処理、プライバシー、セキュリティ</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <p class="text-stone-700 leading-relaxed">クエリは中間サーバー経由せず直接Anthropic APIへ [1, 6]。AnthropicはClaude Codeフィードバックを生成モデルトレーニングに使用せず、ユーザーフィードバックトランスクリプトは30日間のみ保存 [1]。Claude Codeはローカル実行、変更やコマンド実行前に許可を求める [4]。詳細はAnthropic商用サービス利用規約とプライバシーポリシー参照推奨 [1]。</p>
+                    </div>
+                </div>
+
+                <section class="bg-white p-6 rounded-lg shadow mt-6">
+                    <h2 class="text-2xl font-semibold text-sky-700 mb-3">6. 比較考察と制限事項</h2>
+                    <p class="text-stone-700 leading-relaxed">Claude Codeは強力なツールですが、他のAIコーディングアシスタントとの比較や、それ自体の制限事項を理解することも重要です。このセクションでは、GitHub CopilotやAmazon CodeWhispererといった主要なツールとの比較、そしてClaude Codeの既知の制約について考察します。</p>
+                </section>
+
+                 <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>6.1. Claude Code vs. GitHub Copilot および Amazon CodeWhisperer / 6.1.1. 補完的な強み</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <ul class="list-disc list-inside mt-2 text-stone-700 space-y-2">
+                            <li><strong>vs. GitHub Copilot</strong>: Copilotは速度とシームレスなIDE統合（入力中提案）で引用 [49, 50, 51]。Claudeは教育、デバッグ、長文思考、理由説明、複雑ロジック処理に優れ、ハルシネーション率低い [49, 50, 51]。Claude Codeは会話型エージェント、Copilotはインライン補完 [50, 51]。Copilot ChatでClaudeモデル使用可能 [25, 26]。</li>
+                            <li><strong>vs. Amazon CodeWhisperer</strong>: CodeWhispererはAmazon Q Developerエコシステムの一部、AWS環境に強く、脆弱性スキャン機能あり [52, 53]。Claude Codeはターミナルファースト、MCP経由で広範なツール互換性 [52]。直接的Gitワークフロー管理機能あり [52]。</li>
+                        </ul>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">6.1.1. 補完的な強みが示唆する複数ツールの活用</h4>
+                        <p class="text-stone-700 leading-relaxed">各ツールは異なる強みを持つ [49, 50, 51, 52]。ボイラープレートにCopilot、クリーンアップや説明にClaudeといった提案も [50]。開発者はタスクに基づき、Claude Code（CLI、VSCode連携、Copilot Chat経由等）を含む異なるAIツールを戦略的に組み合わせることで最適生産性を達成可能。</p>
+                    </div>
+                </div>
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>6.2. Claude Codeの既知の制限事項</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <ul class="list-disc list-inside mt-2 text-stone-700 space-y-1">
+                            <li><strong>APIレート制限</strong>: RPM, ITPM, OTPM制限。超過で429エラー [54]。</li>
+                            <li><strong>支出制限</strong>: API使用の月間最大コスト [54]。</li>
+                            <li><strong>知識のカットオフ</strong>: 特定時点までのトレーニングデータに基づく [55]。</li>
+                            <li><strong>ニュアンスのある言語</strong>: 深い皮肉、ユーモア、特殊文化的ニュアンス解釈に苦労の可能性 [55]。</li>
+                            <li><strong>パフォーマンスの問題</strong>: 遅延、ハングアップ、過剰API呼び出しのユーザー報告 [41, 42]。</li>
+                            <li><strong>VSCodeターミナルの制限</strong>: 長いペースト内容切り捨て [28]。</li>
+                            <li><strong>ベータステータス</strong>: GitHub Actionsはベータ版 [11]。Claude Codeツール自体もリサーチプレビュー [6]。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="conclusion" class="tab-content space-y-6">
+                <section class="bg-white p-6 rounded-lg shadow">
+                    <h2 class="text-2xl font-semibold text-sky-700 mb-3">7. 結論と今後の展望</h2>
+                    <p class="text-stone-700 leading-relaxed">本報告書では、Anthropic Claude Codeの概要、VSCodeおよびGitHub Actionsとの連携、そして関連する考慮事項について詳細に調査しました。この最終セクションでは、Claude Codeの主な強みを要約し、開発ワークフローへの潜在的な影響を考察し、今後の開発について展望します。</p>
+                </section>
+
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center rounded-t-lg">
+                        <span>7.1. 開発者にとってのClaude Codeの強みの要約</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <p class="text-stone-700 leading-relaxed">Claude Codeはエージェント能力により複雑な複数ステップタスクを実行可能、深いコードベース理解とコンテキスト認識能力を持つ。ターミナルや既存開発者ツールとの強力な統合、高性能モデル（Opus 4, Sonnet 4）利用、VSCodeでのインライン編集機能によるIDE統合深化が大きな利点。SDKとMCP経由の拡張性によりGitHub Actionsのようなカスタム自動化も可能。</p>
+                    </div>
+                </div>
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>7.2. 開発ワークフローへの潜在的な影響</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <p class="text-stone-700 leading-relaxed">リファクタリング、デバッグ、ドキュメンテーション等のタスクを加速し、複雑なレガシーコードのオンボーディングと理解を向上させる期待。GitHub Actions経由のCI/CDタスク自動化は開発サイクル効率化に貢献、小規模チームでも大規模プロジェクト取り組みを可能にするかも [56]。将来的には人間の開発者の役割が、AIが実装詳細を処理する中で、より「監督的」「指示的」なものへ移行の可能性 [56, 57]。</p>
+                    </div>
+                </div>
+                <div class="accordion-item bg-white rounded-lg shadow">
+                    <button class="accordion-header w-full text-left p-4 font-semibold text-sky-600 hover:bg-stone-50 focus:outline-none flex justify-between items-center">
+                        <span>7.3. 今後の開発 / 7.3.1. より自律的で統合されたAIチームメイトへの軌跡</span>
+                        <span class="arrow transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div class="accordion-content p-4 border-t border-stone-200">
+                        <p class="text-stone-700 leading-relaxed">計画されているTypeScriptおよびPython SDKリリースはプログラム統合オプションをさらに拡大 [14]。ツール実行信頼性、長時間実行コマンドサポート、モデル能力の継続的改善も期待 [6]。GitHub Actionsのようなベータ機能はユーザーフィードバックに基づき進化継続 [6, 11]。</p>
+                        <h4 class="text-lg font-semibold text-sky-600 mt-3 mb-1">7.3.1. より自律的で統合されたAIチームメイトへの軌跡</h4>
+                        <p class="text-stone-700 leading-relaxed">Claude Code自体の開発（80%自己コーディング主張 [56, 57]含む）、エージェント的振る舞いへの焦点、SDK、深い統合は、AIツールが受動的アシスタントから能動的協力者へ進化する未来を示唆。単純なコード補完から、コードベース全体理解、コマンド実行、PR管理可能なエージェントツールへの進歩は大きな飛躍。SDKとGitHub Actionsはエージェントが開発パイプライン内でより自律的に動作することを可能に。`CLAUDE.md`によるプロジェクト固有情報提供やClaudeへの「教育」重視は、AIが知識豊富なチームメンバーになることへの期待を示す。将来のPython/TypeScript SDKはカスタムエージェントワークフロー構築をさらに容易にするでしょう。</p>
+                        <p class="text-stone-700 leading-relaxed mt-2">開発者はAIツールがより複雑でエンドツーエンドのソフトウェア開発タスクを処理できるようになることを予期すべき。求められるスキルは、AIエージェントを効果的に指示・管理・協力する能力へシフト。テキストだけでなく、コンテキストファイル（`CLAUDE.md`）、ツールパーミッション、ワークフロー定義といった要素を用いた「プロンプトエンジニアリング」の理解がますます重要に。</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="mt-12 pt-8 border-t border-stone-300 text-center text-sm text-stone-500">
+            <p>&copy; 2025 Claude Code 詳細調査報告 SPA. このSPAは提供されたレポートに基づいて生成されました。</p>
+            <p class="mt-1">参照文献番号は元のレポートに対応しています。</p>
+        </footer>
+    </div>
+
+    <script>
+        function openTab(event, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+
+            // Scroll to top of content area on tab change for better UX on mobile
+            const mainContentArea = document.querySelector('main');
+            if (mainContentArea) {
+                 mainContentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Accordion functionality
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function () {
+                    const content = this.nextElementSibling;
+                    const arrow = this.querySelector('.arrow');
+
+                    // Close other open accordions within the same parent tab-content
+                    const parentTabContent = this.closest('.tab-content');
+                    if (parentTabContent) {
+                        parentTabContent.querySelectorAll('.accordion-content.open').forEach(openContent => {
+                            if (openContent !== content) {
+                                openContent.classList.remove('open');
+                                openContent.previousElementSibling.querySelector('.arrow').classList.remove('rotate-180');
+                            }
+                        });
+                    }
+                    
+                    content.classList.toggle('open');
+                    if (arrow) {
+                        arrow.classList.toggle('rotate-180');
+                    }
+                });
+            });
+
+            // Activate the first tab by default
+            document.querySelector('.tab-btn').click();
+
+            // Chart for Language Performance (Section 5.1)
+            const langPerfCtx = document.getElementById('languagePerformanceChart');
+            if (langPerfCtx) {
+                new Chart(langPerfCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Claude Opus 4 (日本語)', 'Claude Sonnet 4 (日本語)'],
+                        datasets: [{
+                            label: '日本語性能 (英語100%時)',
+                            data: [96.2, 95.6],
+                            backgroundColor: [
+                                'rgba(59, 130, 246, 0.7)', // blue-500
+                                'rgba(249, 115, 22, 0.7)'  // orange-500
+                            ],
+                            borderColor: [
+                                'rgba(59, 130, 246, 1)',
+                                'rgba(249, 115, 22, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                title: {
+                                    display: true,
+                                    text: '性能 (%)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.dataset.label + ': ' + context.raw + '%';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Chart for Model Pricing (Section 5.2)
+            const pricingCtx = document.getElementById('modelPricingChart');
+            if (pricingCtx) {
+                new Chart(pricingCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Opus 4 (入力)', 'Sonnet 4 (入力)', 'Haiku 3.5 (入力)'],
+                        datasets: [{
+                            label: 'API価格 ($/100万トークン)',
+                            data: [15, 3, 0.80],
+                             backgroundColor: [
+                                'rgba(59, 130, 246, 0.7)', 
+                                'rgba(249, 115, 22, 0.7)',
+                                'rgba(16, 185, 129, 0.7)' // emerald-500
+                            ],
+                            borderColor: [
+                                'rgba(59, 130, 246, 1)',
+                                'rgba(249, 115, 22, 1)',
+                                'rgba(16, 185, 129, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: '価格 ($)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return context.dataset.label + ': $' + context.raw.toFixed(2);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

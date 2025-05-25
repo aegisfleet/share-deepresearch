@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP対応AIエージェント調査レポート SPA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Visualization & Content Choices:
+        - Report Info: MCP Overview (Sec 2.1) -> Goal: Inform -> Viz: HTML/CSS diagram (flexbox/borders) -> Interaction: Static -> Justification: Visual aid for core MCP concept.
+        - Report Info: Agent Frameworks (Sec 3 & 6.1) -> Goal: Compare/Inform -> Viz: Tabbed interface for agent details, Chart.js bar chart for 'GitHub Actions連携の容易性 (主観)' -> Interaction: Click tabs to switch agent, hover on chart -> Justification: Easy side-by-side comparison and focused deep-dive into specific agents. Bar chart for quick visual summary of a key comparative metric.
+        - Report Info: GitHub Actions MCP Servers (Sec 4.2) -> Goal: Inform -> Viz: HTML table -> Interaction: Static -> Justification: Clear, structured presentation of server options.
+        - Report Info: Operational Considerations (Sec 5) -> Goal: Inform -> Viz: Accordion or expandable cards for topics -> Interaction: Click to expand/collapse -> Justification: Organized and space-efficient presentation of key operational factors.
+        - Report Info: Code Snippets (various, e.g., Sec 3.3, 3.4, 3.5) -> Goal: Illustrate -> Viz: `<pre><code>` blocks with syntax highlighting (basic) -> Interaction: Static/Scrollable -> Justification: Clear presentation of example code.
+        - Report Info: Comparison Table (Sec 6.1) -> Goal: Compare -> Viz: Interactive HTML table (sortable if complex, otherwise static) -> Interaction: Static (potentially sortable in future) -> Justification: Direct comparison of frameworks.
+        - Library/Method: Vanilla JS for interactions (tabs, accordions, navigation), Chart.js for bar chart. Tailwind CSS for all layout and styling.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .tab-button.active {
+            background-color: #0284c7; /* sky-600 */
+            color: white;
+        }
+        .nav-link.active {
+            background-color: #0ea5e9; /* sky-500 */
+            color: white;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        /* For simple syntax highlighting */
+        pre code {
+            display: block;
+            padding: 1em;
+            overflow-x: auto;
+            background-color: #f3f4f6; /* gray-100 */
+            color: #1f2937; /* gray-800 */
+            border-radius: 0.375rem; /* rounded-md */
+        }
+        .code-keyword { color: #be185d; /* pink-700 */ font-weight: bold; }
+        .code-string { color: #059669; /* emerald-600 */ }
+        .code-comment { color: #6b7280; /* gray-500 */ font-style: italic; }
+        .code-number { color: #d97706; /* amber-600 */ }
+        .accordion-content {
+            display: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-content.open {
+            display: block;
+            max-height: 1000px; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <nav class="md:w-64 bg-slate-800 text-white p-4 space-y-2 md:sticky md:top-0 md:h-screen md:overflow-y-auto">
+            <h1 class="text-2xl font-semibold mb-6 text-sky-400">MCPエージェント調査SPA</h1>
+            <a href="#introduction" class="nav-link block py-2 px-3 rounded-md hover:bg-slate-700 transition-colors">はじめに</a>
+            <a href="#mcp-principles" class="nav-link block py-2 px-3 rounded-md hover:bg-slate-700 transition-colors">MCPとActions連携の原則</a>
+            <a href="#agent-survey" class="nav-link block py-2 px-3 rounded-md hover:bg-slate-700 transition-colors">主要エージェント調査</a>
+            <a href="#actions-manipulation" class="nav-link block py-2 px-3 rounded-md hover:bg-slate-700 transition-colors">Actionsの操作</a>
+            <a href="#deployment-considerations" class="nav-link block py-2 px-3 rounded-md hover:bg-slate-700 transition-colors">デプロイと運用</a>
+            <a href="#comparison-recommendations" class="nav-link block py-2 px-3 rounded-md hover:bg-slate-700 transition-colors">比較と推奨</a>
+            <a href="#conclusion" class="nav-link block py-2 px-3 rounded-md hover:bg-slate-700 transition-colors">結論と今後の展望</a>
+        </nav>
+
+        <main class="flex-1 p-6 md:p-10 space-y-8">
+            <section id="introduction" class="content-section space-y-4">
+                <h2 class="text-3xl font-bold text-sky-700 border-b-2 border-sky-200 pb-2">1. はじめに</h2>
+                <p class="text-lg leading-relaxed">
+                    本アプリケーションは、「Model Context Protocol（MCP）対応AIエージェントのGitHub Actionsにおける活用調査」レポートの内容をインタラクティブに探索するためのものです。MCPはAIアプリケーションが外部ツールと標準化された方法で接続するためのプロトコルであり、AIエージェントのツール連携を簡素化します。GitHub Actionsはソフトウェア開発ワークフローを自動化するプラットフォームであり、これらとAIエージェントを組み合わせることで開発プロセスの効率化が期待されます。
+                </p>
+                <p class="leading-relaxed">
+                    このSPAを通じて、主要なMCP対応AIエージェントフレームワークの特性、GitHub Actions環境での利用可能性、設定方法、制約事項などを容易に理解し、比較検討することができます。左側のナビゲーションメニューを使用して各セクションにアクセスしてください。
+                </p>
+            </section>
+
+            <section id="mcp-principles" class="content-section space-y-4">
+                <h2 class="text-3xl font-bold text-sky-700 border-b-2 border-sky-200 pb-2">2. MCPとGitHub Actions連携の一般原則</h2>
+                <p class="text-lg leading-relaxed">
+                    このセクションでは、Model Context Protocol (MCP) の基本的な概念と、AIエージェントがGitHub Actionsランナー上でどのように実行され、指示を受けるかについての一般原則を解説します。
+                </p>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-sky-600 mb-3">2.1. Model Context Protocol (MCP) の概要</h3>
+                    <p class="mb-2">MCPは、AIモデルが外部データソースやサービスと構造化されたAPI呼び出しを安全かつ一貫性のある方法で行うためのオープンスタンダードです。クライアントサーバーモデルに基づき、AIアプリケーション（MCPホスト）がMCPクライアントを通じてMCPサーバーに接続し、ツールやリソースを利用します。</p>
+                    <p class="mb-2">これは、ハードウェアにおけるUSB-Cポートのように、多様なAIアプリケーションとツール間の相互運用性を目指しています。JSON-RPC 2.0ベースで構築されています。</p>
+                    <div class="mt-4 border border-slate-300 rounded-md p-4 bg-slate-50">
+                        <h4 class="text-lg font-semibold text-slate-700 mb-2 text-center">MCP基本フロー図 (概念)</h4>
+                        <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-4 text-sm">
+                            <div class="text-center p-3 border border-sky-500 rounded-md bg-sky-50 shadow-sm">
+                                <span class="text-2xl">🤖</span><br/>AIアプリ<br/>(MCPホスト)
+                            </div>
+                            <div class="text-sky-600 font-bold text-2xl self-center">&rarr;</div>
+                            <div class="text-center p-3 border border-sky-500 rounded-md bg-sky-50 shadow-sm">
+                                <span class="text-2xl">🔌</span><br/>MCPクライアント
+                            </div>
+                            <div class="text-sky-600 font-bold text-2xl self-center">&harr;</div>
+                            <div class="text-center p-3 border border-teal-500 rounded-md bg-teal-50 shadow-sm">
+                                <span class="text-2xl">🛠️</span><br/>MCPサーバー<br/>(ツール提供)
+                            </div>
+                            <div class="text-teal-600 font-bold text-2xl self-center">&harr;</div>
+                             <div class="text-center p-3 border border-teal-500 rounded-md bg-teal-50 shadow-sm">
+                                <span class="text-2xl">⚙️</span><br/>外部ツール/データ
+                            </div>
+                        </div>
+                        <p class="text-xs text-center mt-2 text-slate-500">AIアプリがMCPクライアントを介してMCPサーバーに接続し、ツールを利用する流れを示します。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg mt-6">
+                    <h3 class="text-2xl font-semibold text-sky-600 mb-3">2.2. AIエージェントによるMCPツールの利用</h3>
+                    <p class="mb-2">AIエージェントはMCPクライアントとして機能し、MCPサーバーに接続してツールを利用します。プロセスの流れは以下の通りです：</p>
+                    <ol class="list-decimal list-inside space-y-1 pl-4">
+                        <li>MCPサーバーへの接続</li>
+                        <li>利用可能なツール/リソースの発見 (例: `tools/list`)</li>
+                        <li>LLMによるツールの選択</li>
+                        <li>MCP経由でのツールの呼び出し (例: `tools/call`)</li>
+                        <li>LLMへの結果の返却</li>
+                    </ol>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-lg mt-6">
+                    <h3 class="text-2xl font-semibold text-sky-600 mb-3">2.3. GitHub ActionsランナーにおけるAIエージェントの実行と指示</h3>
+                    <p class="mb-2">GitHub Actionsランナー上でMCP対応AIエージェントを実行・指示する主なアプローチは以下の通りです。</p>
+                    <ul class="list-disc list-inside space-y-1 pl-4">
+                        <li><strong>ランナー上での直接実行：</strong> エージェントスクリプトをランナー環境で直接実行。指示はワークフロー入力や環境変数で。</li>
+                        <li><strong>外部エージェントへの指示：</strong> 外部ホストされたエージェントにランナーからHTTPリクエスト等で指示。</li>
+                        <li><strong>GitHub Actions自体を操作するエージェント：</strong> 専用MCPサーバーを利用し、エージェントがActionsワークフローを操作。</li>
+                    </ul>
+                    <p class="mt-3 font-medium text-rose-600"><span class="text-2xl">⚠️</span> APIキー等の機密データはGitHub Secretsで安全に管理することが不可欠です。</p>
+                </div>
+            </section>
+
+            <section id="agent-survey" class="content-section space-y-4">
+                <h2 class="text-3xl font-bold text-sky-700 border-b-2 border-sky-200 pb-2">3. 主要エージェント調査</h2>
+                <p class="text-lg leading-relaxed">
+                    このセクションでは、主要なMCPクライアント対応AIエージェントフレームワークやプラットフォームについて、その機能、GitHub Actionsでの動作、指示方法などを解説します。下のタブから詳細を見たいエージェントを選択してください。
+                </p>
+                <div id="agent-tabs" class="flex flex-wrap gap-2 mb-4 border-b border-slate-300 pb-2">
+                    </div>
+                <div id="agent-details-content" class="bg-white p-6 rounded-lg shadow-lg min-h-[300px]">
+                    <p class="text-slate-500">上記タブからエージェントを選択してください。</p>
+                </div>
+            </section>
+
+            <section id="actions-manipulation" class="content-section space-y-4">
+                <h2 class="text-3xl font-bold text-sky-700 border-b-2 border-sky-200 pb-2">4. MCP対応エージェントによるGitHub Actionsの操作</h2>
+                <p class="text-lg leading-relaxed">
+                    AIエージェントがGitHub Actionsランナー上で動作し、GitHub Actionsのワークフロー自体を管理・操作するシナリオについて解説します。これには特定のMCPサーバーの利用が鍵となります。
+                </p>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-sky-600 mb-3">4.1. GitHub特化型MCPサーバーの概要</h3>
+                    <p>GitHub特化型MCPサーバーは、AIエージェント（MCPクライアント）とGitHub APIの間のブリッジとして機能します。これにより、エージェントは自然言語の指示に基づいてリポジトリ管理、issue追跡、プルリクエスト処理、Actionsワークフロー管理などを行えます。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg mt-6">
+                    <h3 class="text-2xl font-semibold text-sky-600 mb-3">4.2. 主要なGitHub MCPサーバー</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-slate-200">
+                            <thead class="bg-slate-100">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">サーバー名</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">主なツール例</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">特徴</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-slate-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap font-mono text-sm">ko1ynnky/github-actions-mcp-server (& devopsier/github-actions-mcp)</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">listWorkflows, triggerWorkflow, cancelWorkflowRun</td>
+                                    <td class="px-6 py-4 text-sm">Actionsワークフロー管理特化。Node.jsベース。Docker版あり。PAT認証。</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap font-mono text-sm">github/github-mcp-server (公式)</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm">get_issue, create_or_update_file, list_branches</td>
+                                    <td class="px-6 py-4 text-sm">広範なGitHub機能。Copilot Agentが内部利用。ツールセット選択可能。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     <p class="text-xs text-slate-500 mt-2">これらのサーバーを利用することで、エージェントはGitHub APIの機能をMCPツールとして呼び出せます。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg mt-6">
+                    <h3 class="text-2xl font-semibold text-sky-600 mb-3">4.3. シナリオ：ランナー上のエージェントによるGitHub Actionsの管理</h3>
+                    <p class="mb-2">このシナリオでは、ランナー上でAIエージェント（MCPクライアント）とGitHub特化型MCPサーバーの両方を実行します。</p>
+                    <ol class="list-decimal list-inside space-y-1 pl-4 mb-3">
+                        <li>Actionsワークフローのジョブ開始。</li>
+                        <li>ランナー環境セットアップ（Python等）。</li>
+                        <li>GitHub特化型MCPサーバーをランナー上で起動（バックグラウンドプロセス or Docker）。認証トークン提供。</li>
+                        <li>AIエージェントスクリプト（MCPクライアント）実行。</li>
+                    </ol>
+                    <p class="font-semibold mb-1">対話例：</p>
+                    <p class="mb-2">「プルリクエストが<code>main</code>ブランチにマージされたら、ワークフロー 'deploy-production.yml' をトリガーせよ。」</p>
+                    <p>エージェントはLLM推論で<code>triggerWorkflow</code>ツールを選択し、ローカルMCPサーバー経由でGitHub APIを呼び出します。</p>
+                    <div class="mt-4 border border-slate-300 rounded-md p-4 bg-slate-50">
+                        <h4 class="text-lg font-semibold text-slate-700 mb-2 text-center">Actions操作シナリオ図 (概念)</h4>
+                        <div class="flex flex-col items-center space-y-3 text-sm">
+                            <div class="p-3 border border-purple-500 rounded-md bg-purple-50 shadow-sm w-full md:w-3/4 text-center">
+                                <span class="text-2xl">⚙️</span> GitHub Actionsランナー
+                                <div class="mt-2 flex flex-col md:flex-row justify-around items-center space-y-2 md:space-y-0 md:space-x-2 p-2 border-t border-purple-300">
+                                    <div class="text-center p-2 border border-sky-500 rounded-md bg-sky-50 shadow-sm">🤖 AIエージェント<br/>(MCPクライアント)</div>
+                                    <div class="text-slate-600 font-bold text-xl self-center">&harr;</div>
+                                    <div class="text-center p-2 border border-teal-500 rounded-md bg-teal-50 shadow-sm">🛠️ GitHub MCPサーバー<br/>(ローカル実行)</div>
+                                </div>
+                            </div>
+                            <div class="text-slate-600 font-bold text-xl self-center">&darr; (GitHub API経由)</div>
+                            <div class="text-center p-3 border border-gray-500 rounded-md bg-gray-50 shadow-sm w-full md:w-1/2">
+                                <span class="text-2xl">🌐</span> GitHub.com (リポジトリ/ワークフロー)
+                            </div>
+                        </div>
+                        <p class="text-xs text-center mt-2 text-slate-500">ランナー内でエージェントとMCPサーバーが連携し、GitHubと対話する構成を示します。</p>
+                    </div>
+                    <p class="mt-3 font-medium text-rose-600"><span class="text-2xl">⚠️</span> セキュリティ（特にPAT利用時）とセットアップの複雑性に注意が必要です。</p>
+                </div>
+            </section>
+
+            <section id="deployment-considerations" class="content-section space-y-4">
+                <h2 class="text-3xl font-bold text-sky-700 border-b-2 border-sky-200 pb-2">5. デプロイと運用上の考慮事項</h2>
+                <p class="text-lg leading-relaxed">
+                    AIエージェントをGitHub Actionsに統合する際のデプロイ戦略や運用上の重要な考慮事項について解説します。
+                </p>
+                <div id="accordion-container" class="space-y-3">
+                    </div>
+            </section>
+
+            <section id="comparison-recommendations" class="content-section space-y-4">
+                <h2 class="text-3xl font-bold text-sky-700 border-b-2 border-sky-200 pb-2">6. 比較分析と戦略的推奨事項</h2>
+                <p class="text-lg leading-relaxed">
+                    このセクションでは、調査したAIエージェントフレームワークを比較し、適切なソリューションを選択するための指針、および堅牢で安全な統合のためのベストプラクティスを提示します。
+                </p>
+                 <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-sky-600 mb-3">6.1. AIエージェントフレームワークの比較</h3>
+                    <p class="mb-3">以下の表は、主要なAIエージェントフレームワークとプラットフォームを、GitHub Actionsでの利用とMCPクライアント機能の観点から比較したものです。（詳細は「主要エージェント調査」タブで各エージェントを参照ください）</p>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-slate-200 text-sm">
+                            <thead class="bg-slate-100">
+                                <tr>
+                                    <th class="px-4 py-2 text-left font-medium text-slate-500 uppercase">フレームワーク/プラットフォーム</th>
+                                    <th class="px-4 py-2 text-left font-medium text-slate-500 uppercase">MCPサポート</th>
+                                    <th class="px-4 py-2 text-left font-medium text-slate-500 uppercase">ランナー実行</th>
+                                    <th class="px-4 py-2 text-left font-medium text-slate-500 uppercase">指示方法</th>
+                                    <th class="px-4 py-2 text-left font-medium text-slate-500 uppercase">連携容易性(主観)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-slate-200" id="agent-comparison-table-body">
+                                </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="text-xl font-semibold text-sky-600 mb-2">GitHub Actions連携の容易性 (主観評価)</h4>
+                        <div class="chart-container bg-white p-4 rounded-lg shadow">
+                            <canvas id="easeOfIntegrationChart"></canvas>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1 text-center">「高」ほど連携が容易であることを示します。</p>
+                    </div>
+                    <p class="mt-4 text-sm text-slate-600">この比較から、組織は「構築か購入か」のスペクトラムに直面します。制御の度合い、コスト、開発努力を考慮して選択する必要があります。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg mt-6">
+                    <h3 class="text-2xl font-semibold text-sky-600 mb-3">6.3. 適切なAIエージェントソリューションの選択指針</h3>
+                    <p class="mb-2">最適なソリューション選択は以下の要因を総合的に考慮します：</p>
+                    <ul class="list-disc list-inside space-y-1 pl-4">
+                        <li>タスクの性質（コード生成、CI/CDオーケストレーション等）</li>
+                        <li>既存インフラ（AWS、Cloudflare中心か、自己完結型か）</li>
+                        <li>チームのスキルセット（Python, Node.js, Docker等）</li>
+                        <li>状態管理の必要性</li>
+                        <li>セキュリティとコンプライアンス要件</li>
+                        <li>複雑性の許容度</li>
+                    </ul>
+                    <h4 class="text-xl font-semibold text-sky-500 mt-4 mb-2">シナリオ別推奨例：</h4>
+                     <ul class="list-disc list-inside space-y-1 pl-4 text-sm">
+                        <li><strong>最小限の外部インフラでのGitHubタスク自動化：</strong> GitHub Copilot Agent (将来的なプログラム制御向上に期待) または Pythonベースエージェント (PydanticAI, OpenAI SDK) + ローカルGitHub MCPサーバー。</li>
+                        <li><strong>既存AWS/Cloudflare投資の活用：</strong> Bedrock Agents または Cloudflare Agents をランナーから指示。</li>
+                        <li><strong>複雑なマルチエージェントワークフロー (課題あり)：</strong> Agent-MCP (ランナーでのデプロイ課題克服 or 外部ホスト)。</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg mt-6">
+                    <h3 class="text-2xl font-semibold text-sky-600 mb-3">6.4. 堅牢で安全な統合のためのベストプラクティス</h3>
+                     <ul class="list-disc list-inside space-y-1 pl-4">
+                        <li>最小権限の原則の適用</li>
+                        <li>GitHub Secretsによる安全なシークレット管理</li>
+                        <li>入力検証とサニタイズの徹底</li>
+                        <li>可能な限りアクションのべき等性を設計</li>
+                        <li>包括的なロギングとモニタリング</li>
+                        <li>実行環境のサンドボックス化検討</li>
+                        <li>依存関係と設定の定期的なレビューと更新</li>
+                    </ul>
+                    <p class="mt-3 text-sm text-slate-600">AIエージェントのCI/CD統合が進むにつれ、「AgentOps」とも呼べるような、エージェントのライフサイクル管理、モニタリング、セキュリティ、ガバナンスのための新しい規律が必要になるでしょう。</p>
+                </div>
+            </section>
+
+            <section id="conclusion" class="content-section space-y-4">
+                <h2 class="text-3xl font-bold text-sky-700 border-b-2 border-sky-200 pb-2">7. 結論と今後の展望</h2>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-sky-600 mb-3">7.1. 主要な調査結果のまとめ</h3>
+                    <p class="mb-2">本調査により、MCP対応AIエージェントをGitHub Actionsで活用するための複数のアプローチが明らかになりました。</p>
+                    <ul class="list-disc list-inside space-y-1 pl-4 mb-3">
+                        <li><strong>GitHub Copilot Agent:</strong> Actions上でネイティブ動作、MCP利用可能。現状はUI経由の指示が主。</li>
+                        <li><strong>Pythonベース (PydanticAI, OpenAI SDK + MCP Ext):</strong> ランナー上で直接実行しやすく、柔軟。</li>
+                        <li><strong>クラウドプラットフォーム (Bedrock Agents, Cloudflare Agents):</strong> マネージドサービス。API/HTTPで指示。</li>
+                        <li><strong>Agent-MCP Framework:</strong> 高度なマルチエージェント協調。Actions統合には課題あり。</li>
+                        <li><strong>GitHub特化型MCPサーバー:</strong> Actionsワークフロー操作に有効。ランナー上でローカル実行可能。</li>
+                    </ul>
+                    <p>状態管理、認証情報、MCPサーバー実行戦略が重要な考慮事項です。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg mt-6">
+                    <h3 class="text-2xl font-semibold text-sky-600 mb-3">7.2. CI/CDにおけるAIエージェントの進化するランドスケープ</h3>
+                    <p class="mb-2">AIエージェントとCI/CDの統合は発展途上ですが、将来性は非常に大きいです。</p>
+                    <p class="mb-2">MCP標準化とエコシステム成熟が進むことで、より洗練されたエージェント機能とCI/CDプラットフォームとの容易な統合が期待されます。将来的には、エージェントの振る舞いやタスク割り当てが、Gitでバージョン管理された宣言的な設定で行われるようになるかもしれません（GitOpsの原則との合致）。</p>
+                    <p class="mb-2">完全な自律性だけでなく、人間の監視レベルを柔軟に調整できるエージェント設計も重要になります。タスクの重要度や複雑性に応じて、最適な自律性と人間による介入のバランスが求められます。</p>
+                    <p>AIがソフトウェア開発・運用タスクの自動化で果たす役割が増大する中、セキュリティと責任あるAIの実践の重要性も一層高まります。開発者と運用チームは、これらの新しいツールとパラダイムを効果的かつ安全に活用するための知識とスキルを継続的に更新していく必要があります。</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Agent data (simplified for brevity, add more details from the report)
+        const agentsData = [
+            { 
+                id: "copilot", name: "GitHub Copilot コーディングエージェント",
+                summary: "GitHub Actions上でネイティブ動作。MCPを利用して外部ツールと連携。Issue割り当てやIDEチャット経由で指示。",
+                mcpFunction: "リポジトリ設定で構成されたローカルMCPサーバーのツールのみサポート。公式GitHub MCPサーバーからGitHubデータアクセス可能。",
+                actionsOperation: "Actionsが実行環境。ワークフローからの直接的なプログラム制御APIは現状不明。タスクに基づき自律的にMCPツール使用。",
+                pros: ["GitHubエコシステムとの緊密な統合", "Actionsによる実行環境提供", "MCPサーバーをリポジトリ設定で構成可能"],
+                cons: ["ワークフローからの詳細なプログラム的指示が困難(現状)", "ローカルMCPサーバーツールのみサポート(リソース/プロンプト非対応)"],
+                easeOfIntegration: "中",
+                codeExample: `// MCPサーバー設定例 (repository settings JSON)
+{
+  "mcp_server": {
+    "command": "node /path/to/your/mcp-server.js",
+    "arguments": ["--port", "3000"],
+    "tools": ["customTool1", "customTool2"],
+    "environment_variables": {
+      "API_KEY_SECRET_NAME": "COPILOT_MCP_MY_API_KEY"
+    }
+  }
+}`
+            },
+            { 
+                id: "pydantic-ai", name: "PydanticAI",
+                summary: "Pydanticのデータ検証能力とAI機能を組み合わせたPythonライブラリ。LLM出力を構造化。",
+                mcpFunction: "AgentクラスがMCPクライアントとしてMCPサーバーに接続しツール利用。",
+                actionsOperation: "Pythonスクリプトとしてランナー上で直接実行可能。指示はスクリプト引数や環境変数で。",
+                pros: ["軽量", "Pydanticによる構造化出力の強制", "GitHub Actionsでの直接実行が容易", "テスト容易性"],
+                cons: ["複雑なエージェント間協調や高度な状態管理は自前実装の可能性"],
+                easeOfIntegration: "高",
+                codeExample: `// PydanticAI Agent (conceptual)
+<span class="code-keyword">from</span> pydantic_ai <span class="code-keyword">import</span> Agent, PydanticTask
+<span class="code-keyword">from</span> pydantic <span class="code-keyword">import</span> BaseModel, Field
+
+<span class="code-keyword">class</span> <span class="code-string">WeatherParams</span>(BaseModel):
+    city: str = Field(description=<span class="code-string">"The city name"</span>)
+
+<span class="code-comment"># @agent.tool (MCPツールとして公開可能)</span>
+<span class="code-keyword">def</span> <span class="code-string">get_weather</span>(params: WeatherParams) -> str:
+    <span class="code-comment"># ... API call ...</span>
+    <span class="code-keyword">return</span> f<span class="code-string">"Weather in {params.city} is sunny."</span>
+
+agent = Agent() <span class="code-comment"># MCPクライアント設定などを行う</span>
+task = PydanticTask(
+    agent=agent,
+    instruction=<span class="code-string">"What's the weather in Tokyo?"</span>,
+    output_types=[str]
+)
+result = task.run()`
+            },
+            {
+                id: "bedrock", name: "Amazon Bedrock Agents",
+                summary: "基盤モデル(FM)をデータソースやアプリと連携させるフルマネージド機能。API統合やナレッジベース拡張。",
+                mcpFunction: "アクション グループ内でMCPクライアントを定義し、MCPサーバーのツールを利用。Bedrock Inline Agent SDKが組み込みMCPクライアント実装を含む。",
+                actionsOperation: "外部サービス。GitHub ActionsからはAWS SDK (Boto3等)でInvokeAgent APIを呼び出して制御。",
+                pros: ["フルマネージド", "AWSエコシステムとの統合", "ナレッジベース連携", "RETURN_CONTROLによる柔軟な制御フロー"],
+                cons: ["外部サービス依存", "IAMやネットワーク設定の複雑性", "InvokeAgent APIの理解が必要"],
+                easeOfIntegration: "中",
+                codeExample: `// GitHub Actions workflow snippet (conceptual)
+<span class="code-comment"># ... (AWS credentials configuration) ...</span>
+- <span class="code-keyword">name</span>: Invoke Bedrock Agent
+  <span class="code-keyword">env</span>:
+    <span class="code-keyword">BEDROCK_AGENT_ID</span>: <span class="code-string">\${{ secrets.BEDROCK_AGENT_ID }}</span>
+    <span class="code-keyword">PROMPT_TEXT</span>: <span class="code-string">"MCPツールXを使用してYを実行してください"</span>
+  <span class="code-keyword">run</span>: python invoke_bedrock_agent.py
+
+<span class="code-comment">// invoke_bedrock_agent.py (Boto3)</span>
+<span class="code-keyword">import</span> boto3, os
+client = boto3.client(<span class="code-string">'bedrock-agent-runtime'</span>)
+response = client.invoke_agent(
+    agentId=os.environ[<span class="code-string">'BEDROCK_AGENT_ID'</span>],
+    agentAliasId=<span class="code-string">'YOUR_ALIAS_ID'</span>, <span class="code-comment"># Or from env/secrets</span>
+    sessionId=<span class="code-string">'unique-session-id'</span>,
+    inputText=os.environ[<span class="code-string">'PROMPT_TEXT'</span>]
+)
+<span class="code-comment"># Process response['completion']</span>`
+            },
+            {
+                id: "cloudflare", name: "Cloudflare AI Agents (Agents SDK)",
+                summary: "Cloudflare Workers上で実行。状態管理にDurable Objects利用可能。",
+                mcpFunction: "Agents SDKがリモートMCPクライアント組込を可能に。MCPClientManagerが接続管理 (OAuth 2.1対応)。",
+                actionsOperation: "外部サービス(Workers)。GitHub ActionsからHTTPリクエスト(curl, Python requests等)で指示。wrangler-actionでデプロイ。",
+                pros: ["サーバーレス", "グローバル分散", "Durable Objectsによる状態管理", "MCPClientManagerによる接続管理"],
+                cons: ["外部サービス依存", "Workerエンドポイントの認証設計が重要"],
+                easeOfIntegration: "中",
+                codeExample: `// GitHub Actions Python script to call Worker (conceptual)
+<span class="code-keyword">import</span> os, requests, json
+worker_url = os.environ[<span class="code-string">'CF_WORKER_URL'</span>]
+auth_token = os.environ[<span class="code-string">'CF_AUTH_TOKEN'</span>]
+payload = {<span class="code-string">"mcp_instruction"</span>: <span class="code-string">"List workflows in my_repo"</span>}
+headers = {<span class="code-string">"Authorization"</span>: f<span class="code-string">"Bearer {auth_token}"</span>}
+response = requests.post(worker_url, headers=headers, json=payload)
+print(response.json())
+
+<span class="code-comment">// Cloudflare Worker (TypeScript, conceptual)</span>
+<span class="code-keyword">import</span> { MCPClientManager } <span class="code-keyword">from</span> <span class="code-string">'@cloudflare/ai-agents'</span>;
+<span class="code-keyword">export default</span> {
+  <span class="code-keyword">async</span> fetch(request, env, ctx) {
+    <span class="code-keyword">const</span> mcpManager = <span class="code-keyword">new</span> MCPClientManager({ <span class="code-comment">/* ... config ... */</span> });
+    <span class="code-comment">// const { mcp_instruction } = await request.json();</span>
+    <span class="code-comment">// const result = await mcpManager.callTool(...);</span>
+    <span class="code-keyword">return new</span> Response(JSON.stringify({ <span class="code-string">message</span>: <span class="code-string">"Processed"</span> }));
+  }
+}`
+            },
+            {
+                id: "openai-sdk-mcp", name: "OpenAI Agents SDK with MCP Extension",
+                summary: "OpenAI Agents SDKを拡張しMCPサーバーをサポート。mcp-agentライブラリベース。",
+                mcpFunction: "Agentクラス初期化時にmcp_servers指定。MCPサーバーからのツールをネイティブツールと集約。",
+                actionsOperation: "Pythonベースのためランナー上で直接実行可能。mcp_agent.config.yamlでMCPサーバー設定。",
+                pros: ["OpenAIモデルとの親和性", "mcp-agentライブラリベース", "MCPツールとネイティブツールの統一的扱い"],
+                cons: ["mcp_agent.config.yamlの管理が必要", "複数ライブラリの依存関係"],
+                easeOfIntegration: "高",
+                codeExample: `// OpenAI Agents SDK with MCP (conceptual Python)
+<span class="code-keyword">from</span> agents_mcp <span class="code-keyword">import</span> Agent, Runner, RunnerContext
+<span class="code-keyword">import</span> asyncio
+
+<span class="code-comment"># mcp_agent.config.yaml defines 'github_server'</span>
+agent = Agent(
+    name=<span class="code-string">"MyMCPRunnerAgent"</span>,
+    instructions=<span class="code-string">"Use tools to achieve goals."</span>,
+    mcp_servers=[<span class="code-string">"github_server"</span>]
+)
+context = RunnerContext() <span class="code-comment">// Auto-detects config or use path</span>
+
+<span class="code-keyword">async def</span> <span class="code-string">run_agent</span>():
+    result = <span class="code-keyword">await</span> Runner.run(agent, <span class="code-keyword">input</span>=<span class="code-string">"Trigger workflow 'deploy.yml'"</span>, context=context)
+    print(result.response.value)
+
+<span class="code-comment"># asyncio.run(run_agent())</span>`
+            },
+             {
+                id: "agent-mcp-framework", name: "Agent-MCP Framework (rinadelph)",
+                summary: "MCPを利用した協調作業のためのマルチエージェントシステム構築Pythonフレームワーク。",
+                mcpFunction: "エージェント間コミュニケーションとコンテキスト共有にMCPを中核利用。Admin/Worker Agent構造。",
+                actionsOperation: "GitHub Actionsでの直接利用は困難。ローカルMCPサーバー(mcp_template.main)とSQLite DB(.agent/mcp_state.db)への強い依存。対話的な初期化プロセス。",
+                pros: ["マルチエージェント協調", "MCDによるプロジェクト理解"],
+                cons: ["Actionsでの実行には大幅改修/複雑なラッパーが必要", "ローカルサーバーとDB依存", "対話的初期化"],
+                easeOfIntegration: "低",
+                codeExample: `<span class="code-comment">// Conceptual: Requires running mcp_template.main server</span>
+<span class="code-comment">// And agent initialization via AI assistant prompts.</span>
+<span class="code-comment">// Not directly runnable in typical headless Actions workflow without significant setup.</span>
+
+<span class="code-comment">// Example CLI usage (from docs, simplified)</span>
+<span class="code-comment">// python -m agent_mcp.cli admin --prompt "Plan the project"</span>
+<span class="code-comment">// python -m agent_mcp.cli worker --task "Implement feature X" --admin_token <TOKEN></span>`
+            }
+        ];
+
+        const deploymentConsiderations = [
+            {
+                title: "5.1. MCPサーバーの実行戦略",
+                content: `GitHub Actionsランナー上でMCPクライアントとしてAIエージェントを運用する際、対話するMCPサーバーの実行場所は重要です。
+                <ul class="list-disc list-inside space-y-1 mt-2 pl-4">
+                    <li><strong>ランナーローカルでの実行：</strong>
+                        <ul class="list-circle list-inside space-y-1 pl-6">
+                            <li>直接プロセス：MCPサーバーをバックグラウンドプロセスとして起動。ライフサイクル管理が課題。</li>
+                            <li>Dockerコンテナ：Docker化されたMCPサーバーを実行。通信設定が必要。</li>
+                            <li>利点：外部依存性なし、通信高速の可能性。</li>
+                            <li>欠点：ランナーセットアップ複雑化、リソース消費、ライフサイクルがジョブに束縛。</li>
+                        </ul>
+                    </li>
+                    <li class="mt-2"><strong>リモートMCPサーバーの利用：</strong>
+                         <ul class="list-circle list-inside space-y-1 pl-6">
+                            <li>ランナー上のエージェントが外部ホストされたMCPサーバーに接続。</li>
+                            <li>利点：サーバーは永続的・独立管理、複数エージェント/ワークフローで共有可能。</li>
+                            <li>欠点：ネットワーク遅延、サーバー公開時のセキュリティ、認証が必要。</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class="mt-2 text-sm text-slate-600">選択は、MCPサーバーの性質、セキュリティ要件、既存インフラに依存します。</p>`
+            },
+            {
+                title: "5.2. エフェメラルランナー上のエージェントの状態管理",
+                content: `GitHub Actionsランナーは通常ステートレスですが、AIエージェントは状態管理を必要とすることが多いです。
+                <ul class="list-disc list-inside space-y-1 mt-2 pl-4">
+                    <li><strong>GitHub Actions Artifacts：</strong> SQLite DB等をジョブ間でアップロード/ダウンロード。小規模DBに有効。</li>
+                    <li><strong>外部状態ストア：</strong> Redis、PostgreSQL、S3など外部DB/ストレージを利用。</li>
+                    <li><strong>入力駆動型の状態：</strong> 各実行に必要な全コンテキストを入力として渡す。</li>
+                    <li><strong>プラットフォーム固有ソリューション：</strong> Cloudflare Durable Objects, Bedrockメモリ機能など。</li>
+                </ul>`
+            },
+            {
+                title: "5.3. 認証情報とAPIキーの安全な取り扱い",
+                content: `機密情報の管理は最重要です。
+                <ul class="list-disc list-inside space-y-1 mt-2 pl-4">
+                    <li><strong>GitHub Secrets：</strong> LLM APIキー、MCPサーバー認証トークン等を暗号化保存。</li>
+                    <li><strong>環境変数：</strong> ワークフロー内でSecretsを環境変数としてアクセス。</li>
+                    <li><strong>OpenID Connect (OIDC)：</strong> AWS等クラウドプロバイダーに対し短期的なロールベース認証情報を取得。</li>
+                    <li><strong>最小権限の原則：</strong> トークンと認証情報には必要最小限の権限のみ付与。</li>
+                </ul>`
+            },
+            {
+                title: "5.4. ロギング、モニタリング、デバッグ",
+                content: `AIエージェントの動作理解と問題特定には効果的なロギングとモニタリングが不可欠です。
+                <ul class="list-disc list-inside space-y-1 mt-2 pl-4">
+                    <li><strong>標準出力：</strong> エージェントスクリプトやMCPサーバーは標準出力/エラー出力にログを出し、Actionsログにキャプチャ。</li>
+                    <li><strong>トレース有効化：</strong> Bedrock Agentsでは<code>enableTrace=true</code>で詳細な推論プロセス取得。</li>
+                    <li><strong>専用監視ツール：</strong> PydanticAI + Logfire, LangFuseなどLLM可観測性ツール。</li>
+                    <li><strong>GitHub Actionsデバッグロギング：</strong> <code>ACTIONS_STEP_DEBUG</code>シークレットで詳細なワークフローログ取得。</li>
+                </ul>
+                <p class="mt-2 text-sm text-slate-600">堅牢なロギングと可観測性は、CI/CDパイプライン内でのデバッグと信頼性のために不可欠です。</p>`
+            }
+        ];
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const sections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const agentTabsContainer = document.getElementById('agent-tabs');
+            const agentDetailsContent = document.getElementById('agent-details-content');
+            const accordionContainer = document.getElementById('accordion-container');
+            const agentComparisonTableBody = document.getElementById('agent-comparison-table-body');
+
+            // Function to highlight code
+            function highlightCode(codeBlock) {
+                let html = codeBlock.innerHTML;
+                html = html.replace(/\b(import|from|def|class|new|async|await|export|default|const|let|var|if|else|return|try|except|finally|for|while|with|yield|True|False|None|in|is|not|and|or|pass|break|continue|lambda|global|nonlocal|assert|del|elif|raise|try|except|finally|async|await|print|str|int|float|list|dict|tuple|set|os|requests|json|boto3|BaseModel|Field|Agent|PydanticTask|RunnerContext|Runner|MCPClientManager|Response|JSON|process|env|secrets|github|run|name|uses|with|on|jobs|steps|id|actions|checkout|setup-python|pip|install|python|node|npm|run|build|docker|command|arguments|tools|environment_variables|mcp_server|mcp_instruction|parameters|Authorization|Content-Type|Bearer|POST|GET|PUT|DELETE|HTTP|HTTPS|API|SDK|CLI|UI|YAML|JSON|XML|HTML|CSS|JS|TS|PY|RB|GO|JAVA|CS|CPP|PHP|SWIFT|KT|MD|TXT|LOG|DB|SQL|NoSQL|CI|CD|DevOps|MLOps|AgentOps|LLM|FM|AI|MCP|API_KEY_SECRET_NAME|COPILOT_MCP_MY_API_KEY|OPENAI_API_KEY|AWS_ACCESS_KEY_ID|AWS_SECRET_ACCESS_KEY|AWS_REGION|BEDROCK_AGENT_ID|BEDROCK_AGENT_ALIAS_ID|SESSION_ID|PROMPT_TEXT|CF_WORKER_URL|CF_AUTH_TOKEN|GITHUB_PERSONAL_ACCESS_TOKEN|GITHUB_TOKEN|ACTIONS_STEP_DEBUG)\b/g, '<span class="code-keyword">$1</span>');
+                html = html.replace(/("[^"]*"|'[^']*'|`[^`]*`)/g, '<span class="code-string">$1</span>');
+                html = html.replace(/(#.*|\/\/.*)/g, '<span class="code-comment">$1</span>');
+                html = html.replace(/\b(\d+(\.\d*)?|\.\d+)\b/g, '<span class="code-number">$1</span>');
+                codeBlock.innerHTML = html;
+            }
+            
+            // Initialize sections and navigation
+            function updateActiveSection() {
+                let currentHash = window.location.hash || '#introduction';
+                if (currentHash === '#') currentHash = '#introduction';
+
+                sections.forEach(section => {
+                    if ('#' + section.id === currentHash) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === currentHash) {
+                        link.classList.add('active', 'bg-sky-500');
+                    } else {
+                        link.classList.remove('active', 'bg-sky-500');
+                    }
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    // e.preventDefault(); // Keep default behavior to update hash
+                    const targetId = this.getAttribute('href');
+                    // window.location.hash = targetId; // This will be handled by default link behavior
+                    // updateActiveSection will be called by hashchange event
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            window.addEventListener('hashchange', updateActiveSection);
+            updateActiveSection(); // Initial call
+
+            // Populate Agent Survey Tabs and Content
+            if (agentTabsContainer) {
+                agentsData.forEach((agent, index) => {
+                    const tabButton = document.createElement('button');
+                    tabButton.className = 'tab-button py-2 px-4 rounded-md text-sm font-medium hover:bg-sky-500 hover:text-white transition-colors';
+                    tabButton.textContent = agent.name;
+                    tabButton.dataset.agentId = agent.id;
+                    if (index === 0) { // Activate first tab by default
+                        tabButton.classList.add('active');
+                    }
+                    agentTabsContainer.appendChild(tabButton);
+                });
+
+                agentTabsContainer.addEventListener('click', function(e) {
+                    if (e.target.classList.contains('tab-button')) {
+                        agentTabsContainer.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                        e.target.classList.add('active');
+                        loadAgentDetails(e.target.dataset.agentId);
+                    }
+                });
+
+                function loadAgentDetails(agentId) {
+                    const agent = agentsData.find(a => a.id === agentId);
+                    if (agent) {
+                        let prosHtml = agent.pros.map(pro => `<li class="text-sm">${pro}</li>`).join('');
+                        let consHtml = agent.cons.map(con => `<li class="text-sm">${con}</li>`).join('');
+                        
+                        agentDetailsContent.innerHTML = `
+                            <h3 class="text-2xl font-semibold text-sky-600 mb-3">${agent.name}</h3>
+                            <p class="mb-4 text-sm leading-relaxed">${agent.summary}</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div class="bg-slate-50 p-3 rounded-md">
+                                    <h4 class="font-semibold text-slate-700 mb-1">MCPクライアント機能:</h4>
+                                    <p class="text-sm">${agent.mcpFunction}</p>
+                                </div>
+                                <div class="bg-slate-50 p-3 rounded-md">
+                                    <h4 class="font-semibold text-slate-700 mb-1">GitHub Actionsでの動作:</h4>
+                                    <p class="text-sm">${agent.actionsOperation}</p>
+                                </div>
+                                <div class="bg-emerald-50 p-3 rounded-md">
+                                    <h4 class="font-semibold text-emerald-700 mb-1">主な利点:</h4>
+                                    <ul class="list-disc list-inside pl-4 space-y-1">${prosHtml}</ul>
+                                </div>
+                                <div class="bg-rose-50 p-3 rounded-md">
+                                    <h4 class="font-semibold text-rose-700 mb-1">主な欠点/考慮事項:</h4>
+                                    <ul class="list-disc list-inside pl-4 space-y-1">${consHtml}</ul>
+                                </div>
+                            </div>
+                            <h4 class="font-semibold text-slate-700 mt-4 mb-2">コード例:</h4>
+                            <pre><code class="language-python">${agent.codeExample || "// コード例はありません"}</code></pre>
+                        `;
+                        agentDetailsContent.querySelectorAll('pre code').forEach(highlightCode);
+                    }
+                }
+                // Load details for the first agent initially
+                if (agentsData.length > 0) {
+                    loadAgentDetails(agentsData[0].id);
+                }
+            }
+
+            // Populate Deployment Considerations Accordion
+            if (accordionContainer) {
+                deploymentConsiderations.forEach((item, index) => {
+                    const accordionItem = document.createElement('div');
+                    accordionItem.className = 'bg-white rounded-lg shadow-md';
+                    accordionItem.innerHTML = `
+                        <button class="accordion-button w-full text-left p-4 font-semibold text-sky-700 hover:bg-sky-50 transition-colors flex justify-between items-center">
+                            <span>${item.title}</span>
+                            <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-slate-200 text-sm leading-relaxed">
+                            ${item.content}
+                        </div>
+                    `;
+                    accordionContainer.appendChild(accordionItem);
+                });
+
+                accordionContainer.addEventListener('click', function(e) {
+                    const button = e.target.closest('.accordion-button');
+                    if (button) {
+                        const content = button.nextElementSibling;
+                        const icon = button.querySelector('svg');
+                        content.classList.toggle('open');
+                        icon.classList.toggle('rotate-180');
+                    }
+                });
+            }
+            
+            // Populate Agent Comparison Table and Chart
+            if (agentComparisonTableBody) {
+                const easeOfIntegrationMapping = { "高": 3, "中": 2, "低": 1 };
+                const easeOfIntegrationColors = {
+                    "高": 'rgba(75, 192, 192, 0.6)',  // Teal
+                    "中": 'rgba(255, 205, 86, 0.6)', // Yellow
+                    "低": 'rgba(255, 99, 132, 0.6)'  // Red
+                };
+
+                agentsData.forEach(agent => {
+                    const row = agentComparisonTableBody.insertRow();
+                    row.innerHTML = `
+                        <td class="px-4 py-2 whitespace-nowrap font-medium">${agent.name}</td>
+                        <td class="px-4 py-2">あり</td>
+                        <td class="px-4 py-2">${agent.id === 'bedrock' || agent.id === 'cloudflare' ? '不可(外部)' : '可'}</td>
+                        <td class="px-4 py-2">${agent.id === 'copilot' ? 'Issue/チャット' : (agent.id === 'bedrock' || agent.id === 'cloudflare' ? 'API/HTTP' : 'スクリプト引数等')}</td>
+                        <td class="px-4 py-2">${agent.easeOfIntegration}</td>
+                    `;
+                });
+                
+                const chartLabels = agentsData.map(agent => agent.name);
+                const chartDataEase = agentsData.map(agent => easeOfIntegrationMapping[agent.easeOfIntegration]);
+                const chartBackgroundColors = agentsData.map(agent => easeOfIntegrationColors[agent.easeOfIntegration]);
+
+                const ctx = document.getElementById('easeOfIntegrationChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: chartLabels,
+                        datasets: [{
+                            label: 'GitHub Actions連携の容易性 (主観)',
+                            data: chartDataEase,
+                            backgroundColor: chartBackgroundColors,
+                            borderColor: chartBackgroundColors.map(color => color.replace('0.6', '1')),
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        if (value === 3) return '高';
+                                        if (value === 2) return '中';
+                                        if (value === 1) return '低';
+                                        return '';
+                                    },
+                                    stepSize: 1,
+                                    max: 3
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                     callback: function(value, index, ticks) {
+                                        const label = this.getLabelForValue(value);
+                                        if (label.length > 16) { // Max 16 chars before wrapping
+                                            return label.match(new RegExp('.{1,' + 16 + '}', 'g'));
+                                        }
+                                        return label;
+                                    },
+                                    autoSkip: false,
+                                    maxRotation: 70,
+                                    minRotation: 30
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        const rawValue = context.raw;
+                                        if (rawValue === 3) label += '高';
+                                        else if (rawValue === 2) label += '中';
+                                        else if (rawValue === 1) label += '低';
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
