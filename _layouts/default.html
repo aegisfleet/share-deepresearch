@@ -10,10 +10,22 @@
     <header class="page-header">
         <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
         <p>{{ site.description }}</p>
-    </header>
-
-    <main class="main-content">
-        {{ content }}
+    </header>    <main class="main-content">
+        {% if page.url == "/" %}
+            <h1>{{ page.title }}</h1>
+            <p>このサイトは、Google Gemini を使用した DeepResearch の結果を個人的にまとめたものです。</p>
+            <h2>トピック一覧</h2>            <ul class="topic-list">
+            {% assign sorted_topics = site.topics | sort: 'date' | reverse %}
+            {% for topic in sorted_topics %}
+                <li {% if topic.category %}data-category="{{ topic.category }}"{% endif %}>
+                    <a href="{{ topic.url | relative_url }}">{{ topic.title }}</a>
+                    <span class="date">{{ topic.date | date: "%Y年%m月%d日" }}</span>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            {{ content }}
+        {% endif %}
     </main>
 
     <footer class="site-footer">

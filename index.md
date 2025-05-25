@@ -11,8 +11,8 @@ title: ポちのDeepResearch
 
 {% assign sorted_topics = site.topics | sort: 'date' | reverse %}
 
+<ul class="topic-list">
 {% for topic in sorted_topics %}
-
-* [{{ topic.title }}]({{ topic.url | relative_url }}) *{{ topic.date | date: "%Y年%m月%d日" }}*
-
+<li data-type="{{ topic.type | default: 'default' }}">[{{ topic.title }}]({{ topic.url | relative_url }}) *{{ topic.date | date: "%Y年%m月%d日" }}*</li>
 {% endfor %}
+</ul>

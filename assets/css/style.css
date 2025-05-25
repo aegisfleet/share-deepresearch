@@ -32,11 +32,6 @@ body {
     content: "✨ ";
 }
 
-.topic-list li::before {
-    content: "🔍 ";
-    margin-right: 0.5rem;
-}
-
 .tag::before {
     content: "🏷️ ";
 }
@@ -122,55 +117,64 @@ a:hover {
     margin-right: 0.5rem;
 }
 
+/* トピックリストのスタイル */
 .topic-list {
     list-style: none;
     padding: 0;
 }
 
 .topic-list li {
-    background: var(--card-background);
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     display: flex;
     align-items: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .topic-list li::before {
-    content: "🗂️ ";  /* フォルダアイコンを使用 */
+    content: "📄";  /* デフォルトアイコン */
     font-size: 1.2rem;
     margin-right: 1rem;
+    flex-shrink: 0;
 }
 
-/* トピックのタイプに応じて異なるアイコンを表示 */
-.topic-list li[data-type="research"]::before {
-    content: "🔬 ";  /* 研究関連のトピック */
+/* カテゴリに基づくアイコン */
+.topic-list li[data-category="ai"]::before {
+    content: "🤖";  /* AIカテゴリ */
 }
 
-.topic-list li[data-type="ai"]::before {
-    content: "🤖 ";  /* AI関連のトピック */
+.topic-list li[data-category="research"]::before {
+    content: "🔬";  /* 研究カテゴリ */
 }
 
-.topic-list li[data-type="code"]::before {
-    content: "💻 ";  /* コード関連のトピック */
+.topic-list li[data-category="code"]::before {
+    content: "💻";  /* コードカテゴリ */
+}
+
+.topic-list li[data-category="tutorial"]::before {
+    content: "📚";  /* チュートリアルカテゴリ */
 }
 
 .topic-list li a {
     color: var(--link-color);
-    text-decoration: none;
     font-weight: bold;
+    text-decoration: none;
     transition: color 0.2s ease;
+    flex-grow: 1;
 }
 
 .topic-list li a:hover {
     color: var(--link-hover-color);
+    text-decoration: underline;
 }
 
 .topic-list li .date {
     color: var(--secondary-color);
     font-size: 0.9rem;
     margin-left: 1rem;
+    flex-shrink: 0;
 }
 
 /* 通常のリンクスタイル */
