@@ -330,3 +330,45 @@ img {
     display: block;
     margin: 1rem auto;
 }
+
+/* テーブルのレスポンシブ対応 */
+.main-content table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.main-content table th,
+.main-content table td {
+    min-width: 120px;
+    padding: 8px;
+    border: 1px solid var(--secondary-color);
+    white-space: nowrap;
+}
+
+.main-content table th {
+    background-color: var(--card-background);
+    font-weight: bold;
+    text-align: left;
+}
+
+.main-content table tr:nth-child(even) {
+    background-color: rgba(45, 45, 45, 0.5);
+}
+
+/* スクロールバーのスタイリング */
+.main-content table::-webkit-scrollbar {
+    height: 8px;
+}
+
+.main-content table::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+.main-content table::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 4px;
+}
