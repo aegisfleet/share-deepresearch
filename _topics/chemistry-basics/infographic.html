@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>化学基礎 重要ポイント解説 インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F7F7F7; /* Light Gray */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Default max-width */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 400px; /* Max height */
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .section-title {
+            color: #118AB2; /* Deep Cerulean */
+            border-bottom: 3px solid #FFD166; /* Sunny Yellow */
+            padding-bottom: 0.5rem;
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .primary-bg { background-color: #FF6B6B; /* Lively Coral */ }
+        .secondary-bg { background-color: #FFD166; /* Sunny Yellow */ }
+        .accent1-bg { background-color: #06D6A0; /* Vibrant Teal */ }
+        .accent2-bg { background-color: #118AB2; /* Deep Cerulean */ }
+        .primary-text { color: #FF6B6B; }
+        .secondary-text { color: #FFD166; }
+        .accent1-text { color: #06D6A0; }
+        .accent2-text { color: #118AB2; }
+        .text-dark { color: #333333; }
+
+        .flowchart-item {
+            background-color: #E0F2FE; /* Light blue for flowchart items */
+            border: 1px solid #118AB2; /* Deep Cerulean border */
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flowchart-arrow {
+            font-size: 2rem;
+            color: #118AB2; /* Deep Cerulean */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 0.5rem;
+        }
+        .atom-model {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #FFD166; /* Sunny Yellow for nucleus bg */
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto;
+        }
+        .atom-nucleus {
+            width: 50px;
+            height: 50px;
+            background-color: #FF6B6B; /* Lively Coral for nucleus */
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.7rem;
+            z-index: 1;
+        }
+        .atom-electron {
+            width: 20px;
+            height: 20px;
+            background-color: #06D6A0; /* Vibrant Teal for electrons */
+            color: white;
+            font-size: 0.6rem;
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .electron-path {
+            width: 100%;
+            height: 100%;
+            border: 2px dashed #118AB2; /* Deep Cerulean for path */
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .ph-scale-segment {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="text-dark">
+
+    <header class="primary-bg text-white py-8 text-center">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold mb-2">化学基礎 重要ポイント図解</h1>
+            <p class="text-lg">視覚的に理解する化学の基本概念</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+
+        <section id="matter-composition" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 section-title">第1部：物質の構成と性質</h2>
+
+            <div id="classification-separation" class="mb-8">
+                <h3 class="text-2xl font-semibold mb-4 accent2-text">1. 物質の分類と分離</h3>
+                <p class="mb-6 text-gray-700">私たちの身の回りにある物質は、その成り立ちによって分類され、混合物は様々な方法で分離することができます。これらの基本的な知識は、化学を学ぶ上での第一歩です。</p>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="card p-6">
+                        <h4 class="text-xl font-bold mb-3 primary-text">純物質 vs 混合物</h4>
+                        <p class="mb-2"><strong>純物質:</strong> 1種類の物質だけでできているもの。 (例: 水 $H_2O$ 💧, 食塩 NaCl 🧂)</p>
+                        <p><strong>混合物:</strong> 2種類以上の純物質が混じり合っているもの。(例: 食塩水, 空気 💨)</p>
+                        <p class="mt-3 text-sm text-gray-600">純物質は固有の融点・沸点を持ちますが、混合物の性質は成分や割合で変化します。</p>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="text-xl font-bold mb-3 accent1-text">単体 vs 化合物 vs 元素</h4>
+                        <p class="mb-2"><strong>元素:</strong> 物質を構成する基本的な成分の種類。(例: 水素 H, 酸素 O)</p>
+                        <p class="mb-2"><strong>単体:</strong> 1種類の元素だけでできている純物質。(例: 酸素ガス $O_2$, 鉄 Fe)</p>
+                        <p><strong>化合物:</strong> 2種類以上の元素が化学的に結合した純物質。(例: 水 $H_2O$)</p>
+                    </div>
+                </div>
+
+                <div class="card p-6 mb-8">
+                    <h4 class="text-xl font-bold mb-3 accent2-text">主な混合物の分離方法</h4>
+                    <p class="mb-4 text-sm text-gray-700">混合物から特定の物質を取り出すためには、成分の物理的性質の違いを利用した様々な分離方法があります。適切な方法を選ぶことが重要です。</p>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm text-left text-gray-700">
+                            <thead class="text-xs text-gray-700 uppercase bg-indigo-100">
+                                <tr>
+                                    <th scope="col" class="px-4 py-3">分離方法</th>
+                                    <th scope="col" class="px-4 py-3">利用する性質の違い</th>
+                                    <th scope="col" class="px-4 py-3">具体例</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white border-b">
+                                    <td class="px-4 py-3 font-medium">ろ過</td>
+                                    <td class="px-4 py-3">粒子の大きさと溶解性</td>
+                                    <td class="px-4 py-3">泥水から泥を分離</td>
+                                </tr>
+                                <tr class="bg-indigo-50 border-b">
+                                    <td class="px-4 py-3 font-medium">蒸留</td>
+                                    <td class="px-4 py-3">沸点の差</td>
+                                    <td class="px-4 py-3">海水から純水</td>
+                                </tr>
+                                <tr class="bg-white border-b">
+                                    <td class="px-4 py-3 font-medium">分留</td>
+                                    <td class="px-4 py-3">沸点の差 (精密)</td>
+                                    <td class="px-4 py-3">石油からガソリン等</td>
+                                </tr>
+                                <tr class="bg-indigo-50 border-b">
+                                    <td class="px-4 py-3 font-medium">再結晶</td>
+                                    <td class="px-4 py-3">温度による溶解度の差</td>
+                                    <td class="px-4 py-3">硝酸カリウムの精製</td>
+                                </tr>
+                                 <tr class="bg-white border-b">
+                                    <td class="px-4 py-3 font-medium">抽出</td>
+                                    <td class="px-4 py-3">溶媒への溶解性の差</td>
+                                    <td class="px-4 py-3">ヨウ素水溶液からヨウ素を分離</td>
+                                </tr>
+                                <tr class="bg-indigo-50">
+                                    <td class="px-4 py-3 font-medium">クロマトグラフィー</td>
+                                    <td class="px-4 py-3">吸着力・分配係数の差</td>
+                                    <td class="px-4 py-3">インクの色素分離</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="atomic-structure" class="mb-8">
+                <h3 class="text-2xl font-semibold mb-4 accent2-text">2. 原子の構造と周期表</h3>
+                <p class="mb-6 text-gray-700">全ての物質は原子からできています。原子の構造と、元素の性質が周期的に変化する周期表の理解は、化学の根幹を成します。</p>
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="card p-6">
+                        <h4 class="text-xl font-bold mb-3 primary-text">原子の構成粒子</h4>
+                        <div class="atom-model">
+                            <div class="atom-nucleus">
+                                <span>2P</span>
+                                <span>2N</span>
+                            </div>
+                            <div class="electron-path"></div>
+                            <div class="atom-electron" style="top: 10px; left: 50%; transform: translateX(-50%);">e-</div>
+                            <div class="atom-electron" style="bottom: 10px; left: 50%; transform: translateX(-50%);">e-</div>
+                        </div>
+                        <p class="text-center text-sm mt-2 mb-2">ヘリウム原子 (He) モデル</p>
+                        <ul class="list-disc list-inside text-sm space-y-1">
+                            <li><strong>陽子 (P+):</strong> 正の電荷。原子核内。</li>
+                            <li><strong>中性子 (N):</strong> 電荷なし。原子核内。</li>
+                            <li><strong>電子 (e-):</strong> 負の電荷。原子核の周り。</li>
+                        </ul>
+                        <p class="mt-3 text-sm text-gray-600">原子核中の陽子の数（原子番号）が元素の種類を決定します。</p>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="text-xl font-bold mb-3 accent1-text">元素の性質の周期性 (第2周期の例)</h4>
+                        <p class="text-sm text-gray-700 mb-2">周期表では、元素の性質が周期的に変化します。例えば、第2周期元素 (Li～Ne) のイオン化エネルギーは右に行くほど増大する傾向があります。</p>
+                        <div class="chart-container h-56 md:h-64">
+                            <canvas id="ionizationEnergyChart"></canvas>
+                        </div>
+                        <p class="mt-3 text-xs text-gray-600">イオン化エネルギー: 原子から電子1個を取り去るのに必要なエネルギー。希ガスで極大。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chemical-bonds" class="mb-8">
+                 <h3 class="text-2xl font-semibold mb-4 accent2-text">3. 化学結合と結晶</h3>
+                 <p class="mb-6 text-gray-700">原子同士は化学結合によって結びつき、分子や結晶を形成します。結合の種類によって物質の性質は大きく異なります。</p>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="card p-6">
+                        <h4 class="text-xl font-bold mb-3 primary-text">イオン結合</h4>
+                        <p class="text-sm">陽イオンと陰イオンが静電気力で結合。(例: NaCl)</p>
+                        <div class="mt-3 flex justify-around items-center h-20">
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center text-lg font-bold">Na</div>
+                                <span class="text-xs">Na原子</span>
+                            </div>
+                            <span class="text-2xl text-gray-500">&rarr;</span>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-blue-400 text-white rounded-full flex items-center justify-center text-lg font-bold">Na<sup>+</sup></div>
+                                <span class="text-xs">陽イオン</span>
+                            </div>
+                        </div>
+                         <div class="mt-1 flex justify-around items-center h-20">
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-green-200 rounded-full flex items-center justify-center text-lg font-bold">Cl</div>
+                                <span class="text-xs">Cl原子</span>
+                            </div>
+                            <span class="text-2xl text-gray-500">&rarr;</span>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-green-400 text-white rounded-full flex items-center justify-center text-lg font-bold">Cl<sup>-</sup></div>
+                                <span class="text-xs">陰イオン</span>
+                            </div>
+                        </div>
+                        <p class="text-sm mt-2 text-center text-red-500 font-semibold">Na<sup>+</sup> + Cl<sup>-</sup> &rarr; NaCl (イオン結晶)</p>
+                    </div>
+                     <div class="card p-6">
+                        <h4 class="text-xl font-bold mb-3 accent1-text">共有結合</h4>
+                        <p class="text-sm">原子同士が価電子を共有して結合。(例: $H_2O$)</p>
+                        <div class="mt-3 text-center">
+                            <img src="https://placehold.co/150x80/06D6A0/FFFFFF?text=H-O-H%0A(折れ線形)" alt="水分子の共有結合モデル" class="mx-auto rounded">
+                            <p class="text-xs mt-1">水分子 ($H_2O$): 酸素原子1個と水素原子2個が共有結合。</p>
+                        </div>
+                        <p class="text-sm mt-2">分子の形: $CO_2$ (直線形), $NH_3$ (三角錐形), $CH_4$ (正四面体形)</p>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="text-xl font-bold mb-3 secondary-text">金属結合</h4>
+                        <p class="text-sm">金属陽イオンと自由電子による結合。(例: Fe, Cu)</p>
+                        <div class="mt-3 text-center">
+                             <img src="https://placehold.co/150x80/FFD166/333333?text=金属陽イオン+%2B+自由電子" alt="金属結合モデル" class="mx-auto rounded">
+                             <p class="text-xs mt-1">自由電子が金属光沢や電気伝導性をもたらす。</p>
+                        </div>
+                        <p class="text-sm mt-2">展性・延性に富む。</p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="matter-changes" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 section-title">第2部：物質の変化</h2>
+
+            <div id="amount-substance" class="mb-8">
+                <h3 class="text-2xl font-semibold mb-4 accent2-text">1. 物質量と化学反応式</h3>
+                <p class="mb-6 text-gray-700">化学反応を定量的に扱うためには、物質量 (mol) の概念が不可欠です。これは目に見えない粒子と実験室での測定値を結びつけます。</p>
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="card p-6 text-center">
+                        <h4 class="text-xl font-bold mb-3 primary-text">アボガドロ定数 ($N_A$)</h4>
+                        <p class="text-4xl font-bold secondary-text my-4">$6.02 \times 10^{23}$</p>
+                        <p class="text-sm text-gray-700">/mol (1molあたりの粒子数)</p>
+                        <p class="mt-3 text-xs text-gray-600">鉛筆12本が1ダースであるように、粒子 $6.02 \times 10^{23}$ 個の集まりが1molです。</p>
+                    </div>
+                    <div class="card p-6 text-center">
+                        <h4 class="text-xl font-bold mb-3 accent1-text">気体のモル体積 (標準状態)</h4>
+                        <p class="text-4xl font-bold secondary-text my-4">22.4 L</p>
+                        <p class="text-sm text-gray-700">/mol (0℃, $1.013 \times 10^5 Pa$ での気体1molの体積)</p>
+                        <p class="mt-3 text-xs text-gray-600">気体の種類によらず、標準状態ではほぼ一定です。</p>
+                    </div>
+                </div>
+                <div class="card p-6">
+                    <h4 class="text-xl font-bold mb-3 accent2-text">化学反応式: $2H_2 + O_2 \rightarrow 2H_2O$</h4>
+                    <p class="text-sm text-gray-700 mb-2">この反応式は、水素分子2molと酸素分子1molが反応して水分子2molが生成することを示します。係数の比は物質量の比を表します。</p>
+                    <ul class="list-disc list-inside text-sm space-y-1">
+                        <li>反応物: 水素 ($H_2$), 酸素 ($O_2$)</li>
+                        <li>生成物: 水 ($H_2O$)</li>
+                        <li>量的関係: $H_2$ : $O_2$ : $H_2O$ = 2 : 1 : 2 (mol比)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="acid-base" class="mb-8">
+                <h3 class="text-2xl font-semibold mb-4 accent2-text">2. 酸と塩基</h3>
+                <p class="mb-6 text-gray-700">酸と塩基は身近な物質の性質を特徴づけ、中和反応はそれらの性質を打ち消し合います。pHは酸性・塩基性の度合いを示す尺度です。</p>
+                <div class="card p-6 mb-8">
+                    <h4 class="text-xl font-bold mb-3 primary-text">pHスケール (25℃)</h4>
+                    <div class="flex flex-col sm:flex-row rounded-lg overflow-hidden shadow-md my-4">
+                        <div class="ph-scale-segment flex-1" style="background-color: #FF6B6B;">pH 0-2 (強酸性)</div>
+                        <div class="ph-scale-segment flex-1" style="background-color: #FFD166;">pH 3-6 (弱酸性)</div>
+                        <div class="ph-scale-segment flex-1" style="background-color: #06D6A0;">pH 7 (中性)</div>
+                        <div class="ph-scale-segment flex-1" style="background-color: #75A8F9;">pH 8-11 (弱塩基性)</div>
+                        <div class="ph-scale-segment flex-1" style="background-color: #118AB2;">pH 12-14 (強塩基性)</div>
+                    </div>
+                    <p class="text-sm text-gray-700">$pH = -log_{10}[H^+]$ で定義され、値が小さいほど酸性が強いことを示します。</p>
+                </div>
+                <div class="card p-6">
+                    <h4 class="text-xl font-bold mb-3 accent1-text">中和反応</h4>
+                    <p class="text-sm text-gray-700 mb-3">酸と塩基が反応し、互いの性質を打ち消しあい、多くの場合、水と塩(えん)が生成します。</p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-2">
+                        <div class="flowchart-item">酸 (例: HCl)</div>
+                        <div class="flowchart-arrow">+</div>
+                        <div class="flowchart-item">塩基 (例: NaOH)</div>
+                        <div class="flowchart-arrow">&rarr;</div>
+                        <div class="flowchart-item">塩 (例: NaCl)</div>
+                        <div class="flowchart-arrow">+</div>
+                        <div class="flowchart-item">水 ($H_2O$)</div>
+                    </div>
+                    <p class="mt-3 text-xs text-gray-600">例: 胃酸を制酸剤で中和する、酸性土壌を石灰で中和する。</p>
+                </div>
+            </div>
+            
+            <div id="redox-reaction" class="mb-8">
+                 <h3 class="text-2xl font-semibold mb-4 accent2-text">3. 酸化還元反応</h3>
+                 <p class="mb-6 text-gray-700">物質が電子を失う「酸化」と、電子を受け取る「還元」は常に同時に起こります。金属のサビや電池の原理も酸化還元反応です。</p>
+                 <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="card p-6">
+                        <h4 class="text-xl font-bold mb-3 primary-text">酸化と還元 (電子による定義)</h4>
+                        <p class="mb-2"><strong>酸化:</strong> 原子やイオンが電子 ($e^-$) を失う変化。</p>
+                        <p><strong>還元:</strong> 原子やイオンが電子 ($e^-$) を受け取る変化。</p>
+                        <p class="mt-3 text-sm text-gray-600">例: 鉄のサビ ($Fe \rightarrow Fe^{3+} + 3e^-$ は酸化)</p>
+                    </div>
+                    <div class="card p-6">
+                        <h4 class="text-xl font-bold mb-3 accent1-text">ダニエル電池の原理</h4>
+                        <p class="text-sm text-gray-700 mb-2">イオン化傾向の異なる2種類の金属を用いた電池です。</p>
+                        <ul class="list-disc list-inside text-xs space-y-1">
+                            <li><strong>負極 (Zn):</strong> $Zn \rightarrow Zn^{2+} + 2e^-$ (酸化)</li>
+                            <li><strong>正極 (Cu):</strong> $Cu^{2+} + 2e^- \rightarrow Cu$ (還元)</li>
+                        </ul>
+                        <div class="mt-3 text-center">
+                             <img src="https://placehold.co/200x100/06D6A0/FFFFFF?text=ダニエル電池模式図%0AZn%7CZnSO4%7C%7CCuSO4%7CCu" alt="ダニエル電池モデル" class="mx-auto rounded">
+                        </div>
+                        <p class="mt-2 text-xs text-gray-600">化学エネルギーを電気エネルギーに変換します。</p>
+                    </div>
+                </div>
+                 <div class="card p-6">
+                    <h4 class="text-xl font-bold mb-3 secondary-text">金属のイオン化傾向</h4>
+                    <p class="text-sm text-gray-700 mb-2">金属が水溶液中で陽イオンになろうとする性質の強さ。大きいほど酸化されやすい。</p>
+                    <div class="bg-gray-100 p-3 rounded-md text-xs">
+                        K > Ca > Na > Mg > Al > Zn > Fe > Ni > Sn > Pb > (H) > Cu > Hg > Ag > Pt > Au <br/>
+                        <span class="font-bold">(大) &longleftarrow; イオン化傾向 &longrightarrow; (小)</span>
+                    </div>
+                    <p class="mt-2 text-xs text-gray-600">(H)より左の金属は希酸と反応して水素を発生します。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="further-learning" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 section-title">第3部：化学基礎の学習を深めるために</h2>
+            <p class="mb-6 text-gray-700">化学基礎の理解を確実なものにするためには、混同しやすい用語の区別や、学習のコツを掴むことが大切です。</p>
+            <div class="card p-6">
+                <h3 class="text-2xl font-semibold mb-4 accent2-text">混同しやすい重要用語の整理</h3>
+                <div class="space-y-4 text-sm">
+                    <div>
+                        <h4 class="font-bold primary-text">単体 vs 元素</h4>
+                        <p class="text-gray-600">単体は「物質そのもの」(例: $O_2$)、元素は「成分の種類」(例: $H_2O$ の中のO)。</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold accent1-text">イオン化エネルギー vs 電気陰性度</h4>
+                        <p class="text-gray-600">イオン化エネルギーは「電子を失いにくいか」、電気陰性度は結合時に「電子を引き付けたいか」。</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold secondary-text">同素体 vs 同位体</h4>
+                        <p class="text-gray-600">同素体は同じ元素の「異なる単体」(例: Oと$O_3$)、同位体は同じ元素の「異なる原子」(例: $^1H$と$^2H$)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="accent2-bg text-white py-6 text-center">
+        <p class="text-sm">&copy; 化学基礎インフォグラフィック (学習参考資料)</p>
+    </footer>
+
+    <script>
+        function formatJapaneseLabel(label, maxLineLength = 8) {
+            if (typeof label !== 'string' || label.length <= maxLineLength) {
+                return label;
+            }
+            const lines = [];
+            for (let i = 0; i < label.length; i += maxLineLength) {
+                lines.push(label.substring(i, i + maxLineLength));
+            }
+            return lines;
+        }
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        font: { size: 10, family: "'Noto Sans JP', sans-serif" },
+                        color: '#333333'
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(''); 
+                            } else {
+                              return label;
+                            }
+                        }
+                    },
+                    bodyFont: { family: "'Noto Sans JP', sans-serif" },
+                    titleFont: { family: "'Noto Sans JP', sans-serif" }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        font: { size: 10, family: "'Noto Sans JP', sans-serif" },
+                        color: '#333333',
+                        callback: function(value, index, values) {
+                            const label = this.getLabelForValue(value);
+                            return formatJapaneseLabel(label, 6); // Shorter for axis labels
+                        }
+                    },
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: {
+                        font: { size: 10, family: "'Noto Sans JP', sans-serif" },
+                        color: '#333333'
+                    },
+                    beginAtZero: true
+                }
+            }
+        };
+
+        const ionizationEnergyCtx = document.getElementById('ionizationEnergyChart');
+        if (ionizationEnergyCtx) {
+            new Chart(ionizationEnergyCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Li (リチウム)', 'Be (ベリリウム)', 'B (ホウ素)', 'C (炭素)', 'N (窒素)', 'O (酸素)', 'F (フッ素)', 'Ne (ネオン)'].map(label => formatJapaneseLabel(label)),
+                    datasets: [{
+                        label: '第1イオン化エネルギー (相対値)',
+                        data: [520, 899, 801, 1086, 1402, 1314, 1681, 2081], // Illustrative values
+                        borderColor: '#FF6B6B', // Lively Coral
+                        backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                        tension: 0.1,
+                        fill: true,
+                        pointRadius: 4,
+                        pointBackgroundColor: '#FF6B6B'
+                    }]
+                },
+                options: { ...commonChartOptions }
+            });
+        }
+    </script>
+
+</body>
+</html>

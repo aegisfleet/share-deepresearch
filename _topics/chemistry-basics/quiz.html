@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>化学基礎 用語クイズ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F7F7F7; /* Light Gray */
+            color: #333333; /* Dark Gray */
+        }
+        .quiz-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn:active {
+            transform: scale(0.98);
+        }
+        .btn-primary {
+            background-color: #FF6B6B; /* Lively Coral */
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #e05a5a;
+        }
+        .btn-secondary {
+            background-color: #118AB2; /* Deep Cerulean */
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #0e708e;
+        }
+        .option-btn {
+            background-color: white;
+            border: 1px solid #CBD5E1; /* cool-gray-300 */
+            width: 100%;
+            margin-bottom: 0.75rem;
+            color: #333333;
+        }
+        .option-btn:hover {
+            background-color: #F1F5F9; /* cool-gray-100 */
+        }
+        .option-btn.selected {
+            background-color: #FFD166; /* Sunny Yellow */
+            border-color: #FFD166;
+            color: #4A5568; /* cool-gray-700 */
+        }
+        .option-btn.correct {
+            background-color: #06D6A0; /* Vibrant Teal */
+            border-color: #06D6A0;
+            color: white;
+        }
+        .option-btn.incorrect {
+            background-color: #EF4444; /* red-500 */
+            border-color: #EF4444;
+            color: white;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: 1.5rem;
+        }
+        .infographic-title {
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 700; /* font-bold */
+            color: #118AB2; /* Deep Cerulean */
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
+        .text-xxs {
+            font-size: 0.65rem; /* Smaller than text-xs */
+            line-height: 0.85rem;
+        }
+        /* Helper for LaTeX-like rendering */
+        .latex-sup { vertical-align: super; font-size: 0.7em; }
+        .latex-sub { vertical-align: sub; font-size: 0.7em; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app" class="quiz-container p-4 min-h-screen flex flex-col">
+        <header class="text-center py-6">
+            <h1 class="text-3xl font-bold" style="color: #FF6B6B;">化学基礎 クイズ</h1>
+        </header>
+
+        <main class="flex-grow">
+            <div id="question-screen">
+                <div class="card">
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-500" id="progress-text"></p>
+                        <h2 class="text-xl font-semibold mt-1" id="question-text"></h2>
+                        <p class="text-xs text-gray-500 mt-1" id="term-text"></p>
+                    </div>
+                    <div id="options-container">
+                        </div>
+                </div>
+                <button id="submit-btn" class="btn btn-primary w-full" disabled>解答する</button>
+            </div>
+
+            <div id="feedback-screen" class="hidden">
+                <div class="card">
+                    <h3 class="text-lg font-semibold mb-2" id="feedback-title"></h3>
+                    <p class="text-sm mb-3" id="feedback-explanation"></p>
+                    <div class="border-t border-gray-200 pt-3">
+                        <p class="infographic-title">ポイント解説</p>
+                        <div id="infographic-content" class="text-sm">
+                            </div>
+                    </div>
+                </div>
+                <button id="next-btn" class="btn btn-secondary w-full">次の問題へ</button>
+            </div>
+
+            <div id="score-screen" class="hidden">
+                <div class="card text-center">
+                    <h2 class="text-2xl font-bold mb-4">クイズ終了！</h2>
+                    <p class="text-lg mb-2">あなたのスコア:</p>
+                    <p class="text-4xl font-bold mb-6" id="final-score" style="color: #06D6A0;"></p>
+                    <button id="restart-btn" class="btn btn-primary w-full">もう一度挑戦する</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-center py-4 text-xs text-gray-500">
+            &copy; 化学基礎学習アプリ
+        </footer>
+    </div>
+
+    <script>
+        const quizData = [
+          {
+            id: 'q1',
+            term: '純物質と混合物 (第1部 1.)',
+            question: '食塩水のように、2種類以上の純物質が物理的に混じり合っているものを何と呼びますか？',
+            options: [
+              { text: '単体', isCorrect: false },
+              { text: '化合物', isCorrect: false },
+              { text: '混合物', isCorrect: true },
+              { text: '元素', isCorrect: false },
+            ],
+            correctAnswerText: '混合物',
+            explanation: '混合物は、食塩水や空気のように、複数の純物質がそれぞれの性質を保ったまま混ざり合ったものです。',
+            infographicHTML: `
+              <div class="grid grid-cols-2 gap-2 text-center text-xs">
+                <div class="border p-2 rounded-md border-blue-200 bg-blue-50">
+                  <p class="font-bold mb-1 text-blue-700">純物質 (例: 水)</p>
+                  <div class="flex justify-center items-center h-12 text-2xl">💧</div>
+                  <p>1種類の物質</p>
+                </div>
+                <div class="border p-2 rounded-md border-green-200 bg-green-50">
+                  <p class="font-bold mb-1 text-green-700">混合物 (例: 食塩水)</p>
+                  <div class="flex justify-center items-center h-12 text-2xl">💧🧂</div>
+                  <p>2種類以上の物質</p>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: 'q2',
+            term: '原子の構成粒子 (第1部 2.)',
+            question: '原子核を構成する粒子のうち、正の電荷を持つものは何ですか？',
+            options: [
+              { text: '電子', isCorrect: false },
+              { text: '陽子', isCorrect: true },
+              { text: '中性子', isCorrect: false },
+              { text: '光子', isCorrect: false },
+            ],
+            correctAnswerText: '陽子',
+            explanation: '陽子は原子核中に存在し、正の電荷を持ちます。中性子は電荷を持たず、電子は負の電荷を持ち原子核の周りに存在します。',
+            infographicHTML: `
+              <div class="text-center text-xs">
+                <p class="font-bold mb-2 text-indigo-700">原子のモデル (ヘリウムの例)</p>
+                <div class="relative w-24 h-24 mx-auto border-2 border-gray-300 rounded-full flex items-center justify-center bg-gray-50">
+                  <div class="absolute w-10 h-10 bg-red-200 rounded-full flex flex-col items-center justify-center text-xxs shadow-inner">
+                    <span class="text-red-700 font-medium">2P(+)</span>
+                    <span class="text-blue-700 font-medium">2N</span>
+                  </div>
+                  <div class="absolute w-4 h-4 bg-yellow-400 rounded-full flex items-center justify-center text-xxs shadow" style="top: 2px; left: 50%; transform: translateX(-50%) rotate(0deg) translateY(-38px) rotate(0deg);">e<sup>-</sup></div>
+                  <div class="absolute w-4 h-4 bg-yellow-400 rounded-full flex items-center justify-center text-xxs shadow" style="top: 2px; left: 50%; transform: translateX(-50%) rotate(180deg) translateY(-38px) rotate(-180deg);">e<sup>-</sup></div>
+                </div>
+                <p class="mt-2">P: 陽子 (+), N: 中性子, e<sup>-</sup>: 電子 (-)</p>
+              </div>
+            `
+          },
+          {
+            id: 'q3',
+            term: 'イオン結合 (第1部 3.)',
+            question: 'ナトリウム (Na) のような金属元素の原子と、塩素 (Cl) のような非金属元素の原子が結合する際に主に形成される化学結合は何ですか？',
+            options: [ 
+                {text: '共有結合', isCorrect: false}, 
+                {text: 'イオン結合', isCorrect: true}, 
+                {text: '金属結合', isCorrect: false}, 
+                {text: '水素結合', isCorrect: false} 
+            ],
+            correctAnswerText: 'イオン結合',
+            explanation: 'イオン結合は、金属原子が電子を失って陽イオンになり、非金属原子が電子を受け取って陰イオンになることで、生じた陽イオンと陰イオンの間の静電気的な引力によって形成されます。',
+            infographicHTML: `
+              <div class="text-center text-xs">
+                <p class="font-bold mb-2 text-indigo-700">イオン結合の形成 (NaClの例)</p>
+                <div class="flex items-center justify-around mb-1">
+                  <div class="text-center p-1">
+                    <div class="w-10 h-10 bg-blue-200 rounded-full flex items-center justify-center text-sm">Na</div>
+                    <p class="text-xxs mt-0.5">Na原子</p>
+                  </div>
+                  <div class="text-red-500 font-bold text-xl mx-1">&rarr;</div>
+                  <div class="text-xxs text-red-500 -mt-3">e<sup>-</sup></div>
+                  <div class="text-center p-1">
+                    <div class="w-10 h-10 bg-green-200 rounded-full flex items-center justify-center text-sm">Cl</div>
+                    <p class="text-xxs mt-0.5">Cl原子</p>
+                  </div>
+                </div>
+                <div class="text-gray-500 text-xl my-1">&darr;</div>
+                <div class="flex items-center justify-around">
+                  <div class="text-center p-1">
+                    <div class="w-10 h-10 bg-blue-400 text-white rounded-full flex items-center justify-center text-sm">Na<sup>+</sup></div>
+                    <p class="text-xxs mt-0.5">陽イオン</p>
+                  </div>
+                  <div class="text-gray-500 font-bold text-xl mx-1">+</div>
+                  <div class="text-center p-1">
+                    <div class="w-10 h-10 bg-green-400 text-white rounded-full flex items-center justify-center text-sm">Cl<sup>-</sup></div>
+                    <p class="text-xxs mt-0.5">陰イオン</p>
+                  </div>
+                </div>
+                <p class="mt-2 text-sm">静電気力で結合して NaCl!</p>
+              </div>
+            `
+          },
+          {
+            id: 'q4',
+            term: '物質量 (mol) とアボガドロ定数 (第2部 1.)',
+            question: '6.02 × 10<sup>23</sup> 個の粒子の集団を1とする単位は何ですか？',
+            options: [ 
+                {text: 'グラム (g)', isCorrect: false}, 
+                {text: 'リットル (L)', isCorrect: false}, 
+                {text: 'モル (mol)', isCorrect: true}, 
+                {text: 'ニュートン (N)', isCorrect: false} 
+            ],
+            correctAnswerText: 'モル (mol)',
+            explanation: 'モル (mol) は物質量の単位で、6.02 × 10<sup>23</sup> 個（アボガドロ定数）の粒子（原子、分子など）の集まりを 1 mol と定義します。',
+            infographicHTML: `
+              <div class="text-center text-xs p-3 bg-yellow-50 rounded-md border border-yellow-300">
+                <p class="font-bold mb-1 text-yellow-800">物質量 (モル)</p>
+                <p class="text-3xl font-bold my-2" style="color: #D97706;">1 mol</p>
+                <p class="text-gray-700">= <span class="font-semibold">6.02 × 10<sup>23</sup></span> 個の粒子</p>
+                <p class="mt-1 text-xxs">(原子, 分子, イオンなど)</p>
+                <div class="text-4xl mt-2">📦</div>
+                <p class="text-xxs mt-0.5">粒子の「ひとまとまり」</p>
+              </div>
+            `
+          },
+          {
+            id: 'q5',
+            term: '水素イオン濃度 (pH) (第2部 2.)',
+            question: '25℃において、pHが7より大きい水溶液の性質は何ですか？',
+            options: [ 
+                {text: '酸性', isCorrect: false}, 
+                {text: '中性', isCorrect: false}, 
+                {text: '塩基性', isCorrect: true}, 
+                {text: '不明', isCorrect: false} 
+            ],
+            correctAnswerText: '塩基性',
+            explanation: '25℃において、pHが7の水溶液は中性、7より小さい場合は酸性、7より大きい場合は塩基性を示します。',
+            infographicHTML: `
+              <div class="text-xs">
+                <p class="font-bold mb-2 text-center text-indigo-700">pHスケール (25℃)</p>
+                <div class="flex rounded-md overflow-hidden border border-gray-300 shadow-sm">
+                  <div class="flex-1 p-2 text-center bg-red-400 text-white">
+                    <p class="font-semibold">酸性</p><p>pH &lt; 7</p>
+                  </div>
+                  <div class="flex-1 p-2 text-center bg-green-400 text-white border-l border-r border-white">
+                    <p class="font-semibold">中性</p><p>pH = 7</p>
+                  </div>
+                  <div class="flex-1 p-2 text-center bg-blue-400 text-white">
+                    <p class="font-semibold">塩基性</p><p>pH &gt; 7</p>
+                  </div>
+                </div>
+                <div class="flex mt-2 text-2xl">
+                  <div class="flex-1 text-center">🍋</div>
+                  <div class="flex-1 text-center">💧</div>
+                  <div class="flex-1 text-center">🧼</div>
+                </div>
+              </div>
+            `
+          }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedOptionElement = null;
+
+        const questionScreen = document.getElementById('question-screen');
+        const feedbackScreen = document.getElementById('feedback-screen');
+        const scoreScreen = document.getElementById('score-screen');
+
+        const progressText = document.getElementById('progress-text');
+        const questionText = document.getElementById('question-text');
+        const termText = document.getElementById('term-text');
+        const optionsContainer = document.getElementById('options-container');
+        const submitBtn = document.getElementById('submit-btn');
+        
+        const feedbackTitle = document.getElementById('feedback-title');
+        const feedbackExplanation = document.getElementById('feedback-explanation');
+        const infographicContent = document.getElementById('infographic-content');
+        const nextBtn = document.getElementById('next-btn');
+
+        const finalScoreText = document.getElementById('final-score');
+        const restartBtn = document.getElementById('restart-btn');
+
+        function formatTextForDisplay(text) {
+            if (!text) return '';
+            // Simple replacements for common LaTeX-like patterns
+            return text
+                .replace(/\$H_2O\$/g, 'H<span class="latex-sub">2</span>O')
+                .replace(/\$CO_2\$/g, 'CO<span class="latex-sub">2</span>')
+                .replace(/\$O_2\$/g, 'O<span class="latex-sub">2</span>')
+                .replace(/\$N_2\$/g, 'N<span class="latex-sub">2</span>')
+                .replace(/\$NaCl\$/g, 'NaCl')
+                .replace(/\$Na\^ \+\$/g, 'Na<span class="latex-sup">+</span>')
+                .replace(/\$Cl\^ -\$/g, 'Cl<span class="latex-sup">-</span>')
+                .replace(/(\d+) \u00D7 10\^(\d+)/g, '$1 \u00D7 10<span class="latex-sup">$2</span>') // For "X × 10^Y"
+                .replace(/(\d+) x 10\^(\d+)/g, '$1 \u00D7 10<span class="latex-sup">$2</span>'); // For "X x 10^Y"
+        }
+
+
+        function loadQuestion() {
+            selectedOptionElement = null;
+            submitBtn.disabled = true;
+
+            const currentQuestion = quizData[currentQuestionIndex];
+            progressText.textContent = `問題 ${currentQuestionIndex + 1} / ${quizData.length}`;
+            questionText.innerHTML = formatTextForDisplay(currentQuestion.question);
+            termText.textContent = currentQuestion.term;
+
+            optionsContainer.innerHTML = '';
+            currentQuestion.options.forEach(option => {
+                const button = document.createElement('button');
+                button.innerHTML = formatTextForDisplay(option.text);
+                button.classList.add('btn', 'option-btn');
+                button.addEventListener('click', () => selectOption(button, option));
+                optionsContainer.appendChild(button);
+            });
+
+            questionScreen.classList.remove('hidden');
+            feedbackScreen.classList.add('hidden');
+            scoreScreen.classList.add('hidden');
+        }
+
+        function selectOption(buttonElement, option) {
+            if (selectedOptionElement) {
+                selectedOptionElement.classList.remove('selected');
+            }
+            selectedOptionElement = buttonElement;
+            selectedOptionElement.classList.add('selected');
+            submitBtn.disabled = false;
+        }
+
+        submitBtn.addEventListener('click', () => {
+            const currentQuestion = quizData[currentQuestionIndex];
+            const selectedUserOptionText = selectedOptionElement.textContent; // Get text before modification
+            let userAnswerIsCorrect = false;
+
+            currentQuestion.options.forEach(opt => {
+                if (formatTextForDisplay(opt.text) === selectedOptionElement.innerHTML && opt.isCorrect) {
+                    userAnswerIsCorrect = true;
+                }
+            });
+            
+            Array.from(optionsContainer.children).forEach(btn => {
+                let btnOptionIsCorrect = false;
+                currentQuestion.options.forEach(opt => {
+                     if (formatTextForDisplay(opt.text) === btn.innerHTML && opt.isCorrect) {
+                        btnOptionIsCorrect = true;
+                    }
+                });
+
+                if (btnOptionIsCorrect) {
+                    btn.classList.add('correct');
+                } else if (btn === selectedOptionElement && !userAnswerIsCorrect) {
+                    btn.classList.add('incorrect');
+                }
+                btn.disabled = true; 
+            });
+
+
+            if (userAnswerIsCorrect) {
+                score++;
+                feedbackTitle.textContent = '正解！ 🎉';
+                feedbackTitle.style.color = '#06D6A0'; // Vibrant Teal
+            } else {
+                feedbackTitle.textContent = '不正解... 🙁';
+                feedbackTitle.style.color = '#EF4444'; // red-500
+                // Highlight correct answer if user was wrong
+                Array.from(optionsContainer.children).forEach(btn => {
+                     let isCorrectChoice = false;
+                     currentQuestion.options.forEach(opt => {
+                        if(formatTextForDisplay(opt.text) === btn.innerHTML && opt.isCorrect) {
+                            isCorrectChoice = true;
+                        }
+                     });
+                     if(isCorrectChoice && btn !== selectedOptionElement){
+                        // If it's the correct answer and wasn't selected, give it a distinct "correct" style
+                        // but less prominent than if it was the one they picked and got right.
+                        // For now, the 'correct' class handles this.
+                     }
+                });
+            }
+            
+            feedbackExplanation.innerHTML = `<strong>正解: ${formatTextForDisplay(currentQuestion.correctAnswerText)}</strong><br>${formatTextForDisplay(currentQuestion.explanation)}`;
+            infographicContent.innerHTML = formatTextForDisplay(currentQuestion.infographicHTML);
+            
+            questionScreen.classList.add('hidden');
+            feedbackScreen.classList.remove('hidden');
+            submitBtn.disabled = true;
+
+            if (currentQuestionIndex === quizData.length - 1) {
+                nextBtn.textContent = '結果を見る';
+            } else {
+                nextBtn.textContent = '次の問題へ';
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                showScore();
+            }
+        });
+
+        restartBtn.addEventListener('click', () => {
+            currentQuestionIndex = 0;
+            score = 0;
+            loadQuestion();
+        });
+
+        function showScore() {
+            finalScoreText.textContent = `${score} / ${quizData.length}`;
+            questionScreen.classList.add('hidden');
+            feedbackScreen.classList.add('hidden');
+            scoreScreen.classList.remove('hidden');
+        }
+
+        // Initial load
+        loadQuestion();
+    </script>
+</body>
+</html>

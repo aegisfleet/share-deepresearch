@@ -166,6 +166,10 @@ a:hover {
     content: "📚";  /* チュートリアルカテゴリ */
 }
 
+.topic-list li[data-category="study"]::before {
+    content: "✏️";  /* 勉強カテゴリ */
+}
+
 .topic-list li a {
     color: var(--link-color);
     font-weight: bold;
