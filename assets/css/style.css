@@ -305,6 +305,24 @@ a:hover {
     line-height: 1;
 }
 
+/* prompt section */
+.prompt-section h2::before {
+    content: "🤖 ";
+}
+
+.prompt-content {
+    background-color: rgba(25, 25, 25, 0.95);  /* var(--card-background)より暗い色 */
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);  /* シャドウも少し濃く */
+    white-space: pre-wrap;
+    font-family: monospace;
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
 /* レスポンシブデザイン */
 @media (max-width: 600px) {
     .main-content {

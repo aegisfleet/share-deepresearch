@@ -2,6 +2,7 @@
 layout: topic
 title: "Model Context Protocol対応AIエージェントのGitHub Actionsにおける活用調査"
 date: 2025-05-24
+prompt: "Model Context Protocol (MCP)クライアントに対応したAIエージェントで、GitHub Actionsのランナー上で動作する、もしくはランナーから指示が出せるものを調査して欲しい。"
 category: "ai"
 tags: [Model Context Protocol,GitHub Actions]
 audio: "/share-deepresearch/assets/audio/mcp-client-compatible-ai-agent.mp3"

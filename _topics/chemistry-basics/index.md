@@ -2,6 +2,7 @@
 layout: topic
 title: "化学基礎 重要用語マスターガイド"
 date: 2025-05-25
+prompt: "化学基礎に出てくる単語の復習にしようする資料を作成したい。高校生が理解できる内容で丁寧にまとめて欲しい。"
 category: "study"
 tags: [化学基礎]
 audio: "/share-deepresearch/assets/audio/chemistry-basics.mp3"

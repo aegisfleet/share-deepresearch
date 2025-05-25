@@ -26,6 +26,13 @@ layout: default
     </div>
     {% endif %}
 
+    {% if page.prompt %}
+    <div class="prompt-section">
+        <h2>プロンプト</h2>
+        <div class="prompt-content">{{ page.prompt }}</div>
+    </div>
+    {% endif %}
+
     {{ content }}
 
     {% if page.tags %}

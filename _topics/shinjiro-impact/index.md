@@ -2,6 +2,7 @@
 layout: topic
 title: "小泉進次郎農林水産大臣就任が日本の米農家にもたらす影響：推測的分析"
 date: 2025-05-24
+prompt: "小泉進次郎が農林水産省の大臣になったことは、米農家にとってプラスになるのか、マイナスになるのか推測したい。"
 category: "research"
 tags: [小泉進次郎,米]
 audio: "/share-deepresearch/assets/audio/shinjiro-impact.mp3"

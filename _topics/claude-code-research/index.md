@@ -2,6 +2,7 @@
 layout: topic
 title: "Anthropic Claude Code 詳細調査報告：VSCode及びGitHub Actions連携の深掘り"
 date: 2025-05-25
+prompt: "AnthropicのClaude Codeの使用例を詳細に調査したい。特にVScodeとの連携、GitHub Actionsとの連携についてはより深堀りして欲しい。"
 category: "ai"
 tags: [Anthropic,Claude Code,VSCode,GitHub Actions]
 audio: "/share-deepresearch/assets/audio/claude-code-research.mp3"
