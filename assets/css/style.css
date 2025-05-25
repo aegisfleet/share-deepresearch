@@ -77,7 +77,15 @@ a:hover {
 }
 
 .page-header h1::before {
-    content: "🌟 ";
+    content: "";
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url('../favicon/favicon-32x32.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    margin-right: 8px;
 }
 
 .page-header p::before {
