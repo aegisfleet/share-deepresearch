@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR vs 拡散モデル：インタラクティブ比較学習</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Visualization & Content Choices:
+        - Report Info: II.A, III.A (生成プロセス) -> Goal: 整理・比較 -> Viz: HTML/CSSアニメーション (逐次表示 vs ノイズからの明確化) -> Interaction: 開始ボタン -> Justification: 生成方法の違いを視覚的に示す。NO SVG/Mermaid.
+        - Report Info: V.A, V.F (速度) -> Goal: 比較 -> Viz: HTML/CSSプログレスバーアニメーション -> Interaction: 開始ボタン -> Justification: 相対的な速度差を直感的に示す。NO SVG/Mermaid.
+        - Report Info: V.C, V.F (制御性) -> Goal: 比較 -> Viz: テキスト入力と簡略化された出力表示 -> Interaction: キーワード入力、結果表示 -> Justification: 制御指示への応答性の違いを体験させる。NO SVG/Mermaid.
+        - Report Info: II.C, III.C, V.F (エラー処理) -> Goal: 比較 -> Viz: HTML/CSSアニメーション (エラー伝播 vs 修正) -> Interaction: 開始ボタン（エラー導入デモ） -> Justification: エラー発生時の挙動の違いを視覚化。NO SVG/Mermaid.
+        - Report Info: V.C, V.F (編集可能性) -> Goal: 比較 -> Viz: テキスト表示と簡略化された編集結果 -> Interaction: 編集指示（簡略化）、結果表示 -> Justification: 編集時の挙動の違いを体験させる。NO SVG/Mermaid.
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #FAF7F5; /* Warm off-white */
+            color: #4A4A4A; /* Dark Gray */
+        }
+        .section-title {
+            color: #A0522D; /* Sienna */
+            border-bottom: 2px solid #D2B48C; /* Tan */
+            padding-bottom: 0.5rem;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.07);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #F0EBE3; /* Lighter warm off-white border */
+        }
+        .comparison-area {
+            border: 1px solid #D2B48C; /* Tan */
+            border-radius: 0.375rem;
+            padding: 1rem;
+            min-height: 150px;
+            background-color: #FAF7F5;
+        }
+        .model-label {
+            font-weight: bold;
+            color: #A0522D; /* Sienna */
+        }
+        .action-button {
+            background-color: #A0522D; /* Sienna */
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s;
+        }
+        .action-button:hover {
+            background-color: #804223; /* Darker Sienna */
+        }
+        .token {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            margin: 0.1rem;
+            background-color: #D2B48C; /* Tan */
+            color: #4A4A4A;
+            border-radius: 0.25rem;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+        .token.visible {
+            opacity: 1;
+        }
+        @keyframes fadeInToken {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .noise-block {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #E5E7EB; /* gray-200 */
+            margin: 0.2rem;
+            border-radius: 0.25rem;
+            text-align: center;
+            line-height: 30px;
+            font-size: 0.8rem;
+            transition: all 0.5s ease-in-out;
+        }
+        .progress-bar-bg {
+            background-color: #E5E7EB; /* gray-200 */
+            border-radius: 0.25rem;
+            height: 1.5rem;
+            width: 100%;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            background-color: #D2B48C; /* Tan */
+            height: 100%;
+            width: 0%;
+            border-radius: 0.25rem;
+            transition: width 1s ease-out;
+        }
+        .keyword-input {
+            border: 1px solid #D2B48C;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            width: calc(100% - 100px);
+        }
+        .error-text {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-5xl">
+
+        <header class="text-center my-8 sm:my-12">
+            <h1 class="text-3xl sm:text-4xl font-bold" style="color: #A0522D;">AR vs 拡散モデル：違いを遊んで学ぼう！</h1>
+            <p class="text-lg sm:text-xl text-gray-700 mt-2">テキスト生成モデルの仕組みをインタラクティブに体験</p>
+        </header>
+
+        <section id="generation-process" class="card">
+            <h2 class="text-2xl font-bold section-title mb-6">1. どうやってテキストを作るの？ <span class="text-sm text-gray-500">(生成プロセス)</span></h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">ARモデルは一つずつ言葉を繋げていくのに対し、拡散モデルは全体をぼんやりしたものから徐々にハッキリさせていくイメージです。（レポート II.A, III.A 参照）</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                <div>
+                    <p class="model-label mb-2">自己回帰 (AR) モデル</p>
+                    <div id="ar-process-output" class="comparison-area"></div>
+                </div>
+                <div>
+                    <p class="model-label mb-2">拡散 (Diffusion) モデル</p>
+                    <div id="diffusion-process-output" class="comparison-area flex flex-wrap items-center justify-center"></div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button id="start-process-demo" class="action-button">生成プロセス開始！</button>
+            </div>
+        </section>
+
+        <section id="generation-speed" class="card">
+            <h2 class="text-2xl font-bold section-title mb-6">2. どっちが速いの？ <span class="text-sm text-gray-500">(生成速度)</span></h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">ARモデルは一つずつなので時間がかかりがち。拡散モデルはまとめて処理できる可能性があるので速いかも？（レポート V.A, V.F 参照）</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                <div>
+                    <p class="model-label mb-2">自己回帰 (AR) モデル</p>
+                    <div class="progress-bar-bg"><div id="ar-speed-bar" class="progress-bar-fill"></div></div>
+                </div>
+                <div>
+                    <p class="model-label mb-2">拡散 (Diffusion) モデル</p>
+                    <div class="progress-bar-bg"><div id="diffusion-speed-bar" class="progress-bar-fill"></div></div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button id="start-speed-demo" class="action-button">速度比較スタート！</button>
+            </div>
+        </section>
+
+        <section id="controllability" class="card">
+            <h2 class="text-2xl font-bold section-title mb-6">3. お願いを聞いてくれる？ <span class="text-sm text-gray-500">(制御性)</span></h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">「こんな言葉を入れてほしい」というお願いは、拡散モデルの方が得意かもしれません。（レポート V.C, V.F 参照）</p>
+            <div class="mb-4">
+                <label for="keyword-input" class="block mb-2 text-sm font-medium text-gray-700">入れたいキーワード (例: 冒険):</label>
+                <div class="flex">
+                    <input type="text" id="keyword-input" class="keyword-input mr-2" value="冒険">
+                    <button id="start-control-demo" class="action-button">お願いする！</button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <p class="model-label mb-2">自己回帰 (AR) モデルの応答</p>
+                    <div id="ar-control-output" class="comparison-area"></div>
+                </div>
+                <div>
+                    <p class="model-label mb-2">拡散 (Diffusion) モデルの応答</p>
+                    <div id="diffusion-control-output" class="comparison-area"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="error-handling" class="card">
+            <h2 class="text-2xl font-bold section-title mb-6">4. 間違えちゃったら？ <span class="text-sm text-gray-500">(エラー処理)</span></h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">ARモデルは一度間違うと影響が続くことがありますが、拡散モデルは途中で修正できるかも。（レポート II.C, III.C, V.F 参照）</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                <div>
+                    <p class="model-label mb-2">自己回帰 (AR) モデル (エラー発生時)</p>
+                    <div id="ar-error-output" class="comparison-area"></div>
+                </div>
+                <div>
+                    <p class="model-label mb-2">拡散 (Diffusion) モデル (エラー発生時)</p>
+                    <div id="diffusion-error-output" class="comparison-area"></div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button id="start-error-demo" class="action-button">エラー発生デモ！</button>
+            </div>
+        </section>
+
+        <section id="editability" class="card">
+            <h2 class="text-2xl font-bold section-title mb-6">5. ちょっと変えたいんだけど… <span class="text-sm text-gray-500">(編集可能性)</span></h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">テキストの一部を変えたい時、拡散モデルの方が柔軟に対応しやすいかもしれません。（レポート V.C, V.F 参照）</p>
+            <div class="mb-4">
+                <p class="text-sm text-gray-700">元の文: 「大きな<span class="font-bold">木</span>の下で休んだ。」</p>
+                <p class="text-sm text-gray-700">変更指示: 「木」を「<span class="font-bold text-blue-600">花</span>」に変えたい！</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                <div>
+                    <p class="model-label mb-2">自己回帰 (AR) モデルの編集結果</p>
+                    <div id="ar-edit-output" class="comparison-area"></div>
+                </div>
+                <div>
+                    <p class="model-label mb-2">拡散 (Diffusion) モデルの編集結果</p>
+                    <div id="diffusion-edit-output" class="comparison-area"></div>
+                </div>
+            </div>
+             <div class="text-center">
+                <button id="start-edit-demo" class="action-button">編集デモ開始！</button>
+            </div>
+        </section>
+
+        <footer class="text-center py-8 text-sm text-gray-500 border-t" style="border-color: #D2B48C;">
+            <p>&copy; <span id="currentYear"></span> AR vs 拡散モデル学習アプリ. レポート情報を基に作成。</p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // 1. 生成プロセス デモ
+        const arProcessOutput = document.getElementById('ar-process-output');
+        const diffusionProcessOutput = document.getElementById('diffusion-process-output');
+        const startProcessDemoBtn = document.getElementById('start-process-demo');
+
+        const arText = "むかしむかし、あるところに…".split('');
+        const diffusionInitialBlocks = 5;
+        const diffusionFinalText = "むかしむかし、あるところに…";
+
+        startProcessDemoBtn.addEventListener('click', () => {
+            arProcessOutput.innerHTML = '';
+            diffusionProcessOutput.innerHTML = '';
+            
+            // ARプロセス
+            arText.forEach((char, index) => {
+                setTimeout(() => {
+                    const token = document.createElement('span');
+                    token.classList.add('token');
+                    token.textContent = char;
+                    arProcessOutput.appendChild(token);
+                    setTimeout(() => token.style.animation = `fadeInToken 0.5s ease ${index * 0.1}s forwards`, 0);
+                }, index * 200);
+            });
+
+            // 拡散プロセス
+            for (let i = 0; i < diffusionInitialBlocks; i++) {
+                const noiseBlock = document.createElement('div');
+                noiseBlock.classList.add('noise-block');
+                noiseBlock.textContent = '?';
+                diffusionProcessOutput.appendChild(noiseBlock);
+            }
+
+            setTimeout(() => {
+                const blocks = diffusionProcessOutput.querySelectorAll('.noise-block');
+                blocks.forEach(block => {
+                    block.style.backgroundColor = '#D2B48C'; // Tan
+                    block.style.color = '#4A4A4A';
+                    block.style.width = 'auto';
+                    block.style.padding = '0.25rem 0.5rem';
+                });
+                blocks[0].textContent = diffusionFinalText.substring(0, diffusionFinalText.length / 2);
+                blocks[1].textContent = diffusionFinalText.substring(diffusionFinalText.length / 2);
+                for (let i = 2; i < blocks.length; i++) {
+                    blocks[i].style.display = 'none';
+                }
+                 // Combine into one block after a delay
+                setTimeout(() => {
+                    diffusionProcessOutput.innerHTML = ''; // Clear existing blocks
+                    const finalToken = document.createElement('span');
+                    finalToken.classList.add('token', 'visible');
+                    finalToken.textContent = diffusionFinalText;
+                    diffusionProcessOutput.appendChild(finalToken);
+                }, 1000);
+
+
+            }, 1500);
+        });
+
+        // 2. 生成速度 デモ
+        const arSpeedBar = document.getElementById('ar-speed-bar');
+        const diffusionSpeedBar = document.getElementById('diffusion-speed-bar');
+        const startSpeedDemoBtn = document.getElementById('start-speed-demo');
+
+        startSpeedDemoBtn.addEventListener('click', () => {
+            arSpeedBar.style.width = '0%';
+            diffusionSpeedBar.style.width = '0%';
+            setTimeout(() => {
+                arSpeedBar.style.transition = 'width 3s ease-out';
+                diffusionSpeedBar.style.transition = 'width 1s ease-out';
+                arSpeedBar.style.width = '100%';
+                diffusionSpeedBar.style.width = '100%';
+            }, 100);
+        });
+
+        // 3. 制御性 デモ
+        const keywordInput = document.getElementById('keyword-input');
+        const arControlOutput = document.getElementById('ar-control-output');
+        const diffusionControlOutput = document.getElementById('diffusion-control-output');
+        const startControlDemoBtn = document.getElementById('start-control-demo');
+
+        startControlDemoBtn.addEventListener('click', () => {
+            const keyword = keywordInput.value || "指定なし";
+            arControlOutput.textContent = `昔々、あるところに王様がいました。お城には宝物がありました。(キーワード「${keyword}」は反映されにくい)`;
+            diffusionControlOutput.textContent = `昔々、あるところに素晴らしい「${keyword}」がありました。それは皆を幸せにしました。`;
+        });
+
+        // 4. エラー処理 デモ
+        const arErrorOutput = document.getElementById('ar-error-output');
+        const diffusionErrorOutput = document.getElementById('diffusion-error-output');
+        const startErrorDemoBtn = document.getElementById('start-error-demo');
+
+        startErrorDemoBtn.addEventListener('click', () => {
+            arErrorOutput.innerHTML = 'むか<span class="error-text">し</span>むか<span class="error-text">し</span>、あ<span class="error-text">し</span>ところに... (エラーが伝播しやすい)';
+            diffusionErrorOutput.textContent = 'むかしむかし、あるところに... (エラーが修正されやすい)';
+        });
+        
+        // 5. 編集可能性 デモ
+        const arEditOutput = document.getElementById('ar-edit-output');
+        const diffusionEditOutput = document.getElementById('diffusion-edit-output');
+        const startEditDemoBtn = document.getElementById('start-edit-demo');
+
+        startEditDemoBtn.addEventListener('click', () => {
+            arEditOutput.innerHTML = '大きな<span class="text-blue-600 font-bold">花</span>の下で休んだ。(全体が再生成されるイメージ)';
+            diffusionEditOutput.innerHTML = '大きな<span class="text-blue-600 font-bold">花</span>の下で休んだ。(部分的に修正されるイメージ)';
+        });
+
+    </script>
+</body>
+</html>

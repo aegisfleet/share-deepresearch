@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インタラクティブSPA：テキスト拡散モデルの性能と将来性</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Visualization & Content Choices: 
+        - Report Info: AR Model Principles -> Goal: Organize -> Viz: HTML/CSS diagram (sequential flow) -> Interaction: Static -> Justification: Clear visual of core concept. NO SVG/Mermaid.
+        - Report Info: Diffusion Model Principles -> Goal: Organize -> Viz: HTML/CSS diagram (forward/reverse process) -> Interaction: Static -> Justification: Clear visual of core concept. NO SVG/Mermaid.
+        - Report Info: Gemini Diffusion Benchmarks (Table IV.C) -> Goal: Compare -> Viz: Grouped Bar Chart (Chart.js Canvas) -> Interaction: Tooltips -> Justification: Direct quantitative comparison of two models across multiple benchmarks. NO SVG/Mermaid.
+        - Report Info: AR vs. Diffusion - Speed (V.A, Table V.F) -> Goal: Compare -> Viz: Bar Chart (Chart.js Canvas, illustrative) -> Interaction: Tooltips -> Justification: Visual representation of relative speed differences. NO SVG/Mermaid.
+        - Report Info: AR vs. Diffusion - Qualitative Features (Table V.F - e.g., Controllability, Fluency) -> Goal: Compare -> Viz: HTML/CSS styled "rating bars" or icons -> Interaction: Static -> Justification: Quick visual summary of qualitative differences. NO SVG/Mermaid.
+        - Report Info: Hybrid Models Concept (VII.A.5) -> Goal: Organize -> Viz: HTML/CSS diagram (AR + Diffusion -> Hybrid) -> Interaction: Static -> Justification: Simple visual for a key future concept. NO SVG/Mermaid.
+        - Report Info: Key Strengths/Weaknesses/Limitations of AR & Diffusion -> Goal: Inform -> Viz: Styled bullet lists with Unicode icons -> Interaction: Static -> Justification: Clear, scannable presentation of key textual points. NO SVG/Mermaid.
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #FAF7F5; /* Warm off-white */
+            color: #4A4A4A; /* Dark Gray */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Default max-width */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 350px; /* Base max-height */
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .chart-container-horizontal-bar { /* For horizontal bar charts that might need more height */
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 450px; 
+            max-height: 500px;
+        }
+         @media (min-width: 1024px) { /* lg breakpoint */
+            .chart-container-horizontal-bar {
+                height: 500px;
+                max-height: 600px;
+            }
+        }
+
+        .section-title {
+            color: #A0522D; /* Sienna */
+            border-bottom: 2px solid #D2B48C; /* Tan */
+            padding-bottom: 0.5rem;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.07);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #F0EBE3; /* Lighter warm off-white border */
+        }
+        .nav-link {
+            color: #FAF7F5;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            background-color: #A0522D; /* Sienna */
+            z-index: 50;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .comparison-item {
+            background-color: #F0EBE3; /* Lighter warm off-white */
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-bottom: 1rem;
+        }
+        .unicode-icon {
+            font-size: 1.25rem;
+            margin-right: 0.5rem;
+            color: #A0522D; /* Sienna */
+        }
+        .rating-bar-bg {
+            background-color: #E5E7EB; /* Tailwind gray-200 */
+            border-radius: 0.25rem;
+            height: 0.75rem;
+            width: 100%;
+        }
+        .rating-bar-fill {
+            background-color: #D2B48C; /* Tan */
+            height: 100%;
+            border-radius: 0.25rem;
+        }
+        .diagram-box {
+            border: 2px solid #D2B48C; /* Tan */
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            text-align: center;
+            background-color: #FAF7F5;
+        }
+        .diagram-arrow {
+            font-size: 1.5rem;
+            color: #A0522D; /* Sienna */
+            margin: 0.25rem 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav id="mainNav" class="sticky-nav p-4">
+        <div class="container mx-auto flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
+            <a href="#intro" class="nav-link text-sm sm:text-base">序論</a>
+            <a href="#ar-models" class="nav-link text-sm sm:text-base">自己回帰モデル</a>
+            <a href="#diffusion-models" class="nav-link text-sm sm:text-base">拡散モデル</a>
+            <a href="#comparison" class="nav-link text-sm sm:text-base">直接比較</a>
+            <a href="#gemini-diffusion" class="nav-link text-sm sm:text-base">Gemini Diffusion</a>
+            <a href="#future-outlook" class="nav-link text-sm sm:text-base">将来展望</a>
+            <a href="#conclusion" class="nav-link text-sm sm:text-base">結論</a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-6xl">
+
+        <header class="text-center my-8 sm:my-12">
+            <h1 class="text-3xl sm:text-4xl font-bold" style="color: #A0522D;">テキスト生成モデル：性能と未来図</h1>
+            <p class="text-lg sm:text-xl text-gray-700 mt-2">自己回帰モデルと拡散モデルの深掘り、Gemini Diffusionを例に</p>
+        </header>
+
+        <section id="intro" class="card">
+            <h2 class="text-2xl font-bold section-title mb-6">序論：進化するテキスト生成のランドスケープ</h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">近年、自然言語処理（NLP）における生成AI技術は目覚ましい発展を遂げ、人間が生成するようなテキストを理解・作成する能力が飛躍的に向上しています。この進化の最前線には、長らく主流であった自己回帰（AR）モデルと、新たな可能性を秘めた拡散モデルが存在します。</p>
+            <p class="text-gray-700 leading-relaxed">本アプリケーションは、これらのモデルの特性、性能、限界、そして将来の展望をインタラクティブに探求することを目的としています。特に、Google DeepMindによる実験的なテキスト拡散モデル「Gemini Diffusion」の事例を通じて、この分野の動向を明らかにします。</p>
+        </section>
+
+        <section id="ar-models" class="card">
+            <h2 class="text-2xl font-bold section-title mb-6">自己回帰（AR）モデル：基礎と特性</h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">自己回帰モデルは、テキストを一方向（通常は左から右）に、一度に1トークンずつ逐次的に生成します。各トークンの生成は、それ以前に生成されたトークンに依存します。Transformerデコーダアーキテクチャがこの基盤技術として広く用いられています。</p>
+            
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-3" style="color: #A0522D;">ARモデルの生成プロセス</h3>
+                <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-2">
+                    <div class="diagram-box text-sm">入力: "昔々"</div>
+                    <div class="diagram-arrow">→</div>
+                    <div class="diagram-box text-sm">モデル予測: "ある"</div>
+                    <div class="diagram-arrow">→</div>
+                    <div class="diagram-box text-sm">入力: "昔々ある"</div>
+                    <div class="diagram-arrow">→</div>
+                    <div class="diagram-box text-sm">モデル予測: "ところに"</div>
+                    <div class="diagram-arrow">...</div>
+                </div>
+                <p class="text-xs text-gray-500 mt-2 text-center">このように、過去の文脈に基づいて次のトークンを予測し、逐次的にテキストを生成します。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3" style="color: #A0522D;">主な強み</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start"><span class="unicode-icon mt-1">👍</span>非常に流暢で一貫性のあるテキスト生成能力。</li>
+                        <li class="flex items-start"><span class="unicode-icon mt-1">📈</span>スケーリング則（モデルサイズ、データ量増による性能向上）が確立。</li>
+                        <li class="flex items-start"><span class="unicode-icon mt-1">🛠️</span>成熟したエコシステムと最適化された推論技術。</li>
+                        <li class="flex items-start"><span class="unicode-icon mt-1">📚</span>少数ショット学習やゼロショット学習での優れた能力。</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3" style="color: #A0522D;">固有の制限と課題</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start"><span class="unicode-icon mt-1">➡️</span>単方向バイアスによる双方向理解の制限。</li>
+                        <li class="flex items-start"><span class="unicode-icon mt-1">❄️</span>誤差伝播（雪だるま効果）のリスク。</li>
+                        <li class="flex items-start"><span class="unicode-icon mt-1">⏳</span>逐次処理による推論速度の遅さ。</li>
+                        <li class="flex items-start"><span class="unicode-icon mt-1">🎯</span>きめ細かい制御の難しさ。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="diffusion-models" class="card">
+            <h2 class="text-2xl font-bold section-title mb-6">拡散モデル：新たなパラダイム</h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">拡散モデルは、元々画像生成で成功を収め、近年テキストのような離散データへの応用が進んでいます。段階的なノイズ付加プロセスを逆転させることを学習することでデータを生成します。</p>
+
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-3" style="color: #A0522D;">拡散モデルの基本メカニズム</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                    <div class="diagram-box">元データ (例: テキスト埋め込み)</div>
+                    <div class="flex flex-col items-center">
+                        <p class="text-sm font-semibold mb-1">順方向プロセス</p>
+                        <div class="diagram-arrow text-2xl transform rotate-90 md:rotate-0">➡️</div>
+                        <p class="text-xs text-gray-500">ノイズを逐次付加</p>
+                    </div>
+                    <div class="diagram-box">純粋なノイズ</div>
+                </div>
+                <div class="flex justify-center my-2">
+                     <div class="diagram-arrow text-2xl transform rotate-90">🔄</div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                     <div class="diagram-box">純粋なノイズ</div>
+                     <div class="flex flex-col items-center">
+                        <p class="text-sm font-semibold mb-1">逆方向プロセス</p>
+                        <div class="diagram-arrow text-2xl transform rotate-90 md:rotate-0">⬅️</div>
+                        <p class="text-xs text-gray-500">ノイズを逐次除去 (学習)</p>
+                    </div>
+                    <div class="diagram-box">生成データ</div>
+                </div>
+                <p class="text-xs text-gray-500 mt-2 text-center">この反復的なデノイズプロセスを通じて、高品質なデータを生成します。</p>
+            </div>
+            
+            <p class="mb-4 text-gray-700 leading-relaxed">テキストへの応用では、離散的なトークンを連続的な埋め込み空間で扱うなどのアプローチが取られますが、これが課題ともなっています。</p>
+
+            <div>
+                <h3 class="text-xl font-semibold mb-3" style="color: #A0522D;">主な利点と可能性</h3>
+                <ul class="space-y-2 text-gray-700">
+                    <li class="flex items-start"><span class="unicode-icon mt-1">⚡</span>並列生成による高速化の可能性。</li>
+                    <li class="flex items-start"><span class="unicode-icon mt-1">🔄</span>反復的改良によるエラー修正と品質向上。</li>
+                    <li class="flex items-start"><span class="unicode-icon mt-1">🎨</span>強化された制御性とガイダンスの容易さ。</li>
+                    <li class="flex items-start"><span class="unicode-icon mt-1">✨</span>サンプル品質と多様性の向上ポテンシャル。</li>
+                    <li class="flex items-start"><span class="unicode-icon mt-1">✏️</span>テキスト編集タスクへの適合性。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="comparison" class="card">
+            <h2 class="text-2xl font-bold section-title mb-6">直接比較：自己回帰モデル vs. 拡散モデル</h2>
+            <p class="mb-6 text-gray-700 leading-relaxed">両モデルの主要な特徴を比較し、それぞれの長所と短所を明確にします。以下のインタラクティブな要素で詳細を確認できます。</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="comparison-item">
+                    <h4 class="font-semibold text-lg mb-2" style="color: #A0522D;">生成速度/レイテンシ</h4>
+                    <div class="chart-container h-64">
+                        <canvas id="speedComparisonChart"></canvas>
+                    </div>
+                    <p class="text-xs text-gray-600 mt-2">ARモデルは逐次的で遅い傾向。拡散モデルはステップ数に依存しますが、並列処理で高速化の可能性があります。</p>
+                </div>
+
+                <div class="comparison-item">
+                    <h4 class="font-semibold text-lg mb-2" style="color: #A0522D;">制御性</h4>
+                    <p class="text-sm text-gray-600 mb-1">ARモデル:</p>
+                    <div class="rating-bar-bg mb-2"><div class="rating-bar-fill" style="width: 30%;"></div></div>
+                    <p class="text-sm text-gray-600 mb-1">拡散モデル:</p>
+                    <div class="rating-bar-bg mb-2"><div class="rating-bar-fill" style="width: 80%;"></div></div>
+                    <p class="text-xs text-gray-600 mt-2">拡散モデルは反復プロセスによりガイダンスを注入しやすく、制御性に優れます。</p>
+                </div>
+
+                <div class="comparison-item">
+                    <h4 class="font-semibold text-lg mb-2" style="color: #A0522D;">出力の流暢さ</h4>
+                    <p class="text-sm text-gray-600 mb-1">ARモデル:</p>
+                    <div class="rating-bar-bg mb-2"><div class="rating-bar-fill" style="width: 90%;"></div></div>
+                    <p class="text-sm text-gray-600 mb-1">拡散モデル:</p>
+                    <div class="rating-bar-bg mb-2"><div class="rating-bar-fill" style="width: 70%;"></div></div>
+                    <p class="text-xs text-gray-600 mt-2">ARモデルは一般に高い流暢さを示しますが、拡散モデルも高品質を目指しています。</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4 class="font-semibold text-lg mb-2" style="color: #A0522D;">編集可能性</h4>
+                    <p class="text-sm text-gray-600 mb-1">ARモデル:</p>
+                    <div class="rating-bar-bg mb-2"><div class="rating-bar-fill" style="width: 20%;"></div></div>
+                    <p class="text-sm text-gray-600 mb-1">拡散モデル:</p>
+                    <div class="rating-bar-bg mb-2"><div class="rating-bar-fill" style="width: 85%;"></div></div>
+                    <p class="text-xs text-gray-600 mt-2">拡散モデルはノイズからの改良プロセスにより、編集タスクに適しています。</p>
+                </div>
+            </div>
+            <p class="mt-6 text-sm text-gray-600">上記は一部の比較です。詳細な比較はレポート本文の表V.Fをご参照ください。拡散モデルは制御性や並列処理で有望ですが、品質や効率の面ではまだ発展途上です。</p>
+        </section>
+
+        <section id="gemini-diffusion" class="card">
+            <h2 class="text-2xl font-bold section-title mb-6">ケーススタディ：Gemini Diffusion</h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">Google DeepMindによる「最先端の実験的なテキスト拡散モデル」であるGemini Diffusionは、拡散技術を用いて、より優れた制御性、創造性、速度を目指しています。</p>
+            <div class="mb-6 p-4 rounded-md" style="background-color: #F0EBE3;">
+                <h3 class="text-xl font-semibold mb-2" style="color: #A0522D;">主張される主要な能力</h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-1">
+                    <li><strong>迅速な応答：</strong> 従来モデルより大幅に高速なコンテンツ生成（1479トークン/秒）。</li>
+                    <li><strong>よりコヒーレントなテキスト：</strong> 一度にトークンのブロック全体を生成。</li>
+                    <li><strong>反復的改良：</strong> 生成プロセス中に誤りを訂正。</li>
+                </ul>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-3" style="color: #A0522D;">ベンチマーク性能 (vs Gemini 2.0 Flash-Lite)</h3>
+            <p class="mb-4 text-sm text-gray-600">以下のグラフは、レポート内の表IV.Cに基づき、いくつかの主要なベンチマークにおけるGemini DiffusionとARモデルであるGemini 2.0 Flash-Liteの性能（スコア％、高いほど良い）を比較したものです。</p>
+            <div class="chart-container-horizontal-bar">
+                <canvas id="geminiBenchmarkChart"></canvas>
+            </div>
+            <p class="text-xs text-gray-500 mt-2 text-center">注: SWE-Bench Verifiedは非エージェント評価。詳細はレポート参照。</p>
+            <p class="mt-4 text-gray-700 leading-relaxed">結果はまちまちで、コーディングや数学の一部タスクでは競争力を示しますが、広範な推論や多言語タスクではARモデルに及ばない場合もあります。これはテキスト拡散技術がまだ発展途上であることを示唆しています。</p>
+        </section>
+
+        <section id="future-outlook" class="card">
+            <h2 class="text-2xl font-bold section-title mb-6">将来展望：拡散モデルの限界と研究動向</h2>
+            <p class="mb-6 text-gray-700 leading-relaxed">テキスト拡散モデルは有望ですが、ARモデルに匹敵する性能を普遍的に達成するには、いくつかの重要な限界を克服する必要があります。現在、これらの課題に対処するための研究が活発に進められています。</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3" style="color: #A0522D;">現在の主な限界</h3>
+                    <ul class="space-y-2 text-gray-700 text-sm">
+                        <li class="p-3 rounded border" style="border-color: #D2B48C;"><span class="font-semibold">品質ギャップ：</span> ARモデル比で流暢さやパープレキシティが劣る場合がある。</li>
+                        <li class="p-3 rounded border" style="border-color: #D2B48C;"><span class="font-semibold">計算コスト：</span> 多数の反復ステップによる推論の遅さと高コスト。</li>
+                        <li class="p-3 rounded border" style="border-color: #D2B48C;"><span class="font-semibold">離散データ処理：</span> 連続的な拡散プロセスを離散テキストに適用する際の根本的困難。</li>
+                        <li class="p-3 rounded border" style="border-color: #D2B48C;"><span class="font-semibold">固定長出力：</span> 多くが固定長シーケンス生成に制約。</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3" style="color: #A0522D;">進行中の研究とイノベーション</h3>
+                    <ul class="space-y-2 text-gray-700 text-sm">
+                        <li class="flex items-start"><span class="unicode-icon mt-1">💡</span>サンプリング効率向上と計算コスト削減。</li>
+                        <li class="flex items-start"><span class="unicode-icon mt-1">🔬</span>制御性と編集可能性のさらなる強化。</li>
+                        <li class="flex items-start"><span class="unicode-icon mt-1">↔️</span>可変長生成と長文脈モデリングへの対応。</li>
+                        <li class="flex items-start"><span class="unicode-icon mt-1">🌟</span>ARモデルに匹敵・凌駕する生成品質の追求。</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-xl font-semibold mb-4 text-center" style="color: #A0522D;">ハイブリッドモデル：パラダイムの収束</h3>
+                <div class="flex flex-col items-center">
+                    <div class="flex flex-col sm:flex-row justify-around w-full max-w-md mb-2 space-y-2 sm:space-y-0">
+                        <div class="diagram-box p-3 text-sm">ARモデル<br>(流暢さ, 尤度)</div>
+                        <div class="diagram-box p-3 text-sm">拡散モデル<br>(制御, 並列性)</div>
+                    </div>
+                    <div class="diagram-arrow text-3xl transform sm:rotate-0">↘️&nbsp;&nbsp;↙️</div>
+                    <div class="diagram-box p-4 font-bold mt-2" style="background-color: #A0522D; color: white;">ハイブリッドモデル<br>(両者の強みを統合)</div>
+                </div>
+                <p class="text-sm text-gray-600 mt-3 text-center">ARの流暢さと拡散の制御性を組み合わせるアプローチが有望視されています。</p>
+            </div>
+        </section>
+
+        <section id="conclusion" class="card">
+            <h2 class="text-2xl font-bold section-title mb-6">結論：進化するエコシステム</h2>
+            <p class="mb-4 text-gray-700 leading-relaxed">テキスト生成モデルの進化は、ARモデルの支配から、拡散モデルやハイブリッドアプローチの探求へと向かっています。これは、より高性能で多機能なAIを求める自然な流れです。</p>
+            <p class="mb-4 text-gray-700 leading-relaxed">Gemini Diffusionのような実験は、この分野の活発な動きを示しており、将来は単一の支配的アプローチではなく、タスクに応じて最適なモデルや技術を組み合わせる、より多様で適応的なエコシステムが形成される可能性が高いです。</p>
+            <p class="text-gray-700 leading-relaxed">最終的な目標は、強力であるだけでなく、多用途で、信頼性が高く、人間の幅広いニーズと創造的な努力に適応できるテキスト生成システムを創造することです。</p>
+        </section>
+
+    </div>
+
+    <footer class="text-center py-8 text-sm text-gray-500 border-t" style="border-color: #D2B48C;">
+        <p>&copy; <span id="currentYear"></span> テキスト生成モデル分析SPA. 提供されたレポートに基づいて作成。</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const primaryColor = '#A0522D'; // Sienna
+        const secondaryColor = '#D2B48C'; // Tan
+        const gridColor = '#E5E7EB'; // Tailwind gray-200
+        const textColor = '#4A4A4A'; // Dark Gray
+
+        // Chart.js Label Wrapping Function
+        function wrapChartLabels(label, maxLength = 16) {
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+            if (currentLine.length > 0) {
+                lines.push(currentLine.trim());
+            }
+            return lines.length > 0 ? lines : [label];
+        }
+        
+        // Chart.js Tooltip Title Callback
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            if (!item) return '';
+            let label = item.chart.data.labels[item.dataIndex];
+            return Array.isArray(label) ? label.join(' ') : label;
+        };
+
+        // Common Chart Options
+        const commonChartOptions = (isHorizontal = false) => ({
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: { color: textColor, font: { family: "'Noto Sans JP', sans-serif" } }
+                },
+                tooltip: {
+                    callbacks: { title: tooltipTitleCallback },
+                    titleFont: { family: "'Noto Sans JP', sans-serif" },
+                    bodyFont: { family: "'Noto Sans JP', sans-serif" }
+                }
+            },
+            scales: isHorizontal ? { // Options for horizontal bar chart
+                x: { 
+                    beginAtZero: true, 
+                    grid: { color: gridColor },
+                    ticks: { color: textColor, font: { family: "'Noto Sans JP', sans-serif" } }
+                },
+                y: { 
+                    grid: { display: false },
+                    ticks: { 
+                        color: textColor, 
+                        font: { family: "'Noto Sans JP', sans-serif" },
+                        callback: function(value) {
+                            const label = this.getLabelForValue(value);
+                            return wrapChartLabels(label, 20); // Allow more characters for Y-axis labels
+                        }
+                    }
+                }
+            } : { // Options for vertical bar chart
+                y: { 
+                    beginAtZero: true, 
+                    grid: { color: gridColor },
+                    ticks: { color: textColor, font: { family: "'Noto Sans JP', sans-serif" } }
+                },
+                x: { 
+                    grid: { display: false },
+                    ticks: { 
+                        color: textColor, 
+                        font: { family: "'Noto Sans JP', sans-serif" },
+                        callback: function(value) {
+                            const label = this.getLabelForValue(value);
+                            return wrapChartLabels(label);
+                        }
+                    }
+                }
+            }
+        });
+
+
+        // Speed Comparison Chart
+        const speedCtx = document.getElementById('speedComparisonChart').getContext('2d');
+        new Chart(speedCtx, {
+            type: 'bar',
+            data: {
+                labels: ['ARモデル (従来)', '拡散モデル (理論値)', 'Gemini Diffusion (主張値)'].map(l => wrapChartLabels(l,15)),
+                datasets: [{
+                    label: '相対的生成速度 (イメージ)',
+                    data: [30, 70, 90], // Illustrative data
+                    backgroundColor: [secondaryColor, primaryColor, '#8B4513'], // Darker Sienna for Gemini
+                    borderColor: '#FAF7F5',
+                    borderWidth: 1
+                }]
+            },
+            options: commonChartOptions(false)
+        });
+
+        // Gemini Benchmark Chart
+        const benchmarkCtx = document.getElementById('geminiBenchmarkChart').getContext('2d');
+        const benchmarkLabels = [
+            'Code LiveCodeBench (v6)', 'Code BigCodeBench', 'Code LBPP (v2)', 
+            'Code SWE-Bench Verified*', 'Code HumanEval', 'Code MBPP',
+            'Science GPQA Diamond', 'Math AIME 2025', 
+            'Reasoning BIG-Bench Extra Hard', 'Multilingual Global MMLU (Lite)'
+        ];
+        new Chart(benchmarkCtx, {
+            type: 'bar', // Horizontal bar chart
+            data: {
+                labels: benchmarkLabels, // Wrapping handled by tick callback
+                datasets: [
+                    {
+                        label: 'Gemini Diffusion スコア (%)',
+                        data: [30.9, 45.4, 56.8, 22.9, 89.6, 76.0, 40.4, 23.3, 15.0, 69.1],
+                        backgroundColor: primaryColor,
+                        borderColor: '#FAF7F5',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Gemini 2.0 Flash-Lite スコア (%)',
+                        data: [28.5, 45.8, 56.0, 28.5, 90.2, 75.8, 56.5, 20.0, 21.0, 79.0],
+                        backgroundColor: secondaryColor,
+                        borderColor: '#FAF7F5',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: { ...commonChartOptions(true), indexAxis: 'y' }
+        });
+
+        // Sticky Nav Active State & Smooth Scroll
+        const navLinks = document.querySelectorAll('#mainNav a');
+        const sections = document.querySelectorAll('section');
+        const navHeight = document.getElementById('mainNav').offsetHeight;
+
+        function changeNavActiveState() {
+            let index = sections.length;
+            while(--index && window.scrollY + navHeight + 50 < sections[index].offsetTop) {}
+            
+            navLinks.forEach((link) => link.classList.remove('active'));
+            if (index >= 0 && navLinks[index]) {
+                 navLinks[index].classList.add('active');
+            }
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', changeNavActiveState);
+        changeNavActiveState(); // Initial check
+
+    </script>
+</body>
+</html>

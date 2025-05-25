@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>テキスト生成モデル市場トレンド インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #CAF0F8; /* Lightest Blue from Brilliant Blues */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .section-title {
+            color: #0077B6; /* Dark Blue */
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-big-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0077B6; /* Dark Blue */
+        }
+        .flow-step {
+            background-color: #90E0EF; /* Medium Light Blue */
+            color: #0077B6; /* Dark Blue */
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            text-align: center;
+            font-weight: bold;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #0077B6; /* Dark Blue */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0.5rem 0;
+        }
+        .rating-bar-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .rating-bar {
+            height: 1rem;
+            background-color: #90E0EF; /* Medium Light Blue */
+            border-radius: 0.25rem;
+        }
+        .rating-bar-filled {
+            background-color: #00B4D8; /* Medium Blue */
+        }
+        .unicode-icon {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+            color: #00B4D8; /* Medium Blue */
+        }
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(0, 119, 182, 0.9); /* Dark Blue with transparency */
+            z-index: 50;
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .sticky-nav a {
+            color: #CAF0F8; /* Lightest Blue */
+            margin: 0 0.75rem;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .sticky-nav a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <nav class="sticky-nav">
+        <div class="max-w-6xl mx-auto px-4 flex justify-center sm:justify-start overflow-x-auto whitespace-nowrap">
+            <a href="#intro">序論</a>
+            <a href="#ar-models">ARモデル市場</a>
+            <a href="#diffusion-models">拡散モデルの挑戦</a>
+            <a href="#comparison">AR vs 拡散</a>
+            <a href="#diffusion-limits">拡散モデルの限界</a>
+            <a href="#future">未来予測</a>
+            <a href="#conclusion">結論</a>
+        </div>
+    </nav>
+
+    <div class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <header class="text-center my-8 sm:my-12">
+            <h1 class="text-3xl sm:text-4xl font-bold section-title">テキスト生成モデルの進化</h1>
+            <p class="text-lg sm:text-xl text-gray-700 mt-2">自己回帰モデル vs. 拡散モデル – 市場トレンドと将来展望</p>
+        </header>
+
+        <section id="intro" class="card">
+            <h2 class="text-2xl font-bold section-title mb-4">1. 序論：テキスト生成の変革期</h2>
+            <p class="mb-4">近年の生成AI技術、特に自然言語処理（NLP）は目覚ましい発展を遂げ、人間が生成するようなテキストを理解・作成する能力が飛躍的に向上しています。この進化の最前線に立つのが、自己回帰（AR）モデルと、新たなパラダイムとして注目される拡散モデルです。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <div>
+                    <p class="stat-big-number text-center">10x</p>
+                    <p class="text-center text-gray-600">過去数年でのNLP能力の指数関数的成長 (イメージ)</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">主要モデルの登場</h3>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-sky-100 rounded-lg shadow">
+                            <p class="font-bold text-sky-700">自己回帰 (AR) モデル</p>
+                            <p class="text-sm text-sky-600">逐次的トークン生成で高い流暢性を実現。GPTシリーズが代表例。</p>
+                        </div>
+                        <div class="p-3 bg-teal-100 rounded-lg shadow">
+                            <p class="font-bold text-teal-700">拡散モデル</p>
+                            <p class="text-sm text-teal-600">反復的改良により高品質・高制御を目指す新技術。Gemini Diffusionなど。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-4 text-sm text-gray-600">本インフォグラフィックは、これらのモデルの特性、市場での位置づけ、そして未来の可能性を掘り下げます。</p>
+        </section>
+
+        <section id="ar-models" class="card">
+            <h2 class="text-2xl font-bold section-title mb-4">2. 現在の市場リーダー：自己回帰 (AR) モデル</h2>
+            <p class="mb-4">ARモデルは、テキスト生成分野で長らく支配的な地位を築き、その高い性能で多くの応用を支えてきました。しかし、いくつかの固有の課題も抱えています。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2 text-center">ARモデルの市場優位性 (イメージ)</h3>
+                    <div class="chart-container mx-auto h-64 md:h-80">
+                        <canvas id="arDominanceChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-gray-600 mt-2">現在、テキスト生成タスクの大部分でARモデルが活用されています。</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">ARモデルの特性</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-green-600 mb-1"><span class="unicode-icon">👍</span>強み</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li>非常に流暢で一貫性のあるテキスト生成</li>
+                                <li>スケーリング則による性能向上実績</li>
+                                <li>成熟したエコシステムと最適化技術</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-red-600 mb-1"><span class="unicode-icon">👎</span>課題</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li>推論速度が遅い（逐次処理のため）</li>
+                                <li>単方向バイアスによる文脈理解の限界</li>
+                                <li>誤差伝播（雪だるま効果）のリスク</li>
+                                <li>きめ細かい制御の難しさ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="diffusion-models" class="card">
+            <h2 class="text-2xl font-bold section-title mb-4">3. 新たな挑戦者：拡散モデル</h2>
+            <p class="mb-4">拡散モデルは、画像生成などで成功を収めた後、テキスト生成への応用が進められています。ARモデルの限界を克服する可能性を秘めています。</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">拡散モデルの基本メカニズム</h3>
+                    <div class="space-y-2">
+                        <div class="flow-step">1. 順方向プロセス (ノイズ付加)</div>
+                        <div class="flow-arrow">⬇️</div>
+                        <div class="p-3 border border-dashed border-sky-400 rounded-lg text-center text-sm text-sky-600">元データに徐々にノイズを加え、純粋なノイズ状態へ</div>
+                        <div class="flow-arrow">🔄</div>
+                        <div class="flow-step">2. 逆方向プロセス (デノイズ/生成)</div>
+                        <div class="flow-arrow">⬇️</div>
+                        <div class="p-3 border border-dashed border-sky-400 rounded-lg text-center text-sm text-sky-600">学習したモデルがノイズから元データを復元</div>
+                    </div>
+                     <p class="text-sm text-gray-600 mt-4">この反復的なプロセスにより、高品質な生成と柔軟な制御を目指します。</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">主な利点と可能性</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center"><span class="unicode-icon">⚡</span> 並列生成による高速化の可能性</li>
+                        <li class="flex items-center"><span class="unicode-icon">🔄</span> 反復的改良によるエラー修正と品質向上</li>
+                        <li class="flex items-center"><span class="unicode-icon">🎯</span> 強化された制御性とガイダンスの容易さ</li>
+                        <li class="flex items-center"><span class="unicode-icon">✨</span> サンプル品質と多様性の向上</li>
+                        <li class="flex items-center"><span class="unicode-icon">✏️</span> テキスト編集タスクへの適合性</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-700 mb-3">ケーススタディ：Gemini Diffusion</h3>
+                <p class="mb-3 text-sm">Google DeepMindによる実験的なテキスト拡散モデル。迅速な応答、よりコヒーレントなテキスト、反復的改良を特徴として主張しています。</p>
+                <div class="chart-container h-96 md:h-[450px]">
+                    <canvas id="geminiDiffusionBenchmarkChart"></canvas>
+                </div>
+                <p class="text-xs text-gray-500 mt-2 text-center">出典: レポート内 表1 (Gemini Diffusion vs Gemini 2.0 Flash-Lite)。スコアは%、高いほど良い。</p>
+                <p class="text-sm text-gray-600 mt-3">Gemini Diffusionは一部のコーディングや数学タスクで競争力を示しますが、広範な推論や多言語タスクではARモデルに及ばない場合もあります。これはテキスト拡散技術がまだ発展途上であることを示唆しています。</p>
+            </div>
+        </section>
+
+        <section id="comparison" class="card">
+            <h2 class="text-2xl font-bold section-title mb-4">4. 直接対決：AR vs. 拡散 – パフォーマンス比較</h2>
+            <p class="mb-6">自己回帰モデルと拡散モデルは、テキスト生成において異なるアプローチと特性を持っています。主要な比較ポイントを見てみましょう。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">生成速度/レイテンシ</h3>
+                    <div class="chart-container h-56 md:h-64">
+                        <canvas id="speedComparisonChart"></canvas>
+                    </div>
+                    <p class="text-xs text-gray-600 mt-2">ARモデルは逐次的で遅い傾向。拡散モデルはステップ数に依存しますが、並列処理で高速化の可能性。Gemini Diffusionは高速性を主張。</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">制御性と編集可能性</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <p class="font-medium text-gray-600">ARモデル:</p>
+                            <div class="rating-bar-container">
+                                <div class="rating-bar w-2/5 rating-bar-filled"></div>
+                            </div>
+                            <p class="text-xs text-gray-500">制御は限定的、編集は再生成が基本。</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-600">拡散モデル:</p>
+                            <div class="rating-bar-container">
+                                <div class="rating-bar w-4/5 rating-bar-filled"></div>
+                            </div>
+                            <p class="text-xs text-gray-500">主要な強み。反復プロセスでガイダンス注入や編集が容易。</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">出力品質 (流暢さ/一貫性)</h3>
+                     <div class="space-y-3">
+                        <div>
+                            <p class="font-medium text-gray-600">ARモデル:</p>
+                            <div class="rating-bar-container">
+                                <div class="rating-bar w-4/5 rating-bar-filled"></div>
+                            </div>
+                            <p class="text-xs text-gray-500">一般に高い流暢さと局所的一貫性。</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-600">拡散モデル:</p>
+                            <div class="rating-bar-container">
+                                <div class="rating-bar w-3/5 rating-bar-filled"></div>
+                            </div>
+                            <p class="text-xs text-gray-500">高品質を目指すが、ARに劣る場合も。全体的一貫性に期待。</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-700 mb-3">エラー処理</h3>
+                     <div class="space-y-3">
+                        <div>
+                            <p class="font-medium text-gray-600">ARモデル:</p>
+                            <div class="rating-bar-container">
+                                <div class="rating-bar w-1/5 rating-bar-filled"></div>
+                            </div>
+                            <p class="text-xs text-gray-500">誤差伝播（雪だるま効果）のリスク。</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-600">拡散モデル:</p>
+                            <div class="rating-bar-container">
+                                <div class="rating-bar w-4/5 rating-bar-filled"></div>
+                            </div>
+                            <p class="text-xs text-gray-500">反復的改良によるエラー訂正の可能性。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-6 text-sm text-gray-600">現状、ARモデルは実績ある品質を提供しますが、拡散モデルは制御性や並列処理で有望です。ただし、拡散モデルはまだ成熟段階にあります。</p>
+        </section>
+
+        <section id="diffusion-limits" class="card">
+            <h2 class="text-2xl font-bold section-title mb-4">5. 拡散モデルの「成長障壁」：現在の限界</h2>
+            <p class="mb-6">テキスト拡散モデルは有望ですが、ARモデルに匹敵する性能を普遍的に達成するには、いくつかの重要な限界を克服する必要があります。</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-4 bg-red-50 rounded-lg border border-red-200">
+                    <h3 class="font-semibold text-red-700 mb-1"><span class="unicode-icon">📉</span> 生成品質のギャップ</h3>
+                    <p class="text-xs text-red-600">ARモデルに比べパープレキシティが悪く、流暢さで劣ることがある。</p>
+                </div>
+                <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                    <h3 class="font-semibold text-yellow-700 mb-1"><span class="unicode-icon">⏳</span> 計算オーバーヘッド</h3>
+                    <p class="text-xs text-yellow-600">多数のデノイズステップが必要で推論が遅く、高コストになる可能性。</p>
+                </div>
+                <div class="p-4 bg-purple-50 rounded-lg border border-purple-200">
+                    <h3 class="font-semibold text-purple-700 mb-1"><span class="unicode-icon">🧱</span> 離散データ処理</h3>
+                    <p class="text-xs text-purple-600">連続的な拡散プロセスを離散的なテキストに適用する際の根本的な困難。</p>
+                </div>
+                <div class="p-4 bg-indigo-50 rounded-lg border border-indigo-200">
+                    <h3 class="font-semibold text-indigo-700 mb-1"><span class="unicode-icon">📏</span> 固定長出力</h3>
+                    <p class="text-xs text-indigo-600">多くが固定長シーケンス生成に制約され、柔軟性に欠ける。</p>
+                </div>
+                <div class="p-4 bg-pink-50 rounded-lg border border-pink-200">
+                    <h3 class="font-semibold text-pink-700 mb-1"><span class="unicode-icon">🕹️</span> 制御性のニュアンス</h3>
+                    <p class="text-xs text-pink-600">きめ細かい制御や、流暢さを損なわないガイダンスは依然として課題。</p>
+                </div>
+                <div class="p-4 bg-gray-100 rounded-lg border border-gray-300">
+                    <h3 class="font-semibold text-gray-700 mb-1"><span class="unicode-icon">🌍</span> 一般的課題</h3>
+                    <p class="text-xs text-gray-600">バイアス、ハルシネーションなど、大規模モデル共通の問題も共有。</p>
+                </div>
+            </div>
+            <p class="mt-6 text-sm text-gray-600">これらの限界に対処するため、サンプリング効率向上、制御性強化、可変長対応などの研究が活発に進められています。</p>
+        </section>
+
+        <section id="future" class="card">
+            <h2 class="text-2xl font-bold section-title mb-4">6. 未来予測：テキスト生成のネクストウェーブ</h2>
+            <p class="mb-6">テキスト拡散モデルは、その限界を克服し、ARモデルと共存あるいは融合することで、テキスト生成の未来を大きく変える可能性を秘めています。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">進行中の研究とイノベーション</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start"><span class="unicode-icon mt-1">🚀</span> サンプリング効率向上と計算コスト削減</li>
+                        <li class="flex items-start"><span class="unicode-icon mt-1">🔧</span> 制御性と編集可能性のさらなる強化</li>
+                        <li class="flex items-start"><span class="unicode-icon mt-1">↔️</span> 可変長生成と長文脈モデリングへの対応</li>
+                        <li class="flex items-start"><span class="unicode-icon mt-1">🏆</span> ARモデルに匹敵・凌駕する生成品質の追求</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-3">ハイブリッドモデル：パラダイムの収束</h3>
+                    <div class="flex flex-col items-center">
+                        <div class="flex justify-around w-full mb-2">
+                            <div class="p-3 bg-sky-200 text-sky-800 rounded-lg shadow text-center text-sm font-semibold">ARモデル<br>(流暢さ, 尤度)</div>
+                            <div class="p-3 bg-teal-200 text-teal-800 rounded-lg shadow text-center text-sm font-semibold">拡散モデル<br>(制御, 並列性)</div>
+                        </div>
+                        <div class="flow-arrow text-4xl">↘️ ↙️</div>
+                        <div class="p-4 bg-indigo-600 text-white rounded-lg shadow text-center font-bold">ハイブリッドモデル<br>(両者の強みを統合)</div>
+                    </div>
+                    <p class="text-xs text-gray-600 mt-3 text-center">ARの流暢さと拡散の制御性を組み合わせるアプローチが有望視されています。</p>
+                </div>
+            </div>
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold text-gray-700 mb-3">新たな応用の可能性</h3>
+                <div class="flex flex-wrap gap-3 text-sm">
+                    <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full">高度なテキスト編集・改訂</span>
+                    <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full">洗練されたスタイル転送</span>
+                    <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full">マルチモーダル生成</span>
+                    <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full">高品質なデータ拡張</span>
+                    <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full">インタラクティブなコンテンツ作成</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="card">
+            <h2 class="text-2xl font-bold section-title mb-4">7. 結論：進化するエコシステム</h2>
+            <p class="mb-4">テキスト生成モデルの進化は、ARモデルの支配から、拡散モデルやハイブリッドアプローチの探求へと向かっています。これは、より高性能で多機能なAIを求める自然な流れです。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <div class="text-center">
+                     <p class="text-5xl mb-2">⚖️</p>
+                    <p class="font-semibold text-gray-700">ARモデルの継続的役割 vs. 拡散モデルの台頭</p>
+                    <p class="text-sm text-gray-600 mt-1">確立されたARモデルの強みと、拡散モデルの新たな可能性が共存・競争し、分野全体を前進させます。</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-5xl mb-2">🛠️</p>
+                    <p class="font-semibold text-gray-700">未来は多様なモデルのツールボックス</p>
+                    <p class="text-sm text-gray-600 mt-1">単一の万能モデルではなく、タスクに応じて最適なモデルやコンポーネントを組み合わせる、適応的なシステムが主流となるでしょう。</p>
+                </div>
+            </div>
+            <p class="mt-6 text-gray-700">最終的な目標は、強力であるだけでなく、多用途で、信頼性が高く、人間の幅広いニーズと創造的な努力に適応できるテキスト生成システムを創造することです。</p>
+        </section>
+
+    </div>
+
+    <footer class="text-center py-8 text-sm text-gray-600">
+        <p>&copy; 2025 テキスト生成モデル市場トレンド分析. このインフォグラフィックは提供された調査レポートに基づいて作成されました。</p>
+    </footer>
+
+    <script>
+        const primaryColor = '#00B4D8'; // Medium Blue
+        const secondaryColor = '#90E0EF'; // Medium Light Blue
+        const gridColor = '#E0E0E0';
+        const textColor = '#333333';
+
+        function wrapLabels(label, maxLength = 16) {
+            if (typeof label !== 'string') return label;
+            if (label.length <= maxLength) return label;
+
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            if (currentLine.trim().length > 0) {
+                lines.push(currentLine.trim());
+            }
+            return lines.length > 0 ? lines : [label]; // Ensure at least one line
+        }
+        
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: { color: textColor }
+                },
+                tooltip: {
+                    callbacks: { title: tooltipTitleCallback }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: gridColor },
+                    ticks: { color: textColor }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { color: textColor, 
+                        callback: function(value, index, values) {
+                            const label = this.getLabelForValue(value);
+                            return wrapLabels(label);
+                        }
+                    }
+                }
+            }
+        };
+        
+        const commonPieDonutOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: { color: textColor }
+                },
+                tooltip: {
+                     callbacks: {
+                        label: function(context) {
+                            let label = context.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed !== null) {
+                                label += context.parsed + '%';
+                            }
+                            return wrapLabels(label, 20).join(' '); // Longer wrap for tooltips
+                        }
+                    }
+                }
+            }
+        };
+
+        // AR Dominance Chart (Donut)
+        const arDominanceCtx = document.getElementById('arDominanceChart').getContext('2d');
+        new Chart(arDominanceCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['ARモデル活用領域', 'その他モデル/研究段階'],
+                datasets: [{
+                    label: '市場優位性',
+                    data: [85, 15], // Hypothetical data
+                    backgroundColor: [primaryColor, secondaryColor],
+                    borderColor: ['#FFFFFF'],
+                    borderWidth: 2
+                }]
+            },
+            options: commonPieDonutOptions
+        });
+
+        // Gemini Diffusion Benchmark Chart (Bar)
+        const geminiBenchmarkCtx = document.getElementById('geminiDiffusionBenchmarkChart').getContext('2d');
+        const benchmarkLabels = [
+            'Code LiveCodeBench', 'Code BigCodeBench', 'Code LBPP', 
+            'Code SWE-Bench Verified', 'Code HumanEval', 'Code MBPP',
+            'Science GPQA Diamond', 'Math AIME 2025', 
+            'Reasoning BIG-Bench Extra Hard', 'Multilingual Global MMLU'
+        ];
+        new Chart(geminiBenchmarkCtx, {
+            type: 'bar',
+            data: {
+                labels: benchmarkLabels.map(l => wrapLabels(l)),
+                datasets: [
+                    {
+                        label: 'Gemini Diffusion スコア (%)',
+                        data: [30.9, 45.4, 56.8, 22.9, 89.6, 76.0, 40.4, 23.3, 15.0, 69.1],
+                        backgroundColor: primaryColor,
+                        borderColor: primaryColor,
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Gemini 2.0 Flash-Lite スコア (%)',
+                        data: [28.5, 45.8, 56.0, 28.5, 90.2, 75.8, 56.5, 20.0, 21.0, 79.0],
+                        backgroundColor: secondaryColor,
+                        borderColor: secondaryColor,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: { ...commonChartOptions, indexAxis: 'y' } // Horizontal bar chart for readability
+        });
+        
+        // Speed Comparison Chart (Bar)
+        const speedCtx = document.getElementById('speedComparisonChart').getContext('2d');
+        new Chart(speedCtx, {
+            type: 'bar',
+            data: {
+                labels: ['ARモデル (従来)', '拡散モデル (理論値)', 'Gemini Diffusion (主張)'],
+                datasets: [{
+                    label: '相対的生成速度 (イメージ)',
+                    data: [30, 70, 90], // Hypothetical relative values
+                    backgroundColor: [secondaryColor, primaryColor, '#0077B6'],
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                scales: {
+                     ...commonChartOptions.scales,
+                    x: {
+                        ...commonChartOptions.scales.x,
+                        ticks: {
+                             ...commonChartOptions.scales.x.ticks,
+                             callback: function(value, index, values) {
+                                const label = this.getLabelForValue(value);
+                                return wrapLabels(label, 12); // Shorter wrap for this chart
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Smooth scrolling for nav links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Calculate position of target element, considering sticky nav height
+                    const navHeight = document.querySelector('.sticky-nav').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+        
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
