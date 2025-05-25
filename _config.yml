@@ -10,7 +10,7 @@ url: ""
 collections:
   topics:
     output: true
-    permalink: /:collection/:name
+    permalink: /topics/:path/
 
 defaults:
   - scope:
@@ -18,6 +18,9 @@ defaults:
       type: "topics"
     values:
       layout: "topic"
+
+# 日付フォーマットの設定
+timezone: Asia/Tokyo
 
 # 音声ファイルなどのメディアファイルを含むディレクトリを指定
 include:

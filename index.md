@@ -9,6 +9,10 @@ title: Gemini DeepResearch
 
 ## トピック一覧
 
-{% for topic in site.topics %}
-- [{{ topic.title }}]({{ topic.url | relative_url }})
+{% assign sorted_topics = site.topics | sort: 'date' | reverse %}
+
+{% for topic in sorted_topics %}
+
+* [{{ topic.title }}]({{ topic.url | relative_url }}) *{{ topic.date | date: "%Y年%m月%d日" }}*
+
 {% endfor %}
