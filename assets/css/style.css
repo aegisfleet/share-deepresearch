@@ -16,6 +16,19 @@ body {
     background-color: var(--background-color);
     margin: 0;
     padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* コンテンツラッパー */
+.main-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* 絵文字のスタイル */
@@ -41,6 +54,11 @@ a {
     color: var(--link-color);
     text-decoration: none;
     transition: color 0.2s ease;
+    word-break: break-all;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    display: inline-block;
 }
 
 a:hover {
@@ -140,11 +158,12 @@ a:hover {
     background: var(--card-background);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    font-size: 1.1rem;  /* フォントサイズを大きく */
 }
 
 .topic-list li::before {
     content: "📄";  /* デフォルトアイコン */
-    font-size: 1.2rem;
+    font-size: 1.3rem;  /* アイコンも少し大きく */
     margin-right: 1rem;
     flex-shrink: 0;
 }
@@ -175,7 +194,13 @@ a:hover {
     font-weight: bold;
     text-decoration: none;
     transition: color 0.2s ease;
-    flex-grow: 1;
+    flex: 1;
+    min-width: 0;
+    word-break: break-all;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    font-size: 1.1rem;  /* リンクのフォントサイズを大きく */
 }
 
 .topic-list li a:hover {
@@ -185,7 +210,7 @@ a:hover {
 
 .topic-list li .date {
     color: var(--secondary-color);
-    font-size: 0.9rem;
+    font-size: 1rem;  /* 日付のフォントサイズも少し大きく */
     margin-left: 1rem;
     flex-shrink: 0;
 }
@@ -195,6 +220,12 @@ a:hover {
     color: var(--link-color);
     text-decoration: none;
     transition: color 0.2s ease;
+    word-break: break-all;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    display: inline-block;
+    font-size: 1.1rem;  /* 補足資料リンクのフォントサイズを大きく */
 }
 
 .topic a:hover {
@@ -228,10 +259,39 @@ a:hover {
 /* レスポンシブデザイン */
 @media (max-width: 600px) {
     .main-content {
-        padding: 1rem;
+        padding: 0.5rem;
+        max-width: 100vw;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .topic {
         padding: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        word-break: break-all;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
+    
+    .topic-list li {
+        width: 100%;
+        box-sizing: border-box;
+        flex-wrap: wrap;
+    }
+
+    .topic-list li .date {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 0.5rem;
+        text-align: right;
+    }
+}
+
+/* 画像のレスポンシブ対応 */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
 }
