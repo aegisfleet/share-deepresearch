@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小泉さんとお米の未来</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Mochiy Pop One', 'Inter', sans-serif; /* 可愛らしいフォントを優先 */
+            overscroll-behavior-y: contain; /* Pull-to-refreshを無効化 */
+        }
+
+        .section {
+            min-height: 100vh; /* 各セクションを画面の高さに */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px dashed #ddd; /* セクション区切り */
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        /* アニメーション用の基本スタイル */
+        .animated-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animated-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* SVGアイコンのスタイル */
+        .icon-svg {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            animation: gentleBounce 2s infinite alternate ease-in-out;
+        }
+        
+        .icon-svg-large {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            animation: gentleBounce 2.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes gentleBounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        .wiggle-animation {
+            animation: wiggle 0.5s infinite ease-in-out;
+        }
+
+        /* カスタムカラー */
+        .bg-sky-blue { background-color: #87CEEB; }
+        .text-dark-blue { color: #00008B; }
+        .bg-light-green { background-color: #90EE90; }
+        .text-dark-green { color: #006400; }
+        .bg-light-yellow { background-color: #FFFFE0; }
+        .text-orange-red { color: #FF4500; }
+        .bg-light-pink { background-color: #FFB6C1; }
+        .text-deep-pink { color: #FF1493; }
+        .bg-lavender { background-color: #E6E6FA; }
+        .text-purple { color: #800080; }
+
+        h2 {
+            font-size: 1.8rem; /* 28.8px */
+            line-height: 2.2rem; /* 35.2px */
+            font-weight: 700;
+            margin-bottom: 1rem; /* 16px */
+        }
+        p {
+            font-size: 1.1rem; /* 17.6px */
+            line-height: 1.7rem; /* 27.2px */
+            margin-bottom: 0.8rem; /* 12.8px */
+        }
+
+        /* ボタン風スタイル */
+        .button-like {
+            display: inline-block;
+            background-color: #FFD700; /* Gold */
+            color: #4B5563; /* Gray-700 */
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+        .button-like:hover {
+            transform: translateY(-2px);
+        }
+
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div id="loader" class="fixed inset-0 bg-white flex flex-col justify-center items-center z-50 transition-opacity duration-1000">
+        <svg class="icon-svg-large animate-spin h-16 w-16 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        <p class="mt-4 text-lg text-gray-700">よみこみ中...</p>
+    </div>
+
+    <main id="content" class="opacity-0 transition-opacity duration-1000">
+
+        <section class="section bg-sky-blue text-dark-blue">
+            <div class="animated-element">
+                <img src="https://placehold.co/100x100/FFDFB9/8C5A32?text=小泉さん&font= साहब" alt="小泉さんのイメージイラスト" class="icon-svg rounded-full shadow-lg" style="animation: none; transform: rotate(0);"/>
+                <h2>小泉さんってどんな人？</h2>
+                <p>みんなが毎日食べるごはん🍚<br>そのお米や野菜をつくる農家さんの<br>新しいリーダー、小泉さんが登場したよ！</p>
+                <p>2025年の5月、<br>「農林水産大臣（のうりんすいさんだいじん）」<br>っていう、農業のボスになったんだ。👨‍🌾</p>
+            </div>
+        </section>
+
+        <section class="section bg-light-yellow text-orange-red">
+            <div class="animated-element">
+                <svg class="icon-svg-large" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 95 C 40 90, 35 70, 35 60 S 40 30, 50 20 S 60 30, 65 60 S 60 90, 50 95 Z" fill="#FDE047"/>
+                    <ellipse cx="50" cy="60" rx="25" ry="35" fill="#FDE047"/>
+                    <circle cx="40" cy="50" r="5" fill="#333"/>
+                    <circle cx="60" cy="50" r="5" fill="#333"/>
+                    <path d="M40 70 Q 50 60, 60 70" stroke="#333" stroke-width="3" fill="none"/>
+                    <path d="M30 30 L 38 45" stroke="#D97706" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M70 30 L 62 45" stroke="#D97706" stroke-width="3" stroke-linecap="round"/>
+                    <text x="50" y="15" font-size="10" fill="#FF4500" text-anchor="middle" class="wiggle-animation">たいへん！</text>
+                </svg>
+                <h2>お米がいま、ちょっとたいへん！</h2>
+                <p>最近、お米の値段が<br>ぐーんと上がっちゃったんだ。💦<br>「もっとお米が必要なのに、足りないかも…」<br>って、みんなが心配しているよ。</p>
+                <p>農家さんも、お米を作るのが<br>むずかしくなってきているんだって。😥</p>
+            </div>
+        </section>
+
+        <section class="section bg-light-green text-dark-green">
+            <div class="animated-element">
+                 <svg class="icon-svg-large" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 80 Q 25 70, 30 80 Q 35 70, 40 80 L 40 90 L 20 90 Z" fill="#A52A2A"/> 
+                    <rect x="28" y="60" width="4" height="20" fill="#CD853F"/> 
+                    <path d="M60 75 L 70 65 L 80 75 L 85 70 L 75 60 L 80 55 L 70 50 L 60 55 L 55 60 L 60 65 Z" fill="#FFD700" class="wiggle-animation"/>
+                    <circle cx="70" cy="30" r="8" fill="#87CEFA"/>
+                    <line x1="70" y1="30" x2="70" y2="15" stroke="#87CEFA" stroke-width="3"/>
+                    <line x1="70" y1="30" x2="80" y2="20" stroke="#87CEFA" stroke-width="3"/>
+                    <line x1="70" y1="30" x2="60" y2="20" stroke="#87CEFA" stroke-width="3"/>
+                    <text x="50" y="95" font-size="8" text-anchor="middle">道具やすく！</text>
+                </svg>
+                <h2>いいことあるかも？ ✨</h2>
+                <p>小泉大臣は、農家さんが<br>お米を作りやすくするために、<br>新しいアイデアを考えているよ！</p>
+                <p><strong>その１：道具が安くなるかも？</strong><br>肥料（ひりょう）や機械を安くして、<br>農家さんのサイフを助けるぞ！👛</p>
+                <p><strong>その２：強い農家さんを応援！</strong><br>広い土地でたくさんお米を作る農家さんや、<br>外国にお米を売る農家さんを<br>パワーアップさせるかも！💪🌏</p>
+                <p><strong>その３：ハイテク農業！</strong><br>ロボット🤖やAIを使って、<br>農業をもっとカッコよく、<br>楽ちんにするお手伝いも！</p>
+            </div>
+        </section>
+
+        <section class="section bg-light-pink text-deep-pink">
+            <div class="animated-element">
+                <svg class="icon-svg-large" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="30" fill="#FFC0CB" />
+                    <circle cx="40" cy="45" r="4" fill="#333"/>
+                    <circle cx="60" cy="45" r="4" fill="#333"/>
+                    <path d="M40 60 Q 50 65, 60 60" stroke="#333" stroke-width="3" fill="none"/>
+                    <path d="M35 35 Q 30 40, 28 45" stroke="#333" stroke-width="2" fill="none" transform="rotate(-15 35 35)"/>
+                    <path d="M65 35 Q 70 40, 72 45" stroke="#333" stroke-width="2" fill="none" transform="rotate(15 65 35)"/>
+                    <text x="75" y="30" font-size="20" fill="#FF1493" class="wiggle-animation">？</text>
+                    <text x="25" y="30" font-size="20" fill="#FF1493" class="wiggle-animation">？</text>
+                </svg>
+                <h2>ちょっと しんぱいなことも… 😥</h2>
+                <p>でもね、変わるってことは、<br>ドキドキすることもあるんだ。</p>
+                <p><strong>お米の値段が下がる？</strong><br>みんなが買うお米は安くなるかもだけど、<br>農家さんのもらうお金が<br>ちょっぴり減っちゃうかも…💰</p>
+                <p><strong>小さな農家さんは大丈夫？</strong><br>今まで助けてもらっていたことが<br>変わっちゃうと、<br>小さな農家さんは困るかもしれないな。🥺</p>
+            </div>
+        </section>
+
+        <section class="section bg-lavender text-purple">
+            <div class="animated-element">
+                <svg class="icon-svg-large" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="35" cy="40" r="15" fill="#FFDFB9"/>
+                    <circle cx="30" cy="35" r="3" fill="#333"/>
+                    <circle cx="40" cy="35" r="3" fill="#333"/>
+                    <path d="M30 45 Q 35 50, 40 45" stroke="#333" stroke-width="2" fill="none"/>
+                    <circle cx="65" cy="40" r="15" fill="#FFDFB9"/>
+                    <circle cx="60" cy="35" r="3" fill="#333"/>
+                    <circle cx="70" cy="35" r="3" fill="#333"/>
+                    <path d="M60 45 Q 65 50, 70 45" stroke="#333" stroke-width="2" fill="none"/>
+                    <path d="M40 70 L 50 60 L 60 70 Z" fill="#FFF"/> 
+                    <rect x="45" y="72" width="10" height="5" fill="#333"/>
+                    <text x="50" y="90" font-size="10" text-anchor="middle">おいしいね！</text>
+                </svg>
+                <h2>みんなで応援！📣</h2>
+                <p>小泉大臣がお米農家さんのために<br>どんなことをしてくれるのか、<br>これからが注目だね！</p>
+                <p>良いことも、ちょっと心配なこともあるけど、<br>みんなで美味しいお米を<br>ずーっと食べられるように、<br>農家さんを応援しよう！🌾💖</p>
+                <a href="#" class="button-like mt-4">もういちど見る！</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // ローディング画面の制御
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            const content = document.getElementById('content');
+            
+            // 実際のコンテンツの準備ができてから表示
+            setTimeout(() => {
+                if(loader) loader.style.opacity = '0';
+                if(content) content.style.opacity = '1';
+                // ローダーをDOMから削除して、フォーカスなどが移るようにする
+                setTimeout(() => {
+                    if(loader) loader.remove();
+                }, 1000); // opacityのトランジション完了後
+            }, 500); // 少し遅延させてローディングを見せる
+        });
+
+        // スクロールアニメーション
+        const animatedElements = document.querySelectorAll('.animated-element');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                } else {
+                    // 表示領域から外れたら再度アニメーションするようにする場合はコメントアウトを外す
+                    // entry.target.classList.remove('visible');
+                }
+            });
+        }, {
+            threshold: 0.3 // 30%表示されたら発火
+        });
+
+        animatedElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // 「もういちど見る！」ボタンの処理
+        const restartButton = document.querySelector('.button-like');
+        if (restartButton) {
+            restartButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                // アニメーションをリセット（表示領域外に移動させてから戻すことで再トリガー）
+                // animatedElements.forEach(el => {
+                //     el.classList.remove('visible');
+                // });
+                // IntersectionObserverは一度表示されるとそのままなので、
+                // リセットしたい場合は、クラスを削除し、再度observeするか、
+                // ページリロードが簡単です。ここではシンプルにトップへスクロールのみ。
+            });
+        }
+    </script>
+</body>
+</html>
