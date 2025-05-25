@@ -1,4 +1,4 @@
-# Gemini DeepResearch Share
+# ポちのDeepResearch
 
 このリポジトリは、Google Geminiを使用したDeepResearchの結果を共有するためのGitHub Pagesサイトです。
 

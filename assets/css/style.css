@@ -165,21 +165,40 @@ a:hover {
 }
 
 .topic-list li {
-    display: flex;
-    align-items: center;
     padding: 1rem;
     margin-bottom: 1rem;
     background: var(--card-background);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    font-size: 1.1rem;  /* フォントサイズを大きく */
 }
 
 .topic-list li::before {
-    content: "📄";  /* デフォルトアイコン */
-    font-size: 1.3rem;  /* アイコンも少し大きく */
+    content: "📄";
+    font-size: 1.3rem;
     margin-right: 1rem;
-    flex-shrink: 0;
+    float: left;
+}
+
+.topic-content {
+    margin-left: 2.3rem;
+}
+
+.topic-title {
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.topic-prompt {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin: 0.3rem 0;
+}
+
+.date {
+    font-size: 0.85rem;
+    color: var(--secondary-color);
+    margin: 0.2rem 0 0 0;
 }
 
 /* カテゴリに基づくアイコン */
