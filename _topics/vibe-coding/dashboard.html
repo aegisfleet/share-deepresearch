@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Coding品質担保 インタラクティブSPA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Visualization & Content Choices:
+        - Section I (Intro): Textual summaries in cards. Donut chart for Replit user adoption (75% stat). Conceptual bar chart for Vibe Coding benefits. Goal: Inform, Compare. Lib: Chart.js.
+        - Section II (Quality Importance): Textual summaries. Conceptual bar chart for AI code risks. Interactive accordion for OWASP LLM Top 10 details (from II.A). Goal: Inform, Compare. Lib: Chart.js, HTML/CSS/JS for accordion.
+        - Section III (Strategic Pillars): Interactive cards/accordion for the 5 pillars. Tables 1, 2, 3 presented as styled, responsive HTML tables. Goal: Organize, Inform. HTML/CSS/JS.
+        - Section IV (Culture): Textual summaries. Conceptual radar chart for essential developer skills. Goal: Inform, Compare. Lib: Chart.js.
+        - Section V (Governance): Textual summaries. Table 4 (OWASP LLM Top 10 mapping) as styled, responsive HTML table or interactive accordion. Goal: Organize, Inform. HTML/CSS/JS.
+        - Section VI (Conclusion): Textual summary.
+        - Interactions: Clickable elements to show/hide details (accordions), hover effects for emphasis, smooth scrolling.
+        - Justification: Visualizations chosen to make abstract concepts (like impact of benefits/risks) more tangible and comparisons clearer. Interactive elements to manage information density and allow user-driven exploration. All charts via Chart.js (Canvas). Diagrams/interactive lists via HTML/CSS/JS. NO SVG/Mermaid.
+    -->
+    <style>
+        :root {
+            --bg-main: #F7F7F7; /* Warm Neutral Background */
+            --text-main: #333333; /* Dark Gray for Main Text */
+            --text-heading: #2C3E50; /* Dark Slate Blue for Headings */
+            --accent-primary: #3498DB; /* Bright Blue for Primary Accents/Links */
+            --accent-secondary: #2ECC71; /* Muted Green for Secondary Accents */
+            --card-bg: #FFFFFF;
+            --border-color: #E0E0E0;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif; /* Japanese-friendly font */
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-heading);
+            font-weight: 600;
+        }
+        a {
+            color: var(--accent-primary);
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #2980B9; /* Darker blue on hover */
+        }
+        .section-container {
+            padding-top: 4rem; /* Offset for sticky header */
+            margin-bottom: 3rem;
+        }
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .nav-link {
+            padding: 0.75rem 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--accent-primary);
+            color: white !important;
+            border-bottom-color: var(--accent-secondary);
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 1.5rem;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Max width for readability */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 400px; /* Max height */
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f0f4f8; /* Light blue-gray for table headers */
+            color: var(--text-heading);
+            font-weight: 600;
+        }
+        .accordion-item {
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+        .accordion-button {
+            background-color: #f9fafb;
+            width: 100%;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 500;
+            color: var(--text-heading);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+        .accordion-button:hover {
+            background-color: #f0f4f8;
+        }
+        .accordion-content {
+            padding: 1rem;
+            background-color: white;
+            display: none; /* Hidden by default */
+        }
+        .accordion-button .icon::before {
+            content: '▼'; /* Down arrow */
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+        .accordion-button.open .icon::before {
+            transform: rotate(180deg); /* Up arrow */
+        }
+        .big-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+        .highlight-text {
+            color: var(--accent-secondary);
+            font-weight: 600;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased">
+
+    <header id="main-header" class="sticky-nav">
+        <nav class="container mx-auto px-4">
+            <ul class="flex flex-wrap justify-center text-sm md:text-base">
+                <li><a href="#section1" class="nav-link block">I. 概要</a></li>
+                <li><a href="#section2" class="nav-link block">II. 品質</a></li>
+                <li><a href="#section3" class="nav-link block">III. 戦略</a></li>
+                <li><a href="#section4" class="nav-link block">IV. 文化</a></li>
+                <li><a href="#section5" class="nav-link block">V. 倫理</a></li>
+                <li><a href="#section6" class="nav-link block">VI. 結論</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+
+        <section id="section1" class="section-container">
+            <h2 class="text-3xl font-bold mb-6 text-center">I. Vibe Codingの理解：新たなパラダイム</h2>
+            <p class="text-lg mb-8 text-center text-gray-700">このセクションでは、Vibe Codingの基本的な定義、背景、主な特徴、そしてそれがもたらす潜在的な利点について解説します。AIと人間が協調する新しい開発スタイルを理解することが、品質担保戦略の第一歩です。</p>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3">A. Vibe Codingの定義</h3>
+                    <p>開発者が自然言語で意図を表現し、AI（特にLLM）がその「Vibe（雰囲気）」を解釈してコードに変換する手法です。重点は構文の正確さから意図の明確な伝達へと移行します。</p>
+                    <p class="mt-2 text-sm text-gray-500">提唱者: Andrej Karpathy氏 (2025年初頭)</p>
+                    <div class="mt-4">
+                        <p class="text-sm font-medium text-gray-700">ReplitユーザーのVibe Coding利用率:</p>
+                        <div class="text-center my-2">
+                             <span class="big-number">75%</span>
+                             <p class="text-xs text-gray-500">(Replit CEO報告より)</p>
+                        </div>
+                        <div class="chart-container h-48 md:h-56 max-w-xs">
+                            <canvas id="replitAdoptionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3">B. 主要な特徴と開発スタイル</h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>自然言語によるインタラクション (音声、チャット含む)</li>
+                        <li>AIが主要なコーダー (生成・修正担当)</li>
+                        <li>反復的かつ対話的なプロセス (プロンプト→生成→レビュー→改善)</li>
+                        <li>「まずコード、後から洗練」の実験的アプローチ</li>
+                        <li>多様なスタイル (極端な自動化～対話的協調)</li>
+                    </ul>
+                    <p class="mt-3 text-sm text-gray-600">品質保証戦略は、人間の関与レベルに応じて調整が必要です。</p>
+                </div>
+            </div>
+
+            <div class="card mb-8">
+                <h3 class="text-xl font-semibold mb-3 text-center">C. Vibe Codingの利点と可能性 (概念的インパクト)</h3>
+                <p class="text-center mb-4 text-gray-600">Vibe Codingは開発プロセスに多くの利点をもたらし、イノベーションを加速させる可能性があります。以下のグラフは、各利点の相対的なインパクトを示した概念図です。</p>
+                <div class="chart-container h-72 md:h-80">
+                    <canvas id="benefitsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="section2" class="section-container">
+            <h2 class="text-3xl font-bold mb-6 text-center">II. Vibe Codingにおける品質の重要性</h2>
+            <p class="text-lg mb-8 text-center text-gray-700">Vibe Codingの魅力的な速度とアクセシビリティの裏には、AI生成コードの品質担保という大きな課題が存在します。このセクションでは、固有の品質リスクやAIの限界について掘り下げます。</p>
+
+            <div class="card mb-8">
+                <h3 class="text-xl font-semibold mb-3 text-center">A. AI生成コードに内在する品質リスク (概念的影響度)</h3>
+                <p class="text-center mb-4 text-gray-600">AIが生成するコードは、バグ、セキュリティ脆弱性、パフォーマンス問題など、様々な品質リスクを内包しています。これらのリスクの相対的な影響度を概念的に示します。</p>
+                <div class="chart-container h-72 md:h-80">
+                    <canvas id="risksChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="card mb-8">
+                <h4 class="text-lg font-semibold mb-2">OWASP LLM Top 10 の考慮事項</h4>
+                <p class="mb-3 text-sm text-gray-600">AIによるコード生成に関連する主要なセキュリティリスクです。各項目をクリックして詳細を確認してください。</p>
+                <div id="owasp-llm-accordion">
+                    </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3">B. 「ブラックボックス」の課題</h3>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>AIの真の理解の欠如 (パターンマッチングに基づく動作)</li>
+                        <li>不完全なコンテキスト認識 (局所的な動作、全体像の欠如)</li>
+                        <li>トレーニングデータのバイアス (偏ったコードロジックの可能性)</li>
+                    </ul>
+                    <p class="mt-2 text-sm text-gray-600">これらの限界が多くの品質問題の原因となります。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3">C. 部分的なコード理解の影響</h3>
+                     <ul class="list-disc list-inside space-y-1">
+                        <li>開発者の理解度低下 (「理解のギャップ」)</li>
+                        <li>デバッグと保守の困難さ (ブラックボックス解読状態)</li>
+                        <li>表面的なコードレビュー (AIへの過度な信頼)</li>
+                    </ul>
+                    <p class="mt-2 text-sm text-gray-600">「理解のギャップ」は他の技術的リスクを増幅させます。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="section3" class="section-container">
+            <h2 class="text-3xl font-bold mb-6 text-center">III. Vibe Codingにおける品質を確保するための戦略的柱</h2>
+            <p class="text-lg mb-8 text-center text-gray-700">高品質なAI生成コードを実現するためには、多角的な戦略的アプローチが不可欠です。プロンプトエンジニアリングからテスト、レビュー、ツール活用、デバッグまで、主要な柱を解説します。</p>
+
+            <div class="space-y-4 mb-8" id="strategic-pillars-accordion">
+                <div class="accordion-item">
+                    <button class="accordion-button">
+                        <span>A. 高度なプロンプトエンジニアリング</span>
+                        <span class="icon"></span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>AIへの指示（プロンプト）の質がコード品質を左右します。明確性、具体性、反復的改善が基本。CoT（思考の連鎖）やToT（思考の木）、ペルソナ設定、セキュリティ要件の明示などが高度な技術として挙げられます。</p>
+                        <p class="mt-2 text-sm"><strong class="highlight-text">表1：プロンプトエンジニアリング技術の比較</strong> は詳細な比較を提供します（下記参照）。</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button">
+                        <span>B. 厳格な検証：包括的なテスト戦略</span>
+                        <span class="icon"></span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>AI生成コードはテストが必須。単体・結合・E2Eテストの適応、TDD原則の活用、AIによるテストケース生成、ファズテストなどが重要です。コードカバレッジやミューテーションテストも有用。</p>
+                         <p class="mt-2 text-sm"><strong class="highlight-text">表2：テスト戦略の比較</strong> は詳細な比較を提供します（下記参照）。</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button">
+                        <span>C. 人間の監督：コードレビューの不可欠な役割</span>
+                        <span class="icon"></span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>AIは支援ツールであり代替ではありません。人間によるレビューが極めて重要。AIコードを下書きとして扱い、ロジック、エッジケース、セキュリティ、保守性などを重点的に確認します。AIと人間の協調モデルも有効です。</p>
+                         <p class="mt-2 text-sm">AIコードレビュー用チェックリストの活用が推奨されます。</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button">
+                        <span>D. 自動化された警戒：静的および動的解析ツールの活用</span>
+                        <span class="icon"></span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>SAST, DAST, IAST, RASP, SCAといったツールがAI生成コードの脆弱性や品質問題を体系的に検出します。CI/CDへの統合が鍵。AI特有の問題（スロップスクワッティング等）への対応も必要です。</p>
+                        <p class="mt-2 text-sm"><strong class="highlight-text">表3：解析ツールとAIコードへの関連性</strong> は詳細な比較を提供します（下記参照）。</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button">
+                        <span>E. AI駆動開発における効果的なデバッグと修正</span>
+                        <span class="icon"></span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>AI生成コードのデバッグは特有の課題を伴います。AIによるエラー解説や修正提案、ログ分析を活用しつつ、人間が根本原因を特定する体系的アプローチが重要です。APMツールも役立ちます。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card mb-6">
+                <h3 class="text-xl font-semibold mb-3">表1抜粋：プロンプトエンジニアリング技術</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>技術</th><th>説明</th><th>品質向上</th><th>セキュリティ向上</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>思考の連鎖 (CoT)</td><td>LLMにステップバイステップで推論させる。</td><td>論理的一貫性改善。</td><td>セキュリティチェック組込奨励。</td></tr>
+                            <tr><td>思考の木 (ToT)</td><td>複数推論経路を探索、自己評価。</td><td>堅牢・最適化ソリューション発見。</td><td>複数セキュリティアプローチ評価。</td></tr>
+                            <tr><td>ペルソナベース</td><td>AIに専門家の役割を割り当てる。</td><td>特定規約遵守、可読性向上。</td><td>専門家視点での脆弱性チェック。</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-xs text-gray-500 mt-2">注：これは表1の抜粋です。完全版は元レポートをご参照ください。</p>
+            </div>
+
+            <div class="card mb-6">
+                <h3 class="text-xl font-semibold mb-3">表2抜粋：テスト戦略</h3>
+                 <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>戦略</th><th>説明</th><th>AIコードへの利点</th><th>AIコードへの課題</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>単体テスト</td><td>個別モジュールをテスト。</td><td>小単位の機能的正しさ検証。</td><td>微妙なバグ見逃し可能性。</td></tr>
+                            <tr><td>AIを用いたTDD</td><td>テストを先に記述。</td><td>明確な「契約」提供。</td><td>テストへの過剰適合リスク。</td></tr>
+                            <tr><td>ファズテスト</td><td>ランダムデータ入力。</td><td>想定外入力への堅牢性検証。</td><td>問題箇所の特定困難。</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-xs text-gray-500 mt-2">注：これは表2の抜粋です。完全版は元レポートをご参照ください。</p>
+            </div>
+
+             <div class="card">
+                <h3 class="text-xl font-semibold mb-3">表3抜粋：自動解析ツール</h3>
+                 <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>ツールタイプ</th><th>説明</th><th>AIコードへの強み</th><th>AIコードへの弱点</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>SAST</td><td>ソースコード静的解析。</td><td>既知脆弱性パターン検出。</td><td>実行時問題見逃し、誤検知。</td></tr>
+                            <tr><td>DAST</td><td>実行中アプリ外部テスト。</td><td>実行時脆弱性検出。</td><td>内部ロジックアクセス不可。</td></tr>
+                            <tr><td>SCA</td><td>依存関係の脆弱性検査。</td><td>ライブラリ脆弱性、「スロップスクワッティング」検出貢献。</td><td>ライブラリの不適切利用は困難。</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-xs text-gray-500 mt-2">注：これは表3の抜粋です。完全版は元レポートをご参照ください。</p>
+            </div>
+        </section>
+
+        <section id="section4" class="section-container">
+            <h2 class="text-3xl font-bold mb-6 text-center">IV. 品質中心のVibe Coding文化の育成</h2>
+            <p class="text-lg mb-8 text-center text-gray-700">技術戦略だけでなく、開発文化の変革も品質維持には不可欠です。開発者の役割変化、新スキルセット、技術的負債への取り組みが鍵となります。</p>
+            
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3">A. 進化する開発者の役割</h3>
+                    <p>開発者は「コーダー」から「AIオーケストレーター」「レビュアー」「品質の番人」へと役割がシフトします。AIの出力に対する最終的な責任は依然として人間にあります。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3">C. 技術的負債の管理</h3>
+                    <p>プロアクティブなリファクタリング、明確なドキュメンテーション、バージョン管理、モジュラーデザイン、アーキテクチャ上のガードレール、「シグナルコーディング」の実践が重要です。</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-semibold mb-3 text-center">B. Vibe Coding時代に不可欠なスキル (概念的重要度)</h3>
+                <p class="text-center mb-4 text-gray-600">新しい開発パラダイムで成功するためには、従来のスキルに加え、新たな能力が求められます。以下のレーダーチャートは、各スキルの相対的な重要度を示した概念図です。</p>
+                <div class="chart-container h-80 md:h-96">
+                    <canvas id="skillsRadarChart"></canvas>
+                </div>
+                <p class="mt-3 text-sm text-gray-600 text-center">特にAIへの過度な依存による「スキル低下」リスクには注意が必要です。</p>
+            </div>
+        </section>
+
+        <section id="section5" class="section-container">
+            <h2 class="text-3xl font-bold mb-6 text-center">V. ガバナンス、倫理、責任あるAIによるコード生成</h2>
+            <p class="text-lg mb-8 text-center text-gray-700">Vibe Codingの効率性と革新性は、ガバナンス、倫理、責任あるAI活用への配慮を要求します。これらは品質担保と持続可能な開発の基盤です。</p>
+            
+            <div class="card mb-8">
+                <h3 class="text-xl font-semibold mb-3">A. AI倫理原則の適用</h3>
+                <p class="mb-2">人間中心、透明性、説明責任、公平性、安全性、プライバシー保護、セキュリティ、ガバナンスといった原則が基本です。特に重要なのは以下の点です：</p>
+                <ul class="list-disc list-inside space-y-1">
+                    <li>人間による監督 (特にクリティカルなコード)</li>
+                    <li>AIコード生成における透明性 (AI関与の文書化)</li>
+                    <li>公平性とバイアス緩和 (偏りのないコード生成)</li>
+                </ul>
+                <p class="mt-2 text-sm text-gray-600">「説明責任」の原則は、AIのブラックボックス性や開発者の「理解のギャップ」により特有の課題に直面します。</p>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-semibold mb-3">B. 安全で責任あるAIコード生成のためのフレームワーク活用</h3>
+                <p class="mb-3 text-sm text-gray-600">既存のセキュリティフレームワークは、AIコード生成特有のリスクに対応する指針となります。特にOWASP LLM Top 10は重要です。各項目をクリックして詳細を確認してください。</p>
+                <div id="owasp-llm-table-accordion">
+                     </div>
+                 <p class="mt-3 text-sm text-gray-600">NIST AIリスク管理フレームワーク（AI RMF）や業界ガイドライン（例：Microsoftの責任あるAI）も参照すべきです。</p>
+            </div>
+        </section>
+
+        <section id="section6" class="section-container">
+            <h2 class="text-3xl font-bold mb-6 text-center">VI. 結論：品質志向でVibe Codingの未来を航海する</h2>
+            <div class="card bg-blue-50 border-l-4 border-accent-primary">
+                <p class="text-lg mb-4">Vibe Codingは開発の風景を塗り替える可能性を秘めていますが、品質、セキュリティ、保守性に関する固有の課題も提示します。本レポートで詳述した多層的な戦略的アプローチ（高度なプロンプト、厳格なテスト、人間の監督、自動化ツール、効果的なデバッグ）が不可欠です。</p>
+                <p class="text-lg mb-4">これらの技術戦略を支えるのは、<strong class="highlight-text">品質中心の文化の育成</strong>です。開発者の役割は進化し、新しいスキルセットが求められます。技術的負債の管理も重要です。</p>
+                <p class="text-lg">最終的に、Vibe Codingの恩恵を最大限に引き出すためには、<strong class="highlight-text">人間中心のアプローチと品質への揺るぎないコミットメント</strong>が不可欠です。AIは強力なツールですが、最終的な責任は人間にあります。人間とAIがそれぞれの強みを活かし、高品質なソフトウェアを共創する未来が期待されます。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-8 border-t border-gray-200">
+        <p class="text-sm text-gray-500">&copy; 2025 Vibe Coding 品質担保SPA. All rights reserved.</p>
+    </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Smooth scrolling for nav links
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Calculate offset for sticky header
+                    const headerOffset = document.getElementById('main-header').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+        // Active nav link highlighting on scroll (Scroll-spy)
+        const sections = document.querySelectorAll('section[id]');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const navLink = document.querySelector(`nav a[href="#${id}"]`);
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+                    document.querySelectorAll('nav a.active').forEach(link => link.classList.remove('active'));
+                    if (navLink) navLink.classList.add('active');
+                } else {
+                     if (navLink) navLink.classList.remove('active');
+                }
+            });
+        }, { threshold: 0.5, rootMargin: `-${document.getElementById('main-header').offsetHeight}px 0px 0px 0px` });
+
+        sections.forEach(section => observer.observe(section));
+        
+        // Accordion functionality
+        function setupAccordion(containerId, items) {
+            const accordionContainer = document.getElementById(containerId);
+            if (!accordionContainer) return;
+
+            items.forEach(itemData => {
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('accordion-item');
+
+                const button = document.createElement('button');
+                button.classList.add('accordion-button');
+                button.innerHTML = `<span>${itemData.title}</span><span class="icon"></span>`;
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.classList.add('accordion-content');
+                contentDiv.innerHTML = itemData.content;
+
+                button.addEventListener('click', () => {
+                    const isOpen = contentDiv.style.display === 'block';
+                    // Close all other items if this one is not open or if you want only one open at a time
+                    // document.querySelectorAll(`#${containerId} .accordion-content`).forEach(el => el.style.display = 'none');
+                    // document.querySelectorAll(`#${containerId} .accordion-button`).forEach(el => el.classList.remove('open'));
+
+                    if (isOpen) {
+                        contentDiv.style.display = 'none';
+                        button.classList.remove('open');
+                    } else {
+                        contentDiv.style.display = 'block';
+                        button.classList.add('open');
+                    }
+                });
+
+                itemDiv.appendChild(button);
+                itemDiv.appendChild(contentDiv);
+                accordionContainer.appendChild(itemDiv);
+            });
+        }
+
+        // Data for OWASP LLM Top 10 (Section II.A)
+        const owaspLlmDataSec2 = [
+            { title: 'LLM01: プロンプトインジェクション', content: '悪意のあるプロンプトが、安全でないコードの生成につながる可能性。' },
+            { title: 'LLM02: 機密情報の漏洩', content: 'AIがトレーニングデータやプロンプトから機密情報を誤って生成コードに埋め込む可能性。' },
+            { title: 'LLM03: サプライチェーンの脆弱性', content: 'AIが提案するサードパーティのAIモデルやライブラリへの依存が脆弱性を持ち込む可能性。' },
+            { title: 'LLM04: データおよびモデルの汚染', content: 'AIモデル自体が侵害されたり、汚染されたデータでトレーニングされたりした場合、悪意のある、または欠陥のあるコードを生成する可能性。' },
+            { title: 'LLM05: 不適切な出力処理', content: 'AIが生成したコード（出力）が検証されない場合、統合時に脆弱性（例：XSS、SQLi）につながる可能性。' },
+            { title: 'LLM06: 過剰なエージェンシー', content: 'AIコード生成エージェントが過剰な権限を持つ場合、有害なコードを生成・展開するために悪用される可能性。' }
+        ];
+        setupAccordion('owasp-llm-accordion', owaspLlmDataSec2);
+        
+        // Data for Strategic Pillars Accordion (Section III)
+        const strategicPillarsData = [
+            // Data already in HTML, this is just for consistency if we decide to populate it dynamically
+        ];
+        const pillarButtons = document.querySelectorAll('#strategic-pillars-accordion .accordion-button');
+        pillarButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const isOpen = content.style.display === 'block';
+                // Optional: Close other pillar accordions if desired
+                // pillarButtons.forEach(btn => {
+                //    if (btn !== button) {
+                //        btn.nextElementSibling.style.display = 'none';
+                //        btn.classList.remove('open');
+                //    }
+                // });
+                if (isOpen) {
+                    content.style.display = 'none';
+                    button.classList.remove('open');
+                } else {
+                    content.style.display = 'block';
+                    button.classList.add('open');
+                }
+            });
+        });
+
+
+        // Data for OWASP LLM Top 10 Table Accordion (Section V.B - Table 4)
+        const owaspLlmTableData = [
+            { title: 'LLM01: プロンプトインジェクション', content: '<strong>説明:</strong> 攻撃者がLLMへの入力を操作し、意図しないコードを生成させる。<br><strong>例:</strong> ユーザーコメントに隠された指示で機密情報漏洩コード生成。<br><strong>緩和策:</strong> 入力検証、権限制限、人間レビュー、サンドボックス実行。' },
+            { title: 'LLM02: 機密情報漏洩', content: '<strong>説明:</strong> LLMが機密情報（APIキー等）をコードに埋め込む。<br><strong>例:</strong> デバッグ用プロンプトのAPIキーをハードコード。<br><strong>緩和策:</strong> 機密情報除去/マスキング、生成コードスキャン、最小権限。' },
+            { title: 'LLM03: サプライチェーンの脆弱性', content: '<strong>説明:</strong> AIが安全でないライブラリや脆弱なコードパターンを提案。LLMモデル自体の脆弱性。<br><strong>例:</strong> 古いライブラリや脆弱なスニペットを推奨。<br><strong>緩和策:</strong> 提案ライブラリ/コードの脆弱性スキャン(SCA)、信頼できるモデル選定。' },
+            { title: 'LLM04: データおよびモデルの汚染', content: '<strong>説明:</strong> トレーニングデータ等に悪意のあるデータが混入し、特定の条件下で脆弱/悪意のあるコードを生成。<br><strong>例:</strong> 公開データセット汚染でバックドア付きコード生成を誘導。<br><strong>緩和策:</strong> データ検証、モデル挙動監視、信頼できるデータソース使用。' },
+            { title: 'LLM05: 不適切な出力処理', content: '<strong>説明:</strong> LLM生成コードが検証/サニタイズなしに実行され、XSSやSQLi等を引き起こす。<br><strong>例:</strong> ユーザー入力に基づく動的HTML生成時のサニタイズ漏れ。<br><strong>緩和策:</strong> 生成コードを信頼できない入力として扱い、厳格な出力エンコーディング/検証/サニタイズ。' },
+            { title: 'LLM06: 過剰なエージェンシー', content: '<strong>説明:</strong> AIエージェントに過度な権限が付与され、悪用されると不正なコード自動デプロイ等が発生。<br><strong>例:</strong> AIエージェントが本番ファイルを誤削除。<br><strong>緩和策:</strong> AIエージェント権限最小化、重要操作は人間承認必須。' },
+            { title: 'LLM07: システムプロンプト漏洩', content: '<strong>説明:</strong> システムプロンプト内の内部ルールや機密情報が漏洩し、攻撃に悪用される。<br><strong>例:</strong> 巧妙なプロンプトで内部指示やセキュリティルールを暴露させる。<br><strong>緩和策:</strong> システムプロンプトに機密情報を含めない、行動制御は外部ガードレールで。' },
+            { title: 'LLM08: ベクトルおよび埋め込みの弱点', content: '<strong>説明:</strong> RAG使用時、ベクトルDBのコードスニペット等が不正アクセス/汚染され、不正確/脆弱なコード生成。<br><strong>例:</strong> ベクトルDBに脆弱コードスニペット注入。<br><strong>緩和策:</strong> ベクトルDBアクセス制御、格納データ検証、検索結果信頼性評価。' },
+            { title: 'LLM09: 誤情報', content: '<strong>説明:</strong> LLMがハルシネーションで存在しないAPIや誤ったプラクティスに基づいたコードを生成。<br><strong>例:</strong> 存在しない効率的な関数を提案。<br><strong>緩和策:</strong> 生成コード/技術の検証、信頼できる情報源との照合、RAGによる検証済み情報提供。' },
+            { title: 'LLM10: 無制限の推論消費', content: '<strong>説明:</strong> 大量/複雑なコード生成要求でリソースを枯渇させ、DoSや高額請求を引き起こす。<br><strong>例:</strong> 再帰的コード生成指示で無限ループに近い状態に。<br><strong>緩和策:</strong> APIレート制限、入力複雑さ制限、生成コードサイズ/実行時間監視。' }
+        ];
+        setupAccordion('owasp-llm-table-accordion', owaspLlmTableData);
+
+        // Chart.js common tooltip callback
+        const chartTooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        // Chart.js label wrapping function
+        function wrapChartLabels(label, maxWidth = 16) {
+            if (typeof label !== 'string' || label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            if (currentLine.length > 0) {
+                 lines.push(currentLine.trim());
+            }
+            return lines.length > 0 ? lines : label; // Ensure it returns original if no split
+        }
+
+        // Chart 1: Replit Adoption (Donut)
+        const replitCtx = document.getElementById('replitAdoptionChart');
+        if (replitCtx) {
+            new Chart(replitCtx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Vibe Coding 利用者', '従来型コーディング利用者 (推定)'],
+                    datasets: [{
+                        data: [75, 25],
+                        backgroundColor: ['var(--accent-primary)', 'var(--border-color)'],
+                        hoverBackgroundColor: ['#2980B9', '#cccccc']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: true, position: 'bottom', labels: { font: { size: 10 }}},
+                        tooltip: { callbacks: { title: chartTooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+
+        // Chart 2: Benefits (Bar)
+        const benefitsCtx = document.getElementById('benefitsChart');
+        if (benefitsCtx) {
+            new Chart(benefitsCtx.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['迅速なプロトタイピング', 'アクセシビリティ向上', '生産性向上', '創造性解放'].map(l => wrapChartLabels(l)),
+                    datasets: [{
+                        label: '概念的インパクト (高→低)',
+                        data: [90, 80, 85, 75],
+                        backgroundColor: 'rgba(52, 152, 219, 0.7)', // --accent-primary with alpha
+                        borderColor: 'var(--accent-primary)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: { x: { beginAtZero: true, max:100 } },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { title: chartTooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+        
+        // Chart 3: Risks (Bar)
+        const risksCtx = document.getElementById('risksChart');
+        if (risksCtx) {
+            new Chart(risksCtx.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['バグと論理的欠陥', 'セキュリティ脆弱性', 'パフォーマンス問題', '保守性と技術的負債', 'AIハルシネーション'].map(l => wrapChartLabels(l)),
+                    datasets: [{
+                        label: '概念的影響度 (高→低)',
+                        data: [80, 95, 70, 85, 75],
+                        backgroundColor: 'rgba(231, 76, 60, 0.7)', // A reddish color for risks
+                        borderColor: '#c0392b',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: { x: { beginAtZero: true, max: 100 } },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { title: chartTooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+
+        // Chart 4: Skills Radar
+        const skillsCtx = document.getElementById('skillsRadarChart');
+        if (skillsCtx) {
+            new Chart(skillsCtx.getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: ['批判的思考', 'プロンプト技術', 'AI限界理解', 'ドメイン知識', 'システム思考', '継続的学習'].map(l => wrapChartLabels(l,12)),
+                    datasets: [{
+                        label: 'Vibe Coding時代の重要スキル (概念)',
+                        data: [90, 85, 80, 75, 70, 95],
+                        fill: true,
+                        backgroundColor: 'rgba(46, 204, 113, 0.2)', // --accent-secondary with alpha
+                        borderColor: 'var(--accent-secondary)',
+                        pointBackgroundColor: 'var(--accent-secondary)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'var(--accent-secondary)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { display: true },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            pointLabels: { font: { size: 10 } }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'top' },
+                        tooltip: { callbacks: { title: chartTooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
