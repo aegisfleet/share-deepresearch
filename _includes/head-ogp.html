@@ -1,0 +1,13 @@
+<!-- OGP -->
+<meta property="og:title" content="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}">
+<meta property="og:type" content="{% if page.url == '/' %}website{% else %}article{% endif %}">
+<meta property="og:url" content="{{ site.url }}{{ page.url | relative_url }}">
+<meta property="og:image" content="{{ site.url }}{% if page.ogp_image %}{{ page.ogp_image | relative_url }}{% else %}{{ '/assets/images/default-ogp.png' | relative_url }}{% endif %}">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}">
+<meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+<meta name="twitter:image" content="{{ site.url }}{% if page.ogp_image %}{{ page.ogp_image | relative_url }}{% else %}{{ '/assets/images/default-ogp.png' | relative_url }}{% endif %}">
