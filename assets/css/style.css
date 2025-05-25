@@ -84,7 +84,8 @@ a:hover {
     background-image: url('../favicon/favicon-32x32.png');
     background-size: contain;
     background-repeat: no-repeat;
-    vertical-align: middle;
+    position: relative;
+    top: 6px;
     margin-right: 8px;
 }
 
