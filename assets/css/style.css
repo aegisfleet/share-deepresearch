@@ -60,6 +60,31 @@ body {
     margin-right: 0.5rem;
 }
 
+.topic-list {
+    list-style: none;
+    padding: 0;
+}
+
+.topic-list li {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.topic-list li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.topic-list li .date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-left: 1rem;
+}
+
 /* レスポンシブデザイン */
 @media (max-width: 600px) {
     .main-content {
