@@ -256,6 +256,41 @@ a:hover {
     content: "🌈 ";
 }
 
+/* トップへ戻るボタン */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-to-top:hover {
+    background-color: var(--link-hover-color);
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+}
+
+/* ボタン内の矢印 */
+.scroll-to-top::before {
+    content: "↑";
+    font-size: 24px;
+    line-height: 1;
+}
+
 /* レスポンシブデザイン */
 @media (max-width: 600px) {
     .main-content {
