@@ -36,7 +36,7 @@ pre, code {
 
 /* コンテンツラッパー */
 .main-content {
-    max-width: 800px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 1rem;
     width: 100%;
@@ -126,7 +126,7 @@ a:hover {
 }
 
 .main-content {
-    max-width: 800px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 2rem;
 }
@@ -256,7 +256,7 @@ a:hover {
 }
 
 .footer-content {
-    max-width: 800px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 0 1rem;    /* 2remから1remに縮小 */
 }
