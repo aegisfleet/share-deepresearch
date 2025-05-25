@@ -2,6 +2,7 @@
 layout: topic
 title: "Anthropic Claude Code 詳細調査報告：VSCode及びGitHub Actions連携の深掘り"
 date: 2025-05-25
+category: "ai"
 tags: [Anthropic,Claude Code,VSCode,GitHub Actions]
 audio: "/share-deepresearch/assets/audio/claude-code-research.mp3"
 supplementary_materials:

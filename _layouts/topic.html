@@ -2,12 +2,12 @@
 layout: default
 ---
 
-<article class="topic">
+<article class="topic" data-type="{{ page.type | default: 'default' }}">
     <h1>{{ page.title }}</h1>
     
     {% if page.date %}
     <p class="meta">作成日: {{ page.date | date: "%Y年%m月%d日" }}</p>
-    {% endif %}    {% if page.audio %}
+    {% endif %}{% if page.audio %}
     <div class="audio-player">
         <h2>音声概要</h2>
         <audio controls preload="auto">

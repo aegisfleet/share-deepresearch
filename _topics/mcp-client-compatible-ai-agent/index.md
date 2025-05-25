@@ -2,6 +2,7 @@
 layout: topic
 title: "Model Context Protocol対応AIエージェントのGitHub Actionsにおける活用調査"
 date: 2025-05-24
+category: "research"
 tags: [Model Context Protocol,GitHub Actions]
 audio: "/share-deepresearch/assets/audio/mcp-client-compatible-ai-agent.mp3"
 supplementary_materials:
