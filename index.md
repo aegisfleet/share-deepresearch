@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Gemini DeepResearch
+title: ポちのDeepResearch
 ---
 
-# Gemini DeepResearch
+# ポちのDeepResearch
 
-このサイトは、Google Gemini を使用したDeepResearchの結果をまとめたものです。
+このサイトは、Google Gemini を使用した DeepResearch の結果を個人的にまとめたものです。
 
 ## トピック一覧
 
