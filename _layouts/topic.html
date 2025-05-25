@@ -17,6 +17,15 @@ layout: default
     </div>
     {% endif %}
 
+    {% if page.supplementary_materials %}
+    <div class="supplementary-materials">
+        <h2>補足資料</h2>
+        {% for material in page.supplementary_materials %}
+        <p><a href="{{ material.url }}" target="_blank">{{ material.title }}</a></p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     {{ content }}
 
     {% if page.tags %}
