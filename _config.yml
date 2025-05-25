@@ -4,7 +4,7 @@ theme: jekyll-theme-cayman
 
 # GitHub Pagesの設定
 baseurl: "/share-deepresearch"
-url: ""
+url: "https://aegisfleet.github.io"
 
 # ナビゲーションの設定
 collections:
