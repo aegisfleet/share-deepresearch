@@ -20,6 +20,20 @@ body {
     overflow-x: hidden;
 }
 
+/* コードブロックのスタイル */
+pre, code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+.highlight pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
 /* コンテンツラッパー */
 .main-content {
     max-width: 800px;
