@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>化学基礎 インタラクティブ学習</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F7F7F7; 
+            color: #333333; 
+        }
+        .app-container { max-width: 500px; margin: 0 auto; }
+        .btn { padding: 0.6rem 1.2rem; border-radius: 0.5rem; font-weight: 500; transition: background-color 0.2s ease, transform 0.1s ease; cursor: pointer; text-align: center; }
+        .btn:active { transform: scale(0.97); }
+        .btn-primary { background-color: #FF6B6B; color: white; } /* Lively Coral */
+        .btn-primary:hover { background-color: #e05a5a; }
+        .btn-secondary { background-color: #118AB2; color: white; } /* Deep Cerulean */
+        .btn-secondary:hover { background-color: #0e708e; }
+        .btn-accent { background-color: #06D6A0; color: white; } /* Vibrant Teal */
+        .btn-accent:hover { background-color: #05b386; }
+        .btn-warning { background-color: #FFD166; color: #4A5568; } /* Sunny Yellow */
+        .btn-warning:hover { background-color: #f0c154; }
+
+        .card { background-color: white; border-radius: 0.75rem; padding: 1.25rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); margin-bottom: 1.25rem; }
+        
+        .nav-btn { flex-grow: 1; display: flex; flex-direction: column; align-items: center; padding: 0.5rem; font-size: 0.75rem; color: #6B7280; }
+        .nav-btn.active { color: #FF6B6B; }
+        .nav-icon { width: 24px; height: 24px; margin-bottom: 0.125rem; }
+        
+        .animation-container { width: 100%; min-height: 280px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; border-radius: 0.5rem; padding: 0.75rem; margin-top: 0.75rem; margin-bottom: 0.75rem; position: relative; overflow: hidden; }
+        .text-xxs { font-size: 0.65rem; line-height: 0.9rem; }
+        .text-3xs { font-size: 0.55rem; line-height: 0.8rem; }
+
+        /* Ionization Tendency Specific */
+        .metal-strip {
+            width: 2rem; height: 4rem; border: 1px solid #9CA3AF; background-color: #E5E7EB;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            font-size: 0.7rem; font-weight: 500; margin: 0 0.25rem; cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .metal-strip:hover { background-color: #D1D5DB; }
+        .metal-strip.active { border-color: #FF6B6B; background-color: #FECACA; }
+        .bubble {
+            position: absolute; width: 0.3rem; height: 0.3rem; background-color: #A5F3FC;
+            border-radius: 50%; animation: rise 1s infinite ease-in;
+        }
+        @keyframes rise {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-2rem); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app" class="app-container min-h-screen flex flex-col pb-16">
+        <header id="app-header" class="text-center py-5 sticky top-0 bg-white/80 backdrop-blur-md z-10 shadow-sm">
+            <h1 class="text-2xl font-bold" style="color: #FF6B6B;">化学基礎 学習帳</h1>
+        </header>
+
+        <main id="main-content" class="flex-grow p-3">
+        </main>
+
+        <nav id="bottom-nav" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center h-16 z-50 app-container">
+        </nav>
+    </div>
+
+    <script>
+        const termsData = [
+          // 第1部
+          { id: 'pure_mixture', chapter: '第1部', topic: '物質の分類', term: '純物質と混合物', description: '純物質は1種類の物質から、混合物は2種類以上が混じり合っています。', animationType: 'pure_mixture_animation', details: '純物質 (水 $H_2O$), 混合物 (食塩水)' },
+          { id: 'atomic_particles', chapter: '第1部', topic: '原子の構造', term: '原子の構成粒子', description: '原子は原子核（陽子、中性子）と電子から成ります。', animationType: 'atomic_structure_animation', details: '陽子(P+), 中性子(N), 電子(e-)' },
+          { id: 'ionic_bond', chapter: '第1部', topic: '化学結合', term: 'イオン結合', description: '陽イオンと陰イオンが静電気力で結合します。 (例: NaCl)', animationType: 'ionic_bond_animation', details: '$Na^+ + Cl^- \\rightarrow NaCl$' },
+          { id: 'filtration', chapter: '第1部', topic: '物質の分離', term: 'ろ過', description: '液体と不溶性固体を分離します。', animationType: 'filtration_animation', details: '泥水から泥を分離' },
+          { id: 'electron_shell', chapter: '第1部', topic: '原子の構造', term: '電子殻と電子配置', description: '電子はK,L,M殻などに配置されます。 (例: Na $K^2L^8M^1$)', animationType: 'electron_shell_animation', details: 'ナトリウム原子 (Na)' },
+          // 第2部
+          { id: 'neutralization', chapter: '第2部', topic: '酸と塩基', term: '中和反応', description: '酸と塩基が反応し水と塩を生成します。 (例: $HCl + NaOH \\rightarrow NaCl + H_2O$)', animationType: 'neutralization_animation', details: '酸 + 塩基 &rarr; 塩 + 水' },
+          { id: 'redox_reaction', chapter: '第2部', topic: '酸化還元', term: '酸化還元反応', description: '電子の授受を伴う反応。ダニエル電池が代表例。', animationType: 'redox_reaction_animation', details: '$Zn + Cu^{2+} \\rightarrow Zn^{2+} + Cu$' },
+          { id: 'ionization_tendency', chapter: '第2部', topic: '酸化還元', term: '金属のイオン化傾向', description: '金属が陽イオンになろうとする性質の強さ。', animationType: 'ionization_tendency_animation', details: 'K > ... > H > ... > Au' },
+          // 第3部 (アニメーションなしの例)
+          { id: 'confusing_terms', chapter: '第3部', topic: '重要用語整理', term: '混同しやすい用語', description: '単体と元素、同素体と同位体などの違いを整理。', animationType: null, details: '単体vs元素, 同素体vs同位体' }
+        ];
+
+        const mainContent = document.getElementById('main-content');
+        const bottomNavEl = document.getElementById('bottom-nav'); // Renamed to avoid conflict
+        const appHeader = document.getElementById('app-header');
+
+        let currentPage = 'home';
+        let currentChapter = null;
+        let currentTerm = null;
+
+        function formatLatex(text) {
+            if (!text) return '';
+            let html = text;
+            // General subscripts: X_y or $X_y$
+            html = html.replace(/\$?([A-Za-z]+)_(\d+)\$?/, '$1<sub>$2</sub>');
+            // General superscripts: X^y+, X^{y+}, X^+, $X^y+$, etc.
+            html = html.replace(/\$?([A-Za-z]+)\^\{?(\d*)([+\u2212\u207A\u207B\u207C\u207D\u207E-])\}?\/?/g, (match, p1, p2, p3) => `${p1}<sup>${p2}${p3}</sup>`);
+            // Specific common formulas
+            html = html.replace(/\$K\^2L\^8M\^1\$/g, 'K<sup>2</sup>L<sup>8</sup>M<sup>1</sup>');
+            html = html.replace(/\\rightarrow/g, '&rarr;');
+            html = html.replace(/\$Cu\^{2\+}\$/g, 'Cu<sup>2+</sup>');
+            html = html.replace(/\$Zn\^{2\+}\$/g, 'Zn<sup>2+</sup>');
+            return html;
+        }
+
+
+        function renderHeader(title) {
+            appHeader.querySelector('h1').textContent = title;
+        }
+        
+        function renderBottomNav() {
+            bottomNavEl.innerHTML = `
+                <button class="nav-btn ${currentPage === 'home' ? 'active' : ''}" data-page="home">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    ホーム
+                </button>
+                ${currentChapter ? `
+                <button class="nav-btn ${currentPage === 'topicList' ? 'active' : ''}" data-page="topicList" data-chapter="${currentChapter}">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                    単語一覧
+                </button>` : ''}
+                ${currentTerm ? `
+                <button class="nav-btn ${currentPage === 'termDetail' ? 'active' : ''}" data-page="termDetail" data-termid="${currentTerm.id}">
+                    <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    詳細
+                </button>` : ''}
+            `;
+            bottomNavEl.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const page = e.currentTarget.dataset.page;
+                    const chapter = e.currentTarget.dataset.chapter;
+                    const termId = e.currentTarget.dataset.termid;
+                    if (page === 'home') navigateTo(page);
+                    else if (page === 'topicList') navigateTo(page, chapter);
+                    else if (page === 'termDetail') {
+                        const term = termsData.find(t => t.id === termId);
+                        navigateTo(page, term);
+                    }
+                });
+            });
+        }
+
+        function createAnimationElement(animationType, term) {
+            const container = document.createElement('div');
+            container.className = 'animation-container';
+            
+            switch(animationType) {
+                case 'pure_mixture_animation':
+                    container.style.backgroundColor = '#E0F2FE'; // Light blue
+                    let showPure = true;
+                    const particlesArea = document.createElement('div');
+                    particlesArea.className = 'w-48 h-48 border-2 border-dashed border-indigo-300 rounded-md relative bg-white shadow-inner mb-2';
+                    
+                    function renderParticles() {
+                        particlesArea.innerHTML = '';
+                        Array(12).fill(0).forEach((_, i) => {
+                            const p = document.createElement('div');
+                            p.className = 'absolute w-3 h-3 rounded-full transition-all duration-500 ease-in-out cursor-pointer hover:scale-150';
+                            p.style.backgroundColor = showPure ? '#118AB2' : (i % 3 === 0 ? '#FF6B6B' : (i % 3 === 1 ? '#06D6A0' : '#118AB2'));
+                            p.style.left = `${Math.random() * 85 + 7.5}%`;
+                            p.style.top = `${Math.random() * 85 + 7.5}%`;
+                            p.style.transform = 'translate(-50%, -50%)';
+                            p.onclick = () => alert(`粒子 ${i+1}`);
+                            particlesArea.appendChild(p);
+                        });
+                    }
+                    renderParticles();
+
+                    const statusText = document.createElement('p');
+                    statusText.className = 'text-sm font-medium mb-2 text-indigo-700';
+                    statusText.textContent = showPure ? '純物質' : '混合物';
+                    
+                    const toggleBtn = document.createElement('button');
+                    toggleBtn.className = 'btn btn-secondary btn-sm text-xs';
+                    toggleBtn.textContent = showPure ? '混合物を表示' : '純物質を表示';
+                    toggleBtn.onclick = () => {
+                        showPure = !showPure;
+                        statusText.textContent = showPure ? '純物質' : '混合物';
+                        toggleBtn.textContent = showPure ? '混合物を表示' : '純物質を表示';
+                        renderParticles();
+                    };
+                    container.append(statusText, particlesArea, toggleBtn);
+                    break;
+
+                case 'atomic_structure_animation':
+                    container.style.backgroundColor = '#FEF3C7'; // Light yellow
+                    container.innerHTML = `
+                        <p class="text-sm font-medium mb-1 text-yellow-700">原子の構造 (He)</p>
+                        <div class="relative w-40 h-40 my-2">
+                            <div class="absolute inset-0 border-2 border-dashed border-yellow-400 rounded-full"></div>
+                            <div class="absolute w-14 h-14 rounded-full flex flex-col items-center justify-center text-white text-xxs shadow-lg cursor-pointer" style="top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #FF6B6B;" onclick="alert('原子核: 2P, 2N')">
+                                <div class="flex"><div class="w-3 h-3 rounded-full m-px bg-red-700">P</div><div class="w-3 h-3 rounded-full m-px bg-red-700">P</div></div>
+                                <div class="flex"><div class="w-3 h-3 rounded-full m-px bg-blue-700">N</div><div class="w-3 h-3 rounded-full m-px bg-blue-700">N</div></div>
+                            </div>
+                            ${[0, 180].map(angle => `
+                                <div class="absolute w-4 h-4 rounded-full flex items-center justify-center text-white text-xxs shadow-md cursor-pointer" style="background-color: #06D6A0; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(${angle}deg) translateY(-60px) rotate(-${angle}deg);" onclick="alert('電子 (e-)')">e⁻</div>
+                            `).join('')}
+                        </div>
+                        <p class="text-xs text-yellow-700 mt-1">粒子をタップ</p>
+                    `;
+                    break;
+                case 'ionic_bond_animation':
+                    container.style.backgroundColor = '#FEE2E2'; // Light red
+                    let ionicStep = 0;
+                    const ionicSteps = ["NaとCl原子", "Naが電子放出 (Na⁺)", "Clが電子受容 (Cl⁻)", "NaCl形成！"];
+                    
+                    const visualArea = document.createElement('div');
+                    visualArea.className = 'w-56 h-32 border border-dashed border-red-200 rounded bg-white flex items-center justify-around p-1 relative shadow-inner mb-2';
+                    
+                    const statusP = document.createElement('p');
+                    statusP.className = 'h-8 text-xs text-center text-red-600 mt-1 px-1';
+
+                    function renderIonicVisual() {
+                        visualArea.innerHTML = `
+                            <div class="flex flex-col items-center transition-all duration-500" style="transform: ${ionicStep >= 3 ? 'translateX(-15px)' : 'translateX(0)'}">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center text-md font-bold shadow-md ${ionicStep >= 1 ? 'bg-blue-400 text-white' : 'bg-blue-200'}">${ionicStep >= 1 ? 'Na<sup>+</sup>' : 'Na'}</div>
+                            </div>
+                            ${ionicStep < 3 ? `<div class="absolute w-3 h-3 bg-yellow-400 rounded-full text-xxs flex items-center justify-center shadow transition-all duration-1000 ease-in-out" style="top: 50%; left: ${ionicStep === 0 ? 'calc(50% - 30px)' : (ionicStep === 1 ? 'calc(50% - 30px)' : 'calc(50% + 20px)')}; opacity: ${ionicStep === 2 ? 0 : 1}; transform: translateY(-50%);">e⁻</div>` : ''}
+                            <div class="flex flex-col items-center transition-all duration-500" style="transform: ${ionicStep >= 3 ? 'translateX(15px)' : 'translateX(0)'}">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center text-md font-bold shadow-md ${ionicStep >= 2 ? 'bg-green-400 text-white' : 'bg-green-200'}">${ionicStep >= 2 ? 'Cl<sup>-</sup>' : 'Cl'}</div>
+                            </div>
+                            ${ionicStep === 3 ? `<div class="absolute top-1/2 left-1/2 w-8 h-0.5 bg-red-400" style="transform: translate(-50%, -50%);"><span class="absolute -top-2 left-1/2 transform -translate-x-1/2 text-red-500 text-xxs whitespace-nowrap">引力</span></div>` : ''}
+                        `;
+                        statusP.innerHTML = formatLatex(ionicSteps[ionicStep]);
+                    }
+                    renderIonicVisual();
+                    
+                    const ionicBtn = document.createElement('button');
+                    ionicBtn.className = 'btn btn-primary btn-sm text-xs';
+                    ionicBtn.innerHTML = ionicStep === ionicSteps.length - 1 ? '最初から' : '次へ &rarr;';
+                    ionicBtn.onclick = () => {
+                        ionicStep = (ionicStep + 1) % ionicSteps.length;
+                        ionicBtn.innerHTML = ionicStep === ionicSteps.length - 1 ? '最初から' : '次へ &rarr;';
+                        renderIonicVisual();
+                    };
+                    container.append(visualArea, statusP, ionicBtn);
+                    break;
+                case 'filtration_animation':
+                    container.style.backgroundColor = '#F3F4F6'; // Gray 100
+                    let isPouring = false;
+                    container.innerHTML = `
+                        <p class="text-sm font-medium mb-2 text-gray-700">ろ過のデモ</p>
+                        <div class="w-36 h-48 relative">
+                            <div class="absolute top-0 left-0 w-10 h-12 border-2 border-gray-400 rounded-b-md bg-blue-100 flex flex-col justify-end items-center overflow-hidden">
+                               <div class="w-full h-1/2 bg-yellow-300 opacity-50"></div><div class="w-full h-1/2 bg-blue-300 opacity-50"></div>
+                               <p class="absolute bottom-0.5 text-xxs text-gray-600">泥水</p>
+                            </div>
+                            <div id="filtration-stream" class="absolute top-10 left-8 w-1.5 h-8 bg-blue-200 origin-top" style="transform: rotate(20deg); height: ${isPouring ? '2rem' : '0'}; transition: height 0.5s linear;"></div>
+                            <div class="absolute top-10 left-1/2 transform -translate-x-1/2 w-16">
+                                <div class="w-0 h-0 border-l-[32px] border-l-transparent border-r-[32px] border-r-transparent border-b-[32px] border-b-gray-300"></div>
+                                <div class="w-3 h-6 bg-gray-300 mx-auto"></div>
+                                <div id="filter-residue" class="absolute top-0.5 left-1/2 transform -translate-x-1/2 w-12 h-6 bg-yellow-200 opacity-0 rounded-t-full z-10" style="opacity: ${isPouring ? '0.75' : '0'}; transition: opacity 0.5s delay-0.3s;"></div>
+                            </div>
+                            <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-16 border-2 border-gray-400 rounded-b-md bg-white flex flex-col justify-end">
+                              <div id="filtrate-liquid" class="w-full bg-blue-300 opacity-75 transition-all duration-1000 delay-500" style="height: ${isPouring ? '50%' : '0%'}"></div>
+                              <p class="absolute bottom-0.5 left-1/2 transform -translate-x-1/2 text-xxs text-gray-600">ろ液</p>
+                            </div>
+                        </div>
+                        <button id="filtration-btn" class="btn btn-secondary btn-sm text-xs mt-2">${isPouring ? 'リセット' : 'ろ過開始'}</button>
+                    `;
+                    const filtrationBtn = container.querySelector('#filtration-btn');
+                    filtrationBtn.onclick = () => {
+                        isPouring = !isPouring;
+                        container.querySelector('#filtration-stream').style.height = isPouring ? '2rem' : '0';
+                        container.querySelector('#filter-residue').style.opacity = isPouring ? '0.75' : '0';
+                        container.querySelector('#filtrate-liquid').style.height = isPouring ? '50%' : '0%';
+                        filtrationBtn.textContent = isPouring ? 'リセット' : 'ろ過開始';
+                    };
+                    break;
+                case 'electron_shell_animation':
+                    container.style.backgroundColor = '#FFFBEB'; // Lightest yellow
+                    let electronShellCount = 0;
+                    const MAX_NA_ELECTRONS = 11;
+                    const SHELL_CAPACITIES_NA = [2, 8, 8]; 
+                    const SHELL_RADII_NA = [30, 50, 70];
+                    const SHELL_NAMES_NA = ['K', 'L', 'M'];
+
+                    const svgNS_NA = "http://www.w3.org/2000/svg";
+                    const svg_NA = document.createElementNS(svgNS_NA, "svg");
+                    svg_NA.setAttribute("viewBox", "0 0 160 160");
+                    svg_NA.setAttribute("class", "w-44 h-44 my-1");
+
+                    const nucleus_NA = document.createElementNS(svgNS_NA, "circle");
+                    nucleus_NA.setAttribute("cx", "80"); nucleus_NA.setAttribute("cy", "80"); nucleus_NA.setAttribute("r", "12");
+                    nucleus_NA.setAttribute("fill", "#FF6B6B");
+                    svg_NA.appendChild(nucleus_NA);
+                    const nucleusText_NA = document.createElementNS(svgNS_NA, "text");
+                    nucleusText_NA.setAttribute("x", "80"); nucleusText_NA.setAttribute("y", "83");
+                    nucleusText_NA.setAttribute("text-anchor", "middle"); nucleusText_NA.setAttribute("font-size", "7");
+                    nucleusText_NA.setAttribute("fill", "white"); nucleusText_NA.textContent = "Na";
+                    svg_NA.appendChild(nucleusText_NA);
+                    
+                    const shellsGroup_NA = document.createElementNS(svgNS_NA, "g");
+                    svg_NA.appendChild(shellsGroup_NA);
+
+                    const electronCountP_NA = document.createElement('p');
+                    electronCountP_NA.className = 'text-xs text-yellow-700 h-5'; // Added h-5 for consistent height
+                    
+                    function renderElectronShells_NA() {
+                        shellsGroup_NA.innerHTML = '';
+                        let electronsPlaced_NA = 0;
+                        SHELL_NAMES_NA.forEach((name, idx) => {
+                            const shellCircle_NA = document.createElementNS(svgNS_NA, "circle");
+                            shellCircle_NA.setAttribute("cx", "80"); shellCircle_NA.setAttribute("cy", "80");
+                            shellCircle_NA.setAttribute("r", SHELL_RADII_NA[idx]);
+                            shellCircle_NA.setAttribute("fill", "none"); shellCircle_NA.setAttribute("stroke", "#FFD166");
+                            shellCircle_NA.setAttribute("stroke-width", "1"); shellCircle_NA.setAttribute("stroke-dasharray", "2,2");
+                            shellsGroup_NA.appendChild(shellCircle_NA);
+
+                            const numInThisShell_NA = Math.min(SHELL_CAPACITIES_NA[idx], electronShellCount - electronsPlaced_NA);
+                            if (numInThisShell_NA > 0) {
+                                for (let i = 0; i < numInThisShell_NA; i++) {
+                                    const angle_NA = (360 / numInThisShell_NA) * i;
+                                    const electron_NA = document.createElementNS(svgNS_NA, "circle");
+                                    electron_NA.setAttribute("cx", 80 + SHELL_RADII_NA[idx] * Math.cos(angle_NA * Math.PI / 180));
+                                    electron_NA.setAttribute("cy", 80 + SHELL_RADII_NA[idx] * Math.sin(angle_NA * Math.PI / 180));
+                                    electron_NA.setAttribute("r", "3.5"); electron_NA.setAttribute("fill", "#06D6A0");
+                                    shellsGroup_NA.appendChild(electron_NA);
+                                }
+                            }
+                            electronsPlaced_NA += numInThisShell_NA;
+                        });
+                        let k=0, l=0, m=0;
+                        if(electronShellCount > 0) k = Math.min(2, electronShellCount);
+                        if(electronShellCount > 2) l = Math.min(8, electronShellCount - 2);
+                        if(electronShellCount > 10) m = Math.min(8, electronShellCount - 10); // Max 1 for Na in M
+                        electronCountP_NA.innerHTML = `電子: ${electronShellCount}/${MAX_NA_ELECTRONS} (K<sup>${k}</sup>L<sup>${l}</sup>M<sup>${m}</sup>)`;
+                    }
+                    renderElectronShells_NA();
+
+                    const addElectronBtn_NA = document.createElement('button');
+                    addElectronBtn_NA.className = 'btn btn-accent btn-sm text-xs mr-1'; addElectronBtn_NA.textContent = 'e⁻ 追加';
+                    addElectronBtn_NA.onclick = () => {
+                        if (electronShellCount < MAX_NA_ELECTRONS) electronShellCount++;
+                        renderElectronShells_NA();
+                    };
+                    const resetElectronsBtn_NA = document.createElement('button');
+                    resetElectronsBtn_NA.className = 'btn bg-gray-400 text-white hover:bg-gray-500 btn-sm text-xs'; resetElectronsBtn_NA.textContent = 'リセット';
+                    resetElectronsBtn_NA.onclick = () => {
+                        electronShellCount = 0;
+                        renderElectronShells_NA();
+                    };
+                    const btnContainer_NA = document.createElement('div');
+                    btnContainer_NA.className = 'flex mt-2';
+                    btnContainer_NA.append(addElectronBtn_NA, resetElectronsBtn_NA);
+                    container.append(svg_NA, electronCountP_NA, btnContainer_NA);
+                    break;
+                case 'neutralization_animation':
+                    container.style.backgroundColor = '#E0F2F7'; // Lightest blue
+                    let neutStep = 0; 
+                    const neutStepsInfo = ["HClとNaOH", "混合中...", "中和完了! NaClとH₂O"];
+                    const neutVisualArea = document.createElement('div');
+                    neutVisualArea.className = 'w-56 h-36 border border-dashed rounded bg-white flex items-center justify-center p-1 relative shadow-inner mb-2 transition-colors duration-500';
+                    
+                    const neutStatusP = document.createElement('p');
+                    neutStatusP.className = 'h-8 text-xs text-center text-blue-600 mt-1 px-1';
+
+                    function renderNeutralizationVisual() {
+                        neutVisualArea.innerHTML = '';
+                        neutVisualArea.style.borderColor = neutStep === 0 ? '#CBD5E1' : (neutStep === 1 ? '#A78BFA' : '#6EE7B7');
+                        neutVisualArea.style.backgroundColor = neutStep === 0 ? 'white' : (neutStep === 1 ? '#EDE9FE' : '#D1FAE5');
+
+                        const particles = [];
+                        if (neutStep === 0) {
+                            particles.push({text: 'H<sup>+</sup>', color: '#FF6B6B', x: '20%', y: '30%'}); particles.push({text: 'Cl<sup>-</sup>', color: '#6B7280', x: '25%', y: '60%'});
+                            particles.push({text: 'Na<sup>+</sup>', color: '#6B7280', x: '70%', y: '35%'}); particles.push({text: 'OH<sup>-</sup>', color: '#118AB2', x: '75%', y: '65%'});
+                            const separator = document.createElement('div'); separator.className="absolute top-0 left-1/2 w-px h-full bg-gray-300 border-dashed"; neutVisualArea.appendChild(separator);
+                        } else if (neutStep === 1) {
+                            particles.push({text: 'H<sup>+</sup>', color: '#FF6B6B', x: '30%', y: '40%'}); particles.push({text: 'Cl<sup>-</sup>', color: '#6B7280', x: '35%', y: '70%'});
+                            particles.push({text: 'Na<sup>+</sup>', color: '#6B7280', x: '60%', y: '30%'}); particles.push({text: 'OH<sup>-</sup>', color: '#118AB2', x: '65%', y: '60%'});
+                        } else { 
+                            particles.push({text: 'Na<sup>+</sup>Cl<sup>-</sup>', color: '#4B5563', x: '30%', y: '30%'}); 
+                            particles.push({text: 'H<sub>2</sub>O', color: '#3B82F6', x: '65%', y: '60%'});
+                        }
+                        particles.forEach(p => {
+                            const particleEl = document.createElement('div');
+                            particleEl.className = 'absolute text-xxs font-medium px-0.5 py-px rounded';
+                            particleEl.style.backgroundColor = p.color; particleEl.style.color = 'white';
+                            particleEl.style.left = p.x; particleEl.style.top = p.y;
+                            particleEl.innerHTML = p.text; // Already formatted
+                            neutVisualArea.appendChild(particleEl);
+                        });
+                        neutStatusP.innerHTML = formatLatex(neutStepsInfo[neutStep]);
+                    }
+                    renderNeutralizationVisual();
+
+                    const neutBtn = document.createElement('button');
+                    neutBtn.className = 'btn btn-secondary btn-sm text-xs';
+                    neutBtn.innerHTML = neutStep === neutStepsInfo.length - 1 ? '最初から' : '次へ &rarr;';
+                    neutBtn.onclick = () => {
+                        neutStep = (neutStep + 1) % neutStepsInfo.length;
+                        neutBtn.innerHTML = neutStep === neutStepsInfo.length - 1 ? '最初から' : '次へ &rarr;';
+                        renderNeutralizationVisual();
+                    };
+                    container.append(neutVisualArea, neutStatusP, neutBtn);
+                    break;
+                case 'redox_reaction_animation':
+                    container.style.backgroundColor = '#FFF7ED'; // Light Orange
+                    let redoxStep = 0; // 0: initial, 1: e- transfer, 2: products
+                    const redoxStepsInfo = ["Zn板とCu²⁺溶液", "Znが電子を失い(酸化)、Cu²⁺が電子を得る(還元)", "Zn²⁺とCu生成"];
+                    
+                    const redoxVisualArea = document.createElement('div');
+                    redoxVisualArea.className = 'w-60 h-40 border border-dashed border-orange-300 rounded bg-white flex items-center justify-around p-2 relative shadow-inner mb-2';
+                    
+                    const redoxStatusP = document.createElement('p');
+                    redoxStatusP.className = 'h-8 text-xs text-center text-orange-700 mt-1 px-1';
+
+                    function renderRedoxVisual() {
+                        redoxVisualArea.innerHTML = '';
+                        let znContent = 'Zn'; let cuContent = 'Cu<sup>2+</sup>';
+                        let znColor = 'bg-gray-300'; let cuColor = 'bg-blue-300 text-white';
+                        let electronPath = '';
+
+                        if (redoxStep === 1) {
+                            znContent = 'Zn'; cuContent = 'Cu<sup>2+</sup>';
+                            electronPath = `<div class="absolute top-1/2 left-1/2 w-10 h-0.5 bg-yellow-500 transform -translate-x-1/2 -translate-y-1/2 animate-ping"></div>
+                                            <div class="absolute top-1/2 left-[calc(50%-18px)] text-yellow-600 text-xxs animate-pulse">2e<sup>-</sup> &rarr;</div>`;
+                        } else if (redoxStep === 2) {
+                            znContent = 'Zn<sup>2+</sup>'; cuContent = 'Cu';
+                            znColor = 'bg-gray-100 text-gray-500'; cuColor = 'bg-orange-400 text-white';
+                        }
+                        
+                        redoxVisualArea.innerHTML = `
+                            <div class="flex flex-col items-center text-center">
+                                <div class="w-10 h-16 ${znColor} rounded flex items-center justify-center text-sm font-bold shadow">${znContent}</div>
+                                <p class="text-3xs mt-0.5">${redoxStep === 0 ? '亜鉛板' : (redoxStep === 1 ? '酸化中' : '亜鉛イオン')}</p>
+                            </div>
+                            ${electronPath}
+                            <div class="flex flex-col items-center text-center">
+                                <div class="w-10 h-10 ${cuColor} rounded-full flex items-center justify-center text-sm font-bold shadow">${cuContent}</div>
+                                <p class="text-3xs mt-0.5">${redoxStep === 0 ? '銅(II)イオン' : (redoxStep === 1 ? '還元中' : '銅原子')}</p>
+                            </div>
+                        `;
+                        redoxStatusP.innerHTML = formatLatex(redoxStepsInfo[redoxStep]);
+                    }
+                    renderRedoxVisual();
+
+                    const redoxBtn = document.createElement('button');
+                    redoxBtn.className = 'btn btn-warning btn-sm text-xs';
+                    redoxBtn.innerHTML = redoxStep === redoxStepsInfo.length - 1 ? '最初から' : '反応開始/次へ &rarr;';
+                    redoxBtn.onclick = () => {
+                        redoxStep = (redoxStep + 1) % redoxStepsInfo.length;
+                        redoxBtn.innerHTML = redoxStep === redoxStepsInfo.length - 1 ? '最初から' : '反応開始/次へ &rarr;';
+                        renderRedoxVisual();
+                    };
+                    container.append(redoxVisualArea, redoxStatusP, redoxBtn);
+                    break;
+
+                case 'ionization_tendency_animation':
+                    container.style.backgroundColor = '#F0F9FF'; // Lightest Blue variant
+                    const metals = [
+                        { name: 'K', tendency: 10, reacts: true }, { name: 'Na', tendency: 9, reacts: true },
+                        { name: 'Mg', tendency: 7, reacts: true }, { name: 'Zn', tendency: 5, reacts: true },
+                        { name: 'Fe', tendency: 4, reacts: true }, { name: '(H)', tendency: 0, reacts: false, isHydrogen: true },
+                        { name: 'Cu', tendency: -3, reacts: false }, { name: 'Ag', tendency: -5, reacts: false },
+                        { name: 'Au', tendency: -8, reacts: false }
+                    ];
+                    let selectedMetalStrip = null;
+
+                    const tendencyBarArea = document.createElement('div');
+                    tendencyBarArea.className = 'w-full flex justify-center items-end h-20 mb-2 border-b border-gray-300 px-1';
+                    metals.forEach(metal => {
+                        if (metal.isHydrogen) {
+                            const hLine = document.createElement('div');
+                            hLine.className = 'h-full border-l-2 border-dashed border-red-400 mx-1 flex flex-col justify-end items-center';
+                            hLine.innerHTML = `<p class="text-3xs text-red-500 -mb-1">(H)</p>`;
+                            tendencyBarArea.appendChild(hLine);
+                        } else {
+                            const barContainer = document.createElement('div');
+                            barContainer.className = 'flex flex-col items-center mx-0.5';
+                            const bar = document.createElement('div');
+                            const barHeight = Math.max(5, (metal.tendency + 10) * 2.5); // Scale height
+                            bar.style.height = `${barHeight}px`;
+                            bar.style.width = '0.5rem';
+                            bar.style.backgroundColor = metal.reacts ? '#06D6A0' : '#FFD166';
+                            bar.className = 'rounded-t';
+                            const barLabel = document.createElement('p');
+                            barLabel.className = 'text-3xs mt-px';
+                            barLabel.textContent = metal.name;
+                            barContainer.append(bar, barLabel);
+                            tendencyBarArea.appendChild(barContainer);
+                        }
+                    });
+
+
+                    const metalStripsArea = document.createElement('div');
+                    metalStripsArea.className = 'flex flex-wrap justify-center mb-2';
+                    
+                    const acidBeaker = document.createElement('div');
+                    acidBeaker.className = 'w-24 h-20 border-2 border-blue-300 rounded-b-lg bg-blue-100 relative mt-2 flex items-center justify-center';
+                    acidBeaker.innerHTML = `<p class="text-xs text-blue-700">希塩酸 (HCl)</p>`;
+                    const reactionInfo = document.createElement('p');
+                    reactionInfo.className = 'h-5 text-xs text-center text-gray-700 mt-1';
+
+                    metals.filter(m => !m.isHydrogen).forEach(metal => {
+                        const strip = document.createElement('div');
+                        strip.className = 'metal-strip';
+                        strip.textContent = metal.name;
+                        strip.onclick = () => {
+                            if (selectedMetalStrip) selectedMetalStrip.classList.remove('active');
+                            strip.classList.add('active');
+                            selectedMetalStrip = strip;
+                            reactionInfo.textContent = `${metal.name}を酸に入れると...`;
+                            // Clear previous bubbles
+                            acidBeaker.querySelectorAll('.bubble').forEach(b => b.remove());
+                            if (metal.reacts) {
+                                reactionInfo.innerHTML = `${metal.name}は反応してH<sub>2</sub>発生！ <span class="text-green-500">Bubble!</span>`;
+                                for (let i = 0; i < 5; i++) { // Create some bubbles
+                                    const bubble = document.createElement('div');
+                                    bubble.className = 'bubble';
+                                    bubble.style.left = `${Math.random() * 80 + 10}%`;
+                                    bubble.style.animationDelay = `${Math.random() * 0.5}s`;
+                                    acidBeaker.appendChild(bubble);
+                                }
+                            } else {
+                                reactionInfo.innerHTML = `${metal.name}は反応しない。 <span class="text-red-500">No Bubble!</span>`;
+                            }
+                        };
+                        metalStripsArea.appendChild(strip);
+                    });
+                    
+                    container.append(tendencyBarArea, metalStripsArea, acidBeaker, reactionInfo);
+                    break;
+
+                default: // For terms with animationType: null or undefined
+                    container.innerHTML = `<p class="text-sm text-gray-500">この用語のインタラクティブアニメーションはありません。解説をよく読んで理解を深めましょう。</p>`;
+                    if (term.id === 'confusing_terms') { // Special handling for text-based content
+                        container.style.backgroundColor = '#F9FAFB'; // Lighter gray
+                        container.innerHTML = `
+                            <h4 class="text-md font-semibold text-indigo-700 mb-2">混同しやすい用語のポイント</h4>
+                            <div class="text-left text-xs space-y-2 p-2 bg-white rounded shadow">
+                                <div><strong class="text-indigo-600">単体 vs 元素:</strong> 単体は「物質そのもの」(例: $O_2$)、元素は「成分の種類」(例: $H_2O$ の中のO)。</div>
+                                <div><strong class="text-indigo-600">同素体 vs 同位体:</strong> 同素体は同じ元素の「異なる単体」(例: Oと$O_3$)、同位体は同じ元素の「異なる原子」(例: $^1H$と$^2H$、陽子の数は同じで中性子の数が異なる)。</div>
+                                <div><strong class="text-indigo-600">イオン化エネルギー vs 電気陰性度:</strong> イオン化エネルギーは原子から「電子を1個取り去るのに必要なエネルギー」(陽イオンになりにくさ)、電気陰性度は共有結合において「共有電子対を引き付ける強さの度合い」。</div>
+                            </div>
+                        `;
+                        container.querySelectorAll('strong, div').forEach(el => el.innerHTML = formatLatex(el.innerHTML));
+                    }
+            }
+            return container;
+        }
+
+        function renderHomeScreen() {
+            renderHeader('化学基礎 学習帳');
+            const chapters = [...new Set(termsData.map(term => term.chapter))];
+            mainContent.innerHTML = `
+                <div class="text-center mb-6">
+                    <h2 class="text-xl font-semibold text-gray-700">章を選択</h2>
+                </div>
+                <div class="space-y-3">
+                    ${chapters.map(chapter => `
+                        <button class="w-full p-4 bg-white shadow-md rounded-lg text-left hover:bg-red-50 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-red-400 flex justify-between items-center" data-chapter="${chapter}">
+                            <span class="text-lg font-medium text-red-600">${chapter}</span>
+                            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+            mainContent.querySelectorAll('button[data-chapter]').forEach(btn => {
+                btn.addEventListener('click', () => navigateTo('topicList', btn.dataset.chapter));
+            });
+        }
+
+        function renderTopicListScreen(chapterName) {
+            currentChapter = chapterName;
+            renderHeader(chapterName);
+            const termsInChapter = termsData.filter(term => term.chapter === chapterName);
+            const topics = termsInChapter.reduce((acc, term) => {
+                const topic = term.topic || '一般';
+                if (!acc[topic]) acc[topic] = [];
+                acc[topic].push(term);
+                return acc;
+            }, {});
+
+            let html = `
+                <button class="btn bg-gray-200 text-gray-700 hover:bg-gray-300 text-sm mb-3" data-page="home">
+                    &larr; 章選択に戻る
+                </button>
+            `;
+            for (const topicName in topics) {
+                html += `
+                    <div class="mb-5">
+                        <h2 class="text-lg font-semibold text-blue-700 border-b-2 border-yellow-400 pb-1 mb-2">${topicName}</h2>
+                        <div class="space-y-2">
+                            ${topics[topicName].map(term => `
+                                <button class="w-full p-3 bg-white shadow-sm rounded-lg text-left hover:bg-yellow-50 transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-yellow-500 flex justify-between items-center" data-termid="${term.id}">
+                                    <div>
+                                        <h3 class="text-md font-medium text-blue-600">${term.term}</h3>
+                                        ${term.details ? `<p class="text-xs text-gray-500">${formatLatex(term.details)}</p>` : ''}
+                                    </div>
+                                    <svg class="w-5 h-5 text-yellow-500 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+            mainContent.innerHTML = html;
+            mainContent.querySelector('button[data-page="home"]').addEventListener('click', () => navigateTo('home'));
+            mainContent.querySelectorAll('button[data-termid]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const term = termsData.find(t => t.id === btn.dataset.termid);
+                    navigateTo('termDetail', term);
+                });
+            });
+        }
+
+        function renderTermDetailScreen(term) {
+            currentTerm = term;
+            renderHeader(term.term);
+            mainContent.innerHTML = `
+                <button class="btn bg-gray-200 text-gray-700 hover:bg-gray-300 text-sm mb-3" data-page="topicList" data-chapter="${term.chapter}">
+                    &larr; 単語一覧に戻る
+                </button>
+                <div class="card">
+                    <h2 class="text-xl font-bold text-red-600 mb-1">${term.term}</h2>
+                    <p class="text-xs text-gray-500 mb-3">${term.topic}</p>
+                    <div class="text-sm text-gray-700 leading-relaxed mb-3">${formatLatex(term.description)}</div>
+                    <div id="animation-placeholder"></div>
+                </div>
+            `;
+            const animationPlaceholder = mainContent.querySelector('#animation-placeholder');
+            if (term.animationType) {
+                 const animationTitle = document.createElement('h3');
+                 animationTitle.className = 'text-md font-semibold text-blue-700 mb-1 flex items-center';
+                 animationTitle.innerHTML = `
+                    <svg class="w-5 h-5 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    アニメーション解説`;
+                animationPlaceholder.appendChild(animationTitle);
+                animationPlaceholder.appendChild(createAnimationElement(term.animationType, term));
+            } else {
+                // For terms with animationType: null, like 'confusing_terms'
+                animationPlaceholder.appendChild(createAnimationElement(null, term));
+            }
+
+            mainContent.querySelector('button[data-page="topicList"]').addEventListener('click', (e) => navigateTo('topicList', e.currentTarget.dataset.chapter));
+        }
+        
+        function navigateTo(page, data = null) {
+            currentPage = page;
+            window.scrollTo(0,0);
+            switch(page) {
+                case 'home':
+                    currentChapter = null;
+                    currentTerm = null;
+                    renderHomeScreen();
+                    break;
+                case 'topicList':
+                    currentTerm = null;
+                    renderTopicListScreen(data); // data is chapterName
+                    break;
+                case 'termDetail':
+                    renderTermDetailScreen(data); // data is term object
+                    break;
+            }
+            renderBottomNav();
+        }
+
+        // Initial Load
+        navigateTo('home');
+
+    </script>
+</body>
+</html>

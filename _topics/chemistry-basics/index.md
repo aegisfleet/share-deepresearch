@@ -6,9 +6,11 @@ category: "study"
 tags: [化学基礎]
 audio: "/share-deepresearch/assets/audio/chemistry-basics.mp3"
 supplementary_materials:
-  - title: "補足資料：化学基礎 重要ポイント解説 インフォグラフィック"
+  - title: "化学基礎 重要ポイント解説 インフォグラフィック"
     url: "/share-deepresearch/topics/chemistry-basics/infographic.html"
-  - title: "補足資料：化学基礎 用語クイズ"
+  - title: "化学基礎 インタラクティブ学習"
+    url: "/share-deepresearch/topics/chemistry-basics/play.html"
+  - title: "化学基礎 用語クイズ"
     url: "/share-deepresearch/topics/chemistry-basics/quiz.html"
 ---
 
