@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIビデオ生成技術の最前線：Google Veo 3 徹底解剖</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9FAFB; /* Tailwind gray-50 */
+        }
+        /* Energetic & Playful Palette */
+        :root {
+            --color-primary: #FF8C00; /* Dark Orange */
+            --color-secondary: #FFC300; /* Orange */
+            --color-accent1: #40E0D0; /* Turquoise */
+            --color-accent2: #9932CC; /* Dark Orchid */
+            --color-text-dark: #1F2937; /* Tailwind gray-800 */
+            --color-text-light: #F9FAFB; /* Tailwind gray-50 */
+            --color-card-bg: #FFFFFF;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .section-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700;
+            color: var(--color-accent2);
+            margin-bottom: 1.5rem; /* mb-6 */
+            text-align: center;
+        }
+        .subsection-title {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-top: 2rem; /* mt-8 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+        .card {
+            background-color: var(--color-card-bg);
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .tag {
+            display: inline-block;
+            background-color: var(--color-secondary);
+            color: var(--color-text-dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px; /* rounded-full */
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500;
+            margin: 0.25rem;
+        }
+        .swot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .swot-card {
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            color: var(--color-text-light);
+        }
+        .swot-s { background-color: #22C55E; } /* Green 500 */
+        .swot-w { background-color: #F97316; } /* Orange 500 */
+        .swot-o { background-color: #3B82F6; } /* Blue 500 */
+        .swot-t { background-color: #EF4444; } /* Red 500 */
+
+        .flowchart-step {
+            background-color: var(--color-accent1);
+            color: var(--color-text-dark);
+            padding: 1rem;
+            border-radius: 0.375rem; /* rounded-md */
+            text-align: center;
+            font-weight: 500;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        .flowchart-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin: 0.5rem 0;
+        }
+         /* SACSCAC Diagram Styles */
+        .sacscac-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .sacscac-item {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            margin: 0.5rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            text-align: center;
+            min-width: 120px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] py-12 sm:py-16 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">AIビデオ生成技術の最前線</h1>
+            <p class="text-xl sm:text-2xl font-semibold">Google Veo 3 徹底解剖</p>
+            <p class="mt-4 text-lg max-w-3xl mx-auto">
+                Googleの最先端テキスト-ビデオ変換モデル「Veo 3」の能力を深掘りし、高品質なビデオコンテンツ生成のためのプロンプトエンジニアリング戦略を解説します。
+            </p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+
+        <section id="intro" class="mb-12 sm:mb-16">
+            <h2 class="section-title">Veo 3とは？ AIビデオ生成の新たな地平</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="card">
+                    <h3 class="subsection-title">概要と主な進歩点</h3>
+                    <p class="mb-4">Google Veo 3は、統合された音声と共に高品質で一貫性のあるビデオクリップを生成する最先端モデルです。信憑性のある動き、同期された対話、音楽、サウンドデザイン、リップシンク、カメラの動きの処理に優れています。</p>
+                    <ul class="list-disc list-inside space-y-2 mb-4">
+                        <li><strong>出力品質:</strong> 最大1080p (Flow経由)、Vertex AI APIプレビュー版では720p/24FPS/最大8秒。</li>
+                        <li><strong>音声統合:</strong> 対話、音楽、効果音をネイティブ生成。リップシンク対応。</li>
+                        <li><strong>アクセス:</strong> Vertex AI、プレミアムプラン加入者向けFlowインターフェース。</li>
+                        <li><strong>Flowインターフェース:</strong> SceneBuilderやカメラツールを備えたクリエイティブツールセット。</li>
+                    </ul>
+                    <p>Veo 3は、単なる短いループではなく、より長く構造化されたシーケンスをサポートし、AIによる映像制作の可能性を大きく広げます。</p>
+                </div>
+                <div class="card">
+                    <h3 class="subsection-title text-center">Veo 3 vs Sora 機能比較 (推定)</h3>
+                    <p class="text-sm text-center mb-2 text-gray-600">（Veo3レポートの情報に基づく推定比較です）</p>
+                    <div class="chart-container">
+                        <canvas id="featuresRadarChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-700">このレーダーチャートは、Veo 3と競合モデルSora（レポート執筆時点）の主要機能に関する相対的な強みを示しています。Veo 3は特に音声統合や編集ツール（Flow）において優位性を持つ可能性があります。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="prompt-framework" class="mb-12 sm:mb-16">
+            <h2 class="section-title">効果的なプロンプトの「SACSCAC」フレームワーク</h2>
+            <div class="card">
+                <p class="text-lg mb-6 text-center">高品質なビデオを生成するためには、プロンプトの基本要素を理解し、構造化することが重要です。Google Vertex AIのガイドでも推奨されている「SACSCAC」フレームワークを紹介します。</p>
+                <div class="sacscac-container">
+                    <div class="sacscac-item">被写体 (Subject)</div>
+                    <div class="sacscac-item">アクション (Action)</div>
+                    <div class="sacscac-item">コンテキスト (Context/Scene)</div>
+                    <div class="sacscac-item">スタイル (Style)</div>
+                    <div class="sacscac-item">カメラ (Camera Motion)</div>
+                    <div class="sacscac-item">構図 (Composition)</div>
+                    <div class="sacscac-item">雰囲気 (Ambiance)</div>
+                </div>
+                <p class="mt-6 mb-4">これらの要素を網羅的に記述することで、Veo 3はより具体的で高品質なビデオを生成する可能性が高まります。VeoのLLMベースのプロンプトリライターは、ユーザーの入力を強化し、詳細を追加する役割も果たします。</p>
+                <div class="grid md:grid-cols-2 gap-8 items-center mt-8">
+                    <div>
+                        <h3 class="subsection-title">プロンプト要素の重要度 (推定)</h3>
+                        <p class="text-sm text-center mb-2 text-gray-600">（一般的なプロンプトエンジニアリングの観点からの推定重要度です）</p>
+                        <div class="chart-container">
+                            <canvas id="promptElementsDonutChart"></canvas>
+                        </div>
+                         <p class="mt-4 text-sm text-gray-700">このドーナツチャートは、SACSCACフレームワークの各要素がビデオ品質に与える影響の相対的な重要度（推定）を示しています。被写体、アクション、スタイルが特に重要と考えられます。</p>
+                    </div>
+                    <div class="prose lg:prose-lg">
+                        <h4>記述的言語と明確性の力</h4>
+                        <p>優れたプロンプトは記述的で明確であるべきです。平易で明確な言葉と文構造を使用し、過度に複雑または抽象的な言語を避けることが重要です。より詳細なプロンプトは一般的に高品質なビデオをもたらします。</p>
+                        <h4>Veoのプロンプトリライター</h4>
+                        <p>Veo 3は、ユーザーのプロンプトを内部的に書き換え、ビデオの説明、カメラの動き、文字起こし、効果音に関する詳細を追加することがあります。これにより、詳細度の低いプロンプトでも品質が向上する可能性がありますが、正確な制御のためには詳細なユーザープロンプトが依然として優れています。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="live-action" class="mb-12 sm:mb-16">
+            <h2 class="section-title">実写映像の極意</h2>
+            <div class="card">
+                <p class="text-lg mb-6">Veo 3で実写映像の品質を高めるには、被写体、環境、スタイルを詳細に記述することが不可欠です。特定のムード、時代、キャラクター詳細をプロンプトに盛り込むことで、リアリズムと物語性を深めることができます。</p>
+                <h3 class="subsection-title">実写スタイル用キーワードと修飾子</h3>
+                <div class="flex flex-wrap justify-center">
+                    <span class="tag">photorealistic</span><span class="tag">realistic</span><span class="tag">cinematic</span>
+                    <span class="tag">documentary style</span><span class="tag">film noir style</span><span class="tag">movie still</span>
+                    <span class="tag">1990s VHS footage</span><span class="tag">vintage</span><span class="tag">soft natural lighting</span>
+                    <span class="tag">warm lamplight</span><span class="tag">golden hour</span><span class="tag">medium shot</span>
+                    <span class="tag">low-angle shot</span><span class="tag">shallow depth of field</span><span class="tag">detailed textures</span>
+                </div>
+                <p class="mt-6">これらのキーワードは、Veo 3に対して望ましい実写の美学を伝えるための語彙となります。Veo 3のリアリズムは、単一のキーワードよりも、多数の具体的で一貫性のある詳細を合成する能力に依存しています。</p>
+            </div>
+        </section>
+
+        <section id="animation" class="mb-12 sm:mb-16">
+            <h2 class="section-title">アニメのビジョンを現実に</h2>
+            <div class="card">
+                <p class="text-lg mb-6">Veo 3でアニメ調の映像を生成するには、明示的なスタイルキーワードの使用が基本です。「カートゥーンスタイルレンダリング」や、より具体的な「スタジオジブリ風」といった参照も有効です（モデルの学習データに依存）。</p>
+                <h3 class="subsection-title">アニメスタイル用キーワードと修飾子</h3>
+                <div class="flex flex-wrap justify-center">
+                    <span class="tag">anime style</span><span class="tag">Japanese animation</span><span class="tag">cel-shaded</span>
+                    <span class="tag">Studio Ghibli inspired</span><span class="tag">large expressive eyes</span><span class="tag">two-tone hair</span>
+                    <span class="tag">whimsical forest</span><span class="tag">bustling cityscape</span><span class="tag">neon signs</span>
+                    <span class="tag">painterly texture</span><span class="tag">2D animation</span><span class="tag">3D cartoon render</span>
+                </div>
+                <p class="mt-6">キャラクターデザイン、環境描写、セルルックなどの特徴を具体的に記述することが重要です。また、アニメ風の参照画像を用いたImage-to-Video機能も強力な手段となります。</p>
+            </div>
+        </section>
+
+        <section id="cinematography" class="mb-12 sm:mb-16">
+            <h2 class="section-title">高度なシネマトグラフィ</h2>
+            <div class="card">
+                <p class="text-lg mb-6">カメラ、照明、構図、テクスチャをプロンプトで細かく制御することで、映画的な品質を実現できます。Veo 3は映画製作の専門用語を理解し、それに応じた映像を生成する能力を持っています。</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2 text-[var(--color-primary)]">カメラ制御</h4>
+                        <ul class="list-disc list-inside text-sm space-y-1">
+                            <li>ショット: close-up, wide shot, POV</li>
+                            <li>動き: dolly in, tracking shot, aerial view</li>
+                            <li>レンズ: shallow depth of field, anamorphic (可能性)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2 text-[var(--color-primary)]">照明テクニック</h4>
+                        <ul class="list-disc list-inside text-sm space-y-1">
+                            <li>自然光: sunlight, golden hour</li>
+                            <li>人工光: warm lamplight, neon glow</li>
+                            <li>スタイル: volumetric, cinematic lighting</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2 text-[var(--color-primary)]">構図要素</h4>
+                        <ul class="list-disc list-inside text-sm space-y-1">
+                            <li>フレーミング: wide, close-up</li>
+                            <li>被写体配置: emphasize isolation, add depth</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg mb-2 text-[var(--color-primary)]">テクスチャと素材</h4>
+                        <ul class="list-disc list-inside text-sm space-y-1">
+                            <li>記述: weathered, gritty, wooly, lush</li>
+                            <li>効果: film grain, VHS texture</li>
+                            <li>肌: realistic skin texture</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="soundscape" class="mb-12 sm:mb-16">
+            <h2 class="section-title">サウンドスケープ</h2>
+            <div class="card">
+                <p class="text-lg mb-6">Veo 3は同期された対話、音楽、サウンドデザインを含む完全なビデオクリップを生成できます。リップシンクも可能です。これにより、物語性のあるビデオ制作が飛躍的に向上します。</p>
+                <ul class="list-none space-y-4">
+                    <li class="flex items-start">
+                        <span class="text-2xl mr-3 text-[var(--color-accent1)]">💬</span>
+                        <div>
+                            <h4 class="font-semibold text-lg">対話指定</h4>
+                            <p class="text-sm">引用符で囲みキャラクターに帰属。「感情的な抑揚」も要求可能。</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-2xl mr-3 text-[var(--color-accent1)]">🔊</span>
+                        <div>
+                            <h4 class="font-semibold text-lg">環境音と効果音</h4>
+                            <p class="text-sm">「Audio: 羽ばたき、鳥のさえずり」のように具体的にリストアップ。環境効果音も指定可能。</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-2xl mr-3 text-[var(--color-accent1)]">🎵</span>
+                        <div>
+                            <h4 class="font-semibold text-lg">音楽スタイルとムード</h4>
+                            <p class="text-sm">「陽気で楽観的なオーケストラスコア」のように記述。背景音楽の有無も指定。</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="refinement" class="mb-12 sm:mb-16">
+            <h2 class="section-title">ビジョンの洗練</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="subsection-title">ネガティブプロンプトとイテレーション</h3>
+                    <p class="mb-4"><strong>ネガティブプロンプト:</strong> 生成を控えてほしい内容を記述（例：「都市の背景、人工建造物」）。不要な要素を排除し、出力を微調整します。</p>
+                    <p><strong>イテレーションのヒント:</strong></p>
+                    <ul class="list-disc list-inside space-y-1 text-sm">
+                        <li>中核アイデアから始め、徐々に詳細を追加。</li>
+                        <li>一度に一つの変数を変更して効果を検証。</li>
+                        <li>Veoが書き換えたプロンプトから学習（30語未満の場合）。</li>
+                        <li>よくある間違い（アクション過多、複雑なカメラワーク等）を避ける。</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="subsection-title">Veo 3 パラメータ (Vertex AI)</h3>
+                     <p class="text-sm text-center mb-2 text-gray-600">（`veo-3.0-generate-preview`モデルの主要パラメータ）</p>
+                    <div class="chart-container h-64 max-h-72">
+                        <canvas id="parametersBarChart"></canvas>
+                    </div>
+                    <ul class="list-disc list-inside space-y-1 mt-4 text-sm">
+                        <li><strong>アスペクト比:</strong> 16:9 (横長)。9:16はプレビュー版で未サポート。</li>
+                        <li><strong>ビデオ長:</strong> 5秒から8秒。</li>
+                        <li><strong>結果の数:</strong> 1から4。</li>
+                        <li><strong>シード:</strong> 決定論的生成のため。再現性とA/Bテストに不可欠。</li>
+                        <li><strong>人物生成:</strong> allow_adult (デフォルト) または disallow。</li>
+                    </ul>
+                    <p class="mt-4 text-sm text-gray-700">この棒グラフは、Veo 3の`veo-3.0-generate-preview`モデルで設定可能な「結果の数」の範囲を示しています。これらのパラメータはプロンプト以外の制御層を提供します。</p>
+                </div>
+            </div>
+            <div class="card mt-8">
+                <h3 class="subsection-title text-center">Veo 3 SWOT分析 (推定)</h3>
+                <div class="swot-grid mt-4">
+                    <div class="swot-card swot-s">
+                        <h4 class="font-bold text-xl mb-2">強み (Strengths)</h4>
+                        <ul class="list-disc list-inside text-sm space-y-1">
+                            <li>高品質な映像生成</li>
+                            <li>優れた音声統合（対話、音楽、SFX、リップシンク）</li>
+                            <li>Flowインターフェースによる高度な編集・制御</li>
+                            <li>詳細なカメラワーク・照明制御</li>
+                        </ul>
+                    </div>
+                    <div class="swot-card swot-w">
+                        <h4 class="font-bold text-xl mb-2">弱み (Weaknesses)</h4>
+                        <ul class="list-disc list-inside text-sm space-y-1">
+                            <li>フル機能はプレミアムプラン限定の可能性</li>
+                            <li>Vertex AI APIプレビュー版の出力制限 (720p, 8秒)</li>
+                            <li>複雑なプロンプトエンジニアリングの学習コスト</li>
+                        </ul>
+                    </div>
+                    <div class="swot-card swot-o">
+                        <h4 class="font-bold text-xl mb-2">機会 (Opportunities)</h4>
+                        <ul class="list-disc list-inside text-sm space-y-1">
+                            <li>映画、広告、教育など多様な産業への応用</li>
+                            <li>個人クリエイターの表現力向上</li>
+                            <li>新しい映像表現・ストーリーテリング手法の開拓</li>
+                            <li>関連ツール・サービスとのエコシステム形成</li>
+                        </ul>
+                    </div>
+                    <div class="swot-card swot-t">
+                        <h4 class="font-bold text-xl mb-2">脅威 (Threats)</h4>
+                        <ul class="list-disc list-inside text-sm space-y-1">
+                            <li>Soraなど競合モデルの急速な進化</li>
+                            <li>ディープフェイクなど倫理的懸念・悪用リスク</li>
+                            <li>著作権・肖像権に関する法的課題</li>
+                            <li>高品質生成のための計算コスト</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="mt-4 text-sm text-gray-700 text-center">このSWOT分析は、Veo3レポートの情報に基づき、AIビデオ生成市場におけるVeo 3の戦略的ポジションを考察したものです。</p>
+            </div>
+        </section>
+
+        <section id="process-flow" class="mb-12 sm:mb-16">
+            <h2 class="section-title">プロンプトからビデオ生成までのプロセス</h2>
+            <div class="card">
+                <p class="text-lg mb-6 text-center">Veo 3を用いたビデオ生成は、アイデア想起から最終出力まで、いくつかの主要なステップを経ます。以下にその典型的なプロセスフローを示します。</p>
+                <div class="space-y-4 md:space-y-0 md:flex md:items-center md:justify-around">
+                    <div class="flowchart-step">1. アイデアと目標設定</div>
+                    <div class="flowchart-arrow hidden md:block">➡️</div>
+                    <div class="flowchart-arrow md:hidden text-center">⬇️</div>
+                    <div class="flowchart-step">2. プロンプト作成 (SACSCAC)</div>
+                    <div class="flowchart-arrow hidden md:block">➡️</div>
+                    <div class="flowchart-arrow md:hidden text-center">⬇️</div>
+                    <div class="flowchart-step">3. パラメータ設定 (Vertex AI)</div>
+                    <div class="flowchart-arrow hidden md:block">➡️</div>
+                    <div class="flowchart-arrow md:hidden text-center">⬇️</div>
+                    <div class="flowchart-step">4. Veo 3による生成・リライト</div>
+                    <div class="flowchart-arrow hidden md:block">➡️</div>
+                    <div class="flowchart-arrow md:hidden text-center">⬇️</div>
+                    <div class="flowchart-step">5. 結果確認とイテレーション</div>
+                </div>
+                <p class="mt-6 text-center">このプロセスは反復的であり、望ましい結果が得られるまでプロンプトやパラメータを調整します。Flowインターフェースを利用する場合は、さらにSceneBuilderなどでの編集が加わります。</p>
+            </div>
+        </section>
+
+        <section id="conclusion" class="mb-12 sm:mb-16">
+            <h2 class="section-title">結論：Veo 3で創造的可能性を解き放つ</h2>
+            <div class="card prose prose-lg max-w-none">
+                <p>Google Veo 3は、テキストプロンプトから高品質なビデオを生成するための強力なツールです。本インフォグラフィックで概説した、構造化されたプロンプト作成、詳細な記述、映画的言語の活用、具体的なオーディオ指示、そして反復的な洗練プロセスは、ユーザーがこのツールのポテンシャルを最大限に引き出すための道筋を示しています。</p>
+                <p>Veo 3の能力は目覚ましいものがありますが、最終的な出力の品質とインパクトは、ユーザーの創造性と、そのビジョンをプロンプトで明確に表現する能力に大きく左右されます。実写風のリアリズムを追求するにしても、特定のアニメスタイルを再現するにしても、被写体、アクション、コンテキスト、スタイル、カメラワーク、照明、雰囲気を詳細に記述することが不可欠です。</p>
+                <p>AIビデオ生成技術は急速に進化しており、継続的な実験と学習が、この分野での習熟度を高める鍵となるでしょう。Veo 3を使いこなすことは、技術的なスキルだけでなく、変化するメディア環境における創造的な適応力も養うことになります。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 text-center">
+        <p>&copy; 2025 AI Video Generation Insights. All rights reserved.</p>
+        <p class="text-sm">Infographic based on "Google Veo 3のポテンシャルを最大限に引き出す" report.</p>
+    </footer>
+
+    <script>
+        const CHART_FONT_COLOR = '#1F2937'; // Tailwind gray-800
+
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            let currentLine = '';
+            const lines = [];
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                } else {
+                    currentLine += word + ' ';
+                }
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        // Chart 1: Features Radar Chart
+        const featuresRadarCtx = document.getElementById('featuresRadarChart').getContext('2d');
+        const featuresRadarChart = new Chart(featuresRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['ビデオ品質', '音声統合', 'リップシンク', ['カメラ制御', '多様性'], 'APIアクセス', ['編集ツール', '(Flow等)'] ].map(label => Array.isArray(label) ? label : wrapLabel(label, 16)),
+                datasets: [{
+                    label: 'Veo 3 (推定)',
+                    data: [9, 10, 9, 8, 7, 9],
+                    backgroundColor: 'rgba(255, 140, 0, 0.2)', // Dark Orange transparent
+                    borderColor: 'rgb(255, 140, 0)',
+                    pointBackgroundColor: 'rgb(255, 140, 0)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 140, 0)'
+                }, {
+                    label: 'Sora (推定)',
+                    data: [9, 3, 3, 7, 6, 2],
+                    backgroundColor: 'rgba(64, 224, 208, 0.2)', // Turquoise transparent
+                    borderColor: 'rgb(64, 224, 208)',
+                    pointBackgroundColor: 'rgb(64, 224, 208)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(64, 224, 208)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { labels: { color: CHART_FONT_COLOR } },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                        grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                        pointLabels: { font: { size: 10 }, color: CHART_FONT_COLOR },
+                        ticks: { backdropColor: 'rgba(255,255,255,0.8)', color: CHART_FONT_COLOR, stepSize: 2 }
+                    }
+                }
+            }
+        });
+
+        // Chart 2: Prompt Elements Donut Chart
+        const promptElementsDonutCtx = document.getElementById('promptElementsDonutChart').getContext('2d');
+        const promptElementsDonutChart = new Chart(promptElementsDonutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['被写体', 'アクション', 'コンテキスト', 'スタイル', 'カメラ', '構図', '雰囲気'].map(label => wrapLabel(label, 16)),
+                datasets: [{
+                    label: '重要度 (推定)',
+                    data: [20, 20, 15, 20, 10, 5, 10],
+                    backgroundColor: [
+                        '#FF8C00', '#FFC300', '#40E0D0', 
+                        '#9932CC', '#FFA07A', '#20B2AA', '#DA70D6'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { color: CHART_FONT_COLOR, boxWidth:15, padding:10 } },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        // Chart 3: Parameters Bar Chart
+        const parametersBarCtx = document.getElementById('parametersBarChart').getContext('2d');
+        const parametersBarChart = new Chart(parametersBarCtx, {
+            type: 'bar',
+            data: {
+                labels: [['結果の数', '(最小)'], ['結果の数', '(最大)']],
+                datasets: [{
+                    label: 'Veo 3 パラメータ範囲',
+                    data: [1, 4],
+                    backgroundColor: ['rgba(255, 195, 0, 0.6)', 'rgba(64, 224, 208, 0.6)'], // Orange, Turquoise
+                    borderColor: ['rgb(255, 195, 0)', 'rgb(64, 224, 208)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { 
+                        beginAtZero: true, 
+                        ticks: { color: CHART_FONT_COLOR, stepSize: 1 },
+                        grid: { color: 'rgba(0,0,0,0.1)'}
+                    },
+                    x: { 
+                        ticks: { color: CHART_FONT_COLOR },
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
