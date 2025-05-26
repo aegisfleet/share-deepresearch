@@ -222,6 +222,10 @@ a:hover {
     content: "✏️";  /* 勉強カテゴリ */
 }
 
+.topic-list li[data-category="playful"]::before {
+    content: "🤪"; /* 遊びカテゴリ */
+}
+
 .topic-list li a {
     color: var(--link-color);
     font-weight: bold;

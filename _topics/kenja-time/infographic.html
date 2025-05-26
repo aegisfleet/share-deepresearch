@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「賢者タイム」現象の徹底解剖 SPAインフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!--
+    Infographic Plan Summary:
+    Overall Narrative: This infographic dissects the term "Kenja Time," tracing its origins from Japanese internet forums to its global recognition and cultural impact. It explores the definition, linguistic makeup, psychological implications, and spread of this unique socio-linguistic phenomenon, framed as an "industry trend & market research" report.
+
+    Sections:
+    1.  What is "Kenja Time"?: Definition and core phenomenon.
+        -   Goal: Inform. Visuals: Large conceptual stat, Info cards (HTML/CSS), Comparison table (HTML/CSS).
+        -   Data: Definition from report, symptoms, similar terms.
+        -   Justification: Clearly define the subject. No SVG.
+    2.  The Birth of a Term: Origins and initial spread.
+        -   Goal: Inform, Change (time). Visuals: Donut chart (Chart.js), Timeline (HTML/CSS), Text.
+        -   Data: Origin (2channel = 100% "market share" of origin), Time (Oct 2007), Anonymity of creator.
+        -   Justification: Pinpoint origin. Donut chart for single origin. HTML/CSS for timeline. No SVG.
+    3.  The "Sage" Psyche: Linguistic meaning and emotions.
+        -   Goal: Inform, Compare. Visuals: Word cloud style (HTML/CSS), Bar chart (Chart.js - conceptual data based on report descriptions).
+        -   Data: "Sage" + "Time", associated feelings (calm, clarity, regret - conceptual % based on qualitative data).
+        -   Justification: Explore metaphorical power. HTML/CSS for word association. Bar chart for conceptual emotion frequencies. No SVG.
+    4.  "Kenja Time" Goes Global: Domestic and international "market penetration".
+        -   Goal: Change (location/time), Compare, Organize. Visuals: Conceptual maps (HTML/CSS), Table (HTML/CSS), Line chart (Chart.js - conceptual trend data for "awareness").
+        -   Data: Spread in Japan, international recognition (USA, Korea, China), equivalent terms, conceptual awareness trend.
+        -   Justification: Illustrate the term's journey. HTML/CSS for conceptual maps/flows. Table for structured comparison. Line chart for conceptual trend. No SVG.
+    5.  Modern Significance & Future "Market Position" of "Kenja Time".
+        -   Goal: Inform, Organize. Visuals: Info cards (HTML/CSS), Text.
+        -   Data: Use in formal contexts, example of internet slang evolution.
+        -   Justification: Summarize cultural relevance. No SVG.
+
+    Chosen Color Palette: Energetic & Playful
+    Primary: #FF6B6B (Coral Red)
+    Secondary: #4ECDC4 (Turquoise)
+    Accent: #45B7D1 (Sky Blue)
+    Text/Dark: #1A535C (Dark Teal)
+    Background/Light: #F0FDF4 (Very Light Mint Green, adjusted from F7FFF7 for more presence)
+    Chart Colors: #FF6B6B, #4ECDC4, #FFE66D (Yellow), #FFC145 (Orange), #45B7D1
+
+    NO SVG will be used. NO Mermaid JS will be used. All charts by Chart.js (Canvas). Diagrams by HTML/CSS.
+    All textual content is derived and adapted from the provided "賢者タイムの起源調査" report.
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            background-color: #F0FDF4; /* Neutral Light from palette (adjusted) */
+            color: #1A535C; /* Neutral Dark from palette */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Default max-width */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 400px; /* Max height */
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                 max-width: 500px; /* Slightly smaller for md screens to fit grid */
+            }
+        }
+        @media (min-width: 1024px) {
+            .chart-container {
+                height: 400px;
+                max-width: 600px; /* Restore max-width for larger screens */
+            }
+        }
+        .stat-card {
+            background-color: white;
+            border-left: 5px solid #4ECDC4; /* Secondary color accent */
+        }
+        .header-accent { color: #FF6B6B; } /* Primary color for accents */
+        .section-intro-text { color: #083344; } /* Slightly darker for intros */
+
+        .flow-item {
+            border: 2px solid #4ECDC4;
+            background-color: white;
+        }
+        .flow-arrow {
+            color: #4ECDC4;
+            font-size: 2rem;
+            line-height: 1;
+        }
+         .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            background-color: #FF6B6B;
+            border-radius: 50%;
+            border: 3px solid #F0FDF4;
+        }
+        .timeline-line {
+            position: absolute;
+            left: -20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #4ECDC4;
+        }
+        .word-cloud-item {
+            display: inline-block;
+            padding: 4px 8px;
+            margin: 4px;
+            border-radius: 4px;
+            background-color: #4ECDC4;
+            color: white;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <header class="py-8 bg-gradient-to-r from-[#1A535C] to-[#4ECDC4] text-white text-center shadow-lg">
+        <h1 class="text-4xl font-bold">「賢者タイム」現象の徹底解剖</h1>
+        <p class="text-xl mt-2">起源から世界的影響まで：あるインターネットミームの市場分析</p>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+
+        <section id="definition" class="mb-16">
+            <h2 class="text-3xl font-bold mb-3 text-center"><span class="header-accent">1.</span> 「賢者タイム」とは？ <span class="text-lg block sm:inline">現象の定義と核心</span></h2>
+            <p class="text-lg mb-8 text-center max-w-3xl mx-auto section-intro-text">
+                「賢者タイム」は現代日本のインターネット文化で広く認知される用語です。本セクションでは、この言葉が指し示す具体的な生理的・心理的状態と、その文化的意味合いの深層を探ります。これは単なる生理現象を超え、一種の「悟り」にも似た精神状態を指す言葉として独特の地位を築いています。
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="stat-card p-6 rounded-lg shadow-xl">
+                    <h3 class="text-2xl font-semibold mb-2 text-[#1A535C]">現象の核心</h3>
+                    <p class="text-gray-700 mb-4">
+                        主にオーガズム後に経験される、性的な欲求の急激な減退と冷静沈着な精神状態を指します。この時、思考が明晰になったり、一種の離脱感を覚えたりすることが報告されています。
+                    </p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li>急激な性欲減退</li>
+                        <li>冷静沈着・思考の明晰化</li>
+                        <li>無気力感や睡魔を伴うことも</li>
+                        <li>自己や状況への客観的視点</li>
+                    </ul>
+                </div>
+
+                <div class="p-6 rounded-lg bg-white shadow-xl">
+                    <h3 class="text-2xl font-semibold mb-4 text-center text-[#1A535C]">主な特徴・キーワード</h3>
+                     <div class="text-center">
+                        <span class="word-cloud-item text-lg" style="background-color: #FF6B6B;">冷静</span>
+                        <span class="word-cloud-item text-md">性欲減退</span>
+                        <span class="word-cloud-item text-xl" style="background-color: #FFE66D; color: #1A535C;">明晰</span>
+                        <span class="word-cloud-item text-sm">悟り</span>
+                        <span class="word-cloud-item text-lg">離脱感</span>
+                        <span class="word-cloud-item text-md" style="background-color: #FFC145; color: #1A535C;">客観視</span>
+                        <span class="word-cloud-item text-sm">無気力</span>
+                        <span class="word-cloud-item text-md">内省</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-4 text-center">
+                        これらのキーワードは、「賢者タイム」が喚起する多面的な心理状態を示唆しています。
+                    </p>
+                </div>
+            </div>
+            <div class="mt-8 bg-white p-6 rounded-lg shadow-xl">
+                <h3 class="text-xl font-semibold mb-3 text-[#1A535C]">類似・関連表現との比較</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full min-w-max text-left">
+                        <thead>
+                            <tr class="border-b border-[#4ECDC4]">
+                                <th class="p-3 text-sm font-semibold uppercase">表現</th>
+                                <th class="p-3 text-sm font-semibold uppercase">言語圏</th>
+                                <th class="p-3 text-sm font-semibold uppercase">ニュアンス</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="p-3">賢者タイム (Kenja Time)</td>
+                                <td class="p-3">日本</td>
+                                <td class="p-3">冷静、悟り、哲学的洞察の比喩</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="p-3">ポスト・ナット・クラリティ (Post-Nut Clarity)</td>
+                                <td class="p-3">英語圏</td>
+                                <td class="p-3">射精後の明晰な思考状態を強調</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">不応期 (Refractory Period)</td>
+                                <td class="p-3">医学用語 (国際)</td>
+                                <td class="p-3">生理学的な性的反応が困難な期間</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="origins" class="mb-16">
+            <h2 class="text-3xl font-bold mb-3 text-center"><span class="header-accent">2.</span> 言葉の誕生 <span class="text-lg block sm:inline">起源と初期の「市場シェア」</span></h2>
+            <p class="text-lg mb-8 text-center max-w-3xl mx-auto section-intro-text">
+                「賢者タイム」という言葉は、どのようにして生まれ、広まっていったのでしょうか。本セクションでは、その発祥地とされるプラットフォームと出現時期を特定し、初期の「市場」における影響力を探ります。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold mb-3 text-center text-[#1A535C]">発祥地：「市場」独占企業</h3>
+                    <div class="chart-container h-64 md:h-72">
+                        <canvas id="originSourceChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-center text-gray-700">
+                        現存する情報に基づけば、「賢者タイム」の「市場シェア」は、巨大匿名掲示板「2ちゃんねる」（現5ちゃんねる）が100%を占めると推定されます。このプラットフォームの匿名性とユーザー規模が、新語創出の土壌となりました。
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold mb-3 text-center text-[#1A535C]">出現タイムライン：「製品リリース」時期</h3>
+                    <div class="relative pl-8">
+                        <div class="timeline-line"></div>
+                        <div class="mb-6 relative timeline-item">
+                            <h4 class="font-semibold text-lg text-[#FF6B6B]">2007年10月頃</h4>
+                            <p class="text-gray-700">「賢者タイム」という言葉が2ちゃんねるのログで初めて確認される。「製品」のベータ版リリースとも言える時期。</p>
+                        </div>
+                        <div class="mb-6 relative timeline-item">
+                            <h4 class="font-semibold text-lg text-[#FF6B6B]">2008年～</h4>
+                            <p class="text-gray-700">ブログや他のオンラインコミュニティで使用例が見られ始める。「市場」への初期浸透が開始。</p>
+                        </div>
+                        <div class="relative timeline-item">
+                             <h4 class="font-semibold text-lg text-[#FF6B6B]">発明者：「開発チーム」の謎</h4>
+                            <p class="text-gray-700">特定の個人を「発明者」として特定することは困難。2ちゃんねるの匿名ユーザー群による集合的な「開発」の産物と考えられる。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="psychology" class="mb-16">
+            <h2 class="text-3xl font-bold mb-3 text-center"><span class="header-accent">3.</span> 「賢者」の深層心理 <span class="text-lg block sm:inline">言葉の「ブランド価値」と感情分析</span></h2>
+            <p class="text-lg mb-8 text-center max-w-3xl mx-auto section-intro-text">
+                なぜ「賢者」なのか？この言葉が持つ比喩的な力と、それが喚起する複雑な心理状態は、「賢者タイム」という「ブランド」の独自性を形成しています。本セクションでは、その意味論的背景と関連する感情の（概念的）構成比を探ります。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                 <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold mb-3 text-center text-[#1A535C]">「賢者」のキーワード連想</h3>
+                    <div class="p-4 rounded-md">
+                        <p class="text-center">
+                            <span class="word-cloud-item text-2xl" style="background-color: #FF6B6B;">賢者</span>
+                            <span class="word-cloud-item text-lg" style="font-size: 1.5rem; background-color: #4ECDC4;">タイム</span>
+                            <span class="word-cloud-item text-xl" style="background-color: #FFE66D; color: #1A535C;">悟り</span>
+                            <span class="word-cloud-item text-lg">冷静</span>
+                            <span class="word-cloud-item text-md" style="background-color: #FFC145; color: #1A535C;">知恵</span>
+                            <span class="word-cloud-item text-xl">明晰</span>
+                            <span class="word-cloud-item text-sm">離脱</span>
+                            <span class="word-cloud-item text-md">煩悩解放</span>
+                            <span class="word-cloud-item text-lg" style="background-color: #45B7D1;">客観</span>
+                            <span class="word-cloud-item text-md">後悔</span>
+                        </p>
+                    </div>
+                    <p class="mt-4 text-gray-700">
+                        「賢者」という言葉は、知恵、悟り、世俗的欲望からの解放といった強力な文化的含意を持ちます。これをオーガズム後の状態に適用することで、皮肉と共感を呼ぶユニークな「ブランドイメージ」が形成されました。
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold mb-3 text-center text-[#1A535C]">関連感情の（概念的）構成比</h3>
+                    <div class="chart-container h-72 md:h-80">
+                        <canvas id="emotionsChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-center text-gray-700 text-sm">
+                        注：このグラフは報告書内の記述に基づき、一般的な傾向を概念的に示したものであり、実際の統計調査に基づくものではありません。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="diffusion" class="mb-16">
+            <h2 class="text-3xl font-bold mb-3 text-center"><span class="header-accent">4.</span> 世界へ羽ばたく「賢者タイム」 <span class="text-lg block sm:inline">国内外への「市場拡大」</span></h2>
+            <p class="text-lg mb-8 text-center max-w-3xl mx-auto section-intro-text">
+                日本の一匿名掲示板から生まれたこの言葉は、国境を越え、世界で認知されるようになりました。本セクションでは、その「市場拡大」の軌跡と、国際的な「ブランド認知度」の様相を追います。
+            </p>
+
+            <div class="bg-white p-6 rounded-lg shadow-xl mb-8">
+                <h3 class="text-xl font-semibold mb-4 text-center text-[#1A535C]">国内「サプライチェーン」とメディア展開</h3>
+                <div class="flex flex-col sm:flex-row justify-around items-center text-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <div class="flow-item p-4 rounded-lg shadow-md w-full sm:w-1/4">
+                        <p class="text-2xl">🌐</p>
+                        <p class="font-semibold">2ちゃんねる</p>
+                        <p class="text-sm">(発祥地)</p>
+                    </div>
+                    <div class="flow-arrow hidden sm:block">➔</div>
+                    <div class="sm:hidden text-center flow-arrow">↓</div>
+                    <div class="flow-item p-4 rounded-lg shadow-md w-full sm:w-1/4">
+                        <p class="text-2xl">💻</p>
+                        <p class="font-semibold">ブログ・SNS</p>
+                        <p class="text-sm">(情報拡散)</p>
+                    </div>
+                    <div class="flow-arrow hidden sm:block">➔</div>
+                    <div class="sm:hidden text-center flow-arrow">↓</div>
+                    <div class="flow-item p-4 rounded-lg shadow-md w-full sm:w-1/4">
+                         <p class="text-2xl">📖</p>
+                        <p class="font-semibold">漫画・アニメ</p>
+                        <p class="text-sm">(大衆文化へ)</p>
+                    </div>
+                     <div class="flow-arrow hidden sm:block">➔</div>
+                    <div class="sm:hidden text-center flow-arrow">↓</div>
+                     <div class="flow-item p-4 rounded-lg shadow-md w-full sm:w-1/4">
+                        <p class="text-2xl">🏥</p>
+                        <p class="font-semibold">情報サイト・クリニック</p>
+                        <p class="text-sm">(一般認知)</p>
+                    </div>
+                </div>
+                <p class="mt-4 text-gray-700 text-center">
+                    国内では、オンラインコミュニティからブログ、SNSへと拡散し、さらには漫画やアニメといった大衆文化、健康情報サイトなど、多様なチャネルを通じて「市場」に浸透していきました。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold mb-3 text-center text-[#1A535C]">国際「市場」での認知と言語的ローカライズ</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full min-w-max text-left">
+                            <thead>
+                                <tr class="border-b border-[#4ECDC4]">
+                                    <th class="p-3 text-sm font-semibold uppercase">国/地域</th>
+                                    <th class="p-3 text-sm font-semibold uppercase">現地での表現</th>
+                                    <th class="p-3 text-sm font-semibold uppercase">特徴</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-200">
+                                    <td class="p-3">🇺🇸 アメリカ</td>
+                                    <td class="p-3">Kenjataimu / Post-Nut Clarity</td>
+                                    <td class="p-3">日本語のまま＋英語表現</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="p-3">🇰🇷 韓国</td>
+                                    <td class="p-3">현자타임 (ヒョンジャタイム) / 현타 (ヒョンタ)</td>
+                                    <td class="p-3">音訳＋略語</td>
+                                </tr>
+                                <tr class="border-b border-gray-200">
+                                    <td class="p-3">🇨🇳 中国</td>
+                                    <td class="p-3">圣人模式 (聖人モード)</td>
+                                    <td class="p-3">意訳（賢者→聖人）</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">🌐 その他英語圏</td>
+                                    <td class="p-3">Post-sexual fugue, Post-sex blues</td>
+                                    <td class="p-3">類似の現象を指す多様な表現</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="mt-4 text-gray-700">
+                        「賢者タイム」は、その独特のニュアンスから、日本語のまま海外のネットスラング辞書に登録されたり、各言語で音訳・意訳されたりして国際的な認知を獲得しています。これは、この言葉が持つ普遍的な共感性と文化的な魅力の証左です。
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold mb-3 text-center text-[#1A535C]">「賢者タイム」認知度の推移（概念図）</h3>
+                    <div class="chart-container h-64 md:h-72">
+                        <canvas id="awarenessTrendChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-center text-gray-700 text-sm">
+                        注：このグラフは一般的な認知度向上を示す概念的なものであり、実際のデータに基づくものではありません。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="significance" class="mb-12">
+            <h2 class="text-3xl font-bold mb-3 text-center"><span class="header-accent">5.</span> 「賢者タイム」の現代的意義と未来 <span class="text-lg block sm:inline">「ブランド」の永続性と社会的インパクト</span></h2>
+            <p class="text-lg mb-8 text-center max-w-3xl mx-auto section-intro-text">
+                単なるネットスラングを超え、「賢者タイム」は現代社会やコミュニケーションにどのような影響を与えているのでしょうか。本セクションでは、この言葉の持続的な「ブランド価値」と、その社会的・文化的なインパクトについて考察します。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="stat-card p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold mb-2 text-[#1A535C]">フォーマル文脈への進出</h3>
+                    <p class="text-gray-700 mb-3">
+                        元々はインフォーマルなスラングでしたが、近年では医学クリニックや健康関連メディアでも解説記事などで使用される例が増えています。
+                    </p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li>医学情報サイトでの解説</li>
+                        <li>健康コラムでの言及</li>
+                        <li>「不応期」など専門用語との併記</li>
+                    </ul>
+                    <p class="mt-3 text-gray-700">
+                        これは、この言葉が特定の生理的・心理的状態を指す記述子として、徐々に社会的な受容性を高めていることを示唆しています。
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-xl">
+                    <h3 class="text-xl font-semibold mb-2 text-[#1A535C]">インターネットスラング進化の典型例</h3>
+                    <p class="text-gray-700 mb-3">
+                        「賢者タイム」の誕生から普及に至るプロセスは、インターネットスラングが有機的に生まれ、進化し、広範な文化に影響を与える様相を示す格好の事例です。
+                    </p>
+                    <strong class="text-[#1A535C]">成功の要因：</strong>
+                    <ul class="list-disc list-inside space-y-1 mt-1 text-gray-700">
+                        <li>的確な比喩表現（「賢者」）</li>
+                        <li>記憶しやすさ</li>
+                        <li>文化的共鳴性</li>
+                        <li>匿名的・集合的な創造プロセス</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 text-center bg-white p-8 rounded-lg shadow-2xl">
+                <h3 class="text-2xl font-bold mb-4 text-[#FF6B6B]">結論：匿名の設計者たちと「賢者タイム」の遺産</h3>
+                <p class="text-lg text-gray-800 leading-relaxed max-w-2xl mx-auto">
+                    「賢者タイム」は、2007年頃に2ちゃんねるで生まれたと推定される言葉です。特定の個人ではなく、匿名の集合体によって創造されたこの言葉は、その巧みな比喩表現と共感性により、日本のオンライン文化に深く根付き、さらには国境を越えて認知されるに至りました。この現象は、デジタル時代における言語創造と文化伝播のダイナミズムを象徴しています。「賢者タイム」の物語は、これからも多くの人々に語り継がれ、新たな解釈を生み出し続けることでしょう。
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#1A535C] text-white text-center py-6 mt-12">
+        <p>&copy; <span id="currentYear"></span> 「賢者タイム」現象分析レポート. All Rights Reserved (Concept).</p>
+        <p class="text-xs mt-1">このインフォグラフィックは提供された調査報告書に基づき作成されたものです。</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        function wrapLabels(label, maxLength = 16) {
+            if (typeof label !== 'string') return label;
+            if (label.length <= maxLength) return label;
+
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            if (currentLine.trim().length > 0) {
+                lines.push(currentLine.trim());
+            }
+            return lines.length > 0 ? lines : [label]; // Ensure it always returns at least the original label if splitting fails
+        }
+        
+        const defaultTooltipCallbacks = {
+            title: function(tooltipItems) {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                  return label.join(' ');
+                } else {
+                  return label;
+                }
+            }
+        };
+
+        // Chart 1: Origin Source
+        const originCtx = document.getElementById('originSourceChart').getContext('2d');
+        if (originCtx) {
+            new Chart(originCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['2ちゃんねる (匿名掲示板)'],
+                    datasets: [{
+                        label: '発祥地シェア',
+                        data: [100],
+                        backgroundColor: ['#FF6B6B'],
+                        borderColor: ['#F0FDF4'],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { color: '#1A535C', font: { size: 14 } }
+                        },
+                        title: {
+                            display: false,
+                            text: '「賢者タイム」発祥プラットフォーム',
+                            color: '#1A535C',
+                            font: { size: 16 }
+                        },
+                        tooltip: { callbacks: defaultTooltipCallbacks }
+                    }
+                }
+            });
+        }
+
+        // Chart 2: Emotions (Conceptual)
+        const emotionsCtx = document.getElementById('emotionsChart').getContext('2d');
+        if (emotionsCtx) {
+            const rawLabelsEmotions = ['冷静沈着・思考の明晰化', '一時的な後悔や自己反省', '無気力感・倦怠感', '対象への関心低下'];
+            new Chart(emotionsCtx, {
+                type: 'bar',
+                data: {
+                    labels: rawLabelsEmotions.map(label => wrapLabels(label)),
+                    datasets: [{
+                        label: '感情の経験度合い (概念的割合 %)',
+                        data: [85, 40, 35, 60], // Conceptual data
+                        backgroundColor: ['#4ECDC4', '#FFE66D', '#FFC145', '#45B7D1'],
+                        borderColor: '#F0FDF4',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { color: '#1A535C', font: { size: 12 } },
+                            grid: { color: '#D1D5DB' }
+                        },
+                        y: {
+                            ticks: { color: '#1A535C', font: { size: 12 } },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: false,
+                            text: '「賢者タイム」中の関連感情 (概念図)',
+                            color: '#1A535C',
+                            font: { size: 16 }
+                        },
+                        tooltip: { callbacks: defaultTooltipCallbacks }
+                    }
+                }
+            });
+        }
+        
+        // Chart 3: Awareness Trend (Conceptual)
+        const awarenessCtx = document.getElementById('awarenessTrendChart').getContext('2d');
+        if (awarenessCtx) {
+            new Chart(awarenessCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2007', '2010', '2015', '2020', '2024'],
+                    datasets: [{
+                        label: '「賢者タイム」認知度指数 (概念)',
+                        data: [10, 150, 400, 900, 1500], // Conceptual data
+                        fill: true,
+                        backgroundColor: 'rgba(255, 107, 107, 0.2)', // Primary color with alpha
+                        borderColor: '#FF6B6B', // Primary color
+                        tension: 0.3,
+                        pointBackgroundColor: '#FF6B6B',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#FF6B6B'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { ticks: { color: '#1A535C', font: { size: 12 } }, grid: { color: '#E5E7EB' } },
+                        y: { ticks: { color: '#1A535C', font: { size: 12 } }, grid: { color: '#E5E7EB' } }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: false,
+                            text: '「賢者タイム」認知度の推移 (概念図)',
+                            color: '#1A535C',
+                            font: { size: 16 }
+                        },
+                        tooltip: { callbacks: defaultTooltipCallbacks }
+                    }
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
