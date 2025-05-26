@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCPとWindows 11：AIエージェント新時代のインフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Hiragino Sans', 'ヒラギノ角ゴシック', 'メイリオ', Meiryo, 'MS PGothic', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .stat-value {
+            font-size: 3rem;
+            line-height: 1.1;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+        .flowchart-item {
+            border: 2px solid;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flowchart-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 0.5rem;
+        }
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #A6D8F2; /* Light Blue from palette */
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+        .timeline-item:nth-child(odd) .timeline-content {
+            float: left;
+            padding-right: 2rem;
+            width: calc(50% - 1rem);
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) .timeline-content {
+            float: right;
+            padding-left: 2rem;
+            width: calc(50% - 1rem);
+            text-align: left;
+        }
+        .timeline-item::after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #3E92CC; /* Medium Blue */
+            border: 4px solid #A6D8F2; /* Light Blue */
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            /* Adjust if needed for alignment */
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            /* Adjust if needed for alignment */
+        }
+
+        /* Brilliant Blues Palette */
+        .bg-deep-blue { background-color: #0A2463; }
+        .text-deep-blue { color: #0A2463; }
+        .border-deep-blue { border-color: #0A2463; }
+
+        .bg-medium-blue { background-color: #3E92CC; }
+        .text-medium-blue { color: #3E92CC; }
+        .border-medium-blue { border-color: #3E92CC; }
+
+        .bg-light-blue { background-color: #A6D8F2; }
+        .text-light-blue { color: #A6D8F2; }
+        .border-light-blue { border-color: #A6D8F2; }
+
+        .bg-accent-teal { background-color: #1B998B; }
+        .text-accent-teal { color: #1B998B; }
+        .border-accent-teal { border-color: #1B998B; }
+
+        .text-contrast-dark { color: #1a202c; } /* Tailwind gray-800 or similar */
+        .text-contrast-light { color: #ffffff; }
+    </style>
+    <!-- 
+        Narrative Plan & Structure:
+        1. Header: Title and Hook
+        2. Section 1: What is MCP? (Core concept, architecture - HTML/CSS diagram)
+        3. Section 2: MCP in Windows 11 (Native integration, components - HTML/CSS icons + text)
+        4. Section 3: Impact on Stakeholders (Users, Developers, Enterprises - 3-column layout, lists)
+        5. Section 4: Microsoft's Vision (Agent Computing, Ecosystem - HTML/CSS diagram)
+        6. Section 5: Security & Privacy (Risks & Measures - 2-column layout, lists with icons)
+        7. Section 6: The Growing MCP Universe (Players, Adoption, Roadmap - Lists, "Big Number", HTML/CSS timeline)
+        8. Footer: Conclusion & Call to Action
+    -->
+    <!-- 
+        Visualization Choices Summary (Confirming NO SVG, NO MERMAID JS):
+        - MCP Architecture (Section 1): Goal: Organize. Method: HTML/CSS Diagram. Justification: Clear process flow. Library: N/A. NO SVG.
+        - Windows 11 Integration Components (Section 2): Goal: Inform. Method: HTML/CSS with Unicode Icons + Text. Justification: Clear component breakdown. Library: N/A. NO SVG.
+        - Stakeholder Impact (Section 3): Goal: Compare/Inform. Method: HTML/CSS 3-column layout, lists, Unicode Icons. Justification: Easy comparison. Library: N/A. NO SVG.
+        - Microsoft Ecosystem (Section 4): Goal: Organize/Relationships. Method: HTML/CSS Diagram (nodes and connections). Justification: Visualizing connections. Library: N/A. NO SVG.
+        - Security Risks/Measures (Section 5): Goal: Inform. Method: HTML/CSS 2-column layout, lists with Unicode Icons. Justification: Clear comparison. Library: N/A. NO SVG.
+        - MCP Server Growth (Section 6): Goal: Inform. Method: "Single Big Number" (Large HTML Text). Justification: Highlight key stat. Library: N/A (Chart.js could be used for styling if complex). NO SVG.
+        - MCP Roadmap (Section 6): Goal: Change/Organize. Method: HTML/CSS Timeline. Justification: Chronological overview. Library: N/A. NO SVG.
+        - Explicit Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All diagrams and visual elements are HTML/CSS or Canvas via Chart.js (though no Chart.js chart ended up being complex enough to warrant its use for this specific dataset, focusing on HTML/CSS for diagrams and "big numbers").
+    -->
+</head>
+<body class="bg-gray-100 text-contrast-dark">
+
+    <header class="bg-deep-blue text-contrast-light py-12 sm:py-16 text-center">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Windows 11 と Model Context Protocol (MCP)</h1>
+            <p class="text-xl sm:text-2xl mb-2">AIエージェント新時代の幕開け</p>
+            <p class="text-lg sm:text-xl text-light-blue max-w-3xl mx-auto">AI連携を標準化するMCPがWindowsにネイティブ搭載。その全貌と未来への影響をインフォグラフィックで解説します。</p>
+        </div>
+    </header>
+
+    <nav class="sticky top-0 bg-white shadow-md z-50 hidden md:block">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-center space-x-6 py-3">
+                <li><a href="#what-is-mcp" class="text-medium-blue hover:text-deep-blue font-semibold">MCPとは？</a></li>
+                <li><a href="#mcp-in-windows" class="text-medium-blue hover:text-deep-blue font-semibold">Windows 11とMCP</a></li>
+                <li><a href="#stakeholder-impact" class="text-medium-blue hover:text-deep-blue font-semibold">影響</a></li>
+                <li><a href="#microsoft-vision" class="text-medium-blue hover:text-deep-blue font-semibold">Microsoftの設計図</a></li>
+                <li><a href="#security-privacy" class="text-medium-blue hover:text-deep-blue font-semibold">セキュリティ</a></li>
+                <li><a href="#mcp-universe" class="text-medium-blue hover:text-deep-blue font-semibold">エコシステム</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8 sm:py-12">
+
+        <section id="what-is-mcp" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-deep-blue mb-4 text-center">1. MCPとは？ AI連携の標準化</h2>
+            <p class="text-lg text-gray-700 mb-8 text-center max-w-2xl mx-auto">
+                人工知能（AI）モデルが外部のツールやデータソースと効率的に連携する必要性が高まる中、Model Context Protocol (MCP) が登場しました。MCPは、AIアプリケーションが外部サービスと効果的に通信するための標準化レイヤーです。
+            </p>
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <div class="text-center mb-8">
+                    <p class="text-2xl font-semibold text-accent-teal">"AIアプリケーション向けのUSB-Cポート"</p>
+                    <p class="text-gray-600">Anthropic社提唱のオープンプロトコル</p>
+                </div>
+
+                <h3 class="text-xl font-semibold text-deep-blue mb-4 text-center">MCPのアーキテクチャ</h3>
+                <p class="text-gray-700 mb-6 text-center">MCPはクライアントサーバーアーキテクチャを採用し、AI（ホスト内）がクライアントを通じて様々なMCPサーバー（ツールやデータを提供）と通信します。通信は主にJSON-RPC over HTTPで行われます。</p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="flowchart-item bg-light-blue border-medium-blue text-deep-blue w-full md:w-1/4">
+                        <p class="font-semibold">MCPホスト<br>(例: IDE, AIツール)</p>
+                    </div>
+                    <div class="flowchart-arrow text-medium-blue hidden md:block">➔</div>
+                    <div class="flowchart-arrow text-medium-blue md:hidden self-center transform rotate-90">➔</div>
+                    <div class="flowchart-item bg-sky-100 border-medium-blue text-deep-blue w-full md:w-1/4">
+                        <p class="font-semibold">MCPクライアント<br>(ホスト内に存在)</p>
+                    </div>
+                    <div class="flowchart-arrow text-medium-blue hidden md:block">➔</div>
+                     <div class="flowchart-arrow text-medium-blue md:hidden self-center transform rotate-90">➔</div>
+                    <div class="flowchart-item bg-light-blue border-medium-blue text-deep-blue w-full md:w-1/4">
+                        <p class="font-semibold">MCPサーバー<br>(機能・データを提供)</p>
+                    </div>
+                </div>
+                 <p class="text-sm text-gray-600 mt-6 text-center">この図はMCPの基本的な構造を示しています。ホストアプリケーション内のAIがクライアントを通じて様々な機能を提供するサーバー群と通信します。</p>
+            </div>
+        </section>
+
+        <section id="mcp-in-windows" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-deep-blue mb-4 text-center">2. Windows 11 と MCP</h2>
+            <p class="text-lg text-gray-700 mb-8 text-center max-w-2xl mx-auto">
+                MicrosoftはBuild 2025でWindows 11のMCPネイティブサポートを発表。これにより、Windows OS自体がAIエージェントの活動を支える強力なプラットフォームへと進化します。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <div class="bg-white rounded-lg shadow-xl p-6 text-center">
+                    <div class="text-5xl mb-3 text-medium-blue">🗂️</div>
+                    <h3 class="text-xl font-semibold text-deep-blue mb-2">Windows MCPレジストリ</h3>
+                    <p class="text-gray-600 text-sm">デバイス上のMCPサーバーを発見・アクセスするための一元的で安全な情報源。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 text-center">
+                    <div class="text-5xl mb-3 text-medium-blue">💻</div>
+                    <h3 class="text-xl font-semibold text-deep-blue mb-2">OS機能のMCPサーバー化</h3>
+                    <p class="text-gray-600 text-sm">ファイルシステムやウィンドウ管理など、OSの中核機能がAIエージェントに公開。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 text-center">
+                    <div class="text-5xl mb-3 text-medium-blue">🔌</div>
+                    <h3 class="text-xl font-semibold text-deep-blue mb-2">App Actions API</h3>
+                    <p class="text-gray-600 text-sm">アプリ開発者が自身のアプリ機能をMCPサーバーとしてAIエージェントに提供可能に。</p>
+                </div>
+            </div>
+            <p class="text-center mt-8 text-gray-700">Windows 11では、これらの中核コンポーネントを通じてMCPがOSレベルで深く統合され、AIエージェントの活動基盤を構築します。</p>
+        </section>
+
+        <section id="stakeholder-impact" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-deep-blue mb-4 text-center">3. ステークホルダーへの影響</h2>
+            <p class="text-lg text-gray-700 mb-8 text-center max-w-2xl mx-auto">
+                MCPのネイティブサポートは、エンドユーザー、開発者、そして企業・IT管理者のそれぞれに、大きな変革と新たな機会をもたらします。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col">
+                    <div class="text-5xl mb-3 text-accent-teal text-center">👤</div>
+                    <h3 class="text-xl font-semibold text-deep-blue mb-3 text-center">エンドユーザー</h3>
+                    <p class="font-semibold text-medium-blue text-center mb-3">よりスマートで直感的なPC体験へ</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm space-y-1 mb-3 flex-grow">
+                        <li>AIアシスタントの能力向上</li>
+                        <li>シームレスなアプリケーション間連携</li>
+                        <li>複雑なタスクの自動化による利便性向上</li>
+                    </ul>
+                    <p class="text-xs text-red-500 mt-auto"><span class="font-semibold">課題:</span> プライバシー懸念、権限管理の必要性。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col">
+                    <div class="text-5xl mb-3 text-accent-teal text-center">🧑‍💻</div>
+                    <h3 class="text-xl font-semibold text-deep-blue mb-3 text-center">開発者</h3>
+                    <p class="font-semibold text-medium-blue text-center mb-3">AIツール開発の標準化と効率化</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm space-y-1 mb-3 flex-grow">
+                        <li>「一度接続すればどこでも統合」の実現</li>
+                        <li>App Actions APIによるアプリ機能の公開</li>
+                        <li>ニッチなMCPツール開発・収益化の機会</li>
+                    </ul>
+                    <p class="text-xs text-red-500 mt-auto"><span class="font-semibold">課題:</span> 新技術学習、MCPサーバーのセキュリティと品質維持。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col">
+                    <div class="text-5xl mb-3 text-accent-teal text-center">🏢</div>
+                    <h3 class="text-xl font-semibold text-deep-blue mb-3 text-center">企業・IT管理者</h3>
+                    <p class="font-semibold text-medium-blue text-center mb-3">ビジネスプロセス自動化の推進</p>
+                    <ul class="list-disc list-inside text-gray-600 text-sm space-y-1 mb-3 flex-grow">
+                        <li>Dynamics 365等との連携による業務自動化</li>
+                        <li>Copilot StudioによるエンタープライズAI構築加速</li>
+                        <li>AzureリソースのAIエージェント活用</li>
+                    </ul>
+                    <p class="text-xs text-red-500 mt-auto"><span class="font-semibold">課題:</span> 新たなガバナンスモデル、セキュリティリスク対応、監視体制構築。</p>
+                </div>
+            </div>
+            <p class="text-center mt-8 text-gray-700">各立場にとって、MCPは大きな機会を提供する一方で、新たな課題への対応も求められます。</p>
+        </section>
+
+        <section id="microsoft-vision" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-deep-blue mb-4 text-center">4. Microsoftの設計図</h2>
+            <p class="text-lg text-gray-700 mb-8 text-center max-w-2xl mx-auto">
+                Microsoftは、MCPを「エージェントコンピューティング」と「オープンエージェントウェブ」構想の中核と位置づけ、AIエージェントがシームレスに連携する未来を描いています。
+            </p>
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h3 class="text-xl font-semibold text-deep-blue mb-4 text-center">MicrosoftエコシステムとMCP</h3>
+                <p class="text-gray-700 mb-6 text-center">MCPはWindows 11に留まらず、Azure、Microsoft 365、Dynamics 365など、Microsoftの主要製品群全体に浸透し、統一されたAIエージェントプラットフォームを形成します。</p>
+                <div class="relative p-4 border-2 border-dashed border-medium-blue rounded-lg">
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-accent-teal text-white font-bold p-4 rounded-full shadow-lg text-sm md:text-base">MCP</div>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
+                        <div class="p-3 bg-light-blue rounded shadow text-deep-blue font-semibold text-xs sm:text-sm">Windows 11</div>
+                        <div class="p-3 bg-light-blue rounded shadow text-deep-blue font-semibold text-xs sm:text-sm">Azure</div>
+                        <div class="p-3 bg-light-blue rounded shadow text-deep-blue font-semibold text-xs sm:text-sm md:col-start-2 md:col-end-3">Microsoft 365</div>
+                        <div class="p-3 bg-light-blue rounded shadow text-deep-blue font-semibold text-xs sm:text-sm md:col-start-4 md:col-end-5">Dynamics 365</div>
+                        <div class="p-3 bg-light-blue rounded shadow text-deep-blue font-semibold text-xs sm:text-sm col-span-2 md:col-span-1 md:col-start-5">開発者ツール</div>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 mt-6 text-center">Microsoftは自社製品全体にMCPを浸透させ、AIエージェントがシームレスに連携するエコシステムを構築しています。</p>
+
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="text-center">
+                        <span class="text-4xl text-medium-blue">🌐</span>
+                        <h4 class="text-lg font-semibold text-deep-blue mt-1">オープンエージェントウェブ</h4>
+                        <p class="text-sm text-gray-600">AIエージェントが相互作用し協調動作する構想。</p>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-4xl text-medium-blue">🤝</span>
+                        <h4 class="text-lg font-semibold text-deep-blue mt-1">マルチエージェントオーケストレーション</h4>
+                        <p class="text-sm text-gray-600">複数の専門エージェントが連携しタスクを分担。</p>
+                    </div>
+                </div>
+                 <p class="text-center mt-8 text-gray-700">これらの構想は、複数の専門エージェントが協調し、より複雑なタスクを自律的に処理する未来を示しています。</p>
+            </div>
+        </section>
+
+        <section id="security-privacy" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-deep-blue mb-4 text-center">5. セキュリティとプライバシー</h2>
+            <p class="text-lg text-gray-700 mb-8 text-center max-w-2xl mx-auto">
+                MCPによる強力な連携機能は、新たなセキュリティリスクも伴います。Microsoftは「エージェントの未来を取り巻く強固な壁を構築する」とし、多層的なセキュリティフレームワークで対応します。
+            </p>
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-red-600 mb-3">⚠️ 潜在的なセキュリティリスク</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><span class="text-red-500 mr-2">&#8226;</span>プロンプトインジェクション</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">&#8226;</span>ツールポイズニング / 悪意のあるMCPサーバー</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">&#8226;</span>認証情報の漏洩 / データ不正送信</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">&#8226;</span>安全でない認証 / 認可の不備</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">&#8226;</span>ユーザーデータの不適切な集約</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-green-600 mb-3">🛡️ Microsoftの主な対策</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><span class="text-green-500 mr-2">&#8226;</span>プロキシ経由の通信による一元的なポリシー適用</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">&#8226;</span>ツールレベルの認可と明確なユーザー同意</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">&#8226;</span>ランタイム分離と最小権限の原則</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">&#8226;</span>中央MCPレジストリでのサーバー検証</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">&#8226;</span>監査可能性と透明性の確保</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-center mt-8 text-gray-700">Microsoftは多層的なセキュリティフレームワークでこれらのリスクに対応し、ユーザーの信頼構築を目指しています。</p>
+            </div>
+        </section>
+
+        <section id="mcp-universe" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-deep-blue mb-4 text-center">6. 拡大するMCPユニバース</h2>
+            <p class="text-lg text-gray-700 mb-8 text-center max-w-2xl mx-auto">
+                MCPはMicrosoftの取り組みを超え、Anthropic、IBM、Figma、Perplexityなど、広範なAIエコシステムで採用が急速に拡大しています。
+            </p>
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <div class="text-center mb-8">
+                    <p class="stat-value text-accent-teal">&gt;1,000</p>
+                    <p class="stat-label text-gray-700">MCPサーバー (発表から数ヶ月でGitHubにリストアップ)</p>
+                    <p class="text-sm text-gray-600 mt-2">多くの企業や開発者がMCPに対応し、利用可能なツールが急速に増加しています。</p>
+                </div>
+
+                <h3 class="text-xl font-semibold text-deep-blue mb-6 text-center">MCPの将来的な開発ロードマップ</h3>
+                <div class="timeline max-w-3xl mx-auto">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content bg-light-blue p-4 rounded-lg shadow">
+                            <h4 class="font-semibold text-deep-blue">短期 (今後6ヶ月程度)</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700">
+                                <li>検証ツール・コンプライアンステスト</li>
+                                <li>リファレンスクライアント・サンプルアプリ</li>
+                                <li>中央集権型MCPレジストリ構築</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content bg-sky-100 p-4 rounded-lg shadow">
+                            <h4 class="font-semibold text-deep-blue">長期</h4>
+                            <ul class="list-disc list-inside text-sm text-gray-700">
+                                <li>マルチエージェントワークフロー (エージェントグラフ)</li>
+                                <li>マルチモーダル機能 (画像・音声・動画)</li>
+                                <li>セキュリティ機能・権限モデル強化</li>
+                                <li>正式なガバナンス構造・標準化</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                 <p class="text-center mt-8 text-gray-700">MCPプロトコル自体も進化を続けており、将来的にはさらに高度なAI連携が可能になるでしょう。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-deep-blue text-contrast-light py-12 text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">結論：Windows 11におけるMCPの変革的ポテンシャル</h2>
+            <p class="text-lg mb-8 max-w-3xl mx-auto">
+                Windows 11におけるMCPのネイティブサポートは、ユーザー、開発者、企業がAIと対話する方法を根本的に変える大きな可能性を秘めています。
+                生産性とユーザーエクスペリエンスへの変革は計り知れませんが、それはMicrosoftが付随するセキュリティとプライバシーの課題を効果的に管理できるかに大きく左右されます。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                <div>
+                    <h4 class="font-semibold text-accent-teal mb-1">開発者の方へ</h4>
+                    <p>MCP SDKを探求し、エコシステムへの参加をご検討ください。</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-accent-teal mb-1">企業・IT管理者の方へ</h4>
+                    <p>AIエージェントのガバナンス・セキュリティ戦略策定を今から始めましょう。</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-accent-teal mb-1">エンドユーザーの方へ</h4>
+                    <p>よりスマートなAI支援に期待しつつ、権限付与やデータ共有にはご注意ください。</p>
+                </div>
+            </div>
+            <p class="mt-10 text-xs text-gray-400">&copy; 2025 MCP Infographic. All rights reserved (for demo purposes).</p>
+        </div>
+    </footer>
+
+    <script>
+        // Script for smooth scrolling if navigation is used
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Example of Chart.js label wrapping and tooltip config (if a chart was complex enough to need it)
+        // This is a placeholder as current infographic uses HTML/CSS for diagrams and "big numbers"
+        // If you add a Chart.js chart, ensure to include:
+        // 1. Label processing for long labels:
+        //    function processLabel(label, maxLength = 16) {
+        //        if (typeof label === 'string' && label.length > maxLength) {
+        //            const words = label.split(' ');
+        //            const lines = [];
+        //            let currentLine = '';
+        //            for (const word of words) {
+        //                if ((currentLine + word).length > maxLength && currentLine.length > 0) {
+        //                    lines.push(currentLine.trim());
+        //                    currentLine = '';
+        //                }
+        //                currentLine += word + ' ';
+        //            }
+        //            if (currentLine.trim().length > 0) {
+        //                lines.push(currentLine.trim());
+        //            }
+        //            return lines.length > 0 ? lines : [label]; // Return original if split fails
+        //        }
+        //        return label;
+        //    }
+        //    const originalLabels = ['非常に長いラベルの例です', '短いラベル', 'もう一つかなり長めのラベルのテスト'];
+        //    const processedLabels = originalLabels.map(label => processLabel(label));
+
+        // 2. Tooltip configuration in Chart.js options:
+        //    options: {
+        //        responsive: true,
+        //        maintainAspectRatio: false,
+        //        plugins: {
+        //            tooltip: {
+        //                callbacks: {
+        //                    title: function(tooltipItems) {
+        //                        const item = tooltipItems[0];
+        //                        let label = item.chart.data.labels[item.dataIndex];
+        //                        if (Array.isArray(label)) {
+        //                            return label.join(' ');
+        //                        } else {
+        //                            return label;
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+    </script>
+</body>
+</html>
