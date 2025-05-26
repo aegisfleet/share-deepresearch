@@ -28,26 +28,29 @@
         <p>{{ site.description }}</p>
     </header>
     <main class="main-content">
-        {% if page.url == "/" %}
-            <h1>{{ page.title }}</h1>
-            <p>このサイトは、Google Gemini を使用した DeepResearch の結果を個人的にまとめたものです。</p>
-            <h2>トピック一覧</h2>            <ul class="topic-list">
-            {% assign sorted_topics = site.topics | sort: 'date' | reverse %}
-            {% for topic in sorted_topics %}
-                <li {% if topic.category %}data-category="{{ topic.category }}"{% endif %}>
-                    <div class="topic-content">
-                        <a href="{{ topic.url | relative_url }}" class="topic-title">{{ topic.title }}</a>
-                        {% if topic.prompt %}
-                        <p class="topic-prompt">{{ topic.prompt }}</p>
-                        {% endif %}
-                        <p class="date">{{ topic.date | date: "%Y年%m月%d日" }}</p>
-                    </div>
-                </li>
-            {% endfor %}
-            </ul>
-        {% else %}
-            {{ content }}
-        {% endif %}
+    {% if page.url == "/" %}
+        <div style="text-align: center; margin-bottom: 2em;">
+            <img src="{{ '/assets/images/default-ogp.png' | relative_url }}" alt="{{ site.title }}" style="max-width: 800px; width: 100%; height: auto;">
+        </div>
+        <p>このサイトは、Google Gemini を使用した DeepResearch の結果を個人的にまとめたものです。</p>
+        <h2>トピック一覧</h2>
+        <ul class="topic-list">
+        {% assign sorted_topics = site.topics | sort: 'date' | reverse %}
+        {% for topic in sorted_topics %}
+            <li {% if topic.category %}data-category="{{ topic.category }}"{% endif %}>
+                <div class="topic-content">
+                    <a href="{{ topic.url | relative_url }}" class="topic-title">{{ topic.title }}</a>
+                    {% if topic.prompt %}
+                    <p class="topic-prompt">{{ topic.prompt }}</p>
+                    {% endif %}
+                    <p class="date">{{ topic.date | date: "%Y年%m月%d日" }}</p>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        {{ content }}
+    {% endif %}
     </main>
 
     <button class="scroll-to-top" aria-label="トップへ戻る"></button>
