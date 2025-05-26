@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>AIエージェント技術動向SPAインフォグラフィック：GitHub Actions連携</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Visualization & Content Choices:
+        - Section 2 (MCP Flow): Goal: Organize/Inform. Viz: HTML/CSS Flow Chart. Justification: Visualizes core MCP process. Method: HTML/CSS with Tailwind. NO SVG/Mermaid.
+        - Section 3 (Integration Patterns): Goal: Organize. Viz: HTML/CSS Cards. Justification: Clear conceptual separation. Method: HTML/CSS with Tailwind. NO SVG/Mermaid.
+        - Section 5 (GitHub MCP Servers): Goal: Inform. Viz: HTML Table. Justification: Structured data. Method: HTML/CSS with Tailwind. NO SVG/Mermaid.
+        - Section 6 (Ease of Integration): Goal: Compare. Viz: Chart.js Bar Chart. Justification: Direct comparison of subjective rating from report. Library: Chart.js (Canvas). NO SVG.
+        - Section 6 (Selection Factors): Goal: Compare/Inform. Viz: Chart.js Donut Chart. Justification: Shows components of a decision. Library: Chart.js (Canvas). NO SVG.
+        - Section 7 (Deployment Tips): Goal: Organize. Viz: HTML/CSS Cards. Justification: Digestible information. Method: HTML/CSS with Tailwind. NO SVG/Mermaid.
+        - All other content: Styled text, HTML lists, big numbers for emphasis.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #E0E0E0; color: #002A3A; }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        .section-title { color: #00A0B0; }
+        .accent-color { color: #FF6F00; }
+        .highlight-color { color: #FCD200; }
+        .card { background-color: white; border-left: 5px solid #00A0B0; }
+        .flow-step { border: 2px solid #00A0B0; background-color: #f0f9ff; }
+        .flow-arrow { color: #00A0B0; }
+        .sticky-header {
+            position: -webkit-sticky; /* Safari */
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <header class="bg-dark-blue text-white p-6 shadow-lg sticky-header bg-[#002A3A]">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl md:text-4xl font-bold highlight-color">AIエージェント技術動向：GitHub Actions連携の最前線</h1>
+            <p class="text-lg text-slate-300 mt-2">MCPによる標準化と自動化の進化を探る</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        <section id="introduction" class="my-12 text-center">
+            <h2 class="text-4xl font-bold section-title mb-4">AIエージェントと自動化の未来</h2>
+            <p class="text-xl text-slate-700 max-w-3xl mx-auto mb-6">
+                AIエージェントは、開発ワークフローの自動化と効率化に革命をもたらす可能性を秘めています。特に、Model Context Protocol (MCP) は、これらのエージェントが外部ツールやサービスと標準化された方法で連携するための鍵となります。
+            </p>
+            <div class="bg-white rounded-lg shadow-xl p-8 inline-block">
+                <div class="text-6xl font-bold accent-color">標準化</div>
+                <p class="text-lg text-slate-600 mt-2">MCPによるツール連携の効率化</p>
+            </div>
+        </section>
+
+        <section id="mcp-explained" class="my-16">
+            <h2 class="text-3xl font-bold section-title mb-8 text-center">MCPとは？開発を加速する新標準</h2>
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 card">
+                <p class="text-lg text-slate-700 mb-6">
+                    Model Context Protocol (MCP) は、AIモデルが外部ツールやサービスと安全かつ一貫性のある方法でAPI呼び出しを行うためのオープンスタンダードです。これにより、AIエージェントは多様な機能を標準化されたインターフェース経由で利用できるようになります。
+                </p>
+                <h3 class="text-2xl font-semibold text-slate-800 mb-4 text-center">MCP基本フロー</h3>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                    <div class="flow-step p-4 rounded-lg shadow-md w-full md:w-1/4">
+                        <span class="text-3xl">🤖</span>
+                        <h4 class="font-semibold mt-2">AIアプリ<br/>(MCPホスト)</h4>
+                    </div>
+                    <div class="text-4xl flow-arrow font-bold">&rarr;</div>
+                    <div class="flow-step p-4 rounded-lg shadow-md w-full md:w-1/4">
+                        <span class="text-3xl">🔌</span>
+                        <h4 class="font-semibold mt-2">MCPクライアント</h4>
+                        <p class="text-xs">(ツール発見・呼び出し)</p>
+                    </div>
+                    <div class="text-4xl flow-arrow font-bold">&harr;</div>
+                    <div class="flow-step p-4 rounded-lg shadow-md w-full md:w-1/4">
+                        <span class="text-3xl">🛠️</span>
+                        <h4 class="font-semibold mt-2">MCPサーバー</h4>
+                        <p class="text-xs">(ツール提供)</p>
+                    </div>
+                     <div class="text-4xl flow-arrow font-bold">&harr;</div>
+                    <div class="flow-step p-4 rounded-lg shadow-md w-full md:w-1/4">
+                        <span class="text-3xl">⚙️</span>
+                        <h4 class="font-semibold mt-2">外部ツール/データ</h4>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-600 mt-6 text-center">
+                    AIアプリケーションはMCPクライアントを介してMCPサーバーに接続し、ツールリストの取得 (`tools/list`) やツールの実行 (`tools/call`) を行います。
+                </p>
+            </div>
+        </section>
+
+        <section id="actions-integration" class="my-16">
+            <h2 class="text-3xl font-bold section-title mb-8 text-center">GitHub ActionsとAIエージェントの連携パターン</h2>
+            <p class="text-lg text-slate-700 max-w-3xl mx-auto mb-8 text-center">
+                GitHub Actionsランナー上でAIエージェントを活用するには、主に3つの連携パターンがあります。
+            </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3 accent-color">1. ランナー上での直接実行</h3>
+                    <p class="text-sm text-slate-600">AIエージェントのスクリプトをランナー環境で直接実行。指示はワークフロー入力や環境変数で。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3 accent-color">2. 外部エージェントへの指示</h3>
+                    <p class="text-sm text-slate-600">外部ホストされたエージェント（例：Cloudflare Workers, AWS Lambda）にランナーからHTTPリクエスト等で指示。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3 accent-color">3. Actions自体を操作</h3>
+                    <p class="text-sm text-slate-600">専用MCPサーバーを利用し、エージェントがActionsワークフローをリスト化・トリガー・キャンセル。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="agent-frameworks" class="my-16">
+            <h2 class="text-3xl font-bold section-title mb-8 text-center">主要AIエージェントフレームワーク概観</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">GitHub Copilot エージェント</h3>
+                    <p class="text-sm text-slate-600 mb-3">Actions上でネイティブ動作。リポジトリ設定でMCPサーバー構成。</p>
+                    <p class="text-xs text-slate-500"><strong class="accent-color">連携容易性(主観):</strong> ⭐⭐⭐ (中)</p>
+                    <details class="text-xs mt-2">
+                        <summary class="cursor-pointer text-sky-600">詳細</summary>
+                        <ul class="list-disc list-inside pl-4 mt-1 text-slate-500">
+                            <li>利点: GitHubエコシステムとの緊密な統合。</li>
+                            <li>欠点: ワークフローからのプログラム的指示が現状困難。</li>
+                        </ul>
+                    </details>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">PydanticAI</h3>
+                    <p class="text-sm text-slate-600 mb-3">Pythonベース。LLM出力を構造化。ランナーで直接実行可能。</p>
+                    <p class="text-xs text-slate-500"><strong class="accent-color">連携容易性(主観):</strong> ⭐⭐⭐⭐ (高)</p>
+                     <details class="text-xs mt-2">
+                        <summary class="cursor-pointer text-sky-600">詳細</summary>
+                        <ul class="list-disc list-inside pl-4 mt-1 text-slate-500">
+                            <li>利点: 軽量、構造化出力、テスト容易性。</li>
+                            <li>欠点: 高度なエージェント間協調は自前実装の可能性。</li>
+                        </ul>
+                    </details>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Amazon Bedrock Agents</h3>
+                    <p class="text-sm text-slate-600 mb-3">フルマネージド。AWS SDKでActionsから指示。MCPクライアント機能あり。</p>
+                    <p class="text-xs text-slate-500"><strong class="accent-color">連携容易性(主観):</strong> ⭐⭐⭐ (中)</p>
+                     <details class="text-xs mt-2">
+                        <summary class="cursor-pointer text-sky-600">詳細</summary>
+                        <ul class="list-disc list-inside pl-4 mt-1 text-slate-500">
+                            <li>利点: AWS統合、ナレッジベース連携、RETURN_CONTROL。</li>
+                            <li>欠点: 外部サービス依存、IAM/ネットワーク設定の複雑性。</li>
+                        </ul>
+                    </details>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Cloudflare AI Agents</h3>
+                    <p class="text-sm text-slate-600 mb-3">Workers上で実行。HTTPでActionsから指示。MCPClientManager提供。</p>
+                    <p class="text-xs text-slate-500"><strong class="accent-color">連携容易性(主観):</strong> ⭐⭐⭐ (中)</p>
+                     <details class="text-xs mt-2">
+                        <summary class="cursor-pointer text-sky-600">詳細</summary>
+                        <ul class="list-disc list-inside pl-4 mt-1 text-slate-500">
+                            <li>利点: サーバーレス、Durable Objects状態管理。</li>
+                            <li>欠点: 外部サービス依存、Worker認証設計が重要。</li>
+                        </ul>
+                    </details>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">OpenAI SDK + MCP Ext</h3>
+                    <p class="text-sm text-slate-600 mb-3">OpenAI SDKをMCP対応拡張。Pythonベースでランナー実行可能。</p>
+                    <p class="text-xs text-slate-500"><strong class="accent-color">連携容易性(主観):</strong> ⭐⭐⭐⭐ (高)</p>
+                     <details class="text-xs mt-2">
+                        <summary class="cursor-pointer text-sky-600">詳細</summary>
+                        <ul class="list-disc list-inside pl-4 mt-1 text-slate-500">
+                            <li>利点: OpenAIモデル親和性、MCPツールとネイティブツールの統一扱い。</li>
+                            <li>欠点: `mcp_agent.config.yaml`管理、複数ライブラリ依存。</li>
+                        </ul>
+                    </details>
+                </div>
+                 <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Agent-MCP Framework</h3>
+                    <p class="text-sm text-slate-600 mb-3">マルチエージェント協調。ローカルMCPサーバーとDB依存が強い。</p>
+                    <p class="text-xs text-slate-500"><strong class="accent-color">連携容易性(主観):</strong> ⭐ (低)</p>
+                     <details class="text-xs mt-2">
+                        <summary class="cursor-pointer text-sky-600">詳細</summary>
+                        <ul class="list-disc list-inside pl-4 mt-1 text-slate-500">
+                            <li>利点: マルチエージェント協調、MCDによるプロジェクト理解。</li>
+                            <li>欠点: Actionsでの実行に大幅改修/複雑なラッパーが必要。</li>
+                        </ul>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="actions-mcp-servers" class="my-16">
+            <h2 class="text-3xl font-bold section-title mb-8 text-center">GitHub Actions操作特化型MCPサーバー</h2>
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 card">
+                <p class="text-lg text-slate-700 mb-6">
+                    AIエージェントがGitHub Actionsのワークフロー自体を管理・操作するには、GitHub APIをMCPツールとして公開する専用サーバーが役立ちます。
+                </p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-slate-100">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">サーバー名</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">主要ツール例</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">特徴</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-mono text-sm">ko1ynnky/github-actions-mcp-server (& devopsier/github-actions-mcp)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">listWorkflows, triggerWorkflow, cancelWorkflowRun</td>
+                                <td class="px-6 py-4 text-sm">Actionsワークフロー管理特化。Node.jsベース。Docker版あり。</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-mono text-sm">github/github-mcp-server (公式)</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">get_issue, create_or_update_file, list_branches</td>
+                                <td class="px-6 py-4 text-sm">広範なGitHub機能。Copilot Agentが内部利用。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-sm text-slate-600 mt-4">これらのサーバーをランナー上で起動し、エージェントからローカル接続することで、ワークフローの動的な操作が可能になります。</p>
+            </div>
+        </section>
+
+        <section id="comparative-analysis" class="my-16">
+            <h2 class="text-3xl font-bold section-title mb-8 text-center">比較分析：最適なエージェント選択</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-4">GitHub Actions連携の容易性 (主観)</h3>
+                    <div class="chart-container">
+                        <canvas id="easeOfIntegrationChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2 text-center">レポートの主観評価に基づく比較</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-4">AIエージェント選択のポイント</h3>
+                     <div class="chart-container">
+                        <canvas id="selectionFactorsChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2 text-center">プロジェクト要件に合わせた総合的判断が重要</p>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-xl p-6 card mt-8">
+                <h3 class="text-xl font-semibold text-slate-800 mb-3">選択指針のまとめ</h3>
+                <ul class="list-disc list-inside space-y-1 text-sm text-slate-600">
+                    <li><strong class="accent-color">タスクの性質：</strong>コード生成、CI/CDオーケストレーション、データ分析など、エージェントの目的を明確に。</li>
+                    <li><strong class="accent-color">既存インフラ：</strong>AWS、Cloudflare等のクラウド環境か、自己完結型ランナーソリューションか。</li>
+                    <li><strong class="accent-color">チームスキル：</strong>Python, Node.js, Docker等の専門知識の有無。</li>
+                    <li><strong class="accent-color">状態管理：</strong>ステートレスか、会話メモリや永続コンテキストが必要か。</li>
+                    <li><strong class="accent-color">セキュリティ要件：</strong>データ管理、ネットワークアクセス、トークン管理の規定。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="deployment-tips" class="my-16">
+            <h2 class="text-3xl font-bold section-title mb-8 text-center">デプロイと運用のヒント</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3 accent-color">MCPサーバー実行戦略</h3>
+                    <p class="text-sm text-slate-600">ランナーローカル（直接/Docker）かリモートサーバー利用か。それぞれ利点・欠点あり。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3 accent-color">状態管理</h3>
+                    <p class="text-sm text-slate-600">エフェメラルなランナーでの状態維持には、Actions Artifacts、外部ストア、プラットフォーム固有機能等を検討。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3 accent-color">認証とセキュリティ</h3>
+                    <p class="text-sm text-slate-600">GitHub Secretsの活用、OIDC認証、最小権限の原則を徹底。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 card">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-3 accent-color">ロギングと監視</h3>
+                    <p class="text-sm text-slate-600">標準出力、トレース有効化、専用監視ツール（Logfire, LangFuse等）でエージェント動作を可視化。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="future-outlook" class="my-16 text-center">
+            <h2 class="text-3xl font-bold section-title mb-6">未来展望：CI/CDとAIエージェント</h2>
+            <div class="bg-white rounded-lg shadow-xl p-8 card max-w-4xl mx-auto">
+                <p class="text-lg text-slate-700 mb-4">
+                    AIエージェントとCI/CDの統合は発展途上ですが、その将来性は非常に大きいです。MCP標準化とエコシステムの成熟が進むことで、より洗練されたエージェント機能とCI/CDプラットフォームとの容易な統合が期待されます。
+                </p>
+                <p class="text-lg text-slate-700">
+                    将来的には、エージェントの振る舞いがGitでバージョン管理された宣言的な設定で行われるようになるかもしれません。AIが開発・運用タスクの自動化で果たす役割が増大する中、セキュリティと責任あるAIの実践の重要性も一層高まるでしょう。
+                </p>
+                 <p class="mt-6 text-md font-semibold accent-color">「AgentOps」とも呼べる新しい規律が、AIエージェントのライフサイクル管理に求められる時代が近づいています。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#002A3A] text-slate-400 text-center p-6 mt-12">
+        <p class="text-sm">&copy; 2025 AIエージェント技術動向インフォグラフィック. MCPクライアント対応AIエージェント調査レポートに基づく.</p>
+    </footer>
+
+    <script>
+        function wrapLabel(label, maxLength = 16) {
+            if (typeof label !== 'string') return label;
+            if (label.length <= maxLength) return label;
+            
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine += (currentLine.length > 0 ? ' ' : '') + word;
+                }
+            }
+            if (currentLine.length > 0) {
+                lines.push(currentLine.trim());
+            }
+            return lines.length > 1 ? lines : label; // Return original if it couldn't be split meaningfully
+        }
+
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        // Chart 1: Ease of Integration
+        const easeCtx = document.getElementById('easeOfIntegrationChart')?.getContext('2d');
+        if (easeCtx) {
+            const easeData = {
+                labels: [
+                    wrapLabel('GitHub Copilot エージェント'), 
+                    wrapLabel('PydanticAI'), 
+                    wrapLabel('Amazon Bedrock Agents'), 
+                    wrapLabel('Cloudflare AI Agents'), 
+                    wrapLabel('OpenAI SDK + MCP Ext'),
+                    wrapLabel('Agent-MCP Framework')
+                ].map(l => wrapLabel(l)),
+                datasets: [{
+                    label: 'GitHub Actions連携の容易性 (主観)',
+                    data: [2, 3, 2, 2, 3, 1], // 低:1, 中:2, 高:3
+                    backgroundColor: [
+                        '#FF6F00', // Orange for Copilot (中)
+                        '#00A0B0', // Teal for PydanticAI (高)
+                        '#FF6F00', // Orange for Bedrock (中)
+                        '#FF6F00', // Orange for Cloudflare (中)
+                        '#00A0B0', // Teal for OpenAI SDK (高)
+                        '#DC2626', // Red for Agent-MCP (低 - not in palette, using a warning color)
+                    ],
+                    borderColor: '#002A3A',
+                    borderWidth: 1
+                }]
+            };
+            new Chart(easeCtx, {
+                type: 'bar',
+                data: easeData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            ticks: { 
+                                color: '#002A3A',
+                                callback: function(value) {
+                                    if (value === 1) return '低';
+                                    if (value === 2) return '中';
+                                    if (value === 3) return '高';
+                                    return '';
+                                }
+                            },
+                            grid: { color: '#E0E0E0' }
+                        },
+                        y: {
+                            ticks: { color: '#002A3A', font: { size: 10 } },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#002A3A',
+                            titleColor: '#FCD200',
+                            bodyColor: '#E0E0E0',
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: function(context) {
+                                    let value = context.raw;
+                                    if (value === 1) return '連携容易性: 低';
+                                    if (value === 2) return '連携容易性: 中';
+                                    if (value === 3) return '連携容易性: 高';
+                                    return '';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Chart 2: Selection Factors
+        const factorsCtx = document.getElementById('selectionFactorsChart')?.getContext('2d');
+        if (factorsCtx) {
+            const factorsData = {
+                labels: ['タスクの性質', '既存インフラ', 'チームスキル', '状態管理要否', 'セキュリティ'].map(l => wrapLabel(l)),
+                datasets: [{
+                    label: 'AIエージェント選択のポイント',
+                    data: [30, 25, 20, 15, 10], // Example distribution
+                    backgroundColor: ['#00A0B0', '#FF6F00', '#FCD200', '#005f73', '#FFB703'],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            };
+            new Chart(factorsCtx, {
+                type: 'doughnut',
+                data: factorsData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { 
+                            position: 'bottom', 
+                            labels: { color: '#002A3A', font: {size: 10}, boxWidth: 15 }
+                        },
+                        tooltip: {
+                            backgroundColor: '#002A3A',
+                            titleColor: '#FCD200',
+                            bodyColor: '#E0E0E0',
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: function(context) {
+                                    return `${context.label}: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

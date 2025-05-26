@@ -7,8 +7,10 @@ category: "ai"
 tags: [Model Context Protocol,GitHub Actions]
 audio: "/share-deepresearch/assets/audio/mcp-client-compatible-ai-agent.mp3"
 supplementary_materials:
-  - title: "補足資料：MCP対応AIエージェント調査レポート SPA"
+  - title: "MCP対応AIエージェント調査レポート SPA"
     url: "/share-deepresearch/topics/mcp-client-compatible-ai-agent/dashboard.html"
+  - title: "AIエージェント技術動向SPAインフォグラフィック：GitHub Actions連携"
+    url: "/share-deepresearch/topics/mcp-client-compatible-ai-agent/infographic.html"
 ---
 
 # **Model Context Protocol対応AIエージェントのGitHub Actionsにおける活用調査**
