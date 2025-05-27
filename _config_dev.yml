@@ -1,0 +1,22 @@
+# 開発環境用の設定
+title: ポちのDeepResearch
+description: DeepResearchの結果を個人的にまとめたサイト
+theme: jekyll-theme-cayman
+
+# 開発環境用のURL設定
+baseurl: "/share-deepresearch"
+url: "http://localhost:4000"
+
+# ナビゲーションの設定
+collections:
+  topics:
+    source: ./_topics
+    output: true
+    permalink: /topics/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "topics"
+    values:
+      layout: "topic"

@@ -211,7 +211,7 @@ jobs:
       \- uses: anthropics/claude-code-action@beta  
         with:  
           prompt: "${{ github.event.comment.body }}"  
-          anthropic\_api\_key: ${{ secrets.ANTHROPIC\_API\_KEY }}  
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}  
           \# allowed\_tools: \# 必要に応じて許可するツールを指定
 
 #### **4.1.1. GitHub Actionsの2つの階層：claude-code-action vs. claude-code-base-action**

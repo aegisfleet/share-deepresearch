@@ -122,9 +122,9 @@ jobs:
       \- name: Configure AWS Credentials  
         uses: aws-actions/configure-aws-credentials@v4  
         with:  
-          aws-access-key-id: ${{ secrets.AWS\_ACCESS\_KEY\_ID }}  
-          aws-secret-access-key: ${{ secrets.AWS\_SECRET\_ACCESS\_KEY }}  
-          aws-region: ${{ secrets.AWS\_REGION }}  
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}  
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
+          aws-region: ${{ secrets.AWS_REGION }}  
       \- name: Set up Python  
         uses: actions/setup-python@v4  
         with:  
@@ -133,9 +133,9 @@ jobs:
         run: pip install boto3  
       \- name: Invoke Bedrock Agent  
         env:  
-          BEDROCK\_AGENT\_ID: ${{ secrets.BEDROCK\_AGENT\_ID }}  
-          BEDROCK\_AGENT\_ALIAS\_ID: ${{ secrets.BEDROCK\_AGENT\_ALIAS\_ID }}  
-          SESSION\_ID: ${{ github.run\_id }}-${{ github.run\_attempt }}  
+          BEDROCK_AGENT_ID: ${{ secrets.BEDROCK_AGENT_ID }}  
+          BEDROCK_AGENT_ALIAS_ID: ${{ secrets.BEDROCK_AGENT_ALIAS_ID }}  
+          SESSION_ID: ${{ github.run_id }}-${{ github.run_attempt }}  
           PROMPT\_TEXT: "MCPツールXを使用してYを実行してください"  
         run: python invoke\_bedrock\_agent.py  
 Python  
@@ -367,7 +367,7 @@ GitHub Actionsランナーは通常ステートレスですが、多くのAIエ�
 機密情報の管理は、GitHub ActionsでAIエージェントを運用する上で最も重要な側面の一つです。
 
 * **GitHub Secrets：** LLM APIキー、MCPサーバー認証トークン、AWS/Cloudflare認証情報など、すべての機密情報はGitHubの暗号化されたSecretsに保存します 7。  
-* **環境変数：** ワークフロー内でSecretsを環境変数としてアクセスします（例：env: OPENAI\_API\_KEY: ${{ secrets.OPENAI\_API\_KEY }}）。  
+* **環境変数：** ワークフロー内でSecretsを環境変数としてアクセスします（例：env: OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}）。  
 * **OpenID Connect (OIDC)：** AWSのようなクラウドプロバイダーに対しては、長期的なアクセスキーの代わりに、OIDCを使用して短期的なロールベースの認証情報を取得します 8。  
 * **最小権限の原則：** トークンと認証情報には、タスク実行に必要な最小限の権限のみを付与します。
 

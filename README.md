@@ -1,5 +1,7 @@
 # ポちのDeepResearch
 
+![ポちのDeepResearch](assets/images/default-ogp.png)
+
 このリポジトリは、Google Geminiを使用したDeepResearchの結果を共有するためのGitHub Pagesサイトです。
 
 ## 構造
@@ -73,7 +75,7 @@ bundle install
 1. ローカルサーバーを起動：
 
 ```bash
-bundle exec jekyll serve
+bundle exec jekyll serve --config _config_dev.yml
 ```
 
 ## ライセンス

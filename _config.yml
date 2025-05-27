@@ -9,6 +9,7 @@ url: "https://aegisfleet.github.io"
 # ナビゲーションの設定
 collections:
   topics:
+    source: ./_topics
     output: true
     permalink: /topics/:path/
 
@@ -42,3 +43,8 @@ defaults:
 # 日本語設定
 lang: ja
 encoding: UTF-8
+
+# Sass設定
+sass:
+  style: compressed
+  sass_dir: assets/css

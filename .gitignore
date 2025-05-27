@@ -1,0 +1,12 @@
+# Jekyll生成ディレクトリ
+_site/
+
+# macOS用システムファイル
+.DS_Store
+
+# Windowsサムネイルキャッシュ
+Thumbs.db
+
+# Jekyll関連の一時ファイル
+.jekyll-metadata
+.jekyll-cache/
