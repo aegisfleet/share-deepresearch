@@ -83,14 +83,14 @@ a:hover {
     text-decoration: underline;
 }
 
-/* ヘッダーのリンクは白のまま */
+/* ヘッダーのリンクはオレンジ色 */
 .page-header a {
-    color: white;
+    color: var(--primary-color);
     text-decoration: none;
 }
 
 .page-header a:hover {
-    color: white;
+    color: var(--link-hover-color);
     text-decoration: underline;
 }
 
@@ -165,43 +165,72 @@ a:hover {
 .topic-list {
     list-style: none;
     padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* 2列のグリッド */
+    gap: 1rem;  /* グリッドアイテム間の間隔 */
 }
 
 .topic-list li {
-    padding: 1rem;
-    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+    margin-bottom: 0;
     background: var(--card-background);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 150px;  /* カードの最小高さを調整 */
 }
 
 .topic-list li::before {
     content: "📄";
     font-size: 1.3rem;
-    margin-right: 1rem;
-    float: left;
+    margin-right: 0.5rem;
+    position: absolute;  /* 位置を絶対指定に変更 */
+    top: 1.2rem;         /* 上からの位置 */
+    left: 1.2rem;      /* 左からの位置 */
 }
 
 .topic-content {
-    margin-left: 2.3rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-bottom: 2rem;  /* 日付用のスペース確保 */
 }
 
 .topic-title {
     font-size: 1.1rem;
-    display: block;
-    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: flex-start;  /* 上揃えに変更 */
+    margin-bottom: 0.5rem;
+    padding-left: 2.3rem;  /* アイコンの幅分調整 */
+    margin-top: 0.5rem;        /* マージントップをリセット */
+    line-height: 1.4;     /* 行の高さを調整 */
+    min-height: 2.8em;  /* タイトルの最小高さを2行分確保 */
+    max-height: 4.2em;  /* タイトルの最大高さを3行分に制限 */
+    overflow: hidden;   /* 最大高さを超えた場合は非表示 */
 }
 
 .topic-prompt {
     font-size: 0.9rem;
     color: var(--secondary-color);
     margin: 0.3rem 0;
+    padding-left: 2.3rem;  /* アイコンの幅分調整 */
+    max-height: 4.8em;  /* プロンプトの最大高さを3行分に制限 */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;  /* 最大3行まで表示 */
+    line-clamp: 3;          /* 標準プロパティ */
+    -webkit-box-orient: vertical;
 }
 
 .date {
     font-size: 0.85rem;
     color: var(--secondary-color);
-    margin: 0.2rem 0 0 0;
+    position: absolute;
+    bottom: 0.8rem;
+    right: 1.5rem;
+    margin: 0;
 }
 
 /* カテゴリに基づくアイコン */
@@ -218,7 +247,7 @@ a:hover {
 }
 
 .topic-list li[data-category="tutorial"]::before {
-    content: "📚";  /* チュートリアルカテゴリ */
+    content: "📚";  /* チュリアルカテゴリ */
 }
 
 .topic-list li[data-category="study"]::before {
@@ -241,6 +270,13 @@ a:hover {
     overflow-wrap: break-word;
     white-space: normal;
     font-size: 1.1rem;  /* リンクのフォントサイズを大きく */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;  /* 最大3行まで表示 */
+    line-clamp: 3;          /* 標準プロパティ */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: auto;
+    line-height: 1.4;  /* 行の高さを調整 */
 }
 
 .topic-list li a:hover {
@@ -251,8 +287,9 @@ a:hover {
 .topic-list li .date {
     color: var(--secondary-color);
     font-size: 1rem;  /* 日付のフォントサイズも少し大きく */
-    margin-left: 1rem;
-    flex-shrink: 0;
+    margin: 0.5rem 0 0 0;
+    text-align: right;
+    width: 100%;
 }
 
 /* 通常のリンクスタイル */
@@ -351,6 +388,10 @@ a:hover {
 
 /* レスポンシブデザイン */
 @media (max-width: 600px) {
+    .topic-list {
+        grid-template-columns: 1fr;  /* スマートフォンでは1列に */
+    }
+
     .main-content {
         padding: 0.5rem;
         max-width: 100vw;
@@ -370,15 +411,9 @@ a:hover {
     .topic-list li {
         width: 100%;
         box-sizing: border-box;
-        flex-wrap: wrap;
     }
 
-    .topic-list li .date {
-        width: 100%;
-        margin-left: 0;
-        margin-top: 0.5rem;
-        text-align: right;
-    }
+    /* スマートフォン用の日付スタイルはメインのスタイルに統合 */
 }
 
 /* 画像のレスポンシブ対応 */
