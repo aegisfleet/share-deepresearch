@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI駆動型開発自動化の最前線：市場トレンド分析</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            background-color: #F7F7F7; /* Light Gray from Energetic & Playful palette (conceptual) */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Default max-width */
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px; /* Base height */
+            max-height: 400px; /* Max height */
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #FF6B6B, #118AB2); /* Coral Red to Blue NCS */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+        .primary-bg { background-color: #118AB2; } /* Blue NCS */
+        .primary-text { color: #118AB2; }
+        .secondary-bg { background-color: #06D6A0; } /* Caribbean Green */
+        .secondary-text { color: #06D6A0; }
+        .accent-bg { background-color: #FFD166; } /* Sunglow Yellow */
+        .accent-text { color: #FFD166; }
+        .danger-bg { background-color: #FF6B6B; } /* Coral Red */
+        .danger-text { color: #FF6B6B; }
+        .dark-text { color: #073B4C; } /* Midnight Green Eagle Green */
+
+        .flow-arrow::after {
+            content: '→';
+            font-size: 1.5em;
+            color: #118AB2; /* Blue NCS */
+            margin: 0 0.5rem;
+        }
+        .flow-arrow-down::after {
+            content: '↓';
+            display: block;
+            text-align: center;
+            font-size: 1.5em;
+            color: #118AB2; /* Blue NCS */
+            margin: 0.5rem 0;
+        }
+        .flow-item {
+            border: 2px solid #118AB2; /* Blue NCS */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            background-color: #E0F2FE; /* Light blue bg */
+        }
+    </style>
+</head>
+<body class="dark-text">
+
+    <header class="primary-bg text-white py-12 sm:py-16 md:py-20 text-center">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">AI駆動型開発自動化の最前線</h1>
+            <p class="text-lg sm:text-xl md:text-2xl opacity-90">OpenHands・GitHub Actions・Playwright-MCP連携による市場トレンド分析</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+
+        <section id="introduction" class="mb-12">
+            <div class="card">
+                <h2 class="text-2xl font-bold mb-4 primary-text">はじめに：自動化が切り拓く開発の未来</h2>
+                <p class="text-lg leading-relaxed">
+                    現代のソフトウェア開発において、反復的なタスクの自動化は生産性向上と迅速なデプロイメントに不可欠です。本インフォグラフィックでは、AIエージェントプラットフォーム「OpenHands」、CI/CDツール「GitHub Actions」、そして高度なブラウザ制御プロトコル「Playwright-MCP」の連携に焦点を当て、これらの技術がどのように開発ワークフローを革新し、市場にどのようなトレンドを生み出しているかを概観します。
+                </p>
+            </div>
+        </section>
+
+        <section id="landscape" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 gradient-text">主要技術概観</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3 secondary-text">🤖 OpenHands</h3>
+                    <p class="text-sm">AIエージェントが人間開発者のようにタスクを実行するオープンソースプラットフォーム。コード読解、シェル実行、Webブラウジングなど包括的な能力をサンドボックス環境で提供します。</p>
+                    <p class="mt-2 text-xs dark-text opacity-70">旧名: OpenDevin</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3 secondary-text">⚙️ GitHub Actions</h3>
+                    <p class="text-sm">GitHubに統合されたCI/CD（継続的インテグレーション/継続的デリバリー）サービス。ビルド、テスト、デプロイのワークフローを自動化し、開発プロセスを効率化します。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-3 secondary-text">🌐 Playwright-MCP</h3>
+                    <p class="text-sm">Playwrightのブラウザ自動化能力をLLMやAIエージェントが利用しやすくするサーバー。アクセシビリティツリー経由で構造化データに基づきWebページと対話します。</p>
+                    <p class="mt-2 text-xs dark-text opacity-70">Model Context Protocol</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="mb-12">
+            <div class="card">
+                <h2 class="text-2xl font-bold mb-6 text-center primary-text">連携アプローチ比較：最適な戦略は？</h2>
+                <p class="text-center mb-6 text-md leading-relaxed">
+                    OpenHandsとブラウザ操作機能を連携させるアプローチは主に2つ考えられます。それぞれの特徴を理解し、プロジェクト要件に合った選択が重要です。
+                </p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium dark-text uppercase tracking-wider">特徴項目</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium dark-text uppercase tracking-wider">OpenHands標準機能 (BrowserGym)</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium dark-text uppercase tracking-wider">OpenHands + Playwright-MCP連携</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium">主要制御方法</td>
+                                <td class="px-6 py-4">LLM経由でBrowserGymプリミティブ実行</td>
+                                <td class="px-6 py-4">LLM経由でPlaywright-MCPツール実行</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium">制御の粒度</td>
+                                <td class="px-6 py-4">比較的抽象度が高い</td>
+                                <td class="px-6 py-4 accent-text font-semibold">より細かい操作が可能 (ref利用等)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium">セットアップ複雑性</td>
+                                <td class="px-6 py-4 secondary-text font-semibold">比較的容易</td>
+                                <td class="px-6 py-4 danger-text font-semibold">高い (カスタムサンドボックス等)</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium">利点</td>
+                                <td class="px-6 py-4">導入容易、汎用性</td>
+                                <td class="px-6 py-4">高度な制御、堅牢な要素特定</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium">欠点</td>
+                                <td class="px-6 py-4">複雑なUIへの対応限定的</td>
+                                <td class="px-6 py-4">設定複雑、プロンプト設計重要</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium">推奨ユースケース</td>
+                                <td class="px-6 py-4">簡単なスクレイピング、基本フォーム入力</td>
+                                <td class="px-6 py-4">複雑なWebアプリテスト、動的コンテンツ対応</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="mt-4 text-xs text-center dark-text opacity-70">出典: OpenHands他連携調査レポート Table 1</p>
+            </div>
+        </section>
+
+        <section id="workflow" class="mb-12">
+            <div class="card">
+                <h2 class="text-2xl font-bold mb-6 text-center primary-text">GitHub Actionsによる自動化フロー例</h2>
+                <p class="text-center mb-6 text-md leading-relaxed">
+                    GitHub Issueへのコメントをトリガーに、OpenHandsエージェントがブラウザ操作タスクを実行する概念的なフローです。
+                </p>
+                <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="flow-item w-full md:w-1/4">GitHub Issueコメント<br>(例: @openhands-agent fix-me ...)</div>
+                    <div class="hidden md:block flow-arrow"></div>
+                    <div class="block md:hidden flow-arrow-down"></div>
+                    <div class="flow-item w-full md:w-1/4">GitHub Actions<br>(ワークフロー実行)</div>
+                    <div class="hidden md:block flow-arrow"></div>
+                    <div class="block md:hidden flow-arrow-down"></div>
+                    <div class="flow-item w-full md:w-1/4">OpenHandsエージェント<br>(タスク実行、ブラウザ操作)</div>
+                    <div class="hidden md:block flow-arrow"></div>
+                    <div class="block md:hidden flow-arrow-down"></div>
+                    <div class="flow-item w-full md:w-1/4">結果報告<br>(Issueコメント、成果物)</div>
+                </div>
+                 <p class="mt-6 text-sm text-center dark-text">
+                    このフローにより、開発プロセス中の反復的なブラウザタスクを自動化し、効率を大幅に向上させることが期待されます。
+                </p>
+            </div>
+        </section>
+        
+        <section id="mcp-tools" class="mb-12">
+            <div class="card">
+                <h2 class="text-2xl font-bold mb-6 text-center primary-text">Playwright-MCPの主要ブラウザ操作ツール</h2>
+                <p class="text-center mb-6 text-md leading-relaxed">
+                    Playwright-MCPは、AIエージェントがブラウザを精密に制御するための多様なツールを提供します。
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="p-4 border rounded-lg bg-gray-50">
+                        <h4 class="font-semibold accent-text">browser_navigate</h4>
+                        <p class="text-xs">指定URLに移動</p>
+                    </div>
+                    <div class="p-4 border rounded-lg bg-gray-50">
+                        <h4 class="font-semibold accent-text">browser_click</h4>
+                        <p class="text-xs">要素をクリック (ref指定可)</p>
+                    </div>
+                    <div class="p-4 border rounded-lg bg-gray-50">
+                        <h4 class="font-semibold accent-text">browser_type</h4>
+                        <p class="text-xs">要素にテキスト入力</p>
+                    </div>
+                    <div class="p-4 border rounded-lg bg-gray-50">
+                        <h4 class="font-semibold accent-text">browser_snapshot</h4>
+                        <p class="text-xs">アクセシビリティスナップショット取得</p>
+                    </div>
+                    <div class="p-4 border rounded-lg bg-gray-50">
+                        <h4 class="font-semibold accent-text">browser_take_screenshot</h4>
+                        <p class="text-xs">スクリーンショット撮影</p>
+                    </div>
+                    <div class="p-4 border rounded-lg bg-gray-50">
+                        <h4 class="font-semibold accent-text">browser_wait_for</h4>
+                        <p class="text-xs">テキスト出現/消失または時間待機</p>
+                    </div>
+                </div>
+                <p class="mt-4 text-xs text-center dark-text opacity-70">出典: OpenHands他連携調査レポート Table 2 (一部抜粋)</p>
+            </div>
+        </section>
+
+        <section id="chart-example" class="mb-12">
+            <div class="card">
+                <h2 class="text-2xl font-bold mb-6 text-center primary-text">自動化アプローチの特性比較 (概念図)</h2>
+                <p class="text-center mb-6 text-md leading-relaxed">
+                    各連携アプローチの主な特性を視覚的に比較します。スコアは概念的なものであり、相対的な傾向を示します。
+                </p>
+                <div class="chart-container mx-auto">
+                    <canvas id="approachComparisonChart"></canvas>
+                </div>
+                <p class="mt-4 text-xs text-center dark-text opacity-70">
+                    このチャートは、OpenHands標準機能とPlaywright-MCP連携の「導入容易性」と「制御の精密さ」を相対的に示しています。
+                </p>
+            </div>
+        </section>
+
+        <section id="future" class="mb-12">
+            <div class="card">
+                <h2 class="text-2xl font-bold mb-6 text-center primary-text">今後の展望と推奨事項</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3 secondary-text">今後の展望</h3>
+                        <ul class="list-disc list-inside text-sm space-y-1">
+                            <li>OpenHandsエージェントのMCPクライアント機能標準サポート</li>
+                            <li>高度なビジュアルベースブラウザ操作の統合進化</li>
+                            <li>GitHub Actionsマーケットプレイスの連携アクション充実</li>
+                            <li>AIエージェントによるテスト自動化のさらなる進化</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3 secondary-text">推奨事項</h3>
+                        <ul class="list-disc list-inside text-sm space-y-1">
+                            <li><strong class="danger-text">段階的アプローチの採用:</strong> 基本から始め、徐々に高度な連携へ</li>
+                            <li><strong class="danger-text">プロンプトエンジニアリング注力:</strong> 明確な指示でAIエージェントの性能を最大化</li>
+                            <li><strong class="danger-text">セキュリティ対策の徹底:</strong> APIキー管理、サンドボックス運用、権限最小化</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-8 bg-gray-800 text-gray-300 text-sm">
+        <p>&copy; 2024 AI駆動型開発自動化トレンド分析. All Rights Reserved.</p>
+        <p class="mt-1 opacity-70">本インフォグラフィックは「OpenHands他連携調査レポート」の情報を基に作成されました。</p>
+    </footer>
+
+    <script>
+        // Helper function for Chart.js label wrapping
+        function wrapLabel(label, maxLength = 16) {
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine.length > 0) {
+                lines.push(currentLine);
+            }
+            return lines.length > 0 ? lines : [label];
+        }
+
+        // Tooltip configuration for Chart.js
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // Chart.js: Approach Comparison Chart
+        const ctxApproach = document.getElementById('approachComparisonChart');
+        if (ctxApproach) {
+            new Chart(ctxApproach, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        wrapLabel('OpenHands標準 (BrowserGym)'), 
+                        wrapLabel('OpenHands + Playwright-MCP連携')
+                    ],
+                    datasets: [{
+                        label: '導入容易性 (高スコア=容易)',
+                        data: [4, 2], // Conceptual scores (1-5 scale)
+                        backgroundColor: 'rgba(6, 214, 160, 0.7)', // #06D6A0 with opacity
+                        borderColor: 'rgba(6, 214, 160, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: '制御の精密さ (高スコア=精密)',
+                        data: [3, 5], // Conceptual scores (1-5 scale)
+                        backgroundColor: 'rgba(17, 138, 178, 0.7)', // #118AB2 with opacity
+                        borderColor: 'rgba(17, 138, 178, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 5, // Assuming a 1-5 scale
+                            ticks: {
+                                color: '#073B4C' // Dark text for ticks
+                            },
+                            grid: {
+                                color: 'rgba(7, 59, 76, 0.1)' // Lighter grid lines
+                            }
+                        },
+                        x: {
+                             ticks: {
+                                color: '#073B4C', // Dark text for ticks
+                                callback: function(value, index, values) {
+                                    // This ensures that if labels are arrays (wrapped), they are handled correctly.
+                                    const label = this.getLabelForValue(value);
+                                    return Array.isArray(label) ? label : [label];
+                                }
+                            },
+                             grid: {
+                                display: false // Hide x-axis grid lines for cleaner look
+                            }
+                        }
+                    },
+                    plugins: { // Merging general plugins with tooltip specific callback
+                        legend: {
+                            labels: {
+                                color: '#073B4C' // Dark text for legend
+                            }
+                        },
+                        tooltip: { // Ensure tooltip callback is correctly placed
+                           callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    // For bar charts, the label is directly available
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                      return label.join(' ');
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
