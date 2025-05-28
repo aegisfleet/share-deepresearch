@@ -3,7 +3,7 @@ layout: topic
 title: "CI/CDからDevOpsへ：役割の比較と成功への道筋"
 date: 2025-05-28
 prompt: "CI/CDを主体に行なっているチームがDevOpsを目指している。それぞれの役割を比較してDevOpsを行うにあたり必要なものが何になるのかまとめて欲しい。"
-category: "research"
+category: "engineering"
 tags: [CI/CD,DevOps]
 audio: "/share-deepresearch/assets/audio/cicd-to-devops.mp3"
 supplementary_materials:

@@ -242,12 +242,8 @@ a:hover {
     content: "🔍";  /* 研究カテゴリ */
 }
 
-.topic-list li[data-category="code"]::before {
+.topic-list li[data-category="engineering"]::before {
     content: "💻";  /* コードカテゴリ */
-}
-
-.topic-list li[data-category="tutorial"]::before {
-    content: "📚";  /* チュリアルカテゴリ */
 }
 
 .topic-list li[data-category="study"]::before {
@@ -384,6 +380,69 @@ a:hover {
     font-size: 1rem;
     line-height: 1.6;
     margin-top: 1rem;
+}
+
+/* カテゴリフィルタのスタイル */
+.category-filter {
+  margin: 2em 0;
+  text-align: center;
+
+  label {
+    margin-right: 1em;
+    font-weight: bold;
+  }
+
+  select {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    background-color: white;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #666;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #0366d6;
+      box-shadow: 0 0 0 2px rgba(3, 102, 214, 0.2);
+    }
+  }
+}
+
+/* カテゴリフィルタスタイル */
+.category-filter {
+    margin: 1.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.category-btn {
+    background-color: var(--card-background);
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(255, 119, 51, 0.3);
+}
+
+.category-btn.active {
+    background-color: var(--primary-color);
+    color: var(--text-color);
 }
 
 /* レスポンシブデザイン */

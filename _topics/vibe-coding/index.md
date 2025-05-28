@@ -3,7 +3,7 @@ layout: topic
 title: "Vibe Codingにおける品質担保の考え方：AI生成コードを信頼するための戦略的アプローチ"
 date: 2025-05-25
 prompt: "Vibe Codingを行う際のポイントをまとめたい。生成AIが作ったコードを基本的に信じることになるが、どのように品質を担保すれば良いのか、その考え方を知りたい。"
-category: "code"
+category: "engineering"
 tags: [Vibe Coding,コーディング]
 audio: "/share-deepresearch/assets/audio/vibe-coding.mp3"
 supplementary_materials:

@@ -33,6 +33,25 @@
             <img src="{{ '/assets/images/default-ogp.png' | relative_url }}" alt="{{ site.title }}" style="max-width: 800px; width: 100%; height: auto;">
         </div>
         <p>このサイトは、Google Gemini を使用した DeepResearch の結果を個人的にまとめたものです。</p>
+        
+        <div class="category-filter">
+            <button class="category-btn active" data-category="all" title="すべて表示">📚</button>
+            {% assign categories = site.topics | map: 'category' | uniq | sort %}
+            {% for category in categories %}
+                {% if category %}
+                    {% assign emoji = "💡" %}
+                    {% case category %}
+                        {% when "ai" %}{% assign emoji = "🤖" %}
+                        {% when "engineering" %}{% assign emoji = "💻" %}
+                        {% when "playful" %}{% assign emoji = "🤪" %}
+                        {% when "research" %}{% assign emoji = "🔍" %}
+                        {% when "study" %}{% assign emoji = "✏️" %}
+                    {% endcase %}
+                    <button class="category-btn" data-category="{{ category }}" title="{{ category }}">{{ emoji }}</button>
+                {% endif %}
+            {% endfor %}
+        </div>
+
         <h2>トピック一覧</h2>
         <ul class="topic-list">
         {% assign sorted_topics = site.topics | sort: 'date' | reverse %}
@@ -81,6 +100,29 @@
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
+                });
+            });
+
+            // カテゴリフィルタの制御
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const topicList = document.querySelectorAll('.topic-list li');
+
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // アクティブなボタンを更新
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const selectedCategory = this.getAttribute('data-category');
+                    
+                    topicList.forEach(topic => {
+                        const topicCategory = topic.getAttribute('data-category');
+                        if (selectedCategory === 'all' || selectedCategory === topicCategory) {
+                            topic.style.display = '';
+                        } else {
+                            topic.style.display = 'none';
+                        }
+                    });
                 });
             });
         });
