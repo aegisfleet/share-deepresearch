@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025年 高速道路料金割引制度 インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .kpi-label {
+            font-size: 0.9rem;
+            color: #4A5568; /* text-slate-600 */
+        }
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #0D9488; /* text-teal-600 */
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .table-header {
+            background-color: #F1F5F9; /* bg-slate-100 */
+            font-weight: 600;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #E2E8F0; /* border-slate-200 */
+        }
+        .flowchart-step {
+            border: 2px solid #0D9488; /* border-teal-600 */
+            padding: 1rem;
+            border-radius: 0.375rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            background-color: #F0FDFA; /* bg-teal-50 */
+        }
+        .flowchart-arrow {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #0D9488; /* text-teal-600 */
+            margin: 0.25rem 0;
+        }
+         .tab-button {
+            padding: 0.5rem 1rem;
+            margin-right: 0.5rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            background-color: #E2E8F0; /* bg-slate-200 */
+            color: #334155; /* text-slate-700 */
+        }
+        .tab-button.active {
+            background-color: #0D9488; /* bg-teal-600 */
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <header class="bg-teal-700 text-white p-8 text-center sticky top-0 z-50 shadow-lg">
+        <h1 class="text-4xl font-bold">2025年 高速道路料金割引制度トレンド</h1>
+        <p class="mt-2 text-lg">賢く活用するための最新情報と主要制度のポイント解説</p>
+    </header>
+
+    <nav class="bg-teal-600 text-white py-3 sticky top-[104px] z-40 shadow">
+        <ul class="container mx-auto flex justify-center space-x-4 sm:space-x-6 md:space-x-8 overflow-x-auto whitespace-nowrap px-4">
+            <li><a href="#section-overview" class="hover:text-orange-300 transition duration-300 text-sm sm:text-base">制度概要</a></li>
+            <li><a href="#section-shinva" class="hover:text-orange-300 transition duration-300 text-sm sm:text-base">深夜割引</a></li>
+            <li><a href="#section-kyujitsu" class="hover:text-orange-300 transition duration-300 text-sm sm:text-base">休日割引</a></li>
+            <li><a href="#section-heijitsu" class="hover:text-orange-300 transition duration-300 text-sm sm:text-base">平日朝夕</a></li>
+            <li><a href="#section-special" class="hover:text-orange-300 transition duration-300 text-sm sm:text-base">特定割引</a></li>
+            <li><a href="#section-urban" class="hover:text-orange-300 transition duration-300 text-sm sm:text-base">都市高速</a></li>
+            <li><a href="#section-passes" class="hover:text-orange-300 transition duration-300 text-sm sm:text-base">周遊パス</a></li>
+            <li><a href="#section-etc-mileage" class="hover:text-orange-300 transition duration-300 text-sm sm:text-base">ETCマイレージ</a></li>
+        </ul>
+    </nav>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="section-overview" class="pt-16 -mt-16">
+            <div class="card">
+                <h2 class="section-title">2025年 高速道路割引制度の最新動向</h2>
+                <p class="mb-4 text-slate-700">2025年の高速道路料金割引制度は、ドライバーにとっていくつかの重要な変更点があります。特に深夜割引の刷新と休日割引の適用除外日拡大は、利用計画に影響を与える可能性があります。ETCシステムの活用は引き続き全割引の基本となり、事前の情報収集と計画的な利用が一層求められます。このインフォグラフィックでは、主要な割引制度のポイントを分かりやすく解説し、賢い高速道路利用をサポートします。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-orange-100 p-6 rounded-lg shadow">
+                        <h3 class="text-xl font-semibold text-orange-700 mb-2">深夜割引が大幅変更予定</h3>
+                        <p class="text-orange-600">適用時間拡大、対象は実走行分のみ、後日還元型へ。開始時期は2025年7月以降未定。</p>
+                    </div>
+                    <div class="bg-teal-100 p-6 rounded-lg shadow">
+                        <h3 class="text-xl font-semibold text-teal-700 mb-2">休日割引の適用除外日拡大</h3>
+                        <p class="text-teal-600">GW・お盆・年末年始に加え、2025年度から全ての3連休も対象外に。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <hr class="my-8 border-slate-300">
+
+        <section id="section-shinva" class="pt-16 -mt-16">
+            <div class="card">
+                <h2 class="section-title">深夜割引 (新制度) のポイント</h2>
+                <p class="mb-4 text-slate-700">現行の深夜割引は、0時～4時の間に少しでも走行すれば全区間3割引でしたが、2025年7月頃以降（開始時期未定）に導入予定の新制度では大きな変更があります。0時待ち問題の解消や安全運転促進が目的です。</p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead>
+                            <tr class="table-header">
+                                <th>項目</th>
+                                <th>現行制度</th>
+                                <th>新制度 (予定)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-semibold">適用時間帯</td>
+                                <td>毎日0時～4時</td>
+                                <td class="text-orange-600 font-semibold">毎日22時～翌朝5時</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">割引対象</td>
+                                <td>適用時間帯に少しでも走行すれば全走行分</td>
+                                <td class="text-orange-600 font-semibold">適用時間帯に実際に走行した分のみ</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">割引率</td>
+                                <td>30%</td>
+                                <td>30%</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">割引方法</td>
+                                <td>料金所通過時に即時割引</td>
+                                <td class="text-orange-600 font-semibold">後日還元型 (ETCマイレージ等)</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">ETCマイレージ登録</td>
+                                <td>不要</td>
+                                <td class="text-orange-600 font-semibold">必須</td>
+                            </tr>
+                            <tr>
+                                <td class="font-semibold">上限距離</td>
+                                <td>なし</td>
+                                <td class="text-orange-600 font-semibold">あり (無謀運転抑止のため)</td>
+                            </tr>
+                             <tr>
+                                <td class="font-semibold">開始時期</td>
+                                <td>終了予定</td>
+                                <td class="text-red-600 font-semibold">2025年7月頃以降延期、具体的時期未定</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="mt-4 text-sm text-slate-600">新制度では、長距離利用者の負担増を緩和する激変緩和措置も5年程度実施予定です。システム整備の遅れにより開始時期は流動的ですので、最新情報をご確認ください。</p>
+            </div>
+        </section>
+
+        <hr class="my-8 border-slate-300">
+
+        <section id="section-kyujitsu" class="pt-16 -mt-16">
+            <div class="card">
+                <h2 class="section-title">休日割引の注意点：適用除外日の拡大</h2>
+                <p class="mb-4 text-slate-700">土日祝日に地方部の高速道路料金が30%割引となる休日割引（普通車・軽自動車等限定）。2025年度は適用除外日が大幅に拡大され、多くの3連休が割引対象外となる点に注意が必要です。これは交通需要の分散と観光需要の平準化を目的としています。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-teal-700 mb-3">主な適用除外期間 (2025年度)</h3>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li>GW: 4/26(土)～5/6(火)の土日祝</li>
+                            <li>お盆期間: 8/12(火)～8/17(日)の土日祝 (要確認)</li>
+                            <li>年末年始: 12/27(土)～1/4(日)の土日祝 (要確認)</li>
+                            <li class="font-semibold text-orange-600">全ての3連休 (例: 海の日、敬老の日、スポーツの日など)</li>
+                        </ul>
+                        <p class="mt-3 text-sm text-slate-600">結果として、2025年度に休日割引が適用される祝日は2026年2月11日(建国記念の日)のみの見込みです。</p>
+                    </div>
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="kyujitsuChart"></canvas>
+                    </div>
+                </div>
+                 <p class="mt-4 text-md font-semibold text-teal-700">朗報：二輪車定率割引は休日割引の適用除外日でも利用可能です。</p>
+            </div>
+        </section>
+
+        <hr class="my-8 border-slate-300">
+        
+        <section id="section-heijitsu" class="pt-16 -mt-16">
+            <div class="card">
+                <h2 class="section-title">平日朝夕割引：通勤利用者向け</h2>
+                <p class="mb-4 text-slate-700">平日の朝夕（6-9時、17-20時）にETCで地方部の高速道路を利用すると、月の利用回数に応じて最大100km相当分が後日ETCマイレージで還元されます。ETCマイレージサービスへの事前登録が必須です。</p>
+                <div class="chart-container h-72">
+                    <canvas id="heijitsuChosekiChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-slate-600">1ヶ月の利用回数が4回以下の場合は割引対象外。1日につき朝夕各1回まで。大都市近郊区間は対象外です。</p>
+            </div>
+        </section>
+
+        <hr class="my-8 border-slate-300">
+
+        <section id="section-special" class="pt-16 -mt-16">
+            <h2 class="section-title text-center mb-6">特定目的・利用者向け割引トレンド</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-orange-700 mb-2">通勤パス (社会実験)</h3>
+                    <p class="text-slate-700 text-sm mb-2">平日朝夕割引の代替として一部地域で実施中（2025年9月末まで予定）。事前登録・前払いで指定区間が曜日時間問わず1日3回まで最大50%割引。休日・深夜割引等との併用不可。</p>
+                    <span class="inline-block bg-orange-200 text-orange-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">社会実験</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-teal-700 mb-2">二輪車割引</h3>
+                    <p class="text-slate-700 text-sm mb-1"><strong class="text-teal-600">定率割引:</strong> 土日祝（休日割引除外日も含む）80km超利用で37.5%割引 (要事前申込、4/5～11/30)。</p>
+                    <p class="text-slate-700 text-sm mb-2"><strong class="text-teal-600">ツーリングプラン:</strong> 対象エリア乗り放題 (要事前申込、4/1～11/30)。</p>
+                     <span class="inline-block bg-teal-200 text-teal-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">バイクユーザー優遇</span>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-orange-700 mb-2">障がい者割引</h3>
+                    <p class="text-slate-700 text-sm mb-2">事前登録で有料道路料金が50%割引。身体障害者手帳・療育手帳所持者が対象。精神障害者保健福祉手帳所持者は現行制度では対象外。</p>
+                    <span class="inline-block bg-red-200 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">注意:精神障がい者対象外</span>
+                </div>
+            </div>
+             <div class="card mt-6">
+                <h3 class="text-xl font-semibold text-teal-700 mb-2">東京湾アクアライン割引</h3>
+                <p class="text-slate-700 text-sm">ETC時間帯別料金の社会実験を継続。特に土日祝の上り線は混雑時間帯の料金を高く、閑散時間帯を安く設定。下り線も新たに社会実験開始 (2026年3月末まで)。休日割引の適用除外日も適用。</p>
+            </div>
+        </section>
+
+        <hr class="my-8 border-slate-300">
+        
+        <section id="section-urban" class="pt-16 -mt-16">
+            <h2 class="section-title text-center mb-6">都市高速道路の割引制度</h2>
+             <div class="flex justify-center mb-6">
+                <button class="tab-button active" onclick="openTab(event, 'shuto')">首都高速</button>
+                <button class="tab-button" onclick="openTab(event, 'hanshin')">阪神高速</button>
+            </div>
+
+            <div id="shuto" class="tab-content active">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-orange-700 mb-3">首都高速道路（首都高）の主な割引</h3>
+                     <p class="mb-4 text-slate-700">首都高では、NEXCOとは異なる独自のETC割引が中心です。2025年度にはETC専用料金所が90箇所に拡大予定。</p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li><strong>深夜割引:</strong> 毎日0時～4時に入口等通過で20%割引。</li>
+                        <li><strong>都心流入割引:</strong> 放射道路末端部～都心環状線利用で料金上限設定など。</li>
+                        <li><strong>その他:</strong> 環境ロードプライシング割引（大型車等）、大口・多頻度割引（法人）、外環道迂回利用割引、障がい者割引（50%）など。</li>
+                        <li><strong class="text-red-600">注意:</strong> NEXCOのような広範な休日割引はなし。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="hanshin" class="tab-content">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-teal-700 mb-3">阪神高速道路の主な割引</h3>
+                    <p class="mb-4 text-slate-700">阪神高速も独自のETC割引を多数展開。2025年度にはETC専用料金所が51箇所に。大阪・関西万博期間中はダイナミックプライシング導入予定。</p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li><strong>深夜割引:</strong> 毎日0時～4時に入口通過で20%割引。</li>
+                        <li><strong>特定区間割引社会実験（北神戸線）:</strong> 平日朝の一部区間で割引（～2026年3月末）。</li>
+                        <li><strong>経路選択型割引:</strong> 大阪・神戸都心迂回/流入で最安ルート料金適用など。</li>
+                        <li><strong>その他:</strong> 短距離利用割引、関西国際空港方面割引、環境ロードプライシング割引、乗継割引など。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-8 border-slate-300">
+
+        <section id="section-passes" class="pt-16 -mt-16">
+            <h2 class="section-title text-center mb-6">お得な周遊パス・ドライブパス (NEXCO各社)</h2>
+            <p class="text-center mb-6 text-slate-700">ETC車限定・事前申込制で、特定エリアが定額乗り放題になるプラン。観光施設との連携も多くお得ですが、GW・お盆・年末年始・3連休などは利用不可の場合が多い点に注意。平日の利用でETCマイレージポイント増量キャンペーンも。</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-orange-700 mb-2">NEXCO東日本「ドラ割」</h3>
+                    <img src="https://placehold.co/600x300/FFEDD5/F97316?text=HOKKAIDO+LOVE!+%E9%81%93%E3%83%88%E3%82%AF" alt="ドラ割イメージ" class="rounded mb-2 w-full h-40 object-cover">
+                    <p class="text-sm text-slate-700">北海道「道トクふりーぱす」、東北観光フリーパス、関東近郊プラン（北関東周遊、千葉ぐるっと等）、北陸・信越プラン（新潟観光、佐渡島等）。フェリーや航空会社との連携プランも。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-teal-700 mb-2">NEXCO中日本「速旅」</h3>
+                    <img src="https://placehold.co/600x300/CCFBF1/0D9488?text=%E4%BF%A1%E5%B7%9E%E3%82%81%E3%81%90%E3%82%8A%E3%83%95%E3%83%AA%E3%83%BC%E3%83%91%E3%82%B9" alt="速旅イメージ" class="rounded mb-2 w-full h-40 object-cover">
+                    <p class="text-sm text-slate-700">「信州めぐりフリーパス2025」（首都圏・名古屋発着プランあり、通年利用可）。スキー場リフト券や温泉利用券との季節限定セットプランも。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold text-orange-700 mb-2">NEXCO西日本「みち旅」</h3>
+                    <img src="https://placehold.co/600x300/FFEDD5/F97316?text=%E3%81%B6%E3%82%89%E3%82%8A%E4%B8%AD%E5%9B%BD%E3%83%89%E3%83%A9%E3%82%A4%E3%83%96%E3%83%91%E3%82%B9" alt="みち旅イメージ" class="rounded mb-2 w-full h-40 object-cover">
+                    <p class="text-sm text-slate-700">関西（有馬温泉、京都・若狭路・びわ湖）、中国（ぶらり中国、石見旅、とっとり満喫）、四国（四国周遊、四国まるごと）、九州（ぎゅぎゅっと九州まんきつ、マリンワールド連携）。</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-8 border-slate-300">
+
+        <section id="section-etc-mileage" class="pt-16 -mt-16">
+            <div class="card">
+                <h2 class="section-title">ETCマイレージサービスの活用</h2>
+                <p class="mb-4 text-slate-700">ETC利用額に応じてポイントが貯まり、無料通行分に交換できるサービス（登録無料・年会費無料）。NEXCOでは10円につき1ポイント。平日朝夕割引の還元や新深夜割引（予定）の利用には登録必須です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                    <div class="flowchart-step">
+                        <span class="text-2xl">💳</span>
+                        <p>1. ETCカード情報をウェブで事前登録</p>
+                    </div>
+                    <div class="flowchart-arrow hidden md:block">➡️</div>
+                     <div class="flowchart-arrow md:hidden">⬇️</div>
+                    <div class="flowchart-step">
+                        <span class="text-2xl">🅿️</span>
+                        <p>2. 高速道路利用でポイントが貯まる</p>
+                    </div>
+                     <div class="flowchart-arrow hidden md:block">➡️</div>
+                     <div class="flowchart-arrow md:hidden">⬇️</div>
+                    <div class="flowchart-step">
+                        <span class="text-2xl">🎁</span>
+                        <p>3. 貯まったポイントを還元額に交換 (無料通行分)</p>
+                    </div>
+                </div>
+                <p class="mt-4 text-sm text-slate-600">NEXCOの場合、5000ポイントで5000円分の還元額に交換可能（還元率10%）。</p>
+            </div>
+        </section>
+
+        <hr class="my-8 border-slate-300">
+
+        <section id="section-rules" class="pt-16 -mt-16">
+            <div class="card">
+                <h2 class="section-title">割引の重複適用ルールと注意点</h2>
+                <p class="mb-4 text-slate-700">複数の割引条件を満たす場合、原則として割引率が最も高くなる1つの割引が適用されます。NEXCOの場合、深夜割引と平日朝夕割引が重なると深夜割引が優先されます。通勤パス利用時は他の主要割引は適用外となることが多いです。首都高では最大割引率は原則50%。詳細は各社の規定をご確認ください。</p>
+                 <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md" role="alert">
+                    <p class="font-bold">重要</p>
+                    <p>割引ルールは複雑です。多くの場合、システムが自動で最適割引を適用しますが、利用明細での確認が推奨されます。</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 p-8 text-center mt-12">
+        <p class="mb-2">本インフォグラフィックの情報は2025年5月末現在のものです。</p>
+        <p class="mb-2">ご利用の際は、必ず各高速道路会社の公式ウェブサイトで最新情報をご確認ください。</p>
+        <p class="text-sm">&copy; 2025 高速道路割引情報インフォグラフィック</p>
+    </footer>
+
+    <script>
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            let currentLine = '';
+            const lines = [];
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                } else {
+                    currentLine += word + ' ';
+                }
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: '#334155' // text-slate-700
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: '#475569' /* text-slate-600 */ },
+                    grid: { color: '#E2E8F0' /* border-slate-200 */ }
+                },
+                x: {
+                    ticks: { color: '#475569' },
+                    grid: { display: false }
+                }
+            }
+        };
+        
+        const kyujitsuChartCtx = document.getElementById('kyujitsuChart').getContext('2d');
+        new Chart(kyujitsuChartCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['適用除外となる主な土日祝', '適用される祝日(2025年度見込)'],
+                datasets: [{
+                    label: '休日割引 適用状況 (2025年度)',
+                    data: [98, 2], 
+                    backgroundColor: ['#FDBA74', '#5EEAD4'], // orange-300, teal-300
+                    borderColor: ['#F97316', '#0D9488'], // orange-600, teal-600
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '2025年度 休日割引の適用日割合 (イメージ)',
+                        color: '#0D9488', // teal-600
+                        font: { size: 14 }
+                    },
+                    tooltip: {
+                        callbacks: {
+                             title: (tooltipItems) => { // Simplified for doughnut
+                                return tooltipItems[0].label;
+                            }
+                        }
+                    },
+                     legend: {
+                        position: 'bottom',
+                        labels: { color: '#334155' }
+                    }
+                }
+            }
+        });
+
+        const heijitsuChosekiChartCtx = document.getElementById('heijitsuChosekiChart').getContext('2d');
+        new Chart(heijitsuChosekiChartCtx, {
+            type: 'bar',
+            data: {
+                labels: [wrapLabel('月5～9回利用', 16), wrapLabel('月10回以上利用', 16)],
+                datasets: [{
+                    label: '還元率 (最大100km相当分に対し)',
+                    data: [30, 50],
+                    backgroundColor: ['#FDBA74', '#5EEAD4'],
+                    borderColor: ['#F97316', '#0D9488'],
+                    borderWidth: 1
+                }]
+            },
+            options: { ...commonChartOptions, 
+                plugins: { ...commonChartOptions.plugins,
+                    title: {
+                        display: true,
+                        text: '平日朝夕割引 還元率',
+                        color: '#0D9488',
+                        font: { size: 16 }
+                    },
+                    legend: { display: false }
+                },
+                 scales: {
+                    y: { ...commonChartOptions.scales.y, suggestedMax: 60, title: { display: true, text: '還元率 (%)', color: '#475569'} },
+                    x: { ...commonChartOptions.scales.x }
+                }
+            }
+        });
+
+        function openTab(event, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Calculate position of target element relative to viewport, accounting for sticky header/nav
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const stickyOffset = headerHeight + navHeight;
+                    
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - stickyOffset;
+        
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
