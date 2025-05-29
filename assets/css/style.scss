@@ -196,19 +196,26 @@ a:hover {
     flex-direction: column;
     flex: 1;
     padding-bottom: 2rem;  /* 日付用のスペース確保 */
+    height: 100%;  /* 親要素の高さいっぱいに広げる */
 }
 
 .topic-title {
+    width: 100%;
+    box-sizing: border-box;
     font-size: 1.1rem;
-    display: flex;
-    align-items: flex-start;  /* 上揃えに変更 */
     margin-bottom: 0.5rem;
     padding-left: 2.3rem;  /* アイコンの幅分調整 */
-    margin-top: 0.5rem;        /* マージントップをリセット */
-    line-height: 1.4;     /* 行の高さを調整 */
-    min-height: 2.8em;  /* タイトルの最小高さを2行分確保 */
-    max-height: 4.2em;  /* タイトルの最大高さを3行分に制限 */
-    overflow: hidden;   /* 最大高さを超えた場合は非表示 */
+    padding-right: 0.5rem; /* 右側にも余白を追加 */
+    margin-top: 0.5rem;
+    line-height: 1.4;
+    max-height: 4.2em;    /* 3行分の高さに制限 */
+    overflow: hidden;
+    position: relative;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;  /* 3行に制限 */
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .topic-prompt {
@@ -222,6 +229,7 @@ a:hover {
     -webkit-line-clamp: 3;  /* 最大3行まで表示 */
     line-clamp: 3;          /* 標準プロパティ */
     -webkit-box-orient: vertical;
+    margin-top: 0;  /* 上部のマージンを削除 */
 }
 
 .date {
@@ -259,20 +267,15 @@ a:hover {
     font-weight: bold;
     text-decoration: none;
     transition: color 0.2s ease;
-    flex: 1;
+    width: 100%;
     min-width: 0;
-    word-break: break-all;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: normal;
-    font-size: 1.1rem;  /* リンクのフォントサイズを大きく */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;  /* 最大3行まで表示 */
-    line-clamp: 3;          /* 標準プロパティ */
-    -webkit-box-orient: vertical;
+    word-break: break-word;
+    font-size: 1.1rem;
+    display: block;
+    line-height: 1.4;
     overflow: hidden;
-    height: auto;
-    line-height: 1.4;  /* 行の高さを調整 */
+    padding-right: 0.5rem;
+    box-sizing: border-box;
 }
 
 .topic-list li a:hover {
