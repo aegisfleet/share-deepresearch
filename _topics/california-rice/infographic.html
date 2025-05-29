@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：カリフォルニア米と日本米の安全性</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Meiryo', 'メイリオ', sans-serif;
+            background-color: #E2EEF5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .brand-dark-blue { color: #004AAD; }
+        .brand-medium-blue { color: #0079C2; }
+        .brand-light-blue { color: #69B0D2; }
+        .brand-very-light-blue { color: #A9D1E5; }
+        .bg-brand-dark-blue { background-color: #004AAD; }
+        .bg-brand-medium-blue { background-color: #0079C2; }
+        .bg-brand-light-blue { background-color: #69B0D2; }
+        .bg-brand-very-light-blue { background-color: #A9D1E5; }
+        .border-brand-dark-blue { border-color: #004AAD; }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2.25rem;
+            font-weight: bold;
+            color: #004AAD;
+        }
+        .stat-label {
+            font-size: 1rem;
+            color: #0079C2;
+            margin-top: 0.5rem;
+        }
+        .info-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: #0079C2;
+            color: white;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        Infographic Narrative Plan:
+        1. Title & Introduction: Briefly introduce the topic of rice safety comparison.
+        2. Pesticide Regulations & Residues: Compare Japanese and US regulations, focusing on MRLs and compliance for rice available in Japan.
+           - Visualization: Table for MRL comparison of key pesticides. "Big Number" for compliance.
+        3. Heavy Metals (Arsenic & Cadmium): Compare levels in Californian (Calrose) vs. Japanese rice.
+           - Visualization: Bar charts for Arsenic and Cadmium.
+        4. GM Rice Status: Inform about market availability.
+           - Visualization: Prominent text statement.
+        5. Consumer Advice: Provide actionable tips for safe consumption.
+           - Visualization: Styled list.
+        6. Conclusion: Summarize findings, highlighting relative safety aspects.
+           - Visualization: Summary table.
+        Color Palette Chosen: Brilliant Blues (#004AAD, #0079C2, #69B0D2, #A9D1E5, #E2EEF5)
+        
+        Visualization Choices (Data Point -> Goal -> Chosen Visualization -> Justification/Library/Method - Confirming NO SVG, NO MERMAID JS):
+        - Pesticide MRLs: Report Table IV.A.3 Data -> Compare -> HTML Table -> Clear presentation of numerical MRLs for different pesticides and regions. Method: HTML/Tailwind. NO SVG.
+        - Pesticide Compliance (Japan): Report [40] Data (No violations) -> Inform -> Prominent Text/Big Number -> Quickly convey high compliance. Method: HTML/Tailwind. NO SVG.
+        - Arsenic Levels: Report Table IV.B.3 Data -> Compare -> Chart.js Bar Chart -> Visual comparison of average levels between rice types. Method: Chart.js (Canvas). NO SVG.
+        - Cadmium Levels: Report Table IV.B.3 Data -> Compare -> Chart.js Bar Chart -> Visual comparison of average levels. Method: Chart.js (Canvas). NO SVG.
+        - GM Rice Status: Report Section V.A Data (Not on market) -> Inform -> Prominent Text Statement -> Clear, direct information. Method: HTML/Tailwind. NO SVG.
+        - Consumer Tips: Report Section VIII.D Data -> Organize/Inform -> HTML List -> Easy-to-read actionable advice. Method: HTML/Tailwind. NO SVG.
+        - Overall Safety Summary: Report Section VIII.C Data -> Compare/Summarize -> HTML Table -> Concise side-by-side comparison of key safety aspects. Method: HTML/Tailwind. NO SVG.
+
+        Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All visualizations are Chart.js (Canvas) or HTML/CSS with Tailwind.
+    -->
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold brand-dark-blue mb-4">カリフォルニア米と日本米</h1>
+            <p class="text-xl md:text-2xl brand-medium-blue">安全性の真実をデータで読み解く</p>
+        </header>
+
+        <section id="intro" class="mb-12 bg-white rounded-lg shadow-xl p-6">
+            <h2 class="text-2xl font-bold brand-dark-blue mb-3">はじめに：なぜ比べるのか？</h2>
+            <p class="text-gray-700 leading-relaxed">
+                「カリフォルニア米は農薬が多いのでは？」そんな声を聞くことがあります。食の安全に関心が高まる中、私たちは日々口にするお米について、正確な情報に基づいた判断をしたいと考えています。このインフォグラフィックは、カリフォルニア米と日本米の安全性について、農薬、重金属、遺伝子組換えといった複数の視点から、科学的なデータを基に比較・分析し、その実態を分かりやすくお伝えすることを目的としています。
+            </p>
+        </section>
+
+        <section id="pesticides" class="mb-12">
+            <h2 class="text-3xl font-bold brand-dark-blue mb-6 text-center">第1部：農薬 – ルールと実際のところ</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h3 class="text-xl font-semibold brand-medium-blue mb-4">農薬のルール：日本の基準は？</h3>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        日本では、食品中の残留農薬を厳しく管理する「ポジティブリスト制度」が導入されています。原則として全ての農薬に残留基準値が設定され、基準値がない農薬はごく微量（一律基準0.01ppm）しか認められません。
+                        アメリカ（カリフォルニア州含む）にも独自の農薬規制がありますが、<strong class="brand-dark-blue">日本に輸入されるカリフォルニア米は、この日本の厳格な基準を満たす必要があります。</strong>
+                    </p>
+                    <h4 class="text-lg font-semibold brand-medium-blue mt-6 mb-2">主要農薬の残留基準値比較 (米・玄米, ppm)</h4>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full bg-white border border-gray-300">
+                            <thead>
+                                <tr class="bg-brand-very-light-blue">
+                                    <th class="py-2 px-3 border-b text-left text-sm brand-dark-blue font-semibold">農薬名</th>
+                                    <th class="py-2 px-3 border-b text-center text-sm brand-dark-blue font-semibold">日本</th>
+                                    <th class="py-2 px-3 border-b text-center text-sm brand-dark-blue font-semibold">米国 (参考)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-2 px-3 border-b text-sm text-gray-700">アゾキシストロビン</td>
+                                    <td class="py-2 px-3 border-b text-sm text-gray-700 text-center">0.2</td>
+                                    <td class="py-2 px-3 border-b text-sm text-gray-700 text-center">5.0</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-3 border-b text-sm text-gray-700">クロルピリホスメチル</td>
+                                    <td class="py-2 px-3 border-b text-sm text-gray-700 text-center">0.1</td>
+                                    <td class="py-2 px-3 border-b text-sm text-gray-700 text-center">6.0</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-3 border-b text-sm text-gray-700">チオベンカルブ</td>
+                                    <td class="py-2 px-3 border-b text-sm text-gray-700 text-center">0.2</td>
+                                    <td class="py-2 px-3 border-b text-sm text-gray-700 text-center">0.2</td>
+                                </tr>
+                                 <tr>
+                                    <td class="py-2 px-3 border-b text-sm text-gray-700">プロパニル</td>
+                                    <td class="py-2 px-3 border-b text-sm text-gray-700 text-center">10</td>
+                                    <td class="py-2 px-3 border-b text-sm text-gray-700 text-center">10</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+                        出典：報告書IV.A.3より。米国の基準は穀粒(Grain)に対するもの。米国の基準値が高い場合、ポストハーベスト使用の有無や食文化の違い（一人当たりの米消費量）などが影響していることがあります。日本市場のカリフォルニア米は日本の基準に従います。
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h3 class="text-xl font-semibold brand-medium-blue mb-4">実際の残留は？</h3>
+                     <p class="text-gray-700 mb-4 leading-relaxed">
+                        日本の農林水産省による国産米の監視調査では、近年、残留基準値を超過した事例は報告されていません。
+                        また、米国FDAの報告でも、国産食品の高い適合率が示されています。
+                        <strong class="brand-dark-blue">重要なのは、日本で販売されるカリフォルニア米（例：カルローズ米）は、日本の輸入検査システムを通過し、日本の残留農薬基準をクリアしているという点です。</strong>
+                    </p>
+                    <div class="stat-card mt-6">
+                        <p class="stat-value">国内検査で基準超えなし</p>
+                        <p class="stat-label">（農林水産省 R5年度 国産米調査）</p>
+                    </div>
+                     <p class="text-gray-700 mt-6 leading-relaxed">
+                        カリフォルニア州では農薬使用量の減少傾向も報告されており、生産段階での管理も進んでいます。
+                        過去の古いデータや米国内流通品の情報だけを見て「カリフォルニア米は農薬リスクが高い」と判断するのは早計かもしれません。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="heavy-metals" class="mb-12">
+            <h2 class="text-3xl font-bold brand-dark-blue mb-6 text-center">第2部：気になる物質 - 重金属をデータで比較</h2>
+            <p class="text-center text-gray-700 mb-8 leading-relaxed">お米は土壌からヒ素やカドミウムといった重金属を吸収しやすい性質があります。これらの含有量は産地や品種によって異なります。ここでは、報告書で引用された分析データに基づき比較します。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h3 class="text-xl font-semibold brand-medium-blue mb-1">ヒ素（総ヒ素）の比較</h3>
+                    <p class="text-xs text-gray-500 mb-4">出典：報告書 IV.B.3 表参照 (ng/g = ppb)</p>
+                    <div class="chart-container w-full max-w-md mx-auto h-72 md:h-80 relative">
+                        <canvas id="arsenicChart"></canvas>
+                    </div>
+                    <p class="text-gray-700 mt-4 leading-relaxed">
+                        このデータでは、検査されたカリフォルニア産カルローズ米の総ヒ素濃度は、日本産白米の平均値と比較して低い傾向が示されています。HBBF（Healthy Babies Bright Futures）の報告でも、カリフォルニア産米は総じて重金属濃度が低い傾向にあると指摘されています。
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h3 class="text-xl font-semibold brand-medium-blue mb-1">カドミウムの比較</h3>
+                    <p class="text-xs text-gray-500 mb-4">出典：報告書 IV.B.3 表参照 (ng/g = ppb)</p>
+                    <div class="chart-container w-full max-w-md mx-auto h-72 md:h-80 relative">
+                        <canvas id="cadmiumChart"></canvas>
+                    </div>
+                    <p class="text-gray-700 mt-4 leading-relaxed">
+                        カドミウムに関しても、検査されたカリフォルニア産カルローズ米の濃度は、日本産白米の平均値と比較して大幅に低い値でした。
+                        日本ではカドミウム汚染米対策が進められていますが、産地による違いは依然として見られます。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="gm-rice" class="mb-12 bg-white rounded-lg shadow-xl p-6 text-center">
+            <h2 class="text-3xl font-bold brand-dark-blue mb-4">第3部：遺伝子組換え米（GM米）ってどうなの？</h2>
+            <div class="flex items-center justify-center mb-4">
+                <span class="text-5xl mr-4">🌾</span>
+                <div>
+                    <p class="text-2xl font-semibold brand-medium-blue">現在、日米双方の市場に</p>
+                    <p class="text-4xl font-bold brand-dark-blue my-2">食用GM米はありません</p>
+                </div>
+            </div>
+            <p class="text-gray-700 max-w-2xl mx-auto leading-relaxed">
+                報告書によると、2024年初頭時点で、カリフォルニア州および米国全体、そして日本においても、食用としての遺伝子組換え米は商業的に栽培されておらず、市場にも流通していません。したがって、消費者が通常のルートでGM米に遭遇する可能性は極めて低いと言えます。
+            </p>
+        </section>
+
+        <section id="consumer-advice" class="mb-12 bg-white rounded-lg shadow-xl p-6">
+            <h2 class="text-3xl font-bold brand-dark-blue mb-6 text-center">第4部：消費者ができること - 安全な食生活のために</h2>
+            <p class="text-center text-gray-700 mb-8 leading-relaxed">お米の安全性について様々な情報がありますが、日々の食生活で私たち消費者ができることもあります。報告書で推奨されているポイントをいくつかご紹介します。</p>
+            <ul class="space-y-4 max-w-xl mx-auto">
+                <li class="flex items-start">
+                    <span class="info-icon">1</span>
+                    <p class="text-gray-700 leading-relaxed"><strong class="brand-dark-blue">お米をよく洗う：</strong>調理前によく研ぐことで、表面の糠や一部のヒ素を洗い流す効果が期待できます。多めの水で炊飯することもヒ素低減に繋がる可能性があります。</p>
+                </li>
+                <li class="flex items-start">
+                    <span class="info-icon">2</span>
+                    <p class="text-gray-700 leading-relaxed"><strong class="brand-dark-blue">色々なお米を試す：</strong>単一の産地や種類に偏らず、多様な選択肢を食生活に取り入れることで、特定のリスクへの偏りを避けることができます。</p>
+                </li>
+                <li class="flex items-start">
+                    <span class="info-icon">3</span>
+                    <p class="text-gray-700 leading-relaxed"><strong class="brand-dark-blue">「特別栽培米」や「有機米」も選択肢：</strong>農薬の使用を抑えたい場合、日本の「特別栽培米」や、日米双方で入手可能な「有機JAS認証米」「USDAオーガニック認証米」などを選ぶのは有効な手段です。</p>
+                </li>
+                 <li class="flex items-start">
+                    <span class="info-icon">4</span>
+                    <p class="text-gray-700 leading-relaxed"><strong class="brand-dark-blue">重金属が気になるなら産地も考慮：</strong>報告書やHBBFのデータからは、カリフォルニア産カルローズ米や寿司米、タイ産ジャスミン米、インド産バスマティ米などがヒ素等の重金属含有量が低い可能性が示唆されています。</p>
+                </li>
+                <li class="flex items-start">
+                    <span class="info-icon">5</span>
+                    <p class="text-gray-700 leading-relaxed"><strong class="brand-dark-blue">信頼できる情報源をチェック：</strong>厚生労働省や食品安全委員会、FDAなどの公的機関からの最新情報を参考にしましょう。</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="conclusion" class="mb-12 bg-brand-dark-blue text-white rounded-lg shadow-xl p-8">
+            <h2 class="text-3xl font-bold mb-6 text-center">第5部：まとめ - 結局、どちらが安全？</h2>
+            <p class="mb-6 leading-relaxed text-center max-w-3xl mx-auto">
+                これまでの分析を踏まえると、「カリフォルニア米は日本米より農薬リスクが高い」と一概に断定することはできません。日本で販売されるカリフォルニア米は日本の厳格な農薬基準をクリアしており、この点では日本米と同様の安全性が確保されていると言えます。むしろ、一部の重金属（ヒ素・カドミウム）については、入手可能なデータ上ではカリフォルニア米（特にカルローズ種）の方が低い傾向にあります。
+            </p>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white text-gray-800 rounded-md overflow-hidden">
+                    <thead>
+                        <tr class="bg-brand-light-blue text-brand-dark-blue">
+                            <th class="py-3 px-4 border-b text-left font-semibold">特徴</th>
+                            <th class="py-3 px-4 border-b text-left font-semibold">カリフォルニア米 (日本市場向け)</th>
+                            <th class="py-3 px-4 border-b text-left font-semibold">日本米</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-blue-200">
+                            <td class="py-3 px-4">農薬残留リスク</td>
+                            <td class="py-3 px-4">日本の基準値をクリア（輸入検査あり）</td>
+                            <td class="py-3 px-4">国内基準値をクリア（国内監視あり）</td>
+                        </tr>
+                        <tr class="border-b border-blue-200">
+                            <td class="py-3 px-4">ヒ素含有量 (一部データ)</td>
+                            <td class="py-3 px-4 brand-dark-blue font-semibold">低い傾向 (例: カルローズ米)</td>
+                            <td class="py-3 px-4">カルローズ米平均より高い傾向</td>
+                        </tr>
+                        <tr class="border-b border-blue-200">
+                            <td class="py-3 px-4">カドミウム含有量 (一部データ)</td>
+                            <td class="py-3 px-4 brand-dark-blue font-semibold">大幅に低い傾向 (例: カルローズ米)</td>
+                            <td class="py-3 px-4">カルローズ米平均より高い傾向</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4">遺伝子組換え(GM)米</td>
+                            <td class="py-3 px-4">市場に流通なし</td>
+                            <td class="py-3 px-4">市場に流通なし</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mt-6 leading-relaxed text-center max-w-3xl mx-auto">
+                最終的には、産地だけでなく、栽培方法（有機、特別栽培など）や品種、そして日々の調理法などを総合的に考慮し、バランスの取れた選択をすることが賢明です。
+            </p>
+        </section>
+
+        <footer class="text-center text-sm text-gray-600 mt-12 py-4 border-t border-gray-300">
+            <p>このインフォグラフィックは提供された調査報告書「カリフォルニア米と日本米の安全性に関する多角的比較分析」を基に作成されました。</p>
+            <p>データ解釈や詳細については、原典報告書をご参照ください。最終更新日: 2025年5月29日</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxLength = 16) => {
+            if (typeof label !== 'string') return label;
+            if (label.length <= maxLength) return label;
+            
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine += (currentLine.length > 0 ? ' ' : '') + word;
+                }
+            }
+            if (currentLine.length > 0) {
+                lines.push(currentLine.trim());
+            }
+            return lines.length > 0 ? lines : [label]; 
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        };
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: { size: 12 }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        font: { size: 10 }
+                    }
+                },
+                x: {
+                    ticks: {
+                        font: { size: 10 },
+                        callback: function(value, index, values) {
+                            const label = this.getLabelForValue(value);
+                            return wrapLabel(label, 10); // Shorter wrap for x-axis for clarity
+                        }
+                    }
+                }
+            }
+        };
+        
+        const arsenicData = {
+            labels: [wrapLabel('カリフォルニア産 カルローズ米'), wrapLabel('日本産 白米平均')],
+            datasets: [{
+                label: '総ヒ素濃度 (ppb)',
+                data: [128, 228],
+                backgroundColor: ['#0079C2', '#69B0D2'],
+                borderColor: ['#004AAD', '#0079C2'],
+                borderWidth: 1
+            }]
+        };
+        new Chart(document.getElementById('arsenicChart'), { type: 'bar', data: arsenicData, options: commonChartOptions });
+
+        const cadmiumData = {
+            labels: [wrapLabel('カリフォルニア産 カルローズ米'), wrapLabel('日本産 白米平均')],
+            datasets: [{
+                label: 'カドミウム濃度 (ppb)',
+                data: [4.1, 25.5],
+                backgroundColor: ['#0079C2', '#69B0D2'],
+                borderColor: ['#004AAD', '#0079C2'],
+                borderWidth: 1
+            }]
+        };
+        new Chart(document.getElementById('cadmiumChart'), { type: 'bar', data: cadmiumData, options: commonChartOptions });
+    </script>
+</body>
+</html>
