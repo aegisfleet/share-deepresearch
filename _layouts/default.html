@@ -52,11 +52,31 @@
             {% endfor %}
         </div>
 
+        <div class="tag-filter">
+            <button class="tag-btn active" data-tag="all" title="すべてのタグ">🏷️ すべてのタグ</button>
+            {% assign all_tags = "" %}
+            {% for topic in site.topics %}
+                {% for tag in topic.tags %}
+                    {% unless all_tags contains tag %}
+                        {% assign all_tags = all_tags | append: tag | append: "," %}
+                    {% endunless %}
+                {% endfor %}
+            {% endfor %}
+            {% assign sorted_tags = all_tags | split: ',' | uniq | sort %}
+            {% for tag in sorted_tags %}
+                {% if tag != "" %}
+                    <button class="tag-btn" data-tag="{{ tag | escape }}" title="{{ tag | escape }}">{{ tag | escape }}</button>
+                {% endif %}
+            {% endfor %}
+        </div>
         <h2>トピック一覧</h2>
         <ul class="topic-list">
         {% assign sorted_topics = site.topics | sort: 'date' | reverse %}
         {% for topic in sorted_topics %}
-            <li {% if topic.category %}data-category="{{ topic.category }}"{% endif %}>
+            <li {% if topic.category %}data-category="{{ topic.category }}"{% endif %}
+                {% if topic.tags and topic.tags.size > 0 %}
+                    data-tags="{{ topic.tags | join: ',' }}"
+                {% endif %}>
                 <div class="topic-content">
                     <a href="{{ topic.url | relative_url }}" class="topic-title">{{ topic.title }}</a>
                     {% if topic.prompt %}
@@ -105,7 +125,48 @@
 
             // カテゴリフィルタの制御
             const categoryButtons = document.querySelectorAll('.category-btn');
-            const topicList = document.querySelectorAll('.topic-list li');
+            const topicListItems = document.querySelectorAll('.topic-list li'); // 変数名を変更
+
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    applyFilters(); // フィルタ適用関数を呼び出す
+                });
+            });
+
+            const tagButtons = document.querySelectorAll('.tag-filter .tag-btn'); // タグフィルター内のボタンを選択
+
+            tagButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    tagButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    applyFilters(); // フィルタ適用関数を呼び出す
+                });
+            });
+
+            // フィルタ適用関数
+            function applyFilters() {
+                const selectedCategoryButton = document.querySelector('.category-filter .category-btn.active');
+                const selectedTagButton = document.querySelector('.tag-filter .tag-btn.active');
+
+                const selectedCategory = selectedCategoryButton ? selectedCategoryButton.getAttribute('data-category') : 'all';
+                const selectedTag = selectedTagButton ? selectedTagButton.getAttribute('data-tag') : 'all';
+
+                topicListItems.forEach(topic => {
+                    const topicCategory = topic.getAttribute('data-category');
+                    const topicTags = topic.getAttribute('data-tags') ? topic.getAttribute('data-tags').split(',') : [];
+
+                    const categoryMatch = (selectedCategory === 'all' || selectedCategory === topicCategory);
+                    const tagMatch = (selectedTag === 'all' || topicTags.includes(selectedTag));
+
+                    if (categoryMatch && tagMatch) {
+                        topic.style.display = '';
+                    } else {
+                        topic.style.display = 'none';
+                    }
+                });
+            }
 
             categoryButtons.forEach(button => {
                 button.addEventListener('click', function() {

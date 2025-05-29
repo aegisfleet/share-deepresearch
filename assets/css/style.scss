@@ -161,6 +161,40 @@ a:hover {
     margin-right: 0.5rem;
 }
 
+/* タグフィルタのスタイル */
+.tag-filter {
+    margin: 1rem 0; // カテゴリフィルタとトピック一覧の間に適切なマージン
+    display: flex;
+    flex-wrap: wrap; // タグが多い場合に折り返す
+    gap: 0.5rem; // ボタン間の隙間
+    justify-content: center; // ボタンを中央揃えにする場合
+}
+
+.tag-filter .tag-btn { // .tag-btn のスタイル (category-btn と同様か、少し変える)
+    background-color: var(--card-background);
+    border: 1px solid var(--secondary-color); // 枠線の色を調整
+    color: var(--text-color); // テキストの色
+    padding: 0.3rem 0.8rem; // 少し小さめのパディング
+    border-radius: 15px; // 角丸
+    font-size: 0.85rem; // 少し小さめのフォントサイズ
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tag-filter .tag-btn:hover {
+    background-color: var(--secondary-color); // ホバー時の背景色
+    color: white; // ホバー時のテキスト色
+    transform: translateY(-1px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.tag-filter .tag-btn.active {
+    background-color: var(--primary-color); // アクティブ時の背景色 (カテゴリボタンと合わせるか変更)
+    border-color: var(--primary-color);
+    color: white; // アクティブ時のテキスト色
+    font-weight: bold;
+}
+
 /* トピックリストのスタイル */
 .topic-list {
     list-style: none;
@@ -168,6 +202,7 @@ a:hover {
     display: grid;
     grid-template-columns: repeat(2, 1fr);  /* 2列のグリッド */
     gap: 1rem;  /* グリッドアイテム間の間隔 */
+    margin-top: 1rem; // タグフィルターとの間にマージン
 }
 
 .topic-list li {
