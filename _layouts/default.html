@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-adsense-account" content="ca-pub-3122674942116250">
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
-    
-    <!-- Google Analytics -->
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z11MHHRE8B"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -13,13 +13,12 @@
         gtag('js', new Date());
         gtag('config', 'G-Z11MHHRE8B');
     </script>
-    
+
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    
-    <!-- Favicon -->
+
     <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon/favicon-32x32.png' | relative_url }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon/favicon-16x16.png' | relative_url }}">
-    
+
     {% include head-ogp.html %}
 </head>
 <body>
@@ -27,13 +26,14 @@
         <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
         <p>{{ site.description }}</p>
     </header>
+
     <main class="main-content">
     {% if page.url == "/" %}
         <div style="text-align: center; margin-bottom: 2em;">
             <img src="{{ '/assets/images/default-ogp.png' | relative_url }}" alt="{{ site.title }}" style="max-width: 800px; width: 100%; height: auto;">
         </div>
         <p>このサイトは、Google Gemini を使用した DeepResearch の結果を個人的にまとめたものです。</p>
-        
+
         <div class="category-filter">
             <button class="category-btn active" data-category="all" title="すべて表示">📚</button>
             {% assign categories = site.topics | map: 'category' | uniq | sort %}
@@ -105,7 +105,7 @@
         // トップへ戻るボタンの制御
         document.addEventListener('DOMContentLoaded', function() {
             const scrollButton = document.querySelector('.scroll-to-top');
-            
+
             // スクロール位置に応じてボタンの表示/非表示を切り替え
             window.addEventListener('scroll', function() {
                 if (window.scrollY > 300) {
@@ -114,7 +114,7 @@
                     scrollButton.classList.remove('visible');
                 }
             });
-            
+
             // クリックでトップへスクロール
             scrollButton.addEventListener('click', function() {
                 window.scrollTo({
@@ -175,7 +175,7 @@
                     this.classList.add('active');
 
                     const selectedCategory = this.getAttribute('data-category');
-                    
+
                     topicList.forEach(topic => {
                         const topicCategory = topic.getAttribute('data-category');
                         if (selectedCategory === 'all' || selectedCategory === topicCategory) {
