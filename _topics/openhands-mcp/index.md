@@ -71,31 +71,31 @@ OpenHands Resolver（openhands-resolver.yml）を利用して、GitHubのIssue�
 
 **YAML記述例 (.github/workflows/openhands-browser-task.yml):**
 
-YAML
-
+```yaml
 name: OpenHands Browser Automation Task
 
 on:  
   issue_comment:  
-    types: \[created\]
+    types: [created]
 
 jobs:  
   run_openhands_browser_task:  
-    \# コメントが特定のキーワード（例: @openhands-agent fix-me）で始まる場合にのみ実行  
+    # コメントが特定のキーワード（例: @openhands-agent fix-me）で始まる場合にのみ実行  
     if: github.event.issue.pull_request && startsWith(github.event.comment.body, '@openhands-agent fix-me')  
     runs-on: ubuntu-latest  
     steps:  
-      \- name: Checkout Repository  
+      - name: Checkout Repository  
         uses: actions/checkout@v4
 
-      \- name: Run OpenHands Resolver  
-        \# 公式のOpenHands Resolver Actionまたは互換性のあるActionを指定  
-        \# 例: All-Hands-AI/OpenHands/.github/actions/openhands-resolver@main  
-        \# または xinbenlv/openhands-ai-action@v1.0.1-rc3 (プロンプトを直接渡す場合)  
-        uses: All-Hands-AI/OpenHands/.github/actions/openhands-resolver@main \# または適切な参照  
+      - name: Run OpenHands Resolver  
+        # 公式のOpenHands Resolver Actionまたは互換性のあるActionを指定  
+        # 例: All-Hands-AI/OpenHands/.github/actions/openhands-resolver@main  
+        # または xinbenlv/openhands-ai-action@v1.0.1-rc3 (プロンプトを直接渡す場合)  
+        uses: All-Hands-AI/OpenHands/.github/actions/openhands-resolver@main # または適切な参照  
         with:  
           issue-number: ${{ github.event.issue.number }}  
-          \# LLM_API_KEY, PAT_TOKENなどはsecrets経由で渡される想定 \[14\]
+          # LLM_API_KEY, PAT_TOKENなどはsecrets経由で渡される想定 [14]
+```
 
 このワークフローは、Issueへのコメントが @openhands-agent fix-me で始まる場合にトリガーされます。All-Hands-AI/OpenHands/.github/actions/openhands-resolver@main の部分は、公式の openhands-resolver.yml 14 を参照して適切に設定するか、xinbenlv/openhands-ai-action 18 を使用します。後者の場合、prompt 入力で直接タスクを渡すことが可能です。
 
@@ -121,16 +121,16 @@ OpenHandsエージェントは、実行計画、実際に行ったアクショ�
 
 **YAML例 (成果物アップロードステップ):**
 
-YAML
-
-      \# (OpenHands実行ステップの後に追加)  
-      \- name: Upload Browser Automation Artifacts  
+```yaml
+      # (OpenHands実行ステップの後に追加)  
+      - name: Upload Browser Automation Artifacts  
         uses: actions/upload-artifact@v4  
         with:  
           name: browser-output  
           path: |  
-            ${{ github.workspace }}/openhands_output/screenshots/ \# OpenHandsがスクリーンショットを保存する想定パス  
-            ${{ github.workspace }}/openhands_output/extracted_data.txt \# OpenHandsが抽出データを保存する想定パス
+            ${{ github.workspace }}/openhands_output/screenshots/ # OpenHandsがスクリーンショットを保存する想定パス  
+            ${{ github.workspace }}/openhands_output/extracted_data.txt # OpenHandsが抽出データを保存する想定パス
+```
 
 ### **4.2. シナリオ2：Playwright-MCPとの連携**
 
@@ -142,35 +142,35 @@ Playwright-MCPサーバーをOpenHandsのカスタムDockerイメージ内にイ
 
 **Dockerfile内での起動例 (概念):**
 
-Dockerfile
+```dockerfile
+# ベースイメージの指定 (例: Node.jsとPythonが利用可能なイメージ)  
+FROM nikolaik/python-nodejs:python3.12-nodejs22
 
-\# ベースイメージの指定 (例: Node.jsとPythonが利用可能なイメージ)  
-FROM nikolaik/python-nodejs:python3.12\-nodejs22
+# Playwrightとその依存関係のインストール  
+RUN npx playwright install --with-deps
 
-\# Playwrightとその依存関係のインストール  
-RUN npx playwright install \--with-deps
+# Playwright-MCPのインストール  
+RUN npm install -g @playwright/mcp@latest
 
-\# Playwright-MCPのインストール  
-RUN npm install \-g @playwright/mcp@latest
+# OpenHandsのアプリケーションコードや依存関係のコピーとセットアップ  
+# (省略)
 
-\# OpenHandsのアプリケーションコードや依存関係のコピーとセットアップ  
-\# (省略)
-
-\# コンテナ起動時にMCPサーバーとOpenHandsアプリケーションを起動するスクリプト  
+# コンテナ起動時にMCPサーバーとOpenHandsアプリケーションを起動するスクリプト  
 COPY start-services.sh /app/start-services.sh  
-RUN chmod \+x /app/start-services.sh
+RUN chmod +x /app/start-services.sh
 
-CMD \["/app/start-services.sh"\]
+CMD ["/app/start-services.sh"]
+```
 
 start-services.sh の内容例:
 
-Bash
-
+```bash
 \#\!/bin/sh  
 \# Playwright-MCPサーバーをバックグラウンドで起動  
 npx @playwright/mcp@latest \--port 8931 \--host 0.0.0.0 &  
 \# OpenHandsアプリケーションをフォアグラウンドで起動 (実際の起動コマンドに置き換えてください)  
 exec python \-m openhands.app.main
+```
 
 実際の起動方法は、OpenHandsのカスタムサンドボックスのアーキテクチャやエントリーポイントの設計に依存します。OpenHandsの runtime_extra_deps 15 やカスタム setup.sh 22 を利用して、サンドボックス初期化時にPlaywright-MCPサーバーをセットアップ・起動することも考えられます。
 
@@ -197,22 +197,22 @@ OpenHandsエージェントに対し、ローカル（サンドボックス内�
 
 **YAML例 (一部抜粋):**
 
-YAML
-
+```yaml
 jobs:  
   run_openhands_mcp_task:  
-    \#... (if, runs-on, checkout steps はシナリオ1と同様)...  
+    #... (if, runs-on, checkout steps はシナリオ1と同様)...  
     env:  
-      OPENHANDS_BASE_CONTAINER_IMAGE: "my-registry/my-openhands-with-mcp:latest" \# カスタムイメージ  
+      OPENHANDS_BASE_CONTAINER_IMAGE: "my-registry/my-openhands-with-mcp:latest" # カスタムイメージ  
       LLM_API_KEY: ${{ secrets.LLM_API_KEY }}  
-      \#... (その他のOpenHands Resolverに必要な環境変数)  
+      #... (その他のOpenHands Resolverに必要な環境変数)  
     steps:  
-      \#... (Checkout step)...  
-      \- name: Run OpenHands Resolver with Custom Sandbox  
-        uses: All-Hands-AI/OpenHands/.github/actions/openhands-resolver@main \# または適切な参照  
+      #... (Checkout step)...  
+      - name: Run OpenHands Resolver with Custom Sandbox  
+        uses: All-Hands-AI/OpenHands/.github/actions/openhands-resolver@main # または適切な参照  
         with:  
           issue-number: ${{ github.event.issue.number }}  
-      \#... (成果物アップロードステップはシナリオ1と同様)...
+      #... (成果物アップロードステップはシナリオ1と同様)...
+```
 
 ### **4.3. Playwright-MCPブラウザ操作ツール一覧**
 
@@ -284,8 +284,9 @@ Playwright-MCPサーバーは、コマンドライン引数またはJSON設定�
   * vision: ビジョンモードの有効/無効。  
   * outputDir: スクリーンショットなどの出力先ディレクトリ。  
   * **設定例 (サーバー直接設定ファイル):**  
-    JSON  
-    {  
+
+    ```json
+    {
       "server": {  
         "port": 8931,  
         "host": "0.0.0.0"  
@@ -298,17 +299,17 @@ Playwright-MCPサーバーは、コマンドライン引数またはJSON設定�
           "viewport": { "width": 1280, "height": 720 }  
         }  
       },  
-      "capabilities": \["core", "tabs", "pdf", "history", "wait", "files"\],  
+      "capabilities": ["core", "tabs", "pdf", "history", "wait", "files"],  
       "vision": false,  
-      "outputDir": "/tmp/playwright_mcp_output"  
+      "outputDir": "/tmp/playwright_mcp_output"
     }
+    ```
 
 ### **5.3. Dockerによるカスタム環境構築**
-
 Playwright-MCPをOpenHandsのサンドボックス内で利用するためには、カスタムDockerイメージの構築が必要です。
 
 * **Dockerfileの作成:**  
-  1. **ベースイメージの選択:** OpenHandsが推奨するサンドボックスのベースイメージ（Debianベースであることが多い 15）や、Node.jsとPython環境がプリインストールされたイメージ（例: nikolaik/python-nodejs:python3.12-nodejs22 15）を選択します。  
+  1. **ベースイメージの選択:** OpenHandsが推奨するサンドボックスのベースイメージ（Debianベースであることが多い 15）や、Node.jsとPython環境がプリインストールされたイメージ（例: nikolaik/python-nodejs:python3.12-nodejs22 15）を選択します。
   2. **Playwrightのインストール:** npx playwright install \--with-deps コマンドを実行し、指定ブラウザのエンジンと必要なOS依存関係をインストールします 15。  
   3. **Playwright-MCPのインストール:** npm install \-g @playwright/mcp@latest コマンドでPlaywright-MCPサーバーをグローバルにインストールします 6。  
   4. **その他の依存関係:** OpenHandsエージェントが必要とするその他のライブラリやツールをインストールします。  

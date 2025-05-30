@@ -197,22 +197,22 @@ Claude CodeをGitHub Actionsで利用するためのセットアップ方法は�
 
 以下は、issueコメントで@claudeがメンションされた際にPRを作成する基本的なワークフローの例です 11。
 
-YAML
-
+```yaml
 name: Claude PR Creation  
 on:  
-  issue\_comment:  
-    types: \[created\]  
+  issue_comment:  
+    types: [created]  
 jobs:  
   create-pr:  
     if: contains(github.event.comment.body, '@claude')  
     runs-on: ubuntu-latest  
     steps:  
-      \- uses: anthropics/claude-code-action@beta  
+      - uses: anthropics/claude-code-action@beta  
         with:  
           prompt: "${{ github.event.comment.body }}"  
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}  
-          \# allowed\_tools: \# 必要に応じて許可するツールを指定
+          # allowed_tools: # 必要に応じて許可するツールを指定
+```
 
 #### **4.1.1. GitHub Actionsの2つの階層：claude-code-action vs. claude-code-base-action**
 
@@ -265,21 +265,21 @@ Claude Code GitHub Actionsは、開発ワークフローの様々な側面を自
 
 **テストケース生成の概念的な例:**
 
-YAML
-
-\#...  
-\# issueコメントまたはdirect\_prompt内:  
-\# "@claude このPRの変更点を分析し、モジュールXの新しい関数に対するユニットテストをCLAUDE.mdに記載されたテストのベストプラクティスに従って生成してください。"  
-\#...
+```yaml
+#...  
+# issueコメントまたはdirect_prompt内:  
+# "@claude このPRの変更点を分析し、モジュールXの新しい関数に対するユニットテストをCLAUDE.mdに記載されたテストのベストプラクティスに従って生成してください。"  
+#...
+```
 
 **デプロイ前チェックの概念的な例:**
 
-YAML
-
-\#...  
-\# direct\_prompt: "コミットされたコード変更のセキュリティレビューを実施してください。CLAUDE.mdのセキュリティガイドラインに従い、潜在的なXSS脆弱性と安全でないAPI呼び出しに焦点を当ててください。発見事項を報告してください。"  
-\# allowed\_tools: \# カスタムスキャナを許可  
-\#...
+```yaml
+#...  
+# direct_prompt: "コミットされたコード変更のセキュリティレビューを実施してください。CLAUDE.mdのセキュリティガイドラインに従い、潜在的なXSS脆弱性と安全でないAPI呼び出しに焦点を当ててください。発見事項を報告してください。"  
+# allowed_tools: # カスタムスキャナを許可  
+#...
+```
 
 #### **4.3.4. コスト最適化とセキュリティ**
 
