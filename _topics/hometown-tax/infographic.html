@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ふるさと納税市場トレンド インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8; /* Light grayish blue background */
+        }
+        /* Selected Palette: Energetic & Playful (#FF6B6B, #FFD166, #06D6A0, #118AB2, #073B4C) */
+        .palette-primary { color: #118AB2; } /* Deep Blue */
+        .palette-secondary { color: #06D6A0; } /* Green */
+        .palette-accent { color: #FFD166; } /* Yellow */
+        .palette-danger { color: #FF6B6B; } /* Red */
+        .palette-dark { color: #073B4C; } /* Darkest Blue/Almost Black */
+
+        .bg-palette-light { background-color: #ffffff; } /* White for cards */
+        .bg-palette-header { background-color: #118AB2; } /* Deep Blue for header */
+        .text-palette-header { color: #ffffff; }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .section-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #118AB2; /* Deep Blue */
+        }
+        .flowchart-step {
+            background-color: #e0f2fe; /* Light blue for steps */
+            border: 2px solid #118AB2; /* Deep Blue border */
+            color: #073B4C; /* Darkest Blue text */
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flowchart-arrow {
+            font-size: 2rem;
+            color: #118AB2; /* Deep Blue arrow */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 0;
+        }
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+            border-left: 3px solid #118AB2; /* Deep Blue timeline */
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background-color: #FFD166; /* Yellow dot */
+            border-radius: 50%;
+            border: 3px solid #118AB2; /* Deep Blue border for dot */
+        }
+        .swot-card {
+            border: 1px solid #06D6A0; /* Green border */
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom:16px;
+        }
+        .swot-title {
+            font-weight: bold;
+            color: #073B4C;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-palette-header text-palette-header py-8 text-center">
+        <h1 class="text-4xl font-bold">ふるさと納税：市場トレンドと徹底活用ガイド</h1>
+        <p class="mt-2 text-lg">データで読み解く制度の今と未来</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="overview" class="section-card">
+            <h2 class="text-2xl font-bold palette-primary mb-4">Section 1: ふるさと納税制度の基本：市場の現状</h2>
+            <p class="mb-4">ふるさと納税は、個人が応援したい自治体に「寄附」を行うことで、税金の控除を受けつつ返礼品を受け取れる制度です。地方創生と地域活性化を目的としていますが、近年はその「お得感」から利用者が急増しています。これは単なる節税ではなく、税金の使い道を選び、地域貢献を実感できる仕組みです。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
+                <div>
+                    <p class="text-lg text-gray-600">年間自己負担額</p>
+                    <p class="kpi-value">¥2,000</p>
+                    <p class="text-sm text-gray-500">寄附金額に関わらず一律</p>
+                </div>
+                <div>
+                    <p class="text-lg text-gray-600">2022年度寄附総額 (推定)</p>
+                    <p class="kpi-value">約9,654億円</p>
+                    <p class="text-sm text-gray-500">過去最高を更新し続ける市場規模</p>
+                </div>
+            </div>
+            <p class="mt-4 text-sm text-gray-600">ふるさと納税は「納税」という名ですが実質は「寄附」であり、寄附金控除が適用されます。返礼品は寄附額の3割以内、関連経費を含め5割以内というルールがあります。</p>
+        </section>
+
+        <section id="process" class="section-card">
+            <h2 class="text-2xl font-bold palette-primary mb-4">Section 2: 制度の仕組み：利用プロセスと税控除の流れ</h2>
+            <p class="mb-6">ふるさと納税を利用して税控除を受けるまでのプロセスは、いくつかのステップに分かれます。この流れを理解することが、制度を賢く活用する第一歩です。税控除は所得税からの還付と住民税からの減額という形で行われます。</p>
+            <h3 class="text-xl font-semibold mb-3 palette-secondary">利用プロセスの概観 (HTML/CSS フローチャート)</h3>
+            <div class="space-y-2">
+                <div class="flowchart-step">1. 控除上限額の確認</div>
+                <div class="flowchart-arrow">▼</div>
+                <div class="flowchart-step">2. 寄付先の選定・申込</div>
+                <div class="flowchart-arrow">▼</div>
+                <div class="flowchart-step">3. 返礼品・寄附金受領証明書の受取</div>
+                <div class="flowchart-arrow">▼</div>
+                <div class="flowchart-step">4. 税控除の手続き (ワンストップ特例 or 確定申告)</div>
+                <div class="flowchart-arrow">▼</div>
+                <div class="flowchart-step">5. 税金の還付・控除</div>
+            </div>
+            <p class="mt-6">所得税からの控除は、(ふるさと納税額 - 2,000円) × 所得税率 で計算され、確定申告後に還付されます。住民税からの控除は基本分と特例分があり、翌年度の住民税額から差し引かれます。特例分には住民税所得割額の20%という上限があります。</p>
+        </section>
+
+        <section id="limits" class="section-card">
+            <h2 class="text-2xl font-bold palette-primary mb-4">Section 3: あなたの控除上限額：年収・家族構成別データ</h2>
+            <p class="mb-6">自己負担2,000円でふるさと納税のメリットを最大限に享受するには、「控除上限額」の把握が不可欠です。この上限額は年収や家族構成、他の控除の状況によって変動します。以下は代表的なケースの目安です。</p>
+            <div class="chart-container mx-auto">
+                <canvas id="deductionLimitChart"></canvas>
+            </div>
+            <p class="mt-6 text-sm text-gray-600">このグラフは一般的な目安です。住宅ローン控除や医療費控除など他の控除がある場合、上限額は変動します。正確な金額はふるさと納税ポータルサイトのシミュレーター等で確認しましょう。上限を超えた寄附は全額自己負担となるため注意が必要です。</p>
+        </section>
+
+        <section id="resident-tax" class="section-card">
+            <h2 class="text-2xl font-bold palette-primary mb-4">Section 4: 住民税はゼロになる？誤解と正しい理解</h2>
+            <p class="mb-6">「ふるさと納税で住民税がゼロになる」という話を聞くことがありますが、これは誤解です。自己負担2,000円に加え、住民税の均等割部分や、控除の特例分の上限（所得割額の20%）があるため、支払いが完全になくなることはありません。</p>
+            <div class="chart-container mx-auto" style="height: 280px; max-height: 350px;">
+                <canvas id="residentTaxDonutChart"></canvas>
+            </div>
+            <p class="mt-6 text-sm text-gray-600">ふるさと納税は「税金の前払い」に近い仕組みです。支払う税金の総額が大幅に減るわけではなく、支払先を一部変更し、その対価として返礼品を得る制度と理解しましょう。控除が正しく適用されたかは、翌年の住民税決定通知書で確認できます。</p>
+        </section>
+
+        <section id="procedures" class="section-card">
+            <h2 class="text-2xl font-bold palette-primary mb-4">Section 5: 手続き方法の選択：ワンストップ特例 vs 確定申告</h2>
+            <p class="mb-6">税控除を受ける手続きには「ワンストップ特例制度」と「確定申告」の2種類があります。ご自身の状況に合わせて適切な方法を選びましょう。</p>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-300">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-2 px-4 border-b palette-dark">特徴</th>
+                            <th class="py-2 px-4 border-b palette-dark">ワンストップ特例制度</th>
+                            <th class="py-2 px-4 border-b palette-dark">確定申告</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="py-2 px-4 border-b font-semibold">対象者</td>
+                            <td class="py-2 px-4 border-b">確定申告不要な給与所得者等</td>
+                            <td class="py-2 px-4 border-b">自営業者、確定申告が必要な方</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 border-b font-semibold">寄付自治体数</td>
+                            <td class="py-2 px-4 border-b">5自治体以内</td>
+                            <td class="py-2 px-4 border-b">制限なし (6以上は確定申告)</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 border-b font-semibold">税控除の仕組み</td>
+                            <td class="py-2 px-4 border-b">全額住民税から控除</td>
+                            <td class="py-2 px-4 border-b">所得税還付＋住民税控除</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 border-b font-semibold">申請期限</td>
+                            <td class="py-2 px-4 border-b">寄附翌年1月10日必着</td>
+                            <td class="py-2 px-4 border-b">寄附翌年3月15日原則</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mt-6 text-sm text-gray-600">ワンストップ特例は手間が少ないですが、医療費控除などで確定申告をする場合は利用できません。申請期限や名義の一致（寄附者と控除を受ける人が同一）にも注意が必要です。</p>
+        </section>
+
+        <section id="swot" class="section-card">
+            <h2 class="text-2xl font-bold palette-primary mb-4">Section 6: メリット・デメリット：制度の強みと注意点</h2>
+            <p class="mb-6">ふるさと納税には多くの魅力がありますが、注意すべき点も存在します。総合的に理解して活用しましょう。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="swot-card bg-green-50">
+                    <h3 class="swot-title text-green-700">主なメリット (Strengths & Opportunities)</h3>
+                    <ul class="list-disc list-inside space-y-1 text-sm">
+                        <li>魅力的な返礼品（実質2,000円負担）</li>
+                        <li>税控除による実質負担軽減</li>
+                        <li>応援したい地域への直接貢献</li>
+                        <li>寄付金の使途選択が可能（一部自治体）</li>
+                        <li>地域産品を通じた新たな発見</li>
+                    </ul>
+                </div>
+                <div class="swot-card bg-red-50">
+                    <h3 class="swot-title text-red-700">主なデメリット・注意点 (Weaknesses & Threats)</h3>
+                    <ul class="list-disc list-inside space-y-1 text-sm">
+                        <li>自己負担2,000円は必須</li>
+                        <li>厳密には節税ではない（税金の前払い）</li>
+                        <li>控除上限額超過のリスク（自己負担増）</li>
+                        <li>手続きの手間（計算、申請）</li>
+                        <li>一時的な資金負担（キャッシュフロー）</li>
+                        <li>名義違いによる控除不可リスク</li>
+                        <li>他の控除（住宅ローン等）との兼ね合い</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="future" class="section-card">
+            <h2 class="text-2xl font-bold palette-primary mb-4">Section 7: 制度改正と今後の展望：市場の動向</h2>
+            <p class="mb-6">ふるさと納税制度は、利用実態に合わせて度々見直しが行われています。最新情報を把握することが重要です。</p>
+            <h3 class="text-xl font-semibold mb-3 palette-secondary">主な制度変更のタイムライン (HTML/CSS タイムライン)</h3>
+            <div class="relative">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h4 class="font-semibold">〜2019年頃</h4>
+                    <p class="text-sm">返礼品競争が過熱。高額な返礼品や地場産品以外のものも散見。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h4 class="font-semibold">2019年6月〜</h4>
+                    <p class="text-sm">規制強化。返礼品は「調達費3割以下」「地場産品」に限定。</p>
+                </div>
+                 <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h4 class="font-semibold">2023年10月〜</h4>
+                    <p class="text-sm">ルール厳格化。「募集適正化基準」改定。熟成肉や精米の地場産品基準見直し、経費全体を寄付額の5割以下とする「5割ルール」導入。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <h4 class="font-semibold">2025年10月 (予定)</h4>
+                    <p class="text-sm palette-danger font-bold">仲介サイトによるポイント付与禁止へ。</p>
+                    <p class="text-xs">これまでポイント還元も大きな魅力でしたが、今後は制度本来の価値や返礼品の魅力がより重視される可能性があります。</p>
+                </div>
+            </div>
+            <p class="mt-6 text-sm text-gray-600">制度変更は、利用者の「お得感」にも影響します。ポイント付与禁止後は、ポータルサイト間のサービス競争や、自治体の返礼品の質がより問われることになるでしょう。利用者は最新情報を確認し、計画的な活用を心がけることが重要です。</p>
+        </section>
+
+        <section id="conclusion" class="section-card bg-gray-100">
+            <h2 class="text-2xl font-bold palette-primary mb-4">Section 8: 総括：ふるさと納税と上手に付き合うために</h2>
+            <p class="mb-4">ふるさと納税は、正しく理解し計画的に利用すれば、個人と地域の双方にメリットがある制度です。重要なのは以下の3点です。</p>
+            <ul class="list-disc list-inside space-y-2 mb-4">
+                <li><strong>控除上限額の正確な把握：</strong>これが自己負担2,000円で済ませる最大の鍵です。</li>
+                <li><strong>適切な手続きの実施：</strong>ワンストップ特例か確定申告か、期限内に正しく行いましょう。</li>
+                <li><strong>制度の本質理解：</strong>住民税がゼロになるわけではなく、「寄附」を通じた地域応援と心得ましょう。</li>
+            </ul>
+            <p>制度は変化し続けます。最新情報をキャッチアップし、ご自身のライフスタイルや価値観に合わせて、賢くふるさと納税を活用していきましょう。不明な点は、自治体の窓口や税理士などの専門家に相談することも有効です。</p>
+        </section>
+    </main>
+
+    <footer class="text-center py-6 bg-palette-dark text-gray-300 text-sm">
+        <p>&copy; 2025 ふるさと納税インフォグラフィック. All rights reserved.</p>
+        <p>本情報は一般的な解説であり、個別の税務判断を保証するものではありません。</p>
+    </footer>
+
+    <script>
+        function wrapLabels(originalLabels, maxLength) {
+            return originalLabels.map(label => {
+                if (typeof label === 'string' && label.length > maxLength) {
+                    const words = label.split(''); // Split by character for Japanese
+                    const lines = [];
+                    let currentLine = '';
+                    for (const char of words) {
+                        if (currentLine.length + char.length > maxLength) {
+                            lines.push(currentLine);
+                            currentLine = char;
+                        } else {
+                            currentLine += char;
+                        }
+                    }
+                    lines.push(currentLine);
+                    return lines;
+                }
+                return label;
+            });
+        }
+
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(''); // Join without space for Japanese multi-line
+            } else {
+              return label;
+            }
+        };
+        
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                },
+                legend: {
+                    labels: {
+                        font: {
+                            family: "'Noto Sans JP', sans-serif"
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        font: {
+                            family: "'Noto Sans JP', sans-serif"
+                        }
+                    }
+                },
+                y: {
+                    ticks: {
+                        font: {
+                            family: "'Noto Sans JP', sans-serif"
+                        }
+                    }
+                }
+            }
+        };
+
+        // Deduction Limit Chart (Bar Chart)
+        const deductionLimitCtx = document.getElementById('deductionLimitChart').getContext('2d');
+        const originalDeductionLabels = ['独身又は共働き', '夫婦 (配偶者収入無)', '共働き+子1人(高校生)'];
+        new Chart(deductionLimitCtx, {
+            type: 'bar',
+            data: {
+                labels: wrapLabels(['年収300万円', '年収500万円', '年収700万円', '年収1000万円'], 8),
+                datasets: [
+                    {
+                        label: originalDeductionLabels[0], // 9 chars
+                        data: [28000, 61000, 108000, 180000],
+                        backgroundColor: '#FF6B6B', // Red
+                    },
+                    {
+                        label: originalDeductionLabels[1], // 12 chars
+                        data: [19000, 49000, 86000, 171000],
+                        backgroundColor: '#FFD166', // Yellow
+                    },
+                    {
+                        label: originalDeductionLabels[2], // 13 chars
+                        data: [19000, 49000, 86000, 166000],
+                        backgroundColor: '#06D6A0', // Green
+                    }
+                ]
+            },
+            options: {
+                ...commonChartOptions,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                             title: function(tooltipItems) { // Custom title for grouped bar
+                                return tooltipItems[0].dataset.label;
+                            },
+                            label: function(context) {
+                                let label = context.chart.data.labels[context.dataIndex] || '';
+                                if (Array.isArray(label)) {
+                                    label = label.join('');
+                                }
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(context.parsed.y);
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    legend: {
+                        labels: {
+                             font: { family: "'Noto Sans JP', sans-serif" },
+                             generateLabels: function(chart) {
+                                const original = Chart.defaults.plugins.legend.labels.generateLabels(chart);
+                                original.forEach((label, index) => {
+                                    const datasetLabel = chart.data.datasets[index].label;
+                                    if (typeof datasetLabel === 'string' && datasetLabel.length > 8) { // Legend specific wrap
+                                        const words = datasetLabel.split('');
+                                        const lines = [];
+                                        let currentLine = '';
+                                        for(const char of words) {
+                                            if(currentLine.length + char.length > 8) {
+                                                lines.push(currentLine);
+                                                currentLine = char;
+                                            } else {
+                                                currentLine += char;
+                                            }
+                                        }
+                                        lines.push(currentLine);
+                                        label.text = lines; // Assign array for multi-line legend
+                                    } else {
+                                        label.text = datasetLabel;
+                                    }
+                                });
+                                return original;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { title: { display: true, text: '給与収入', font: { family: "'Noto Sans JP', sans-serif" } } },
+                    y: { title: { display: true, text: '控除上限額 (円)', font: { family: "'Noto Sans JP', sans-serif" } }, ticks: { callback: value => `${value/10000}万円` } }
+                }
+            }
+        });
+
+        // Resident Tax Donut Chart
+        const residentTaxCtx = document.getElementById('residentTaxDonutChart').getContext('2d');
+        const originalResidentTaxLabels = ['自己負担2,000円', '住民税均等割 (固定)', '特例控除上限による影響', 'その他課税対象'];
+        new Chart(residentTaxCtx, {
+            type: 'doughnut',
+            data: {
+                labels: wrapLabels(originalResidentTaxLabels, 10), // wrap labels if > 10 chars
+                datasets: [{
+                    label: '住民税がゼロにならない理由 (概念図)',
+                    data: [10, 20, 30, 40], // Conceptual percentages
+                    backgroundColor: ['#FF6B6B', '#FFD166', '#06D6A0', '#118AB2'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                plugins: {
+                     tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = originalResidentTaxLabels[item.dataIndex]; // Use original for tooltip
+                                return label;
+                            },
+                            label: function(context) {
+                                return `${context.parsed}% (概念値)`;
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { family: "'Noto Sans JP', sans-serif" },
+                            generateLabels: function(chart) { // Custom legend label generation for wrapping
+                                const original = Chart.defaults.plugins.legend.labels.generateLabels(chart);
+                                original.forEach((label, index) => {
+                                    const datasetLabel = originalResidentTaxLabels[index]; // Use original for legend text
+                                    if (typeof datasetLabel === 'string' && datasetLabel.length > 10) { // Legend specific wrap
+                                        const words = datasetLabel.split('');
+                                        const lines = [];
+                                        let currentLine = '';
+                                        for(const char of words) {
+                                            if(currentLine.length + char.length > 10) {
+                                                lines.push(currentLine);
+                                                currentLine = char;
+                                            } else {
+                                                currentLine += char;
+                                            }
+                                        }
+                                        lines.push(currentLine);
+                                        label.text = lines; // Assign array for multi-line legend
+                                    } else {
+                                        label.text = datasetLabel;
+                                    }
+                                });
+                                return original;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <!-- 
+        HTML Comment: Narrative & Structure Plan
+        1. Introduction: What is Furusato Nouzei? Market size (KPIs).
+        2. How it Works: Process Flow (HTML/CSS diagram), Tax deduction basics.
+        3. Your Benefits: Deduction Limit Chart (Chart.js Bar), explaining factors.
+        4. Misconceptions: Why resident tax isn't zero (Chart.js Donut).
+        5. Getting Started: One-Stop vs. Kakutei Shinkoku (HTML Table).
+        6. Pros & Cons: SWOT-style HTML cards.
+        7. System Evolution: Timeline of changes (HTML/CSS), focus on 2025 point ban.
+        8. Conclusion: Key takeaways and advice.
+
+        HTML Comment: Visualization Choices (Confirming NO SVG, NO MERMAID JS)
+        - Market Size/KPIs (Section 1): Inform -> Single Big Number (Large text) -> Justification: Impactful. Method: HTML/CSS. NO SVG.
+        - Process Flow (Section 2): Organize -> Flow Chart (HTML/CSS) -> Justification: Clear steps. Method: HTML/CSS with Tailwind. NO SVG, NO MERMAID JS.
+        - Deduction Limit Examples (Section 3): Compare -> Bar Chart (Chart.js Canvas) -> Justification: Visual comparison of limits. Method: Chart.js. NO SVG.
+        - Why Resident Tax Isn't Zero (Section 4): Inform/Compare -> Donut Chart (Chart.js Canvas) -> Justification: Shows components. Method: Chart.js. NO SVG.
+        - Procedures Comparison (Section 5): Organize/Compare -> HTML Table -> Justification: Direct feature comparison. Method: HTML/CSS with Tailwind. NO SVG.
+        - Pros & Cons (Section 6): Compare/Inform -> Styled HTML Lists/Cards -> Justification: Clear side-by-side. Method: HTML/CSS with Tailwind. NO SVG.
+        - System Evolution (Section 7): Change -> Timeline (HTML/CSS) -> Justification: Shows progression. Method: HTML/CSS with Tailwind. NO SVG, NO MERMAID JS.
+        
+        HTML Comment: Color Palette Chosen
+        - Palette Name: Energetic & Playful
+        - HEX Codes: #FF6B6B, #FFD166, #06D6A0, #118AB2, #073B4C
+
+        HTML Comment: Confirmation
+        - Mermaid JS was NOT used.
+        - SVG graphics were NOT used. All visuals are HTML/CSS or Chart.js Canvas.
+    -->
+</body>
+</html>
