@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：自民党政権はなぜ続くのか？</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .section-title {
+            @apply text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800;
+        }
+        .chart-container {
+            @apply relative w-full max-w-2xl mx-auto h-64 md:h-96 bg-white p-4 rounded-lg shadow-lg;
+        }
+        .card {
+            @apply bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300;
+        }
+        .icon-placeholder {
+            @apply w-16 h-16 bg-sky-500 text-white rounded-full flex items-center justify-center text-2xl mb-4 mx-auto;
+        }
+        /* スクロールに応じたアニメーション用（簡易版） */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .nav-link {
+            @apply px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-sky-100 hover:text-sky-700 transition-colors;
+        }
+        .nav-link-mobile {
+            @apply block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-sky-100 hover:text-sky-700 transition-colors;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-sky-50 to-indigo-100 text-gray-700">
+
+    <header class="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold text-sky-600">政権分析サイト</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#introduction" class="nav-link">序論</a>
+                        <a href="#voter-sentiment" class="nav-link">有権者の声</a>
+                        <a href="#opposition-parties" class="nav-link">野党の現状</a>
+                        <a href="#structural-factors" class="nav-link">構造的要因</a>
+                        <a href="#media-environment" class="nav-link">メディア環境</a>
+                        <a href="#conclusion" class="nav-link">結論</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobile-menu-button" class="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sky-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">メインメニューを開く</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#introduction" class="nav-link-mobile">序論</a>
+                <a href="#voter-sentiment" class="nav-link-mobile">有権者の声</a>
+                <a href="#opposition-parties" class="nav-link-mobile">野党の現状</a>
+                <a href="#structural-factors" class="nav-link-mobile">構造的要因</a>
+                <a href="#media-environment" class="nav-link-mobile">メディア環境</a>
+                <a href="#conclusion" class="nav-link-mobile">結論</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <section id="hero" class="text-center py-16 md:py-24 fade-in-section">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mb-6">
+                <span class="block">なぜ自民党政権は</span>
+                <span class="block text-sky-600">続くのか？</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-600 mb-10">
+                資料「自民党政権継続の本質的理由」を基に、日本の政治状況をインフォグラフィックで読み解きます。
+            </p>
+            <a href="#introduction" class="bg-sky-600 text-white font-semibold px-8 py-3 rounded-lg hover:bg-sky-700 transition-colors text-lg shadow-lg">
+                分析を見る
+            </a>
+        </section>
+
+        <section id="introduction" class="py-16 fade-in-section">
+            <h2 class="section-title">1. 序論：不満の中の安定というパラドクス</h2>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-xl">
+                <p class="text-lg leading-relaxed mb-4">
+                    日本の政治は、一見矛盾した現象を呈しています。世論調査では自民党政権への不満が示されつつも、長期にわたり政権を維持しています。
+                </p>
+                <p class="text-lg leading-relaxed">
+                    本サイトでは、この「不満の中の安定」とも言えるパラドクスを、提供資料に基づき多角的な視点からインフォグラフィックを用いて分析します。主な要因として「野党の力不足」が挙げられますが、それ以外にも構造的、制度的、社会心理的な要因が複雑に絡み合っています。
+                </p>
+                 <div class="mt-8 text-center">
+                    <div class="icon-placeholder">📊</div>
+                    <p class="text-md text-gray-600">データと図解で深掘りします</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="voter-sentiment" class="py-16 fade-in-section">
+            <h2 class="section-title">2. 有権者の声：支持と不満の実態</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-4 text-sky-700">内閣支持率・政党支持率 (2024年10月NHK調査より)</h3>
+                    <div class="chart-container h-80 md:h-96"><canvas id="approvalRatingsChart"></canvas></div>
+                    <p class="mt-4 text-sm text-gray-600">内閣支持率は変動するものの、自民党の支持率は他の野党を大きく上回る傾向にあります。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-4 text-sky-700">内閣不支持の主な理由 (テレビ朝日 2025年5月調査より)</h3>
+                     <div class="chart-container h-80 md:h-96"><canvas id="disapprovalReasonsChart"></canvas></div>
+                    <p class="mt-4 text-sm text-gray-600">「政策に期待が持てない」が不支持理由の上位を占めることが多いです。</p>
+                </div>
+            </div>
+            <div class="mt-12 card">
+                <h3 class="text-xl font-semibold mb-4 text-center text-sky-700">支持政党なし層の割合 (2024年調査より)</h3>
+                <div class="chart-container h-64 md:h-72"><canvas id="noPartySupportChart"></canvas></div>
+                <p class="mt-4 text-sm text-gray-600 text-center">「支持する政党はない」と回答する無党派層は大きな割合を占め、政治的流動性の高さを示唆しています。</p>
+            </div>
+        </section>
+
+        <section id="opposition-parties" class="py-16 fade-in-section">
+            <h2 class="section-title">3. 野党の現状：選択肢としての課題</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-4 text-sky-700">主要野党の支持率 (2024年10月NHK調査より)</h3>
+                    <div class="chart-container h-80 md:h-96"><canvas id="oppositionPartySupportChart"></canvas></div>
+                    <p class="mt-4 text-sm text-gray-600">個々の野党支持率は自民党に大きく水をあけられており、反自民票の受け皿が分散しています。</p>
+                </div>
+                <div class="card">
+                    <h3 class="text-xl font-semibold mb-4 text-sky-700">野党が抱える主な課題</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="icon-placeholder text-sm mr-3">🤔</span>
+                            <div>
+                                <h4 class="font-semibold">政権担当能力への疑問</h4>
+                                <p class="text-sm text-gray-600">有権者から見て、具体的な政権構想や実行能力への信頼感が醸成されていません。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="icon-placeholder text-sm mr-3">🤝</span>
+                             <div>
+                                <h4 class="font-semibold">野党共闘の難しさ</h4>
+                                <p class="text-sm text-gray-600">政策や理念の違いから、効果的な選挙協力や統一候補の擁立が困難な場合があります。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="icon-placeholder text-sm mr-3">📉</span>
+                            <div>
+                                <h4 class="font-semibold">支持率の低迷と内部問題</h4>
+                                <p class="text-sm text-gray-600">魅力的な代替案として認識されにくく、内部の混乱がイメージを損なうこともあります。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="structural-factors" class="py-16 fade-in-section">
+            <h2 class="section-title">4. 自民党に有利な構造的要因</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card">
+                    <div class="icon-placeholder">🗳️</div>
+                    <h3 class="text-xl font-semibold mb-2 text-center text-sky-700">選挙制度</h3>
+                    <p class="text-sm text-gray-600 text-center">小選挙区比例代表並立制は、特に小選挙区で大政党に有利に働きやすく、野党候補の票が分散すると自民党候補が有利になることがあります。</p>
+                </div>
+                <div class="card">
+                    <div class="icon-placeholder">🏢</div>
+                    <h3 class="text-xl font-semibold mb-2 text-center text-sky-700">組織力と資源</h3>
+                    <p class="text-sm text-gray-600 text-center">長年培った地方組織、業界団体との連携、資金力などが強固な支持基盤を形成し、選挙戦で有利に働きます。</p>
+                </div>
+                <div class="card">
+                     <div class="icon-placeholder">🔄</div>
+                    <h3 class="text-xl font-semibold mb-2 text-center text-sky-700">適応力と支持基盤</h3>
+                    <p class="text-sm text-gray-600 text-center">時代変化に対応し、若年層や都市部無党派層にも支持を広げるなど、支持基盤を変化・適応させてきました。</p>
+                </div>
+                <div class="card">
+                    <div class="icon-placeholder">🤷</div>
+                    <h3 class="text-xl font-semibold mb-2 text-center text-sky-700">有権者の心理</h3>
+                    <p class="text-sm text-gray-600 text-center">政治的無関心、低い政治的有効性感覚、現状維持バイアス、「他にましな選択肢がない」という消極的選択が影響しています。</p>
+                </div>
+                <div class="card">
+                    <div class="icon-placeholder">📉</div>
+                    <h3 class="text-xl font-semibold mb-2 text-center text-sky-700">低い投票率</h3>
+                    <p class="text-sm text-gray-600 text-center">特に若年層の投票率が低く、組織票を持つ政党（自民党・公明党）に有利に働く傾向があります。</p>
+                </div>
+                 <div class="card">
+                    <div class="icon-placeholder">👑</div>
+                    <h3 class="text-xl font-semibold mb-2 text-center text-sky-700">世襲議員</h3>
+                    <p class="text-sm text-gray-600 text-center">選挙地盤や資金を引き継ぐ世襲議員が多く、新規参入が困難な状況が既存の権力構造を維持する一因となっています。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="media-environment" class="py-16 fade-in-section">
+            <h2 class="section-title">5. メディアと情報環境</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <div class="icon-placeholder">📰</div>
+                    <h3 class="text-xl font-semibold mb-2 text-center text-sky-700">伝統的メディア</h3>
+                    <p class="text-sm text-gray-600">新聞やテレビは依然大きな影響力を持ちます。報道量や論調が、与党である自民党に有利に働く可能性が指摘されています。政権与党は報道機会が構造的に多くなりがちです。</p>
+                </div>
+                <div class="card">
+                    <div class="icon-placeholder">📱</div>
+                    <h3 class="text-xl font-semibold mb-2 text-center text-sky-700">インターネットメディア</h3>
+                    <p class="text-sm text-gray-600">SNSなどは新たな情報源ですが、エコーチェンバーやフィルターバブル、デマ拡散のリスクも。野党が活用する一方、自民党も効果的に利用しており、現状を覆す決定打とはなっていません。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="py-16 fade-in-section">
+            <h2 class="section-title">6. 結論：多面的な現実</h2>
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-xl">
+                <p class="text-lg leading-relaxed mb-4">
+                    自民党の長期政権は、単に「他に良い党がない」という野党の魅力不足だけでなく、自民党自身の構造的な強み、有権者の心理、選挙制度、メディア環境など、多岐にわたる要因が複雑に絡み合った結果です。
+                </p>
+                <div class="my-6 p-6 bg-sky-50 rounded-lg">
+                    <h4 class="font-semibold text-sky-800 mb-3">主な要因のまとめ：</h4>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>自民党の強固な組織力、豊富な資源、適応力</li>
+                        <li>有権者の政治的無関心、現状維持志向、消極的選択</li>
+                        <li>野党の支持率低迷、政権担当能力への疑問、連携の難しさ</li>
+                        <li>大政党に有利な選挙制度</li>
+                        <li>メディア報道の構造的特性</li>
+                        <li>世襲構造など党内メカニズム</li>
+                    </ul>
+                </div>
+                <p class="text-lg leading-relaxed">
+                    これらの要因が相互作用し、「安定した不満」とも呼べる状況が現代日本政治の特徴となっています。今後の動向を注視する必要がありますが、構造的要因の根深さを考えると、短期的な劇的変化は容易ではないでしょう。
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-12 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">&copy; 2025 政権分析インフォグラフィックサイト</p>
+            <p class="text-sm text-gray-400">本サイトは提供された資料「自民党政権継続の本質的理由」を基に作成されました。</p>
+            <p class="text-xs text-gray-500 mt-4">
+                表示されているデータや分析は、提供資料及び参照されている公開情報に基づいています。最新の情報は各調査機関の発表をご確認ください。
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // モバイルメニューのトグル
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuButton.setAttribute('aria-expanded', !expanded);
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.querySelectorAll('svg').forEach(svg => svg.classList.toggle('hidden'));
+        });
+
+        // スムーススクロール (ナビゲーションリンク用)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // モバイルメニューが開いていたら閉じる
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenuButton.click();
+                    }
+                }
+            });
+        });
+
+        // Chart.jsのデフォルトフォント設定
+        Chart.defaults.font.family = "'Noto Sans JP', 'Inter', sans-serif";
+        Chart.defaults.font.size = 12;
+        Chart.defaults.color = '#374151'; // text-gray-700
+
+        // 1. 内閣支持率・政党支持率 (2024年10月NHK調査より)
+        const approvalRatingsCtx = document.getElementById('approvalRatingsChart').getContext('2d');
+        new Chart(approvalRatingsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['内閣支持', '内閣不支持', '自民党', '立憲民主党', 'その他野党計'],
+                datasets: [{
+                    label: '支持率 (%)',
+                    data: [42.3, 32.3, 40.8, 12.4, (3.3+3.6+4.8)], // 維新+公明+共産 (資料より)
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.7)', // blue-500
+                        'rgba(239, 68, 68, 0.7)',  // red-500
+                        'rgba(14, 165, 233, 0.7)', // sky-500
+                        'rgba(245, 158, 11, 0.7)', // amber-500
+                        'rgba(107, 114, 128, 0.7)' // gray-500
+                    ],
+                    borderColor: [
+                        'rgba(59, 130, 246, 1)',
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(14, 165, 233, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(107, 114, 128, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 60, // データに合わせて調整
+                        title: { display: true, text: '割合 (%)' }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: '内閣支持率・主要政党支持率', font: { size: 16 } }
+                }
+            }
+        });
+
+        // 2. 内閣不支持の主な理由 (テレビ朝日 2025年5月調査より)
+        const disapprovalReasonsCtx = document.getElementById('disapprovalReasonsChart').getContext('2d');
+        new Chart(disapprovalReasonsCtx, {
+            type: 'pie',
+            data: {
+                labels: ['政策に期待が持てない', '総理の人柄不信', '閣僚の顔ぶれ不満', 'その他'],
+                datasets: [{
+                    label: '不支持理由',
+                    data: [51.4, 15, 10, (100 - 51.4 - 15 - 10)], // ダミーでその他を調整
+                    backgroundColor: [
+                        'rgba(239, 68, 68, 0.7)',  // red-500
+                        'rgba(245, 158, 11, 0.7)', // amber-500
+                        'rgba(139, 92, 246, 0.7)', // violet-500
+                        'rgba(107, 114, 128, 0.7)' // gray-500
+                    ],
+                    borderColor: [
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(139, 92, 246, 1)',
+                        'rgba(107, 114, 128, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    title: { display: true, text: '内閣不支持の主な理由', font: { size: 16 } }
+                }
+            }
+        });
+        
+        // 3. 支持政党なし層の割合 (2024年調査より)
+        const noPartySupportCtx = document.getElementById('noPartySupportChart').getContext('2d');
+        new Chart(noPartySupportCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['支持政党なし (NHK)', '支持政党あり (NHK)', '支持政党なし (時事)', '支持政党あり (時事)'],
+                datasets: [{
+                    label: '支持政党なし層',
+                    data: [25.2, 100-25.2, 62.2, 100-62.2], // 資料より NHK 25.2%, 時事通信 62.2%
+                    backgroundColor: [
+                        'rgba(107, 114, 128, 0.7)', // gray-500
+                        'rgba(14, 165, 233, 0.3)', // sky-500 transparent
+                        'rgba(107, 114, 128, 0.9)', // gray-500 darker
+                        'rgba(59, 130, 246, 0.3)', // blue-500 transparent
+                    ],
+                     borderColor: [
+                        'rgba(107, 114, 128, 1)',
+                        'rgba(14, 165, 233, 1)',
+                        'rgba(107, 114, 128, 1)',
+                        'rgba(59, 130, 246, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    title: { display: true, text: '支持政党なし層の割合 (調査機関別)', font: {size: 16}}
+                }
+            }
+        });
+
+        // 4. 主要野党の支持率 (2024年10月NHK調査より)
+        const oppositionPartySupportCtx = document.getElementById('oppositionPartySupportChart').getContext('2d');
+        new Chart(oppositionPartySupportCtx, {
+            type: 'bar',
+            data: {
+                labels: ['立憲民主党', '日本維新の会', '公明党', '共産党', '国民民主党'],
+                datasets: [{
+                    label: '支持率 (%)',
+                    data: [12.4, 3.3, 3.6, 4.8, 1.1], // 資料 表2より (NHK 2024/10)
+                    backgroundColor: [
+                        'rgba(34, 197, 94, 0.7)',  // green-500
+                        'rgba(245, 158, 11, 0.7)', // amber-500
+                        'rgba(139, 92, 246, 0.7)', // violet-500
+                        'rgba(239, 68, 68, 0.7)',  // red-500
+                        'rgba(14, 165, 233, 0.7)'  // sky-500
+                    ],
+                    borderColor: [
+                        'rgba(34, 197, 94, 1)',
+                        'rgba(245, 158, 11, 1)',
+                        'rgba(139, 92, 246, 1)',
+                        'rgba(239, 68, 68, 1)',
+                        'rgba(14, 165, 233, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y', // 横棒グラフ
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 15, // データに合わせて調整
+                        title: { display: true, text: '支持率 (%)' }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: '主要野党の支持率', font: { size: 16 } }
+                }
+            }
+        });
+
+
+        // スクロールに応じたフェードインアニメーション
+        const sections = document.querySelectorAll('.fade-in-section');
+        const observerOptions = {
+            root: null, // ビューポートをルートとする
+            rootMargin: '0px',
+            threshold: 0.1 // 10%見えたら発火
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // 一度表示されたら監視を解除してもよい
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+    </script>
+</body>
+</html>
