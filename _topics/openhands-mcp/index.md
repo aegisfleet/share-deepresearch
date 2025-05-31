@@ -4,7 +4,7 @@ title: "OpenHands、GitHub Actions、Playwright-MCPを活用したブラウザ�
 date: 2025-05-27
 prompt: "OpenHandsとGitHub ActionsとPlaywright-MCPを使って、ワークフローの中でブラウザ操作の自動化を行いたい。実現可能か調査し、可能であれば具体的な使用例をまとめて欲しい。"
 category: "ai"
-tags: [OpenHands,GitHub Actions,Playwright-MCP]
+tags: [OpenHands,GitHub,GitHub Actions,MCP,Playwright-MCP]
 audio: "/share-deepresearch/assets/audio/openhands-mcp.mp3"
 supplementary_materials:
   - title: "AI駆動型開発自動化の最前線：市場トレンド分析"

@@ -4,7 +4,7 @@ title: "自律型AIエージェントの現状と展望：Devinと主要競合�
 date: 2025-05-27
 prompt: "Devinを代表とする自立型のAIエージェントを調査したい。現在広く普及しているAIエージェントについて、その特徴と各エージェントの優位性についてまとめて欲しい。"
 category: "ai"
-tags: [Devin,OpenHands]
+tags: [Devin,OpenHands,GitHub Copilot]
 audio: "/share-deepresearch/assets/audio/ai-agent-comparison.mp3"
 supplementary_materials:
   - title: "自律型AIエージェント市場トレンド インフォグラフィック"
