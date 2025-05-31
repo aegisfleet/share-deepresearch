@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Copilot Spaces 活用事例 インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            scroll-behavior: smooth; /* This enables smooth scrolling for anchor links and JS-triggered scrolling */
+        }
+        .section-title {
+            font-size: 2.5rem; /* 40px */
+            font-weight: 700;
+            margin-bottom: 2rem; /* 32px */
+            padding-top: 4.5rem; /* Adjusted for sticky header, approx header height + some margin */
+            margin-top: -3rem; /* Negative margin to compensate for padding-top for anchor linking */
+            text-align: center;
+            background: linear-gradient(to right, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subsection-title {
+            font-size: 1.875rem; /* 30px */
+            font-weight: 600;
+            margin-bottom: 1.5rem; /* 24px */
+            color: #374151; /* gray-700 */
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem; /* 12px */
+            padding: 2rem; /* 32px */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem; /* 32px */
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .nav-link {
+            padding: 0.75rem 1.5rem; /* 12px 24px */
+            border-radius: 0.5rem; /* 8px */
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .nav-link.active {
+            background-color: #4f46e5; /* indigo-600 */
+            color: white;
+        }
+        .nav-link:not(.active):hover {
+            background-color: #e0e7ff; /* indigo-100 */
+            color: #3730a3; /* indigo-800 */
+        }
+        .icon-placeholder { /* Placeholder for icons */
+            width: 3rem; /* 48px */
+            height: 3rem; /* 48px */
+            background-color: #e0e7ff; /* indigo-100 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem; /* 16px */
+            color: #4f46e5; /* indigo-600 */
+            font-weight: bold;
+            font-size: 1.25rem; /* 20px */
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; /* slate-100 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6366f1; /* indigo-500 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4f46e5; /* indigo-600 */
+        }
+        /* Sticky header class */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.8); /* white with opacity */
+            backdrop-filter: blur(10px); /* blur effect for modern look */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* subtle shadow */
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <header id="pageHeader" class="sticky-header">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between py-4">
+                <h1 class="text-2xl sm:text-3xl font-bold text-indigo-600 mb-4 sm:mb-0">GitHub Copilot Spaces</h1>
+                <nav id="navigation" class="flex flex-wrap justify-center sm:justify-end space-x-2">
+                    </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="container mx-auto p-4 sm:p-6 lg:p-8">
+        </main>
+
+    <footer class="bg-slate-800 text-slate-200 py-8 mt-12 text-center">
+        <p>&copy; 2025 GitHub Copilot Spaces 活用事例. All rights reserved.</p>
+        <p class="text-sm text-slate-400 mt-2">このページは提供された情報を基に生成されました。</p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="fixed bottom-8 right-8 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 opacity-0 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        // --- Data for SPA Sections (Content is the same as before) ---
+        const sectionsData = [
+            { 
+                id: "introduction", 
+                title: "はじめに",
+                navTitle: "概要",
+                content: `
+                    <div class="card">
+                        <h3 class="subsection-title">GitHub Copilotの進化とCopilot Spacesの位置づけ</h3>
+                        <p class="mb-4">GitHub Copilotは、AIペアプログラマーとして登場以来、コード補完を超えた進化を遂げてきました。Copilot Chat、Coding Agent、コードレビュー機能など、開発ライフサイクルの多岐にわたる局面をカバーしています。</p>
+                        <p class="mb-4"><strong>Copilot Spaces</strong>は、特定のタスクやプロジェクトに必要な「コンテキスト」をAIに集中的に提供し、より精度の高い、タスクに特化した支援を実現します。情報の断片化という課題に対する解決策として、関連情報を一元化し、AI支援の基盤とすることを目指しています。</p>
+                        <div class="flex items-center p-4 bg-indigo-50 rounded-lg">
+                            <div class="icon-placeholder">💡</div>
+                            <p class="text-indigo-700">Copilot Spacesは、汎用性と特化性の両立を目指すGitHubのAI戦略の現れです。ユーザー定義のコンテキストでAIの知識を「グラウンディング」させ、複雑な開発業務でAIの真価を発揮させます。</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="subsection-title">本レポートの目的と構成</h3>
+                        <p>本レポート（ウェブサイト）は、GitHub Copilot Spacesに関する最新情報を網羅的に調査し、その中核的なコンセプト、主要機能、提供状況、料金体系、具体的な活用事例を詳細に解説することを目的としています。</p>
+                        <ul class="list-disc list-inside mt-4 space-y-2">
+                            <li>開発者がCopilot Spacesを効果的に理解する</li>
+                            <li>日々の開発業務やチームプロジェクトで能力を最大限に活用する</li>
+                            <li>生産性向上、知識共有促進、コラボレーション深化に繋げる</li>
+                        </ul>
+                    </div>
+                `
+            },
+            { 
+                id: "what-is-copilot-spaces", 
+                title: "Copilot Spacesとは？",
+                navTitle: "定義",
+                content: `
+                    <div class="card">
+                        <h3 class="subsection-title">定義と中核的なコンセプト</h3>
+                        <p class="mb-4">GitHub Copilot Spacesは、特定の開発タスクやプロジェクトに関連する多様な情報資源（ソースコード、技術ドキュメント、設計メモ、カスタム指示など）を一元的に集約し、その整理されたコンテキストに基づいてCopilotがより的確でパーソナライズされた支援を提供するための機能です。</p>
+                        <p class="mb-4">アクセスURL: <a href="https://github.com/copilot/spaces" target="_blank" class="text-indigo-600 hover:underline">github.com/copilot/spaces</a></p>
+                        <div class="p-6 bg-green-50 rounded-lg border-l-4 border-green-500">
+                            <div class="flex items-center mb-2">
+                                <div class="icon-placeholder bg-green-100 text-green-600">🎯</div>
+                                <h4 class="text-xl font-semibold text-green-700">中核的課題：知識の断片化への対処</h4>
+                            </div>
+                            <p class="text-green-800">プロジェクトのコンテキストを集約し、Copilotを特定の主題に関する専門家（Subject Matter Expert）へと変貌させることを目指します。</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="subsection-title">主な提供価値と利点</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="icon-placeholder">📊</div>
+                                <div>
+                                    <h4 class="font-semibold text-lg text-gray-700">コンテキスト集約による回答精度の向上</h4>
+                                    <p>厳選されたコンテキストにAI知識を「グラウンディング」。意図的に範囲を絞りノイズを減らし、高品質な応答を生成。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="icon-placeholder">🚀</div>
+                                <div>
+                                    <h4 class="font-semibold text-lg text-gray-700">開発フローの維持と効率化</h4>
+                                    <p>情報集約でツール間の移動や問い合わせを削減。集中状態を維持し、タスク完了速度向上（最大55%向上との報告も）。</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="icon-placeholder">🤝</div>
+                                <div>
+                                    <h4 class="font-semibold text-lg text-gray-700">チーム内の知識共有とコラボレーション促進</h4>
+                                    <p>Space共有で専門知識へのアクセスを容易に。チーム全体の知識レベル向上と効率的なコラボレーションを促進。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-6 p-4 bg-amber-50 rounded-lg text-amber-700 border-l-4 border-amber-400">Copilot Spacesは「生きたドキュメント」兼「タスク特化型AIアシスタント」。リポジトリのmainブランチ最新版を参照し、情報が陳腐化しにくい利点があります。</p>
+                    </div>
+                `
+            },
+            {
+                id: "key-features",
+                title: "主な機能詳解",
+                navTitle: "機能",
+                content: `
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="card">
+                            <h3 class="subsection-title">スペースの作成と管理</h3>
+                            <p>専用UI (<a href="https://github.com/copilot/spaces" target="_blank" class="text-indigo-600 hover:underline">https://github.com/copilot/spaces</a>) から「Create space」で開始。</p>
+                            <ul class="list-disc list-inside mt-4 space-y-1">
+                                <li><strong>スペース名:</strong> 識別名</li>
+                                <li><strong>オーナー:</strong> 個人アカウント or GitHub Organization</li>
+                                <li><strong>説明 (任意):</strong> Spaceの目的や内容</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3 class="subsection-title">コンテキストの追加</h3>
+                            <p class="mb-2"><strong>インストラクション (Instructions):</strong></p>
+                            <p class="mb-4">Copilotの役割、焦点、避けるべき応答などを自由記述で指示。AIの振る舞いを定義する「マスタープロンプト」の役割。</p>
+                            <p class="mb-2"><strong>リファレンス (References):</strong></p>
+                            <p>GitHubリポジトリ（パブリック/プライベート）、技術ドキュメント、Slack議論コピー、議事録要約、メモなどを追加可能。リポジトリは常にmainブランチの最新版を参照。</p>
+                        </div>
+                        <div class="card">
+                            <h3 class="subsection-title">チームでの共有とアクセス権管理</h3>
+                            <p class="mb-2"><strong>組織オーナーのSpace:</strong> Organization所属メンバーと共有可能（通常読み取り専用）。</p>
+                            <p class="mb-2"><strong>個人オーナーのSpace:</strong> 現時点では他者と共有機能なし。</p>
+                            <p>共有されたSpaceのメンバーは、コンテキストを閲覧し、Copilot Chatで質問や指示が可能。</p>
+                        </div>
+                        <div class="card">
+                            <h3 class="subsection-title">対応AIモデルの選択</h3>
+                            <p>チャットインターフェースのドロップダウンメニューから使用するLLMを選択・変更可能。</p>
+                            <p class="mt-2">利用可能なモデル例: Anthropic Claudeシリーズ, Google Geminiシリーズ, OpenAI GPTシリーズなど。</p>
+                            <p class="mt-2 text-sm text-gray-600">タスク特性（推論、速度、特定知識など）に応じて最適なモデルを選択可能。</p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: "availability-pricing",
+                title: "提供状況と料金体系",
+                navTitle: "料金",
+                content: `
+                    <div class="card">
+                        <h3 class="subsection-title">現在の提供ステータス</h3>
+                        <p class="mb-4">本レポート執筆時点（2025年5月以降）で<strong>パブリックプレビュー版</strong>として提供。機能は開発途上にあり、今後変更の可能性あり。</p>
+                        <p>2025年5月29日にGitHub Changelogで登場が告知されました。</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="subsection-title">利用可能なGitHub CopilotプランとSpacesの関連性</h3>
+                        <p class="mb-4">GitHub Copilotの有効なライセンス保有者全てが利用可能。</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>個人向け: Copilot Free, Pro, Pro+</li>
+                            <li>組織向け: Copilot Business, Enterprise</li>
+                        </ul>
+                        <p class="mt-2 text-sm bg-yellow-50 p-3 rounded-md text-yellow-700">Business/Enterpriseプランの場合、組織管理者がプレビュー機能をオプトイン（有効化）している必要あり。</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="subsection-title">Spaces利用時の課金モデル（2025年6月4日以降予定）</h3>
+                        <p class="mb-4">既存のCopilot Chatと同じ体系に従うと発表。</p>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-700">Copilot Pro, Pro+, Business, Enterprise プラン利用者:</h4>
+                                <ul class="list-disc list-inside ml-4 text-sm">
+                                    <li>プレミアムAIモデル使用時: チャットリクエスト1回につき「プレミアムリクエスト」許容量を1回消費。</li>
+                                    <li>ベースAIモデル使用時: プレミアムリクエスト許容量を消費しない（実質無制限に近い）。</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700">Copilot Free プラン利用者:</h4>
+                                <p class="text-sm">Spaces内チャットリクエストは、月間50回のCopilot Chat利用上限にカウント。</p>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-sm text-gray-600">需要集中時にはレート制限が適用される可能性あり。</p>
+                    </div>
+                    <div class="card overflow-x-auto">
+                        <h3 class="subsection-title">GitHub Copilotプラン比較とSpaces利用</h3>
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">プラン名</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">月額料金（個人）</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Spaces利用</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Spacesチャット(ベースモデル)</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Spacesチャット(プレミアムモデル)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                                <tr>
+                                    <td class="px-4 py-3 whitespace-nowrap">Copilot Free</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">無料</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">可</td>
+                                    <td class="px-4 py-3">月間上限50回にカウント</td>
+                                    <td class="px-4 py-3">月間上限50回にカウント (制限あり)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 whitespace-nowrap">Copilot Pro</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">$10 USD/月</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">可</td>
+                                    <td class="px-4 py-3">プレミアムリクエスト消費なし</td>
+                                    <td class="px-4 py-3">プレミアムリクエスト1回消費 (月300回)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 whitespace-nowrap">Copilot Pro+</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">$39 USD/月</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">可</td>
+                                    <td class="px-4 py-3">プレミアムリクエスト消費なし</td>
+                                    <td class="px-4 py-3">プレミアムリクエスト1回消費 (月1500回)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 whitespace-nowrap">Copilot Business</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">$19 USD/月/シート</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">可</td>
+                                    <td class="px-4 py-3">プレミアムリクエスト消費なし</td>
+                                    <td class="px-4 py-3">プレミアムリクエスト1回消費 (ユーザー毎月300回)</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 whitespace-nowrap">Copilot Enterprise</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">$39 USD/月/シート</td>
+                                    <td class="px-4 py-3 whitespace-nowrap">可</td>
+                                    <td class="px-4 py-3">プレミアムリクエスト消費なし</td>
+                                    <td class="px-4 py-3">プレミアムリクエスト1回消費 (ユーザー毎月1000回)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="mt-2 text-xs text-gray-500">注: 2025年6月4日以降の課金モデルに基づきます。最新情報は公式でご確認ください。</p>
+                    </div>
+                `
+            },
+            {
+                id: "use-cases",
+                title: "具体的な活用事例",
+                navTitle: "活用事例",
+                content: `
+                    <div class="card">
+                        <h3 class="subsection-title">個人開発における活用シナリオ</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-lg text-gray-700 mb-2 flex items-center"><div class="icon-placeholder mr-2">⚡</div>新機能開発の迅速化と品質向上</h4>
+                                <p>既存コード断片、仕様メモ、デザインレビュー記録などを集約。Copilotが実装要約、機能提案、ドラフトコード作成、矛盾点指摘などを支援。</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg text-gray-700 mb-2 flex items-center"><div class="icon-placeholder mr-2">⚙️</div>定型的なタスクや小規模ロジックの定義</h4>
+                                <p>テレメトリイベント追跡、APIデータ取得・整形などのロジックを文書化・集約。一貫性を保ちつつ迅速に処理。</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg text-gray-700 mb-2 flex items-center"><div class="icon-placeholder mr-2">🧠</div>既存コードベース・エラー内容の深い理解</h4>
+                                <p>ソースコードや関連ドキュメントを投入し、コード説明やエラーメッセージ解説を依頼。自己完結型の仮想専門家チームを構築。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="subsection-title">チーム開発における活用シナリオ</h3>
+                         <div class="space-y-6">
+                            <div>
+                                <h4 class="font-semibold text-lg text-gray-700 mb-2 flex items-center"><div class="icon-placeholder mr-2">🧑‍💻</div>新規メンバーのオンボーディング支援</h4>
+                                <p>プロジェクト概要、主要コード、セットアップ手順、規約、FAQなどを集約したSpaceを共有。迅速な貢献を支援。</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg text-gray-700 mb-2 flex items-center"><div class="icon-placeholder mr-2">🧩</div>複雑なシステムやワークフローの知識集約</h4>
+                                <p>認証フロー、複雑なビジネスロジック、CI/CDパイプラインなどの情報を集約。自己学習やCopilotへの質問で理解を深化。</p>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-lg text-gray-700 mb-2 flex items-center"><div class="icon-placeholder mr-2">📜</div>コーディング規約、レビュースタイルガイドの共有と徹底</h4>
+                                <p>規約、API設計ガイド、レビュー観点、デザイントークンなどを文書化・集約。Copilotに準拠確認や提案を依頼。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="subsection-title">日本国内企業・コミュニティでの事例紹介</h3>
+                        <ul class="list-disc list-inside space-y-3">
+                            <li><strong>TIS株式会社 / Fintan.jp:</strong> 学生向けイベントでCopilot Chat（Spaces類似）を導入。README.mdの記述をAIが理解しやすいように工夫。</li>
+                            <li><strong>株式会社L&E Group:</strong> 「コードレビュー&AI駆動開発ミーティング」を定期開催。Spacesが知識基盤として貢献可能性。</li>
+                            <li><strong>ZennやQiitaでの個人の試み:</strong> 複数OSSリポジトリをコンテキストに追加し、機能比較分析。リサーチツールとしての可能性。</li>
+                        </ul>
+                    </div>
+                     <div class="card">
+                        <h3 class="subsection-title">GitHubチームによる活用例</h3>
+                        <p class="mb-4">GitHub自身もドッグフーディングで有効性を検証しています。</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="p-4 bg-sky-50 rounded-lg"><strong>コード質問応答:</strong> Spaces機能の全ソースコードとビデオトランスクリプトをまとめ、内部構造に関する質問に対応。</div>
+                            <div class="p-4 bg-teal-50 rounded-lg"><strong>コーディング標準化:</strong> セキュアコーディングのプラクティスを集約し、同様の質問への対応負荷を軽減。</div>
+                            <div class="p-4 bg-lime-50 rounded-lg"><strong>SQL/KQLクエリ作成支援:</strong> テレメトリデータスキーマやサンプルクエリを含むSpaceを作成し、チームメンバーを支援。</div>
+                            <div class="p-4 bg-fuchsia-50 rounded-lg"><strong>ドキュメント更新効率化:</strong> 更新対象ドキュメントごとにSpaceを作成し、Copilotが草案を生成。</div>
+                        </div>
+                        <p class="mt-4 text-sm text-gray-600">これらの例は、Spacesが専門知識をスケールさせ、周辺業務を効率化し、組織横断的なナレッジ共有プラットフォームとしての可能性を示しています。</p>
+                    </div>
+                `
+            },
+            {
+                id: "comparison-synergy",
+                title: "他のCopilot機能との比較と連携",
+                navTitle: "比較",
+                content: `
+                    <div class="card">
+                        <h3 class="subsection-title">Copilot Chatとの違いと効果的な使い分け</h3>
+                        <p class="mb-4"><strong>Copilot Chat (単独):</strong> IDEやGitHub.com上で利用。汎用性が高く、その時々の状況に応じた動的コンテキスト解釈。一時的な疑問解消、一般的な質問、小規模コード生成に適しています。</p>
+                        <p class="mb-4"><strong>Copilot Spaces (内でのChat):</strong> ユーザーが事前にキュレーションし永続的に保持されるコンテキスト集合が基盤。より専門性が高く、一貫性のある、深い洞察に基づいた支援。プロジェクト全体のアーキテクチャ理解、チーム共有の設計思想に基づく開発、オンボーディングなどに適しています。</p>
+                        <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-400">
+                            <p class="text-purple-700">Spacesの独自価値は「永続的で、チームで共有可能、かつ専門家によって意図的にキュレーションされたコンテキストハブ」を構築できる点にあります。</p>
+                        </div>
+                    </div>
+                    <div class="card overflow-x-auto">
+                        <h3 class="subsection-title">ナレッジベースとの違いとそれぞれの最適な用途</h3>
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">項目</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Copilot Spaces</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ナレッジベース (Copilot Enterprise)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                                <tr><td class="px-4 py-2 font-semibold">作成権限</td><td class="px-4 py-2">全Copilotライセンスユーザー</td><td class="px-4 py-2">組織オーナーのみ</td></tr>
+                                <tr><td class="px-4 py-2 font-semibold">所有者</td><td class="px-4 py-2">個人 or 組織</td><td class="px-4 py-2">組織のみ</td></tr>
+                                <tr><td class="px-4 py-2 font-semibold">コンテンツタイプ</td><td class="px-4 py-2">コード、自由記述テキスト（多様）</td><td class="px-4 py-2">GitHub上のMarkdownドキュメント</td></tr>
+                                <tr><td class="px-4 py-2 font-semibold">コンテキストの扱い</td><td class="px-4 py-2">サイズ制限あり（高品質応答優先）</td><td class="px-4 py-2">サイズ制限なし（広大すぎると品質低下可能性）</td></tr>
+                                <tr><td class="px-4 py-2 font-semibold">最適な用途例</td><td class="px-4 py-2">特定タスク集中、動的情報共有、非公式知識集約、オンボーディング</td><td class="px-4 py-2">組織全体の公式ドキュメントQ&A、社内規定参照、大規模静的ドキュメント検索</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="mt-4 text-sm"><strong>Copilot Spaces:</strong> 動的でタスク指向の「作業場」。<br><strong>ナレッジベース:</strong> 静的で公式な「参照図書館」。</p>
+                    </div>
+                    <div class="card overflow-x-auto">
+                        <h3 class="subsection-title">カスタムインストラクションとの関係性</h3>
+                        <p class="mb-4">既存のカスタムインストラクション階層（パーソナル、リポジトリ、オーガニゼーション）に、Spacesの「インストラクション」がさらに細かい粒度での制御を加えます。</p>
+                        <table class="min-w-full divide-y divide-gray-200">
+                             <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">インストラクション種別</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">適用範囲</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">主な目的</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">優先順位 (高い順)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                                <tr><td class="px-4 py-2">Spaces内インストラクション</td><td class="px-4 py-2">特定Space内対話</td><td class="px-4 py-2">Space固有タスク、役割、応答スタイル定義</td><td class="px-4 py-2">1 (最優先と推測)</td></tr>
+                                <tr><td class="px-4 py-2">パーソナルカスタムインストラクション</td><td class="px-4 py-2">全Copilot Chat会話</td><td class="px-4 py-2">個人の応答スタイル、言語設定</td><td class="px-4 py-2">2</td></tr>
+                                <tr><td class="px-4 py-2">リポジトリカスタムインストラクション</td><td class="px-4 py-2">特定リポジトリコンテキスト会話</td><td class="px-4 py-2">プロジェクト固有規約、技術スタック指示</td><td class="px-4 py-2">3</td></tr>
+                                <tr><td class="px-4 py-2">オーガニゼーションカスタムインストラクション</td><td class="px-4 py-2">(Enterprise) 組織全体会話</td><td class="px-4 py-2">組織全体の標準、ポリシー指示</td><td class="px-4 py-2">4</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="mt-4 text-sm">Spacesのインストラクションは、そのSpace内対話で最も特異性の高い指示として機能すると考えられます。多層的な指示システムにより、洗練されたコンテキスト制御が可能です。</p>
+                    </div>
+                `
+            },
+            {
+                id: "challenges-future",
+                title: "現状の課題、制限事項と今後の展望",
+                navTitle: "課題と未来",
+                content: `
+                    <div class="card">
+                        <h3 class="subsection-title">パブリックプレビュー版としての留意点とフィードバックの重要性</h3>
+                        <p>現在パブリックプレビューであり、機能は未安定で今後変更・改善されます。予期せぬ動作や機能不足の可能性あり。</p>
+                        <p class="mt-2">GitHubはユーザーからの積極的なフィードバックを重視。GitHub Communityやフィードバックボタンから送信推奨。</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="subsection-title">コンテキストサイズに関する制限（判明している範囲）と対策</h3>
+                        <p class="mb-4">コンテキストサイズは「限定されている」と公式に述べられています（高品質応答のため）。具体的なトークン数やファイル数は未明示。</p>
+                        <p class="mb-2"><strong>影響:</strong> 大規模リポジトリ全体や膨大ドキュメント群を一度に含めると上限に達し、AIが全情報を参照できない可能性。</p>
+                        <p class="mb-2"><strong>対策・ベストプラクティス:</strong></p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>タスク細分化とSpace分割:</strong> 小さなサブタスクや特定目的に特化した複数Spaceに分割。</li>
+                            <li><strong>コンテキストの戦略的厳選:</strong> Space目的に真に関連性が高く、AIが効果的に解釈できるものに絞り込む。ドキュメント形式の調整も有効。</li>
+                            <li><strong>段階的な情報提供と対話活用:</strong> 初期コンテキストで対話開始、必要に応じ追加情報提供やリファレンス更新。</li>
+                        </ul>
+                        <p class="mt-4 p-3 bg-rose-50 rounded-lg text-rose-700 border-l-4 border-rose-400">「何でも入れれば良い」ではなく、「何を、どのように含め、AIに解釈させるか」という戦略的キュレーション能力が鍵。</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="subsection-title">ロードマップと期待される新機能</h3>
+                        <p class="mb-4">今後の機能拡張が期待されます。</p>
+                        <div class="flex items-center p-4 bg-cyan-50 rounded-lg">
+                            <div class="icon-placeholder bg-cyan-100 text-cyan-600">🔮</div>
+                            <div>
+                                <h4 class="font-semibold text-lg text-cyan-700">GitHub Issuesのコンテキストとしての統合:</h4>
+                                <p class="text-cyan-800">将来的に予定。Issueのバグ報告詳細、機能要求背景、議論経緯などをCopilotが直接参照し、解決策を共に検討可能に。</p>
+                            </div>
+                        </div>
+                        <p class="mt-4"><strong>Copilot Workspaceとの関連性:</strong> Issueをコンテキストに取り込めれば、かつてのCopilot Workspaceが目指したタスク中心の開発支援思想を一部継承・発展させる可能性。</p>
+                        <p class="mt-2"><strong>GitHub Nextからの示唆:</strong> GitHub NextページがSpacesのさらなる進化の方向性を示唆する可能性あり。</p>
+                        <p class="mt-4 text-sm text-gray-600">Issues統合は、Spacesを情報参照ツールから能動的な開発タスク実行支援ツールへと進化させる重要な一歩となるでしょう。</p>
+                    </div>
+                `
+            },
+            {
+                id: "conclusion",
+                title: "まとめ",
+                navTitle: "まとめ",
+                content: `
+                    <div class="card">
+                        <h3 class="subsection-title">GitHub Copilot Spacesの総括</h3>
+                        <p class="mb-4">Copilot Spacesは、情報の断片化課題に対応し、AIによる開発支援を次のレベルへ引き上げる可能性を秘めた機能です。特定タスクやプロジェクトに必要な情報を一元集約し、厳選コンテキストに基づきCopilotが的確で質の高い応答を提供します。</p>
+                        <p class="mb-4">開発者はコーディング効率化、複雑問題理解、チーム内知識共有、新規メンバーオンボーディングなどで恩恵を受けられます。AIを特定の主題に関する「専門家」へと育成し、チーム全体で活用するためのプラットフォームです。</p>
+                        <div class="p-6 bg-emerald-50 rounded-lg border-l-4 border-emerald-500">
+                            <div class="flex items-center mb-2">
+                                <div class="icon-placeholder bg-emerald-100 text-emerald-600">🌟</div>
+                                <h4 class="text-xl font-semibold text-emerald-700">ユニークな価値</h4>
+                            </div>
+                            <ul class="list-disc list-inside text-emerald-800 space-y-1">
+                                <li>インストラクション機能によるAIの振る舞いカスタマイズ</li>
+                                <li>リポジトリ最新コードを常に参照する動的コンテキスト維持</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="subsection-title">開発者への推奨事項</h3>
+                        <ol class="list-decimal list-inside space-y-4">
+                            <li>
+                                <strong>積極的な試用とフィードバック:</strong>
+                                <p class="ml-6 text-sm text-gray-600">パブリックプレビュー期間を捉え、自身のワークフローやプロジェクトに導入し評価。知見や改善要望をフィードバック。</p>
+                            </li>
+                            <li>
+                                <strong>コンテキストの質と量の最適化:</strong>
+                                <p class="ml-6 text-sm text-gray-600">量より質を重視し、関連性の高いものに厳選。インストラクションでAIの役割を明確に指示。ドキュメント形式の工夫も有効。</p>
+                            </li>
+                            <li>
+                                <strong>チームでの戦略的な活用検討:</strong>
+                                <p class="ml-6 text-sm text-gray-600">オンボーディング資料集約、複雑システム知識共有、共通規約参照など、「暗黙知」を形式知化し専門知識をスケールさせる手段として活用。</p>
+                            </li>
+                            <li>
+                                <strong>他のCopilot機能との連携の模索:</strong>
+                                <p class="ml-6 text-sm text-gray-600">Copilot Chat、カスタムインストラクション、Coding Agentなどと組み合わせ、包括的で高度なAI開発支援環境を構築。</p>
+                            </li>
+                            <li>
+                                <strong>継続的な最新情報のキャッチアップ:</strong>
+                                <p class="ml-6 text-sm text-gray-600">GitHub Blogや公式ドキュメントを定期確認し、最新機能やベストプラクティスを把握。</p>
+                            </li>
+                        </ol>
+                        <p class="mt-6 font-semibold text-indigo-700">GitHub Copilot Spacesは開発のあり方を大きく変える可能性を秘めたツールです。賢明に活用することで、開発者はより創造的で価値の高い作業に集中し、生産性と質を新たな次元へと高めることができるでしょう。</p>
+                    </div>
+                `
+            }
+        ];
+
+        const mainContent = document.getElementById('main-content');
+        const navigation = document.getElementById('navigation');
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        const pageHeader = document.getElementById('pageHeader');
+        let activeNavLink = null; // To keep track of the currently active nav link
+
+        // --- Initialize Sections and Navigation ---
+        function initializeSPA() {
+            sectionsData.forEach((section, index) => {
+                // Create navigation link
+                const navLink = document.createElement('button');
+                navLink.textContent = section.navTitle || section.title;
+                navLink.classList.add('nav-link');
+                navLink.dataset.target = section.id;
+                navLink.addEventListener('click', () => navigateTo(section.id, navLink));
+                navigation.appendChild(navLink);
+
+                // Create section container
+                const sectionContainer = document.createElement('section');
+                // sectionContainer.id = section.id; // ID will be on the title for better anchor linking
+                sectionContainer.classList.add('content-section', 'border-t', 'border-slate-200', 'first:border-t-0');
+                
+                // The title element will now serve as the scroll target
+                const titleElement = document.createElement('h2');
+                titleElement.id = section.id; // Set ID here for scrolling
+                titleElement.textContent = section.title;
+                titleElement.classList.add('section-title');
+                sectionContainer.appendChild(titleElement);
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.innerHTML = section.content;
+                sectionContainer.appendChild(contentDiv);
+
+                mainContent.appendChild(sectionContainer);
+
+                // Set the first nav link as active initially
+                if (index === 0) {
+                    navLink.classList.add('active');
+                    activeNavLink = navLink;
+                }
+            });
+        }
+
+        // --- Navigation Logic (Scroll to Section) ---
+        function navigateTo(sectionId, clickedLink) {
+            const targetElement = document.getElementById(sectionId);
+            if (targetElement) {
+                const headerOffset = pageHeader.offsetHeight + 20; // Height of sticky header + some buffer
+                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - headerOffset;
+        
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+
+                // Update active navigation link
+                if (activeNavLink) {
+                    activeNavLink.classList.remove('active');
+                }
+                clickedLink.classList.add('active');
+                activeNavLink = clickedLink;
+            }
+        }
+        
+        // --- Scroll to Top Button Logic ---
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.remove('opacity-0');
+                scrollToTopBtn.classList.add('opacity-100');
+            } else {
+                scrollToTopBtn.classList.remove('opacity-100');
+                scrollToTopBtn.classList.add('opacity-0');
+            }
+            updateActiveNavOnScroll(); // Update active nav link on scroll
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+             // Optionally, deactivate all nav links or activate the first one
+            if (activeNavLink) activeNavLink.classList.remove('active');
+            const firstNavLink = navigation.querySelector('.nav-link');
+            if (firstNavLink) {
+                firstNavLink.classList.add('active');
+                activeNavLink = firstNavLink;
+            }
+        });
+
+        // --- Update Active Navigation Link on Scroll ---
+        function updateActiveNavOnScroll() {
+            const headerOffset = pageHeader.offsetHeight + 24; // Header height + a bit more buffer
+            let currentSectionId = null;
+
+            sectionsData.forEach(section => {
+                const element = document.getElementById(section.id);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    // Check if the top of the section is within a certain range from the top of the viewport (considering header)
+                    if (rect.top <= headerOffset && rect.bottom >= headerOffset) {
+                         currentSectionId = section.id;
+                    }
+                }
+            });
+            
+            // If no section is perfectly at the top, check which one is closest from the top
+            if (!currentSectionId) {
+                let minDistance = Infinity;
+                sectionsData.forEach(section => {
+                    const element = document.getElementById(section.id);
+                    if (element) {
+                        const distance = Math.abs(element.getBoundingClientRect().top - headerOffset);
+                        if (distance < minDistance) {
+                            minDistance = distance;
+                            // Check if the section is generally visible
+                            if (element.getBoundingClientRect().bottom > headerOffset && element.getBoundingClientRect().top < window.innerHeight) {
+                                currentSectionId = section.id;
+                            }
+                        }
+                    }
+                });
+            }
+
+
+            if (currentSectionId) {
+                if (activeNavLink && activeNavLink.dataset.target !== currentSectionId) {
+                    activeNavLink.classList.remove('active');
+                }
+                const newActiveLink = navigation.querySelector(`.nav-link[data-target="${currentSectionId}"]`);
+                if (newActiveLink && newActiveLink !== activeNavLink) {
+                    newActiveLink.classList.add('active');
+                    activeNavLink = newActiveLink;
+                }
+            }
+        }
+
+
+        // --- Initialize the SPA ---
+        document.addEventListener('DOMContentLoaded', initializeSPA);
+    </script>
+</body>
+</html>
