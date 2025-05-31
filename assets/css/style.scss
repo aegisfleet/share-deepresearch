@@ -483,6 +483,13 @@ a:hover {
     color: var(--text-color);
 }
 
+/* リストのインデント調整 */
+ul, ol {
+    padding-left: 1.5rem; /* デフォルトのインデントを少し減らす */
+    margin-left: 0;
+    list-style-position: outside; /* 箇条書きの記号をリストアイテムの外側に配置 */
+}
+
 /* レスポンシブデザイン */
 @media (max-width: 600px) {
     .topic-list {
@@ -511,6 +518,12 @@ a:hover {
     }
 
     /* スマートフォン用の日付スタイルはメインのスタイルに統合 */
+
+    /* スマートフォンでのリストのインデントをさらに短く */
+    ul, ol {
+        padding-left: 1rem; /* スマートフォンではさらにインデントを減らす */
+        list-style-position: outside;
+    }
 }
 
 /* 画像のレスポンシブ対応 */
