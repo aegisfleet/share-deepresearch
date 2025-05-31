@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025年「ポイ活」市場インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F8F9FA;
+            color: #073B4C;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #118AB2, #06D6A0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .flow-chart-node {
+            border: 2px solid #118AB2;
+            background-color: #ffffff;
+            color: #073B4C;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .flow-chart-arrow {
+            position: relative;
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flow-chart-arrow::after {
+            content: '▼';
+            font-size: 1.5rem;
+            color: #FF6B6B;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-2xl md:text-3xl font-bold text-center gradient-text">2025年「ポイ活」市場インフォグラフィック</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-12">
+
+        <section id="introduction" class="mb-16 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">進化する日本の「ポイ活」</h2>
+            <p class="text-lg max-w-3xl mx-auto">
+                「ポイ活」は単なる節約術から、賢い資産形成の一環へと進化しています。2025年の市場は、金融サービスとの連携深化、「タイパ（タイムパフォーマンス）」重視、そして大規模キャンペーンの戦略的活用が鍵となります。このインフォグラフィックで最新動向を掴み、あなたのポイ活を最適化しましょう。
+            </p>
+        </section>
+
+        <section id="market-overview" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-10">市場概観：5大ポイント経済圏の勢力図</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-center">ポイ活の「ゲーミフィケーション」傾向</h3>
+                    <div class="chart-container h-64 md:h-72">
+                        <canvas id="gamificationChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-700">
+                        レポートによると、約6割のユーザーがゲームを通じたポイ活を「楽しい」「続けやすい」と回答。ポイント収集を魅力的な体験に変える「ゲーミフィケーション」は、利用者のエンゲージメントを高める重要なトレンドです。
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4 text-center">主要ポイントサービス 総合力比較</h3>
+                     <div class="chart-container h-64 md:h-72">
+                        <canvas id="ecosystemChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-700">
+                        各ポイントは独自の「経済圏」を形成。楽天市場を核とする「楽天」、決済サービスで圧倒的な「PayPay」、金融とリアル店舗網を融合した「Vポイント」など、それぞれに強みがあります。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="player-deep-dive" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-10">主要プレイヤー徹底解剖</h2>
+            <div class="space-y-12">
+
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-center text-[#E60023]">🔵 楽天ポイント：巨大EC経済圏の覇者</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h4 class="text-lg font-bold mb-3">大型セール開催スケジュール</h4>
+                            <div class="space-y-4">
+                                <div class="flow-chart-node border-[#E60023]">
+                                    <span class="font-bold">お買い物マラソン</span><br>ほぼ毎月開催
+                                </div>
+                                <div class="flow-chart-arrow"></div>
+                                <div class="flow-chart-node border-[#E60023]">
+                                    <span class="font-bold">楽天スーパーセール</span><br>年4回 (3月, 6月, 9月, 12月)
+                                </div>
+                            </div>
+                            <p class="mt-4 text-sm text-gray-700">
+                               開催時期が予測可能な大型セールに合わせて高額商品を計画的に購入するのが、楽天ポイント攻略の王道です。
+                            </p>
+                        </div>
+                        <div class="text-center">
+                            <h4 class="text-lg font-bold mb-3">SPUプログラム</h4>
+                            <div class="text-6xl md:text-8xl font-bold text-[#E60023]">最大18倍</div>
+                            <p class="mt-4 text-sm text-gray-700">
+                                楽天グループのサービスを使えば使うほど、楽天市場でのポイント還元率が飛躍的に向上するSPU（スーパーポイントアッププログラム）が最大の魅力です。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-center text-[#00B900]">🟢 PayPayポイント：決済サービス発の急成長株</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="text-center">
+                             <h4 class="text-lg font-bold mb-3">「超PayPay祭」の魅力</h4>
+                            <div class="chart-container h-64 md:h-72">
+                                <canvas id="paypayFesChart"></canvas>
+                            </div>
+                            <p class="mt-4 text-sm text-gray-700">
+                                年に数回開催される「超PayPay祭」では、最大全額還元のスクラッチくじやYahoo!ショッピングでの大幅還元など、お得な特典が満載です。
+                            </p>
+                        </div>
+                        <div>
+                             <h4 class="text-lg font-bold mb-3">ポイントアップの仕組み「PayPayステップ」</h4>
+                             <ul class="list-none space-y-3">
+                                <li class="flex items-start"><span class="bg-[#00B900] text-white rounded-full w-6 h-6 text-center mr-3 font-bold">1</span> <span>決済回数と金額の条件をクリア</span></li>
+                                <li class="flex items-start"><span class="bg-[#00B900] text-white rounded-full w-6 h-6 text-center mr-3 font-bold">2</span> <span>3つの対象サービスを利用</span></li>
+                                <li class="flex items-start"><span class="bg-[#00B900] text-white rounded-full w-6 h-6 text-center mr-3 font-bold">3</span> <span>PayPayカード連携でさらに優遇</span></li>
+                             </ul>
+                            <p class="mt-4 text-sm text-gray-700">
+                                毎月の利用状況に応じて翌月の還元率がアップ。PayPayをメイン決済に据えることで、効率的にポイントが貯まります。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-center"><span class="text-[#005BAC]">🟡</span> <span class="text-[#1A9400]">🔵</span> Vポイント：金融と生活を繋ぐハイブリッド</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h4 class="text-lg font-bold mb-3">2つの強みの融合</h4>
+                            <div class="flex justify-center items-center h-48">
+                               <div class="relative">
+                                   <div class="w-40 h-40 rounded-full bg-[#005BAC] opacity-70 flex items-center justify-center text-white font-bold text-center p-4">SMBCグループの金融サービス力</div>
+                                   <div class="w-40 h-40 rounded-full bg-[#FFCD00] opacity-70 flex items-center justify-center text-black font-bold text-center p-4 absolute top-0 left-20">旧Tポイントの広範な提携店網</div>
+                               </div>
+                            </div>
+                            <p class="mt-4 text-sm text-gray-700">
+                               金融サービスとリアル店舗網の融合がVポイント最大の強み。ID連携を行うことで、ポイントの二重取りも可能になります。
+                            </p>
+                        </div>
+                         <div class="text-center">
+                            <h4 class="text-lg font-bold mb-3">スマホのタッチ決済</h4>
+                            <div class="text-6xl md:text-8xl font-bold text-[#118AB2]">最大20%</div>
+                            <p class="mt-4 text-sm text-gray-700">
+                                対象のコンビニ・飲食店でOliveアカウントと連携したスマホのタッチ決済を利用すると、最大20%という非常に高い還元率を実現できます。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="advanced-strategy" class="mb-16">
+             <h2 class="text-3xl font-bold text-center mb-10">上級戦略とポイントの真価</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4">ポイントの価値を高める交換先</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="p-3">ポイント</th>
+                                    <th class="p-3">ANAマイル</th>
+                                    <th class="p-3">JALマイル</th>
+                                    <th class="p-3">注目交換先</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b"><td class="p-3 font-bold">楽天</td><td class="p-3">2:1</td><td class="p-3">不可</td><td class="p-3">ポイント投資</td></tr>
+                                <tr class="border-b"><td class="p-3 font-bold">V</td><td class="p-3">1:0.5-0.6</td><td class="p-3">1:0.5</td><td class="p-3">SBI証券での投資</td></tr>
+                                <tr class="border-b"><td class="p-3 font-bold">Ponta</td><td class="p-3">2:1</td><td class="p-3">2:1</td><td class="p-3 text-red-600 font-bold">ローソンお試し引換券</td></tr>
+                                <tr class="border-b"><td class="p-3 font-bold">d</td><td class="p-3">不可</td><td class="p-3">2:1</td><td class="p-3">iDキャッシュバック</td></tr>
+                                <tr><td class="p-3 font-bold">PayPay</td><td class="p-3">不可</td><td class="p-3">不可</td><td class="p-3">ポイント運用</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                     <p class="mt-4 text-sm text-gray-700">
+                        1ポイント=1円が基本ですが、Pontaポイントをローソンの「お試し引換券」に交換すると実質価値が2倍近くになることも。マイル交換は使い方次第で価値が数倍に跳ね上がります。
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4">ポイントサイト活用の流れ</h3>
+                     <div class="space-y-2">
+                        <div class="flow-chart-node">1. ポイントサイトに登録<br>(例：モッピー, ワラウ)</div>
+                        <div class="flow-chart-arrow"></div>
+                        <div class="flow-chart-node">2. 高額案件を実施<br>(クレジットカード発行, 口座開設など)</div>
+                        <div class="flow-chart-arrow"></div>
+                        <div class="flow-chart-node">3. 貯めたポイントを交換<br>(楽天, V, d, Pontaポイントなどへ)</div>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-700">
+                        ポイントサイトは、各社のポイント経済圏を繋ぐ「ハブ」として機能します。高額案件をこなすことで、一気に大量のポイントを獲得し、メインのポイントに集約できます。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="hiroshima-spotlight" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-10">地域限定！広島エリアのポイ活チャンス</h2>
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-4 text-center">2025年 広島の注目キャンペーン還元率</h3>
+                <div class="chart-container h-80">
+                    <canvas id="hiroshimaChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-gray-700">
+                    全国規模のキャンペーンだけでなく、地域限定の施策も見逃せません。広島県竹原市のPayPayキャンペーンのような自治体主導の高還元策や、ひろぎん楽天カードのような地元金融機関との提携カードは、地域住民にとって大きなメリットがあります。
+                </p>
+            </div>
+        </section>
+
+         <section id="conclusion" class="text-center bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-3xl font-bold mb-4">まとめ：あなたの最適戦略は？</h2>
+            <p class="text-lg max-w-3xl mx-auto">
+                2025年のポイ活は、一つのサービスに絞るより、自身のライフスタイルに合わせて複数のサービスを戦略的に使い分けることが成功の鍵です。「楽天市場」中心なら楽天ポイント、「QR決済」多用ならPayPayポイントなど、自分の消費行動に合った経済圏を見極めましょう。そして、大型キャンペーンの活用と、広島エリアのような地域限定情報へのアンテナを忘れずに！
+            </p>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-6 text-sm text-gray-500">
+        <p>&copy; 2025 ポイ活市場インフォグラフィック. All data based on the provided research report.</p>
+    </footer>
+
+    <script>
+        const FONT_COLOR = '#073B4C';
+        const PALETTE = {
+            red: '#FF6B6B',
+            yellow: '#FFD166',
+            green: '#06D6A0',
+            blue: '#118AB2',
+            darkBlue: '#073B4C'
+        };
+
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split('');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = '';
+                }
+                currentLine += word;
+            });
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join('');
+            } else {
+                return label;
+            }
+        };
+
+        Chart.defaults.font.family = "'Noto Sans JP', sans-serif";
+        Chart.defaults.color = FONT_COLOR;
+
+        new Chart(document.getElementById('gamificationChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['ゲームでポイ活が楽しい・続けやすい', 'その他'],
+                datasets: [{
+                    label: 'ユーザー回答',
+                    data: [60, 40],
+                    backgroundColor: [PALETTE.green, '#E0E0E0'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: { title: tooltipTitleCallback }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('ecosystemChart'), {
+            type: 'bar',
+            data: {
+                labels: ['楽天ポイント', 'PayPayポイント', 'Vポイント', 'dポイント', 'Pontaポイント'],
+                datasets: [{
+                    label: '経済圏総合力 (イメージ)',
+                    data: [90, 88, 85, 80, 78],
+                    backgroundColor: [PALETTE.red, PALETTE.green, PALETTE.yellow, PALETTE.blue, '#FFA07A'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: { title: tooltipTitleCallback }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: { display: false }
+                    },
+                    y: {
+                         ticks: {
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('paypayFesChart'), {
+            type: 'pie',
+            data: {
+                labels: ['PayPayスクラッチくじ', 'PayPayクーポン', 'Yahoo!ショッピング連携'],
+                datasets: [{
+                    data: [40, 30, 30],
+                    backgroundColor: [PALETTE.green, PALETTE.yellow, PALETTE.blue],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: { title: tooltipTitleCallback }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('hiroshimaChart'), {
+            type: 'bar',
+            data: {
+                labels: [
+                    wrapLabel('広島県竹原市 PayPayキャンペーン', 14), 
+                    wrapLabel('モトベロ広島 Vポイントキャンペーン', 14),
+                    wrapLabel('ひろぎん楽天カード 新規入会', 14)
+                ],
+                datasets: [{
+                    label: '還元率・特典内容 (最大値)',
+                    data: [20, 10, 7000], 
+                    backgroundColor: [PALETTE.green, PALETTE.yellow, PALETTE.red],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: { 
+                            title: tooltipTitleCallback,
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.dataIndex === 2) {
+                                    label += context.parsed.y.toLocaleString() + 'ポイント相当';
+                                } else {
+                                     label += context.parsed.y + '%還元';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '還元率(%) / ポイント数'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
