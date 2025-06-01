@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【図解】年金制度改革2025：あなたの未来はどう変わる？</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-box {
+            background: linear-gradient(135deg, #0496FF, #00509D);
+        }
+        .flow-arrow {
+            content: '→';
+            position: absolute;
+            top: 50%;
+            left: -2.5rem;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #027BCE;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <h1 class="text-2xl md:text-3xl font-bold text-center text-[#00487C]">【図解】年金制度改革 2025</h1>
+            <p class="text-center text-gray-600 mt-1">社会の変化に対応し、誰もが安心できる未来へ</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="intro" class="mb-12 text-center">
+            <h2 class="text-3xl font-bold text-[#00487C] mb-4">新しい時代のための年金制度へ</h2>
+            <p class="max-w-3xl mx-auto text-lg leading-relaxed">
+                少子高齢化、働き方の多様化、そして「人生100年時代」の到来。
+                日本の社会が大きく変化する中で、公的年金制度もまた、未来を見据えた大きな一歩を踏み出します。
+                2025年改正法案は、誰もが働き方に応じて公平に保障され、安心して老後を迎えられる社会を目指すための重要な改革です。
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-3 bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-[#00509D] mb-4">1. 保障の輪を広げる：短時間労働者への適用拡大</h3>
+                <p class="mb-6 text-gray-700">これまで厚生年金に加入できなかった多くの方が、新たに制度の対象となります。特に「106万円の壁」を意識して就業調整をしていた方々が、働き方に応じた保障を受けられるようになります。</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div class="flex flex-col items-center justify-center p-6 rounded-lg bg-blue-50">
+                         <div class="text-6xl font-extrabold text-[#0496FF]">約200<span class="text-3xl">万人</span></div>
+                         <p class="mt-2 text-lg font-bold text-[#00487C]">新たに厚生年金に加入</p>
+                         <p class="text-center text-gray-600 mt-1">（推計）</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg mb-2 text-center text-[#027BCE]">企業規模要件の段階的廃止</h4>
+                        <div class="relative mt-4 px-4">
+                            <div class="absolute h-1 bg-[#4BB3FD] w-full top-1/2 -translate-y-1/2"></div>
+                            <div class="relative flex justify-between items-center">
+                                <div class="text-center">
+                                    <div class="w-6 h-6 rounded-full bg-[#00487C] border-4 border-white mx-auto"></div>
+                                    <p class="mt-2 text-sm font-bold">~2022</p><p class="text-xs">501人~</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-6 h-6 rounded-full bg-[#00487C] border-4 border-white mx-auto"></div>
+                                    <p class="mt-2 text-sm font-bold">2022.10~</p><p class="text-xs">101人~</p>
+                                </div>
+                                <div class="text-center">
+                                    <div class="w-6 h-6 rounded-full bg-[#00487C] border-4 border-white mx-auto"></div>
+                                    <p class="mt-2 text-sm font-bold">2024.10~</p><p class="text-xs">51人~</p>
+                                </div>
+                                 <div class="text-center">
+                                    <div class="w-6 h-6 rounded-full bg-[#0496FF] border-4 border-white mx-auto"></div>
+                                    <p class="mt-2 text-sm font-bold text-[#0496FF]">最終的に</p><p class="text-xs text-[#0496FF]">全企業へ</p>
+                                </div>
+                            </div>
+                        </div>
+                         <p class="text-center mt-4 text-gray-600">さらに、これまで適用が除外されていた個人事業所の<strong class="text-[#027BCE]">非適用業種（農業、理美容、飲食など）も解消</strong>され、より多くの人が保障の対象となります。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-1 bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-[#00509D] mb-4">2. 働き続ける意欲を応援</h3>
+                <p class="mb-6 text-gray-700">65歳以降も働きながら年金を受け取る方の収入基準が緩和されます。これにより、年金の支給停止を気にせず、より柔軟に働くことが可能になります。</p>
+                <div class="chart-container">
+                    <canvas id="zaishokuChart"></canvas>
+                </div>
+                <p class="text-center text-gray-600 mt-4">基準額の引き上げにより、<strong class="text-[#027BCE]">約20万人が新たに年金全額を受給可能</strong>になると試算されています。</p>
+            </div>
+
+            <div class="md:col-span-1 bg-white rounded-xl shadow-lg p-6">
+                 <h3 class="text-2xl font-bold text-[#00509D] mb-4">3. 公平性を高める遺族年金</h3>
+                <p class="mb-6 text-gray-700">遺族厚生年金の男女差を是正し、現代の家族の形に合わせた制度に変わります。子のいない配偶者への給付は、経済的自立への移行期間として5年間の有期給付が基本となります。</p>
+                <div class="space-y-4">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-[#027BCE]">男女差の是正</h4>
+                        <p>これまで対象外だった夫も、妻と同様の要件で受給可能に。</p>
+                    </div>
+                     <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-[#027BCE]">新たな支援措置</h4>
+                        <p>有期給付への移行を支えるため、「有期給付加算」や「死亡時分割」制度が創設されます。</p>
+                    </div>
+                </div>
+                 <p class="text-center text-gray-600 mt-4">受給要件にあった<strong class="text-[#027BCE]">年収850万円の上限も撤廃</strong>され、より多くの人が対象となります。</p>
+            </div>
+            
+            <div class="md:col-span-1 bg-white rounded-xl shadow-lg p-6">
+                 <h3 class="text-2xl font-bold text-[#00509D] mb-4">4. 能力に応じた負担と給付へ</h3>
+                <p class="mb-6 text-gray-700">高所得者の標準報酬月額の上限が引き上げられます。これは、負担能力に応じた公平な保険料負担を求めるとともに、将来の年金給付を手厚くするための措置です。</p>
+                <div class="chart-container">
+                    <canvas id="houshuChart"></canvas>
+                </div>
+                <p class="text-center text-gray-600 mt-4">報酬が高い方は保険料が増加しますが、その分、<strong class="text-[#027BCE]">将来受け取る年金額も増額</strong>されます。</p>
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-3 bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-[#00509D] mb-4">5. 将来の年金を守るための仕組み</h3>
+                 <p class="mb-6 text-gray-700">年金制度の持続可能性を高め、将来世代の給付水準を確保するための重要な措置が検討されています。特に、国民年金（基礎年金）の給付水準の低下を抑える仕組みが法案に盛り込まれました。</p>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-blue-50 p-6 rounded-lg">
+                    <div>
+                        <h4 class="font-bold text-xl text-[#027BCE] mb-2">基礎年金の「底上げ措置」</h4>
+                        <p>厚生年金の積立金を活用し、基礎年金の給付額の目減りを抑制する期間を短縮することを目指します。これにより、基礎年金が主たる収入源となる自営業者や非正規雇用者などの将来の年金水準が改善されることが期待されます。</p>
+                    </div>
+                     <div class="relative text-center">
+                        <p class="font-bold mb-2">マクロ経済スライド調整期間のイメージ</p>
+                        <div class="space-y-3 text-left">
+                            <div>
+                                <p class="text-sm">基礎年金</p>
+                                <div class="w-full h-6 bg-gray-300 rounded-full"><div class="w-2/3 h-6 bg-[#00509D] rounded-full"></div></div>
+                            </div>
+                            <div>
+                                <p class="text-sm">厚生年金</p>
+                                <div class="w-full h-6 bg-gray-300 rounded-full"><div class="w-1/3 h-6 bg-[#4BB3FD] rounded-full"></div></div>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-sm text-gray-600">調整期間を一致させることで、基礎年金の早期安定化を図ります。（2029年の財政検証で検討）</p>
+                     </div>
+                 </div>
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-1 bg-white rounded-xl shadow-lg p-6 flex flex-col">
+                <h3 class="text-2xl font-bold text-[#00509D] mb-4">6. 個人の選択肢を広げるiDeCo</h3>
+                <p class="mb-6 text-gray-700 flex-grow">公的年金に加えて、個人の自助努力による資産形成の重要性が高まっています。iDeCo（個人型確定拠出年金）の加入可能年齢が引き上げられ、より長く老後に備えることができるようになります。</p>
+                <div class="flex items-center justify-around p-8 bg-blue-50 rounded-lg">
+                    <div class="text-center">
+                        <p class="text-lg text-gray-600">現行</p>
+                        <p class="text-4xl font-bold text-[#027BCE]">60<span class="text-xl">歳未満</span></p>
+                    </div>
+                    <div class="text-4xl font-bold text-[#00487C] mx-4">→</div>
+                    <div class="text-center">
+                        <p class="text-lg text-gray-600">改正後</p>
+                        <p class="text-4xl font-bold text-[#0496FF]">70<span class="text-xl">歳未満</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-[#00509D] mb-4">改革のロードマップ：施行時期一覧</h3>
+                <p class="mb-6 text-gray-700">今回の年金制度改革は、段階的に施行されます。主な項目のスケジュールは以下の通りです。</p>
+                <div class="flow-root">
+                    <ul class="-mb-8">
+                        <li>
+                            <div class="relative pb-8">
+                                <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-[#4BB3FD]" aria-hidden="true"></span>
+                                <div class="relative flex space-x-3">
+                                    <div><span class="h-8 w-8 rounded-full bg-[#0496FF] flex items-center justify-center text-white font-bold">’26</span></div>
+                                    <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                        <div><p class="text-md text-gray-800 font-bold">在職老齢年金の見直し</p></div>
+                                        <div class="text-right text-sm whitespace-nowrap text-gray-500">令和8年4月</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                             <div class="relative pb-8">
+                                <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-[#4BB3FD]" aria-hidden="true"></span>
+                                <div class="relative flex space-x-3">
+                                    <div><span class="h-8 w-8 rounded-full bg-[#027BCE] flex items-center justify-center text-white font-bold">’27</span></div>
+                                    <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                        <div><p class="text-md text-gray-800 font-bold">標準報酬月額上限の引上げ (段階開始)</p></div>
+                                        <div class="text-right text-sm whitespace-nowrap text-gray-500">令和9年9月</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                         <li>
+                             <div class="relative pb-8">
+                                <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-[#4BB3FD]" aria-hidden="true"></span>
+                                <div class="relative flex space-x-3">
+                                    <div><span class="h-8 w-8 rounded-full bg-[#027BCE] flex items-center justify-center text-white font-bold">’28</span></div>
+                                    <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                        <div><p class="text-md text-gray-800 font-bold">遺族年金・加給年金の見直し</p></div>
+                                        <div class="text-right text-sm whitespace-nowrap text-gray-500">令和10年4月</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                             <div class="relative pb-8">
+                                <div class="relative flex space-x-3">
+                                    <div><span class="h-8 w-8 rounded-full bg-[#00509D] flex items-center justify-center text-white font-bold">’35</span></div>
+                                    <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                        <div><p class="text-md text-gray-800 font-bold">短時間労働者の企業規模要件撤廃完了</p></div>
+                                        <div class="text-right text-sm whitespace-nowrap text-gray-500">令和17年10月</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-[#00487C] text-white mt-12">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p>&copy; 2025 年金制度改革インフォグラフィック</p>
+            <p class="text-sm text-blue-200 mt-1">本コンテンツは公開情報に基づき作成されたものであり、特定の個人への助言を目的とするものではありません。</p>
+        </div>
+    </footer>
+
+    <script>
+        function wrapLabel(str, maxWidth = 16) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split('');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine += word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            return Array.isArray(label) ? label.join('') : label;
+        };
+        
+        const brilliantBlues = {
+            dark: '#00487C',
+            mediumDark: '#00509D',
+            bright: '#0496FF',
+            light: '#4BB3FD',
+            accent: '#027BCE'
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createZaishokuChart();
+            createHoushuChart();
+        });
+
+        function createZaishokuChart() {
+            const ctx = document.getElementById('zaishokuChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['現行制度', '改正後'],
+                    datasets: [{
+                        label: '月額収入基準',
+                        data: [50, 62],
+                        backgroundColor: [brilliantBlues.light, brilliantBlues.bright],
+                        borderColor: [brilliantBlues.accent, brilliantBlues.dark],
+                        borderWidth: 2,
+                        borderRadius: 5,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '万円'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: '在職老齢年金 支給停止基準額の比較',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createHoushuChart() {
+            const ctx = document.getElementById('houshuChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['現在', '2027年9月', '2028年9月', '2029年9月'],
+                    datasets: [{
+                        label: '標準報酬月額の上限',
+                        data: [65, 68, 71, 75],
+                        fill: false,
+                        borderColor: brilliantBlues.bright,
+                        backgroundColor: brilliantBlues.bright,
+                        tension: 0.1,
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        pointBackgroundColor: brilliantBlues.dark
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: '万円'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: '標準報酬月額上限の段階的引上げ',
+                             font: {
+                                size: 16
+                            }
+                        },
+                         tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
