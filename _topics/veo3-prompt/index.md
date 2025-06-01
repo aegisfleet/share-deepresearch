@@ -4,7 +4,7 @@ title: "AIビデオ生成技術の最前線：Google Veo 3 徹底解剖"
 date: 2025-05-26
 prompt: "GoogleのVeo3を使用する際のプロンプトの例を知りたい。特に実写やアニメ調など、映像の質に影響を与えるものをまとめて欲しい。"
 category: "ai"
-tags: [Veo 3]
+tags: [AIモデル]
 audio: "/share-deepresearch/assets/audio/veo3-prompt.mp3"
 supplementary_materials:
   - title: "AIビデオ生成技術の最前線：Google Veo 3 徹底解剖"
