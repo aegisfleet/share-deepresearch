@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>退職代行サービス業界トレンド・市場調査インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-step {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        .flowchart-step:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 1.25rem;
+            top: 2.5rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background-color: #ff7c43;
+        }
+        .flowchart-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            background-color: #ff7c43;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-white shadow-md p-6 text-center">
+        <h1 class="text-4xl font-bold text-[#003f5c]">退職代行サービス インフォグラフィック</h1>
+        <p class="text-lg mt-2 text-[#2f4b7c]">業界トレンドと市場の徹底分析</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="why-use" class="mb-12">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#003f5c] mb-4 text-center">なぜ、退職代行は選ばれるのか？</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                    退職代行サービスの需要は、単なる個人の利便性追求ではなく、現代の労働環境が抱える根深い問題の現れです。多くの労働者が、自力での退職が困難な状況に置かれています。以下のグラフは、利用者が退職代行を選ぶに至った主な理由を示しています。
+                </p>
+                <div class="chart-container">
+                    <canvas id="reasonsChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-4">
+                    職場の雰囲気や上司との関係性、そして過度な引き止めが、退職の大きな障壁となっていることが分かります。
+                </p>
+            </div>
+        </section>
+
+        <section id="provider-types" class="mb-12">
+            <h2 class="text-3xl font-bold text-[#003f5c] mb-4 text-center">あなたのための3つの選択肢</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                退職代行サービスは、運営元によって「できること」が大きく異なります。ご自身の状況に合わせて、最適なパートナーを選ぶことが重要です。ここでは、3つの主要なタイプを比較します。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col items-center text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-6xl mb-4">🏢</div>
+                    <h3 class="text-2xl font-bold text-[#665191] mb-2">民間企業</h3>
+                    <p class="text-gray-600 mb-4">「伝える」ことに特化した、手軽な選択肢。</p>
+                    <ul class="text-left space-y-2 w-full">
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✅</span> 退職意思の伝達</li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✅</span> 退職届の提出代行</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2">❌</span> 会社との交渉 (有休、退職日など)</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2">❌</span> 未払い給与などの金銭請求</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2">❌</span> 法的トラブルへの対応</li>
+                    </ul>
+                    <p class="mt-4 font-bold text-lg text-[#665191]">費用目安: 2〜3万円</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col items-center text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-6xl mb-4">🤝</div>
+                    <h3 class="text-2xl font-bold text-[#d45087] mb-2">労働組合</h3>
+                    <p class="text-gray-600 mb-4">「交渉」まで可能な、バランスの取れた選択肢。</p>
+                    <ul class="text-left space-y-2 w-full">
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✅</span> 退職意思の伝達</li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✅</span> 団体交渉権に基づく各種交渉</li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✅</span> 有給休暇・未払い賃金の交渉</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2">❌</span> 慰謝料請求の交渉</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2">❌</span> 訴訟などの法的代理</li>
+                    </ul>
+                     <p class="mt-4 font-bold text-lg text-[#d45087]">費用目安: 2.5〜3万円</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col items-center text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-6xl mb-4">⚖️</div>
+                    <h3 class="text-2xl font-bold text-[#ff7c43] mb-2">弁護士</h3>
+                    <p class="text-gray-600 mb-4">「法的対応」まで可能な、最も強力な選択肢。</p>
+                    <ul class="text-left space-y-2 w-full">
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✅</span> 退職に関する全ての業務</li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✅</span> 全ての交渉事 (退職金、慰謝料など)</li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✅</span> 未払い残業代・慰謝料の請求</li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✅</span> 損害賠償請求への対応</li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">✅</span> 訴訟代理</li>
+                    </ul>
+                    <p class="mt-4 font-bold text-lg text-[#ff7c43]">費用目安: 5万円〜 (+成功報酬)</p>
+                </div>
+            </div>
+             <div class="mt-8 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md shadow-lg" role="alert">
+                <p class="font-bold">重要: 「非弁行為」にご注意ください</p>
+                <p>弁護士資格のない民間企業が報酬目的で交渉を行うことは法律で禁じられています（非弁行為）。「弁護士監修」という言葉だけで、その業者が交渉権限を持つわけではありません。トラブルを避けるため、依頼内容は運営元の権限の範囲内か必ず確認しましょう。</p>
+            </div>
+        </section>
+
+        <section id="cost-comparison" class="mb-12">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#003f5c] mb-4 text-center">安心の値段は？費用比較</h2>
+                 <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                    退職代行の費用は、提供されるサービスの専門性と法的権限に比例します。以下のグラフで、運営元ごとの一般的な料金相場を確認し、ご自身の予算と必要なサービスレベルを照らし合わせてみましょう。
+                </p>
+                <div class="chart-container">
+                    <canvas id="costChart"></canvas>
+                </div>
+                 <p class="text-center text-sm text-gray-500 mt-4">
+                    弁護士費用は高めですが、未払い賃金などを回収できた場合、成功報酬が発生することがあります。
+                </p>
+            </div>
+        </section>
+
+        <section id="process-flow" class="mb-12">
+            <h2 class="text-3xl font-bold text-[#003f5c] mb-4 text-center">退職までの簡単ステップ</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                退職代行サービスの利用プロセスは非常にシンプルです。依頼から退職完了まで、あなたは会社と直接やり取りする必要はありません。
+            </p>
+            <div class="max-w-2xl mx-auto">
+                <div class="flowchart-step mb-8">
+                    <div class="flowchart-number">1</div>
+                    <div class="bg-white rounded-lg shadow-lg p-4">
+                        <h3 class="font-bold text-lg text-[#a05195]">相談・見積もり</h3>
+                        <p>LINEやメールで気軽に相談。サービス内容と料金を確認します。</p>
+                    </div>
+                </div>
+                <div class="flowchart-step mb-8">
+                    <div class="flowchart-number">2</div>
+                    <div class="bg-white rounded-lg shadow-lg p-4">
+                        <h3 class="font-bold text-lg text-[#a05195]">契約・支払い</h3>
+                        <p>内容に納得したら契約。クレジットカードや銀行振込で支払います。</p>
+                    </div>
+                </div>
+                <div class="flowchart-step mb-8">
+                    <div class="flowchart-number">3</div>
+                    <div class="bg-white rounded-lg shadow-lg p-4">
+                        <h3 class="font-bold text-lg text-[#a05195]">ヒアリング</h3>
+                        <p>担当者と打ち合わせ。退職希望日や有休消化の意向などを伝えます。</p>
+                    </div>
+                </div>
+                <div class="flowchart-step mb-8">
+                    <div class="flowchart-number">4</div>
+                    <div class="bg-white rounded-lg shadow-lg p-4">
+                        <h3 class="font-bold text-lg text-[#d45087]">業者から会社へ連絡</h3>
+                        <p>指定日時に業者が会社へ連絡。あなたは待つだけでOKです。</p>
+                    </div>
+                </div>
+                <div class="flowchart-step mb-8">
+                    <div class="flowchart-number">5</div>
+                    <div class="bg-white rounded-lg shadow-lg p-4">
+                        <h3 class="font-bold text-lg text-[#f95d6a]">各種手続き</h3>
+                        <p>退職届や会社からの貸与品（社員証など）を郵送で返却します。</p>
+                    </div>
+                </div>
+                <div class="flowchart-step">
+                    <div class="flowchart-number">6</div>
+                    <div class="bg-white rounded-lg shadow-lg p-4">
+                        <h3 class="font-bold text-lg text-[#ff7c43]">退職完了＆アフターサポート</h3>
+                        <p>離職票など重要書類を受け取り、次のステップへ。転職支援などのサポートも。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="after-support" class="mb-12">
+            <h2 class="text-3xl font-bold text-[#003f5c] mb-4 text-center">辞めた後も安心？アフターサポート</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                競争が激化する市場で、多くの業者が退職後のサポートを充実させています。「辞めさせる」だけでなく、「次のステップへ繋げる」付加価値が注目されています。
+            </p>
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-xl p-6 text-center">
+                    <div class="text-6xl mb-4">💰</div>
+                    <h3 class="text-xl font-bold text-[#665191]">失業保険サポート</h3>
+                    <p>複雑な失業保険の申請手続きに関するアドバイスや、書類準備のサポートを受けられます。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 text-center">
+                    <div class="text-6xl mb-4">👔</div>
+                    <h3 class="text-xl font-bold text-[#d45087]">転職・再就職支援</h3>
+                    <p>提携エージェントの紹介や、履歴書添削、面接対策などを無料で提供している場合があります。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 text-center">
+                    <div class="text-6xl mb-4">📄</div>
+                    <h3 class="text-xl font-bold text-[#ff7c43]">書類の催促など</h3>
+                    <p>会社から離職票などが届かない場合に、業者から催促を代行してくれるサービスもあります。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pros-cons" class="mb-12">
+            <h2 class="text-3xl font-bold text-[#003f5c] mb-4 text-center">メリット・デメリットと潜在リスク</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                退職代行は強力なツールですが、利用する前に光と影の両面を理解しておくことが重要です。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-green-800 mb-4">👍 メリット</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start"><span class="mr-2">✅</span> 会社と直接話さずに済む精神的負担の軽減。</li>
+                        <li class="flex items-start"><span class="mr-2">✅</span> 執拗な引き止めや嫌がらせを回避できる。</li>
+                        <li class="flex items-start"><span class="mr-2">✅</span> 即日退職も可能（有給消化等を含む）。</li>
+                        <li class="flex items-start"><span class="mr-2">✅</span> 高い退職成功率で、確実に辞められる。</li>
+                        <li class="flex items-start"><span class="mr-2">✅</span> 時間と手間を節約し、心身の回復に専念できる。</li>
+                    </ul>
+                </div>
+                <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold text-red-800 mb-4">👎 デメリットと注意点</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start"><span class="mr-2">⚠️</span> 本来無料の手続きに数万円の費用が発生。</li>
+                        <li class="flex items-start"><span class="mr-2">⚠️</span> 職場の上司や同僚との関係が悪化する可能性。</li>
+                        <li class="flex items-start"><span class="mr-2">⚠️</span> 悪質な業者を選んでしまうリスク。</li>
+                        <li class="flex items-start"><span class="mr-2">⚠️</span> 会社から直接連絡が来る可能性もゼロではない。</li>
+                        <li class="flex items-start"><span class="mr-2">⚠️</span> 民間企業では法的トラブルに対応できない。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-to-choose">
+            <h2 class="text-3xl font-bold text-[#003f5c] mb-4 text-center">信頼できる業者の選び方</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                後悔しないために、業者選びは慎重に行いましょう。以下のチェックリストを活用して、悪質な業者を避け、あなたに最適なサービスを見つけてください。
+            </p>
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <ul class="space-y-4">
+                    <li class="flex items-center"><span class="text-2xl mr-4">1️⃣</span> <strong>運営元は明確か？</strong>（民間、労働組合、弁護士）自分の希望と合っているか。</li>
+                    <li class="flex items-center"><span class="text-2xl mr-4">2️⃣</span> <strong>料金体系は透明か？</strong>追加料金の条件は明記されているか。</li>
+                    <li class="flex items-center"><span class="text-2xl mr-4">3️⃣</span> <strong>実績は十分か？</strong>運営歴や利用者数、成功率が公開されているか。</li>
+                    <li class="flex items-center"><span class="text-2xl mr-4">4️⃣</span> <strong>口コミや評判は悪くないか？</strong>複数の情報源で確認する。</li>
+                    <li class="flex items-center"><span class="text-2xl mr-4">5️⃣</span> <strong>相談時の対応は丁寧か？</strong>質問に誠実に答えてくれるか。</li>
+                    <li class="flex items-center"><span class="text-2xl mr-4">6️⃣</span> <strong>法的遵守はされているか？</strong>民間企業が交渉を謳っていないか。</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-6 bg-[#003f5c] text-white mt-8">
+        <p>本インフォグラフィックは、提供された調査レポートに基づき作成されたものです。</p>
+        <p class="text-sm opacity-75">© 2025 SPA Infographic. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const wrapLabel = (label, maxWidth) => {
+                if (typeof label !== 'string' || label.length <= maxWidth) {
+                    return label;
+                }
+                const words = label.split('');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > maxWidth) {
+                        lines.push(currentLine);
+                        currentLine = '';
+                    }
+                    currentLine += word;
+                });
+                lines.push(currentLine);
+                return lines;
+            };
+
+            const getTooltipTitle = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join('');
+                } else {
+                    return label;
+                }
+            };
+            
+            const sharedTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: getTooltipTitle
+                        }
+                    }
+                }
+            };
+            
+            const brilliantBluesPalette = ['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600'];
+
+            const reasonsCtx = document.getElementById('reasonsChart');
+            if(reasonsCtx) {
+                const rawLabels = ['職場の雰囲気が悪く言い出しにくい', '上司に引き止められる・話を逸らされる', '人手不足で強く引き止められそう', '労働環境への不満（残業・賃金など）', '退職を伝えることへの心理的恐怖'];
+                const wrappedLabels = rawLabels.map(label => wrapLabel(label, 16));
+
+                new Chart(reasonsCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: wrappedLabels,
+                        datasets: [{
+                            label: '利用理由',
+                            data: [35, 28, 22, 18, 15],
+                            backgroundColor: brilliantBluesPalette,
+                            borderColor: brilliantBluesPalette.map(color => color + 'B3'),
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...sharedTooltipOptions,
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: '回答者割合（%）'
+                                }
+                            }
+                        },
+                        plugins: {
+                             ...sharedTooltipOptions.plugins,
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            const costCtx = document.getElementById('costChart');
+            if (costCtx) {
+                 new Chart(costCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['民間企業', '労働組合', '弁護士'],
+                        datasets: [
+                        {
+                            label: '最低料金目安 (円)',
+                            data: [20000, 25000, 50000],
+                            backgroundColor: '#a05195',
+                        },
+                        {
+                            label: '最高料金目安 (円)',
+                            data: [30000, 30000, 100000],
+                             backgroundColor: '#ff7c43',
+                        }
+                        ]
+                    },
+                    options: {
+                        ...sharedTooltipOptions,
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return value / 10000 + '万円';
+                                    }
+                                },
+                                title: {
+                                    display: true,
+                                    text: '料金'
+                                }
+                            }
+                        },
+                        plugins: {
+                            ...sharedTooltipOptions.plugins,
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                ...sharedTooltipOptions.plugins.tooltip,
+                                callbacks: {
+                                    ...sharedTooltipOptions.plugins.tooltip.callbacks,
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(context.parsed.y);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
