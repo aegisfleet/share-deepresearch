@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS CI/CDインフォグラフィック：CodePipeline & CodeBuild 問題解決ガイド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-chart-node {
+            border: 2px solid #42A5F5;
+            background-color: #BBDEFB;
+            color: #0D47A1;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .flow-chart-arrow {
+            position: relative;
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1976D2;
+            margin: 0.5rem 0;
+            line-height: 1;
+        }
+        .flow-chart-arrow-horizontal {
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 4rem;
+            transform: translateY(-50%);
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1976D2;
+        }
+        .flow-chart-loop {
+            position: absolute;
+            right: -3rem;
+            top: 50%;
+            width: 3rem;
+            height: 80%;
+            border: 3px solid #FF5252;
+            border-left: none;
+            border-radius: 0 1rem 1rem 0;
+            transform: translateY(-50%);
+        }
+        .flow-chart-loop::after {
+            content: '▼';
+            position: absolute;
+            left: -0.75rem;
+            bottom: -0.2rem;
+            font-size: 1.5rem;
+            color: #FF5252;
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+<body class="bg-[#BBDEFB] text-[#0D47A1]">
+
+    <header class="bg-[#0D47A1] text-white p-6 text-center shadow-lg">
+        <h1 class="text-3xl md:text-4xl font-bold mb-2">AWS CI/CD Pitfalls & Best Practices</h1>
+        <p class="text-lg text-[#BBDEFB]">CodePipelineとCodeBuildの一般的な問題と解決策のビジュアルガイド</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="common-pitfalls" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#0D47A1]">セクション1：一般的な落とし穴（「あるあるネタ」）</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold mb-4 text-[#1976D2]">📊 `buildspec.yml` の設定ミス</h3>
+                    <p class="mb-4 text-gray-600">ビルド失敗の最も一般的な原因は`buildspec.yml`にあります。構文エラー、フェーズの誤解、パス指定ミスなどが頻発します。以下のグラフは、典型的なエラーの内訳を示しています。</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="buildspecErrorsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold mb-4 text-[#1976D2]">🛡️ IAM権限の迷路</h3>
+                    <p class="mb-4 text-gray-600">サービスロールの権限不足は、診断が難しいエラーを引き起こします。CodeBuildはS3、ECR、KMSなど多くのサービスと連携するため、最小権限の原則を適用しつつ、必要な権限を正確に付与することが重要です。</p>
+                    <div class="p-4 bg-blue-50 rounded-lg flex-grow flex flex-col items-center justify-center">
+                        <div class="text-center font-bold text-lg p-3 bg-[#42A5F5] text-white rounded-full shadow-md">CodeBuild Role</div>
+                        <div class="grid grid-cols-3 gap-4 w-full my-4">
+                            <div class="text-center text-4xl">↓</div>
+                            <div class="text-center text-4xl">↓</div>
+                            <div class="text-center text-4xl">↓</div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 w-full">
+                           <div class="text-center p-2 bg-white border-2 border-[#42A5F5] rounded shadow">S3<br><span class="text-red-500 font-bold">⚠️不足</span></div>
+                           <div class="text-center p-2 bg-white border-2 border-[#42A5F5] rounded shadow">ECR</div>
+                           <div class="text-center p-2 bg-white border-2 border-[#42A5F5] rounded shadow">KMS</div>
+                           <div class="text-center p-2 bg-white border-2 border-[#42A5F5] rounded shadow">CloudWatch</div>
+                           <div class="text-center p-2 bg-white border-2 border-[#42A5F5] rounded shadow">ECS<br><span class="text-red-500 font-bold">⚠️不足</span></div>
+                           <div class="text-center p-2 bg-white border-2 border-[#42A5F5] rounded shadow">SecretsManager</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold mb-4 text-[#1976D2]">💥 ビルドステージの崩壊</h3>
+                     <p class="mb-4 text-gray-600">「ローカルでは動くのに」はCI/CDの常套句です。CodeBuild環境の特性を理解しないと、依存関係の解決、Dockerイメージのアーキテクチャ不一致、ネットワーク問題でビルドが失敗します。</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="buildFailuresChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col justify-around">
+                    <h3 class="text-2xl font-bold mb-4 text-[#1976D2]">❗ トリガーとアーティファクト</h3>
+                    <p class="mb-4 text-gray-600">パイプラインが開始しない、またはステージ間でデータが渡らない問題も頻発します。見落としがちな重要ポイントを確認しましょう。</p>
+                    <div class="bg-[#FFECB3] border-l-4 border-[#FFC107] text-[#6D4C41] p-4 rounded-md mb-4">
+                        <div class="font-bold text-lg">S3ソースがトリガーされない？</div>
+                        <p>S3バケットのCloudTrailデータイベントが有効になっているか確認してください。これが無効だと、CodePipelineは変更を検知できません。</p>
+                    </div>
+                    <div class="bg-[#FFECB3] border-l-4 border-[#FFC107] text-[#6D4C41] p-4 rounded-md">
+                        <div class="font-bold text-lg">デプロイがタスク定義を見つけられない？</div>
+                        <p>CodeDeployToECSアクションの入力アーティファクトは3MBのサイズ制限があります。タスク定義ファイルが正しく含まれているか、サイズを超えていないか確認してください。</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="complex-issues" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#0D47A1]">セクション2：解決困難な問題</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col md:col-span-2 lg:col-span-1">
+                    <h3 class="text-2xl font-bold mb-4 text-[#1976D2]">📉 断続的な失敗</h3>
+                    <p class="mb-4 text-gray-600">最も厄介なのが、時々しか発生しない「不安定なビルド」です。これは一時的なネットワーク問題やAPIスロットリングが原因のことが多く、再現が困難です。ビルド安定性の推移を監視することが重要になります。</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="flakyBuildsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 md:col-span-2 lg:col-span-2">
+                    <h3 class="text-2xl font-bold mb-4 text-[#1976D2]">🔄 CloudFormationロールバックの迷宮</h3>
+                    <p class="mb-4 text-gray-600">CloudFormationのデプロイが失敗するとロールバックが試みられますが、このロールバック自体が失敗することがあります。外部でのリソース変更やカスタムリソースのタイムアウトが原因で、`UPDATE_ROLLBACK_FAILED`という絶望的な状態に陥ります。</p>
+                     <div class="mt-6 flex flex-col items-center justify-center space-y-2">
+                        <div class="flow-chart-node w-48">UPDATE_IN_PROGRESS</div>
+                        <div class="flow-chart-arrow">↓</div>
+                        <div class="flow-chart-node w-48 bg-red-200 border-red-500 text-red-800">UPDATE_FAILED</div>
+                        <div class="flow-chart-arrow">↓</div>
+                        <div class="relative w-48">
+                            <div class="flow-chart-node w-full">UPDATE_ROLLBACK_IN_PROGRESS</div>
+                            <div class="flow-chart-loop"></div>
+                        </div>
+                        <div class="flow-chart-arrow">↓</div>
+                        <div class="flow-chart-node w-48 bg-red-200 border-red-500 text-red-800">UPDATE_ROLLBACK_FAILED</div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 md:col-span-2 lg:col-span-3">
+                    <h3 class="text-2xl font-bold mb-4 text-[#1976D2]">⏱️ パフォーマンスのボトルネック</h3>
+                    <p class="mb-4 text-gray-600">プロジェクトが大規模になると、ビルド時間が長くなり、開発サイクルが遅延します。キャッシュの活用、並列実行、適切なインスタンスタイプの選択により、パイプラインの実行時間は大幅に短縮可能です。</p>
+                    <div class="chart-container flex-grow" style="max-width: none; height: 400px;">
+                        <canvas id="pipelinePerformanceChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="troubleshooting" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#0D47A1]">セクション3：高度なトラブルシューティングツールキット</h2>
+            <div class="bg-white rounded-lg shadow-xl p-8">
+                <p class="text-center text-gray-600 mb-8">問題が発生したら、系統的なアプローチで原因を特定します。単純なログ確認から、インタラクティブなデバッグまで、段階的に深掘りしていきましょう。</p>
+                <ol class="space-y-6">
+                    <li class="flex items-center">
+                        <span class="flex items-center justify-center text-3xl bg-[#42A5F5] text-white rounded-full w-16 h-16 mr-6 shadow-md">📜</span>
+                        <div>
+                            <h4 class="text-xl font-bold text-[#1976D2]">1. CloudWatch Logsの精査</h4>
+                            <p class="text-gray-600">まずは基本です。CodeBuildのビルドログを詳細に確認し、エラーメッセージや失敗したコマンドを特定します。CloudWatch Logs Insightsを使えば、大量のログから効率的に情報を抽出できます。</p>
+                        </div>
+                    </li>
+                     <li class="flex items-center">
+                        <span class="flex items-center justify-center text-3xl bg-[#42A5F5] text-white rounded-full w-16 h-16 mr-6 shadow-md">🔍</span>
+                        <div>
+                            <h4 class="text-xl font-bold text-[#1976D2]">2. CloudTrailでのAPI監査</h4>
+                            <p class="text-gray-600">権限エラー(`AccessDenied`)が疑われる場合は、CloudTrailでAPI呼び出し履歴を確認します。どのサービスへのどのAPIコールが失敗しているかを正確に把握できます。</p>
+                        </div>
+                    </li>
+                     <li class="flex items-center">
+                        <span class="flex items-center justify-center text-3xl bg-[#42A5F5] text-white rounded-full w-16 h-16 mr-6 shadow-md">🔌</span>
+                        <div>
+                            <h4 class="text-xl font-bold text-[#1976D2]">3. Session Managerでのライブデバッグ</h4>
+                            <p class="text-gray-600">実行中のビルドコンテナに直接接続し、リアルタイムでデバッグします。環境変数を確認したり、スクリプトを一行ずつ実行したりと、非常に強力な手法です。</p>
+                        </div>
+                    </li>
+                     <li class="flex items-center">
+                        <span class="flex items-center justify-center text-3xl bg-[#42A5F5] text-white rounded-full w-16 h-16 mr-6 shadow-md">💻</span>
+                        <div>
+                            <h4 class="text-xl font-bold text-[#1976D2]">4. ローカルCodeBuildエージェントでの事前検証</h4>
+                            <p class="text-gray-600">クラウドにプッシュする前に、ローカル環境でビルドをシミュレートします。`buildspec.yml`の構文チェックやスクリプトのデバッグを迅速に行え、コストと時間を節約できます。</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="best-practices">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#0D47A1]">セクション4：レジリエントなパイプラインのためのベストプラクティス</h2>
+             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-xl p-6 text-center">
+                    <div class="text-6xl mb-4">⚙️</div>
+                    <h4 class="text-xl font-bold text-[#1976D2] mb-2">Infrastructure as Code (IaC)</h4>
+                    <p class="text-gray-600">パイプラインはCloudFormationやCDKでコードとして管理し、再現性とバージョン管理を徹底します。</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-xl p-6 text-center">
+                    <div class="text-6xl mb-4">🛡️</div>
+                    <h4 class="text-xl font-bold text-[#1976D2] mb-2">シークレット管理</h4>
+                    <p class="text-gray-600">APIキーなどはハードコードせず、Secrets ManagerやParameter Storeで安全に管理します。</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-xl p-6 text-center">
+                    <div class="text-6xl mb-4">🔄</div>
+                    <h4 class="text-xl font-bold text-[#1976D2] mb-2">冪等性とリトライ</h4>
+                    <p class="text-gray-600">ステージは何度実行しても同じ結果になるように設計し、一時的なエラーにはリトライ処理を実装します。</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-xl p-6 text-center">
+                    <div class="text-6xl mb-4">📦</div>
+                    <h4 class="text-xl font-bold text-[#1976D2] mb-2">カスタムビルド環境</h4>
+                    <p class="text-gray-600">依存関係をプリインストールしたカスタムDockerイメージを使い、ビルド時間短縮と環境の一貫性を確保します。</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-6 mt-8 bg-[#0D47A1] text-white">
+        <p>このインフォグラフィックは、AWS CodePipelineとCodeBuildの運用における課題と解決策を視覚的にまとめたものです。</p>
+    </footer>
+
+    <script>
+        const brilliantBlues = {
+            dark: '#0D47A1',
+            medium: '#1976D2',
+            light: '#42A5F5',
+            veryLight: '#BBDEFB',
+            accent: '#FFC107'
+        };
+
+        function wrapLabel(label, maxLength = 16) {
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    if (currentLine) {
+                        lines.push(currentLine);
+                    }
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine);
+            }
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: brilliantBlues.dark,
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: brilliantBlues.dark },
+                    grid: { color: '#e0e0e0' }
+                },
+                x: {
+                    ticks: { color: brilliantBlues.dark },
+                    grid: { display: false }
+                }
+            }
+        };
+        
+        new Chart(document.getElementById('buildspecErrorsChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['YAML構文エラー', 'コマンドシーケンス', 'フェーズの誤解', 'パス/アーティファクト設定'],
+                datasets: [{
+                    label: 'エラー原因',
+                    data: [35, 25, 20, 20],
+                    backgroundColor: [
+                        brilliantBlues.light,
+                        brilliantBlues.medium,
+                        brilliantBlues.dark,
+                        brilliantBlues.accent
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: { ...defaultChartOptions, scales: { y: { display: false }, x: { display: false } } }
+        });
+
+        new Chart(document.getElementById('buildFailuresChart'), {
+            type: 'bar',
+            data: {
+                labels: [
+                    'COMMAND_EXECUTION_ERROR',
+                    wrapLabel('依存関係解決の問題 (Dependency Hell)'),
+                    wrapLabel('Dockerイメージの不一致'),
+                    wrapLabel('VPCネットワーキング問題')
+                ].map(l => Array.isArray(l) ? l : wrapLabel(l)),
+                datasets: [{
+                    label: '失敗原因の頻度',
+                    data: [40, 30, 20, 10],
+                    backgroundColor: brilliantBlues.light,
+                    borderColor: brilliantBlues.medium,
+                    borderWidth: 1
+                }]
+            },
+            options: { ...defaultChartOptions, indexAxis: 'y', plugins: { legend: { display: false }, tooltip: { callbacks: { title: tooltipTitleCallback } } } }
+        });
+
+        new Chart(document.getElementById('flakyBuildsChart'), {
+            type: 'line',
+            data: {
+                labels: ['週1', '週2', '週3', '週4', '週5', '週6', '週7', '週8'],
+                datasets: [{
+                    label: 'ビルド成功率',
+                    data: [98, 99, 92, 97, 98, 85, 95, 99],
+                    fill: true,
+                    borderColor: brilliantBlues.medium,
+                    backgroundColor: 'rgba(66, 165, 245, 0.2)',
+                    tension: 0.4,
+                    pointBackgroundColor: brilliantBlues.dark
+                }]
+            },
+            options: { ...defaultChartOptions, plugins: { legend: { display: false }, tooltip: { callbacks: { title: tooltipTitleCallback } } } }
+        });
+
+        new Chart(document.getElementById('pipelinePerformanceChart'), {
+            type: 'bar',
+            data: {
+                labels: ['非最適化パイプライン', '最適化パイプライン'],
+                datasets: [
+                    {
+                        label: 'ソース取得',
+                        data: [2, 1.5],
+                        backgroundColor: brilliantBlues.dark,
+                    },
+                    {
+                        label: 'ビルド',
+                        data: [15, 5],
+                        backgroundColor: brilliantBlues.medium,
+                    },
+                    {
+                        label: 'テスト',
+                        data: [10, 4],
+                        backgroundColor: brilliantBlues.light,
+                    },
+                    {
+                        label: 'デプロイ',
+                        data: [5, 4.5],
+                        backgroundColor: brilliantBlues.accent,
+                    }
+                ]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    x: {
+                        stacked: true,
+                        ticks: { color: brilliantBlues.dark },
+                        grid: { display: false }
+                    },
+                    y: {
+                        stacked: true,
+                        ticks: { color: brilliantBlues.dark },
+                        grid: { color: '#e0e0e0' },
+                        title: {
+                            display: true,
+                            text: '実行時間 (分)',
+                            color: brilliantBlues.dark
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
