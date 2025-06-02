@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ワークフロー自動化市場の動向とインサイト 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow::after {
+            content: '→';
+            font-size: 2rem;
+            color: #FD7E14;
+            margin: 0 1rem;
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2.5rem;
+        }
+        .timeline-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 0.75rem;
+            top: 0.5rem;
+            width: 2px;
+            height: 100%;
+            background-color: #007BFF;
+        }
+        .timeline-marker {
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background-color: #007BFF;
+            border: 3px solid #F8F9FA;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-2">ワークフロー自動化市場インサイト 2025</h1>
+            <p class="text-lg text-gray-600">SlackとGitHub連携に見る、ビジネスプロセス最適化の最前線</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section id="introduction" class="bg-white rounded-lg shadow-lg p-8 md:col-span-2">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4 text-center">コラボレーションから生まれる価値の最大化</h2>
+                <p class="text-gray-700 mb-6 max-w-3xl mx-auto text-center">
+                    現代の開発現場では、コミュニケーションツールとバージョン管理システムのシームレスな連携が不可欠です。特に、Slackでの議論を直接GitHubのタスクへと変換する自動化は、生産性を飛躍的に向上させる鍵となります。このインフォグラフィックでは、n8nをハブとした連携ソリューションをケーススタディとして、ワークフロー自動化市場の主要な技術動向、導入戦略、そして将来性を分析します。
+                </p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
+                    <div class="flex items-center text-2xl font-bold bg-blue-100 text-blue-800 p-4 rounded-lg shadow">
+                        <span>💬 Slack</span>
+                        <span class="flow-arrow"></span>
+                        <span class="text-orange-500">n8n</span>
+                        <span class="flow-arrow"></span>
+                        <span>📦 GitHub</span>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-5xl font-bold text-blue-600">90%</p>
+                        <p class="text-gray-600">手動タスク作成時間の削減</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="hosting-strategy">
+                <h2 class="text-3xl font-bold text-center mb-8">市場のホスティング戦略比較</h2>
+                <p class="text-gray-700 mb-8 max-w-3xl mx-auto text-center">
+                    自動化基盤の導入において、ホスティング戦略の選択はスケーラビリティと管理コストを左右する重要な決定です。市場には主に3つのアプローチが存在し、それぞれに異なる特性があります。以下のグラフは、設定の容易さ、拡張性、管理オーバーヘッドを数値化し、各戦略のポジショニングを明確に示しています。
+                </p>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="chart-container">
+                        <canvas id="hostingComparisonChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="integration-flow">
+                 <h2 class="text-3xl font-bold text-center mb-8">主要プラットフォーム連携の標準プロセス</h2>
+                 <p class="text-gray-700 mb-8 max-w-3xl mx-auto text-center">
+                    市場をリードするSlackとGitHubの連携を実現するには、体系化された設定プロセスが不可欠です。このプロセスは、各プラットフォームでの認証情報の生成と、権限（スコープ）の適切な設定が中心となります。このフローを理解することは、安全で信頼性の高い自動化を構築するための第一歩です。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-2xl font-bold mb-4 text-center text-blue-600">Slack連携設定フロー</h3>
+                        <ol class="list-decimal list-inside space-y-3 text-gray-700">
+                            <li><span class="font-bold">アプリ作成:</span> <code>api.slack.com</code>にて新規アプリを初期化。</li>
+                            <li><span class="font-bold">認証トークン生成:</span> OAuth & Permissions設定でBot User OAuth Token (`xoxb-`) を取得。</li>
+                            <li><span class="font-bold">スコープ定義:</span> `reactions:read` や `channels:history` など、必要な権限を付与。</li>
+                            <li><span class="font-bold">イベント購読設定:</span> `reaction_added` イベントを購読し、n8nのWebhook URLを登録。</li>
+                            <li><span class="font-bold">n8n認証情報保存:</span> 生成したトークンをn8nの認証情報として安全に保管。</li>
+                        </ol>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-2xl font-bold mb-4 text-center text-blue-600">GitHub連携設定フロー</h3>
+                         <ol class="list-decimal list-inside space-y-3 text-gray-700">
+                            <li><span class="font-bold">トークンタイプ選択:</span> Developer SettingsからPersonal Access Token (Classic) を選択。</li>
+                            <li><span class="font-bold">トークン生成:</span> 識別用のノートと有効期限を設定して新規トークンを生成。</li>
+                            <li><span class="font-bold">スコープ定義:</span> Issue作成のためにプライベートリポジトリへのアクセスを許可する `repo` スコープを割り当て。</li>
+                            <li><span class="font-bold">トークンコピー:</span> 生成されたトークンを安全な場所に一時的にコピー。</li>
+                            <li><span class="font-bold">n8n認証情報保存:</span> GitHubユーザー名とトークンをn8nの認証情報として設定。</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="scope-analysis">
+                <h2 class="text-3xl font-bold text-center mb-8">API権限（スコープ）の重要度分析</h2>
+                <p class="text-gray-700 mb-8 max-w-3xl mx-auto text-center">
+                    Slack連携の機能性は、付与されるAPIスコープに大きく依存します。各スコープは特定の機能へのアクセスを許可し、その組み合わせが自動化の可能性を決定します。以下のドーナツチャートは、本ユースケースにおける各スコープカテゴリの重要度を示しています。
+                </p>
+                <div class="bg-white rounded-lg shadow-lg p-6 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="chart-container h-64 md:h-full">
+                        <canvas id="scopeImportanceChart"></canvas>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">主要スコープカテゴリ</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="w-4 h-4 rounded-full bg-[#007BFF] mt-1.5 mr-3 flex-shrink-0"></span><div><span class="font-bold">イベント受信 (45%):</span> `reactions:read` が中核。ワークフローをトリガーする最も重要な権限。</div></li>
+                            <li class="flex items-start"><span class="w-4 h-4 rounded-full bg-[#FD7E14] mt-1.5 mr-3 flex-shrink-0"></span><div><span class="font-bold">コンテンツ取得 (35%):</span> `channels:history` など。リアクション元のメッセージ内容を取得し、Issueを充実させるために必須。</div></li>
+                            <li class="flex items-start"><span class="w-4 h-4 rounded-full bg-[#FFC107] mt-1.5 mr-3 flex-shrink-0"></span><div><span class="font-bold">アクション実行 (15%):</span> `chat:write` など。Issue作成後の確認メッセージをSlackに投稿する場合に必要。</div></li>
+                            <li class="flex items-start"><span class="w-4 h-4 rounded-full bg-[#1A237E] mt-1.5 mr-3 flex-shrink-0"></span><div><span class="font-bold">情報解決 (5%):</span> `users:read` など。ユーザーIDから表示名を取得するなど、補助的な情報解決に使用。</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="risk-analysis">
+                <h2 class="text-3xl font-bold text-center mb-8">API利用におけるリスク分析：レート制限</h2>
+                <p class="text-gray-700 mb-8 max-w-3xl mx-auto text-center">
+                    外部APIに依存する自動化は、各サービスの利用制限（レート制限）を考慮する必要があります。制限を超過すると、ワークフローが一時的に停止するリスクがあります。特に頻繁にトリガーされる可能性がある連携では、主要なAPIエンドポイントの制限値を把握しておくことが安定運用の鍵です。
+                </p>
+                <div class="bg-white rounded-lg shadow-lg overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-200 text-gray-700">
+                            <tr>
+                                <th class="p-4 font-bold">プラットフォーム</th>
+                                <th class="p-4 font-bold">主要な制限</th>
+                                <th class="p-4 font-bold">制限値</th>
+                                <th class="p-4 font-bold">潜在的影響</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="p-4 font-bold text-blue-600">GitHub</td>
+                                <td class="p-4">認証済みAPIリクエスト</td>
+                                <td class="p-4 font-mono font-bold text-lg">5,000 / 時</td>
+                                <td class="p-4">通常の利用では問題になりにくいが、大規模な一括処理には注意が必要。</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-4 font-bold text-blue-600">Slack</td>
+                                <td class="p-4">Events API</td>
+                                <td class="p-4 font-mono font-bold text-lg">30,000 / 時</td>
+                                <td class="p-4">トリガー受信の全体的な上限。通常は十分に高い。</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold text-orange-500">Slack</td>
+                                <td class="p-4">conversations.history (非Marketplaceアプリ)</td>
+                                <td class="p-4 font-mono font-bold text-lg text-red-600">1 / 分</td>
+                                <td class="p-4">メッセージ内容取得のボトルネック。短時間に多数のリアクションが発生すると制限に達する可能性がある。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section id="future-outlook">
+                <h2 class="text-3xl font-bold text-center mb-8">将来の拡張性：自動化ワークフローの進化ロードマップ</h2>
+                <p class="text-gray-700 mb-8 max-w-3xl mx-auto text-center">
+                   基本的な連携の実現は、より高度な自動化への第一歩に過ぎません。市場のニーズは、単純なタスク作成から、よりインテリジェントで状況に応じたワークフローへと向かっています。以下は、この分野における将来的な拡張の方向性を示すロードマップです。
+                </p>
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <div class="max-w-md mx-auto">
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4 class="font-bold text-xl text-blue-700">Phase 1: 双方向コミュニケーションの強化</h4>
+                            <p class="text-gray-600">Issue作成後、そのURLを元のSlackスレッドに返信投稿する。これにより、議論の文脈とタスクが双方向にリンクされる。</p>
+                        </div>
+                         <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4 class="font-bold text-xl text-blue-700">Phase 2: コンテンツの高度なテンプレート化</h4>
+                            <p class="text-gray-600">Codeノードや外部テンプレートエンジンを利用し、Slackメッセージの内容に基づいて、より構造化されたIssue本文（チェックリスト、メタデータ等）を生成する。</p>
+                        </div>
+                         <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4 class="font-bold text-xl text-blue-700">Phase 3: 動的な設定管理</h4>
+                            <p class="text-gray-600">ターゲットリポジトリやトリガー絵文字などの設定を、ワークフロー内ではなく外部のDBやスプレッドシートで管理。非開発者でも設定変更が可能になる。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <h4 class="font-bold text-xl text-blue-700">Phase 4: 外部ロジックとの統合</h4>
+                            <p class="text-gray-600">AWS Lambdaなど外部サービスと連携し、Issue起票前に複雑なビジネスロジック（例：重複チェック、優先度判定）を実行する。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t">
+            <p class="text-gray-600">&copy; 2025 Workflow Automation Market Research. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const colorPalette = {
+            blue: '#007BFF',
+            orange: '#FD7E14',
+            yellow: '#FFC107',
+            navy: '#1A237E',
+            lightBlue: '#6ea5ff',
+            lightOrange: '#fdab6a',
+        };
+
+        function wrapLabel(label, maxLength = 16) {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    if(currentLine.length > 0) {
+                        currentLine += ' ' + word;
+                    } else {
+                        currentLine = word;
+                    }
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#4A5568',
+                    },
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#4A5568',
+                    },
+                    grid: {
+                        color: '#E2E8F0'
+                    }
+                }
+            }
+        };
+
+        const hostingCtx = document.getElementById('hostingComparisonChart').getContext('2d');
+        new Chart(hostingCtx, {
+            type: 'bar',
+            data: {
+                labels: ['設定の容易さ', 'スケーラビリティ', '管理オーバーヘッド'],
+                datasets: [
+                    {
+                        label: 'EC2直接インストール',
+                        data: [3, 1, 2],
+                        backgroundColor: colorPalette.blue,
+                        borderColor: colorPalette.blue,
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'EC2上のDocker',
+                        data: [2, 2, 2],
+                        backgroundColor: colorPalette.orange,
+                        borderColor: colorPalette.orange,
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'ECS Fargate',
+                        data: [1, 3, 1],
+                        backgroundColor: colorPalette.navy,
+                        borderColor: colorPalette.navy,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                ...commonChartOptions,
+                indexAxis: 'y',
+                 scales: {
+                    x: {
+                        ...commonChartOptions.scales.x,
+                         ticks: {
+                            ...commonChartOptions.scales.x.ticks,
+                            callback: function(value, index, values) {
+                                const labels = {1: '低', 2: '中', 3: '高'};
+                                return labels[value] || value;
+                            }
+                        }
+                    },
+                    y: {
+                        ...commonChartOptions.scales.y
+                    }
+                }
+            }
+        });
+
+        const scopeCtx = document.getElementById('scopeImportanceChart').getContext('2d');
+        new Chart(scopeCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['イベント受信', 'コンテンツ取得', 'アクション実行', '情報解決'],
+                datasets: [{
+                    label: 'スコープ重要度',
+                    data: [45, 35, 15, 5],
+                    backgroundColor: [
+                        colorPalette.blue,
+                        colorPalette.orange,
+                        colorPalette.yellow,
+                        colorPalette.navy,
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>環境構成図：Slack・AWS(n8n)・GitHub連携</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F0F8FF; /* Alice Blue */
+            font-size: 16px; /* ベースフォントサイズを少し大きく */
+        }
+        .component-box {
+            background-color: white;
+            border: 1px solid #ADD8E6; /* Light Blue */
+            border-radius: 0.75rem; /* 少し大きく */
+            padding: 1.25rem; /* 少し大きく */
+            margin-bottom: 1.25rem; /* 少し大きく */
+            box-shadow: 0 6px 10px -1px rgba(0, 0, 0, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.06); /* 影も調整 */
+        }
+        .component-title {
+            font-size: 1.5rem; /* タイトルを大きく */
+            font-weight: 700;
+            margin-bottom: 1rem; /* 少し大きく */
+            border-bottom: 3px solid; /* ボーダーも太く */
+            padding-bottom: 0.75rem; /* 少し大きく */
+        }
+        .component-box ul {
+            list-style-position: inside;
+            padding-left: 0.5rem;
+        }
+        .component-box li {
+            margin-bottom: 0.375rem; /* 少し大きく */
+            font-size: 0.95rem; /* リストアイテムの文字を少し大きく */
+        }
+        .arrow {
+            text-align: center;
+            font-size: 2.5rem; /* 矢印を大きく */
+            color: #007BFF; /* Primary Blue */
+            margin: 0.75rem 0; /* 少し大きく */
+        }
+        .sub-section {
+            border: 1px dashed #87CEFA; /* Light Sky Blue */
+            border-radius: 0.5rem; /* 少し大きく */
+            padding: 1rem; /* 少し大きく */
+            margin-top: 1rem; /* 少し大きく */
+            background-color: #F0F8FF; /* Alice Blue */
+        }
+        .sub-section-title {
+            font-weight: 700;
+            font-size: 1.1rem; /* サブセクションタイトルを少し大きく */
+            color: #005A9C; /* Darker shade of Primary Blue */
+            margin-bottom: 0.75rem; /* 少し大きく */
+        }
+        .text-sm { /* Tailwindのtext-smを上書き、またはより大きなクラスを使用 */
+            font-size: 0.95rem; /* text-sm に該当する箇所を少し大きく */
+        }
+        .text-xs { /* Tailwindのtext-xsを上書き */
+            font-size: 0.85rem; /* text-xs に該当する箇所を少し大きく */
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="max-w-md mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8 text-[#007BFF]">環境構成図</h1>
+        <p class="text-center text-base text-gray-600 mb-10">SlackリアクションからのGitHub Issue自動作成</p>
+
+        <div class="component-box">
+            <h2 class="component-title text-[#4A154B]" style="border-color: #4A154B;">
+                <span class="inline-block align-middle mr-2 text-2xl">💬</span>Slack
+            </h2>
+            <div class="text-base text-gray-700 space-y-2">
+                <p class="font-semibold">Slackアプリ設定 (<a href="https://api.slack.com/apps" target="_blank" class="text-[#007BFF] hover:underline">api.slack.com</a>):</p>
+                <ul class="list-disc">
+                    <li><strong>認証:</strong> Bot User OAuth Token (<code>xoxb-...</code>)</li>
+                    <li><strong>必須スコープ (Bot):</strong>
+                        <ul class="list-circle ml-4">
+                            <li><code>reactions:read</code> (リアクション検知)</li>
+                            <li><code>channels:history</code> (メッセージ内容取得)</li>
+                            <li><code>users:read</code> (ユーザー情報)</li>
+                            <li>(任意) <code>chat:write</code> (確認メッセージ投稿)</li>
+                        </ul>
+                    </li>
+                    <li><strong>イベントサブスクリプション:</strong>
+                        <ul class="list-circle ml-4">
+                            <li>有効化: オン</li>
+                            <li>購読イベント: <code>reaction_added</code> (Botイベント)</li>
+                            <li>リクエストURL: <code>[n8n公開Webhook URL]</code></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="arrow">⬇️</div>
+        <p class="text-center text-sm text-gray-500 -mt-2 mb-3">Slack <code>reaction_added</code> イベント通知 (HTTPS)</p>
+
+        <div class="component-box">
+            <h2 class="component-title text-[#FF9900]" style="border-color: #FF9900;">
+                 <span class="inline-block align-middle mr-2 text-2xl">☁️</span>AWS (n8nホスティング基盤)
+            </h2>
+            <div class="text-base text-gray-700 space-y-4">
+                <div class="sub-section">
+                    <h3 class="sub-section-title">インフラストラクチャ例: EC2 + Docker</h3>
+                    <ul class="list-disc">
+                        <li><strong>EC2インスタンス:</strong> 例: <code>t3.medium</code> / <code>t2.micro</code> (Ubuntu, Amazon Linux)</li>
+                        <li><strong>Docker環境:</strong> Docker CE, Docker Compose</li>
+                        <li><strong>n8nコンテナ:</strong> <code>n8nio/n8n</code> イメージ利用</li>
+                        <li><strong>データ永続化:</strong> ホストボリュームを <code>/home/node/.n8n</code> にマウント</li>
+                        <li><strong>セキュリティグループ:</strong> TCPポート <code>5678</code> (n8n) を適切なソースIPから許可</li>
+                        <li><strong>パブリックアクセス:</strong>
+                            <ul class="list-circle ml-4">
+                                <li>Elastic IPアドレス (静的IP)</li>
+                                <li>(推奨) Application Load Balancer (ALB) + AWS Certificate Manager (ACM) でHTTPS化</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sub-section">
+                    <h3 class="sub-section-title text-[#E10098]">n8nインスタンス設定 (ポート <code>5678</code>)</h3>
+                     <p class="font-semibold">公開Webhook URL:</p>
+                     <p class="ml-4"><code>https://[your-n8n-domain-or-ip]:5678/webhook/...</code></p>
+
+                    <p class="font-semibold mt-3">ワークフロー構成:</p>
+                    <ol class="list-decimal ml-4">
+                        <li><strong>Slackトリガー:</strong> 「Reaction Added」イベント</li>
+                        <li><strong>IFノード (任意):</strong> 特定の絵文字でフィルタリング</li>
+                        <li><strong>Slackノード (任意):</strong> <code>conversations.history</code> で元メッセージ取得</li>
+                        <li><strong>GitHubノード:</strong> 「Issue: Create」オペレーション</li>
+                    </ol>
+                    <p class="font-semibold mt-3">n8n認証情報:</p>
+                    <ul class="list-disc">
+                        <li>Slack: Bot User OAuth Token</li>
+                        <li>GitHub: Personal Access Token</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow">⬇️</div>
+        <p class="text-center text-sm text-gray-500 -mt-2 mb-3">GitHub APIリクエスト (HTTPS)</p>
+
+        <div class="component-box">
+            <h2 class="component-title text-[#181717]" style="border-color: #181717;">
+                <span class="inline-block align-middle mr-2 text-2xl">📦</span>GitHub
+            </h2>
+            <div class="text-base text-gray-700 space-y-2">
+                <p class="font-semibold">設定:</p>
+                <ul class="list-disc">
+                    <li><strong>認証:</strong> Personal Access Token (Classic)
+                        <ul class="list-circle ml-4">
+                            <li>スコープ: <code>repo</code> (Issue作成のため)</li>
+                            <li>有効期限: 設定を推奨 (例: 90日)</li>
+                        </ul>
+                    </li>
+                    <li><strong>対象リポジトリ:</strong>
+                        <ul class="list-circle ml-4">
+                            <li>Issueを作成する特定のリポジトリ</li>
+                            <li>(n8n GitHubノードでオーナーとリポジトリ名を指定)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <footer class="text-center mt-12 mb-6">
+            <p class="text-sm text-gray-500">&copy; 構成図 by AI</p>
+        </footer>
+    </div>
+</body>
+</html>
