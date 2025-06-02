@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n8n vs Zapier: ワークフロー自動化ツールの徹底比較インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .flow-line {
+            position: relative;
+            width: 2px;
+            background-color: #007EA7;
+            margin: 0 auto;
+        }
+        .flow-line::after {
+            content: '▼';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #007EA7;
+            font-size: 1.5rem;
+        }
+        .flow-box {
+            border: 2px solid #007EA7;
+            background-color: #ffffff;
+        }
+        .venn-circle {
+            border-radius: 50%;
+            border: 3px solid #003459;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003459] mb-4">ワークフロー自動化の二大巨頭: n8n vs Zapier</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">本インフォグラフィックは、開発者向けのn8nと、非技術ユーザー向けのZapierという二つの主要な自動化プラットフォームを徹底比較し、あなたのビジネスに最適なツール選択を支援します。</p>
+        </header>
+
+        <section id="introduction" class="mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center justify-center text-center">
+                    <h2 class="text-2xl font-bold text-[#007EA7] mb-2">n8n: 開発者のための無限の可能性</h2>
+                    <p class="text-6xl font-bold text-[#00A8E8] mb-4">無料</p>
+                    <p class="text-gray-600">セルフホスティングオプションにより、インフラを完全にコントロールし、コストを最小限に抑えることが可能です。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center justify-center text-center">
+                    <h2 class="text-2xl font-bold text-[#007EA7] mb-2">Zapier: ビジネスを繋ぐ架け橋</h2>
+                    <p class="text-6xl font-bold text-[#00A8E8] mb-4">7,000+</p>
+                    <p class="text-gray-600">業界最多クラスの連携アプリ数で、あらゆるSaaSツールをコーディング不要で接続します。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="core-comparison" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003459] mb-8">コア機能比較: 一目でわかる違い</h2>
+            <div class="bg-white rounded-lg shadow-lg p-6 overflow-x-auto">
+                <p class="mb-4 text-gray-700">両プラットフォームは、その設計思想から価格体系、ターゲットユーザーまで、多くの点で対照的です。以下の表は、その核心的な違いをまとめたものです。n8nは技術的な自由度とデータ管理を、Zapierは使いやすさと迅速な導入を優先しています。</p>
+                <table class="w-full text-left">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="p-4 font-bold text-[#003459]">側面</th>
+                            <th class="p-4 font-bold text-[#007EA7]">n8n</th>
+                            <th class="p-4 font-bold text-[#00A8E8]">Zapier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b">
+                            <td class="p-4 font-bold">主要ターゲット層</td>
+                            <td class="p-4">開発者、技術チーム</td>
+                            <td class="p-4">非技術ユーザー、マーケター</td>
+                        </tr>
+                        <tr class="border-b bg-gray-50">
+                            <td class="p-4 font-bold">ホスティング</td>
+                            <td class="p-4">セルフホスト / クラウド</td>
+                            <td class="p-4">クラウドのみ</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-4 font-bold">価格モデル</td>
+                            <td class="p-4">ワークフロー実行ごと</td>
+                            <td class="p-4">タスクごと</td>
+                        </tr>
+                        <tr class="border-b bg-gray-50">
+                            <td class="p-4 font-bold">カスタマイズ性</td>
+                            <td class="p-4">非常に高い (フルコードサポート)</td>
+                            <td class="p-4">限定的 (GUIベース)</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="p-4 font-bold">データプライバシー</td>
+                            <td class="p-4">高い (セルフホストで完全制御)</td>
+                            <td class="p-4">標準的 (SOC2準拠)</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="p-4 font-bold">エラーハンドリング</td>
+                            <td class="p-4">詳細 (ワークフロー内で分岐可能)</td>
+                            <td class="p-4">中程度 (代替パスを実行可能)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="feature-faceoff" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003459] mb-8">機能別フェイスオフ</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-center mb-4 text-[#007EA7]">カスタマイズ性と柔軟性</h3>
+                    <p class="text-gray-700 mb-4">n8nはJavaScript/Pythonによる完全なコードサポートを提供し、開発者にとって無限の拡張性を持ちます。一方ZapierはGUI操作を主軸としつつ、限定的なコード実行が可能です。</p>
+                    <div class="chart-container">
+                        <canvas id="customizationChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-center mb-4 text-[#007EA7]">価格体系のインパクト</h3>
+                     <p class="text-gray-700 mb-4">複雑なワークフローでは、課金単位の違いがコストに大きく影響します。n8nはワークフロー実行1回に対し、Zapierは内部のアクションごとに課金（タスク）されます。</p>
+                    <div class="chart-container">
+                        <canvas id="pricingChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 md:col-span-2">
+                    <h3 class="text-xl font-bold text-center mb-4 text-[#007EA7]">AI機能の統合アプローチ</h3>
+                    <p class="text-gray-700 mb-6 text-center max-w-2xl mx-auto">両者ともAI機能を積極的に導入していますが、そのアプローチは異なります。n8nは開発者による詳細な制御を可能にするLangChainとの連携を重視し、Zapierは非技術ユーザーでも簡単に使える「AI by Zapier」を提供します。</p>
+                    <div class="relative h-64 w-full max-w-lg mx-auto flex justify-center items-center">
+                        <div class="venn-circle absolute w-48 h-48 bg-[#007EA7] opacity-80" style="left: 20%;">
+                            <span class="p-4">n8n<br>LangChain連携<br>詳細なプロンプト制御</span>
+                        </div>
+                        <div class="venn-circle absolute w-48 h-48 bg-[#00A8E8] opacity-80" style="right: 20%;">
+                            <span class="p-4">Zapier<br>「AI by Zapier」<br>簡易なAIアクション</span>
+                        </div>
+                         <div class="absolute text-center text-gray-800 font-bold z-10">
+                            OpenAI/Anthropic<br>連携
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <section id="integration-showdown" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003459] mb-2">連携ショーダウン: Slack & GitHub</h2>
+            <p class="text-lg text-gray-600 text-center mb-8 max-w-3xl mx-auto">チームの生産性を左右するSlackとGitHub。それぞれの連携機能には、各ツールの思想が色濃く反映されています。</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#007EA7]">💬 Slack連携</h3>
+                    <p class="text-gray-700 mb-6">n8nは複雑な対話型ボットの構築に、Zapierは多種多様なアプリからの通知集約に強みを発揮します。</p>
+                    <div class="flex flex-col items-center">
+                        <h4 class="font-bold text-lg mb-2">n8n: 高度なカスタムボット構築</h4>
+                        <div class="w-full max-w-xs text-center">
+                            <div class="flow-box p-3 rounded-md mb-4 shadow">Slackメンション (トリガー)</div>
+                            <div class="flow-line h-8"></div>
+                            <div class="flow-box p-3 rounded-md mb-4 shadow">データベースでユーザー情報検索</div>
+                            <div class="flow-line h-8"></div>
+                            <div class="flow-box p-3 rounded-md mb-4 shadow">Codeノードで動的メッセージ生成</div>
+                            <div class="flow-line h-8"></div>
+                            <div class="flow-box p-3 rounded-md shadow bg-[#00A8E8] text-white">Slackにブロックキットで返信</div>
+                        </div>
+                    </div>
+                     <hr class="my-8">
+                    <div class="flex flex-col items-center mt-6">
+                        <h4 class="font-bold text-lg mb-2">Zapier: 迅速な通知ワークフロー</h4>
+                         <div class="w-full max-w-xs text-center">
+                            <div class="flow-box p-3 rounded-md mb-4 shadow">Gmailの新着メール (トリガー)</div>
+                            <div class="flow-line h-8"></div>
+                             <div class="flow-box p-3 rounded-md shadow bg-[#00A8E8] text-white">Slackチャンネルに通知</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#007EA7]">👩‍💻 GitHub連携</h3>
+                    <p class="text-gray-700 mb-6">n8nはGitコマンドレベルの操作やCI/CD連携といった深い自動化を、ZapierはIssue作成や通知といった定型業務の自動化を得意とします。</p>
+                    <div class="flex flex-col items-center">
+                        <h4 class="font-bold text-lg mb-2">n8n: 詳細なCI/CDパイプライン制御</h4>
+                         <div class="w-full max-w-xs text-center">
+                            <div class="flow-box p-3 rounded-md mb-4 shadow">GitHubのPushイベント (トリガー)</div>
+                            <div class="flow-line h-8"></div>
+                            <div class="flow-box p-3 rounded-md mb-4 shadow">GitノードでリポジトリをClone</div>
+                            <div class="flow-line h-8"></div>
+                            <div class="flow-box p-3 rounded-md mb-4 shadow">ビルド & テスト実行 (スクリプト)</div>
+                            <div class="flow-line h-8"></div>
+                            <div class="flow-box p-3 rounded-md shadow bg-[#00A8E8] text-white">結果をSlackとGitHubに通知</div>
+                        </div>
+                    </div>
+                    <hr class="my-8">
+                     <div class="flex flex-col items-center mt-6">
+                        <h4 class="font-bold text-lg mb-2">Zapier: Issueと他ツールの連携</h4>
+                         <div class="w-full max-w-xs text-center">
+                            <div class="flow-box p-3 rounded-md mb-4 shadow">GitHubの新Issue作成 (トリガー)</div>
+                            <div class="flow-line h-8"></div>
+                             <div class="flow-box p-3 rounded-md shadow bg-[#00A8E8] text-white">Trelloにカードを自動作成</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="decision-guide" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003459] mb-8">どちらを選ぶべきか？最終決定ガイド</h2>
+             <p class="text-lg text-gray-600 text-center mb-8 max-w-3xl mx-auto">最終的な選択は、あなたのチームのスキル、予算、そして自動化したいタスクの性質に依存します。このガイドを参考に、最適なプラットフォームを見極めましょう。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-[#007EA7] mb-4 text-center">n8nが最適なケース ✅</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="text-[#00A8E8] mr-2">▶</span> <span>開発者や技術的なスキルを持つチーム。</span></li>
+                        <li class="flex items-start"><span class="text-[#00A8E8] mr-2">▶</span> <span>データプライバシーが最優先で、セルフホストが必須。</span></li>
+                        <li class="flex items-start"><span class="text-[#00A8E8] mr-2">▶</span> <span>複雑なロジック、ループ、カスタムコードが必要なワークフロー。</span></li>
+                        <li class="flex items-start"><span class="text-[#00A8E8] mr-2">▶</span> <span>大量のタスクを実行し、コスト効率を重視する場合。</span></li>
+                        <li class="flex items-start"><span class="text-[#00A8E8] mr-2">▶</span> <span>標準提供されていないAPIや社内システムと連携したい。</span></li>
+                    </ul>
+                </div>
+                 <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-[#007EA7] mb-4 text-center">Zapierが最適なケース ✅</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start"><span class="text-[#00A8E8] mr-2">▶</span> <span>非技術ユーザー、マーケター、中小企業の担当者。</span></li>
+                        <li class="flex items-start"><span class="text-[#00A8E8] mr-2">▶</span> <span>迅速なセットアップと簡単な操作性を最優先。</span></li>
+                        <li class="flex items-start"><span class="text-[#00A8E8] mr-2">▶</span> <span>多数の主要SaaSアプリ間でのシンプルな連携が目的。</span></li>
+                        <li class="flex items-start"><span class="text-[#00A8E8] mr-2">▶</span> <span>豊富なテンプレートを活用してすぐに自動化を始めたい。</span></li>
+                         <li class="flex items-start"><span class="text-[#00A8E8] mr-2">▶</span> <span>サーバー管理の手間をかけたくない。</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 pt-8 border-t border-gray-300">
+            <p class="text-gray-600">&copy; 2024 ワークフロー自動化比較分析. All Rights Reserved.</p>
+            <p class="text-sm text-gray-500 mt-2">このインフォグラフィックは提供された調査レポートに基づいて作成されました。Mermaid JSおよびSVGは使用されていません。</p>
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const CHART_TOOLTIP_CONFIG = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const wrapLabel = (label, maxLength) => {
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            };
+
+            const customizationCtx = document.getElementById('customizationChart');
+            if(customizationCtx) {
+                new Chart(customizationCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['n8n', 'Zapier'],
+                        datasets: [{
+                            label: '柔軟性スコア（概念値）',
+                            data: [95, 45],
+                            backgroundColor: ['#007EA7', '#00A8E8'],
+                            borderColor: ['#003459', '#007EA7'],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                max: 100,
+                                grid: { color: '#e0e0e0' }
+                            },
+                            y: {
+                                grid: { display: false }
+                            }
+                        },
+                        plugins: {
+                            ...CHART_TOOLTIP_CONFIG.plugins,
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'コードによる柔軟性の比較',
+                                font: { size: 16 },
+                                color: '#003459'
+                            }
+                        }
+                    }
+                });
+            }
+
+            const pricingCtx = document.getElementById('pricingChart');
+            if (pricingCtx) {
+                new Chart(pricingCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['n8n', 'Zapier'],
+                        datasets: [
+                            { label: 'トリガー', data: [1, 1], backgroundColor: '#003459' },
+                            { label: 'アクション1', data: [0, 1], backgroundColor: '#007EA7' },
+                            { label: 'アクション2', data: [0, 1], backgroundColor: '#00A8E8' },
+                            { label: 'アクション3', data: [0, 1], backgroundColor: '#48bfe3' },
+                            { label: 'アクション4', data: [0, 1], backgroundColor: '#80ced7' },
+                            { label: 'アクション5', data: [0, 1], backgroundColor: '#ade8f4' }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: { stacked: true, grid: { display: false } },
+                            y: { 
+                                stacked: true, 
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        },
+                        plugins: {
+                             ...CHART_TOOLTIP_CONFIG.plugins,
+                            legend: {
+                                position: 'bottom'
+                            },
+                            title: {
+                                display: true,
+                                text: '複雑なワークフローでの課金単位 (n8n: 1実行 vs Zapier: 6タスク)',
+                                font: { size: 14 },
+                                color: '#003459'
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
