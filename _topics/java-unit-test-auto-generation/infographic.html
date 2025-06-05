@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック: Javaユニットテスト自動化のトレンド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        .flowchart-step {
+            position: relative;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: all 0.3s ease;
+        }
+        .flowchart-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .flowchart-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #0079C2;
+            padding: 1rem 0;
+        }
+        .pyramid-level {
+            clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+            padding: 2rem 1rem 1rem 1rem;
+            margin: -1px auto;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 60vh;
+            }
+            .flowchart-arrow {
+                transform: rotate(90deg);
+                padding: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4 text-center">
+            <h1 class="text-3xl font-bold text-gray-900" style="color: #004AAD;">Javaユニットテスト自動化の現状</h1>
+            <p class="text-md text-gray-600 mt-1">業界トレンドとツールランドスケープのインフォグラフィック分析</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="evolution" class="mb-12">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold mb-4 text-center" style="color: #004AAD;">テスト作成の進化</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                    ソフトウェア開発におけるテスト作成は、時間のかかる手作業から、AIが支援するインテリジェントな自動化へと劇的に進化しています。この進化は、開発サイクルの高速化とソフトウェア品質の飛躍的な向上をもたらしました。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                    <div class="text-center p-4 rounded-lg bg-gray-100">
+                        <div class="text-5xl mb-2">👨‍💻</div>
+                        <h3 class="text-xl font-bold mb-2">手作業の時代</h3>
+                        <p class="text-gray-600">開発者が一つ一つテストケースを作成。時間がかかり、ヒューマンエラーやエッジケースの見落としが課題でした。</p>
+                    </div>
+                    <div class="text-center p-4 rounded-lg bg-gray-100">
+                        <div class="text-5xl mb-2">⚙️</div>
+                        <h3 class="text-xl font-bold mb-2">アルゴリズムによる自動化</h3>
+                        <p class="text-gray-600">EvoSuiteなどのツールが登場し、進化的アルゴリズムを用いてカバレッジを目標にテストを体系的に生成しました。</p>
+                    </div>
+                    <div class="text-center p-4 rounded-lg bg-blue-100 border-2 border-blue-400">
+                        <div class="text-5xl mb-2">🤖</div>
+                        <h3 class="text-xl font-bold mb-2" style="color: #004AAD;">AI支援による生成</h3>
+                        <p class="text-gray-700">現代のアプローチ。AIがコードの意図を理解し、より人間らしく、保守性の高いテストを自律的に作成・更新します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ecosystem" class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold mb-4" style="color: #004AAD;">ツールエコシステム: 主要アプローチの分類</h2>
+                    <p class="text-gray-600 mb-4">
+                        Javaユニットテスト自動生成ツールは、それぞれ異なる中核技術に基づいています。AIによるコード解析が主流ですが、実際のトラフィックを利用するユニークなアプローチや、テスト品質そのものを評価する専門ツールも存在し、多様なエコシステムを形成しています。
+                    </p>
+                     <ul class="list-disc list-inside space-y-2">
+                        <li><span class="font-bold" style="color:#004AAD;">AI - コード解析:</span> コードを静的に分析し、ロジック分岐やエッジケースを網羅するテストを生成します。 (Diffblue, Workik, Amazon Q)</li>
+                        <li><span class="font-bold" style="color:#0079C2;">AI - 実トラフィック:</span> 実際のAPIリクエストをキャプチャし、現実的なシナリオに基づいたテストとモックを生成します。(Keploy)</li>
+                        <li><span class="font-bold" style="color:#00A6FB;">進化的アルゴリズム:</span> 遺伝的アルゴリズムを用いて、カバレッジ基準を最大化するテストスイートを探索的に生成します。(EvoSuite)</li>
+                        <li><span class="font-bold" style="color:#89D6FF;">テスト品質評価:</span> テストを生成するのではなく、既存のテストがどれだけ堅牢かをミューテーションテストで評価します。(PITest)</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <div class="chart-container">
+                        <canvas id="approachChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="mb-12">
+             <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold mb-4 text-center" style="color: #004AAD;">競合ランドスケープ: 主要ツール機能比較</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                    各ツールはサポートするJavaのバージョン、ビルドツール、そしてCI/CDへの統合方法において独自の特徴を持っています。プロジェクトの技術スタックや要件に最適なツールを選択することが成功の鍵となります。
+                </p>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border-collapse">
+                        <thead class="bg-blue-100">
+                            <tr>
+                                <th class="text-left font-bold p-3 border-b-2 border-blue-200">ツール名</th>
+                                <th class="text-left font-bold p-3 border-b-2 border-blue-200">主要手法</th>
+                                <th class="text-left font-bold p-3 border-b-2 border-blue-200">Javaサポート</th>
+                                <th class="text-left font-bold p-3 border-b-2 border-blue-200">ビルドツール</th>
+                                <th class="text-left font-bold p-3 border-b-2 border-blue-200">GH Actions統合</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-3 border-b">Keploy</td>
+                                <td class="p-3 border-b">AI - 実トラフィック</td>
+                                <td class="p-3 border-b">ドキュメント参照</td>
+                                <td class="p-3 border-b">ドキュメント参照</td>
+                                <td class="p-3 border-b">GitHub App / CLI</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-3 border-b">Diffblue Cover</td>
+                                <td class="p-3 border-b">AI - コード解析</td>
+                                <td class="p-3 border-b">8, 11, 17, 21</td>
+                                <td class="p-3 border-b">Maven, Gradle, Ant</td>
+                                <td class="p-3 border-b">専用Action</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-3 border-b">Workik</td>
+                                <td class="p-3 border-b">AI - コード解析</td>
+                                <td class="p-3 border-b">広範なスタック</td>
+                                <td class="p-3 border-b">Maven, Gradle</td>
+                                <td class="p-3 border-b">CIエクスポート</td>
+                            </tr>
+                             <tr class="hover:bg-gray-50">
+                                <td class="p-3 border-b">Amazon Q</td>
+                                <td class="p-3 border-b">AI - 開発者アシスタント</td>
+                                <td class="p-3 border-b">Java 8, 11, 17</td>
+                                <td class="p-3 border-b">プロジェクト依存</td>
+                                <td class="p-3 border-b">GitHub App (フィードバック)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-3 border-b">EvoSuite</td>
+                                <td class="p-3 border-b">進化的アルゴリズム</td>
+                                <td class="p-3 border-b">8, 11+</td>
+                                <td class="p-3 border-b">Maven</td>
+                                <td class="p-3 border-b">CLI / Mavenプラグイン</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-3 border-b">PITest</td>
+                                <td class="p-3 border-b">ミューテーションテスト</td>
+                                <td class="p-3 border-b">11+</td>
+                                <td class="p-3 border-b">Maven, Gradle, Ant</td>
+                                <td class="p-3 border-b">専用プラグイン/Action</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-deep-dive" class="mb-12">
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <div class="chart-container" style="height: 450px;">
+                        <canvas id="aiToolsBubbleChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold mb-4" style="color: #004AAD;">AI搭載ソリューションのポジショニング</h2>
+                    <p class="text-gray-600 mb-4">
+                        AI搭載ツールはそれぞれ異なる強みを持っています。このチャートは、主要なAIツールを「セットアップの容易さ」と「CI/CD統合の深さ」の2軸で評価し、バブルの大きさで各ツールの「ユニークな提供価値の強さ」を表しています。
+                    </p>
+                    <p class="text-gray-600">
+                        例えば、Amazon Qはテスト失敗からのコード修正という深い統合価値を持ち、Keployは実トラフィックに基づくテスト生成に強みを持ちます。Diffblueはテストスイートの自律的なメンテナンス、Workikは複数LLMをサポートする柔軟性が特徴です。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="cicd" class="mb-12">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold mb-6 text-center" style="color: #004AAD;">CI/CD統合プロセスフロー (GitHub Actions)</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                    自動テスト生成をCI/CDパイプラインに組み込むことは、継続的な品質保証を実現する上で不可欠です。以下は、GitHub Actionsにおける典型的な統合フローを示しています。
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center">
+                    <div class="flowchart-step bg-blue-500 text-white w-full md:w-1/5">
+                        <span class="text-2xl">①</span>
+                        <h3 class="font-bold mt-2">環境セットアップ</h3>
+                        <p class="text-sm">コードのチェックアウト、JDKとビルドツールの設定、依存関係のキャッシュを行います。</p>
+                    </div>
+                    <div class="flowchart-arrow">▼</div>
+                    <div class="flowchart-step bg-blue-400 text-white w-full md:w-1/5">
+                         <span class="text-2xl">②</span>
+                        <h3 class="font-bold mt-2">テスト生成</h3>
+                        <p class="text-sm">専用Action、CLI、またはビルドプラグインを実行し、新しいユニットテストを生成します。</p>
+                    </div>
+                    <div class="flowchart-arrow">▼</div>
+                    <div class="flowchart-step bg-blue-300 text-white w-full md:w-1/5">
+                         <span class="text-2xl">③</span>
+                        <h3 class="font-bold mt-2">ビルド＆テスト実行</h3>
+                        <p class="text-sm">生成されたテストを含む全てのコードをコンパイルし、`mvn test` や `gradle test` を実行します。</p>
+                    </div>
+                     <div class="flowchart-arrow">▼</div>
+                     <div class="flowchart-step bg-blue-200 text-gray-800 w-full md:w-1/5">
+                         <span class="text-2xl">④</span>
+                        <h3 class="font-bold mt-2">品質ゲート (任意)</h3>
+                        <p class="text-sm">PITestを実行してミューテーションカバレッジを測定し、テストスイートの品質を評価します。</p>
+                    </div>
+                    <div class="flowchart-arrow">▼</div>
+                    <div class="flowchart-step bg-blue-100 text-gray-800 w-full md:w-1/5">
+                         <span class="text-2xl">⑤</span>
+                        <h3 class="font-bold mt-2">結果の報告</h3>
+                        <p class="text-sm">テストレポートをアーティファクトとしてアップロードし、PRにコメントを投稿します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="human-element" class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold mb-4" style="color: #004AAD;">人間の役割: AI生成テストのレビュー</h2>
+                    <p class="text-gray-600 mb-4">
+                        AIはテスト作成の労力を大幅に削減しますが、「設定して終わり」の魔法の杖ではありません。生成されたテストがビジネスロジックを正しく反映し、意味のあるアサーションを持ち、保守可能であることを保証するためには、人間の専門家によるレビューが不可欠です。
+                    </p>
+                     <p class="text-gray-600">
+                        このレーダーチャートは、特に人間の注意深いレビューが求められる領域を示しています。複雑なドメイン知識や、コードの背後にある「なぜ」を理解することは、依然として人間の重要な役割です。
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <div class="chart-container">
+                        <canvas id="humanReviewRadarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <section id="adoption" class="mb-12">
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold mb-6 text-center" style="color: #004AAD;">戦略的導入への道筋</h2>
+                 <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                    ツールの導入を成功させるには、段階的かつ戦略的なアプローチが推奨されます。小さな範囲から始め、明確な目標を設定し、チーム全体で学びながらプロセスを確立していくことが重要です。
+                </p>
+                <div class="max-w-md mx-auto">
+                    <div class="pyramid-level" style="background-color: #004AAD; width: 100%;">5. レビュープロセス確立</div>
+                    <div class="pyramid-level" style="background-color: #005FA4; width: 90%;">4. チームのトレーニング</div>
+                    <div class="pyramid-level" style="background-color: #0079C2; width: 80%;">3. 段階的なCI統合</div>
+                    <div class="pyramid-level" style="background-color: #0095D9; width: 70%;">2. 明確な目標設定</div>
+                    <div class="pyramid-level" style="background-color: #00A6FB; width: 60%;">1. 小規模から開始</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-4 mt-8">
+        <p>データソース: Javaユニットテスト自動生成とGitHub Actions CI/CDパイプラインへの統合に関するリサーチレポート</p>
+        <p class="text-sm text-gray-400 mt-1">&copy; 2025 Infographic Generator. All rights reserved.</p>
+    </footer>
+
+<script>
+    const primaryColor = '#0079C2';
+    const accentColor1 = '#004AAD';
+    const accentColor2 = '#00A6FB';
+    const accentColor3 = '#89D6FF';
+    
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+            return label.join(' ');
+        }
+        return label;
+    };
+
+    const wrapLabel = (label, maxLength) => {
+        if (label.length <= maxLength) {
+            return label;
+        }
+        const words = label.split(/\s+/);
+        const lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + ' ' + word).length > maxLength && currentLine.length > 0) {
+                lines.push(currentLine);
+                currentLine = word;
+            } else {
+                if (currentLine.length > 0) {
+                    currentLine += ' ' + word;
+                } else {
+                    currentLine = word;
+                }
+            }
+        });
+        lines.push(currentLine);
+        return lines;
+    };
+    
+    // Chart 1: Approach Chart (Donut)
+    const ctx1 = document.getElementById('approachChart').getContext('2d');
+    new Chart(ctx1, {
+        type: 'doughnut',
+        data: {
+            labels: ['AI - コード解析', 'AI - 実トラフィック', '進化的アルゴリズム', 'テスト品質評価'],
+            datasets: [{
+                label: 'ツールの数',
+                data: [3, 1, 1, 1],
+                backgroundColor: [accentColor1, primaryColor, accentColor2, accentColor3],
+                borderColor: '#fff',
+                borderWidth: 2,
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+                title: {
+                    display: true,
+                    text: '主要アプローチ別ツール分布',
+                    font: { size: 16 }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        }
+    });
+
+    // Chart 2: AI Tools Bubble Chart
+    const ctx2 = document.getElementById('aiToolsBubbleChart').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bubble',
+        data: {
+            labels: ['Diffblue Cover', 'Keploy', 'Workik', 'Amazon Q'],
+            datasets: [{
+                label: 'Diffblue Cover',
+                data: [{ x: 2, y: 3, r: 25 }],
+                backgroundColor: 'rgba(0, 74, 173, 0.7)', // accentColor1
+                borderColor: 'rgba(0, 74, 173, 1)',
+            }, {
+                label: 'Keploy',
+                data: [{ x: 3, y: 2, r: 30 }],
+                backgroundColor: 'rgba(0, 121, 194, 0.7)', // primaryColor
+                borderColor: 'rgba(0, 121, 194, 1)',
+            }, {
+                label: 'Workik',
+                data: [{ x: 3, y: 1, r: 20 }],
+                backgroundColor: 'rgba(0, 166, 251, 0.7)', // accentColor2
+                borderColor: 'rgba(0, 166, 251, 1)',
+            }, {
+                label: 'Amazon Q',
+                data: [{ x: 2, y: 3, r: 35 }],
+                 backgroundColor: 'rgba(137, 214, 255, 0.7)', // accentColor3
+                borderColor: 'rgba(137, 214, 255, 1)',
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'セットアップの容易さ →'
+                    },
+                    min: 0,
+                    max: 4,
+                     ticks: {
+                        callback: function(value, index, values) {
+                            const labels = ['', '低い', '普通', '高い', ''];
+                            return labels[index];
+                        }
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'CI/CD統合の深さ →'
+                    },
+                     min: 0,
+                    max: 4,
+                    ticks: {
+                        callback: function(value, index, values) {
+                            const labels = ['', '低い', '普通', '高い', ''];
+                            return labels[index];
+                        }
+                    }
+                }
+            },
+            plugins: {
+                 title: {
+                    display: true,
+                    text: 'AIツール ポジショニング (バブルサイズ: 提供価値の強さ)',
+                    font: { size: 16 }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.dataset.label || '';
+                            return `${label}: (容易さ: ${context.parsed.x}, 統合度: ${context.parsed.y}, 価値: ${context.raw.r})`;
+                        },
+                         title: tooltipTitleCallback
+                    }
+                }
+            }
+        }
+    });
+
+    // Chart 3: Human Review Radar Chart
+    const ctx3 = document.getElementById('humanReviewRadarChart').getContext('2d');
+    const originalLabels = [
+        '複雑なビジネスロジック (Complex Business Logic)',
+        'アサーションの品質 (Assertion Quality)',
+        'エッジケースの発見 (Finding Edge Cases)',
+        'テストの保守性 (Test Maintainability)',
+        'セキュリティ脆弱性 (Security Vulnerabilities)',
+        'パフォーマンス評価 (Performance Evaluation)'
+    ];
+
+    new Chart(ctx3, {
+        type: 'radar',
+        data: {
+            labels: originalLabels.map(label => wrapLabel(label, 20)),
+            datasets: [{
+                label: '人間によるレビューの重要度',
+                data: [9, 8, 7, 8, 9, 10],
+                backgroundColor: 'rgba(0, 121, 194, 0.2)',
+                borderColor: primaryColor,
+                pointBackgroundColor: primaryColor,
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: primaryColor
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+             scales: {
+                r: {
+                    angleLines: {
+                        display: true
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 10,
+                     pointLabels: {
+                        font: {
+                            size: 12
+                        }
+                    }
+                }
+            },
+            plugins: {
+                 title: {
+                    display: true,
+                    text: '人間によるレビューの重要領域',
+                    font: { size: 16 }
+                },
+                legend: {
+                   display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        title: (tooltipItems) => {
+                            const originalIndex = tooltipItems[0].dataIndex;
+                            return originalLabels[originalIndex];
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
