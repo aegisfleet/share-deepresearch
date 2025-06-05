@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javaユニットテスト自動化ツール インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F8F9FA;
+            color: #343A40;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-box {
+            border: 2px solid #00A6FB;
+            background-color: #E6F6FF;
+        }
+        .flow-arrow {
+            position: relative;
+            text-align: center;
+            line-height: 80px;
+            font-size: 2.5rem;
+            color: #577590;
+        }
+        .kpi-box {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .kpi-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-7xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#00A6FB] mb-2">Javaユニットテスト自動化ツールの探求</h1>
+            <p class="text-lg md:text-xl text-gray-600">無料かつAzure連携可能なAIツールを見つけるための市場調査</p>
+        </header>
+        
+        <section id="benefits" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">なぜ今、テスト自動化が重要なのか？</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white rounded-xl shadow-lg p-6 kpi-box">
+                    <div class="text-5xl mb-4 text-[#F94144]">⏱️</div>
+                    <h3 class="text-2xl font-bold mb-2">開発速度の加速</h3>
+                    <p class="text-gray-600">反復的なテストケース作成にかかる手作業と時間を大幅に削減し、開発ライフサイクルを高速化します。</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 kpi-box">
+                    <div class="text-5xl mb-4 text-[#F9C74F]">🎯</div>
+                    <h3 class="text-2xl font-bold mb-2">品質とカバレッジの向上</h3>
+                    <p class="text-gray-600">人間が見逃しがちなエッジケースを発見し、テストカバレッジを向上させることで、早期のバグ検出を可能にします。</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 kpi-box">
+                    <div class="text-5xl mb-4 text-[#90BE6D]">🛡️</div>
+                    <h3 class="text-2xl font-bold mb-2">保守性の強化</h3>
+                    <p class="text-gray-600">TDDやBDDのような現代的な開発手法を支援し、長期的なコードの品質と保守性を向上させます。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="landscape" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">無料ツールの全体像</h2>
+             <div class="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg">
+                <p class="text-center text-gray-700 mb-6">無料のJavaユニットテスト生成ツールは、主に2つのカテゴリーに分類されます。一つは学術研究から生まれたオープンソースの「伝統的ツール」、もう一つは最先端のAI技術を活用する商用製品の無料版である「AI活用ツール」です。それぞれに異なる特徴とトレードオフが存在します。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="border-4 border-dashed border-gray-300 rounded-lg p-6">
+                        <h3 class="text-2xl font-bold text-center mb-4 text-[#577590]">伝統的ツール (FOSS)</h3>
+                        <ul class="space-y-2 list-disc list-inside text-gray-600">
+                            <li><span class="font-bold">EvoSuite:</span> 探索ベースの手法で高いカバレッジを目指す。</li>
+                            <li><span class="font-bold">Randoop:</span> ランダムテスト生成でバグ発見に強み。</li>
+                            <li class="mt-4 pt-4 border-t border-gray-200"><span class="font-bold text-green-600">長所:</span> 完全に無料で、ライセンスが寛容。</li>
+                            <li><span class="font-bold text-red-600">短所:</span> 生成テストの可読性や保守性に課題の可能性。</li>
+                        </ul>
+                    </div>
+                    <div class="border-4 border-dashed border-blue-300 rounded-lg p-6">
+                        <h3 class="text-2xl font-bold text-center mb-4 text-[#00A6FB]">AI活用ツール (商用無料版)</h3>
+                        <ul class="space-y-2 list-disc list-inside text-gray-600">
+                            <li><span class="font-bold">Diffblue Cover CE:</span> 強化学習AIでリグレッションテストを生成。</li>
+                            <li><span class="font-bold">JetBrains AI Assistant:</span> LLMを活用しIDEに深く統合。</li>
+                            <li><span class="font-bold">Windsurf (旧Codeium):</span> LLMベースで幅広いIDEをサポート。</li>
+                            <li class="mt-4 pt-4 border-t border-gray-200"><span class="font-bold text-green-600">長所:</span> 高度なAI機能と優れたUX。</li>
+                            <li><span class="font-bold text-red-600">短所:</span> 利用制限や複雑なライセンス、オンライン必須の場合も。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="comparison" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">主要5ツールのレーダーチャート比較</h2>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <p class="text-center text-gray-700 mb-8">各ツールの特徴を「無料度」「IDE連携」「AI機能」「Mockitoサポート」「Azure連携（無料版）」の5つの観点から評価しました。グラフの形状から、各ツールの長所と短所を視覚的に把握できます。特に「Azure連携（無料版）」のスコアが低い点は、今回の調査における重要な発見です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-1">
+                        <h3 class="text-xl font-bold text-center mb-2">EvoSuite</h3>
+                        <div class="chart-container"><canvas id="evosuiteChart"></canvas></div>
+                    </div>
+                    <div class="lg:col-span-1">
+                        <h3 class="text-xl font-bold text-center mb-2">Randoop</h3>
+                        <div class="chart-container"><canvas id="randoopChart"></canvas></div>
+                    </div>
+                    <div class="lg:col-span-1">
+                        <h3 class="text-xl font-bold text-center mb-2">Diffblue Cover CE</h3>
+                        <div class="chart-container"><canvas id="diffblueChart"></canvas></div>
+                    </div>
+                    <div class="lg:col-span-1 lg:col-start-2">
+                        <h3 class="text-xl font-bold text-center mb-2">JetBrains AI Assistant</h3>
+                        <div class="chart-container"><canvas id="jetbrainsChart"></canvas></div>
+                    </div>
+                     <div class="lg:col-span-1">
+                        <h3 class="text-xl font-bold text-center mb-2">Windsurf</h3>
+                        <div class="chart-container"><canvas id="windsurfChart"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="azure-hurdle" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">Azure OpenAI 連携の壁</h2>
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8">
+                <p class="text-center text-gray-700 mb-6">今回の調査で最も重要な発見の一つは、AIツールの「無料版」において、ユーザー自身のAzure OpenAIエンドポイントへ直接接続する機能は提供されていないという点です。連携は主に有償のエンタープライズ版で提供される機能です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center">
+                         <h3 class="text-xl font-bold text-gray-700 mb-2">無料版の一般的な連携モデル</h3>
+                         <div class="p-4 flow-box rounded-lg mb-2">ユーザー</div>
+                         <div class="flow-arrow">↓</div>
+                         <div class="p-4 flow-box rounded-lg mb-2">AIツール (無料版)</div>
+                         <div class="flow-arrow">↓</div>
+                         <div class="p-4 flow-box rounded-lg mb-2">ツールベンダーのAIサービス</div>
+                         <div class="flow-arrow">↓</div>
+                         <div class="p-4 flow-box rounded-lg">汎用LLM (OpenAIなど)</div>
+                         <p class="mt-4 text-sm text-gray-500">ユーザーはベンダーが用意したAIサービスを経由するため、直接Azureエンドポイントを指定できません。</p>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-gray-700 mb-2">エンタープライズ版の連携モデル</h3>
+                         <div class="p-4 flow-box rounded-lg border-green-500 bg-green-50 mb-2">ユーザー</div>
+                         <div class="flow-arrow">↓</div>
+                         <div class="p-4 flow-box rounded-lg border-green-500 bg-green-50 mb-2">AIツール (有償版)</div>
+                         <div class="flow-arrow text-green-500">↓</div>
+                         <div class="p-4 flow-box rounded-lg border-green-500 bg-green-50">ユーザー自身のAzure OpenAI</div>
+                         <p class="mt-4 text-sm text-gray-500">有償版では、自社で契約・管理するAzure OpenAI環境に直接接続できる場合が多いです。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="best-practices" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">導入成功のためのベストプラクティス</h2>
+            <div class="space-y-6 max-w-3xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow flex items-start space-x-4">
+                    <div class="text-3xl">🔄</div>
+                    <div>
+                        <h3 class="font-bold text-lg">CI/CDへの統合</h3>
+                        <p class="text-gray-600">生成されたテストをCI/CDパイプラインに組み込み、手動テストと並行して定期的に実行することで、継続的な品質担保を実現します。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow flex items-start space-x-4">
+                    <div class="text-3xl">🧑‍💻</div>
+                    <div>
+                        <h3 class="font-bold text-lg">人間によるレビューと保守</h3>
+                        <p class="text-gray-600">AIが生成したテストは完璧ではありません。可読性と保守性を向上させるため、必ず人間がレビューとリファクタリングを行います。</p>
+                    </div>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow flex items-start space-x-4">
+                    <div class="text-3xl">⚖️</div>
+                    <div>
+                        <h3 class="font-bold text-lg">手動テストとのバランス</h3>
+                        <p class="text-gray-600">自動生成は、複雑なビジネスロジックに対する手動テストを補完するものです。全てを置き換えるのではなく、適材適所で活用します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recommendations" class="mb-16">
+             <h2 class="text-3xl font-bold text-center mb-8">あなたに最適なツールは？</h2>
+             <div class="bg-white rounded-xl shadow-lg p-8">
+                 <p class="text-center text-gray-700 mb-8">最適なツールはあなたの優先順位によって決まります。以下のガイドを参考に、ご自身のプロジェクトに最も適したツールを選択してください。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-[#577590]">
+                        <h3 class="font-bold text-xl mb-4">優先順位: 「完全無料」と「オープンソース」</h3>
+                        <p class="mb-4">ライセンスの制約を避け、完全なコントロールを求める場合。ツール自体への直接的なAzure連携は必須ではない場合。</p>
+                        <ul class="space-y-3">
+                            <li>
+                                <p class="font-bold text-lg">▶ EvoSuite</p>
+                                <p class="text-sm text-gray-600 ml-4">高いカバレッジ達成力とMockitoサポートが魅力。IDEプラグインも完備。</p>
+                            </li>
+                             <li>
+                                <p class="font-bold text-lg">▶ Randoop</p>
+                                <p class="text-sm text-gray-600 ml-4">バグ発見能力に定評。CLI中心だが、そのシンプルさが強み。</p>
+                            </li>
+                        </ul>
+                    </div>
+                     <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-[#00A6FB]">
+                        <h3 class="font-bold text-xl mb-4">優先順位: 「AIによる生成」と「IDE連携」</h3>
+                        <p class="mb-4">最新のAI機能を活用し、開発体験を向上させたい場合。Azure連携は間接的、または将来的な有償版移行も視野に入れる場合。</p>
+                        <ul class="space-y-3">
+                            <li>
+                                <p class="font-bold text-lg">▶ Diffblue Cover CE</p>
+                                <p class="text-sm text-gray-600 ml-4">「無料のAI Javaユニットテスト」として最も有力。IntelliJとの連携も強力。</p>
+                            </li>
+                             <li>
+                                <p class="font-bold text-lg">▶ JetBrains AI Assistant</p>
+                                <p class="text-sm text-gray-600 ml-4">有償IDEユーザーなら最高の体験。ただし無料IDEでの利用には制限あり。</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+    </div>
+
+    <footer class="text-center p-4 mt-8 text-gray-500 text-sm">
+        <p>このインフォグラフィックは、提供された調査レポートに基づいて作成されました。データと分析はレポート内容に基づきます。</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const wrapLabel = (label, maxWidth = 10) => {
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).length > maxWidth) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine === '' ? word : currentLine + ' ' + word);
+                    }
+                });
+                lines.push(currentLine);
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const radarChartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                elements: {
+                    line: {
+                        borderWidth: 3
+                    }
+                },
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 5,
+                        pointLabels: {
+                            font: {
+                                size: 12
+                            }
+                        },
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+            
+            const radarLabels = [
+                '無料度', 
+                wrapLabel('IDE連携'), 
+                wrapLabel('AI機能'), 
+                wrapLabel('Mockitoサポート'), 
+                wrapLabel('Azure連携 (無料版)')
+            ];
+
+            const radarData = {
+                evosuite: [5, 3, 1, 4, 1],
+                randoop: [5, 1, 1, 2, 1],
+                diffblue: [4, 4, 3, 4, 1],
+                jetbrains: [2, 5, 5, 3, 1],
+                windsurf: [3, 4, 4, 3, 1]
+            };
+            
+            const createRadarChart = (canvasId, label, data) => {
+                const ctx = document.getElementById(canvasId).getContext('2d');
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: radarLabels,
+                        datasets: [{
+                            label: label,
+                            data: data,
+                            fill: true,
+                            backgroundColor: 'rgba(0, 166, 251, 0.2)',
+                            borderColor: 'rgb(0, 166, 251)',
+                            pointBackgroundColor: 'rgb(0, 166, 251)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(0, 166, 251)'
+                        }]
+                    },
+                    options: radarChartOptions
+                });
+            };
+
+            createRadarChart('evosuiteChart', 'EvoSuite', radarData.evosuite);
+            createRadarChart('randoopChart', 'Randoop', radarData.randoop);
+            createRadarChart('diffblueChart', 'Diffblue Cover CE', radarData.diffblue);
+            createRadarChart('jetbrainsChart', 'JetBrains AI Assistant', radarData.jetbrains);
+            createRadarChart('windsurfChart', 'Windsurf', radarData.windsurf);
+        });
+    </script>
+</body>
+</html>

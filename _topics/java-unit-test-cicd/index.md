@@ -3,12 +3,12 @@ layout: topic
 title: "Javaユニットテスト自動生成とGitHub Actions CI/CDパイプラインへの統合"
 date: 2025-06-05
 prompt: "Javaのユニットテストを自動で作成したい。CI/CD（GitHub Actions）で自動生成できると尚良い。"
-category: "engineering"
+category: "ai"
 tags: [ユニットテスト,GitHub Actions]
-audio: "/share-deepresearch/assets/audio/java-unit-test-auto-generation.mp3"
+audio: "/share-deepresearch/assets/audio/java-unit-test-cicd.mp3"
 supplementary_materials:
   - title: "インフォグラフィック: Javaユニットテスト自動化のトレンド"
-    url: "/share-deepresearch/topics/java-unit-test-auto-generation/infographic.html"
+    url: "/share-deepresearch/topics/java-unit-test-cicd/infographic.html"
 ---
 
 # **Javaユニットテスト自動生成とGitHub Actions CI/CDパイプラインへの統合**
