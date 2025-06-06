@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：UI変更における画像更新の効率化</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 
+    Narrative & Structure Plan:
+    1. Introduction: The core challenge of manual image updates. A hook with a key statistic.
+    2. Landscape of Solutions: An overview of the methodologies from the report.
+    3. Automated Visual Comparison: Comparing commercial tools using a Bar Chart.
+    4. DIY with Code (Python): Comparing technical methods (Pixel vs. SSIM etc.) with a Radar Chart.
+    5. Advanced AI Path: Illustrating the Machine Learning workflow with an HTML/CSS flowchart and highlighting OCR.
+    6. Leveraging Existing Tools: Using styled cards to feature Figma and Git.
+    7. Decision Matrix: A final table to guide users to the best solution based on their needs.
+
+    Visualization Choices & Justification (NO SVG, NO MERMAID JS):
+    - Key Stat (Intro): Goal: Inform. Visualization: Donut Chart. Why: More engaging than a single number to show proportion. Library: Chart.js (Canvas).
+    - Tool Comparison: Goal: Compare. Visualization: Bar Chart. Why: Best for comparing a few items on a few metrics. Library: Chart.js (Canvas).
+    - Python Method Comparison: Goal: Compare. Visualization: Radar Chart. Why: Ideal for multi-variable comparison to show strengths/weaknesses. Library: Chart.js (Canvas).
+    - ML Workflow: Goal: Organize. Visualization: Flowchart. Why: Clearly shows a process. Method: Structured HTML/CSS with Tailwind (No SVG/Mermaid).
+    - Existing Tools: Goal: Inform. Visualization: Styled Cards. Why: Simple, clean way to present distinct options. Method: HTML/CSS with Tailwind.
+    - Decision Matrix: Goal: Organize. Visualization: Table. Why: Clearest way to present guidance with multiple factors. Method: HTML/CSS with Tailwind.
+
+    Color Palette Selection:
+    - Chosen Palette: "Brilliant Blues" from the reference image.
+    - HEX Codes: #00449E (Dark Blue), #005CB9 (Primary Blue), #3C89D0 (Medium Blue), #79B4E3 (Light Blue), #A8D2F0 (Very Light Blue), #333333 (Text).
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-node {
+            border: 2px solid #3C89D0;
+            background-color: #ffffff;
+            color: #00449E;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flowchart-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #3C89D0;
+            margin: 0 0.5rem;
+            transform: rotate(90deg);
+        }
+        @media (min-width: 768px) {
+            .flowchart-arrow {
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#00449E] mb-4">UI変更に潜む「見えないコスト」を可視化する</h1>
+            <p class="text-lg md:text-xl text-[#005CB9] max-w-4xl mx-auto">ソフトウェアのUI変更は避けられません。しかし、それに伴うマニュアル画像の更新作業は、多くの時間とリソースを消費しています。このインフォグラフィックでは、その課題を解決するための最新アプローチを分析し、最適な手法選択を支援します。</p>
+        </header>
+
+        <main class="space-y-12">
+            
+            <section id="challenge" class="bg-white rounded-lg shadow-lg p-6 md:p-8 flex flex-col md:flex-row items-center">
+                <div class="md:w-2/3">
+                    <h2 class="text-3xl font-bold text-[#00449E] mb-4">課題：非効率な手作業による更新</h2>
+                    <p class="mb-4 text-base">UIが変更されるたびに、マニュアル制作者は数百、時には数千の画像の中から変更箇所を目視で探し出し、差し替えるという骨の折れる作業に直面します。このプロセスは非効率的であるだけでなく、ヒューマンエラーによる見落としリスクも高く、ドキュメントの品質低下に直結します。</p>
+                    <p class="text-base">調査によると、マニュアル更新作業の大部分が、影響範囲の特定という本来もっと効率化できるはずの工程に費やされていることが示唆されています。</p>
+                </div>
+                <div class="md:w-1/3 mt-6 md:mt-0">
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="timeWastedChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="solutions-overview" class="text-center">
+                 <h2 class="text-3xl font-bold text-[#00449E] mb-4">解決策のランドスケープ</h2>
+                 <p class="text-lg text-[#005CB9] max-w-3xl mx-auto">幸いなことに、この課題に対処するための技術は進化しています。ここでは、主要な5つのアプローチを紹介します。それぞれに長所と短所があり、あなたのチームの状況に最適なものが見つかるはずです。</p>
+            </section>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-[#00449E] mb-4 text-center">1. 自動化ツールによる視覚的比較</h3>
+                    <p class="mb-6 text-center">専門的な知識がなくても導入できる、最も手軽なアプローチの一つです。AIを搭載したツールは、単なるピクセルの違いだけでなく、意味のあるUIの変更を賢く検出します。</p>
+                    <div class="chart-container h-80 md:h-[400px]">
+                        <canvas id="toolComparisonChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-600">このグラフは、主要な視覚的回帰テストツールの「使いやすさ」「コストパフォーマンス」「AI機能の充実度」を相対的に評価したものです。スコアが高いほど、その項目において優れていることを示します。</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-[#00449E] mb-4 text-center">2. Pythonによるカスタム比較</h3>
+                    <p class="mb-6 text-center">コーディングスキルを持つチームにとって、最も柔軟でコスト効率の高い選択肢です。比較ロジックを自由にカスタマイズし、既存のワークフローに統合できます。</p>
+                    <div class="chart-container h-80 md:h-[400px]">
+                        <canvas id="pythonMethodsChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-600">このチャートは、Pythonで実装可能な画像比較手法を異なる観点から評価しています。SSIMは精度と耐性のバランスが良く、多くのケースで良い出発点となります。</p>
+                </div>
+
+            </div>
+
+            <section id="advanced-methods" class="bg-white rounded-lg shadow-lg p-6 md:p-8 md:col-span-2">
+                <h3 class="text-2xl font-bold text-[#00449E] mb-6 text-center">3. 機械学習(ML)とOCRによる高度な分析</h3>
+                <p class="mb-8 text-center max-w-3xl mx-auto">より高度な精度と意味的な理解を求める場合、機械学習モデルの活用が有効です。UIコンポーネントを直接認識したり、テキストの変更を抽出したりすることで、ピクセル比較では不可能なレベルの分析を実現します。</p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="flowchart-node">データセット作成<br>(UI要素のアノテーション)</div>
+                    <div class="flowchart-arrow">➔</div>
+                    <div class="flowchart-node">モデル訓練<br>(YOLO, Detectron2など)</div>
+                    <div class="flowchart-arrow">➔</div>
+                    <div class="flowchart-node">推論と比較<br>(変更された要素を特定)</div>
+                </div>
+                <p class="mt-6 text-center text-sm text-gray-600">上記は、UIコンポーネントを検出する機械学習モデルの典型的な開発フローです。初期投資は大きいですが、一度モデルを構築すれば、その後の変更追跡は非常に強力かつ効率的になります。</p>
+                <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+                    <p class="text-lg font-semibold text-[#005CB9]">特にテキストの変更にはOCRが有効です。<br>主要なツールでは<strong class="text-3xl text-[#00449E]">95%以上</strong>の高い日本語認識精度が報告されています。</p>
+                </div>
+            </section>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-[#00449E] mb-4 text-center">4. 既存ワークフローの活用</h3>
+                     <p class="mb-6 text-center">見落としがちですが、最高のツールはすでにあなたの手元にあるかもしれません。デザインや開発のプロセスで利用しているツールが、画像差分管理に役立つことがあります。</p>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <span class="text-4xl">🎨</span>
+                            <div>
+                                <h4 class="font-bold text-lg text-[#005CB9]">Figmaなどのデザインツール</h4>
+                                <p>バージョン管理機能や差分比較プラグインを使えば、ピクセルレベルではなくデザインコンポーネントレベルで変更を追跡できます。これは最も意味的にリッチな比較方法です。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                             <span class="text-4xl">🌿</span>
+                            <div>
+                                <h4 class="font-bold text-lg text-[#005CB9]">Gitなどのバージョン管理</h4>
+                                <p>Git LFSと画像差分ツールを組み合わせることで、画像ファイルの変更履歴を視覚的に比較できます。開発ワークフローと密接に連携させたい場合に有効です。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-[#00449E] mb-4 text-center">5. 専用マニュアル作成ツール</h3>
+                    <p class="mb-6 text-center">Teachme Bizやproofrogのような最新のマニュアル作成プラットフォームは、画像管理や更新支援機能を内蔵している場合があります。ワークフロー全体を効率化したい場合に最適です。</p>
+                     <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                             <span class="text-4xl">📚</span>
+                            <div>
+                                <h4 class="font-bold text-lg text-[#005CB9]">統合されたプラットフォーム</h4>
+                                <p>これらのツールは、マニュアル作成から更新、公開までを一元管理します。画像差分機能が組み込まれていれば、外部ツールを導入することなくシームレスな更新が可能です。</p>
+                            </div>
+                        </div>
+                         <div class="flex items-start space-x-4">
+                             <span class="text-4xl">⚡️</span>
+                            <div>
+                                <h4 class="font-bold text-lg text-[#005CB9]">AIによる作成支援</h4>
+                                <p>AIが画像内の操作を認識し、説明文を自動生成するなど、作成プロセス自体を効率化する機能も登場しています。これにより、更新作業全体の負担が軽減されます。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section id="recommendations" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h3 class="text-3xl font-bold text-[#00449E] mb-6 text-center">結論：あなたのチームに最適な手法は？</h3>
+                <p class="mb-8 text-center max-w-3xl mx-auto">万能な解決策はありません。あなたのチームの技術スキル、予算、そして既存のワークフローに応じて、最適なアプローチを選択することが重要です。</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-[#00449E] text-white">
+                                <th class="p-4 font-bold">考慮すべき要因</th>
+                                <th class="p-4 font-bold">低コスト / 迅速</th>
+                                <th class="p-4 font-bold">バランス重視</th>
+                                <th class="p-4 font-bold">高精度 / 長期的戦略</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="p-4 font-semibold">技術スキル</td>
+                                <td class="p-4">ローコード / ノーコード希望</td>
+                                <td class="p-4">基本的なコーディング知識あり</td>
+                                <td class="p-4">高度な開発 / ML専門知識あり</td>
+                            </tr>
+                            <tr class="bg-gray-50 border-b">
+                                <td class="p-4 font-semibold">予算</td>
+                                <td class="p-4">無料 / 低予算</td>
+                                <td class="p-4">中程度のサブスクリプション可</td>
+                                <td class="p-4">研究開発への投資可</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="p-4 font-semibold">UI変更の頻度</td>
+                                <td class="p-4">低頻度</td>
+                                <td class="p-4">中頻度</td>
+                                <td class="p-4">高頻度</td>
+                            </tr>
+                             <tr class="bg-[#A8D2F0] text-[#00449E] font-bold">
+                                <td class="p-4">推奨ソリューション</td>
+                                <td class="p-4">
+                                    <ul class="list-disc list-inside">
+                                        <li>Figma/Gitの機能活用</li>
+                                        <li>手動確認 + OCR</li>
+                                    </ul>
+                                </td>
+                                <td class="p-4">
+                                     <ul class="list-disc list-inside">
+                                        <li>Python (SSIM) スクリプト</li>
+                                        <li>視覚的差分ツール (proofrog等)</li>
+                                     </ul>
+                                </td>
+                                <td class="p-4">
+                                    <ul class="list-disc list-inside">
+                                        <li>AI搭載テスト自動化 (Autify等)</li>
+                                        <li>カスタムMLモデル開発</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 pt-8 border-t border-gray-300">
+            <p class="text-sm text-gray-500">このインフォグラフィックは、提供された調査レポート「UI変更に伴うマニュアル画像改訂の効率化」に基づいて作成されました。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const brilliantBlues = {
+            dark: '#00449E',
+            primary: '#005CB9',
+            medium: '#3C89D0',
+            light: '#79B4E3',
+            veryLight: '#A8D2F0'
+        };
+
+        function wrapText(label, maxWidth = 16) {
+            if (typeof label !== 'string' || label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        }
+
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('timeWastedChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['影響範囲の特定作業', '実際の画像差し替え作業', 'レビューと公開'],
+                datasets: [{
+                    label: 'マニュアル更新に費やす時間',
+                    data: [55, 30, 15],
+                    backgroundColor: [
+                        brilliantBlues.medium,
+                        brilliantBlues.light,
+                        brilliantBlues.veryLight
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    title: {
+                        display: true,
+                        text: 'マニュアル更新作業の内訳（推定）',
+                        font: { size: 16 }
+                    },
+                    tooltip: tooltipTitleCallback.plugins.tooltip
+                }
+            }
+        });
+
+        new Chart(document.getElementById('toolComparisonChart'), {
+            type: 'bar',
+            data: {
+                labels: ['MagicPod', 'Autify', 'Chromatic', 'proofrog'],
+                datasets: [{
+                    label: '使いやすさ',
+                    data: [7, 9, 7, 8],
+                    backgroundColor: brilliantBlues.medium,
+                }, {
+                    label: 'コストパフォーマンス',
+                    data: [6, 5, 9, 8],
+                    backgroundColor: brilliantBlues.light,
+                }, {
+                    label: 'AI機能の充実度',
+                    data: [7, 9, 6, 5],
+                    backgroundColor: brilliantBlues.veryLight,
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        stacked: true,
+                        max: 30,
+                    },
+                    y: {
+                        stacked: true
+                    }
+                },
+                plugins: {
+                     legend: {
+                        position: 'bottom',
+                    },
+                    title: {
+                        display: true,
+                        text: '自動化ツールの相対比較 (スコア)',
+                        font: { size: 16 }
+                    },
+                    tooltip: tooltipTitleCallback.plugins.tooltip
+                }
+            }
+        });
+
+        new Chart(document.getElementById('pythonMethodsChart'), {
+            type: 'radar',
+            data: {
+                labels: [
+                    wrapText('精度 (Accuracy)'), 
+                    wrapText('軽微な変更への耐性'), 
+                    wrapText('実装の複雑さ (低いほど良い)'), 
+                    wrapText('速度 (Speed)')
+                ],
+                datasets: [{
+                    label: 'ピクセル単位比較',
+                    data: [10, 2, 9, 10],
+                    fill: true,
+                    backgroundColor: 'rgba(60, 137, 208, 0.2)',
+                    borderColor: brilliantBlues.medium,
+                    pointBackgroundColor: brilliantBlues.medium,
+                }, {
+                    label: '構造的類似性 (SSIM)',
+                    data: [8, 7, 7, 8],
+                    fill: true,
+                    backgroundColor: 'rgba(121, 180, 227, 0.2)',
+                    borderColor: brilliantBlues.light,
+                    pointBackgroundColor: brilliantBlues.light,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        ticks: {
+                           stepSize: 2
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Python画像比較手法の特性',
+                        font: { size: 16 }
+                    },
+                    tooltip: tooltipTitleCallback.plugins.tooltip
+                }
+            }
+        });
+    </script>
+</body>
+</html>
