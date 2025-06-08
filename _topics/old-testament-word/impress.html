@@ -1,198 +1,182 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>旧約聖書に眠る中二病的ワードの探求</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* Google Fontsからフォントをインポート */
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Orbitron:wght@700&display=swap');
-
-        /* 基本的なページスタイル */
+        /* General Body Styles */
         body {
             font-family: 'Noto Serif JP', serif;
-            background-color: #0a0a0a;
+            background-color: #1a1a1a;
             color: #e0e0e0;
             margin: 0;
             padding: 0;
             height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             overflow: hidden;
         }
 
-        /* impress.jsの基本スタイル */
+        /* Impress.js Fallback for non-JS users */
+        .fallback-message {
+            display: none;
+        }
+        .impress-not-supported .fallback-message {
+            display: block;
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+        }
+
+        /* Step (Slide) Styles */
         .step {
             position: relative;
             width: 1000px;
             padding: 40px;
             box-sizing: border-box;
-            line-height: 1.6;
+            border-radius: 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: opacity 1s;
+            line-height: 1.8;
             font-size: 24px;
-            opacity: 0; /* フェードイン効果のため最初は非表示 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Styles for steps that are not active */
+        .impress-enabled .step {
+            margin: 0;
+            opacity: 0.3;
             transition: opacity 1s;
         }
 
-        .step.active {
-            opacity: 1; /* アクティブなスライドを表示 */
-        }
-        
-        /* スライド内の要素のスタイル */
-        .step h1, .step h2, .step h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            color: #c5a47e;
-            text-shadow: 0 0 5px #c5a47e, 0 0 10px #000;
-        }
-
-        .step h1 {
-            font-size: 80px;
-            text-align: center;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-        
-        .step h2 {
-            font-size: 48px;
-            border-bottom: 2px solid #55433b;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-
-        .step h3 {
-            font-size: 32px;
-            color: #b39a82;
-            margin-top: 40px;
-        }
-
-        .step p {
-            margin-bottom: 20px;
-        }
-
-        .step ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .step li {
-            background-color: rgba(255, 255, 255, 0.05);
-            margin-bottom: 10px;
-            padding: 15px;
-            border-left: 4px solid #c5a47e;
-            border-radius: 0 5px 5px 0;
-            transition: background-color 0.3s;
-        }
-        
-        .step li:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .step strong {
-            color: #e6c8a9;
-            font-weight: bold;
-        }
-        
-        /* 特定のスライドの背景やレイアウト */
-        #title {
-            text-align: center;
-        }
-        #title p {
-            font-size: 32px;
-            color: #aaa;
-        }
-
-        #angels-container, #demons-container {
-            display: flex;
-            justify-content: space-around;
-            gap: 20px;
-        }
-        
-        .angel-card, .demon-card {
-            background-color: rgba(0,0,0,0.3);
-            border: 1px solid #444;
-            padding: 20px;
-            border-radius: 10px;
-            width: 30%;
-            backdrop-filter: blur(5px);
-            text-align: center;
-        }
-        
-        .demon-card {
-            border-color: #7a2a2a;
-        }
-        .demon-card h3 {
-             color: #ff6b6b;
-        }
-
-        #giants-beasts h2 {
-            text-align: center;
-        }
-        
-        #relics {
-            background: radial-gradient(circle, rgba(74,62,50,0.5) 0%, rgba(10,10,10,0) 70%);
-        }
-        
-        /* 巨大な存在を表現するためのスタイル */
-        #leviathan h2, #behemoth h2 {
-            font-size: 100px;
-            text-align: center;
-        }
-        
-        /* impress.jsのヒントの非表示 */
-        .impress-on-overview .step {
+        /* Style for the active step */
+        .impress-enabled .step.active {
             opacity: 1;
-            cursor: pointer;
-        }
-        .impress-enabled .fallback-message {
-            display: none;
         }
 
-        /* インフォグラフィック風のレイアウト */
-        .two-column {
-            display: flex;
-            gap: 40px;
+        /* Headings and Text Styles */
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #e6c45c;
+            text-shadow: 0 0 10px #e6c45c, 0 0 20px #e6c45c;
+            margin-bottom: 20px;
         }
-        .two-column > div {
-            flex: 1;
+
+        h1 { font-size: 64px; }
+        h2 { font-size: 48px; }
+        h3 { font-size: 36px; }
+
+        p {
+            margin-bottom: 15px;
         }
         
-        .quote {
-            font-style: italic;
-            border-left: 3px solid #888;
-            padding-left: 20px;
-            margin: 20px 0;
-            color: #ccc;
+        strong {
+            color: #ff8a80;
+        }
+
+        .subtitle {
+            font-size: 28px;
+            color: #cccccc;
+            margin-top: -20px;
+            margin-bottom: 40px;
         }
         
-        /* 矢印やアイコン */
-        .arrow {
-            font-size: 50px;
-            color: #c5a47e;
-            position: absolute;
+        /* Infographic elements */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .info-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .info-card h3 {
+            font-size: 28px;
+            margin-top: 0;
+            color: #82b1ff;
+        }
+
+        .info-card p {
+            font-size: 18px;
+            color: #cfd8dc;
+        }
+        
+        /* Special Slide Styles */
+        #title {
+            background: radial-gradient(circle, rgba(63,63,116,0.5) 0%, rgba(26,26,26,0.8) 70%);
+        }
+
+        #angels { background-color: rgba(130, 177, 255, 0.1); }
+        #demons { background-color: rgba(255, 138, 128, 0.1); }
+        #giants { background-color: rgba(179, 157, 219, 0.1); }
+        
+        /* Overview Step */
+        #overview {
+            border: 2px dashed rgba(255, 255, 255, 0.5);
+            background: transparent;
+        }
+        #overview.active {
+            border: 2px dashed rgba(255, 255, 255, 1);
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .step {
+                width: 90vw;
+                padding: 20px;
+                font-size: 18px;
+            }
+
+            h1 { font-size: 36px; }
+            h2 { font-size: 28px; }
+            h3 { font-size: 24px; }
+            .subtitle { font-size: 20px; }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Hint for navigation */
+        .impress-enabled #impress-hint {
+            position: fixed;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            animation: bounce 2s infinite;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 1s;
+            z-index: 100;
+            pointer-events: none;
         }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-30px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-15px);
-            }
-        }
-        
-        /* 最後のスライド */
-        #overview {
-            text-align: center;
+
+        .impress-enabled.impress-hint-visible #impress-hint {
+            opacity: 1;
         }
 
     </style>
@@ -200,165 +184,162 @@
 <body>
 
     <div class="fallback-message">
-        <p>お使いのブラウザはimpress.jsが必要とする機能をサポートしていません。最新のChrome, Firefox, Safariをご利用ください。</p>
+        <p>お使いのブラウザは、このプレゼンテーションの表示に必要な機能をサポートしていません。</p>
+        <p>最新のChrome, Firefox, Safari でご覧ください。</p>
     </div>
 
-    <!-- メインのコンテナ -->
     <div id="impress">
 
-        <!-- タイトルスライド -->
-        <div id="title" class="step" data-x="0" data-y="0" data-scale="1.5">
+        <!-- Slide 1: Title -->
+        <div id="title" class="step" data-x="0" data-y="0" data-scale="2">
             <h1>旧約聖書に眠る<br>中二病的ワードの探求</h1>
-            <p>禁断の知識と大いなる運命の響き</p>
-            <div class="arrow">↓</div>
-        </div>
-        
-        <!-- 序論 -->
-        <div id="intro" class="step" data-x="0" data-y="1200" data-scale="1">
-            <h2>序論：聖典に「中二病」のレンズを向ける</h2>
-            <p><strong>「中二病」</strong>とは、思春期特有の自己意識過剰や、非現実的な思考を指す俗語。その美学は、壮大な物語への渇望に根差しています。</p>
-            <p class="quote">自身を「特別な存在」と思い込み、魔法、オカルト、古代の伝承など、神秘的で禁じられた領域への強い関心を示す。</p>
-            <p>旧約聖書は、その宇宙的スケールと神聖なドラマ性から、意図せずして「中二病的」な要素の意外な宝庫となっています。</p>
+            <p class="subtitle">禁断の知識と大いなる運命の響き</p>
+            <p style="font-size: 20px;">キーボードの矢印キーまたはスペースキーで進みます</p>
         </div>
 
-        <!-- 天使の階級 -->
-        <div id="angels" class="step" data-x="-1500" data-y="2000" data-rotate="90" data-scale="1">
-            <h2>秘教のパンテオン：天使</h2>
-            <p>旧約聖書に登場する天使は、単なる使者ではなく、畏怖すべき力と姿を持つ天上の軍勢です。その複雑な階級制度は、中二病的な想像力を掻き立てます。</p>
-            <div id="angels-container">
-                <div class="angel-card">
-                    <h3>セラフィム<br>(熾天使)</h3>
-                    <p>「燃える者たち」を意味し、神の玉座の傍らに侍る最上級の天使。<strong>六枚の翼</strong>を持つ。</p>
-                    <p class="quote">中二病的共鳴: 「聖火の守護者」「六翼の光の使者」</p>
+        <!-- Slide 2: Introduction -->
+        <div id="intro" class="step" data-x="2000" data-y="0" data-rotate="90" data-scale="1">
+            <h2>序論：聖典に「中二病」のレンズを</h2>
+            <p><strong>「中二病」</strong>とは、思春期特有の自己意識過剰や、非現実的な思考を指す言葉。</p>
+            <p>旧約聖書は、その壮大なスケールと神秘性から、意図せずとも<strong>「中二病的要素」</strong>の意外な宝庫となっている。</p>
+            <p>天使、悪魔、古代の巨人、神々の戦い... その深淵を覗いてみよう。</p>
+        </div>
+
+        <!-- Slide 3: Angels -->
+        <div id="angels" class="step" data-x="2000" data-y="-1500" data-rotate="180" data-scale="1.5">
+            <h2>天上の軍勢：力と神秘の天使たち</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>セラフィム (熾天使)</h3>
+                    <p>「燃える者たち」を意味し、神の玉座に最も近い最上階級。<strong>六枚の翼</strong>を持つ光の存在。</p>
                 </div>
-                <div class="angel-card">
-                    <h3>ケルビム<br>(智天使)</h3>
-                    <p>「知恵」を司り、エデンの園のような聖なる空間の守護者。<strong>複数の顔と翼</strong>を持つ。</p>
-                    <p class="quote">中二病的共鳴: 「禁断の楽園の守護者」「原初の知恵を担う者」</p>
+                <div class="info-card">
+                    <h3>ケルビム (智天使)</h3>
+                    <p>「知恵」を司り、エデンの園を守護する者。複数の顔と翼を持ち、<strong>契約の箱</strong>の上にも飾られた。</p>
                 </div>
-                <div class="angel-card">
-                    <h3>オファニム<br>(座天使)</h3>
-                    <p>「車輪」を意味し、無数の目が付いた車輪として描写される、神の公正と正義の体現者。</p>
-                    <p class="quote">中二病的共鳴: 「神聖なる審判の生ける車輪」「天界の全視の目」</p>
+                <div class="info-card">
+                    <h3>オファニム (座天使)</h3>
+                    <p>「車輪」を意味し、無数の目が付いた生ける神の戦車。神の公正と正義を体現する。</p>
                 </div>
             </div>
         </div>
 
-        <!-- 悪魔の存在 -->
-        <div id="demons" class="step" data-x="1500" data-y="2000" data-rotate="-90" data-scale="1">
-             <h2>冥府の存在：悪魔</h2>
-             <p>堕落したものや禁じられたものへの魅力。多くの「悪魔」は、征服された民族の元神々や、掟を破った天使たちです。</p>
-             <div id="demons-container">
-                <div class="demon-card">
-                    <h3>ルシファー</h3>
-                    <p>ラテン語で「光を運ぶ者」。元はバビロニアの王を指したが、後に<strong>堕天使の長</strong>と解釈された。</p>
-                    <p class="quote">中二病的共鳴: 「堕ちた明けの明星」「天への反逆者」</p>
+        <!-- Slide 4: Demons -->
+        <div id="demons" class="step" data-x="2000" data-y="1500" data-rotate="180" data-scale="1.5">
+            <h2>冥府の存在：影と禁断の知識の悪魔たち</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3 style="color: #ff8a80;">ルシファー</h3>
+                    <p>「光を運ぶ者」を意味する<strong>堕ちた明けの明星</strong>。天への反逆者の原型。</p>
                 </div>
-                 <div class="demon-card">
-                    <h3>ベルゼブブ</h3>
-                    <p>「蝿の王」を意味する。元はカナン人の神であったが、嘲笑的に変えられ悪魔とされた。</p>
-                    <p class="quote">中二病的共鳴: 「蝿の王」「疫病の君主」「穢された神格」</p>
+                <div class="info-card">
+                    <h3 style="color: #ff8a80;">ベルゼブブ</h3>
+                    <p>「蝿の王」。元は高貴な神だったが、嘲笑的に変えられた名を持つ。疫病と腐敗を司る。</p>
                 </div>
-                <div class="demon-card">
-                    <h3>アザゼル</h3>
-                    <p>荒野の悪霊、あるいは人間に<strong>禁断の知識（武具、魔術）を教えた堕天使</strong>。</p>
-                     <p class="quote">中二病的共鳴: 「贖罪の悪魔」「禁術の師」</p>
+                <div class="info-card">
+                    <h3 style="color: #ff8a80;">アザゼル</h3>
+                    <p>人々に武具や魔術など<strong>禁断の知識</strong>を授けた堕天使。贖罪の日に罪を負わされた。</p>
                 </div>
             </div>
         </div>
         
-        <!-- 古の巨人たち -->
-        <div id="giants-beasts" class="step" data-x="0" data-y="3500" data-z="-500" data-scale="2">
-            <h2>古の巨人たちと原初の怪物</h2>
-            <p>失われた文明、忘れられた力、そして計り知れないスケールの存在。</p>
+        <!-- Slide 5: Giants & Monsters -->
+        <div id="giants" class="step" data-x="4000" data-y="0" data-rotate="270" data-scale="1">
+             <h2>古の巨人たちと原初の怪物</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>ネフィリム</h3>
+                    <p>「堕ちた者たち」。神の子らと人間の女の間に生まれたとされる<strong>半神の巨人族</strong>。太古の勇士。</p>
+                </div>
+                 <div class="info-card">
+                    <h3>レヴィアタン</h3>
+                    <p>神にしか制御できない<strong>原初の海の怪物</strong>。貫通不能な鱗と火を吹く顎を持つ、深淵の支配者。</p>
+                </div>
+                <div class="info-card">
+                    <h3>ベヒモス</h3>
+                    <p>レヴィアタンと対をなす、<strong>原初の陸の怪物</strong>。神の獣の筆頭とされ、圧倒的な巨体を誇る。</p>
+                </div>
+            </div>
         </div>
 
-        <div id="nephilim" class="step" data-x="-1200" data-y="4000" data-z="-500" data-rotate-y="45" data-scale="1">
-            <h3>ネフィリム (Nephilim)</h3>
-            <p>「堕ちた者たち」を意味し、「神の子ら」と人間の女性の間に生まれたとされる<strong>半神の巨人族</strong>。</p>
-            <p class="quote">「昔の勇士であり、名のある人々」と記述される彼らは、大洪水によって一掃されたという伝説が、その神秘性を増している。</p>
-            <p>中二病的共鳴: 「禁断の交わりの子孫」「古代の破滅の英雄」</p>
-        </div>
-        
-        <div id="leviathan" class="step" data-x="0" data-y="5000" data-z="-500" data-rotate-y="0" data-scale="3">
-            <h2>レヴィアタン</h2>
-            <p>貫通不能な鱗と火のような息を持つ、<strong>深淵の原初の蛇</strong>。神の創造力と混沌の象徴。</p>
-            <p class="quote">中二病的共鳴: 「征服不能な深海の獣」</p>
-        </div>
-        
-        <div id="behemoth" class="step" data-x="1200" data-y="4000" data-z="-500" data-rotate-y="-45" data-scale="1">
-             <h3>ベヒモス (Behemoth)</h3>
-             <p>レヴィアタンと対をなす、巨大な陸の動物。<strong>神の創造した獣の筆頭</strong>とされる。</p>
-             <p class="quote">その巨大さは単数形では表現しきれないとされ、圧倒的な力を持つ。</p>
-             <p>中二病的共鳴: 「止められない陸の巨人」「荒野の巨像」</p>
-        </div>
-
-        <!-- 力の遺物 -->
-        <div id="relics" class="step" data-x="-2000" data-y="5500" data-z="-1000" data-rotate-z="90" data-scale="1">
+        <!-- Slide 6: Artifacts & Places -->
+        <div id="artifacts" class="step" data-x="6000" data-y="0" data-rotate="360" data-scale="1">
             <h2>力の遺物と伝説の領域</h2>
-            <div class="two-column">
-                <div>
+            <div class="info-grid">
+                 <div class="info-card">
                     <h3>契約の箱 (アーク)</h3>
-                    <p>十戒を収めた聖なる箱。神の臨在そのものであり、<strong>奇跡と災厄</strong>をもたらす。</p>
-                    <p class="quote">中二病的共鳴: 「神聖法の器」「不可言の神の御座」</p>
+                    <p>神の臨在そのものを宿し、奇跡と災厄をもたらす<strong>聖なる遺物</strong>。触れることさえ許されない。</p>
                 </div>
-                <div>
+                <div class="info-card">
                     <h3>バベルの塔</h3>
-                    <p>天に到達しようとした人間の傲慢の象徴。神の怒りに触れ、<strong>言語は混乱し、人々は地上に散らされた</strong>。</p>
-                    <p class="quote">中二病的共鳴: 「神への反逆の塔」「砕かれた統一の記念碑」</p>
+                    <p>天に届かんとした人間の傲慢の象徴。神の怒りに触れ、<strong>言語的混沌</strong>を生んだ反逆の塔。</p>
+                </div>
+                 <div class="info-card">
+                    <h3>ソドムとゴモラ</h3>
+                    <p>その罪ゆえに天からの<strong>硫黄と火</strong>によって滅ぼされた双子都市。神の裁きの伝説。</p>
                 </div>
             </div>
         </div>
 
-        <!-- 運命の言葉 -->
-        <div id="words" class="step" data-x="-2000" data-y="7000" data-z="-1500" data-scale="1">
-            <h2>運命、憤怒、そして禁断の知識の言葉</h2>
-            <ul>
-                <li><strong>主の日 (Yom YHWH):</strong> 神が歴史に介入する審判の日。「太陽は闇に、月は血に変わる」と預言される。</li>
-                <li><strong>契約 (Berit):</strong> 神と人との厳粛な合意。服従には祝福を、不服従には呪いをもたらす「破られざる誓い」。</li>
-                <li><strong>聖絶 (Herem):</strong> 神への捧げ物として敵を完全に破壊する命令。「絶対的殲滅の勅令」。</li>
-                <li><strong>ヤハウェ・ツァバオト (YHWH Sabaoth):</strong> 「万軍の主」。天の軍勢を率いる神の呼び名。</li>
-            </ul>
+        <!-- Slide 7: Prophecies & Words -->
+        <div id="words" class="step" data-x="6000" data-y="1500" data-z="-1000" data-rotate="450" data-scale="1.5">
+            <h2>運命を告げる言葉と預言</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>主の日 (Yom YHWH)</h3>
+                    <p>神が歴史に介入し、世界を裁く<strong>「審判の日」</strong>。太陽は闇に、月は血に変わると預言される。</p>
+                </div>
+                <div class="info-card">
+                    <h3>聖絶 (ヘーレム)</h3>
+                    <p>敵対する全てを神への捧げ物として<strong>完全に破壊する</strong>という、絶対的殲滅の神聖なる指令。</p>
+                </div>
+                 <div class="info-card">
+                    <h3>メシア (油注がれた者)</h3>
+                    <p>神に選ばれ、世界に救済と理想の王国をもたらすとされる<strong>運命の解放者王</strong>。</p>
+                </div>
+            </div>
         </div>
         
-        <!-- 叙事詩的人物 -->
-        <div id="heroes" class="step" data-x="0" data-y="7000" data-z="-1500" data-rotate-x="30" data-scale="1">
-            <h2>叙事詩的人物たち</h2>
-            <div class="two-column">
-                <div>
+        <!-- Slide 8: Characters -->
+        <div id="characters" class="step" data-x="6000" data-y="-1500" data-z="-1000" data-rotate="450" data-scale="1.5">
+            <h2>叙事詩的人物とその運命</h2>
+            <div class="info-grid">
+                 <div class="info-card">
                     <h3>サムソン</h3>
-                    <p>神に与えられた超人的な怪力を持つが、愛した女性デリラに裏切られ力を失う<strong>悲劇の英雄</strong>。</p>
-                    <p class="quote">中二病的共鳴: 「愛に裏切られた悲劇の怪力男」</p>
-                    
-                    <h3>カイン</h3>
-                    <p>人類最初の殺人を犯し、神に呪われ、地上を彷徨う運命を背負わされた<strong>呪いの運び手</strong>。</p>
-                    <p class="quote">中二病的共鳴: 「最初の殺人者、呪われた放浪者」</p>
+                    <p>神から与えられた超人的な怪力を持つが、愛によって裏切られ力を失う<strong>悲劇の英雄</strong>。</p>
                 </div>
-                <div>
+                <div class="info-card">
+                    <h3>カイン</h3>
+                    <p>人類最初の殺人を犯し、神に呪われ永遠に地をさまよう<strong>「呪いの印」</strong>を刻まれた放浪者。</p>
+                </div>
+                 <div class="info-card">
                     <h3>ヤコブ</h3>
-                    <p>神または天使と夜通し格闘し、勝利したことで「イスラエル」の名を授かった。</p>
-                    <p class="quote">中二病的共鳴: 「神と格闘し勝利した者」</p>
-                    
-                    <h3>エリヤ</h3>
-                    <p>天から火を呼び、死を経験せずに<strong>火の戦車</strong>で天に昇ったとされる炎の預言者。</p>
-                    <p class="quote">中二病的共鳴: 「天に昇った炎の預言者」</p>
+                    <p>神そのものと夜通し格闘し、祝福と「イスラエル（神と闘う者）」の名を勝ち取った男。</p>
                 </div>
             </div>
         </div>
 
-        <!-- 結論 / 全体像 -->
-        <div id="overview" class="step" data-x="0" data-y="4000" data-z="2000" data-scale="5">
-            <h2>古代の壮大さの<br>永続的な魅力</h2>
-            <p>旧約聖書は、その物語の力をもって、現代の我々の想像力をも刺激し続けます。</p>
-            <p>天使、悪魔、巨人、英雄...<br>これらの物語は、我々の中にある「壮大な物語」への渇望を映し出す鏡なのかもしれません。</p>
+        <!-- Slide 9: Conclusion -->
+        <div id="conclusion" class="step" data-x="8000" data-y="0" data-rotate="540" data-scale="2">
+            <h2>古代の壮大さの永続的な魅力</h2>
+            <p>旧約聖書の世界は、単なる宗教文献にとどまらない。</p>
+            <p>それは、<strong>力、運命、罪、そして超越的な存在</strong>をめぐる、壮大な物語の源泉である。</p>
+            <p>この古代の響きが、現代の我々の想像力をかき立て、魅了し続けるのだ。</p>
+        </div>
+
+        <!-- Slide 10: Overview -->
+        <div id="overview" class="step" data-x="4000" data-y="0" data-scale="10">
         </div>
 
     </div>
+    
+    <div id="impress-hint">
+        <p>スペースキーまたは矢印キーを使用してナビゲートします</p>
+    </div>
 
-    <!-- impress.jsのスクリプトを読み込み -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/impress.js/0.5.3/impress.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/impress/impress.js@1.1.0/js/impress.js"></script>
     <script>
-        // impress.jsを初期化
+        // Initialize impress.js
         impress().init();
     </script>
 
