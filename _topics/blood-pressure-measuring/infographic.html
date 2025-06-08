@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>血圧測定スマートデバイス市場インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-node {
+            border: 2px solid #665191;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            background-color: white;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flowchart-arrow {
+            position: relative;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flowchart-arrow::after {
+            content: '▼';
+            font-size: 1.5rem;
+            color: #665191;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-[#003F5C] text-white p-8 text-center shadow-lg">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">手首で測る、健康の未来</h1>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto">血圧測定スマートデバイス市場：日本の消費者向け徹底ガイド</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="introduction" class="mb-16 text-center">
+            <h2 class="text-3xl font-bold text-[#003F5C] mb-4">健康管理の新時代へようこそ</h2>
+            <p class="max-w-4xl mx-auto text-lg leading-relaxed">
+                近年、スマートウォッチは単なる時刻表示やフィットネストラッカーを超え、私たちの健康を日々見守るパーソナルなパートナーへと進化しています。特に高血圧は、多くの現代人が直面する重要な健康課題です。このインフォグラフィックでは、数ある製品の中から、信頼できる血圧データを手に入れるための重要なポイントを解き明かします。
+            </p>
+        </section>
+
+        <section id="certification" class="mb-16">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-6">最も重要な選択基準：医療機器認証とは？</h2>
+                <p class="text-center text-lg mb-8 max-w-3xl mx-auto">
+                    血圧測定スマートデバイスを選ぶ上で、最も重要なのが日本の「管理医療機器」認証の有無です。これは単なる機能の差ではなく、デバイスの信頼性そのものを左右する決定的な要素です。
+                </p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="border-4 border-green-500 rounded-lg p-6 bg-green-50">
+                        <h3 class="text-2xl font-bold text-green-700 mb-4 flex items-center"><span class="text-3xl mr-3">✅</span>認証済みデバイス</h3>
+                        <p class="mb-2"><strong>目的：</strong>病気の診断、治療、予防を目的とした使用。</p>
+                        <p class="mb-2"><strong>信頼性：</strong>国が定めた安全性と性能（精度）の基準をクリア。</p>
+                        <p class="mb-2"><strong>代表例：</strong>OMRON HCR-6900T-M, HUAWEI WATCH D2</p>
+                        <p class="font-bold text-green-700 mt-4">健康管理のパートナーとして信頼できる選択肢です。</p>
+                    </div>
+                    <div class="border-4 border-red-500 rounded-lg p-6 bg-red-50">
+                        <h3 class="text-2xl font-bold text-red-700 mb-4 flex items-center"><span class="text-3xl mr-3">❌</span>非認証デバイス</h3>
+                        <p class="mb-2"><strong>目的：</strong>健康増進やウェルネス、あくまで参考値として。</p>
+                        <p class="mb-2"><strong>信頼性：</strong>精度は保証されておらず、「雲泥の差」があることも。</p>
+                        <p class="mb-2"><strong>代表例：</strong>多くの安価なスマートウォッチ</p>
+                        <p class="font-bold text-red-700 mt-4">医療目的での使用は危険。データは参考程度に留めるべきです。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="technology" class="mb-16">
+             <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-6">測定技術の対決：カフ式 vs 光学式</h2>
+                <p class="text-center text-lg mb-8 max-w-3xl mx-auto">
+                    認証済みデバイスの多くが採用する「オシロメトリック法（カフ式）」と、多くの非認証デバイスが用いる「PPG法（光学式）」には、精度の面で大きな違いがあります。
+                </p>
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div class="text-center p-6 rounded-lg bg-gray-100">
+                        <div class="text-6xl mb-4">⌚</div>
+                        <h3 class="text-2xl font-bold text-[#2F4B7C] mb-2">オシロメトリック法 (カフ式)</h3>
+                        <p class="text-sm text-gray-500 mb-4">HUAWEI WATCH D2 / OMRON HeartGuide</p>
+                        <p>腕時計のバンドに内蔵された小型カフが膨らみ、伝統的な血圧計と同様の原理で物理的に血圧を測定します。医療機器認証の基礎となる、信頼性の高い技術です。</p>
+                    </div>
+                    <div class="text-center p-6 rounded-lg bg-gray-100">
+                         <div class="text-6xl mb-4">💡</div>
+                        <h3 class="text-2xl font-bold text-[#665191] mb-2">PPG法 (光学式)</h3>
+                         <p class="text-sm text-gray-500 mb-4">ASUS VivoWatch / その他多くの非認証ウォッチ</p>
+                        <p>緑色の光を皮膚に当て、血流の変化を読み取り血圧を「推定」します。体動や装着状態に影響されやすく、多くは定期的なカフ式血圧計での較正が必要です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="comparison" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-8">頂上決戦：認証済みデバイス徹底比較</h2>
+            
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 mb-8">
+                <h3 class="text-2xl font-bold text-center text-[#2F4B7C] mb-4">OMRON HCR-6900T-M vs HUAWEI WATCH D2</h3>
+                <p class="text-center text-lg mb-8 max-w-3xl mx-auto">
+                    現在、日本市場で医療機器認証を受けた血圧測定スマートウォッチの主要な選択肢は、医療機器の老舗オムロンと、テクノロジー企業のファーウェイの2製品です。両者の違いを多角的に見ていきましょう。
+                </p>
+                <div class="chart-container">
+                    <canvas id="specsComparisonChart"></canvas>
+                </div>
+                <p class="text-center mt-4 text-gray-600">価格、重量、バッテリー性能を比較すると、HUAWEI WATCH D2が多くの点で優位性を示していることがわかります。特に重量は半分以下で、日常的な装着感に大きく影響します。</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h3 class="text-2xl font-bold text-center text-[#2F4B7C] mb-4">機能性レーダーチャート</h3>
+                    <p class="text-center text-sm mb-4">各デバイスの特性を5つの軸で評価。</p>
+                    <div class="chart-container" style="height: 350px;">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                    <p class="text-center mt-4 text-gray-600">オムロンは血圧測定に特化していますが、HUAWEIはECGやスマート機能も備え、総合的なバランスに優れています。</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h3 class="text-2xl font-bold text-center text-[#2F4B7C] mb-4">主要ヘルス機能の有無</h3>
+                    <p class="text-center text-sm mb-4">血圧測定以外の主要な健康モニタリング機能。</p>
+                     <div class="chart-container" style="height: 350px;">
+                        <canvas id="featureDonutChart"></canvas>
+                    </div>
+                     <p class="text-center mt-4 text-gray-600">HUAWEI WATCH D2は認証済みECG（心電図）機能も搭載しており、より包括的な心血管モニタリングが可能です。</p>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                 <h3 class="text-2xl font-bold text-center text-[#2F4B7C] mb-6">長所と短所</h3>
+                 <div class="grid md:grid-cols-2 gap-8">
+                     <div class="bg-white rounded-lg shadow-xl p-6">
+                         <h4 class="text-xl font-bold mb-4 text-center">OMRON HCR-6900T-M</h4>
+                         <div class="space-y-3">
+                             <p class="text-green-600"><strong>長所:</strong> 医療機器メーカーとしての絶大な信頼性。服薬リマインダー機能。</p>
+                             <p class="text-red-600"><strong>短所:</strong> 高価で、大きく重い。バッテリー持続時間が短い。スマート機能がほぼない。</p>
+                         </div>
+                     </div>
+                      <div class="bg-white rounded-lg shadow-xl p-6">
+                         <h4 class="text-xl font-bold mb-4 text-center">HUAWEI WATCH D2</h4>
+                         <div class="space-y-3">
+                             <p class="text-green-600"><strong>長所:</strong> 認証済みの血圧・ECG機能。多彩な健康機能とスマート機能。比較的安価で軽量。バッテリーも長持ち。</p>
+                             <p class="text-red-600"><strong>短所:</strong> 自動血圧測定モードは認証外。電子マネー非対応。iPhone連携に一部課題も。</p>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="other-brands" class="mb-16">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-6">その他の主要ブランドの現状 (日本市場)</h2>
+                <p class="text-center text-lg mb-8 max-w-3xl mx-auto">
+                    Apple WatchやGalaxy Watchなど人気のスマートウォッチにも健康機能はありますが、血圧測定に関しては日本では医療機器認証を受けていません。
+                </p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="p-4 border-b-2 border-[#FFA600] font-bold text-[#003F5C]">ブランド</th>
+                                <th class="p-4 border-b-2 border-[#FFA600] font-bold text-[#003F5C]">心電図(ECG)機能<br><small>(日本での認証)</small></th>
+                                <th class="p-4 border-b-2 border-[#FFA600] font-bold text-[#003F5C]">血圧測定機能<br><small>(日本での認証)</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-gray-50">
+                                <td class="p-4 border-b border-gray-200 font-bold">Apple Watch</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">✅</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">❌</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 border-b border-gray-200 font-bold">Samsung Galaxy Watch</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">❌</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">❌</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="p-4 border-b border-gray-200 font-bold">Google / Fitbit</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">✅</td>
+                                <td class="p-4 border-b border-gray-200 text-center text-2xl">❌</td>
+                            </tr>
+                             <tr>
+                                <td class="p-4 border-b-0 font-bold">ASUS VivoWatch</td>
+                                <td class="p-4 border-b-0 text-center text-2xl">❌</td>
+                                <td class="p-4 border-b-0 text-center text-2xl">❌ <small>(PPG推定)</small></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                 <p class="text-center mt-6 text-gray-600">この表が示す通り、日本で信頼性の高い血圧データを手首で得るには、現時点ではOMRONかHUAWEIの認証済みデバイスが唯一の選択肢となります。</p>
+            </div>
+        </section>
+
+        <section id="decision-flow" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-8">あなたに最適な一台を見つけるための意思決定フロー</h2>
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                 <div class="max-w-md mx-auto">
+                    <div class="flowchart-node bg-[#FFA600] text-white border-[#FFA600]">
+                        <p class="font-bold">START: 健康管理のために血圧測定スマートウォッチが欲しい</p>
+                    </div>
+                    <div class="flowchart-arrow"></div>
+                    <div class="flowchart-node">
+                        <p><strong>最優先事項は？</strong><br>信頼できる血圧データを正確に測ること？</p>
+                    </div>
+                    <div class="flowchart-arrow"></div>
+                     <div class="text-center mb-4">
+                        <span class="bg-gray-200 px-3 py-1 rounded-full font-bold">YES</span>
+                    </div>
+                    <div class="flowchart-node">
+                         <p><strong>血圧測定以外に何が必要？</strong><br>心電図、多彩な健康機能、通知や通話などのスマート機能も重要か？</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 my-4 text-center">
+                        <div>
+                             <div class="flowchart-arrow"></div>
+                             <span class="bg-gray-200 px-3 py-1 rounded-full font-bold">YES, 総合的に欲しい</span>
+                        </div>
+                         <div>
+                            <div class="flowchart-arrow"></div>
+                             <span class="bg-gray-200 px-3 py-1 rounded-full font-bold">NO, 血圧だけでいい</span>
+                        </div>
+                    </div>
+                     <div class="grid grid-cols-2 gap-4">
+                        <div class="flowchart-node bg-green-100 border-green-500">
+                             <p class="font-bold text-green-700">HUAWEI<br>WATCH D2</p>
+                        </div>
+                        <div class="flowchart-node bg-blue-100 border-blue-500">
+                            <p class="font-bold text-blue-700">OMRON<br>HCR-6900T-M</p>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-[#003F5C] text-white text-center p-6 mt-8">
+        <div class="mb-4">
+            <h3 class="text-xl font-bold mb-2">将来展望</h3>
+            <p class="max-w-2xl mx-auto text-sm">カフを使わない連続血圧測定技術の研究が進んでいますが、医療認証された製品が普及するにはまだ時間が必要です。現時点では認証済みカフ式デバイスが最も現実的な選択肢です。</p>
+        </div>
+        <div class="border-t border-gray-500 pt-4">
+            <p class="text-sm font-bold">重要：本インフォグラフィックは情報提供を目的としています。</p>
+            <p class="text-xs max-w-3xl mx-auto">高血圧の診断や治療については、必ず医療専門家にご相談ください。スマートデバイスはモニタリングを補助するツールであり、医師の診断に代わるものではありません。</p>
+            <p class="text-xs mt-4 text-gray-400">データ参照元：血圧測定スマートデバイス比較調査レポート (2025年6月)</p>
+        </div>
+    </footer>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const vibrantPalette = {
+        blue: '#003F5C',
+        purple: '#665191',
+        pink: '#D45087',
+        orange: '#FF7C43',
+        yellow: '#FFA600',
+        lightBlue: 'rgba(47, 75, 124, 0.6)',
+        lightPurple: 'rgba(160, 81, 149, 0.6)',
+    };
+
+    function wrapLabel(str, maxWidth) {
+        if (str.length <= maxWidth) {
+            return str;
+        }
+        const words = str.split(' ');
+        const lines = [];
+        let currentLine = words[0];
+
+        for (let i = 1; i < words.length; i++) {
+            if ((currentLine + ' ' + words[i]).length > maxWidth) {
+                lines.push(currentLine);
+                currentLine = words[i];
+            } else {
+                currentLine += ' ' + words[i];
+            }
+        }
+        lines.push(currentLine);
+        return lines;
+    }
+
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+            return label.join(' ');
+        }
+        return label;
+    };
+    
+    const commonChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        family: "'Noto Sans JP', sans-serif",
+                        size: 14,
+                    }
+                }
+            },
+            tooltip: {
+                titleFont: { family: "'Noto Sans JP', sans-serif" },
+                bodyFont: { family: "'Noto Sans JP', sans-serif" },
+                callbacks: {
+                    title: tooltipTitleCallback
+                }
+            }
+        }
+    };
+
+    const specsData = {
+        labels: ['価格 (円)', '重量 (g)', 'バッテリー (日, 通常使用)'],
+        datasets: [{
+            label: 'OMRON HCR-6900T-M',
+            data: [90000, 115, 2],
+            backgroundColor: vibrantPalette.lightBlue,
+            borderColor: vibrantPalette.blue,
+            borderWidth: 2
+        }, {
+            label: 'HUAWEI WATCH D2',
+            data: [60280, 40, 7],
+            backgroundColor: vibrantPalette.lightPurple,
+            borderColor: vibrantPalette.purple,
+            borderWidth: 2
+        }]
+    };
+    new Chart(document.getElementById('specsComparisonChart'), {
+        type: 'bar',
+        data: specsData,
+        options: {
+            ...commonChartOptions,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        font: { family: "'Noto Sans JP', sans-serif" }
+                    }
+                },
+                x: {
+                    ticks: {
+                        font: { family: "'Noto Sans JP', sans-serif", size: 14 }
+                    }
+                }
+            }
+        }
+    });
+
+    const radarData = {
+        labels: [
+            wrapLabel('医療機能特化度', 16),
+            wrapLabel('スマート機能', 16),
+            'デザイン・快適性',
+            'バッテリー性能',
+            wrapLabel('コストパフォーマンス', 16)
+        ],
+        datasets: [{
+            label: 'OMRON HCR-6900T-M',
+            data: [5, 1, 2, 2, 2],
+            fill: true,
+            backgroundColor: vibrantPalette.lightBlue,
+            borderColor: vibrantPalette.blue,
+            pointBackgroundColor: vibrantPalette.blue,
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: vibrantPalette.blue
+        }, {
+            label: 'HUAWEI WATCH D2',
+            data: [4, 4, 4, 4, 5],
+            fill: true,
+            backgroundColor: vibrantPalette.lightPurple,
+            borderColor: vibrantPalette.purple,
+            pointBackgroundColor: vibrantPalette.purple,
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: vibrantPalette.purple
+        }]
+    };
+    new Chart(document.getElementById('radarChart'), {
+        type: 'radar',
+        data: radarData,
+        options: {
+            ...commonChartOptions,
+            scales: {
+                r: {
+                    angleLines: { display: true },
+                    suggestedMin: 0,
+                    suggestedMax: 5,
+                    ticks: {
+                       stepSize: 1,
+                       backdropColor: 'transparent'
+                    },
+                    pointLabels: {
+                        font: {
+                           family: "'Noto Sans JP', sans-serif",
+                           size: 13
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    const featureDonutData = {
+        labels: ['HUAWEI WATCH D2', 'OMRON HCR-6900T-M'],
+        datasets: [{
+            label: '認証済み機能数',
+            data: [2, 1],
+            backgroundColor: [
+                vibrantPalette.purple,
+                vibrantPalette.blue,
+            ],
+            hoverOffset: 4
+        }]
+    };
+
+    new Chart(document.getElementById('featureDonutChart'), {
+        type: 'doughnut',
+        data: featureDonutData,
+        options: {
+            ...commonChartOptions,
+            plugins: {
+                 ...commonChartOptions.plugins,
+                 tooltip: {
+                    ...commonChartOptions.plugins.tooltip,
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += context.raw;
+                            
+                            if (context.label === 'HUAWEI WATCH D2') {
+                                label += ' (血圧, 心電図)';
+                            } else if (context.label === 'OMRON HCR-6900T-M') {
+                                label += ' (血圧)';
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+
+</body>
+</html>

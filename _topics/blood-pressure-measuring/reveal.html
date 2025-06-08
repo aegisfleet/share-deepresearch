@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>血圧測定スマートデバイス比較調査</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/sky.min.css" id="theme">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
+
+		<style>
+			/* カスタムスタイル */
+			body, .reveal {
+				font-family: 'Noto Sans JP', sans-serif;
+			}
+			.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+				font-family: 'Noto Sans JP', sans-serif;
+                font-weight: 700;
+				text-transform: none; /* 大文字変換を無効化 */
+			}
+            .reveal p, .reveal li {
+                font-size: 0.7em;
+                line-height: 1.6;
+            }
+            .reveal section {
+                text-align: left;
+            }
+            .reveal h2 {
+                border-bottom: 2px solid #3386E0;
+                padding-bottom: 10px;
+                margin-bottom: 30px;
+            }
+            .reveal .title-slide h1 {
+                font-size: 2.5em;
+                background-color: rgba(0, 56, 101, 0.7);
+                color: white;
+                padding: 20px 30px;
+                border-radius: 15px;
+                display: inline-block;
+            }
+            .reveal .title-slide p {
+                font-size: 0.8em;
+                color: white;
+                background-color: rgba(0, 0, 0, 0.5);
+                padding: 10px;
+                border-radius: 8px;
+            }
+            .reveal .icon {
+                font-size: 2em;
+                margin-right: 15px;
+                color: #3386E0;
+            }
+            .flex-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .flex-item {
+                flex: 1;
+                margin: 0 15px;
+            }
+            .reveal .comparison-table {
+                width: 100%;
+                font-size: 0.6em;
+            }
+            .reveal .comparison-table th,
+            .reveal .comparison-table td {
+                border: 1px solid #ddd;
+                padding: 12px;
+                text-align: center;
+            }
+            .reveal .comparison-table th {
+                background-color: #f2f2f2;
+            }
+            .reveal .pros-cons {
+                list-style: none;
+                padding-left: 0;
+            }
+            .reveal .pros-cons li {
+                padding-left: 2em;
+                position: relative;
+                font-size: 0.6em;
+            }
+            .reveal .pros-cons li::before {
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                font-family: "Arial", sans-serif;
+                font-weight: bold;
+                font-size: 1.5em;
+            }
+            .reveal .pros li::before {
+                content: '✅'; /* Green checkmark */
+                color: #4CAF50;
+            }
+            .reveal .cons li::before {
+                content: '❌'; /* Red cross */
+                color: #F44336;
+            }
+            .reveal .small-text {
+                font-size: 0.5em;
+                color: #777;
+            }
+            .bg-image {
+                background-image: url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=2069&auto=format&fit=crop');
+                background-size: cover;
+                background-position: center;
+            }
+            .reveal .infographic-card {
+                background-color: rgba(255, 255, 255, 0.9);
+                border-radius: 15px;
+                padding: 20px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            }
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- タイトルスライド -->
+				<section data-background-color="#4a90e2" class="title-slide" style="text-align: center;">
+					<h1>血圧測定スマートデバイス<br>比較調査</h1>
+					<p>健康管理の新たなパートナーを見つける</p>
+                    <p class="small-text mt-4">2025年版 | 医療機器認証デバイスを中心に</p>
+				</section>
+
+				<!-- イントロダクション -->
+				<section>
+					<h2>はじめに：健康管理の進化</h2>
+                    <div class="infographic-card">
+                        <p>近年、スマートウォッチは単なる活動量計から、多角的な健康モニタリングツールへと進化しています。</p>
+                        <ul>
+                            <li>高血圧は心血管疾患の主要リスク因子であり、日常的な血圧管理が重要です。</li>
+                            <li>本プレゼンでは、特に<strong style="color: #d35400;">日本の医療機器認証</strong>を受けたデバイスに焦点を当てます。</li>
+                            <li><strong style="color: #c0392b;">「医療機器」と「ウェルネスガジェット」</strong>には、信頼性において大きな差があります。</li>
+                        </ul>
+                        <p class="small-text mt-4">信頼できるデータを得るためには、認証の有無が重要な判断基準となります。</p>
+                    </div>
+				</section>
+
+				<!-- 測定技術 -->
+				<section>
+					<h2>2つの主要な血圧測定技術</h2>
+					<div class="flex-container">
+						<div class="flex-item infographic-card">
+							<h3><span class="icon">🩺</span>カフ式 (オシロメトリック法)</h3>
+							<p>従来型の自動血圧計と同じ原理。腕帯（カフ）で腕を圧迫し、血流の振動を検知して測定します。</p>
+							<ul>
+								<li><strong style="color: #27ae60;">長所:</strong> 精度が高い、ゴールドスタンダード</li>
+								<li><strong style="color: #c0392b;">短所:</strong> 測定時に圧迫感がある</li>
+								<li><strong>搭載デバイス:</strong> OMRON, HUAWEI</li>
+							</ul>
+						</div>
+						<div class="flex-item infographic-card">
+							<h3><span class="icon">💡</span>光学式 (PPG)</h3>
+							<p>LED光を皮膚に当て、血流による光の反射量の変化から心拍数を測定し、血圧を「推定」します。</p>
+							<ul>
+								<li><strong style="color: #27ae60;">長所:</strong> 手軽、連続的な傾向把握</li>
+								<li><strong style="color: #c0392b;">短所:</strong> 精度が低い、要キャリブレーション</li>
+								<li><strong>搭載デバイス:</strong> ASUS, その他多くの非認証デバイス</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- 医療機器認証の重要性 -->
+				<section>
+                    <h2>なぜ「医療機器認証」が重要なのか？</h2>
+                    <div class="infographic-card">
+                        <p>日本の厚生労働省による<strong style="color:#d35400;">「管理医療機器認証」</strong>は、デバイスの安全性と性能（精度）が国のお墨付きであることを意味します。</p>
+                        <ul>
+                            <li>病気の診断、治療、予防を目的とした製品には必須。</li>
+                            <li>非認証デバイスとの間には、血圧測定精度に<strong style="color:#c0392b;">「雲泥の差」</strong>があるとされています。</li>
+                            <li>現在、日本で血圧測定の認証を取得しているのは<strong style="color:#2980b9;">OMRON</strong>社と<strong style="color:#2980b9;">HUAWEI</strong>社などに限られます。</li>
+                        </ul>
+                        <p class="small-text mt-4">Apple WatchやSamsung Galaxy Watch（血圧機能）は、日本では認証されていません。</p>
+                    </div>
+				</section>
+
+				<!-- OMRON HeartGuide HCR-6900T-M -->
+                <section>
+                    <h2>認証デバイスレビュー① OMRON HeartGuide</h2>
+                    <div class="flex-container">
+                        <div class="flex-item infographic-card r-stack">
+                            <img src="https://placehold.co/400x400/E8F0FE/333333?text=OMRON%0AHeartGuide" alt="OMRON HeartGuide" style="border-radius:10px;">
+                            <p class="fragment small-text" style="background-color: rgba(0,0,0,0.6); color:white; padding: 5px; border-radius: 5px;">画像はイメージです</p>
+                        </div>
+                        <div class="flex-item infographic-card">
+                            <h3>OMRON HCR-6900T-M</h3>
+                            <p class="small-text">価格帯: ¥86,000 ~ ¥94,800</p>
+                            <ul class="pros-cons">
+                                <li class="pros">医療機器メーカーとしての高い信頼性</li>
+                                <li class="pros">正確なオシロメトリック法を採用</li>
+                                <li class="pros">服薬リマインダー機能</li>
+                                <li class="cons">高価で、大きく重い (約115g)</li>
+                                <li class="cons">バッテリー持続時間が約2日と短い</li>
+                                <li class="cons">スマート機能は限定的（通知なし）</li>
+                            </ul>
+                            <p class="small-text mt-4"><strong>コンセプト：</strong>「腕時計型の専門医療機器」。多機能性よりも血圧測定の信頼性を最優先するユーザー向け。</p>
+                        </div>
+                    </div>
+                </section>
+
+
+				<!-- HUAWEI WATCH D2 -->
+				<section>
+                    <h2>認証デバイスレビュー② HUAWEI WATCH D2</h2>
+                    <div class="flex-container">
+                         <div class="flex-item infographic-card r-stack">
+                             <img src="https://placehold.co/400x400/FCE4EC/333333?text=HUAWEI%0AWATCH%20D2" alt="HUAWEI WATCH D2" style="border-radius:10px;">
+                             <p class="fragment small-text" style="background-color: rgba(0,0,0,0.6); color:white; padding: 5px; border-radius: 5px;">画像はイメージです</p>
+                        </div>
+                        <div class="flex-item infographic-card">
+                            <h3>HUAWEI WATCH D2</h3>
+                            <p class="small-text">価格: 約¥60,280</p>
+                            <ul class="pros-cons">
+                                <li class="pros">血圧・心電図(ECG)の両方で認証取得</li>
+                                <li class="pros">多彩な健康トラッキング機能 (SpO2等)</li>
+                                <li class="pros">スマートウォッチとして軽量・高機能</li>
+                                <li class="pros">バッテリーが最大7日間持続（通常時）</li>
+                                <li class="cons">自動血圧測定モードは「認証外」</li>
+                                <li class="cons">電子マネー非対応</li>
+                            </ul>
+                            <p class="small-text mt-4"><strong>コンセプト：</strong>「多機能な健康ハブ」。認証済みの健康機能と日常の利便性を両立させたいユーザー向け。</p>
+                        </div>
+                    </div>
+				</section>
+
+				<!-- 比較表 -->
+				<section>
+					<h2>OMRON vs HUAWEI 直接比較</h2>
+					<table class="comparison-table">
+						<thead>
+							<tr>
+								<th>特徴</th>
+								<th>OMRON HCR-6900T-M</th>
+								<th>HUAWEI WATCH D2</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><strong>価格 (目安)</strong></td>
+								<td style="color: #c0392b;">高 (約9万円)</td>
+								<td style="color: #27ae60;">中 (約6万円)</td>
+							</tr>
+							<tr>
+								<td><strong>心電図(ECG)認証</strong></td>
+								<td>❌ なし</td>
+								<td>✅ あり</td>
+							</tr>
+							<tr>
+								<td><strong>スマート機能</strong></td>
+								<td>限定的 (通知なし)</td>
+								<td>充実 (通知・通話)</td>
+							</tr>
+							<tr>
+								<td><strong>バッテリー</strong></td>
+								<td>約2日</td>
+								<td>最大7日 (通常時)</td>
+							</tr>
+                            <tr>
+								<td><strong>重量</strong></td>
+								<td>約115g</td>
+								<td>約40g (本体)</td>
+							</tr>
+							<tr>
+								<td><strong>ターゲット</strong></td>
+								<td>血圧測定特化型</td>
+								<td>統合健康管理型</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<!-- 購入前の検討事項 -->
+				<section>
+					<h2>購入前に考えるべき４つのポイント</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="infographic-card">
+                            <h4><span class="icon">🏆</span> 1. 精度は絶対か？</h4>
+                            <p class="small-text">健康管理が目的なら<strong>医療機器認証は必須</strong>。トレンド把握なら非認証も選択肢に（ただし限界を理解した上で）。</p>
+                        </div>
+                        <div class="infographic-card">
+                            <h4><span class="icon">❤️</span> 2. 他の機能は必要か？</h4>
+                            <p class="small-text">心電図(ECG)、血中酸素(SpO2)、睡眠分析など、血圧以外の健康指標も重視するか。</p>
+                        </div>
+                        <div class="infographic-card">
+                            <h4><span class="icon">⌚</span> 3. 毎日快適に使えるか？</h4>
+                            <p class="small-text">サイズ、重量、デザイン、バッテリー持続時間など、ライフスタイルに合うかを確認。</p>
+                        </div>
+                        <div class="infographic-card">
+                            <h4><span class="icon">💰</span> 4. 予算は？</h4>
+                            <p class="small-text">認証デバイスは高価な投資。機能と価格のバランスを検討。</p>
+                        </div>
+                    </div>
+				</section>
+
+				<!-- 将来展望 -->
+				<section>
+					<h2>今後の展望：カフレス技術の進化</h2>
+                    <div class="infographic-card">
+					    <p>より手軽で連続的な血圧測定を目指し、<strong style="color: #8e44ad;">「カフレス（非圧迫）」</strong>技術の研究開発が世界中で進んでいます。</p>
+					    <ul>
+						    <li>脈波伝播時間(PWTT)やAIを活用した新技術。</li>
+						    <li>AppleやSamsungも関連特許を多数出願しており、将来的なApple Watchへの搭載などが期待されます。</li>
+						    <li>ただし、個人ごとのキャリブレーションなしで医療グレードの精度を安定して達成するには、まだ課題が残ります。</li>
+					    </ul>
+                        <p class="small-text mt-4">当面は、信頼性を求めるなら認証済みの<strong style="color: #2980b9;">カフ式スマートウォッチが最も現実的な選択肢</strong>です。</p>
+                    </div>
+				</section>
+
+				<!-- 結論・推奨 -->
+				<section>
+					<h2>結論と推奨</h2>
+                    <p class="small-text">あなたのニーズに最適なデバイスは？</p>
+					<div class="flex-container">
+						<div class="flex-item infographic-card">
+							<h4><span class="icon">👨‍⚕️</span> 精度最優先のユーザー</h4>
+							<p><strong>OMRON HCR-6900T-M</strong><br>
+                            スマート機能よりも医療機器としての信頼性を重視する方向け。ただし、価格とサイズは要検討。</p>
+						</div>
+						<div class="flex-item infographic-card">
+							<h4><span class="icon">🚀</span> バランス重視のユーザー</h4>
+							<p><strong>HUAWEI WATCH D2</strong><br>
+                            認証済みの血圧・心電図機能と、現代的なスマートウォッチの利便性を両立したい方に最適。コストパフォーマンスが高い。</p>
+						</div>
+                        <div class="flex-item infographic-card">
+							<h4><span class="icon">📈</span> トレンド把握が目的のユーザー</h4>
+							<p><strong>非認証デバイス</strong><br>
+                            あくまで「参考値」として血圧傾向を知りたい方向け。ASUSなど。医療目的での使用は不可。</p>
+						</div>
+					</div>
+                    <p class="mt-8 text-center small-text"><strong>重要:</strong> どのようなデバイスを使用するにせよ、高血圧の診断と管理は必ず医療専門家にご相談ください。</p>
+				</section>
+
+                <section style="text-align: center;">
+                    <h2>ご清聴ありがとうございました</h2>
+                    <p>Q & A</p>
+                </section>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+                width: 1280,
+                height: 720,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
