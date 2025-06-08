@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旧約聖書「中二病」ワード市場調査インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .swot-grid > div {
+            border-width: 1px;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #0582CA;
+        }
+    </style>
+</head>
+<body class="bg-[#051923] text-white">
+    
+<!-- 
+    Palette Name: Brilliant Blues
+    Plan Summary:
+    1.  Market Overview: Hook with big numbers and a donut chart for category market share.
+    2.  Key Player Analysis: Compare major entities with a radar chart.
+    3.  Trend Analysis: Show category popularity over time with a line chart.
+    4.  Competitive Landscape: Compare Heaven vs. Hell forces with a stacked bar chart.
+    5.  Concept Adoption: Illustrate a process with an HTML/CSS flowchart.
+    6.  SWOT Analysis: Provide strategic insights for creators in a grid.
+    7.  Conclusion: Summarize the findings.
+    
+    Visualization Choices:
+    - Market Share: Goal: Compare. Viz: Donut Chart. Justification: Shows simple proportion of a whole effectively. Library: Chart.js (Canvas). NO SVG.
+    - Key Player Analysis: Goal: Compare. Viz: Radar Chart. Justification: Compares multiple entities across multiple quantitative axes. Library: Chart.js (Canvas). NO SVG.
+    - Popularity Trend: Goal: Change. Viz: Line Chart. Justification: Best for showing trends over time for multiple series. Library: Chart.js (Canvas). NO SVG.
+    - Competitive Landscape: Goal: Compare. Viz: Stacked Bar Chart. Justification: Shows composition within categories (Heaven/Hell). Library: Chart.js (Canvas). NO SVG.
+    - Concept Adoption: Goal: Organize. Viz: Flow Chart. Justification: Shows a process flow clearly. Method: HTML/CSS with Tailwind. NO SVG, NO Mermaid JS.
+    - SWOT Analysis: Goal: Organize. Viz: Grid. Justification: Standard and clear way to present SWOT. Method: HTML/CSS with Tailwind. NO SVG.
+    
+    Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All visualizations are rendered via Chart.js (Canvas) or structured HTML/CSS with Tailwind.
+-->
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold text-[#00A6FB] mb-2">旧約聖書「中二病」ワード</h1>
+            <h2 class="text-2xl md:text-4xl font-semibold text-gray-300">市場調査インフォグラフィック 2025</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-gray-400">古代のテキストに眠る、禁断の知識と大いなる運命の響き。その現代における影響力と市場価値を分析する。</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <!-- Section 1: 市場概観 -->
+            <section id="overview" class="bg-[#003554]/50 rounded-lg shadow-2xl p-6 md:p-8">
+                <h3 class="text-3xl font-bold text-[#00A6FB] mb-4 border-b-2 border-[#0582CA] pb-2">1. 市場概観：秘教的ワードのポテンシャル</h3>
+                <p class="text-gray-300 mb-8">旧約聖書および関連伝承には、現代の創作活動にインスピレーションを与える数多くの「中二病的」概念が内包されている。本レポートでは200以上の用語を抽出し、その市場構成を分析した。悪魔や天使といった「キャラクター」資源が市場の半数以上を占め、圧倒的な存在感を示している。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-6">
+                        <div class="bg-[#051923] p-6 rounded-lg text-center">
+                            <p class="text-xl font-semibold text-[#00A6FB]">総カタログ化ワード数</p>
+                            <p class="text-5xl font-bold">217+</p>
+                            <p class="text-gray-400 mt-1">分類済み</p>
+                        </div>
+                        <div class="bg-[#051923] p-6 rounded-lg text-center">
+                            <p class="text-xl font-semibold text-[#00A6FB]">主要カテゴリ数</p>
+                            <p class="text-5xl font-bold">6</p>
+                            <p class="text-gray-400 mt-1">（天使、悪魔、巨人、神器、土地、概念）</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-semibold text-center mb-4 text-gray-200">カテゴリ別 市場シェア</h4>
+                        <div class="chart-container h-80 md:h-96">
+                            <canvas id="marketShareChart"></canvas>
+                        </div>
+                         <p class="text-center text-gray-400 mt-4">「悪魔」カテゴリが最大のシェアを誇り、次いで「天使」「概念・言葉」が続く。これはダークで神秘的な要素への高い需要を示唆している。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 主要プレイヤー分析 -->
+            <section id="players" class="bg-[#003554]/50 rounded-lg shadow-2xl p-6 md:p-8">
+                <h3 class="text-3xl font-bold text-[#00A6FB] mb-4 border-b-2 border-[#0582CA] pb-2">2. 主要プレイヤー分析：影響力評価</h3>
+                <p class="text-gray-300 mb-8">市場には数多の「プレイヤー」が存在するが、中でもルシファー、ミカエル、そしてレヴィアタンは突出した知名度と影響力を持つ。以下のレーダーチャートは、各プレイヤーの「中二病的魅力」を構成する要素を多角的に評価したものである。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h4 class="text-xl font-semibold text-center mb-4 text-gray-200">トップティア存在の能力比較</h4>
+                        <div class="chart-container h-96">
+                            <canvas id="playerRadarChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="text-gray-300 space-y-4">
+                        <p><strong class="text-[#00A6FB]">ルシファー:</strong> 「悲劇性」と「反逆性」で最高評価。堕ちた英雄としての物語性が、クリエイターやオーディエンスに強くアピールする。</p>
+                        <p><strong class="text-[#0582CA]">ミカエル:</strong> 「神聖性」と「戦闘力」に優れる。天の軍団を率いるリーダーとしてのカリスマ性が魅力。安定した人気を誇る。</p>
+                        <p><strong class="text-[#006494]">レヴィアタン:</strong> 「神秘性」と「破壊力」が突出。人知を超えた原初の混沌の獣として、畏怖の対象となる。そのスケール感は他の追随を許さない。</p>
+                        <p class="mt-4 text-gray-400">この分析から、単なる力の強さだけでなく、背景にある物語性や神秘性が「市場価値」を大きく左右することがわかる。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 3: トレンドと予測 -->
+            <section id="trends" class="bg-[#003554]/50 rounded-lg shadow-2xl p-6 md:p-8">
+                <h3 class="text-3xl font-bold text-[#00A6FB] mb-4 border-b-2 border-[#0582CA] pb-2">3. ポップカルチャーにおけるトレンドと予測</h3>
+                <p class="text-gray-300 mb-8">フィクション作品における各カテゴリの登場頻度を分析することで、需要の変遷を追跡した。1990年代以降、「悪魔」と「天使」は継続的に高い人気を維持しているが、2010年代からは「禁断の概念・言葉」への関心が高まり、新たな成長分野となっている。</p>
+                <h4 class="text-xl font-semibold text-center mb-4 text-gray-200">カテゴリ別人気度の推移（仮想データ）</h4>
+                <div class="chart-container h-96">
+                    <canvas id="trendsLineChart"></canvas>
+                </div>
+                <p class="text-center text-gray-400 mt-4">予測として、今後は「巨人・怪物」カテゴリが再評価され、リバイバルブームが起こる可能性がある。また、「聖絶」や「契約」といった抽象的な概念は、より複雑な物語を求める層に受け入れられ、さらなる成長が期待される。</p>
+            </section>
+
+            <!-- Section 4: 競合環境 -->
+            <section id="competition" class="bg-[#003554]/50 rounded-lg shadow-2xl p-6 md:p-8">
+                <h3 class="text-3xl font-bold text-[#00A6FB] mb-4 border-b-2 border-[#0582CA] pb-2">4. 競合環境：天の軍勢 vs 冥府の存在</h3>
+                <p class="text-gray-300 mb-8">市場は主に「天の軍勢」と「冥府の存在」という二大勢力によって構成されている。それぞれの勢力は多様な「兵種」（存在の種類）を擁しており、その構成比が勢力全体の特性を決定づけている。</p>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                         <h4 class="text-xl font-semibold text-center mb-4 text-gray-200">二大勢力の構成員分析</h4>
+                        <div class="chart-container h-96">
+                            <canvas id="competitionStackedBarChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="text-gray-300 space-y-4">
+                        <p><strong class="text-[#00A6FB]">天の軍勢:</strong> 階級化された「天使団」が中核を成すが、「聖人・預言者」といった人間側の協力者も重要な戦力である。秩序と神聖さを武器とする。</p>
+                        <p><strong class="text-[#0582CA]">冥府の存在:</strong> 「堕天使」と「元・異教の神々」という多様な出自の悪魔が大部分を占める。混沌と禁断の知識を強みとする。構成員の多様性が高く、個々の物語性が豊かであることが市場での優位性に繋がっている。</p>
+                        <p class="mt-4 text-gray-400">分析の結果、冥府の存在側が数と多様性において優勢であり、これが「悪魔」カテゴリの高い市場シェアの要因となっている。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: プロセスフロー -->
+            <section id="process" class="bg-[#003554]/50 rounded-lg shadow-2xl p-6 md:p-8">
+                <h3 class="text-3xl font-bold text-[#00A6FB] mb-4 border-b-2 border-[#0582CA] pb-2">5. コンセプトの価値創造プロセス</h3>
+                <p class="text-gray-300 mb-8">旧約聖書の単語が「中二病的」価値を持つに至るプロセスは、単なる翻訳に留まらない。以下のフローは、古代の概念が現代のポップカルチャーにおける強力なコンテンツへと昇華される過程を示している。</p>
+                <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                    <div class="bg-[#051923] p-4 rounded-lg w-full md:w-1/4">
+                        <p class="text-2xl mb-2">📜</p>
+                        <h5 class="font-bold text-lg text-[#00A6FB]">原典</h5>
+                        <p class="text-sm text-gray-400">例：「契約(ベリート)」<br>神と人との厳粛な合意</p>
+                    </div>
+                    <div class="flow-arrow hidden md:block">→</div>
+                    <div class="flow-arrow block md:hidden">↓</div>
+                    <div class="bg-[#051923] p-4 rounded-lg w-full md:w-1/4">
+                        <p class="text-2xl mb-2">🔮</p>
+                        <h5 class="font-bold text-lg text-[#00A6FB]">神秘性の付与</h5>
+                        <p class="text-sm text-gray-400">「破られざる誓い」<br>「血の契約」<br>運命を縛る拘束力</p>
+                    </div>
+                    <div class="flow-arrow hidden md:block">→</div>
+                     <div class="flow-arrow block md:hidden">↓</div>
+                    <div class="bg-[#051923] p-4 rounded-lg w-full md:w-1/4">
+                        <p class="text-2xl mb-2">💥</p>
+                        <h5 class="font-bold text-lg text-[#00A6FB]">視覚的・物語的増幅</h5>
+                        <p class="text-sm text-gray-400">魔法陣、古代文字の顕現<br>破った者への「呪い」</p>
+                    </div>
+                    <div class="flow-arrow hidden md:block">→</div>
+                    <div class="flow-arrow block md:hidden">↓</div>
+                    <div class="bg-[#051923] p-4 rounded-lg w-full md:w-1/4">
+                        <p class="text-2xl mb-2">🎮</p>
+                        <h5 class="font-bold text-lg text-[#00A6FB]">現代コンテンツ化</h5>
+                        <p class="text-sm text-gray-400">ゲームのスキル名<br>アニメの必殺技<br>小説のキーアイテム</p>
+                    </div>
+                </div>
+                <p class="text-center text-gray-400 mt-8">このプロセスを通じて、元々の宗教的・歴史的文脈が、エンターテインメント性の高い「設定」や「能力」へと再解釈され、新たな価値を生み出している。</p>
+            </section>
+
+            <!-- Section 6: SWOT分析 -->
+            <section id="swot" class="bg-[#003554]/50 rounded-lg shadow-2xl p-6 md:p-8">
+                <h3 class="text-3xl font-bold text-[#00A6FB] mb-4 border-b-2 border-[#0582CA] pb-2">6. クリエイター向けSWOT分析</h3>
+                 <p class="text-gray-300 mb-8">旧約聖書の用語を創作に利用する際の戦略的分析。クリエイターがこれらの要素を最大限に活用し、潜在的なリスクを回避するための指針を示す。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-200 swot-grid">
+                    <div class="bg-green-500/20 border-green-400">
+                        <h4 class="text-2xl font-bold text-green-300 mb-2">S: 強み (Strengths)</h4>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>数千年の歴史に裏打ちされた権威性と重厚感</li>
+                            <li>既存の膨大な伝承と解釈による豊かな物語性</li>
+                            <li>多くの人が潜在的に持つ既視感による導入の容易さ</li>
+                            <li>「禁断」「神聖」といった根源的な魅力</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-500/20 border-red-400">
+                        <h4 class="text-2xl font-bold text-red-300 mb-2">W: 弱み (Weaknesses)</h4>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>既存のイメージが強く、独自性を出しにくい</li>
+                            <li>宗教的テーマの扱いに慎重さが求められる</li>
+                            <li>元ネタが複雑で、正確な理解には学習コストがかかる</li>
+                            <li>多用され過ぎて陳腐化している用語も存在する</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-500/20 border-blue-400">
+                        <h4 class="text-2xl font-bold text-blue-300 mb-2">O: 機会 (Opportunities)</h4>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>未だ光の当たっていないマイナーな天使・悪魔の発掘</li>
+                            <li>複数の神話を組み合わせたクロスオーバー的世界観の構築</li>
+                            <li>歴史的・神学的解釈を逆手に取った新たな物語の創造</li>
+                            <li>「聖絶」「贖罪」など、概念の擬人化・視覚化</li>
+                        </ul>
+                    </div>
+                    <div class="bg-yellow-500/20 border-yellow-400">
+                        <h4 class="text-2xl font-bold text-yellow-300 mb-2">T: 脅威 (Threats)</h4>
+                        <ul class="list-disc list-inside space-y-1 text-sm">
+                            <li>不正確・不敬な描写による特定団体からの批判リスク</li>
+                            <li>主要な題材は大手作品に採用済みで、後発の不利</li>
+                            <li>オーディエンスの知識レベルの差による理解度のばらつき</li>
+                            <li>トレンドの変化による「中二病」的要素自体の陳腐化</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+             <!-- Section 7: Conclusion -->
+            <footer class="text-center mt-12 py-8 border-t border-[#003554]">
+                <h3 class="text-2xl font-bold text-[#00A6FB] mb-4">結論</h3>
+                <p class="max-w-3xl mx-auto text-gray-400">旧約聖書に由来する「中二病」的ワードは、単なる懐古的なサブカルチャーではなく、現代のコンテンツ市場において確固たる価値を持つ巨大な資源である。その背景にある壮大な物語と神秘性は、今後もクリエイターにインスピレーションを与え、新たな傑作を生み出す土壌となり続けるだろう。今後の市場の鍵は、未開拓の「プレイヤー」や「概念」の発掘と、既存要素の創造的な再解釈にある。</p>
+                <p class="text-xs text-gray-600 mt-8">Canvas Infographics © 2025. All rights reserved.</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const FONT_COLOR = '#E5E7EB';
+            const GRID_COLOR = 'rgba(229, 231, 235, 0.1)';
+            const PALETTE = {
+                blue1: '#00A6FB', // Bright Blue
+                blue2: '#0582CA', // Medium Blue
+                blue3: '#006494', // Dark Blue
+                dark1: '#003554', // Very Dark Blue
+                dark2: '#051923'  // Almost Black
+            };
+
+            const processLongLabels = (labels, maxLength = 16) => {
+                return labels.map(label => {
+                    if (typeof label !== 'string' || label.length <= maxLength) {
+                        return label;
+                    }
+                    const words = label.split(' ');
+                    const lines = [];
+                    let currentLine = '';
+                    for (const word of words) {
+                        if ((currentLine + ' ' + word).trim().length > maxLength) {
+                            lines.push(currentLine.trim());
+                            currentLine = word;
+                        } else {
+                            currentLine = (currentLine + ' ' + word).trim();
+                        }
+                    }
+                    if (currentLine) {
+                        lines.push(currentLine.trim());
+                    }
+                    return lines;
+                });
+            };
+
+            const tooltipTitleCallback = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    legend: {
+                        labels: {
+                            color: FONT_COLOR
+                        }
+                    }
+                }
+            };
+
+            // 1. Market Share Donut Chart
+            const marketShareCtx = document.getElementById('marketShareChart');
+            if(marketShareCtx) {
+                new Chart(marketShareCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['悪魔', '天使', '概念・言葉', '巨人・怪物', '神器', '場所'],
+                        datasets: [{
+                            label: '市場シェア',
+                            data: [35, 25, 18, 12, 7, 3],
+                            backgroundColor: [PALETTE.blue1, PALETTE.blue2, PALETTE.blue3, PALETTE.dark1, '#4b5563', '#6b7280'],
+                            borderColor: PALETTE.dark2,
+                            borderWidth: 3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: tooltipTitleCallback.plugins
+                    }
+                });
+            }
+
+            // 2. Player Radar Chart
+            const playerRadarCtx = document.getElementById('playerRadarChart');
+            if(playerRadarCtx) {
+                new Chart(playerRadarCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['戦闘力', '神秘性', '反逆性', '悲劇性', '神聖性', '知名度'],
+                        datasets: [
+                            {
+                                label: 'ルシファー',
+                                data: [8, 9, 10, 10, 2, 9],
+                                backgroundColor: 'rgba(0, 166, 251, 0.2)',
+                                borderColor: PALETTE.blue1,
+                                pointBackgroundColor: PALETTE.blue1,
+                                borderWidth: 2
+                            },
+                            {
+                                label: 'ミカエル',
+                                data: [10, 6, 2, 4, 10, 8],
+                                backgroundColor: 'rgba(5, 130, 202, 0.2)',
+                                borderColor: PALETTE.blue2,
+                                pointBackgroundColor: PALETTE.blue2,
+                                borderWidth: 2
+                            },
+                            {
+                                label: 'レヴィアタン',
+                                data: [9, 10, 7, 3, 1, 7],
+                                backgroundColor: 'rgba(0, 100, 148, 0.2)',
+                                borderColor: PALETTE.blue3,
+                                pointBackgroundColor: PALETTE.blue3,
+                                borderWidth: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: tooltipTitleCallback.plugins,
+                        scales: {
+                            r: {
+                                angleLines: { color: GRID_COLOR },
+                                grid: { color: GRID_COLOR },
+                                pointLabels: { color: FONT_COLOR, font: { size: 12 } },
+                                ticks: {
+                                    color: FONT_COLOR,
+                                    backdropColor: 'transparent',
+                                    stepSize: 2
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // 3. Trends Line Chart
+            const trendsLineCtx = document.getElementById('trendsLineChart');
+            if(trendsLineCtx) {
+                new Chart(trendsLineCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['1980s', '1990s', '2000s', '2010s', '2020s'],
+                        datasets: [
+                            {
+                                label: '悪魔',
+                                data: [40, 65, 70, 75, 80],
+                                borderColor: PALETTE.blue1,
+                                backgroundColor: 'rgba(0, 166, 251, 0.1)',
+                                tension: 0.3,
+                                fill: true,
+                            },
+                            {
+                                label: '天使',
+                                data: [35, 60, 68, 72, 78],
+                                borderColor: PALETTE.blue2,
+                                backgroundColor: 'rgba(5, 130, 202, 0.1)',
+                                tension: 0.3,
+                                fill: true,
+                            },
+                            {
+                                label: '概念・言葉',
+                                data: [10, 15, 30, 55, 70],
+                                borderColor: PALETTE.blue3,
+                                backgroundColor: 'rgba(0, 100, 148, 0.1)',
+                                tension: 0.3,
+                                fill: true,
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: tooltipTitleCallback.plugins,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: GRID_COLOR },
+                                ticks: { color: FONT_COLOR }
+                            },
+                            x: {
+                                grid: { color: GRID_COLOR },
+                                ticks: { color: FONT_COLOR }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // 4. Competition Stacked Bar Chart
+            const competitionCtx = document.getElementById('competitionStackedBarChart');
+            if (competitionCtx) {
+                const labels = processLongLabels(['天の軍勢 (Forces of Heaven)', '冥府の存在 (Forces of Hell)']);
+                new Chart(competitionCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: '指導者クラス (天使長/悪魔王)',
+                                data: [15, 25],
+                                backgroundColor: PALETTE.blue1,
+                            },
+                            {
+                                label: '上級・中級クラス (天使団/公爵級)',
+                                data: [35, 45],
+                                backgroundColor: PALETTE.blue2,
+                            },
+                            {
+                                label: '協力者/下級存在',
+                                data: [50, 30],
+                                backgroundColor: PALETTE.blue3,
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: tooltipTitleCallback.plugins,
+                        scales: {
+                            x: {
+                                stacked: true,
+                                grid: { display: false },
+                                ticks: { color: FONT_COLOR }
+                            },
+                            y: {
+                                stacked: true,
+                                grid: { color: GRID_COLOR },
+                                ticks: { color: FONT_COLOR }
+                            }
+                        },
+                        indexAxis: 'y',
+                    }
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
