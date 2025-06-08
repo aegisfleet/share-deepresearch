@@ -1,0 +1,38 @@
+name: Add Favicon to HTML Files
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  add-favicon:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add favicon links
+        run: |
+          # 既存のファビコン設定をチェックして、必要な場合のみ追加
+          for file in $(find . -type f -name "*.html"); do
+            if ! grep -q "favicon-32x32.png" "$file" || ! grep -q "favicon-16x16.png" "$file"; then
+              sed -i 's/<head>/<head>\n    <link rel="icon" type="image\/png" sizes="32x32" href="\/share-deepresearch\/assets\/favicon\/favicon-32x32.png">\n    <link rel="icon" type="image\/png" sizes="16x16" href="\/share-deepresearch\/assets\/favicon\/favicon-16x16.png">/' "$file"
+              echo "Updated: $file"
+            else
+              echo "Skipped: $file (already has favicon)"
+            fi
+          done
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Add favicon links to HTML files" && git push)
