@@ -10,7 +10,9 @@ supplementary_materials:
   - title: "旧約聖書「中二病」ワード市場調査インフォグラフィック"
     url: "/share-deepresearch/topics/old-testament-word/infographic.html"
   - title: "旧約聖書「中二病」ワード探求プレゼンテーション"
-    url: "/share-deepresearch/topics/old-testament-word/slide.html"
+    url: "/share-deepresearch/topics/old-testament-word/reveal.html"
+  - title: "旧約聖書に眠る中二病的ワードの探求"
+    url: "/share-deepresearch/topics/old-testament-word/impress.html"
 ---
 
 # **旧約聖書に眠る中二病的ワードの探求：禁断の知識と大いなる運命の響き**
