@@ -20,6 +20,49 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon/favicon-16x16.png' | relative_url }}">
 
     {% include head-ogp.html %}
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  {% if page.url == '/' %}
+  "@type": "WebSite",
+  "name": "{{ site.title | escape }}",
+  "url": "{{ site.url }}{{ site.baseurl }}/",
+  "description": "{{ site.description | escape }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ site.url }}{{ site.baseurl }}/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+  {% else if page.title %}
+  "@type": "Article",
+  "headline": "{{ page.title | escape }}",
+  "image": ["{{ site.url }}{% if page.ogp_image %}{{ page.ogp_image | relative_url }}{% else %}{{ '/assets/images/default-ogp.png' | relative_url }}{% endif %}"],
+  "datePublished": {% if page.date %}"{{ page.date | date_to_xmlschema }}"{% else %}"{{ site.time | date_to_xmlschema }}"{% endif %},
+  "dateModified": {% if page.last_modified_at %}"{{ page.last_modified_at | date_to_xmlschema }}"{% elsif page.date %}"{{ page.date | date_to_xmlschema }}"{% else %}"{{ site.time | date_to_xmlschema }}"{% endif %},
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.author.name | default: site.title | escape }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.title | escape }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}{{ '/assets/images/default-ogp.png' | relative_url }}"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ site.url }}{{ page.url | relative_url }}"
+  },
+  "description": "{% if page.description %}{{ page.description | strip_html | normalize_whitespace | escape }}{% else %}{{ site.description | strip_html | normalize_whitespace | escape }}{% endif %}"
+  {% endif %}
+}
+</script>
 </head>
 <body>
     <header class="page-header">

@@ -2,6 +2,7 @@
 layout: topic
 title: "自律型AIエージェントの現状と展望：Devinと主要競合の徹底比較"
 date: 2025-05-27
+description: "本レポートは、Devinを代表とする自律型AIエージェントの現状を調査し、主要な競合AIエージェントの特徴と優位性を比較分析します。技術的課題や倫理的考察、今後の展望についても解説します。"
 prompt: "Devinを代表とする自立型のAIエージェントを調査したい。現在広く普及しているAIエージェントについて、その特徴と各エージェントの優位性についてまとめて欲しい。"
 category: "ai"
 tags: [Devin,OpenHands,GitHub Copilot]
