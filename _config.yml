@@ -6,6 +6,11 @@ theme: jekyll-theme-cayman
 baseurl: "/share-deepresearch"
 url: "https://aegisfleet.github.io"
 
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
 # ナビゲーションの設定
 collections:
   topics:
