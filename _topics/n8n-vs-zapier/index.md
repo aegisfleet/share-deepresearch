@@ -9,6 +9,8 @@ audio: "/share-deepresearch/assets/audio/n8n-vs-zapier.mp3"
 supplementary_materials:
   - title: "n8n vs Zapier: ワークフロー自動化ツールの徹底比較インフォグラフィック"
     url: "/share-deepresearch/topics/n8n-vs-zapier/infographic.html"
+  - title: "インフォグラフィックプレゼン: n8n vs Zapier"
+    url: "/share-deepresearch/topics/n8n-vs-zapier/slide.html"
 ---
 
 # **n8nとZapierの比較分析レポート：SlackおよびGitHub連携を中心として**

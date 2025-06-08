@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>インフォグラフィックプレゼン: n8n vs Zapier</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/white.min.css" id="theme">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/monokai.min.css">
+		<style>
+			:root {
+				--n8n-color: #007EA7;
+				--zapier-color: #FF4A00;
+				--neutral-color: #333;
+			}
+			.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+				text-transform: none;
+				color: var(--neutral-color);
+			}
+			.reveal section.title-slide {
+				text-align: center;
+			}
+			.reveal .comparison-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 40px;
+				align-items: center;
+			}
+			.reveal .comparison-box {
+				background: #f9f9f9;
+				border-radius: 15px;
+				padding: 20px;
+				text-align: center;
+				border-bottom: 5px solid;
+			}
+			.reveal .n8n-box { border-color: var(--n8n-color); }
+			.reveal .zapier-box { border-color: var(--zapier-color); }
+			.reveal .comparison-box h3 {
+				font-size: 1.5em;
+				margin-bottom: 15px;
+			}
+			.reveal .comparison-box .icon {
+				font-size: 3em;
+				margin-bottom: 20px;
+			}
+			.reveal .n8n-color { color: var(--n8n-color); }
+			.reveal .zapier-color { color: var(--zapier-color); }
+			.reveal ul.checklist {
+				list-style: none;
+				padding-left: 0;
+			}
+			.reveal ul.checklist li {
+				margin-bottom: 15px;
+				font-size: 0.8em;
+			}
+			.reveal ul.checklist li .fa-check-circle {
+				margin-right: 10px;
+			}
+			.flowchart {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				font-size: 0.7em;
+			}
+			.flowchart-box {
+				border: 2px solid #ccc;
+				border-radius: 8px;
+				padding: 15px;
+				margin: 10px 0;
+				width: 80%;
+				text-align: center;
+				background: #fff;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+			}
+			.flowchart-arrow {
+				font-size: 2em;
+				color: #999;
+				margin: 5px 0;
+			}
+			.flowchart-box.n8n-node { border-color: var(--n8n-color); }
+			.flowchart-box.zapier-step { border-color: var(--zapier-color); }
+			.flowchart-box.code-node { background-color: #e3f2fd; }
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section class="title-slide">
+					<h1 class="n8n-color">n8n <span class="zapier-color">vs</span> Zapier</h1>
+					<h3>ワークフロー自動化ツールのインフォグラフィック比較</h3>
+					<p><small>Slack & GitHub連携を中心として</small></p>
+				</section>
+
+				<section>
+					<h2>2つのアプローチ</h2>
+					<div class="comparison-grid">
+						<div class="comparison-box n8n-box fragment">
+							<div class="icon n8n-color"><i class="fas fa-cogs"></i></div>
+							<h3>n8n</h3>
+							<p><strong>開発者向け</strong><br>パワーとコントロール</p>
+						</div>
+						<div class="comparison-box zapier-box fragment">
+							<div class="icon zapier-color"><i class="fas fa-magic"></i></div>
+							<h3>Zapier</h3>
+							<p><strong>ビジネスユーザー向け</strong><br>手軽さと網羅性</p>
+						</div>
+					</div>
+				</section>
+				
+				<section>
+					<section>
+						<h2>コア機能比較</h2>
+					</section>
+					<section>
+						<h3>ターゲット & 使いやすさ</h3>
+						<div class="comparison-grid">
+							<div>
+								<h4 class="n8n-color">n8n</h4>
+								<p><i class="fas fa-user-cog"></i> 開発者、技術チーム</p>
+								<p>高度な機能のため学習曲線あり</p>
+							</div>
+							<div>
+								<h4 class="zapier-color">Zapier</h4>
+								<p><i class="fas fa-user-tie"></i> 非技術ユーザー、マーケター</p>
+								<p>直感的なノーコードUI</p>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>ホスティング & データ管理</h3>
+						<div class="comparison-grid">
+							<div>
+								<h4 class="n8n-color">n8n</h4>
+								<p><i class="fas fa-server"></i> セルフホスト可能</p>
+								<p><i class="fas fa-lock"></i> データプライバシーを完全制御</p>
+							</div>
+							<div>
+								<h4 class="zapier-color">Zapier</h4>
+								<p><i class="fas fa-cloud"></i> クラウドのみ</p>
+								<p>Zapierサーバーでデータを処理</p>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>カスタマイズ性</h3>
+						<div class="comparison-grid">
+							<div>
+								<h4 class="n8n-color">n8n</h4>
+								<p><i class="fas fa-code"></i> フルコードサポート (JS/Python)</p>
+								<p>API経由でほぼ全てに接続可能</p>
+							</div>
+							<div>
+								<h4 class="zapier-color">Zapier</h4>
+								<p><i class="fas fa-puzzle-piece"></i> GUIベース、限定的なコード</p>
+								<p>7,000以上のネイティブ連携</p>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>価格モデル</h3>
+						<div class="comparison-grid">
+							<div>
+								<h4 class="n8n-color">n8n</h4>
+								<p><i class="fas fa-play-circle"></i> ワークフロー実行ごと</p>
+								<p>複雑なフローでも低コスト</p>
+							</div>
+							<div>
+								<h4 class="zapier-color">Zapier</h4>
+								<p><i class="fas fa-tasks"></i> タスク（ステップ）ごと</p>
+								<p>ステップ数が多いと高コストに</p>
+							</div>
+						</div>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2><i class="fab fa-slack"></i> Slack連携フロー比較</h2>
+						<p>「特定キーワードを含むメッセージに動的返信」</p>
+					</section>
+					<section>
+						<div class="comparison-grid">
+							<div>
+								<h3 class="n8n-color">n8nのフロー</h3>
+								<div class="flowchart">
+									<div class="flowchart-box n8n-node">Slackメンション (トリガー)</div>
+									<div class="flowchart-arrow"><i class="fas fa-arrow-down"></i></div>
+									<div class="flowchart-box n8n-node">IFノード: キーワード判定</div>
+									<div class="flowchart-arrow"><i class="fas fa-arrow-down"></i></div>
+									<div class="flowchart-box n8n-node code-node"><i class="fas fa-code"></i> Codeノード: 動的メッセージ生成</div>
+									<div class="flowchart-arrow"><i class="fas fa-arrow-down"></i></div>
+									<div class="flowchart-box n8n-node">Slackにブロックキットで返信</div>
+								</div>
+							</div>
+							<div>
+								<h3 class="zapier-color">Zapierのフロー</h3>
+								<div class="flowchart">
+									<div class="flowchart-box zapier-step">Slackメンション (トリガー)</div>
+									<div class="flowchart-arrow"><i class="fas fa-arrow-down"></i></div>
+									<div class="flowchart-box zapier-step">Filter: キーワードを含む</div>
+									<div class="flowchart-arrow"><i class="fas fa-arrow-down"></i></div>
+									<div class="flowchart-box zapier-step code-node"><i class="fab fa-python"></i> Code by Zapier (限定的)</div>
+									<div class="flowchart-arrow"><i class="fas fa-arrow-down"></i></div>
+									<div class="flowchart-box zapier-step">Slackにメッセージ送信</div>
+								</div>
+							</div>
+						</div>
+						<p style="font-size: 0.6em; margin-top: 20px;"><strong class="n8n-color">n8n</strong>は複雑なロジックや動的コンテンツ生成に強く、<strong class="zapier-color">Zapier</strong>は標準的な連携を迅速に構築することに長けています。</p>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2><i class="fab fa-github"></i> GitHub連携フロー比較</h2>
+						<p>「PR作成時に自動でタスク管理ツールへ連携」</p>
+					</section>
+					<section>
+						<div class="comparison-grid">
+							<div>
+								<h3 class="n8n-color">n8nのフロー</h3>
+								<div class="flowchart">
+									<div class="flowchart-box n8n-node">GitHub PR作成 (トリガー)</div>
+									<div class="flowchart-arrow"><i class="fas fa-arrow-down"></i></div>
+									<div class="flowchart-box n8n-node"><i class="fas fa-git-alt"></i> Gitノード: 差分ファイル取得</div>
+									<div class="flowchart-arrow"><i class="fas fa-arrow-down"></i></div>
+									<div class="flowchart-box n8n-node code-node"><i class="fas fa-code"></i> Codeノード: 差分解析と要約</div>
+									<div class="flowchart-arrow"><i class="fas fa-arrow-down"></i></div>
+									<div class="flowchart-box n8n-node">Jiraに詳細チケット作成</div>
+								</div>
+							</div>
+							<div>
+								<h3 class="zapier-color">Zapierのフロー</h3>
+								<div class="flowchart">
+									<div class="flowchart-box zapier-step">GitHub PR作成 (トリガー)</div>
+									<div class="flowchart-arrow"><i class="fas fa-arrow-down"></i></div>
+									<div class="flowchart-box zapier-step">Filter: 特定のブランチのみ</div>
+									<div class="flowchart-arrow"><i class="fas fa-arrow-down"></i></div>
+									<div class="flowchart-box zapier-step">Trelloにカード作成</div>
+								</div>
+							</div>
+						</div>
+						<p style="font-size: 0.6em; margin-top: 20px;"><strong class="n8n-color">n8n</strong>は詳細なGit操作やCI/CD連携に強く、<strong class="zapier-color">Zapier</strong>はIssueやPRを他ツールへ通知・連携する定型業務の自動化が得意です。</p>
+					</section>
+				</section>
+
+				<section>
+					<h2>どちらを選ぶべきか？</h2>
+					<div class="comparison-grid">
+						<div class="n8n-box">
+							<h3 class="n8n-color">n8nを選択するケース</h3>
+							<ul class="checklist">
+								<li class="fragment"><i class="fas fa-check-circle n8n-color"></i> <strong>技術スキル</strong>がある</li>
+								<li class="fragment"><i class="fas fa-check-circle n8n-color"></i> <strong>データプライバシー</strong>が最優先</li>
+								<li class="fragment"><i class="fas fa-check-circle n8n-color"></i> <strong>複雑なカスタムロジック</strong>が必要</li>
+								<li class="fragment"><i class="fas fa-check-circle n8n-color"></i> <strong>コスト効率</strong>を重視する</li>
+							</ul>
+						</div>
+						<div class="zapier-box">
+							<h3 class="zapier-color">Zapierを選択するケース</h3>
+							<ul class="checklist">
+								<li class="fragment"><i class="fas fa-check-circle zapier-color"></i> <strong>迅速なセットアップ</strong>が最優先</li>
+								<li class="fragment"><i class="fas fa-check-circle zapier-color"></i> <strong>多数のSaaSアプリ</strong>を連携したい</li>
+								<li class="fragment"><i class="fas fa-check-circle zapier-color"></i> <strong>非技術者</strong>がメインユーザー</li>
+								<li class="fragment"><i class="fas fa-check-circle zapier-color"></i> <strong>サーバー管理</strong>の手間を避けたい</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				
+				<section>
+					<h2>結論</h2>
+					<p class="fragment">最適なツールは、チームの<strong>スキル</strong>、<strong>予算</strong>、そして自動化したい<strong>タスクの性質</strong>によって決まります。</p>
+					<div class="comparison-grid" style="margin-top: 50px;">
+						<div class="fragment">
+							<h3 class="n8n-color">n8n</h3>
+							<p>パワー & コントロール</p>
+						</div>
+						<div class="fragment">
+							<h3 class="zapier-color">Zapier</h3>
+							<p>手軽さ & 網羅性</p>
+						</div>
+					</div>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+		<script>
+			Reveal.initialize({
+				history: false, // Set to false to avoid cross-origin errors in some environments
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
