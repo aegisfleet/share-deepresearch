@@ -209,52 +209,56 @@ AIエージェントをGitHub Actionsで実装するには、ワークフロー�
   * with: アクションに渡すパラメータを指定します。APIキーやIssue情報などを渡すのに使います。  
   * env: ジョブまたはステップレベルで環境変数を設定します。  
 * **例1: 新規Issueへの自動ラベリング**  
-  YAML  
-  name: AI Auto Labeler  
-  on:  
-    issues:  
-      types: \[opened\]  
-  jobs:  
-    label:  
-      runs-on: ubuntu-latest  
-      permissions:  
-        issues: write \# ラベルを付与するために必要  
-        contents: read \# AIがリポジトリのコンテキストを読み取る場合に必要  
-      steps:  
-        \- name: Checkout code (optional, if repo context is needed)  
-          uses: actions/checkout@v3  
-        \- name: Call AI Labeling Service / Action  
-          uses: some-ai-labeler-action@v1 \# またはカスタムスクリプトを実行  
-          with:  
-            github\_token: ${{ secrets.GITHUB\_TOKEN }}  
-            api\_key: ${{ secrets.AI\_SERVICE\_API\_KEY }} \# AIサービスのAPIキー  
-            issue\_title: ${{ github.event.issue.title }}  
-            issue\_body: ${{ github.event.issue.body }}  
+
+  ```YAML
+  name: AI Auto Labeler
+  on:
+    issues:
+      types: \[opened\]
+  jobs:
+    label:
+      runs-on: ubuntu-latest
+      permissions:
+        issues: write \# ラベルを付与するために必要
+        contents: read \# AIがリポジトリのコンテキストを読み取る場合に必要
+      steps:
+        \- name: Checkout code (optional, if repo context is needed)
+          uses: actions/checkout@v3
+        \- name: Call AI Labeling Service / Action
+          uses: some-ai-labeler-action@v1 \# またはカスタムスクリプトを実行
+          with:
+            github\_token: ${{ secrets.GITHUB\_TOKEN }}
+            api\_key: ${{ secrets.AI\_SERVICE\_API\_KEY }} \# AIサービスのAPIキー
+            issue\_title: ${{ github.event.issue.title }}
+            issue\_body: ${{ github.event.issue.body }}
             \# その他、AIラベリングに必要な情報
+  ```
 
   このワークフローは、新しいIssueが作成されるとトリガーされます。必要に応じてリポジトリのコードをチェックアウトし（AIがコードの文脈を理解する必要がある場合）、その後、指定されたAIラベリングアクション（またはAPIを呼び出すカスタムスクリプト）を実行します。permissionsブロックで issues: write を指定することで、アクションがIssueにラベルを付与できるようになります。contents: read は、AIがリポジトリ内のファイル（例：ドキュメント、過去のIssueの傾向など）を参照してより適切なラベルを判断する場合に必要となります。  
 * **例2: コメントによるIssue要約のトリガー (/summarize)**  
-  YAML  
-  name: AI Issue Summarizer  
-  on:  
-    issue\_comment:  
-      types: \[created\]  
-  jobs:  
-    summarize:  
-      runs-on: ubuntu-latest  
-      \# コメント本文に '/summarize' が含まれている場合のみジョブを実行  
-      if: contains(github.event.comment.body, '/summarize') \# \[18, 19, 25\]  
-      permissions:  
-        issues: write \# 要約をコメントとして投稿するために必要  
-        contents: read \# Issueの内容を取得するために必要 (場合によっては不要)  
-      steps:  
-        \- name: Call AI Summarization Service / Action  
-          uses: some-ai-summarizer-action@v1 \# またはカスタムスクリプトを実行  
-          with:  
-            github\_token: ${{ secrets.GITHUB\_TOKEN }}  
-            api\_key: ${{ secrets.AI\_SERVICE\_API\_KEY }} \# AIサービスのAPIキー  
-            issue\_number: ${{ github.event.issue.number }} \# 対象のIssue番号  
+
+  ```YAML
+  name: AI Issue Summarizer
+  on:
+    issue_comment:
+      types: \[created\]
+  jobs:
+    summarize:
+      runs-on: ubuntu-latest
+      \# コメント本文に '/summarize' が含まれている場合のみジョブを実行
+      if: contains(github.event.comment.body, '/summarize') \# \[18, 19, 25\]
+      permissions:
+        issues: write \# 要約をコメントとして投稿するために必要
+        contents: read \# Issueの内容を取得するために必要 (場合によっては不要)
+      steps:
+        \- name: Call AI Summarization Service / Action
+          uses: some-ai-summarizer-action@v1 \# またはカスタムスクリプトを実行
+          with:
+            github\_token: ${{ secrets.GITHUB\_TOKEN }}
+            api\_key: ${{ secrets.AI\_SERVICE\_API\_KEY }} \# AIサービスのAPIキー
+            issue\_number: ${{ github.event.issue.number }} \# 対象のIssue番号
             \# その他、AI要約に必要な情報
+  ```
 
   このワークフローは、Issueに新しいコメントが投稿されたときにトリガーされます。if 条件により、コメント本文に /summarize という文字列が含まれている場合にのみジョブが実行されます。これにより、ユーザーが明示的に要約を要求したときだけAIが動作します。AI要約アクションは、指定されたIssue番号の情報を取得し、AIサービスAPIを呼び出して要約を生成し、その結果を新しいコメントとしてIssueに投稿します。issues: write 権限がコメント投稿に必要です。
 
