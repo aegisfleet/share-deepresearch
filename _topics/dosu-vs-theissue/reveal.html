@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>AI開発支援ツール市場分析プレゼンテーション</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/white.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --r-main-font: 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+            --r-heading-font: 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 600;
+            --r-link-color: #007bff;
+            --r-selection-background-color: #007bff;
+            --c-primary: #0052CC;
+            --c-accent1: #00B8D9;
+            --c-accent2: #79F2C0;
+            --c-dark: #172B4D;
+            --c-light-gray: #f8f9fa;
+        }
+
+        .reveal {
+            /* Increased base font size for better readability */
+            font-size: 30px; 
+        }
+        
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            color: var(--c-dark);
+        }
+
+        .reveal .slide-title {
+            color: var(--c-primary);
+            border-bottom: 3px solid var(--c-accent1);
+            padding-bottom: 15px;
+            margin-bottom: 50px !important;
+        }
+
+        .reveal .highlight {
+            color: var(--c-primary);
+            font-weight: bold;
+        }
+        
+        .reveal .icon {
+            color: var(--c-accent1);
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .reveal .card {
+            background-color: var(--c-light-gray);
+            border-radius: 12px;
+            padding: 30px; /* Increased padding */
+            margin: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: left;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .reveal .card h4 {
+            color: var(--c-primary);
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        
+        /* Increased font size in cards */
+        .reveal .card ul, .reveal .card p {
+            font-size: 0.9em; 
+            line-height: 1.5;
+        }
+
+        .reveal .card ul {
+            margin: 0;
+            padding-left: 1.2em;
+        }
+
+        .reveal .comparison-table {
+            /* Increased table font size */
+            font-size: 20px; 
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .reveal .comparison-table th,
+        .reveal .comparison-table td {
+            border: 1px solid #dee2e6;
+            padding: 10px 14px; /* Increased padding */
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .reveal .comparison-table th {
+            background-color: var(--c-primary);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .reveal .comparison-table tbody tr:nth-child(odd) {
+            background-color: var(--c-light-gray);
+        }
+        
+        .reveal .scrollable-slide {
+            height: 85vh; /* Adjusted height */
+            overflow-y: auto !important;
+        }
+        
+        /* Specific adjustments for lists on summary slides */
+        .reveal .summary-list li {
+            margin-bottom: 15px; /* Added space between list items */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h1 class="r-fit-text">AI開発支援ツール</h1>
+                <h2 class="r-fit-text">市場比較分析</h2>
+                <p class="fragment" style="margin-top: 20px;">Dosu.ai vs theissue.ai および主要類似サービス</p>
+            </section>
+            
+            <section>
+                <h3 class="slide-title r-fit-text">サマリー：AIは開発者の「チームメイト」へ</h3>
+                <p class="fragment">AIは単純なコード補完を超え、<span class="highlight">課題管理・コードレビュー・知識共有</span>までを担う存在に進化しました。</p>
+                <p class="fragment">本資料では、主要なAI開発支援ツールを比較し、それぞれの特徴と市場での位置付けを明らかにします。</p>
+                <div class="fragment" style="margin-top: 50px; display: flex; justify-content: space-around; font-size: 0.8em;">
+                    <span><i class="fas fa-cogs"></i> Dosu.ai</span>
+                    <span><i class="fas fa-bullseye"></i> theissue.ai</span>
+                    <span><i class="fab fa-github"></i> GitHub Copilot</span>
+                    <span><i class="fas fa-search"></i> Bito.ai</span>
+                    <span><i class="fas fa-carrot"></i> CodeRabbit</span>
+                </div>
+            </section>
+
+            <section>
+                <h3 class="slide-title r-fit-text">市場の二極化</h3>
+                <div style="display: flex; justify-content: center; align-items: stretch;">
+                    <div class="card fragment" data-fragment-index="1">
+                        <h4><i class="fas fa-microscope"></i> 専門特化型</h4>
+                        <p>特定の課題解決に深く焦点を当てる。</p>
+                        <ul>
+                            <li><span class="highlight">例:</span> theissue.ai</li>
+                            <li>課題作成の品質向上に特化</li>
+                            <li>特定領域で高いパフォーマンス</li>
+                        </ul>
+                    </div>
+                     <div class="card fragment" data-fragment-index="2">
+                        <h4><i class="fas fa-globe"></i> 統合プラットフォーム型</h4>
+                        <p>開発全体をカバーする包括的アシスタント。</p>
+                        <ul>
+                            <li><span class="highlight">例:</span> GitHub Copilot</li>
+                            <li>コーディングからPRまで一気通貫</li>
+                            <li>シームレスな開発体験</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <section>
+                    <h3 class="slide-title r-fit-text">Dosu.ai: ソフトウェア保守の自動化</h3>
+                    <div class="r-stack">
+                        <p class="fragment fade-out" data-fragment-index="1">
+                           <i class="fas fa-shield-alt icon"></i><br>
+                           「ソフトウェアのメンテナンスを、書くことと同じくらい簡単にする」
+                        </p>
+                        <ul class="summary-list fragment" data-fragment-index="1">
+                            <li><i class="fas fa-robot" style="color: var(--c-primary);"></i> AIによる課題への自動応答・解決</li>
+                            <li><i class="fas fa-bug" style="color: var(--c-primary);"></i> バグの自動トリアージ</li>
+                            <li><i class="fas fa-book" style="color: var(--c-primary);"></i> 動的なドキュメンテーション支援</li>
+                            <li><i class="fas fa-cogs" style="color: var(--c-primary);"></i> 知識管理とベストプラクティス強制</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h4 class="slide-title r-fit-text">Dosu.ai: メリットとデメリット</h4>
+                     <div style="display: flex; justify-content: center; align-items: stretch;">
+                        <div class="card" style="border-top: 5px solid #28a745;">
+                            <h4><i class="fas fa-check-circle"></i> メリット</h4>
+                            <ul>
+                                <li>定型業務の自動化による生産性向上</li>
+                                <li>24時間365日の対応</li>
+                                <li>技術的負債の削減</li>
+                            </ul>
+                        </div>
+                         <div class="card" style="border-top: 5px solid #dc3545;">
+                            <h4><i class="fas fa-times-circle"></i> デメリット</h4>
+                            <ul>
+                                <li>現在はGitHubに限定</li>
+                                <li>価格が不透明（要問い合わせ）</li>
+                                <li>他のツールとの統合は計画段階</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            
+            <section>
+                 <section>
+                    <h3 class="slide-title r-fit-text">theissue.ai: 高品質な課題作成</h3>
+                    <div class="r-stack">
+                        <p class="fragment fade-out" data-fragment-index="1">
+                           <i class="fas fa-feather-alt icon"></i><br>
+                           面倒なGitHubの課題作成を、効率的で共同作業に適したものに
+                        </p>
+                        <ul class="summary-list fragment" data-fragment-index="1">
+                            <li><i class="fas fa-magic" style="color: var(--c-primary);"></i> LLMが「美しい課題」を自動生成</li>
+                            <li><i class="fas fa-pen-fancy" style="color: var(--c-primary);"></i> 課題報告の標準化・品質向上</li>
+                            <li><i class="fas fa-users" style="color: var(--c-primary);"></i> チームのコラボレーションを促進</li>
+                        </ul>
+                    </div>
+                </section>
+                 <section>
+                    <h4 class="slide-title r-fit-text">theissue.ai: メリットとデメリット</h4>
+                     <div style="display: flex; justify-content: center; align-items: stretch;">
+                        <div class="card" style="border-top: 5px solid #28a745;">
+                            <h4><i class="fas fa-check-circle"></i> メリット</h4>
+                            <ul>
+                                <li>明確な課題（質の低い報告）に特化</li>
+                                <li>時間節約とチーム連携向上</li>
+                                <li>無料プランがあり導入しやすい</li>
+                            </ul>
+                        </div>
+                         <div class="card" style="border-top: 5px solid #dc3545;">
+                            <h4><i class="fas fa-times-circle"></i> デメリット</h4>
+                            <ul>
+                                <li>機能範囲が非常に狭い</li>
+                                <li>単体での影響力は限定的か</li>
+                                <li>Copilot等の広範なツールと競合</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section>
+                <h3 class="slide-title r-fit-text">直接比較：補完関係にある２つのツール</h3>
+                <p>機能の重複は最小限で、SDLCの異なる段階をサポートします。</p>
+                <div style="margin-top: 50px; font-size: 1.2em; text-align: center;">
+                    <div class="fragment">
+                        <span class="highlight">theissue.ai</span>
+                        <p style="font-size: 0.8em; margin:0;">課題ライフサイクルの<span style="font-weight:bold;">開始</span></p>
+                        <i class="fas fa-arrow-down" style="color: var(--c-primary); margin: 20px 0;"></i>
+                    </div>
+                    <div class="fragment">
+                        <span class="highlight">Dosu.ai</span>
+                        <p style="font-size: 0.8em; margin:0;">課題ライフサイクルの<span style="font-weight:bold;">全体</span>（対応〜解決）</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section data-background-color="var(--c-light-gray)">
+                 <h3 class="slide-title r-fit-text">類似サービスとの比較</h3>
+                 <p>より広い市場でのポジショニングを見ていきましょう。</p>
+            </section>
+
+            <section>
+                <h3 class="slide-title r-fit-text"><i class="fab fa-github"></i> GitHub Copilot</h3>
+                <p>コード補完から進化した<span class="highlight">統合AIコーディングパートナー</span></p>
+                <ul class="summary-list" style="font-size: 0.9em;">
+                    <li class="fragment">IDE、GitHub.com、CLIに深く統合</li>
+                    <li class="fragment"><span class="highlight">課題作成支援機能</span>でtheissue.aiと直接競合</li>
+                    <li class="fragment"><span class="highlight">ドキュメンテーション支援機能</span>でDosu.aiと一部重複</li>
+                    <li class="fragment">プラットフォームネイティブの利便性が最大の強み</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3 class="slide-title r-fit-text"><i class="fas fa-search"></i> Bito.ai & <i class="fas fa-carrot"></i> CodeRabbit</h3>
+                <p><span class="highlight">AI駆動型コードレビュー</span>に特化したツール群</p>
+                 <div style="display: flex; justify-content: center; align-items: stretch;">
+                    <div class="card fragment">
+                        <h4>Bito.ai</h4>
+                        <ul>
+                            <li>コードベース全体を深く理解</li>
+                            <li>高品質なレビューとセキュリティ重視</li>
+                            <li>SOC 2 Type II準拠</li>
+                        </ul>
+                    </div>
+                     <div class="card fragment">
+                        <h4>CodeRabbit</h4>
+                        <ul>
+                            <li>既存ワークフローへのシームレスな統合</li>
+                            <li>適応学習と開発者体験を重視</li>
+                            <li>OSS向けに寛大な無料プラン</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="fragment" style="margin-top:30px;">これらは、AIによるコード生成の<span class="highlight">品質保証</span>という重要な役割を担います。</p>
+            </section>
+
+            <section data-state="scrollable-slide">
+                <h3 class="slide-title r-fit-text">機能比較マトリクス</h3>
+                <div class="r-stretch">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>特徴項目</th>
+                                <th>Dosu.ai</th>
+                                <th>theissue.ai</th>
+                                <th>GitHub Copilot</th>
+                                <th>Bito.ai</th>
+                                <th>CodeRabbit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>主要機能</strong></td>
+                                <td>保守・知識管理</td>
+                                <td>課題作成支援</td>
+                                <td>統合コーディング</td>
+                                <td>コードレビュー</td>
+                                <td>コードレビュー</td>
+                            </tr>
+                            <tr>
+                                <td><strong>課題作成</strong></td>
+                                <td><i class="fas fa-minus-circle" style="color:#6c757d;"></i></td>
+                                <td><i class="fas fa-check-circle" style="color:#28a745;"></i> (主要)</td>
+                                <td><i class="fas fa-check-circle" style="color:#28a745;"></i></td>
+                                <td><i class="fas fa-minus-circle" style="color:#6c757d;"></i></td>
+                                <td><i class="fas fa-check-circle" style="color:#28a745;"></i> (経由)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>課題管理</strong></td>
+                                <td><i class="fas fa-check-circle" style="color:#28a745;"></i> (主要)</td>
+                                <td><i class="fas fa-minus-circle" style="color:#6c757d;"></i></td>
+                                <td><i class="fas fa-minus-circle" style="color:#6c757d;"></i></td>
+                                <td><i class="fas fa-minus-circle" style="color:#6c757d;"></i></td>
+                                <td><i class="fas fa-minus-circle" style="color:#6c757d;"></i></td>
+                            </tr>
+                            <tr>
+                                <td><strong>コードレビュー</strong></td>
+                                <td><i class="fas fa-minus-circle" style="color:#6c757d;"></i></td>
+                                <td><i class="fas fa-minus-circle" style="color:#6c757d;"></i></td>
+                                <td><i class="fas fa-adjust" style="color:#ffc107;"></i> (限定)</td>
+                                <td><i class="fas fa-check-circle" style="color:#28a745;"></i> (主要)</td>
+                                <td><i class="fas fa-check-circle" style="color:#28a745;"></i> (主要)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IDE統合</strong></td>
+                                <td><i class="fas fa-minus-circle" style="color:#6c757d;"></i></td>
+                                <td><i class="fas fa-minus-circle" style="color:#6c757d;"></i></td>
+                                <td><i class="fas fa-check-circle" style="color:#28a745;"></i></td>
+                                <td><i class="fas fa-check-circle" style="color:#28a745;"></i></td>
+                                <td><i class="fas fa-check-circle" style="color:#28a745;"></i></td>
+                            </tr>
+                            <tr>
+                                <td><strong>無料ティア</strong></td>
+                                <td><i class="fas fa-question-circle" style="color:#ffc107;"></i></td>
+                                <td><i class="fas fa-check-circle" style="color:#28a745;"></i></td>
+                                <td><i class="fas fa-check-circle" style="color:#28a745;"></i></td>
+                                <td><i class="fas fa-check-circle" style="color:#28a745;"></i></td>
+                                <td><i class="fas fa-check-circle" style="color:#28a745;"></i> (OSS)</td>
+                            </tr>
+                             <tr>
+                                <td><strong>USP</strong></td>
+                                <td>保守/知識管理</td>
+                                <td>高品質な課題作成</td>
+                                <td>エコシステム統合</td>
+                                <td>コードベース理解</td>
+                                <td>ワークフロー統合</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section>
+                <h3 class="slide-title r-fit-text">戦略的洞察</h3>
+                <ul class="summary-list">
+                    <li class="fragment"><i class="fas fa-puzzle-piece icon" style="font-size: 1em; color: var(--c-primary);"></i> <span class="highlight">専門化 vs プラットフォーム化:</span> ニーズに応じて専門ツールと統合プラットフォームの選択が重要。</li>
+                    <li class="fragment"><i class="fas fa-user-cog icon" style="font-size: 1em; color: var(--c-primary);"></i> <span class="highlight">開発者の役割の変化:</span> コーダーから「AIのコーチ」へ。プロンプト能力が鍵。</li>
+                    <li class="fragment"><i class="fas fa-brain icon" style="font-size: 1em; color: var(--c-primary);"></i> <span class="highlight">コンテキストが王様:</span> コードベース全体を理解するAIがより高い価値を提供。</li>
+                    <li class="fragment"><i class="fas fa-shield-alt icon" style="font-size: 1em; color: var(--c-primary);"></i> <span class="highlight">品質とセキュリティ:</span> AIによる開発加速には、AIによる高度なレビューが不可欠。</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3 class="slide-title r-fit-text">結論と推奨事項</h3>
+                <p>最適なツールは、チームの<span class="highlight">最重要課題</span>によって決まります。</p>
+                 <div style="display: flex; justify-content: space-around; font-size: 0.8em; text-align: left; margin-top: 30px;">
+                    <ul class="summary-list fragment">
+                        <li><strong>課題作成の質向上 →</strong><br>theissue.ai, GitHub Copilot</li>
+                        <li><strong>ソフトウェア保守・知識管理 →</strong><br>Dosu.ai</li>
+                        <li><strong>高度なコードレビュー →</strong><br>Bito.ai, CodeRabbit</li>
+                    </ul>
+                    <ul class="summary-list fragment">
+                        <li><strong>統合された体験 →</strong><br>GitHub Copilot</li>
+                        <li><strong>コスト重視・小規模 →</strong><br>各ツールの無料・低価格プラン</li>
+                        <li><strong>大企業 →</strong><br>Enterpriseプラン（セキュリティ/サポート重視）</li>
+                    </ul>
+                </div>
+                 <p class="fragment" style="margin-top: 40px;">AIは強力な支援者ですが、<span class="highlight">人間の監督と批判的思考</span>は依然として不可欠です。</p>
+            </section>
+            
+            <section>
+                <h2>ご清聴ありがとうございました</h2>
+                <h3>Q & A</h3>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: false,
+            history: false,
+            
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ],
+            slideNumber: 'c/t',
+            width: 1280,
+            height: 720,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            center: true,
+            transition: 'slide'
+        });
+
+        const scrollableSlides = document.querySelectorAll('.scrollable-slide');
+        scrollableSlides.forEach(slide => {
+            slide.addEventListener('wheel', event => {
+                event.stopPropagation();
+            });
+             slide.addEventListener('touchstart', event => {
+                event.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>

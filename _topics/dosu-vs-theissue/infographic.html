@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI開発支援ツール市場分析インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Color Palette: Brilliant Blues -->
+    <!-- Narrative Plan: 
+        1.  Title & Hook: AI Teammates are here.
+        2.  Market Overview: The landscape is shifting from single-task tools to comprehensive platforms.
+        3.  Player Analysis: Grid-based comparison of key tools (Dosu, theissue, Copilot, Bito, CodeRabbit) with core function visualization.
+        4.  Feature Deep Dive: Radar chart for multi-vector comparison and a bar chart for pricing.
+        5.  New Developer Workflow: HTML/CSS flowchart showing how tools integrate into SDLC.
+        6.  Key Takeaways: Highlighting strategic insights.
+        7.  Conclusion. -->
+    <!-- Visualization Strategy:
+        -   Market Share/Focus: Donut Chart (Chart.js/Canvas) - Goal: Compare composition. Justification: Ideal for showing parts of a whole for each tool's focus.
+        -   Multi-feature Comparison: Radar Chart (Chart.js/Canvas) - Goal: Compare multiple quantitative variables. Justification: Best for visualizing performance of different items across the same set of axes.
+        -   Pricing Comparison: Bar Chart (Chart.js/Canvas) - Goal: Compare discrete numerical values. Justification: Simple and clear for price comparison.
+        -   Developer Workflow: Flowchart (HTML/CSS) - Goal: Organize a process. Justification: Sequential steps are clearly represented with styled divs and flexbox, avoiding SVG/Mermaid.
+        -   Key Stats: Big Number (HTML/CSS) - Goal: Inform with a single data point. Justification: High impact visual for key statistics.
+        -   NO SVG or Mermaid JS used. All visuals are HTML/CSS or Canvas. -->
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #F4F5F7;
+            color: #172B4D;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-step {
+            background-color: white;
+            border: 2px solid #00B8D9;
+            color: #0052CC;
+        }
+        .flowchart-arrow {
+            color: #00B8D9;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#0052CC]">AI開発支援ツール市場分析</h1>
+            <p class="mt-1 text-sm sm:text-base text-gray-600">ソフトウェア開発の未来を形作るAIチームメイトの全貌</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+
+        <section id="intro" class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-[#172B4D] leading-tight">AIは単なる<span class="text-[#0052CC]">ツール</span>から<br>真の<span class="text-[#00B8D9]">チームメイト</span>へ</h2>
+            <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-700">
+                ソフトウェア開発ライフサイクル（SDLC）は、AIの進化によって劇的な変革を遂げています。単純なコード補完から、課題管理、コードレビュー、そして知識共有まで。本インフォグラフィックでは、AI開発支援ツールの最新動向をデータに基づき視覚化し、各ツールの特徴と市場におけるポジショニングを明らかにします。
+            </p>
+        </section>
+
+        <section id="market-overview" class="mb-20">
+            <h3 class="text-3xl font-bold text-center text-[#172B4D] mb-12">市場の二極化：専門特化型 vs プラットフォーム型</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h4 class="text-2xl font-bold text-[#0052CC] mb-4">専門特化型ツール</h4>
+                    <p class="text-gray-600 mb-4">特定の課題解決に深く焦点を当てるツール群。例えば、GitHubの課題作成プロセスを完璧にすることを目指すtheissue.aiのように、開発ワークフローの特定の一点を磨き上げます。</p>
+                    <div class="flex items-center justify-center space-x-4">
+                        <span class="text-4xl">🎯</span>
+                        <div>
+                            <p class="font-bold">強み</p>
+                            <p class="text-sm text-gray-500">特定領域で高いパフォーマンス</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h4 class="text-2xl font-bold text-[#00B8D9] mb-4">統合プラットフォーム</h4>
+                    <p class="text-gray-600 mb-4">開発ライフサイクル全体をカバーする包括的なアシスタント。GitHub Copilotのように、コーディングからドキュメンテーション、PR作成までを一気通貫で支援します。</p>
+                     <div class="flex items-center justify-center space-x-4">
+                        <span class="text-4xl">🌐</span>
+                        <div>
+                            <p class="font-bold">強み</p>
+                            <p class="text-sm text-gray-500">シームレスな開発体験</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="players" class="mb-20">
+            <h3 class="text-3xl font-bold text-center text-[#172B4D] mb-12">主要AIプレイヤーとその焦点</h3>
+             <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-700 mb-12">
+                各ツールがどの領域に注力しているかを可視化します。ドーナツチャートは、各ツールの機能的な重点配分を示しています。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+                    <h4 class="text-xl font-bold text-[#0052CC] text-center">Dosu.ai</h4>
+                    <p class="text-sm text-gray-500 text-center mb-4">ソフトウェア保守と知識管理の自動化</p>
+                    <div class="chart-container flex-grow"><canvas id="dosuChart"></canvas></div>
+                    <p class="text-sm text-gray-600 mt-4">OSSプロジェクトや社内サービスにおいて、課題への自動応答、バグのトリアージ、動的なドキュメンテーション支援を行い、開発者のメンテナンス負担を軽減します。</p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+                    <h4 class="text-xl font-bold text-[#0052CC] text-center">theissue.ai</h4>
+                    <p class="text-sm text-gray-500 text-center mb-4">高品質なGitHub課題作成の効率化</p>
+                    <div class="chart-container flex-grow"><canvas id="theissueChart"></canvas></div>
+                    <p class="text-sm text-gray-600 mt-4">LLMを活用し、質の高いGitHubの課題を効率的に作成することに特化。開発ワークフローの入り口である課題定義の質を高め、チームの生産性を向上させます。</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+                    <h4 class="text-xl font-bold text-[#0052CC] text-center">GitHub Copilot</h4>
+                    <p class="text-sm text-gray-500 text-center mb-4">統合AIコーディングパートナー</p>
+                    <div class="chart-container flex-grow"><canvas id="copilotChart"></canvas></div>
+                    <p class="text-sm text-gray-600 mt-4">コード補完からチャット、課題作成、PR生成まで、IDEとGitHubプラットフォーム全体に深く統合された包括的なAIアシスタントです。</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+                    <h4 class="text-xl font-bold text-[#0052CC] text-center">Bito.ai</h4>
+                     <p class="text-sm text-gray-500 text-center mb-4">コードベースを理解するAIコードレビュー</p>
+                    <div class="chart-container flex-grow"><canvas id="bitoChart"></canvas></div>
+                     <p class="text-sm text-gray-600 mt-4">コードベース全体を深く理解し、文脈に応じた高品質なAIコードレビューを提供。セキュリティスキャンなども統合し、コードの品質と安全性を確保します。</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col">
+                    <h4 class="text-xl font-bold text-[#0052CC] text-center">CodeRabbit</h4>
+                     <p class="text-sm text-gray-500 text-center mb-4">ワークフローに溶け込むAIコードレビュー</p>
+                    <div class="chart-container flex-grow"><canvas id="coderabbitChart"></canvas></div>
+                     <p class="text-sm text-gray-600 mt-4">既存の開発ワークフローにシームレスに統合され、行ごとのフィードバックや1クリック修正を提供。開発者体験を重視した適応学習型のレビューツールです。</p>
+                </div>
+
+                 <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col justify-center items-center">
+                    <h4 class="text-xl font-bold text-gray-400 text-center">and more...</h4>
+                    <p class="text-sm text-gray-500 text-center mt-4">AIPRのような特定タスク自動化ツールなど、市場はさらに多様化しています。</p>
+                </div>
+
+            </div>
+        </section>
+        
+        <section id="feature-comparison" class="mb-20">
+            <h3 class="text-3xl font-bold text-center text-[#172B4D] mb-4">機能別パフォーマンス比較</h3>
+             <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-700 mb-12">
+                レーダーチャートは、各ツールの強みと弱みを多角的に示します。5が最高評価です。これにより、自社のニーズに最も合致するツールを一目で判断できます。
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h4 class="text-2xl font-bold text-[#0052CC] mb-2 text-center">機能カバレッジ</h4>
+                    <div class="chart-container"><canvas id="featureRadarChart"></canvas></div>
+                    <p class="text-sm text-gray-600 mt-4">GitHub Copilotは広範な機能をカバーする一方、BitoとCodeRabbitはコードレビュー、Dosuは課題管理に深く特化していることがわかります。</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                     <h4 class="text-2xl font-bold text-[#0052CC] mb-2 text-center">標準有料プラン価格比較 (月額/開発者)</h4>
+                    <div class="chart-container"><canvas id="pricingBarChart"></canvas></div>
+                    <p class="text-sm text-gray-600 mt-4">多くのツールが月額$10〜$30の範囲で提供されています。Dosu.aiとtheissue.aiの有料プラン価格は要問い合わせですが、無料ティアも存在し、導入の敷居を下げています。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="workflow" class="mb-20">
+            <h3 class="text-3xl font-bold text-center text-[#172B4D] mb-4">AIが変える開発ワークフロー</h3>
+            <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-700 mb-12">
+                これらのツールがSDLCの各段階でどのように連携し、開発プロセスを効率化するかを示します。
+            </p>
+            <div class="w-full overflow-x-auto p-4">
+                <div class="flex items-center justify-center min-w-max space-x-2 md:space-x-4">
+                    <div class="text-center">
+                        <div class="flowchart-step rounded-lg p-4 font-bold w-32 h-20 flex items-center justify-center">1. 課題作成</div>
+                        <p class="text-xs mt-1 text-gray-600">theissue.ai<br/>GitHub Copilot</p>
+                    </div>
+                    <div class="flowchart-arrow text-4xl font-light transform -translate-y-3">→</div>
+                    <div class="text-center">
+                        <div class="flowchart-step rounded-lg p-4 font-bold w-32 h-20 flex items-center justify-center">2. コーディング</div>
+                        <p class="text-xs mt-1 text-gray-600">GitHub Copilot</p>
+                    </div>
+                    <div class="flowchart-arrow text-4xl font-light transform -translate-y-3">→</div>
+                    <div class="text-center">
+                        <div class="flowchart-step rounded-lg p-4 font-bold w-32 h-20 flex items-center justify-center">3. コードレビュー (PR)</div>
+                        <p class="text-xs mt-1 text-gray-600">Bito.ai<br/>CodeRabbit</p>
+                    </div>
+                     <div class="flowchart-arrow text-4xl font-light transform -translate-y-3">→</div>
+                    <div class="text-center">
+                        <div class="flowchart-step rounded-lg p-4 font-bold w-32 h-20 flex items-center justify-center">4. デプロイ</div>
+                         <p class="text-xs mt-1 text-gray-600">(CI/CD)</p>
+                    </div>
+                    <div class="flowchart-arrow text-4xl font-light transform -translate-y-3">→</div>
+                    <div class="text-center">
+                        <div class="flowchart-step rounded-lg p-4 font-bold w-32 h-20 flex items-center justify-center">5. 保守・運用</div>
+                        <p class="text-xs mt-1 text-gray-600">Dosu.ai</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="takeaways" class="bg-white rounded-xl shadow-lg p-8 sm:p-12">
+            <h3 class="text-3xl font-bold text-center text-[#172B4D] mb-12">戦略的洞察と未来への展望</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <div class="text-5xl mb-4">🔄</div>
+                    <h4 class="text-xl font-bold text-[#0052CC] mb-2">開発者の役割の変化</h4>
+                    <p class="text-gray-600">開発者は純粋なコーダーから、AIへの指示出し、生成物のレビュー、システム統合を担う「AIのコーチ」へと役割を変えつつあります。</p>
+                </div>
+                <div>
+                     <div class="text-5xl mb-4">🧠</div>
+                    <h4 class="text-xl font-bold text-[#0052CC] mb-2">コンテキスト理解の重要性</h4>
+                    <p class="text-gray-600">コードベース全体を理解し、文脈に基づいた提案やレビューができるAIが、より高い価値を提供します。表面的な支援からの脱却が鍵となります。</p>
+                </div>
+                <div>
+                     <div class="text-5xl mb-4">🛡️</div>
+                    <h4 class="text-xl font-bold text-[#0052CC] mb-2">品質とセキュリティの新たな均衡</h4>
+                    <p class="text-gray-600">AIによる開発加速は、AIによる高度なコードレビューやセキュリティスキャンとセットで導入することが不可欠です。スピードと品質の両立が求められます。</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#172B4D] text-white mt-20">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+            <p>このインフォグラフィックは提供された「AI開発支援ツール比較分析」レポートに基づいて作成されました。</p>
+            <p class="text-sm text-gray-400 mt-2">© 2025 AI Market Research Analysis. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const brandColors = {
+                primary: '#0052CC',
+                accent1: '#00B8D9',
+                accent2: '#79F2C0',
+                textDark: '#172B4D',
+                backgroundLight: '#F4F5F7',
+                gray: '#B3BAC5'
+            };
+
+            const wrapLabel = (label, maxLength) => {
+                if (typeof label !== 'string') return label;
+                if (label.length <= maxLength) return label;
+
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            };
+            
+            const chartTooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const commonChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: brandColors.textDark,
+                            font: {
+                                family: "'Inter', 'Noto Sans JP', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: chartTooltipTitleCallback
+                        },
+                        titleFont: {
+                            family: "'Inter', 'Noto Sans JP', sans-serif"
+                        },
+                         bodyFont: {
+                            family: "'Inter', 'Noto Sans JP', sans-serif"
+                        }
+                    }
+                }
+            };
+            
+            const createDonutChart = (ctx, labels, data, chartColors, cut) => {
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: '機能焦点',
+                            data: data,
+                            backgroundColor: chartColors,
+                            borderColor: brandColors.backgroundLight,
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                       ...commonChartOptions,
+                        cutout: cut || '65%',
+                    }
+                });
+            };
+
+            const dosuCtx = document.getElementById('dosuChart').getContext('2d');
+            createDonutChart(dosuCtx, ['保守・運用', 'ドキュメント', '課題トリアージ'], [60, 25, 15], [brandColors.primary, brandColors.accent1, brandColors.accent2]);
+            
+            const theissueCtx = document.getElementById('theissueChart').getContext('2d');
+            createDonutChart(theissueCtx, ['課題作成', '標準化', '効率化'], [70, 20, 10], [brandColors.primary, brandColors.accent1, brandColors.accent2]);
+            
+            const copilotCtx = document.getElementById('copilotChart').getContext('2d');
+            createDonutChart(copilotCtx, ['コード生成', '課題/PR管理', 'チャット/対話', 'その他'], [45, 25, 20, 10], [brandColors.primary, brandColors.accent1, brandColors.accent2, brandColors.gray]);
+
+            const bitoCtx = document.getElementById('bitoChart').getContext('2d');
+            createDonutChart(bitoCtx, ['コードレビュー', 'セキュリティ', 'コードベース理解'], [65, 20, 15], [brandColors.primary, brandColors.accent1, brandColors.accent2]);
+            
+            const coderabbitCtx = document.getElementById('coderabbitChart').getContext('2d');
+            createDonutChart(coderabbitCtx, ['コードレビュー', 'ワークフロー統合', 'レポート'], [60, 30, 10], [brandColors.primary, brandColors.accent1, brandColors.accent2]);
+
+
+            const radarCtx = document.getElementById('featureRadarChart').getContext('2d');
+            const radarLabels = [
+                '課題管理', 
+                'ドキュメント支援', 
+                'コードレビュー',
+                'PR生成/支援', 
+                wrapLabel('IDE統合と開発体験', 16), 
+                '広範な機能性'
+            ];
+            new Chart(radarCtx, {
+                type: 'radar',
+                data: {
+                    labels: radarLabels,
+                    datasets: [
+                        {
+                            label: 'GitHub Copilot',
+                            data: [4, 4, 3, 4, 5, 5],
+                            backgroundColor: 'rgba(0, 82, 204, 0.2)',
+                            borderColor: 'rgba(0, 82, 204, 1)',
+                            pointBackgroundColor: 'rgba(0, 82, 204, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(0, 82, 204, 1)'
+                        },
+                        {
+                            label: 'Dosu.ai',
+                            data: [5, 5, 1, 1, 1, 3],
+                            backgroundColor: 'rgba(0, 184, 217, 0.2)',
+                            borderColor: 'rgba(0, 184, 217, 1)',
+                            pointBackgroundColor: 'rgba(0, 184, 217, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(0, 184, 217, 1)'
+                        },
+                         {
+                            label: 'Bito.ai / CodeRabbit',
+                            data: [1, 2, 5, 2, 4, 3],
+                            backgroundColor: 'rgba(121, 242, 192, 0.2)',
+                            borderColor: 'rgba(121, 242, 192, 1)',
+                            pointBackgroundColor: 'rgba(121, 242, 192, 1)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgba(121, 242, 192, 1)'
+                        }
+                    ]
+                },
+                options: {
+                    ...commonChartOptions,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0,0,0,0.1)' },
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            pointLabels: { 
+                                font: { size: 12, family: "'Inter', 'Noto Sans JP', sans-serif" },
+                                color: brandColors.textDark
+                            },
+                            ticks: {
+                                backdropColor: 'transparent',
+                                color: 'rgba(0,0,0,0.5)',
+                                stepSize: 1
+                            },
+                            min: 0,
+                            max: 5
+                        }
+                    }
+                }
+            });
+
+            const pricingCtx = document.getElementById('pricingBarChart').getContext('2d');
+            new Chart(pricingCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['GitHub Copilot', 'Bito.ai', 'CodeRabbit'],
+                    datasets: [{
+                        label: '標準プラン ($)',
+                        data: [19, 15, 24],
+                        backgroundColor: [
+                            'rgba(0, 82, 204, 0.7)',
+                            'rgba(0, 184, 217, 0.7)',
+                            'rgba(121, 242, 192, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(0, 82, 204, 1)',
+                            'rgba(0, 184, 217, 1)',
+                            'rgba(121, 242, 192, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...commonChartOptions,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value;
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        ...commonChartOptions.plugins,
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
