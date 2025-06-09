@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>プレゼンテーション：GitHub IssueをトリガーとするAIエージェント</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/sky.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai.min.css">
+    <style>
+        :root {
+            --r-main-font: 'Noto Sans JP', sans-serif;
+            --r-heading-font: 'Noto Sans JP', sans-serif;
+            --r-main-font-size: 32px;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-link-color: #007BFF;
+            --r-link-color-hover: #5CADFF;
+            --r-selection-background-color: #007BFF;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: var(--r-heading-font);
+            text-transform: var(--r-heading-text-transform);
+            font-weight: var(--r-heading-font-weight);
+        }
+        
+        .reveal .slides section .fragment.highlight-current-blue {
+            opacity: 0.25;
+            visibility: inherit; 
+        }
+
+        .reveal .slides section .fragment.highlight-current-blue.current-fragment {
+            opacity: 1;
+            visibility: inherit; 
+        }
+        
+        .reveal .left-align {
+            text-align: left;
+        }
+
+        .reveal ul, .reveal ol {
+            margin-left: 1.5em;
+        }
+
+        .reveal .icon {
+            font-size: 2em;
+            margin-right: 0.5em;
+            vertical-align: middle;
+        }
+
+        .reveal .small-text {
+            font-size: 0.7em;
+        }
+
+        .reveal .code-wrapper {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .reveal pre code {
+            max-height: 450px;
+            font-size: 0.8em;
+            line-height: 1.4;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Title Slide -->
+            <section>
+                <h1 class="r-fit-text">GitHub IssueをトリガーとするAIエージェント</h1>
+                <p>自動化とインテリジェンスによる開発ワークフローの変革</p>
+                <p class="small-text">矢印キーでスライドを操作</p>
+            </section>
+
+            <!-- Introduction -->
+            <section>
+                <h2>はじめに</h2>
+                <p class="fragment">増大するIssue管理の負担...開発者の時間は本来の創造的な作業へ。</p>
+                <p class="fragment">本プレゼンでは、AIエージェントがGitHub Issue運用をどう変えるかを探ります。</p>
+            </section>
+
+            <!-- Section 2: Why AI? -->
+            <section>
+                <section>
+                    <h2>なぜAIエージェントなのか？</h2>
+                    <p>AI導入がもたらす圧倒的な価値</p>
+                </section>
+                <section>
+                    <h3>📈 効率と生産性の向上</h3>
+                    <ul class="left-align">
+                        <li class="fragment">日常的なタスク（分類、応答など）を自動化</li>
+                        <li class="fragment">開発者はより複雑で価値の高い作業に集中</li>
+                        <li class="fragment">開発サイクルの短縮とリソースの有効活用</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>🧠 意思決定の支援</h3>
+                    <ul class="left-align">
+                        <li class="fragment">過去のIssueから傾向を分析し、潜在リスクを予測</li>
+                        <li class="fragment">データに基づいた賢明な意思決定をサポート</li>
+                    </ul>
+                </section>
+                 <section>
+                    <h3>🔄 ワークフローの合理化</h3>
+                    <ul class="left-align">
+                        <li class="fragment">反復的なタスクを大幅に削減</li>
+                        <li class="fragment">他のツールとも連携し、シームレスな開発体験を実現</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Section 3: Use Cases -->
+            <section>
+                <section>
+                    <h2>主要なユースケース</h2>
+                    <p>AIエージェントで実現できること</p>
+                </section>
+                <section>
+                    <h3><span class="icon">🗂️</span> Issueの自動トリアージ</h3>
+                    <p>Issueの内容をNLPで分析し、自動で分類・ラベリング・担当者割り当て。</p>
+                    <ul class="left-align">
+                        <li class="fragment">重複Issueの検出も可能</li>
+                        <li class="fragment">対応の遅延を防ぎ、リポジトリをクリーンに保つ</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3><span class="icon">📋</span> Issue/PRの自動要約</h3>
+                    <p>長大な議論やコード変更をAIが要約。</p>
+                    <ul class="left-align">
+                        <li class="fragment">レビュアーは迅速にコンテキストを把握</li>
+                        <li class="fragment">効率的なレビューと状況判断を支援</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3><span class="icon">💬</span> 自動返信・下書き作成</h3>
+                    <p>FAQへの自動応答や、情報提供を求めるコメントを自動生成。</p>
+                    <ul class="left-align">
+                        <li class="fragment">メンテナーがレビュー・承認する下書きモードも</li>
+                        <li class="fragment">初期対応を迅速化し、サポート品質を維持</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3><span class="icon">💻</span> コード生成・修正</h3>
+                    <p>Issueの内容に基づき、AIがコードを生成・修正し、PRを自動作成。</p>
+                    <ul class="left-align">
+                        <li class="fragment">GitHub Copilotの「コーディングエージェント」が代表例</li>
+                        <li class="fragment">開発者は退屈なタスクから解放される</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Section 4: Tools -->
+            <section>
+                <section>
+                    <h2>主要なAIツールとプラットフォーム</h2>
+                </section>
+                <section>
+                    <h3><span class="icon">🤖</span> GitHub Copilot</h3>
+                    <ul class="left-align">
+                        <li class="fragment">GitHubネイティブな最強AIアシスタント</li>
+                        <li class="fragment">Issueを割り当てるだけで、コード生成からPR作成まで自律実行</li>
+                        <li class="fragment">リポジトリ内の指示書 (`.github/copilot-instructions.md`)でカスタマイズ可能</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3><span class="icon">🧩</span> サードパーティ製 GitHub Actions</h3>
+                    <p>特定のAI機能をワークフローに簡単統合</p>
+                    <ul class="left-align small-text">
+                        <li class="fragment"><strong>Issue Assistant:</strong> Issueへの自動応答・ラベル提案 (OpenAI/Claude)</li>
+                        <li class="fragment"><strong>AI Code Reviewer:</strong> PRのコードレビュー (OpenAI/Gemini)</li>
+                        <li class="fragment"><strong>AIPR:</strong> IssueからPRを自動生成 (ChatGPT)</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3><span class="icon">📱</span> スタンドアロンAIサービス</h3>
+                    <p>GitHub Appとして連携し、特化機能を提供</p>
+                     <ul class="left-align">
+                        <li class="fragment"><strong>Dosu.ai:</strong> Issue自動トリアージに特化。プロジェクト履歴から学習・改善。</li>
+                        <li class="fragment"><strong>theissue.ai:</strong> 高品質なIssue作成を支援。</li>
+                    </ul>
+                </section>
+                 <section>
+                    <h3><span class="icon">🔗</span> 直接的なAPI連携 (例: Claude)</h3>
+                     <p>カスタムワークフローで最大の柔軟性を実現</p>
+                     <ul class="left-align">
+                        <li class="fragment">PRやIssueで `@claude` とメンションしてAIを起動</li>
+                        <li class="fragment">`CLAUDE.md` ファイルでプロジェクト固有のルールを指示</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Section 5: How it works -->
+            <section>
+                <section>
+                    <h2>AIエージェントの仕組み</h2>
+                    <p>イベント駆動で動く自動化の裏側</p>
+                </section>
+                <section class="left-align">
+                    <h3>イベント駆動型トリガー</h3>
+                    <p>GitHub Actionsが特定のイベントを監視</p>
+                    <ul>
+                        <li class="fragment highlight-current-blue"><code>on: issues: [opened]</code><br><span class="small-text">新規Issue作成時に起動。初期トリアージに最適。</span></li>
+                        <li class="fragment highlight-current-blue"><code>on: issues: [labeled]</code><br><span class="small-text">特定のラベルが付与された時に起動。"AIPR"ラベルでPR作成など。</span></li>
+                        <li class="fragment highlight-current-blue"><code>on: issue_comment: [created]</code><br><span class="small-text">コメント投稿時に起動。コマンド実行 (例: `/summarize`) に利用。</span></li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Section 6: Implementation -->
+            <section>
+                <section>
+                    <h2>GitHub Actionsでの実装例</h2>
+                </section>
+                <section>
+                    <h3>新規Issueへの自動応答ワークフロー</h3>
+                    <div class="code-wrapper">
+                        <pre><code class="yaml" data-line-numbers="1-5,11-12,14-16">
+name: AI Responder
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  respond:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Call AI Assistant Action
+        uses: some-repo/issue-assistant@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          api_key: ${{ secrets.OPENAI_API_KEY }}
+          issue_body: ${{ github.event.issue.body }}
+                        </code></pre>
+                    </div>
+                </section>
+                <section>
+                    <h3>APIキーの安全な管理</h3>
+                    <ul class="left-align">
+                        <li class="fragment">APIキーはコードに直接書かない！ <strong>絶対ダメ！</strong></li>
+                        <li class="fragment">リポジトリ設定の <strong>`Settings > Secrets`</strong> に保存する。</li>
+                        <li class="fragment">ワークフローからは <code>${{ secrets.API_KEY_NAME }}</code> で安全に参照。</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- Section 7: Best Practices -->
+            <section>
+                <section>
+                    <h2>成功への道標：ベストプラクティス</h2>
+                </section>
+                <section>
+                     <h3>🎯 スコープを限定して開始</h3>
+                     <p>まずは単純なバグ修正やドキュメント更新など、複雑度が低いタスクから。</p>
+                </section>
+                <section>
+                    <h3>📜 明確な指示とコンテキスト</h3>
+                     <p>質の高いIssue記述がAIへの最高のプロンプト。<code>copilot-instructions.md</code> などでプロジェクトルールをAIに教える。</p>
+                </section>
+                <section>
+                     <h3>🧑‍🤝‍🧑 人間による監視と反復</h3>
+                     <p>AIの生成物は必ず人間がレビュー。PRへのコメントでAIに修正を指示し、フィードバックループを回す。</p>
+                </section>
+            </section>
+
+            <!-- Section 8: Challenges -->
+            <section>
+                <section>
+                    <h2>考慮すべき課題</h2>
+                </section>
+                <section>
+                     <h3>🔒 品質・セキュリティ・IP</h3>
+                     <p>AI生成コードの品質は常にレビュー必須。意図しない脆弱性やライセンス違反のリスクに注意。</p>
+                </section>
+                 <section>
+                     <h3>📉 技術的負債と過度な依存</h3>
+                     <p>安易なAI利用は技術的負債の元。開発者のスキル低下や、コードへの理解不足を招く恐れも。</p>
+                </section>
+                 <section>
+                     <h3>💸 コスト管理</h3>
+                     <p>AIのAPI利用は有料。意図しない高額請求を避けるため、利用状況の監視と予算アラート設定が重要。</p>
+                </section>
+            </section>
+            
+            <!-- Conclusion -->
+            <section>
+                <section>
+                    <h2>結論：AI駆動の未来へ</h2>
+                </section>
+                 <section>
+                     <p>AIは開発ワークフローを根本から変革する力を持つ。</p>
+                     <p class="fragment">重要なのは、AIの能力と限界を理解し、<strong style="color:var(--r-link-color);">人間とAIが最も効果的に協働する方法</strong>を模索し続けること。</p>
+                     <p class="fragment">開発の未来は、ここにあります。</p>
+                </section>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: false,
+            history: false,
+            plugins: [ RevealHighlight, RevealNotes ],
+            slideNumber: true,
+        });
+    </script>
+</body>
+</html>

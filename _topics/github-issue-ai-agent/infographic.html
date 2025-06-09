@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：GitHub IssueをトリガーとするAIエージェント</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        /* Selected Palette: Brilliant Blues */
+        .bg-primary-deep { background-color: #004AAD; }
+        .bg-primary-bright { background-color: #007BFF; }
+        .bg-primary-light { background-color: #5CADFF; }
+        .bg-primary-pale { background-color: #A1D6FF; }
+        .bg-primary-bg { background-color: #E6F4FF; }
+        .text-primary-deep { color: #004AAD; }
+        .text-primary-bright { color: #007BFF; }
+        .border-primary-bright { border-color: #007BFF; }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-step {
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .flowchart-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #5CADFF;
+            transform: rotate(90deg);
+        }
+        @media (min-width: 768px) {
+           .flowchart-arrow {
+                transform: rotate(0deg);
+           }
+        }
+    </style>
+</head>
+<body class="bg-primary-bg text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <!-- Header -->
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-bold text-primary-deep mb-4">GitHub IssueをトリガーとするAIエージェント</h1>
+            <p class="text-xl md:text-2xl text-gray-600">開発ワークフローの未来を自動化する</p>
+        </header>
+
+        <!-- Section 1: Why AI Agents Now? -->
+        <section class="mb-12 md:mb-20">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-primary-deep text-center mb-8">なぜ今、AIエージェントなのか？</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-primary-bright mb-4">開発の非効率性を解消する</h3>
+                        <p class="text-lg mb-6">ソフトウェア開発の複雑化に伴い、Issue管理はチームの大きな負担となっています。AIエージェントは、反復的なタスクを自動化し、開発者が本来の創造的な作業に集中できる環境を実現します。</p>
+                        <div class="grid grid-cols-2 gap-4 text-center">
+                            <div class="bg-primary-bg p-4 rounded-lg">
+                                <span class="text-4xl font-bold text-primary-bright block">50%</span>
+                                <span class="text-gray-600">効率向上 (概念値)</span>
+                            </div>
+                            <div class="bg-primary-bg p-4 rounded-lg">
+                                <span class="text-4xl font-bold text-primary-bright block">70%</span>
+                                <span class="text-gray-600">反復タスク削減 (概念値)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-center text-gray-600 mb-2">AIによる時間節約効果の内訳</p>
+                        <div class="chart-container">
+                            <canvas id="benefitsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Key Use Cases -->
+        <section class="mb-12 md:mb-20">
+            <h2 class="text-3xl font-bold text-primary-deep text-center mb-8">AIができること：主要ユースケース</h2>
+             <p class="max-w-3xl mx-auto text-center text-lg text-gray-600 mb-10">AIエージェントは、GitHub Issue管理の様々な側面で具体的な価値を提供します。単純な分類からコード生成まで、その応用範囲は多岐にわたります。</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-4">🗂️</div>
+                    <h3 class="text-xl font-bold text-primary-deep mb-2">Issue自動トリアージ</h3>
+                    <p class="text-gray-600">Issueの内容を分析し、自動でラベル付け、分類、担当者割り当てを行います。</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-4">📋</div>
+                    <h3 class="text-xl font-bold text-primary-deep mb-2">Issue/PRの自動要約</h3>
+                    <p class="text-gray-600">長大な議論スレッドやコード変更をAIが要約し、迅速な状況把握を支援します。</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-4">💬</div>
+                    <h3 class="text-xl font-bold text-primary-deep mb-2">自動返信の生成</h3>
+                    <p class="text-gray-600">FAQへの回答や、情報提供を依頼する定型的なコメントを自動生成します。</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-5xl mb-4">💻</div>
+                    <h3 class="text-xl font-bold text-primary-deep mb-2">コード生成・修正</h3>
+                    <p class="text-gray-600">Issueの内容に基づき、バグ修正や機能実装のコードを生成し、PRを作成します。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Tool Comparison -->
+        <section class="mb-12 md:mb-20">
+            <h2 class="text-3xl font-bold text-primary-deep text-center mb-8">主要ツールとプラットフォーム</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-600 mb-10">GitHubネイティブな機能からサードパーティ製ツールまで、多様な選択肢が存在します。各ツールの強みを理解し、プロジェクトのニーズに合ったものを選定することが重要です。</p>
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-primary-bright mb-4">機能別ツール適合度</h3>
+                        <p class="text-gray-600 mb-4">各ツールには得意分野があります。例えば、Copilotはコード生成に優れ、Dosu.aiは自動トリアージに特化しています。このグラフは、一般的なユースケースにおける各ツールの適合度を相対的に示しています。</p>
+                        <div class="chart-container">
+                            <canvas id="toolsComparisonChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <h3 class="text-2xl font-bold text-primary-bright mb-4">ツール概要比較</h3>
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-primary-bg">
+                                    <th class="p-3 font-bold text-primary-deep border-b-2 border-primary-pale">ツール</th>
+                                    <th class="p-3 font-bold text-primary-deep border-b-2 border-primary-pale">連携方法</th>
+                                    <th class="p-3 font-bold text-primary-deep border-b-2 border-primary-pale">主な強み</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="p-3 border-b border-gray-200 font-semibold">GitHub Copilot</td>
+                                    <td class="p-3 border-b border-gray-200">ネイティブ統合</td>
+                                    <td class="p-3 border-b border-gray-200">コード生成・修正</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="p-3 border-b border-gray-200 font-semibold">GitHub Actions</td>
+                                    <td class="p-3 border-b border-gray-200">ワークフロー</td>
+                                    <td class="p-3 border-b border-gray-200">柔軟・カスタム性</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="p-3 border-b border-gray-200 font-semibold">Dosu.ai</td>
+                                    <td class="p-3 border-b border-gray-200">GitHub App</td>
+                                    <td class="p-3 border-b border-gray-200">自動トリアージ</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="p-3 border-b border-gray-200 font-semibold">Claude API</td>
+                                    <td class="p-3 border-b border-gray-200">API連携</td>
+                                    <td class="p-3 border-b border-gray-200">高度な対話・レビュー</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 4: How it Works -->
+        <section class="mb-12 md:mb-20">
+            <h2 class="text-3xl font-bold text-primary-deep text-center mb-8">導入の仕組み：トリガーとアクション</h2>
+             <p class="max-w-3xl mx-auto text-center text-lg text-gray-600 mb-10">AIエージェントは、GitHub Actionsのイベント駆動モデルを利用して動作します。特定のアクション（Issueの作成など）がワークフローを起動し、AIが処理を実行、結果をGitHubに反映させます。</p>
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4">
+                    <div class="flowchart-step bg-primary-bg p-4 rounded-lg border-l-4 border-primary-bright">
+                        <h4 class="font-bold">1. イベント発生<br>(例: Issue作成)</h4>
+                    </div>
+                     <div class="flowchart-arrow">→</div>
+                    <div class="flowchart-step bg-primary-bg p-4 rounded-lg border-l-4 border-primary-bright">
+                        <h4 class="font-bold">2. GitHub Actions<br>ワークフロー起動</h4>
+                    </div>
+                    <div class="flowchart-arrow">→</div>
+                    <div class="flowchart-step bg-primary-bg p-4 rounded-lg border-l-4 border-primary-bright">
+                        <h4 class="font-bold">3. AIサービスAPI<br>呼び出し</h4>
+                    </div>
+                </div>
+                 <div class="flex justify-center my-4">
+                     <div class="text-5xl text-primary-light transform md:rotate-90">↓</div>
+                 </div>
+                <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4 md:flex-row-reverse">
+                     <div class="flowchart-step bg-green-100 p-4 rounded-lg border-l-4 border-green-500 col-span-2">
+                        <h4 class="font-bold">5. アクション実行<br>(例: コメント投稿、ラベル付与、PR作成)</h4>
+                    </div>
+                     <div class="flowchart-arrow transform md:rotate-180">→</div>
+                     <div class="flowchart-step bg-primary-bg p-4 rounded-lg border-l-4 border-primary-bright col-span-2">
+                        <h4 class="font-bold">4. AIによる処理<br>(分析、生成、判断)</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Best Practices -->
+        <section class="mb-12 md:mb-20">
+            <h2 class="text-3xl font-bold text-primary-deep text-center mb-8">成功への道標：ベストプラクティス</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg text-gray-600 mb-10">AIエージェントの価値を最大限に引き出すためには、戦略的なアプローチが不可欠です。段階的に導入し、人間との協調を前提とした運用を心がけることが成功の鍵となります。</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-bold text-primary-bright mb-3">🎯 スコープを限定して開始</h3>
+                    <p class="text-gray-600">まずはラベリングや単純なバグ修正など、明確に定義されたタスクから始め、徐々に範囲を拡大します。</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-bold text-primary-bright mb-3">📜 明確な指示とコンテキスト</h3>
+                    <p class="text-gray-600">Issueの記述を詳細にし、`.github/copilot-instructions.md`などでプロジェクト固有のルールをAIに教えます。</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-bold text-primary-bright mb-3">🧑‍🤝‍🧑 人間による監視と反復</h3>
+                    <p class="text-gray-600">AIの生成物は必ず人間がレビューします。フィードバックを通じてAIの精度を継続的に改善することが重要です。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Challenges -->
+        <section class="mb-12 md:mb-20">
+             <h2 class="text-3xl font-bold text-primary-deep text-center mb-8">考慮すべき課題</h2>
+             <p class="max-w-3xl mx-auto text-center text-lg text-gray-600 mb-10">AIの導入は多くの利点をもたらしますが、品質、セキュリティ、コストなどの課題も存在します。これらのリスクを理解し、対策を講じることが重要です。</p>
+             <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                     <div>
+                        <h3 class="text-2xl font-bold text-primary-bright mb-4">主要リスク領域</h3>
+                        <p class="text-gray-600 mb-4">AIの導入と運用においては、特に以下の領域に注意が必要です。セキュリティ脆弱性の混入や、意図しないコスト増大は、プロジェクトに深刻な影響を与える可能性があります。</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li><span class="font-bold">コード品質:</span> AI生成コードの品質は常にレビューが必要です。</li>
+                            <li><span class="font-bold">セキュリティ:</span> 訓練データに由来する脆弱性がコードに混入するリスクがあります。</li>
+                            <li><span class="font-bold">知的財産 (IP):</span> 著作権やライセンス問題を意図せず引き起こす可能性があります。</li>
+                            <li><span class="font-bold">過度な依存:</span> 開発者のスキル低下や、コードへの理解不足を招く恐れがあります。</li>
+                            <li><span class="font-bold">コスト管理:</span> APIの利用料金が予期せず高額になる可能性があります。</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="text-center text-gray-600 mb-2">課題の重要度評価</p>
+                        <div class="chart-container">
+                            <canvas id="challengesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="text-center mt-16 pt-8 border-t border-primary-pale">
+            <p class="text-lg text-gray-700">AIエージェントは、開発の未来を再定義する力を持っています。</p>
+            <p class="text-gray-600 mt-2">重要なのは、AIの能力とその限界を理解し、人間とAIが最も効果的に協働できる方法を模索し続けることです。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Helper function for label wrapping
+        function wrapLabels(label, maxLength) {
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            });
+            if (currentLine) {
+                lines.push(currentLine);
+            }
+            return lines;
+        }
+
+        const commonTooltipCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
+            }
+        };
+
+        const palette = {
+            deep: '#004AAD',
+            bright: '#007BFF',
+            light: '#5CADFF',
+            pale: '#A1D6FF',
+            bg: '#E6F4FF'
+        };
+
+        // Chart 1: Benefits Chart
+        const benefitsCtx = document.getElementById('benefitsChart').getContext('2d');
+        const benefitsChart = new Chart(benefitsCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Issueトリアージ', '定型的な返信', '情報検索', 'コードレビュー支援'],
+                datasets: [{
+                    label: '時間節約効果',
+                    data: [40, 25, 20, 15],
+                    backgroundColor: [palette.bright, palette.light, palette.pale, palette.deep],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: commonTooltipCallback.plugins
+            }
+        });
+
+        // Chart 2: Tools Comparison Chart
+        const toolsCtx = document.getElementById('toolsComparisonChart').getContext('2d');
+        const originalLabelsTools = ['GitHub Copilot', 'GitHub Actions (カスタム)', 'Dosu.ai', 'Claude API (カスタム連携)'];
+        const toolsChart = new Chart(toolsCtx, {
+            type: 'bar',
+            data: {
+                labels: originalLabelsTools.map(l => wrapLabels(l, 16)),
+                datasets: [
+                    {
+                        label: 'コード生成・修正',
+                        data: [9, 7, 1, 8],
+                        backgroundColor: palette.deep,
+                    },
+                    {
+                        label: '自動トリアージ',
+                        data: [3, 8, 9, 7],
+                        backgroundColor: palette.bright,
+                    },
+                    {
+                        label: '自動要約・返信',
+                        data: [6, 8, 9, 9],
+                        backgroundColor: palette.light,
+                    }
+                ]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: '適合度 (1-10)'
+                        }
+                    },
+                    y: {
+                        stacked: true
+                    }
+                },
+                plugins: {
+                     tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                return originalLabelsTools[item.dataIndex];
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
+            }
+        });
+
+        // Chart 3: Challenges Chart
+        const challengesCtx = document.getElementById('challengesChart').getContext('2d');
+        const challengesChart = new Chart(challengesCtx, {
+            type: 'radar',
+            data: {
+                labels: ['セキュリティ', 'コード品質', 'コスト管理', '過度な依存', '知的財産(IP)'],
+                datasets: [{
+                    label: 'リスクレベル',
+                    data: [9, 8, 8, 7, 6],
+                    backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                    borderColor: palette.bright,
+                    pointBackgroundColor: palette.bright,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: palette.bright,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 scales: {
+                    r: {
+                        angleLines: {
+                            color: '#ccc'
+                        },
+                        grid: {
+                            color: '#ddd'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            color: '#333'
+                        },
+                        ticks: {
+                           display: false,
+                           stepSize: 2
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                },
+                plugins: commonTooltipCallback.plugins
+            }
+        });
+
+    </script>
+</body>
+</html>
