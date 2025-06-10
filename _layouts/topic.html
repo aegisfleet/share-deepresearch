@@ -39,7 +39,7 @@ layout: default
     <div class="tags">
         タグ:
         {% for tag in page.tags %}
-        <span class="tag">{{ tag }}</span>
+        <a href="{{ site.baseurl }}/tags/{{ tag | slugify }}/" class="tag">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
         {% endfor %}
     </div>
     {% endif %}

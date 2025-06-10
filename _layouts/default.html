@@ -108,7 +108,7 @@
             {% assign sorted_tags = all_tags | split: ',' | uniq | sort %}
             {% for tag in sorted_tags %}
                 {% if tag != "" %}
-                    <button class="tag-btn" data-tag="{{ tag | escape }}" title="{{ tag | escape }}">{{ tag | escape }}</button>
+                    <a href="{{ site.baseurl }}/tags/{{ tag | slugify }}/" class="tag-btn" title="Posts tagged {{ tag | escape }}">{{ tag | escape }}</a>
                 {% endif %}
             {% endfor %}
         </div>
