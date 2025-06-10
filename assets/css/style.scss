@@ -62,6 +62,10 @@ pre, code {
     content: "✨ ";
 }
 
+.topic h3::before {
+    content: "💡 ";
+}
+
 .tag::before {
     content: "🏷️ ";
 }
