@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code 優位性インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-arrow::after {
+            content: '▼';
+            display: block;
+            text-align: center;
+            font-size: 2rem;
+            color: #ef5675;
+            margin: 0.5rem 0;
+        }
+        .flow-step {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .flow-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- 
+    Infographic Plan & Narrative Structure:
+    1.  Header: Catchy title about why Claude Code is chosen.
+    2.  Intro - The "Agent" Revolution: Hook with a big stat (64% problem-solving rate) and introduce the shift from assistants to agents.
+    3.  Core Strengths: Use an HTML/CSS flowchart for the "Agentic Workflow" and a Donut chart for core capabilities.
+    4.  Competitive Landscape: A Radar chart to compare Claude Code against rivals on key metrics.
+    5.  Performance Benchmarks: Bar charts for HumanEval and SWE-Bench scores to provide objective proof.
+    6.  Real-World Impact: An HTML/CSS grid of logos and testimonials from major tech companies.
+    7.  Developer Experience: An HTML/CSS diagram showing the new hybrid developer workflow.
+    8.  Conclusion: A summary of why Claude Code is highly evaluated.
+    -->
+
+    <!-- 
+    Visualization Choices Justification (NO SVG / NO MERMAID):
+    -   Intro Stat (64%): (Goal: Inform) -> Single Big Number (HTML/CSS). High-impact, simple, and effective for a hook.
+    -   Agentic Workflow: (Goal: Organize) -> Flow Chart (HTML/CSS). Clearly illustrates a process using styled divs and flexbox, avoiding SVG/Mermaid as required.
+    -   Core Capabilities: (Goal: Compare) -> Donut Chart (Chart.js/Canvas). Ideal for showing the composition/proportion of Claude Code's feature set. Renders to Canvas.
+    -   Competitive Comparison: (Goal: Compare) -> Radar Chart (Chart.js/Canvas). Best for comparing multiple entities across multiple axes to show strengths and weaknesses in a single view. Renders to Canvas.
+    -   Benchmark Scores: (Goal: Compare) -> Bar Chart (Chart.js/Canvas). The standard and most effective way to compare discrete numerical scores between different models. Renders to Canvas.
+    -   Industry Voices: (Goal: Organize) -> Styled List/Grid (HTML/CSS). A visually engaging way to present qualitative data (testimonials) without complex charts.
+    -   Hybrid Workflow: (Goal: Organize) -> Flow Chart (HTML/CSS). Again, styled HTML elements are used to depict a sequence of actions, fulfilling the requirement to avoid SVG/Mermaid.
+    -   Confirmation: NEITHER Mermaid JS NOR SVG were used in this output. All diagrams are implemented with HTML and CSS (Tailwind). All charts are rendered to Canvas using Chart.js.
+    -->
+
+    <!-- Color Palette: Brilliant Blues (#003f5c, #7a5195, #ef5675, #ffa600) -->
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003f5c] mb-4">なぜClaude Codeは開発者に選ばれるのか？</h1>
+            <p class="text-lg text-gray-600">AIコーディングエージェントの深層分析インフォグラフィック</p>
+        </header>
+
+        <main>
+            <!-- Section 1: The "Agent" Revolution -->
+            <section class="mb-16">
+                <div class="bg-white rounded-lg shadow-md p-6 md:p-8 text-center">
+                    <h2 class="text-3xl font-bold text-[#003f5c] mb-4">AI開発の新たな潮流：「アシスタント」から「エージェント」へ</h2>
+                    <p class="text-lg mb-6 text-gray-700">AIコーディングツールは、単なるコード補完を超え、自律的にタスクを理解・計画・実行する「エージェント」へと進化しています。Anthropic社のClaude Codeは、この「エージェント的シフト」を体現する最先端のツールです。</p>
+                    <div class="bg-gradient-to-r from-[#7a5195] to-[#ef5675] text-white rounded-lg p-8 inline-block shadow-xl">
+                        <div class="text-7xl font-bold">64%</div>
+                        <div class="text-xl mt-2">内部評価での問題解決率</div>
+                        <p class="text-sm mt-1">(Claude 3.5 SonnetがClaude 3 Opusを上回る)</p>
+                    </div>
+                     <p class="mt-6 text-gray-600">この驚異的な数値は、複雑なコーディングタスクを自律的に解決するClaude Codeの卓越した能力を示しており、単なる補助ツールではないことを証明しています。</p>
+                </div>
+            </section>
+
+            <!-- Section 2: Core Strengths -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-8">核となる強み：コード補完の先へ</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-2xl font-bold text-[#7a5195] mb-4 text-center">エージェント的ワークフロー</h3>
+                        <p class="text-gray-700 mb-6 text-center">Claude Codeはターミナル内で直接動作し、開発者のワークフローを中断させません。自然言語で指示するだけで、AIが自律的にタスクを遂行します。</p>
+                        <div class="flex flex-col items-center">
+                            <div class="flow-step w-full bg-gray-50 border-l-4 border-[#ef5675] p-4 rounded-r-lg mb-2">
+                                <p class="font-bold">1. 自然言語コマンド</p>
+                                <p class="text-sm text-gray-600">例：「ReactとExpressでJWT認証付きアプリを生成して」</p>
+                            </div>
+                            <div class="flow-arrow"></div>
+                            <div class="flow-step w-full bg-gray-50 border-l-4 border-[#ef5675] p-4 rounded-r-lg mb-2">
+                                <p class="font-bold">2. AIによる計画と実行</p>
+                                <p class="text-sm text-gray-600">コードベース全体を探索し、必要な変更を計画・実行</p>
+                            </div>
+                            <div class="flow-arrow"></div>
+                             <div class="flow-step w-full bg-gray-50 border-l-4 border-[#ef5675] p-4 rounded-r-lg">
+                                <p class="font-bold">3. ターミナルでの結果確認</p>
+                                <p class="text-sm text-gray-600">ファイル生成、テスト実行、Gitコミットまでを自動化</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-2xl font-bold text-[#7a5195] mb-4 text-center">包括的なコードベース理解</h3>
+                         <p class="text-gray-700 mb-6 text-center">手動でコンテキストを与える必要はありません。Claude Codeはプロジェクト全体の構造と依存関係を自動で把握し、複雑なタスクを正確に処理します。</p>
+                        <div class="chart-container h-[300px] md:h-auto">
+                            <canvas id="coreCapabilitiesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Competitive Landscape -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-2">競合との比較</h2>
+                <p class="text-lg text-center text-gray-700 mb-8">Claude Codeは、他の主要なAIコーディングツールと比較して、特に複雑なタスク処理において際立った能力を示します。</p>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="chart-container h-[400px] md:h-[500px]">
+                        <canvas id="competitorRadarChart"></canvas>
+                    </div>
+                    <p class="mt-6 text-gray-600 text-center">このチャートは、Claude Codeが特に「コードベース全体の分析」と「複数ファイルのリファクタリング」といった、プロジェクトの深い理解を必要とする領域で他を圧倒していることを示しています。これは、単純なインライン提案に強いツールとは一線を画す、明確な差別化要因です。</p>
+                </div>
+            </section>
+
+            <!-- Section 4: Performance Benchmarks -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-8">客観的指標が示す卓越した性能</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-2xl font-bold text-[#7a5195] mb-4 text-center">HumanEvalベンチマーク</h3>
+                        <p class="text-gray-700 mb-6 text-center">機能的に正しいコードを生成する能力を測定。Claude 3.5 Sonnetは最高レベルのスコアを記録しています。</p>
+                        <div class="chart-container h-[300px]">
+                            <canvas id="humanEvalChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                         <h3 class="text-2xl font-bold text-[#7a5195] mb-4 text-center">SWE-Benchベンチマーク</h3>
+                         <p class="text-gray-700 mb-6 text-center">実世界のGitHubイシューを解決する能力を評価。Claudeのモデルはここでもトップクラスの性能を誇ります。</p>
+                        <div class="chart-container h-[300px]">
+                            <canvas id="sweBenchChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 bg-white rounded-lg shadow-md p-8 text-center">
+                    <div class="text-6xl font-bold text-[#ffa600]">200K</div>
+                    <div class="text-xl mt-2 text-[#003f5c]">トークンコンテキストウィンドウ</div>
+                    <p class="mt-4 text-gray-600">巨大なコンテキストウィンドウにより、一度に大量のコードを読み込み、複雑な依存関係を理解した上で、高度な分析とコード生成が可能です。</p>
+                </div>
+            </section>
+            
+            <!-- Section 5: Real-World Impact -->
+            <section class="mb-16">
+                 <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-8">世界中のトップ企業が認める実力</h2>
+                <p class="text-lg text-center text-gray-700 mb-8">多くの先進的なテクノロジー企業がClaude Codeを導入し、開発プロセスの劇的な変革を報告しています。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center transition-transform hover:scale-105">
+                        <p class="font-bold text-xl text-[#003f5c]">Intercom</p>
+                        <p class="text-gray-600 mt-4 flex-grow">「複雑な複数ステップのタスクを処理する能力が、他の代替手段との違いを生んでいます。」</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center transition-transform hover:scale-105">
+                        <p class="font-bold text-xl text-[#7a5195]">JetBrains</p>
+                         <p class="text-gray-600 mt-4 flex-grow">「エディタ内コード生成で100%構文的に正しいコードを達成しました。これは以前のモデルでは見られなかった成果です。」</p>
+                    </div>
+                     <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center transition-transform hover:scale-105">
+                        <p class="font-bold text-xl text-[#ef5675]">Vercel</p>
+                        <p class="text-gray-600 mt-4 flex-grow">「Claude 3.7 Sonnetは、コード生成とエージェント的ワークフローにとって変革的です。」</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center transition-transform hover:scale-105">
+                        <p class="font-bold text-xl text-[#ffa600]">Ramp</p>
+                        <p class="text-gray-600 mt-4 flex-grow">「チームのコーディング効率を劇的に加速させ、モデルあたり1～2日の作業時間を削減しています。」</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center transition-transform hover:scale-105">
+                        <p class="font-bold text-xl text-[#bc5090]">Replit</p>
+                        <p class="text-gray-600 mt-4 flex-grow">「複雑な複数ファイルの変更を処理する能力は驚異的です。」</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center text-center transition-transform hover:scale-105">
+                        <p class="font-bold text-xl text-[#ff764a]">TELUS</p>
+                        <p class="text-gray-600 mt-4 flex-grow">「4時間の自動テストをわずか10分に短縮しました。」</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: The Developer Experience -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-8">開発体験の変革：AIとの新たな協業スタイル</h2>
+                <p class="text-lg text-center text-gray-700 mb-8">開発者は、AIを単なるツールとして使うのではなく、中核的なパートナーとして組み込む新しいハイブリッドワークフローを構築しています。</p>
+                <div class="bg-white rounded-lg shadow-md p-8">
+                     <div class="relative p-4 border-l-2 border-dashed border-[#7a5195]">
+                        <div class="mb-8 relative flow-step p-4 bg-gray-50 rounded-lg shadow-sm">
+                            <div class="absolute -left-7 top-1/2 -translate-y-1/2 w-6 h-6 bg-[#7a5195] rounded-full border-4 border-white"></div>
+                            <h4 class="font-bold text-[#7a5195]">ステップ1: 計画 (Claude Chat)</h4>
+                            <p class="text-gray-600">高レベルの設計や要件定義をAIと対話しながら練り上げる。</p>
+                        </div>
+                        <div class="mb-8 relative flow-step p-4 bg-gray-50 rounded-lg shadow-sm">
+                            <div class="absolute -left-7 top-1/2 -translate-y-1/2 w-6 h-6 bg-[#bc5090] rounded-full border-4 border-white"></div>
+                            <h4 class="font-bold text-[#bc5090]">ステップ2: 実装 (Claude Code)</h4>
+                            <p class="text-gray-600">計画に基づき、プロジェクトの骨格や定型コードを自動生成させる。</p>
+                        </div>
+                        <div class="mb-8 relative flow-step p-4 bg-gray-50 rounded-lg shadow-sm">
+                           <div class="absolute -left-7 top-1/2 -translate-y-1/2 w-6 h-6 bg-[#ef5675] rounded-full border-4 border-white"></div>
+                            <h4 class="font-bold text-[#ef5675]">ステップ3: 手動調整 (開発者)</h4>
+                            <p class="text-gray-600">AIが生成したコードをレビューし、ビジネスロジックや細部の調整を行う。</p>
+                        </div>
+                         <div class="relative flow-step p-4 bg-gray-50 rounded-lg shadow-sm">
+                            <div class="absolute -left-7 top-1/2 -translate-y-1/2 w-6 h-6 bg-[#ffa600] rounded-full border-4 border-white"></div>
+                            <h4 class="font-bold text-[#ffa600]">ステップ4: 仕上げ (Claude Code)</h4>
+                            <p class="text-gray-600">テストの作成、リファクタリング、ドキュメント生成などをAIに任せる。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Section 7: Conclusion -->
+            <section>
+                <div class="bg-[#003f5c] text-white rounded-lg shadow-xl p-8 md:p-12 text-center">
+                    <h2 class="text-3xl font-bold mb-4">結論：なぜClaude Codeは高く評価されるのか</h2>
+                    <p class="text-lg md:text-xl max-w-4xl mx-auto">
+                        Claude Codeの卓越した評価は、単一の機能によるものではなく、複数の強力な要素が相乗効果を生み出している結果です。
+                        <span class="font-bold text-[#ffa600]">深いコードベース理解</span>に基づく<span class="font-bold text-[#ffa600]">エージェント的能力</span>、
+                        <span class="font-bold text-[#ef5675]">複雑な複数ファイルタスク</span>を処理する能力、
+                        開発者のワークフローにシームレスに統合される<span class="font-bold text-[#ef5675]">ターミナルファースト</span>の設計、
+                        そして最先端のLLMがもたらす<span class="font-bold text-[#ef5675]">客観的な高性能</span>。
+                        これらが組み合わさることで、Claude Codeは単なるツールを超え、開発者にとって不可欠な「思考するパートナー」となっているのです。
+                    </p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        const brilliantBlues = ['#003f5c', '#7a5195', '#ef5675', '#ffa600', '#bc5090', '#ff764a'];
+        const brilliantBluesTransparent = ['rgba(0, 63, 92, 0.7)', 'rgba(122, 81, 149, 0.7)', 'rgba(239, 86, 117, 0.7)', 'rgba(255, 166, 0, 0.7)'];
+
+        function wrapLabels(label) {
+            const maxLen = 16;
+            if (typeof label === 'string' && label.length > maxLen) {
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).length > maxLen && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = currentLine ? currentLine + ' ' + word : word;
+                    }
+                }
+                lines.push(currentLine);
+                return lines;
+            }
+            return label;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                     labels: {
+                        color: '#003f5c'
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: '#003f5c' },
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: { color: '#003f5c' },
+                    grid: { color: '#e0e0e0' }
+                }
+            }
+        };
+        
+        // Core Capabilities Chart (Donut)
+        const coreCapabilitiesCtx = document.getElementById('coreCapabilitiesChart').getContext('2d');
+        new Chart(coreCapabilitiesCtx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    '複数ファイルの編集とバグ修正',
+                    'Gitワークフロー統合',
+                    'コードベースQ&A',
+                    'コマンド実行とテスト'
+                ].map(wrapLabels),
+                datasets: [{
+                    label: 'コア機能',
+                    data: [35, 25, 25, 15],
+                    backgroundColor: brilliantBlues,
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: { x: { display: false }, y: { display: false } }
+            }
+        });
+
+        // Competitor Radar Chart
+        const competitorRadarCtx = document.getElementById('competitorRadarChart').getContext('2d');
+        new Chart(competitorRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: [
+                    'コードベース全体の分析', 
+                    '複数ファイルのリファクタリング', 
+                    'ターミナル統合', 
+                    'インライン提案', 
+                    'エコシステム連携'
+                ].map(wrapLabels),
+                datasets: [{
+                    label: 'Claude Code',
+                    data: [9, 9, 8, 6, 7],
+                    backgroundColor: 'rgba(239, 86, 117, 0.2)',
+                    borderColor: '#ef5675',
+                    pointBackgroundColor: '#ef5675',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#ef5675'
+                }, {
+                    label: 'GitHub Copilot',
+                    data: [6, 5, 7, 9, 8],
+                    backgroundColor: 'rgba(0, 63, 92, 0.2)',
+                    borderColor: '#003f5c',
+                    pointBackgroundColor: '#003f5c',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#003f5c'
+                },
+                {
+                    label: 'その他 (Amazon Q, Gemini)',
+                    data: [5, 4, 6, 7, 9],
+                    backgroundColor: 'rgba(255, 166, 0, 0.2)',
+                    borderColor: '#ffa600',
+                    pointBackgroundColor: '#ffa600',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#ffa600'
+                }]
+            },
+            options: {
+                 ...defaultChartOptions,
+                 scales: {
+                    r: {
+                        angleLines: { color: '#e0e0e0' },
+                        grid: { color: '#e0e0e0' },
+                        pointLabels: {
+                            font: { size: 12 },
+                            color: '#003f5c'
+                        },
+                        ticks: {
+                            color: '#7a5195',
+                            backdropColor: 'rgba(255, 255, 255, 0.75)'
+                        }
+                    }
+                 }
+            }
+        });
+
+        // HumanEval Chart (Bar)
+        const humanEvalCtx = document.getElementById('humanEvalChart').getContext('2d');
+        new Chart(humanEvalCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Claude 3.5 Sonnet', 'GPT-4o', 'Gemini 1.5 Pro'],
+                datasets: [{
+                    label: 'HumanEval pass@1 スコア (%)',
+                    data: [92.0, 90.2, 84.1],
+                    backgroundColor: brilliantBluesTransparent,
+                    borderColor: brilliantBlues,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                plugins: { legend: { display: false } },
+                 scales: { y: { ticks: { color: '#003f5c' } }, x: { ticks: { color: '#003f5c' } } }
+            }
+        });
+
+        // SWE-Bench Chart (Bar)
+        const sweBenchCtx = document.getElementById('sweBenchChart').getContext('2d');
+        new Chart(sweBenchCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Claude Sonnet 4', 'Claude 3.7 Sonnet', 'GPT-4o'],
+                datasets: [{
+                    label: 'SWE-Bench Verified スコア (%)',
+                    data: [72.7, 70.3, 63.8],
+                    backgroundColor: brilliantBluesTransparent,
+                    borderColor: brilliantBlues,
+                    borderWidth: 1
+                }]
+            },
+             options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                plugins: { legend: { display: false } },
+                scales: { y: { ticks: { color: '#003f5c' } }, x: { ticks: { color: '#003f5c' } } }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Claude Code 優位性プレゼンテーション</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/white.min.css" id="theme">
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+		<style>
+			:root {
+				--r-main-font: 'Noto Sans JP', sans-serif;
+				--r-heading-font: 'Noto Sans JP', sans-serif;
+				--r-main-color: #333;
+				--r-heading-color: #1a3a5a;
+				--r-link-color: #ef5675;
+				--c-primary: #1a3a5a;
+				--c-secondary: #7a5195;
+				--c-accent1: #ef5675;
+				--c-accent2: #ffa600;
+			}
+			/* --- Font Size Adjustments --- */
+			.reveal {
+				font-size: 24px; /* Base font size increased for overall readability */
+			}
+			.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+				text-transform: none;
+				font-weight: 700;
+			}
+      .reveal .slides {
+        text-align: left;
+      }
+      .reveal h1 {
+        text-align: center;
+      }
+      .reveal h2 {
+        text-align: center;
+        margin-bottom: 40px !important;
+      }
+      .reveal section {
+        text-align: center;
+      }
+      .reveal section > .content-left {
+        text-align: left;
+      }
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<!-- Slide 1: Title -->
+				<section>
+					<!-- H1 size reduced from text-6xl to text-5xl to prevent overflow -->
+					<h1 class="text-5xl" style="color: var(--c-primary);">なぜClaude Codeは高く評価されるのか？</h1>
+					<!-- Subtitle size adjusted to text-2xl for balance -->
+					<p class="mt-8 text-2xl">他のAIエージェントと比較した優位性の深層分析</p>
+					<p class="mt-20 text-lg text-gray-500">Anthropic社のAIコーディングエージェントに関する調査レポートに基づく</p>
+				</section>
+
+				<!-- Slide 2: Introduction -->
+				<section>
+					<h2>AI開発の新たな潮流：「エージェント的シフト」</h2>
+					<div class="flex items-center justify-center">
+						<div class="w-1/2 p-4 content-left">
+							<!-- Adjusted paragraph font size for readability -->
+							<p class="text-xl">AIツールは単なるコード補完を超え、自律的にタスクを理解・計画・実行する<strong style="color: var(--c-accent1);">「エージェント」</strong>へと進化しています。</p>
+							<p class="mt-6 text-lg fragment">Claude Codeはこのシフトを体現し、開発者の「賢いパートナー」として機能します。</p>
+						</div>
+						<div class="w-1/2 p-4 text-center">
+							<div class="bg-gray-100 p-8 rounded-xl shadow-lg">
+								<!-- Stat font size remains large for impact, container ensures it fits -->
+								<div class="text-7xl font-bold" style="color: var(--c-accent1);">64%</div>
+								<div class="text-xl mt-2" style="color: var(--c-primary);">内部評価での問題解決率</div>
+								<p class="text-base mt-1 text-gray-600">(Claude 3.5 SonnetがOpusを上回る)</p>
+							</div>
+						</div>
+					</div>
+				</section>
+        
+        <!-- Slide 3: Core Strengths -->
+        <section>
+            <h2>Claude Codeの核となる強み</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                <!-- Paragraph font size increased to text-lg for better readability -->
+                <div class="bg-slate-50 p-6 rounded-lg shadow-md fragment">
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--c-secondary);">① コードベース全体の理解</h3>
+                    <p class="text-lg">手動でコンテキストを与える必要なく、プロジェクト全体を自動で探索・理解する<strong style="color: var(--c-accent1);">「エージェント検索」</strong>機能を搭載。複数ファイルにまたがる複雑なタスクも正確に処理します。</p>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-lg shadow-md fragment">
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--c-secondary);">② ターミナルファースト設計</h3>
+                    <p class="text-lg">開発者が最も時間を費やす<strong style="color: var(--c-accent1);">ターミナル内で直接動作</strong>。コンテキストスイッチを最小限に抑え、シームレスな開発体験を提供します。</p>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-lg shadow-md fragment">
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--c-secondary);">③ 強力な基盤モデル</h3>
+                    <p class="text-lg">Claude OpusやSonnetシリーズといった最先端のLLMを搭載。大規模コンテキストウィンドウと<strong style="color: var(--c-accent1);">高度な推論能力</strong>で、高品質なコードを生成します。</p>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-lg shadow-md fragment">
+                    <h3 class="text-xl font-bold mb-3" style="color: var(--c-secondary);">④ 開発者のための安全性</h3>
+                    <p class="text-lg">機密性の高い操作には<strong style="color: var(--c-accent1);">明示的な承認</strong>を要求する権限システムを実装。開発者が制御を維持しつつ、安心してAIの能力を活用できます。</p>
+                </div>
+            </div>
+        </section>
+
+				<!-- Slide 4: Competitive Comparison -->
+				<section data-chart="radar">
+					<h2>競合製品との比較優位性</h2>
+					<!-- Container height adjusted to give chart more space -->
+					<div class="w-full h-[580px] mx-auto">
+						<canvas id="competitorRadarChart"></canvas>
+					</div>
+          <p class="text-base text-gray-600 -mt-8">Claude Codeは特に「コードベース全体の分析」と「複数ファイルのリファクタリング」で他を圧倒。</p>
+				</section>
+
+				<!-- Slide 5: Performance Benchmarks -->
+				<section>
+          <h2>客観的指標が示す卓越した性能</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="fragment" data-chart="bar1">
+              <h3 class="text-2xl" style="color: var(--c-primary);">HumanEval ベンチマーク</h3>
+              <p class="text-lg text-gray-600 mb-4">機能的に正しいコード生成能力</p>
+              <div class="h-[300px]"><canvas id="humanEvalChart"></canvas></div>
+            </div>
+            <div class="fragment" data-chart="bar2">
+              <h3 class="text-2xl" style="color: var(--c-primary);">SWE-Bench ベンチマーク</h3>
+              <p class="text-lg text-gray-600 mb-4">実世界のGitHubイシュー解決能力</p>
+              <div class="h-[300px]"><canvas id="sweBenchChart"></canvas></div>
+            </div>
+          </div>
+				</section>
+        
+        <!-- Slide 6: Real World Impact -->
+        <section>
+          <h2>世界中のトップ企業が認める実力</h2>
+					<!-- Testimonial text size increased from text-sm to text-base -->
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-base">
+              <div class="bg-gray-50 p-4 rounded-lg shadow-sm text-center flex flex-col justify-center">
+                  <h4 class="font-bold text-lg" style="color: var(--c-primary);">Intercom</h4>
+                  <p class="mt-2 text-gray-700">「複雑な複数ステップのタスクを処理する能力が他との違いを生む」</p>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg shadow-sm text-center flex flex-col justify-center">
+                  <h4 class="font-bold text-lg" style="color: var(--c-primary);">JetBrains</h4>
+                  <p class="mt-2 text-gray-700">「100%構文的に正しいコードを達成。リファクタリング成功率が59%向上」</p>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg shadow-sm text-center flex flex-col justify-center">
+                  <h4 class="font-bold text-lg" style="color: var(--c-primary);">Vercel</h4>
+                  <p class="mt-2 text-gray-700">「コード生成とエージェント的ワークフローにとって変革的」</p>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg shadow-sm text-center flex flex-col justify-center">
+                  <h4 class="font-bold text-lg" style="color: var(--c-primary);">Ramp</h4>
+                  <p class="mt-2 text-gray-700">「チームのコーディング効率を劇的に加速。モデルあたり1〜2日の作業を削減」</p>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg shadow-sm text-center flex flex-col justify-center">
+                  <h4 class="font-bold text-lg" style="color: var(--c-primary);">Replit</h4>
+                  <p class="mt-2 text-gray-700">「複雑な複数ファイルの変更を処理する能力は驚異的」</p>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-lg shadow-sm text-center flex flex-col justify-center">
+                  <h4 class="font-bold text-lg" style="color: var(--c-primary);">TELUS</h4>
+                  <p class="mt-2 text-gray-700">「4時間の自動テストをわずか10分に短縮」</p>
+              </div>
+          </div>
+        </section>
+
+        <!-- Slide 7: Hybrid Workflow -->
+        <section>
+            <h2>開発体験の変革：AIとの新たな協業スタイル</h2>
+            <p class="text-xl mb-8">開発者はAIをパートナーとし、人間とAI双方の強みを活かすハイブリッドワークフローを構築しています。</p>
+            <div class="flex justify-center items-start space-x-4">
+                <div class="w-1/4 p-4 bg-blue-50 rounded-lg text-center shadow">
+                    <div class="text-3xl">①</div>
+                    <h3 class="text-lg font-bold mt-2" style="color: var(--c-primary);">計画</h3>
+										<!-- Workflow description font size increased from text-sm to text-base -->
+                    <p class="text-base mt-2">Claude Chatで高レベルの設計をAIと対話しながら練り上げる。</p>
+                </div>
+                <div class="text-4xl font-bold mt-8 text-gray-400">&rarr;</div>
+                <div class="w-1/4 p-4 bg-purple-50 rounded-lg text-center shadow">
+                    <div class="text-3xl">②</div>
+                    <h3 class="text-lg font-bold mt-2" style="color: var(--c-secondary);">実装</h3>
+                    <p class="text-base mt-2">Claude Codeでプロジェクトの骨格や定型コードを自動生成。</p>
+                </div>
+                <div class="text-4xl font-bold mt-8 text-gray-400">&rarr;</div>
+                <div class="w-1/4 p-4 bg-red-50 rounded-lg text-center shadow">
+                    <div class="text-3xl">③</div>
+                    <h3 class="text-lg font-bold mt-2" style="color: var(--c-accent1);">調整</h3>
+                    <p class="text-base mt-2">開発者がAI生成コードをレビューし、ビジネスロジックを調整。</p>
+                </div>
+                <div class="text-4xl font-bold mt-8 text-gray-400">&rarr;</div>
+                 <div class="w-1/4 p-4 bg-yellow-50 rounded-lg text-center shadow">
+                    <div class="text-3xl">④</div>
+                    <h3 class="text-lg font-bold mt-2" style="color: var(--c-accent2);">仕上げ</h3>
+                    <p class="text-base mt-2">テスト作成、リファクタリング、ドキュメント生成をAIに任せる。</p>
+                </div>
+            </div>
+        </section>
+
+				<!-- Slide 8: Conclusion -->
+				<section>
+					<h2>結論：評価の源泉は「相乗効果」にあり</h2>
+          <div class="content-left text-xl max-w-4xl mx-auto">
+            <p class="fragment">Claude Codeの高い評価は、単一の機能ではなく、複数の強力な要素が組み合わさることで生まれています。</p>
+            <ul class="mt-6 space-y-4 text-lg">
+              <li class="fragment"><strong style="color: var(--c-secondary);">深いコードベース理解</strong>を持つ<strong style="color: var(--c-accent1);">エージェント</strong>が、</li>
+              <li class="fragment"><strong style="color: var(--c-primary);">最先端のLLM</strong>によって駆動され、</li>
+              <li class="fragment"><strong style="color: var(--c-accent2);">開発者のワークフロー</strong>にシームレスに統合され、</li>
+              <li class="fragment">実世界の<strong style="color: var(--c-accent1);">複雑な課題</strong>を解決する。</li>
+            </ul>
+            <p class="mt-8 fragment text-xl font-bold" style="color: var(--c-primary);">
+              この相乗効果こそが、Claude Codeを単なるツールを超えた「思考するパートナー」へと昇華させているのです。
+            </p>
+          </div>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+		<script>
+      // Chart instances need to be stored to check if they have been rendered
+      const chartInstances = {};
+
+			const renderChart = (chartId) => {
+        // Prevent re-rendering
+        if(chartInstances[chartId]) return;
+
+				const ctx = document.getElementById(chartId).getContext('2d');
+        let chart;
+
+        const commonOptions = {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                font: {
+                  family: "'Noto Sans JP', sans-serif",
+                  size: 14,
+                }
+              }
+            }
+          }
+        };
+
+        if (chartId === 'competitorRadarChart') {
+           chart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+              labels: [
+                'コードベース全体の分析', 
+                '複数ファイルのリファクタリング', 
+                'ターミナル統合', 
+                'インライン提案', 
+                'エコシステム連携'
+              ],
+              datasets: [{
+                  label: 'Claude Code',
+                  data: [9, 9, 8, 6, 7],
+                  backgroundColor: 'rgba(239, 86, 117, 0.2)',
+                  borderColor: '#ef5675',
+                  pointBackgroundColor: '#ef5675',
+              }, {
+                  label: 'GitHub Copilot',
+                  data: [6, 5, 7, 9, 8],
+                  backgroundColor: 'rgba(26, 58, 90, 0.2)',
+                  borderColor: '#1a3a5a',
+                  pointBackgroundColor: '#1a3a5a',
+              }]
+            },
+						// Adjusted chart label font size for readability
+            options: { ...commonOptions, 
+                scales: { r: { pointLabels: { font: { size: 15 } }, ticks: { display: false } } } 
+            }
+          });
+        }
+        
+        if (chartId === 'humanEvalChart') {
+          chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: ['Claude 3.5 Sonnet', 'GPT-4o', 'Gemini 1.5 Pro'],
+              datasets: [{
+                  label: 'HumanEval pass@1 スコア (%)',
+                  data: [92.0, 90.2, 84.1],
+                  backgroundColor: ['rgba(239, 86, 117, 0.7)', 'rgba(122, 81, 149, 0.7)', 'rgba(26, 58, 90, 0.7)'],
+              }]
+            },
+						// Adjusted axis tick font size
+            options: { ...commonOptions, plugins: { legend: { display: false } }, scales: { y: { ticks: { font: { size: 14 } } }, x: { ticks: { font: { size: 14 } } } } }
+          });
+        }
+
+        if (chartId === 'sweBenchChart') {
+           chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: ['Claude Sonnet 4', 'Claude 3.7 Sonnet', 'GPT-4o'],
+              datasets: [{
+                  label: 'SWE-Bench Verified スコア (%)',
+                  data: [72.7, 70.3, 63.8],
+                  backgroundColor: ['rgba(239, 86, 117, 0.7)', 'rgba(122, 81, 149, 0.7)', 'rgba(26, 58, 90, 0.7)'],
+              }]
+            },
+						// Adjusted axis tick font size
+            options: { ...commonOptions, plugins: { legend: { display: false } }, scales: { y: { ticks: { font: { size: 14 } } }, x: { ticks: { font: { size: 14 } } } } }
+          });
+        }
+        chartInstances[chartId] = chart;
+			};
+
+			let deck = new Reveal({
+				plugins: []
+			});
+			deck.initialize({
+        hash: false, // Set to false to prevent history API errors in sandboxed environments
+        center: true,
+        margin: 0.04,
+        width: 1100,
+        height: 700,
+      });
+
+      // Lazy-load charts
+      deck.on('slidechanged', event => {
+        const slide = event.currentSlide;
+        // Add a null check for slide
+        if (!slide) return;
+
+        const chartCanvas = slide.querySelector('canvas');
+        if (chartCanvas) {
+          renderChart(chartCanvas.id);
+        } else {
+           // Handle cases where a slide has multiple charts via fragments
+           const fragments = slide.querySelectorAll('.fragment[data-chart]');
+           fragments.forEach(fragment => {
+             if (fragment.classList.contains('visible')) {
+               const canvas = fragment.querySelector('canvas');
+               if (canvas) renderChart(canvas.id);
+             }
+           });
+        }
+      });
+      
+      deck.on('fragmentshown', event => {
+        // Add a null check for fragment
+        if (event.fragment) {
+            const chartCanvas = event.fragment.querySelector('canvas');
+            if (chartCanvas) {
+              renderChart(chartCanvas.id);
+            }
+        }
+      });
+      
+      // Render chart on initial slide if it exists
+      const initialSlide = deck.getCurrentSlide();
+      if(initialSlide) {
+          const initialChartCanvas = initialSlide.querySelector('canvas');
+          if (initialChartCanvas) {
+            renderChart(initialChartCanvas.id);
+          }
+      }
+		</script>
+	</body>
+</html>
