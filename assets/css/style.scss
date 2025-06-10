@@ -153,12 +153,15 @@ a:hover {
 
 .tag {
     display: inline-block;
-    background: var(--secondary-color);
-    color: white;
-    padding: 0.2rem 0.8rem;
+    padding: 2px 8px;
+    margin: 0 4px 4px 0;
+    background-color: var(--tag-bg, #2d2d2d);
+    color: var(--tag-color, #e0e0e0);
     border-radius: 15px;
-    font-size: 0.8rem;
-    margin-right: 0.5rem;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid var(--tag-border, #404040);
 }
 
 /* タグフィルタのスタイル */
@@ -265,6 +268,28 @@ a:hover {
     line-clamp: 3;          /* 標準プロパティ */
     -webkit-box-orient: vertical;
     margin-top: 0;  /* 上部のマージンを削除 */
+}
+
+.topic-tags {
+    margin: 8px 0;
+}
+
+.topic-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    margin: 0 4px 4px 0;
+    background-color: var(--tag-bg, #2d2d2d);
+    color: var(--tag-color, #e0e0e0);
+    border-radius: 15px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid var(--tag-border, #404040);
+}
+
+.topic-tag:hover {
+    background-color: var(--tag-hover-bg, #404040);
+    border-color: var(--tag-hover-border, #505050);
 }
 
 .date {

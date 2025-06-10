@@ -5,6 +5,15 @@ layout: default
 <article class="topic" data-type="{{ page.type | default: 'default' }}">
     <h1>{{ page.title }}</h1>
     
+    {% if page.tags %}
+    <div class="tags">
+        タグ:
+        {% for tag in page.tags %}
+        <span class="tag" onclick="window.location.href='{{ '/' | relative_url }}?tag={{ tag | url_encode }}'">{{ tag }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     {% if page.date %}
     <p class="meta">作成日: {{ page.date | date: "%Y年%m月%d日" }}</p>
     {% endif %}{% if page.audio %}
@@ -39,7 +48,7 @@ layout: default
     <div class="tags">
         タグ:
         {% for tag in page.tags %}
-        <span class="tag">{{ tag }}</span>
+        <span class="tag" onclick="window.location.href='{{ '/' | relative_url }}?tag={{ tag | url_encode }}'">{{ tag }}</span>
         {% endfor %}
     </div>
     {% endif %}
