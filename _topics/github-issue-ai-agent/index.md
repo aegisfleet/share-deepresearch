@@ -225,10 +225,10 @@ AIエージェントをGitHub Actionsで実装するには、ワークフロー�
         \- name: Checkout code (optional, if repo context is needed)
           uses: actions/checkout@v3
         \- name: Call AI Labeling Service / Action
-          uses: some-ai-labeler-action@v1 \# またはカスタムスクリプトを実行
+          uses: some-ai-labeler-action@v1 # またはカスタムスクリプトを実行
           with:
-            github\_token: ${{ secrets.GITHUB\_TOKEN }}
-            api\_key: ${{ secrets.AI\_SERVICE\_API\_KEY }} \# AIサービスのAPIキー
+            github\_token: ${{ secrets.GITHUB_TOKEN }}
+            api\_key: ${{ secrets.AI_SERVICE_API_KEY }} \# AIサービスのAPIキー
             issue\_title: ${{ github.event.issue.title }}
             issue\_body: ${{ github.event.issue.body }}
             \# その他、AIラベリングに必要な情報
@@ -254,8 +254,8 @@ AIエージェントをGitHub Actionsで実装するには、ワークフロー�
         \- name: Call AI Summarization Service / Action
           uses: some-ai-summarizer-action@v1 \# またはカスタムスクリプトを実行
           with:
-            github\_token: ${{ secrets.GITHUB\_TOKEN }}
-            api\_key: ${{ secrets.AI\_SERVICE\_API\_KEY }} \# AIサービスのAPIキー
+            github\_token: ${{ secrets.GITHUB_TOKEN }}
+            api\_key: ${{ secrets.AI_SERVICE_API_KEY }} \# AIサービスのAPIキー
             issue\_number: ${{ github.event.issue.number }} \# 対象のIssue番号
             \# その他、AI要約に必要な情報
   ```
@@ -268,8 +268,8 @@ AIエージェントをGitHub Actionsで実装するには、ワークフロー�
 
 | シナリオ／目標 | 関連する on: イベント | if: 条件の例 | AI呼び出しステップの概念例 |
 | :---- | :---- | :---- | :---- |
-| 新規バグレポートの自動ラベリング | issues: {types: \[opened, labeled\]} | github.event.action \== 'labeled' && github.event.label.name \== 'bug' | uses: ai-labeler-action with: issue\_data: ${{ toJson(github.event.issue) }} |
-| コマンドによるIssue要約 (/summarize) | issue\_comment: {types: \[created\]} | contains(github.event.comment.body, '/summarize') | run: python summarize\_issue.py ${{ github.event.issue.number }} |
+| 新規バグレポートの自動ラベリング | issues: {types: \[opened, labeled\]} | github.event.action \== 'labeled' && github.event.label.name \== 'bug' | uses: ai-labeler-action with: issue\_data: $\{\{ toJson(github.event.issue) \}\} |
+| コマンドによるIssue要約 (/summarize) | issue\_comment: {types: \[created\]} | contains(github.event.comment.body, '/summarize') | run: python summarize\_issue.py \{\{ github.event.issue.number \}\} |
 | FAQ的なIssueへの自動返信 | issues: {types: \[opened\]} | contains(github.event.issue.title, 'インストール方法') | uses: ai-faq-responder with: issue\_body: ${{ github.event.issue.body }} |
 | 「good first issue」に対するAI支援付きPR作成 | issues: {types: \[labeled\]} | github.event.action \== 'labeled' && github.event.label.name \== 'good first issue' | uses: ai-pr-creator with: issue\_number: ${{ github.event.issue.number }} |
 | Issue割り当てによるCopilot起動 | issues: {types: \[assigned\]} | github.event.assignee.login \== 'copilot' | (Copilotが自動的に処理を開始) |
@@ -286,7 +286,7 @@ AIサービス（OpenAI, Gemini, Claudeなど）を利用する際には、API�
   * **リポジトリシークレット (Repository Secrets)**: 特定の単一リポジトリ内でのみ利用可能なシークレットです 26。作成は、リポジトリの Settings \> Secrets and variables \> Actions \> New repository secret から行います 26。  
   * **環境シークレット (Environment Secrets)**: 特定のデプロイ環境（例：production, staging）に関連付けられたシークレットです 26。環境ごとに異なるAPIキーを使用する場合や、特定の環境へのデプロイ前に承認プロセスを挟みたい場合に有用です。  
   * **組織シークレット (Organization Secrets)**: 組織内の複数のリポジトリ間で共有できるシークレットです 26。APIキーなどを一元管理し、重複を避けるのに役立ちます。アクセス範囲は、組織内の全リポジトリ、プライベートリポジトリのみ、または選択したリポジトリに限定できます 29。  
-* **ワークフローからのシークレットアクセス**: ワークフローファイル内では、secrets コンテキストを使用してシークレットにアクセスします。例えば、OPENAI\_API\_KEY という名前で保存されたシークレットは、${{ secrets.OPENAI\_API\_KEY }} のように参照します 9。  
+* **ワークフローからのシークレットアクセス**: ワークフローファイル内では、secrets コンテキストを使用してシークレットにアクセスします。例えば、OPENAI_API_KEY という名前で保存されたシークレットは、${{ secrets.OPENAI_API_KEY }} のように参照します 9。  
 * **シークレットの命名規則とルール** 28:  
   * 英数字 (\[a-z\], \[A-Z\], \[0-9\]) とアンダースコア (\_) のみ使用可能。スペースは不可。  
   * GITHUB\_ プレフィックスで始まってはならない。  

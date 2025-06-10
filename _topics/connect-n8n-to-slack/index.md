@@ -86,7 +86,7 @@ n8nはデフォルトで認証情報を暗号化しますが、AWS Secrets Manag
 #### **n8nでの外部シークレットの使用設定**
 
 n8nが実行時にAWS Secrets Managerから認証情報を取得するように設定する方法を説明します（環境変数またはUI経由）12。  
-{{ $secrets.awsSecretsManager.\<secret-name\> }}のような式を使用して、n8nの認証情報フィールドでこれらのシークレットを参照する方法を示します 12。  
+{% raw %}{{ $secrets.awsSecretsManager.<secret-name> }}{% endraw %}のような式を使用して、n8nの認証情報フィールドでこれらのシークレットを参照する方法を示します 12。  
 関連するAWSサービスとして、SSM Parameter Storeも設定/シークレット管理のための選択肢として存在します。n8nが公式にサポートを追加した場合、一部のユーザーにとっては費用対効果の高い選択となる可能性があります 11。
 
 ## **3\. Part 2: n8n連携のためのSlack設定**
@@ -213,8 +213,8 @@ n8nの汎用認証（Bearer認証、ヘッダー認証）がヘッダーを正�
 * 目的: 特定の事前定義された絵文字リアクション（例: :bug:, :ticket:, :task:）に対してのみGitHub Issueが作成されるようにします。これによりノイズを防ぎ、意図を明確にします。  
 * 設定:  
   * 入力: Slack Triggerノードからのデータ。  
-  * 条件: {{ $json.event.reaction }}を目的の絵文字名のリストと比較します。  
-  * 例: {{ $json.event.reaction \=== "bug" | | $json.event.reaction \=== "task\_to\_do" }} (実際の絵文字名は異なる場合があり、SlackはAPIイベントでコロンなしのショートコードを使用します。例: "bug", "task\_to\_do")。
+  * 条件: {% raw %}{{ $json.event.reaction }}{% endraw %}を目的の絵文字名のリストと比較します。  
+  * 例: {% raw %}{{ $json.event.reaction === "bug" || $json.event.reaction === "task_to_do" }}{% endraw %} (実際の絵文字名は異なる場合があり、SlackはAPIイベントでコロンなしのショートコードを使用します。例: "bug", "task\_to\_do")。
 
 ### **(任意) Node 3: Slack Node (メッセージ内容の取得)**
 
@@ -222,9 +222,9 @@ n8nの汎用認証（Bearer認証、ヘッダー認証）がヘッダーを正�
 * **認証**: 同じSlack認証情報を選択します。  
 * **リソース & オペレーション**: Channel \-\> History 19。これはSlack APIメソッドconversations.history 28 にマッピングされます。  
 * **パラメータ** 19:  
-  * Channel ID: Slack Triggerの出力からマッピング: {{ $json.event.item.channel }}。  
-  * Latest: Slack Triggerの出力からマッピング: {{ $json.event.item.ts }}。これは取得するメッセージのタイムスタンプです。  
-  * Oldest: Slack Triggerの出力からマッピング: {{ $json.event.item.ts }}。(単一メッセージを取得するため、latestとoldestは同じです)。  
+  * Channel ID: Slack Triggerの出力からマッピング: {% raw %}{{ $json.event.item.channel }}{% endraw %}。  
+  * Latest: Slack Triggerの出力からマッピング: {% raw %}{{ $json.event.item.ts }}{% endraw %}。これは取得するメッセージのタイムスタンプです。  
+  * Oldest: Slack Triggerの出力からマッピング: {% raw %}{{ $json.event.item.ts }}{% endraw %}。(単一メッセージを取得するため、latestとoldestは同じです)。  
   * Inclusive: trueに設定します（指定されたtsのメッセージを含めるため）。  
   * Limit: 1に設定します（その単一メッセージのみを取得するため）。  
   * Return All: limitを使用する場合はオフにする必要があります。  
@@ -237,18 +237,18 @@ n8nの汎用認証（Bearer認証、ヘッダー認証）がヘッダーを正�
 * **認証**: Part 3で設定したGitHub認証情報を選択します。  
 * **リソース & オペレーション**: Issue \-\> Create 31。  
 * **パラメータ** (31でオペレーション、32でRedmineからのフィールド例、Issueフィールドに関する一般的なGitHub API知識を参照):  
-  * Owner/Organization: リポジトリが存在するGitHubユーザー名または組織名。(例: {{ $env.GITHUB\_REPO\_OWNER }} またはハードコード)。  
-  * Repository Name: リポジトリの名前。(例: {{ $env.GITHUB\_REPO\_NAME }} またはハードコード)。  
+  * Owner/Organization: リポジトリが存在するGitHubユーザー名または組織名。(例: {% raw %}{{ $env.GITHUB_REPO_OWNER }}{% endraw %} またはハードコード)。  
+  * Repository Name: リポジトリの名前。(例: {% raw %}{{ $env.GITHUB_REPO_NAME }}{% endraw %} またはハードコード)。  
   * Title: 意味のあるタイトルを作成します。  
-    * 例: Slack Reaction: {{ $json.event.reaction }} on message by {{ $node.json.event.item\_user }}  
-    * または、メッセージ内容が取得された場合: Bug: {{ $node.json.messages.text.substring(0, 50\) }}...  
+    * 例: Slack Reaction: {% raw %}{{ $json.event.reaction }}{% endraw %} on message by {% raw %}{{ $node.json.event.item_user }}{% endraw %}  
+    * または、メッセージ内容が取得された場合: Bug: {% raw %}{{ $node.json.messages.text.substring(0, 50) }}{% endraw %}...  
   * Body: Issueの主要な内容。以下を含めます:  
-    * 元のSlackメッセージ内容（取得された場合）: {{ $node.json.messages.text }}。  
-    * Slackメッセージへのパーマリンク: {{ $node.json.messages.permalink }} (取得された場合。それ以外の場合はteam\_id, channel\_id, message\_tsを使用して構築)。  
-    * リアクションしたユーザー: User {{ $json.event.user }} reacted with :{{ $json.event.reaction }}:  
+    * 元のSlackメッセージ内容（取得された場合）: {% raw %}{{ $node.json.messages.text }}{% endraw %}。  
+    * Slackメッセージへのパーマリンク: {% raw %}{{ $node.json.messages.permalink }}{% endraw %} (取得された場合。それ以外の場合はteam\_id, channel\_id, message\_tsを使用して構築)。  
+    * リアクションしたユーザー: User {% raw %}{{ $json.event.user }}{% endraw %} reacted with :{% raw %}{{ $json.event.reaction }}{% endraw %}:  
     * リアクションのタイムスタンプ。  
     * GitHub Issueの品質は、Slackからのデータがタイトルと本文にどのようにマッピングされ、フォーマットされるかに大きく依存します。パーマリンク、ユーザーID、元のメッセージの断片を含めるための式を使用することが、Issueを実行可能にする鍵です。  
-  * Labels (任意): ラベルのコンマ区切り文字列 (例: "bug", "slack-reported", {{ $json.event.reaction }}など)。  
+  * Labels (任意): ラベルのコンマ区切り文字列 (例: "bug", "slack-reported", {% raw %}{{ $json.event.reaction }}{% endraw %}など)。  
   * Assignees (任意): GitHubユーザー名のコンマ区切り文字列。  
 * **表5: n8n GitHubノード (Issue作成) 設定**
 
@@ -257,9 +257,9 @@ n8nの汎用認証（Bearer認証、ヘッダー認証）がヘッダーを正�
 | 認証情報 | 作成済みのGitHub認証情報 | GitHub APIへのアクセスに使用 |
 | Owner/Organization | (必須) リポジトリ所有者のユーザー名または組織名 | Issueを作成するリポジトリの所有者を指定 |
 | Repository | (必須) リポジトリ名 | Issueを作成するリポジトリを指定 |
-| Title | (必須) 例: Slackリアクション: {{ $json.event.reaction }} | GitHub Issueのタイトル。Slackイベントデータから動的に生成可能 |
-| Body | (任意) 例: Slackメッセージへのリンク: {{ $node.json.messages.permalink }}\\n\\n内容:\\n{{ $node.json.messages.text }} | GitHub Issueの本文。メッセージ内容やパーマリンクを含めることを推奨 |
-| Labels | (任意) 例: bug,from-slack,{{ $json.event.reaction }} | Issueに付与するラベルをコンマ区切りで指定 |
+| Title | (必須) 例: Slackリアクション: {% raw %}{{ $json.event.reaction }}{% endraw %} | GitHub Issueのタイトル。Slackイベントデータから動的に生成可能 |
+| Body | (任意) 例: Slackメッセージへのリンク: {% raw %}{{ $node.json.messages.permalink }}{% endraw %}\n\n内容:\n{% raw %}{{ $node.json.messages.text }}{% endraw %} | GitHub Issueの本文。メッセージ内容やパーマリンクを含めることを推奨 |
+| Labels | (任意) 例: bug,from-slack,{% raw %}{{ $json.event.reaction }}{% endraw %} | Issueに付与するラベルをコンマ区切りで指定 |
 | Assignees | (任意) GitHubユーザー名をコンマ区切りで指定 | Issueの担当者を指定 |
 
 ## **6\. Part 5: テスト、デプロイ、ベストプラクティス**
