@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：Android 16とPixel 9 Pro Foldの新機能</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #073B4C;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #FFD166, #06D6A0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        .flow-line::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -2rem;
+            width: 2rem;
+            height: 2px;
+            background-color: #118AB2;
+            transform: translateY(-50%);
+        }
+         .flow-line-vertical::after {
+            content: '';
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            width: 2px;
+            height: 2rem;
+            background-color: #118AB2;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body class="text-white">
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center py-16 md:py-24">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tighter mb-4">Android 16 × Pixel 9 Pro Fold</h1>
+            <p class="text-xl md:text-2xl font-bold gradient-text">未来が、開く。OSとデバイスの完璧な融合。</p>
+        </header>
+
+        <section id="general-features" class="my-12 md:my-20">
+            <div class="text-center mb-12 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">すべてのユーザーへの進化</h2>
+                <p class="text-lg text-gray-300">Android 16は、UI、生産性、セキュリティ、バッテリー管理といったOSの根幹を全面的に強化。より直感的で、安全、そして効率的なスマートフォン体験をすべての人に提供します。</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gray-800/50 rounded-2xl p-6 text-center backdrop-blur-sm">
+                    <span class="text-4xl">✨</span>
+                    <h3 class="text-xl font-bold mt-4 mb-2">洗練されたUI</h3>
+                    <p class="text-gray-400">ライブアップデート通知や刷新されたメディアコントロールで、よりダイナミックな操作性を実現。</p>
+                </div>
+                <div class="bg-gray-800/50 rounded-2xl p-6 text-center backdrop-blur-sm">
+                    <span class="text-4xl">👍</span>
+                    <h3 class="text-xl font-bold mt-4 mb-2">向上した生産性</h3>
+                    <p class="text-gray-400">通知の自動グループ化やキーボードショートカットのカスタマイズで、日々の操作がさらに効率化。</p>
+                </div>
+                 <div class="bg-gray-800/50 rounded-2xl p-6 text-center backdrop-blur-sm">
+                    <span class="text-4xl">🛡️</span>
+                    <h3 class="text-xl font-bold mt-4 mb-2">堅牢なセキュリティ</h3>
+                    <p class="text-gray-400">盗難検知ロックを含む「高度な保護機能」が、あなたのデジタルライフをあらゆる脅威から守ります。</p>
+                </div>
+                <div class="bg-gray-800/50 rounded-2xl p-6 text-center backdrop-blur-sm">
+                    <span class="text-4xl">🔋</span>
+                    <h3 class="text-xl font-bold mt-4 mb-2">バッテリー管理革命</h3>
+                    <p class="text-gray-400">バッテリーの状態を可視化し、「80%充電制限」で長期的なバッテリー寿命をサポートします。</p>
+                </div>
+            </div>
+             <div class="mt-12 bg-gray-800/50 rounded-2xl p-6 md:p-8">
+                <h3 class="text-2xl font-bold text-center mb-4">賢い充電で、バッテリーを末永く</h3>
+                <p class="text-center text-gray-300 max-w-2xl mx-auto mb-8">新しい「80%までに制限」オプションは、バッテリーの劣化を抑え、デバイスの寿命を延ばすための重要な機能です。システムが定期的にフル充電を行いキャリブレーションを維持するため、利便性を損なうことなくバッテリーの健康を保てます。</p>
+                <div class="chart-container">
+                    <canvas id="batteryChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="fold-features" class="my-12 md:my-20">
+            <div class="text-center mb-12 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Pixel 9 Pro Fold: 最適化された体験</h2>
+                <p class="text-lg text-gray-300">Android 16は、折りたたみデバイスの可能性を最大限に引き出します。大画面でのアプリ体験を根本から見直し、ハードウェアとの連携を深めることで、これまでにないシームレスな操作性を実現しました。</p>
+            </div>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-gray-800/50 rounded-2xl p-6 md:p-8">
+                    <h3 class="text-2xl font-bold mb-4">折りたたみ体験の向上</h3>
+                    <p class="text-gray-300 mb-6">テキストスケーリングの義務化やタスクバーの改善により、大画面でのマルチタスキングとアプリの可読性が劇的に向上。ハードウェアの開閉をOSがより深く理解し、画面遷移もスムーズになります。</p>
+                    <div class="chart-container">
+                        <canvas id="foldableRadarChart"></canvas>
+                    </div>
+                </div>
+                 <div class="bg-gray-800/50 rounded-2xl p-6 md:p-8">
+                    <h3 class="text-2xl font-bold mb-4">アプリ表示の比較: Before & After</h3>
+                    <p class="text-gray-300 mb-6">テキストスケーリングの義務化により、アプリは大画面に最適化された表示に。情報量と可読性が格段に向上します。</p>
+                    <div class="flex flex-col gap-4">
+                        <div>
+                            <p class="font-bold mb-2 text-red-400">Before: Android 15</p>
+                            <div class="bg-gray-700 rounded-lg p-4 border-2 border-red-400/50">
+                                <h4 class="text-lg font-bold">ニュース記事</h4>
+                                <p class="text-xs leading-tight">テキストが小さく、画面スペースを有効活用できていない。非常に読みにくい状態です。</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="font-bold mb-2 text-green-400">After: Android 16</p>
+                            <div class="bg-gray-700 rounded-lg p-4 border-2 border-green-400/50">
+                                <h4 class="text-xl font-bold">ニュース記事</h4>
+                                <p class="text-base leading-relaxed">テキストが画面サイズに最適化され、読みやすく美しいレイアウトに。快適な閲覧体験を提供します。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="desktop-mode" class="my-12 md:my-20">
+             <div class="text-center mb-12 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">生産性の再定義：デスクトップモード</h2>
+                <p class="text-lg text-gray-300">Pixel 9 Pro Foldを外部ディスプレイに接続するだけで、本格的なデスクトップ環境が起動。マルチウィンドウやタスクバーを駆使し、スマートフォン一台で場所を選ばないワークステーションが完成します。</p>
+            </div>
+            <div class="bg-gray-800/50 rounded-2xl p-6 md:p-8">
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 text-center">
+                    <div class="relative flow-line-vertical md:flow-line-vertical-0 md:flow-line">
+                        <div class="bg-blue-500/20 p-6 rounded-full w-40 h-40 flex flex-col justify-center items-center border-2 border-blue-400">
+                             <span class="text-4xl">📱</span>
+                            <p class="font-bold mt-2">Pixel 9 Pro Fold</p>
+                        </div>
+                    </div>
+                    <div class="relative flow-line-vertical md:flow-line-vertical-0 md:flow-line">
+                         <div class="bg-yellow-500/20 p-6 rounded-full w-40 h-40 flex flex-col justify-center items-center border-2 border-yellow-400">
+                             <span class="text-4xl">🔌</span>
+                            <p class="font-bold mt-2">接続</p>
+                        </div>
+                    </div>
+                    <div>
+                         <div class="bg-green-500/20 p-6 rounded-full w-40 h-40 flex flex-col justify-center items-center border-2 border-green-400">
+                             <span class="text-4xl">🖥️</span>
+                            <p class="font-bold mt-2">デスクトップ体験</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold">マルチウィンドウ</p>
+                        <p class="text-sm text-gray-400">複数のアプリを自由に配置・リサイズ。</p>
+                    </div>
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold">タスクバー</p>
+                        <p class="text-sm text-gray-400">実行中のアプリを簡単に切り替え。</p>
+                    </div>
+                    <div class="bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold">アプリ互換性強化</p>
+                        <p class="text-sm text-gray-400">従来のアプリも大画面で快適に動作。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pixel-exclusive" class="my-12 md:my-20">
+            <div class="text-center mb-12 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Pixelだけの特別な力</h2>
+                <p class="text-lg text-gray-300">Pixel Dropによって提供されるAIとアクセシビリティの革新。Geminiとのより深い連携や、生成AIによるカスタムステッカー作成など、Pixel 9シリーズならではのスマートな機能が満載です。</p>
+            </div>
+            <div class="bg-gray-800/50 rounded-2xl p-6 md:p-8">
+                 <h3 class="text-2xl font-bold text-center mb-4">AIと独自機能による体験向上</h3>
+                 <p class="text-center text-gray-300 max-w-2xl mx-auto mb-8">Pixel専用機能が、日々の創造性や利便性をどれだけ向上させるかを視覚化しました。特にAIを活用した機能は、他のデバイスでは体験できないレベルのパーソナライズを実現します。</p>
+                <div class="chart-container">
+                    <canvas id="pixelFeaturesBarChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center py-12 border-t border-gray-700">
+            <p class="text-gray-400">このインフォグラフィックは、Android 16とPixel 9 Pro Foldに関する公開情報を基に作成されました。</p>
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const FONT_COLOR = '#E5E7EB';
+            const GRID_COLOR = 'rgba(255, 255, 255, 0.2)';
+            
+            const wrapLabel = (label, maxLength = 16) => {
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine.length > 0) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            };
+            
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const sharedChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: FONT_COLOR,
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+            
+            const batteryChartCtx = document.getElementById('batteryChart').getContext('2d');
+            new Chart(batteryChartCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['80%までの充電', '残りの容量'],
+                    datasets: [{
+                        data: [80, 20],
+                        backgroundColor: ['#06D6A0', '#118AB2'],
+                        borderColor: '#073B4C',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    ...sharedChartOptions,
+                    cutout: '70%',
+                     plugins: {
+                        ...sharedChartOptions.plugins,
+                        title: {
+                            display: false
+                        }
+                    }
+                }
+            });
+
+            const foldableRadarChartCtx = document.getElementById('foldableRadarChart').getContext('2d');
+            new Chart(foldableRadarChartCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['マルチタスキング', 'アプリの可読性', '没入感', '画面遷移', '信頼性'],
+                    datasets: [{
+                        label: 'Android 15',
+                        data: [6, 5, 6, 7, 7],
+                        backgroundColor: 'rgba(255, 107, 107, 0.2)',
+                        borderColor: '#FF6B6B',
+                        pointBackgroundColor: '#FF6B6B'
+                    }, {
+                        label: 'Android 16',
+                        data: [9, 9, 8, 9, 9],
+                        backgroundColor: 'rgba(6, 214, 160, 0.2)',
+                        borderColor: '#06D6A0',
+                        pointBackgroundColor: '#06D6A0'
+                    }]
+                },
+                options: {
+                   ...sharedChartOptions,
+                   scales: {
+                       r: {
+                           angleLines: { color: GRID_COLOR },
+                           grid: { color: GRID_COLOR },
+                           pointLabels: { color: FONT_COLOR, font: {size: 14} },
+                           ticks: {
+                               color: FONT_COLOR,
+                               backdropColor: 'transparent',
+                               stepSize: 2
+                           }
+                       }
+                   }
+                }
+            });
+
+            const pixelFeaturesBarChartCtx = document.getElementById('pixelFeaturesBarChart').getContext('2d');
+            const featureLabels = [
+                'カスタムGboardステッカー', 
+                wrapLabel('レコーダーアプリのAI要約'), 
+                wrapLabel('GeminiとApp Functions API'), 
+                wrapLabel('Pixel VIPsウィジェット'),
+                wrapLabel('拡大鏡アプリのライブ検索')
+            ];
+            new Chart(pixelFeaturesBarChartCtx, {
+                type: 'bar',
+                data: {
+                    labels: featureLabels,
+                    datasets: [{
+                        label: '体験向上スコア',
+                        data: [8, 9, 10, 7, 8],
+                        backgroundColor: ['#FF6B6B', '#FFD166', '#06D6A0', '#118AB2', '#6b7280'],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    ...sharedChartOptions,
+                    indexAxis: 'y',
+                     scales: {
+                        x: {
+                            grid: { color: GRID_COLOR },
+                            ticks: { color: FONT_COLOR }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { color: FONT_COLOR, font: {size: 12} }
+                        }
+                    },
+                    plugins: {
+                       ...sharedChartOptions.plugins,
+                        legend: {
+                           display: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
