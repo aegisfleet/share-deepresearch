@@ -1,4 +1,4 @@
-name: Add Favicon to HTML Files
+name: Update HTML Files
 
 on:
   push:
@@ -10,24 +10,24 @@ permissions:
   contents: write
 
 jobs:
-  add-favicon:
+  update-html:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
-          fetch-depth: 0
 
-      - name: Add favicon links
+      - name: Update HTML files
         run: |
-          # 既存のファビコン設定をチェックして、必要な場合のみ追加
           for file in $(find . -type f -name "*.html"); do
             if ! grep -q "favicon-32x32.png" "$file" || ! grep -q "favicon-16x16.png" "$file"; then
               sed -i 's/<head>/<head>\n    <link rel="icon" type="image\/png" sizes="32x32" href="\/share-deepresearch\/assets\/favicon\/favicon-32x32.png">\n    <link rel="icon" type="image\/png" sizes="16x16" href="\/share-deepresearch\/assets\/favicon\/favicon-16x16.png">/' "$file"
-              echo "Updated: $file"
-            else
-              echo "Skipped: $file (already has favicon)"
+            fi
+
+            if ! grep -q "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" "$file"; then
+              sed -i 's/<head>/<head>\n    <script async src="https:\/\/pagead2.googlesyndication.com\/pagead\/js\/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"><\/script>/' "$file"
             fi
           done
 
@@ -50,7 +50,7 @@ jobs:
           git add .
           if ! git diff --staged --quiet; then
             echo "Committing changes..."
-            git commit -m "Add favicon links to HTML files"
+            git commit -m "Update HTML files"
             git push origin "HEAD:$BRANCH_TO_PUSH"
           else
             echo "No changes to commit."
