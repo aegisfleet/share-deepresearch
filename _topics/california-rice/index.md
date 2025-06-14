@@ -4,7 +4,7 @@ title: "カリフォルニア米と日本米の安全性に関する多角的比
 date: 2025-05-29
 prompt: "カリフォルニア米は日本米に比べて農薬のリスクが高いと聞いたが、農薬以外の観点も含めて多角的に比較して安全性についてまとめて欲しい。"
 category: "research"
-tags: ["米"]
+tags: ["化学","米"]
 audio: "/share-deepresearch/assets/audio/california-rice.mp3"
 supplementary_materials:
   - title: "インフォグラフィック：カリフォルニア米と日本米の安全性"
