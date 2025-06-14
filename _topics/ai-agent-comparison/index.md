@@ -5,7 +5,7 @@ date: 2025-05-27
 description: "本レポートは、Devinを代表とする自律型AIエージェントの現状を調査し、主要な競合AIエージェントの特徴と優位性を比較分析します。技術的課題や倫理的考察、今後の展望についても解説します。"
 prompt: "Devinを代表とする自立型のAIエージェントを調査したい。現在広く普及しているAIエージェントについて、その特徴と各エージェントの優位性についてまとめて欲しい。"
 category: "ai"
-tags: [Devin,OpenHands,GitHub Copilot]
+tags: ["AI Agent", "AIモデル", "Claude Code", "Devin", "GitHub Copilot", "OpenHands", "コーディング", "自動化", "開発手法", "開発環境"]
 audio: "/share-deepresearch/assets/audio/ai-agent-comparison.mp3"
 supplementary_materials:
   - title: "自律型AIエージェント市場トレンド インフォグラフィック"
