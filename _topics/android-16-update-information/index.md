@@ -4,7 +4,7 @@ title: "Android 16徹底解説 – Pixel 9 Pro Foldで開花する新機能"
 date: 2025-06-12
 prompt: "Android16の新機能をまとめて欲しい。特にPixel 9 Pro Foldで新規に使えるようになった機能があれば教えて欲しい。"
 category: "research"
-tags: [Android]
+tags: ["Android"]
 audio: "/share-deepresearch/assets/audio/android-16-update-information.mp3"
 supplementary_materials:
   - title: "インフォグラフィック：Android 16とPixel 9 Pro Foldの新機能"

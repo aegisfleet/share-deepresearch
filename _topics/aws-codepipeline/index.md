@@ -4,7 +4,7 @@ title: "AWS CodePipelineとCodeBuildにおける一般的な問題と高度な�
 date: 2025-06-02
 prompt: "AWS CodePipelineとCodeBuildで発生する問題をまとめたい。エンジニアが良く陥るあるあるネタや、発生頻度は低いが解決に時間が掛かる問題などを集めて欲しい。"
 category: "engineering"
-tags: [AWS,CI/CD]
+tags: ["AWS","CI/CD","DevOps","自動化"]
 audio: "/share-deepresearch/assets/audio/aws-codepipeline.mp3"
 supplementary_materials:
   - title: "AWS CI/CDインフォグラフィック：CodePipeline & CodeBuild 問題解決ガイド"

@@ -4,7 +4,7 @@ title: "AI関連技術の研究開発・活用推進法がもたらす影響：�
 date: 2025-05-29
 prompt: "AI関連技術の研究開発・活用推進法の内容から、どのような影響が出るのかまとめて欲しい。"
 category: "ai"
-tags: [AI推進法,法改正]
+tags: ["政治","法改正"]
 audio: "/share-deepresearch/assets/audio/ai-promotion-law.mp3"
 supplementary_materials:
   - title: "AI推進法：日本の産業と市場への影響"
