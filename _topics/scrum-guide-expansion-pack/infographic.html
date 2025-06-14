@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スクラムの進化：スクラムガイド2020 vs エクスパンションパック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 
+    Infographic Plan & Justification
+    Narrative Structure:
+    1. Header: Introduce the evolution of Scrum.
+    2. Core Philosophy: 'What' (Guide) vs. 'How' (Pack).
+    3. Paradigm Shift: Output vs. Outcome (Donut Charts).
+    4. EBM Introduction: The 4 Key Value Areas (Card Grid).
+    5. Team Evolution: Detailed breakdown of PO, Devs, SM (Bar/Radar charts, HTML visuals).
+    6. Framework Evolution: A living document (HTML Timeline).
+    7. AI Integration: The new frontier.
+    8. Summary Table: Direct comparison from the report.
+    9. Conclusion: Call to action for practitioners.
+
+    Visualization Choices (NO SVG, NO Mermaid JS):
+    - Philosophy Diagram: Goal: Organize. Method: HTML/CSS. Justification: Simple, clear relationship visual without forbidden tech.
+    - Output/Outcome Donuts: Goal: Compare. Method: Chart.js Canvas. Justification: Perfect for showing a shift in composition.
+    - EBM Cards: Goal: Organize. Method: HTML/CSS Grid. Justification: Clean, scannable presentation of 4 concepts.
+    - PO Bar Chart: Goal: Compare. Method: Chart.js Canvas. Justification: Compares effort allocation between two role approaches.
+    - SM Radar Chart: Goal: Compare. Method: Chart.js Canvas. Justification: Compares multiple dimensions of focus areas effectively.
+    - Evolution Timeline: Goal: Change. Method: HTML/CSS. Justification: Shows events over time clearly without forbidden tech.
+    - Comparison Table: Goal: Organize. Method: HTML Table. Justification: Best for presenting detailed, multi-variable data.
+    - All other visuals use styled HTML and Unicode characters.
+
+    Color Palette Chosen: "Brilliant Blues" for a vibrant, professional theme.
+    - #005F73 (Dark Teal), #0A9396 (Teal), #94D2BD (Mint), #EE9B00 (Orange), #CA6702 (Burnt Orange), #BB3E03 (Rust), #AE2012 (Dark Red)
+
+    Confirmation: NEITHER Mermaid JS NOR SVG were used in this output. All visuals are rendered via Chart.js Canvas or structured HTML/CSS with Tailwind.
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .text-balance {
+            text-wrap: balance;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center my-8 md:my-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#005F73] text-balance">スクラムの進化</h1>
+            <p class="mt-4 text-lg md:text-xl text-slate-600 text-balance">スクラムガイド2020の核心と、エクスパンションパックによる戦略的拡張を紐解く</p>
+        </header>
+
+        <section class="my-12 md:my-20">
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-6 md:p-10">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#005F73] text-center">哲学の対比：ルールから戦略へ</h2>
+                <p class="mt-4 text-center text-slate-600 max-w-2xl mx-auto">スクラムガイド2020はスクラムの「何（What）」、つまり不変のルールを定義します。対してエクスパンションパックは、そのルールを現代のビジネス環境で「どのように（How）」実践し、勝利に繋げるかの戦略的ガイダンスを提供します。</p>
+                <div class="mt-8 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+                    <div class="text-center p-6 border-2 border-[#0A9396] rounded-xl bg-[#0A9396]/10 w-full md:w-auto">
+                        <h3 class="text-xl font-bold text-[#005F73]">スクラムガイド2020</h3>
+                        <p class="mt-2 text-3xl font-bold">What</p>
+                        <p class="text-slate-600 mt-1">（不変のルール）</p>
+                    </div>
+                    <div class="text-5xl font-thin text-[#EE9B00] transform rotate-90 md:rotate-0">→</div>
+                    <div class="text-center p-6 border-2 border-[#EE9B00] rounded-xl bg-[#EE9B00]/10 w-full md:w-auto">
+                        <h3 class="text-xl font-bold text-[#CA6702]">エクスパンションパック</h3>
+                        <p class="mt-2 text-3xl font-bold">How</p>
+                        <p class="text-slate-600 mt-1">（オプションの戦略）</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-12 md:my-20">
+            <h2 class="text-2xl md:text-3xl font-bold text-[#005F73] text-center">核心的転換：アウトプットからアウトカムへ</h2>
+            <p class="mt-4 text-center text-slate-600 max-w-3xl mx-auto">最大の変更点は、焦点のシフトです。単に「機能を開発・リリースすること（アウトプット）」から、「ビジネスや顧客にとっての真の価値を実現すること（アウトカム）」へと、成功の定義そのものが進化します。</p>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <h3 class="text-xl font-bold text-center text-slate-700">従来の焦点：アウトプット</h3>
+                    <p class="text-center text-slate-500 text-sm mb-4">「何をどれだけ作ったか」</p>
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="outputChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-slate-600">チームの活動は、完成した機能の量やスプリントで消化したストーリーポイントで測られがちでした。これは「ビルドトラップ」に陥る危険性をはらんでいます。</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <h3 class="text-xl font-bold text-center text-[#005F73]">新たな焦点：アウトカム</h3>
+                    <p class="text-center text-slate-500 text-sm mb-4">「どのような価値を生み出したか」</p>
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="outcomeChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-slate-600">エクスパンションパックは、証拠に基づく経営（EBM）の考え方を導入し、チームの活動がビジネス成果にどう結びついているかを測定・可視化することを推奨します。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-12 md:my-20">
+            <h2 class="text-2xl md:text-3xl font-bold text-[#005F73] text-center">戦略的エンジン：証拠に基づく経営 (EBM)</h2>
+            <p class="mt-4 text-center text-slate-600 max-w-3xl mx-auto">EBMは、価値を測定し、改善するための経験的なフレームワークです。4つの主要価値領域（KVA）を通じて、プロダクトの現状と将来性を客観的なデータで捉えます。</p>
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-4xl text-[#0A9396]">📈</div>
+                    <h3 class="text-lg font-bold mt-2">現在の価値 (CV)</h3>
+                    <p class="mt-2 text-sm text-slate-600">プロダクトが今日、顧客に提供している価値。</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-4xl text-[#94D2BD]">💡</div>
+                    <h3 class="text-lg font-bold mt-2">未実現の価値 (UV)</h3>
+                    <p class="mt-2 text-sm text-slate-600">将来実現可能な、潜在的な価値の最大値。</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-4xl text-[#EE9B00]">🔬</div>
+                    <h3 class="text-lg font-bold mt-2">イノベーション能力 (A2I)</h3>
+                    <p class="mt-2 text-sm text-slate-600">新しい価値を効果的に提供できる組織の能力。</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-4xl text-[#CA6702]">⏱️</div>
+                    <h3 class="text-lg font-bold mt-2">市場投入までの時間 (T2M)</h3>
+                    <p class="mt-2 text-sm text-slate-600">アイデアが顧客の手に渡るまでの時間。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-12 md:my-20">
+            <h2 class="text-2xl md:text-3xl font-bold text-[#005F73] text-center">進化するスクラムチームの役割</h2>
+            <p class="mt-4 text-center text-slate-600 max-w-3xl mx-auto">アウトカムへの焦点は、チームメンバー全員の役割とマインドセットの進化を促します。単なる役割分担から、プロダクトの成功に対する共同所有へと移行します。</p>
+            <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <h3 class="text-xl font-bold text-center text-[#005F73]">プロダクトオーナー：価値戦略家へ</h3>
+                    <p class="mt-2 text-slate-600 text-center">プロダクトオーナーは、バックログの管理者から、EBMを用いてプロダクトの事業的成功に責任を負う戦略的リーダーへと昇格します。</p>
+                    <div class="chart-container mt-4" style="height: 320px;">
+                        <canvas id="poChart"></canvas>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <h3 class="text-xl font-bold text-center text-[#005F73]">スクラムマスター：組織変革エージェントへ</h3>
+                    <p class="mt-2 text-slate-600 text-center">スクラムマスターは、チームのプロセス円滑化に加え、組織全体にアウトカム主導のマインドセットをコーチングする役割を担います。</p>
+                    <div class="chart-container mt-4" style="height: 320px;">
+                        <canvas id="smChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 lg:col-span-2">
+                    <h3 class="text-xl font-bold text-center text-[#005F73]">開発者：「プロダクト開発者」へ</h3>
+                    <p class="mt-2 text-slate-600 text-center">「開発者」は、コードの品質だけでなくプロダクトの成功そのものに責任を持つ「プロダクト開発者」へと進化します。</p>
+                    <div class="mt-6 flex flex-col md:flex-row justify-around items-center gap-4">
+                        <div class="text-center">
+                           <p class="text-lg font-bold text-slate-700">開発者 (Developers)</p>
+                           <p class="text-sm text-slate-500">Howを実装する</p>
+                        </div>
+                        <div class="text-4xl text-[#EE9B00] p-4">➡️</div>
+                        <div class="text-center">
+                           <p class="text-lg font-bold text-[#005F73]">プロダクト開発者 (Product Developers)</p>
+                           <p class="text-sm text-slate-500">Whyを理解し、Whatを問い、Howを実装する</p>
+                           <ul class="text-left text-sm mt-2 list-disc list-inside text-slate-600">
+                               <li>プロダクト発見への積極的関与</li>
+                               <li>顧客ニーズの深い理解</li>
+                               <li>アウトカムへの共同責任</li>
+                           </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-12 md:my-20">
+            <h2 class="text-2xl md:text-3xl font-bold text-[#005F73] text-center">生きたドキュメントとしての進化</h2>
+             <p class="mt-4 text-center text-slate-600 max-w-3xl mx-auto">エクスパンションパックはGitHub上で公開され、コミュニティの貢献を受け入れながら進化し続けます。これにより、スクラム自体がアジャイルであり続けます。</p>
+            <div class="mt-8 max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <div class="relative border-l-4 border-[#0A9396] ml-4 pl-8 py-4">
+                    <div class="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-[#EE9B00] rounded-full"></div>
+                    <h3 class="text-lg font-bold text-[#005F73]">スクラムガイド</h3>
+                    <p class="text-slate-600">創設者による安定的かつ稀な更新（数年に一度）。フレームワークの核としての安定性を重視。</p>
+                </div>
+                <div class="relative border-l-4 border-[#0A9396] ml-4 pl-8 py-4 mt-6">
+                     <div class="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-[#EE9B00] rounded-full"></div>
+                    <h3 class="text-lg font-bold text-[#005F73]">エクスパンションパック</h3>
+                    <p class="text-slate-600">四半期ごとの更新を計画。AIのような急速に変化する技術やプラクティスに迅速に対応。コミュニティからの貢献を歓迎する「生きたドキュメント」。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-12 md:my-20">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-10 text-center">
+                <h2 class="text-2xl md:text-3xl font-bold text-[#005F73]">新たなフロンティア：チームメンバーとしてのAI</h2>
+                <p class="mt-4 text-slate-600 max-w-3xl mx-auto">エクスパンションパックは、AIを単なるツールではなく、チームの生産性を向上させる「チームメンバー」として捉える先進的な視点を提示します。これは、現代の技術的現実に対応するための未来志向の要素です。</p>
+                <div class="mt-6 text-5xl">🤖</div>
+            </div>
+        </section>
+        
+        <section class="my-12 md:my-20">
+             <h2 class="text-2xl md:text-3xl font-bold text-[#005F73] text-center">詳細比較一覧</h2>
+             <p class="mt-4 text-center text-slate-600 max-w-3xl mx-auto">スクラムガイド2020とエクスパンションパックの主要な違いを一覧で確認します。</p>
+            <div class="mt-8 overflow-x-auto">
+                 <div class="bg-white rounded-2xl shadow-lg p-4 md:p-6 min-w-[700px]">
+                     <table class="w-full text-sm text-left">
+                        <thead class="text-xs text-[#005F73] uppercase bg-slate-100 rounded-t-lg">
+                            <tr>
+                                <th scope="col" class="px-4 py-3">要素</th>
+                                <th scope="col" class="px-4 py-3">スクラムガイド2020 (The 'What')</th>
+                                <th scope="col" class="px-4 py-3">エクスパンションパック (The 'How')</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="px-4 py-4 font-bold">核心的焦点</td>
+                                <td class="px-4 py-4">価値があり利用可能なインクリメントの提供</td>
+                                <td class="px-4 py-4">具体的なビジネス/顧客アウトカムの実現</td>
+                            </tr>
+                            <tr class="border-b bg-slate-50">
+                                <td class="px-4 py-4 font-bold">プロダクトオーナー</td>
+                                <td class="px-4 py-4">バックログ管理を通じた価値の最大化</td>
+                                <td class="px-4 py-4">EBMを用いた戦略策定と仮説検証</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="px-4 py-4 font-bold">開発者</td>
+                                <td class="px-4 py-4">インクリメントを作成する機能横断的な専門家</td>
+                                <td class="px-4 py-4">アウトカムに共同責任を負うプロダクト開発者</td>
+                            </tr>
+                            <tr class="border-b bg-slate-50">
+                                <td class="px-4 py-4 font-bold">スクラムマスター</td>
+                                <td class="px-4 py-4">チームと組織に奉仕する「真のリーダー」</td>
+                                <td class="px-4 py-4">アウトカム主導のマインドセットを促進する変革エージェント</td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="px-4 py-4 font-bold">AI</td>
+                                <td class="px-4 py-4">言及なし</td>
+                                <td class="px-4 py-4">潜在的なチームメンバーとしての考慮</td>
+                            </tr>
+                             <tr class="bg-slate-50">
+                                <td class="px-4 py-4 font-bold">進化</td>
+                                <td class="px-4 py-4">安定的で稀な更新</td>
+                                <td class="px-4 py-4">コミュニティ主導の継続的な更新（生きたドキュメント）</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                 </div>
+            </div>
+        </section>
+
+        <footer class="text-center my-8 md:my-16">
+            <p class="text-slate-600">このインフォグラフィックは、スクラムの未来が、静的なルールではなく、継続的な対話と適応の中にあることを示しています。</p>
+            <p class="text-sm text-slate-400 mt-4">次世代アジリティへの航海 © 2025</p>
+        </footer>
+
+    </main>
+
+<script>
+    const brandColors = {
+        darkTeal: '#005F73',
+        teal: '#0A9396',
+        mint: '#94D2BD',
+        lightYellow: '#E9D8A6',
+        orange: '#EE9B00',
+        burntOrange: '#CA6702',
+        rust: '#BB3E03',
+        darkRed: '#AE2012'
+    };
+    
+    const textColor = '#334155';
+    const gridColor = '#e2e8f0';
+
+    function wrapLabel(label, maxLength = 16) {
+        if (typeof label !== 'string' || label.length <= maxLength) {
+            return label;
+        }
+        const words = label.split(' ');
+        const lines = [];
+        let currentLine = '';
+        for (const word of words) {
+            if ((currentLine + ' ' + word).trim().length > maxLength) {
+                lines.push(currentLine.trim());
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        }
+        if (currentLine) {
+            lines.push(currentLine.trim());
+        }
+        return lines;
+    }
+
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        return Array.isArray(label) ? label.join(' ') : label;
+    };
+
+    const defaultChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                labels: {
+                    color: textColor
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: { color: textColor },
+                grid: { color: gridColor }
+            },
+            y: {
+                ticks: { color: textColor },
+                grid: { color: gridColor },
+                beginAtZero: true
+            }
+        }
+    };
+    
+    const outputCtx = document.getElementById('outputChart');
+    if(outputCtx) {
+        new Chart(outputCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['機能開発', 'バグ修正', '技術的負債返済'],
+                datasets: [{
+                    label: 'アウトプット',
+                    data: [70, 20, 10],
+                    backgroundColor: [brandColors.teal, brandColors.mint, brandColors.lightYellow],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { color: textColor } },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } },
+                    title: { display: false }
+                }
+            }
+        });
+    }
+
+    const outcomeCtx = document.getElementById('outcomeChart');
+    if(outcomeCtx) {
+        new Chart(outcomeCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['現在の価値 (CV)', '未実現の価値 (UV)', 'イノベーション能力 (A2I)', '市場投入までの時間 (T2M)'],
+                datasets: [{
+                    label: 'アウトカム',
+                    data: [40, 30, 15, 15],
+                    backgroundColor: [brandColors.darkTeal, brandColors.orange, brandColors.burntOrange, brandColors.rust],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { color: textColor } },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } },
+                    title: { display: false }
+                }
+            }
+        });
+    }
+
+    const poCtx = document.getElementById('poChart');
+    if(poCtx) {
+        new Chart(poCtx, {
+            type: 'bar',
+            data: {
+                labels: ['バックログ管理', 'ステークホルダー調整', 'EBM分析', '仮説検証と実験'],
+                datasets: [{
+                    label: '従来型PO',
+                    data: [50, 40, 5, 5],
+                    backgroundColor: brandColors.mint,
+                    borderColor: brandColors.teal,
+                    borderWidth: 1
+                }, {
+                    label: '戦略的PO',
+                    data: [20, 25, 30, 25],
+                    backgroundColor: brandColors.orange,
+                    borderColor: brandColors.burntOrange,
+                    borderWidth: 1
+                }]
+            },
+            options: defaultChartOptions
+        });
+    }
+    
+    const smCtx = document.getElementById('smChart');
+    if (smCtx) {
+        const smLabels = ['チームのプロセス遵守', 'イベントのファシリテーション', '障害物の除去', '組織変革の推進', wrapLabel('EBMとアウトカムのコーチング')];
+        new Chart(smCtx, {
+            type: 'radar',
+            data: {
+                labels: smLabels,
+                datasets: [{
+                    label: '従来型SM',
+                    data: [8, 9, 7, 3, 2],
+                    backgroundColor: 'rgba(10, 147, 150, 0.2)',
+                    borderColor: brandColors.teal,
+                    pointBackgroundColor: brandColors.teal,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: brandColors.teal
+                }, {
+                    label: '変革エージェントSM',
+                    data: [6, 7, 6, 8, 9],
+                    backgroundColor: 'rgba(238, 155, 0, 0.2)',
+                    borderColor: brandColors.orange,
+                    pointBackgroundColor: brandColors.orange,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: brandColors.orange
+                }]
+            },
+            options: {
+                 responsive: true,
+                 maintainAspectRatio: false,
+                 plugins: {
+                    legend: {
+                        labels: { color: textColor }
+                    },
+                    tooltip: {
+                         callbacks: {
+                            title: (tooltipItems) => {
+                                const item = tooltipItems[0];
+                                let label = smLabels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                 },
+                 scales: {
+                    r: {
+                        angleLines: { color: gridColor },
+                        grid: { color: gridColor },
+                        pointLabels: {
+                            color: textColor,
+                            font: { size: 10 }
+                        },
+                        ticks: {
+                            backdropColor: 'rgba(255, 255, 255, 0.75)',
+                            color: textColor
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                }
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>
