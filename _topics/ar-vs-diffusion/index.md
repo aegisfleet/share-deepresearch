@@ -4,7 +4,7 @@ title: "テキスト生成モデルの性能限界と拡散モデルの将来性
 date: 2025-05-22
 prompt: "Gemini Diffusionに代表されるテキスト拡散モデルの性能の限界を知りたい。自己回帰モデルや拡散モデルのようなモデルごとの特徴を調査し、拡散モデルの将来性についてまとめて欲しい。"
 category: "ai"
-tags: ["AIモデル", "コーディング", "開発手法"]
+tags: ["AIモデル","コーディング"]
 audio: "/share-deepresearch/assets/audio/ar-vs-diffusion.mp3"
 supplementary_materials:
   - title: "補足資料：テキスト生成モデル市場トレンド インフォグラフィック"

@@ -4,7 +4,7 @@ title: "血圧測定機能付きスマートデバイスの性能と価格：専
 date: 2025-06-08
 prompt: "血圧が測れるスマートデバイスを調べて、その性能や価格を比較して欲しい。"
 category: "research"
-tags: ["AIモデル", "健康"]
+tags: ["健康"]
 audio: "/share-deepresearch/assets/audio/blood-pressure-measuring.mp3"
 supplementary_materials:
   - title: "血圧測定スマートデバイス市場インフォグラフィック"

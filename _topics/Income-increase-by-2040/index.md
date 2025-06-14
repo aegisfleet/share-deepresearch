@@ -4,7 +4,7 @@ title: "2040年 日本の平均所得5割増は実現可能か：数値的根拠
 date: 2025-06-11
 prompt: "2040年に日本人の平均所得を5割増させる事ができるのか、数値的根拠を示して解説して欲しい。"
 category: "research"
-tags: ["政治", "AIモデル", "自動化"]
+tags: ["政治"]
 audio: "/share-deepresearch/assets/audio/Income-increase-by-2040.mp3"
 supplementary_materials:
   - title: "インフォグラフィック：2040年 日本の所得向上への道"
