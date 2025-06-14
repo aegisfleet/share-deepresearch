@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Haconiwa: 宣言的AI中心開発環境のアーキテクチャ分析</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: #eee;
+            --r-heading-color: #fff;
+            --r-link-color: #1ABC9C;
+            --r-link-color-hover: #2fe2bf;
+        }
+
+        .reveal {
+            font-size: 32px;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; }
+
+        .reveal .subtitle {
+            font-size: 1.2em;
+            font-weight: 300;
+            color: #1ABC9C;
+            margin-top: 20px;
+        }
+
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.7em; }
+        .reveal strong { color: #1ABC9C; font-weight: 700; }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .flex-box {
+            flex: 1;
+            background: rgba(40, 40, 40, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .flex-box i {
+            font-size: 3em;
+            color: #1ABC9C;
+            margin-bottom: 20px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #555;
+            padding: 15px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background-color: #1ABC9C;
+            color: #000;
+        }
+        .comparison-table td:first-child {
+            font-weight: bold;
+            color: #1ABC9C;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Slide 1: Title -->
+            <section data-background-image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" data-background-opacity="0.2">
+                <h1>Haconiwa</h1>
+                <p class="subtitle">宣言的AI中心開発環境のアーキテクチャ分析</p>
+                <p style="margin-top: 50px;">複雑なAI協調開発を、コードで管理する新時代へ</p>
+            </section>
+
+            <!-- Slide 2: Agenda -->
+            <section>
+                <h2>本セッションでわかること</h2>
+                <ul class="left-align" style="font-size: 1.2em; margin-top: 50px; list-style-type: none;">
+                    <li class="fragment" data-fragment-index="1"><i class="fa-solid fa-box-open fa-fw" style="color: #1ABC9C;"></i> <strong>Haconiwaとは何か？</strong> - その核心的なアイデア</li>
+                    <li class="fragment" data-fragment-index="2"><i class="fa-solid fa-circle-question fa-fw" style="color: #1ABC9C;"></i> <strong>なぜHaconiwaが必要か？</strong> - AI開発が直面する課題</li>
+                    <li class="fragment" data-fragment-index="3"><i class="fa-solid fa-cogs fa-fw" style="color: #1ABC9C;"></i> <strong>どう動くのか？</strong> - 支える3つのコア技術</li>
+                    <li class="fragment" data-fragment-index="4"><i class="fa-solid fa-rocket fa-fw" style="color: #1ABC9C;"></i> <strong>Haconiwaの未来は？</strong> - LLMOpsにおける戦略的価値</li>
+                </ul>
+            </section>
+            
+            <!-- 起 -->
+            <section>
+              <section>
+                <h2><i class="fa-solid fa-lightbulb"></i> 起: 問題提起と解決策</h2>
+              </section>
+
+              <!-- Slide 3: Problem -->
+              <section>
+                  <h2>【問題提起】AI協調開発の「カオス」</h2>
+                  <p>複数のAIエージェントによる開発。理想とは裏腹に、現実は...</p>
+                  <div class="flex-container" style="margin-top: 40px;">
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-code-branch"></i>
+                          <h4>ブランチ管理</h4>
+                          <p class="small-text">「誰がどのブランチで作業してる？」</p>
+                      </div>
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-explosion"></i>
+                          <h4>環境コンフリクト</h4>
+                          <p class="small-text">「依存関係が衝突した！」</p>
+                      </div>
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-eye-slash"></i>
+                          <h4>進捗の不透明性</h4>
+                          <p class="small-text">「何がどこまで進んでいるか不明...」</p>
+                      </div>
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-repeat"></i>
+                          <h4>再現性の欠如</h4>
+                          <p class="small-text">「あの時の実行環境が作れない...」</p>
+                      </div>
+                  </div>
+                  <p class="fragment" style="margin-top: 50px;">手動での環境管理は限界。<strong>構造化されたアプローチ</strong>が必要です。</p>
+              </section>
+
+              <!-- Slide 4: Solution -->
+              <section>
+                  <h2>【解決策】Haconiwa: Your Workspace, as Code</h2>
+                  <p>開発環境そのものを、<strong>コードとして宣言的に管理</strong>する。</p>
+                  <div class="flex-container" style="align-items: center; margin-top: 50px;">
+                      <div style="flex: 1.2;">
+                          <pre class="fragment"><code class="yaml" data-line-numbers="1-10" style="font-size: 0.7em;">
+# config.yaml
+apiVersion: haconiwa.sh/v1alpha1
+kind: Task
+metadata:
+  name: frontend-ui-design
+spec:
+  assignee: worker-a
+  spaceRef: main-project
+  worktree: true
+  branch: feature/ui-revamp
+                          </code></pre>
+                      </div>
+                      <div style="font-size: 4em; flex: 0.5;" class="fragment">
+                          <i class="fa-solid fa-arrow-right-long"></i>
+                          <p style="font-size: 0.3em; margin-top: 10px;">haconiwa apply</p>
+                      </div>
+                      <div style="flex: 1.5;" class="fragment">
+                          <i class="fa-solid fa-cubes-stacked" style="font-size: 5em; color: #1ABC9C;"></i>
+                          <p style="margin-top: 20px;">再現可能で隔離された<br>開発環境を自動構築</p>
+                      </div>
+                  </div>
+                  <p class="fragment" style="margin-top: 50px;">AnsibleやDocker Composeのように、<strong>ローカル開発環境を自動化</strong>します。</p>
+              </section>
+            </section>
+            
+            <!-- 承 -->
+            <section>
+              <section>
+                <h2><i class="fa-solid fa-gears"></i> 承: Haconiwaの仕組み</h2>
+              </section>
+              
+              <!-- Slide 5: Core Technologies -->
+              <section>
+                  <h2>Haconiwaを支える3つのコア技術</h2>
+                  <div class="flex-container" style="margin-top: 50px;">
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-terminal"></i>
+                          <h3>tmux</h3>
+                          <p><strong>セッション仮想化</strong><br>ターミナルを仮想化し、エージェントの活動をリアルタイムに監視・操作。</p>
+                      </div>
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-folder-tree"></i>
+                          <h3>git worktree</h3>
+                          <p><strong>ファイルシステム分離</strong><br>タスク毎に独立したディレクトリを生成し、コンフリクトを物理的に防止。</p>
+                      </div>
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-robot"></i>
+                          <h3>AI Agent</h3>
+                          <p><strong>コマンド実行</strong><br>仮想化された環境内で、AIエージェント（例: Claude Code）にタスクを実行させる。</p>
+                      </div>
+                  </div>
+              </section>
+
+              <!-- Slide 6: Tech Deep Dive 1: tmux -->
+              <section>
+                  <h3>技術解説①：<code>tmux</code>によるセッション仮想化</h3>
+                  <p>YAMLで定義した抽象的な「ルーム」と「エージェント」が、<br>具体的な<code>tmux</code>の「ウィンドウ」と「ペイン」に変換されます。</p>
+                  <div class="flex-container" style="align-items: center; margin-top: 40px;">
+                      <div style="flex: 1;">
+                          <p><strong>haconiwa.yaml</strong></p>
+                          <pre><code class="yaml" style="font-size: 0.6em;">
+Space:
+  name: room-frontend
+  agents:
+    - PM
+    - Worker-A
+    - Worker-B
+                          </code></pre>
+                      </div>
+                      <div style="font-size: 2em; flex: 0.3;">
+                          <i class="fa-solid fa-arrow-right-long"></i>
+                      </div>
+                      <div style="flex: 1.5; border: 2px solid #1ABC9C; border-radius: 5px; padding: 10px; background: #111;">
+                          <p><strong>tmux Session</strong></p>
+                          <div style="background: #333; padding: 5px; border-radius: 3px; text-align: left; font-size: 0.7em;">Window: [room-frontend]</div>
+                          <div class="flex-container" style="gap: 5px; margin-top: 5px;">
+                              <div style="flex: 1; border: 1px solid #777; padding: 20px 10px; font-size: 0.8em; background: #222;">Pane 1<br>(PM)</div>
+                              <div style="flex: 1; border: 1px solid #777; padding: 20px 10px; font-size: 0.8em; background: #222;">Pane 2<br>(Worker-A)</div>
+                              <div style="flex: 1; border: 1px solid #777; padding: 20px 10px; font-size: 0.8em; background: #222;">Pane 3<br>(Worker-B)</div>
+                          </div>
+                      </div>
+                  </div>
+                  <p class="fragment" style="margin-top: 30px;">これにより、<strong>宣言的な定義</strong>と<strong>実践的な開発（監視・操作）</strong>のギャップを埋めます。</p>
+              </section>
+
+              <!-- Slide 7: Tech Deep Dive 2: git worktree -->
+              <section>
+                  <h3>技術解説②：<code>git worktree</code>による物理的な分離</h3>
+                  <p><code>worktree: true</code>と指定されたタスクは、<br><strong>完全に独立したディレクトリ</strong>で作業が行われます。</p>
+                   <div style="text-align: center; margin-top: 50px;">
+                      <div class="fragment">
+                        <i class="fa-solid fa-database" style="font-size: 3em;"></i>
+                        <p style="font-size: 0.8em;">.git (Single Repository Database)</p>
+                      </div>
+                      <div class="fragment" style="display: flex; justify-content: center; margin-top: 20px;">
+                          <i class="fa-solid fa-arrow-down-long" style="transform: rotate(-45deg); font-size: 2em; margin-right: 150px;"></i>
+                          <i class="fa-solid fa-arrow-down-long" style="font-size: 2em;"></i>
+                          <i class="fa-solid fa-arrow-down-long" style="transform: rotate(45deg); font-size: 2em; margin-left: 150px;"></i>
+                      </div>
+                      <div class="flex-container" style="margin-top: 20px;">
+                          <div class="flex-box fragment">
+                              <i class="fa-solid fa-folder"></i>
+                              <p><strong>./project-dir/</strong></p>
+                              <p class="small-text">(main branch)</p>
+                          </div>
+                          <div class="flex-box fragment">
+                              <i class="fa-solid fa-folder"></i>
+                              <p><strong>./tasks/task-A/</strong></p>
+                              <p class="small-text">(feature/task-a branch)</p>
+                          </div>
+                          <div class="flex-box fragment">
+                              <i class="fa-solid fa-folder"></i>
+                              <p><strong>./tasks/task-B/</strong></p>
+                              <p class="small-text">(feature/task-b branch)</p>
+                          </div>
+                      </div>
+                  </div>
+                  <p class="fragment" style="margin-top: 40px;">これにより、依存関係の衝突やファイル変更の競合を防ぎ、<strong>真の並列開発</strong>を実現します。</p>
+              </section>
+
+              <!-- Slide 8: CRD -->
+              <section>
+                  <h2>設計図: YAMLによるカスタムリソース定義 (CRD)</h2>
+                  <p>Kubernetesに触発されたCRDで、複雑なチーム構造とワークフローを表現します。</p>
+                  <div class="left-align" style="margin-top: 40px;">
+                      <dl>
+                          <dt class="fragment"><strong style="font-size: 1.2em;">Organization</strong></dt>
+                          <dd class="fragment small-text" style="margin-left: 30px;">チームやプロジェクト、所属するエージェント（PM, Worker-Aなど）を定義。</dd>
+                          <dt class="fragment" style="font-size: 1.2em; margin-top: 20px;"><strong>Space</strong></dt>
+                          <dd class="fragment small-text" style="margin-left: 30px;">協調作業の「場」。Gitリポジトリやベースとなるブランチ（例: dev）を指定。</dd>
+                          <dt class="fragment" style="font-size: 1.2em; margin-top: 20px;"><strong>Task</strong></dt>
+                          <dd class="fragment small-text" style="margin-left: 30px;">個別の作業単位。担当エージェントを割り当て、`worktree: true`で環境分離を指定。</dd>
+                          <dt class="fragment" style="font-size: 1.2em; margin-top: 20px;"><strong style="color: #aaa;">Law (計画中)</strong></dt>
+                          <dd class="fragment small-text" style="margin-left: 30px; color: #aaa;">ルールや権限、システムプロンプトを定義するガバナンスレイヤー。</dd>
+                      </dl>
+                  </div>
+              </section>
+
+              <!-- Slide 9: Workflow -->
+              <section>
+                  <h2>ワークフロー in Action: 3つのコマンドで完結</h2>
+                  <div class="flex-container" style="margin-top: 50px;">
+                      <div class="flex-box fragment">
+                          <h3>1. 構築</h3>
+                          <i class="fa-solid fa-play"></i>
+                          <p><code>haconiwa apply</code></p>
+                          <p class="small-text">YAMLから環境 (tmux, git worktree) を一括生成。</p>
+                      </div>
+                      <div class="flex-box fragment">
+                          <h3>2. 実行</h3>
+                          <i class="fa-solid fa-right-to-bracket"></i>
+                          <p><code>haconiwa attach/run</code></p>
+                          <p class="small-text">セッションに接続して監視、または全エージェントに一斉にコマンド実行。</p>
+                      </div>
+                      <div class="flex-box fragment">
+                          <h3>3. 破棄</h3>
+                          <i class="fa-solid fa-trash-can"></i>
+                          <p><code>haconiwa delete</code></p>
+                          <p class="small-text">セッションと作業ディレクトリを完全にクリーンアップ。</p>
+                      </div>
+                  </div>
+              </section>
+            </section>
+            
+            <!-- 転 -->
+            <section>
+              <section>
+                <h2><i class="fa-solid fa-magnifying-glass-chart"></i> 転: 戦略的価値と未来</h2>
+              </section>
+            
+              <!-- Slide 10: Positioning in LLMOps -->
+              <section>
+                  <h2>戦略的分析: LLMOpsにおけるHaconiwaの役割</h2>
+                  <p>Haconiwaは、LLMアプリ開発そのものではなく、<br>その土台となる<strong>「実行環境」</strong>を提供する重要なLLMOpsツールです。</p>
+                  
+                  <div style="background: rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; margin-top: 40px;">
+                      <p>LLMOps Pipeline</p>
+                      <div class="flex-container" style="align-items: center;">
+                          <div class="fragment">データ準備</div>
+                          <div class="fragment"><i class="fa-solid fa-arrow-right"></i></div>
+                          <div class="fragment">プロンプト設計</div>
+                          <div class="fragment"><i class="fa-solid fa-arrow-right"></i></div>
+                          <div class="fragment" style="background: #1ABC9C; color: #000; padding: 20px; border-radius: 5px;">
+                              <strong>実行環境</strong><br>
+                              <span class="small-text">(Haconiwaの領域)</span>
+                          </div>
+                          <div class="fragment"><i class="fa-solid fa-arrow-right"></i></div>
+                          <div class="fragment">デプロイ</div>
+                      </div>
+                  </div>
+
+                  <p class="fragment" style="margin-top: 30px;"><strong>再現性</strong>と<strong>一貫性</strong>のある環境を提供することで、<br>AIエージェントのテストと開発の信頼性を劇的に向上させます。</p>
+              </section>
+
+              <!-- Slide 11: Comparison -->
+              <section>
+                  <h2>競合ではない、共存関係</h2>
+                  <p>Haconiwaは、他のAIエージェントフレームワークとは役割が異なります。</p>
+                  <div class="flex-container" style="margin-top: 50px;">
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-brain"></i>
+                          <h3>CrewAI / AutoGPT</h3>
+                          <p>エージェントの<strong>「頭脳」</strong><br>どう考え、どう協調するか<br>（思考・協調のオーケストレーション）</p>
+                      </div>
+                      <div class="fragment" style="font-size: 4em; align-self: center;">
+                          <i class="fa-solid fa-plus"></i>
+                      </div>
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-house-chimney-window"></i>
+                          <h3>Haconiwa</h3>
+                          <p>エージェントの<strong>「作業場」</strong><br>どこで、どう安全に作業するか<br>（環境のオーケストレーション）</p>
+                      </div>
+                  </div>
+                  <p class="fragment" style="margin-top: 40px;">Haconiwaが用意した「作業場」で、CrewAIが定義した「チーム」が働く、という連携が可能です。</p>
+              </section>
+
+              <!-- Slide 12: Comparison Table -->
+              <section>
+                  <h2>役割分担の比較</h2>
+                  <table class="comparison-table">
+                      <thead>
+                          <tr>
+                              <th>特徴</th>
+                              <th>Haconiwa</th>
+                              <th>CrewAI</th>
+                              <th>AutoGPT</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr class="fragment">
+                              <td>主要な焦点</td>
+                              <td>環境のオーケストレーション</td>
+                              <td>エージェントの協調</td>
+                              <td>自律的なタスク達成</td>
+                          </tr>
+                          <tr class="fragment">
+                              <td>コア抽象化</td>
+                              <td>Space, Task (YAML)</td>
+                              <td>Crew, Agent, Task</td>
+                              <td>認知ループ</td>
+                          </tr>
+                          <tr class="fragment">
+                              <td>役割</td>
+                              <td><strong>「作業場」</strong>を構築・管理</td>
+                              <td><strong>「チームワーク」</strong>を定義</td>
+                              <td><strong>「自律的行動」</strong>を駆動</td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </section>
+
+              <!-- Slide 13: Future: Law CRD -->
+              <section>
+                  <h2>将来展望: <code>Law</code> CRDによる宣言的セキュリティ</h2>
+                  <p>計画中の<code>Law</code> CRDは、AIエージェントのセキュリティを<br>宣言的に管理する「<strong>Policy-as-Code</strong>」という先進的なビジョンを示します。</p>
+                  
+                  <div class="flex-container" style="align-items: center; margin-top: 50px;">
+                      <div style="flex: 1.2;">
+                          <p><strong>law.yaml (構想)</strong></p>
+                          <pre class="fragment"><code class="yaml" style="font-size: 0.7em;">
+spec:
+  permissions:
+    - agent: Worker-A
+      allowCommands:
+        - "npm install"
+        - "npm run test"
+      denyCommands:
+        - "rm -rf *"
+                          </code></pre>
+                      </div>
+                      <div style="font-size: 2em; flex: 0.5;" class="fragment">
+                          <i class="fa-solid fa-arrow-right-long"></i>
+                      </div>
+                      <div style="flex: 1.5;" class="fragment">
+                          <i class="fa-solid fa-shield-halved" style="font-size: 5em; color: #1ABC9C;"></i>
+                          <p style="margin-top: 20px;">低レベルのサンドボックス技術<br>(seccomp, AppArmor) へ自動変換</p>
+                      </div>
+                  </div>
+                  <p class="fragment" style="margin-top: 30px;">これが実現すれば、安全なAIエージェント実行環境の構築が劇的に容易になります。</p>
+              </section>
+            </section>
+
+            <!-- 結 -->
+            <section>
+              <section>
+                  <h2><i class="fa-solid fa-flag-checkered"></i> 結: まとめと評価</h2>
+              </section>
+              
+              <!-- Slide 14: Final Evaluation -->
+              <section>
+                  <h2>総括: Haconiwaの可能性と課題</h2>
+                  <div class="flex-container" style="margin-top: 40px; align-items: stretch;">
+                      <div class="flex-box" style="border-top: 5px solid #1ABC9C;">
+                          <i class="fa-solid fa-circle-plus"></i>
+                          <h4>強みと可能性</h4>
+                          <ul class="left-align small-text">
+                              <li>革新的でエレガントなビジョン ("Workspace-as-Code")</li>
+                              <li>技術選定の的確さ (tmux, git worktree)</li>
+                              <li>LLMOpsにおける独自の価値提供</li>
+                              <li>宣言的セキュリティへの先進的アプローチ</li>
+                          </ul>
+                      </div>
+                      <div class="flex-box" style="border-top: 5px solid #f0ad4e;">
+                          <i class="fa-solid fa-triangle-exclamation"></i>
+                          <h4>現状と課題</h4>
+                           <ul class="left-align small-text">
+                              <li>初期アルファ段階のプロジェクト</li>
+                              <li>機能は開発途上、ドキュメントも未整備</li>
+                              <li>単一開発者への依存リスク</li>
+                              <li>コミュニティ形成と普及が今後の鍵</li>
+                          </ul>
+                      </div>
+                  </div>
+                  <p class="fragment" style="margin-top: 40px;">その未来は、<strong>先見的なアーキテクチャを堅牢な実装で証明できるか</strong>にかかっています。</p>
+              </section>
+
+              <!-- Slide 15: Summary -->
+              <section>
+                  <h2>まとめ: Haconiwaがもたらす未来</h2>
+                  <ul class="left-align" style="font-size: 1.1em; margin-top: 50px; list-style-type: none;">
+                      <li class="fragment"><i class="fa-solid fa-check fa-fw" style="color: #1ABC9C;"></i> Haconiwaは、AI協調開発の複雑性を<strong>「宣言的なYAML」</strong>で解決します。</li>
+                      <li class="fragment"><i class="fa-solid fa-check fa-fw" style="color: #1ABC9C;"></i> <code>tmux</code>と<code>git worktree</code>を使い、再現可能で隔離された<strong>「作業場」</strong>を提供します。</li>
+                      <li class="fragment"><i class="fa-solid fa-check fa-fw" style="color: #1ABC9C;"></i> CrewAI等とは競合せず、<strong>「環境オーケストレーション」</strong>という独自の役割を担います。</li>
+                      <li class="fragment"><i class="fa-solid fa-check fa-fw" style="color: #1ABC9C;"></i> まだ黎明期ですが、LLMOpsにおける<strong>重要な基盤技術</strong>となる可能性を秘めています。</li>
+                  </ul>
+              </section>
+
+              <!-- Slide 16: Thank You -->
+              <section>
+                  <h2>ご清覧ありがとうございました</h2>
+                  <p style="margin-top: 80px;">プロジェクトについて、より詳しく知りたい方はこちら</p>
+                  <a href="https://github.com/dai-motoki/haconiwa" target="_blank" style="font-size: 1.2em;">
+                      <i class="fab fa-github"></i> github.com/dai-motoki/haconiwa
+                  </a>
+                  <p class="small-text" style="margin-top: 150px;">
+                      本資料は、dai-motoki/haconiwaリポジトリのREADMEおよび関連資料を基に作成されました。
+                  </p>
+              </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
