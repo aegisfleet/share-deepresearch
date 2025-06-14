@@ -9,6 +9,8 @@ audio: "/share-deepresearch/assets/audio/scrum-guide-expansion-pack.mp3"
 supplementary_materials:
   - title: "スクラムの進化：スクラムガイド2020 vs エクスパンションパック"
     url: "/share-deepresearch/topics/scrum-guide-expansion-pack/infographic.html"
+  - title: "次世代アジリティへの航海：スクラムガイド2020とエクスパンションパックの比較分析"
+    url: "/share-deepresearch/topics/scrum-guide-expansion-pack/reveal.html"
 ---
 
 # **次世代アジリティへの航海：スクラムガイド2020とスクラムガイド・エクスパンションパックの比較分析**

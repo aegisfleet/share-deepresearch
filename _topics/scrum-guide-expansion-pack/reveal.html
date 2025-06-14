@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>次世代アジリティへの航海：スクラムガイド2020とエクスパンションパックの比較分析</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/white.min.css" id="theme">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Custom styles for 1920x1080 -->
+    <style>
+        :root {
+            --r-main-font: 'Noto Sans JP', sans-serif;
+            --r-heading-font: 'Montserrat', sans-serif;
+            --r-heading-color: #0D47A1; /* Deep Blue */
+            --r-main-color: #333;
+            --r-link-color: #F57C00; /* Orange */
+            --r-link-color-hover: #E65100;
+        }
+
+        .reveal {
+            font-family: var(--r-main-font);
+            /* Set base font size for 1920x1080 resolution */
+            font-size: 42px; 
+        }
+
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: var(--r-heading-font);
+            color: var(--r-heading-color);
+            text-transform: none; /* 大文字変換を無効化 */
+        }
+        
+        .reveal .slides section h2.subtitle {
+            font-size: 1.1em; /* Adjusted for larger base size */
+            color: #555;
+            margin-top: 20px;
+        }
+        
+        .reveal strong {
+            color: var(--r-link-color);
+        }
+
+        .reveal p, .reveal li {
+            line-height: 1.5; /* Increased line-height for readability */
+        }
+        
+        .reveal .two-columns {
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .reveal .column {
+            flex: 1;
+        }
+
+        .reveal .column h3 {
+            border-bottom: 4px solid var(--r-heading-color);
+            padding-bottom: 15px;
+        }
+
+        .reveal .card-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .reveal .card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            flex: 1;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-top: 6px solid var(--r-heading-color);
+        }
+        .reveal .card .icon {
+            font-size: 2.5em;
+            color: var(--r-heading-color);
+        }
+        .reveal .card h4 {
+            margin-top: 15px;
+            color: #333;
+            font-size: 0.8em;
+        }
+        .reveal .card p {
+            font-size: 0.65em; /* Adjusted for readability */
+            line-height: 1.4;
+            color: #555;
+        }
+
+        .reveal .evolution-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+        .reveal .evolution-box .step {
+            flex: 1;
+            padding: 25px;
+            background: #f0f4f8;
+            border-radius: 12px;
+        }
+        .reveal .evolution-box .step h4 {
+            color: var(--r-heading-color);
+            margin-bottom: 15px;
+        }
+        .reveal .evolution-box .arrow {
+            font-size: 3.5em;
+            color: var(--r-link-color);
+        }
+
+        .reveal .action-item {
+            background: #fff9e6;
+            border-left: 6px solid var(--r-link-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+            border-radius: 4px;
+        }
+
+        /* Smartphone adjustments remain the same, as they are based on screen width */
+        @media (max-width: 600px) {
+            .reveal {
+                font-size: 18px; /* Adjust base font for mobile */
+            }
+            .reveal .two-columns, .reveal .card-container, .reveal .evolution-box {
+                flex-direction: column;
+            }
+            .reveal .card {
+                width: 80%;
+                margin: 10px auto;
+            }
+            .reveal h1 { font-size: 1.8em; }
+            .reveal h2 { font-size: 1.4em; }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- 1. Title -->
+            <section data-background-image="https://images.unsplash.com/photo-1559128010-4c1ad8e1b4a4?q=80&w=2070&auto=format&fit=crop" data-background-opacity="0.3">
+                <h1>次世代アジリティへの航海</h1>
+                <h2 class="subtitle">スクラムガイド2020とエクスパンションパックの<br>比較分析から学ぶ、これからのスクラム</h2>
+            </section>
+
+            <!-- 2. The "Why" -->
+            <section>
+                <h2>なぜ、スクラムは進化し続けるのか？</h2>
+                <p class="fragment">現代のプロダクト開発は、前例のない変化と不確実性に直面している。</p>
+                <p class="fragment">単に「モノを作る」<strong>(アウトプット)</strong>だけでは不十分。<br>真の価値<strong>(アウトカム)</strong>を届けることが、これまで以上に求められている。</p>
+                <p class="fragment">この課題に対し、スクラムはどう応答したのでしょうか？</p>
+            </section>
+
+            <!-- 3. Two Guides -->
+            <section>
+                <h2>スクラムの進化を象徴する２つの道標</h2>
+                <div class="two-columns">
+                    <div class="column fragment" data-fragment-index="1">
+                        <h3><i class="fas fa-book-open"></i> Scrum Guide 2020</h3>
+                        <p>本質を追求した、ミニマルな<strong>「ルールブック」</strong>。<br>普遍的に適用可能なスクラムの核を定義する。</p>
+                    </div>
+                    <div class="column fragment" data-fragment-index="2">
+                        <h3><i class="fas fa-compass"></i> Expansion Pack</h3>
+                        <p>現代の課題に応える、オプションの<strong>「実践ガイド」</strong>。<br>スクラムの精神をより具体的に実践する道を示す。</p>
+                    </div>
+                </div>
+                <p class="fragment" data-fragment-index="3" style="margin-top: 40px;">これらは対立せず、互いを<strong>補完する関係</strong>です。</p>
+            </section>
+
+            <!-- 4. Goal of this document -->
+            <section>
+                <h2>この資料から得られること</h2>
+                <ul style="list-style: none; font-size: 0.9em;">
+                    <li class="fragment"><i class="fas fa-check-circle" style="color: #4CAF50;"></i> スクラムガイド2020の<strong>核心を再確認</strong>する</li>
+                    <li class="fragment"><i class="fas fa-check-circle" style="color: #4CAF50;"></i> エクスパンションパックがもたらす<strong>新しい視点</strong>を理解する</li>
+                    <li class="fragment"><i class="fas fa-check-circle" style="color: #4CAF50;"></i> 明日からのあなたのスクラムに活かせる<strong>ヒント</strong>を得る</li>
+                </ul>
+            </section>
+
+            <!-- 5. SG2020 -->
+            <section data-background-color="#f0f4f8">
+                <h2>【第1部】原点回帰：スクラムガイド2020の核心</h2>
+                <p>"The What" - ゲームのルール</p>
+            </section>
+
+            <!-- 6. SG2020 Components -->
+            <section>
+                <h2>自己完結したフレームワーク</h2>
+                <p>スクラムガイド2020は、3つのシンプルな構成要素で定義されます。</p>
+                <div class="card-container">
+                    <div class="card">
+                        <span class="icon"><i class="fas fa-users"></i></span>
+                        <h4>スクラムチーム</h4>
+                        <p>PO, SM, 開発者からなる「自己管理」チーム</p>
+                    </div>
+                    <div class="card">
+                        <span class="icon"><i class="fas fa-sync-alt"></i></span>
+                        <h4>5つのイベント</h4>
+                        <p>検査と適応のリズムを生み出す公式な機会</p>
+                    </div>
+                    <div class="card">
+                        <span class="icon"><i class="fas fa-cubes"></i></span>
+                        <h4>3つの作成物</h4>
+                        <p>透明性を最大化し、ゴールへの進捗を可視化する</p>
+                    </div>
+                </div>
+                <p style="margin-top: 40px;" class="fragment">このミニマリズムが、あらゆる文脈で適用できる強みと、<br>一方で実践における<strong>「経験の空白地帯」</strong>を生み出しました。</p>
+            </section>
+            
+            <!-- 7. Expansion Pack Intro -->
+            <section data-background-color="#fff9e6">
+                 <h2>【第2部】新たな羅針盤：エクスパンションパック</h2>
+                 <p>"The How" - 勝利への戦略</p>
+            </section>
+
+            <!-- 8. Output to Outcome -->
+            <section>
+                <h2>最大のパラダイムシフト：アウトプット <i class="fas fa-arrow-right"></i> アウトカム</h2>
+                <div class="two-columns">
+                    <div class="column" style="text-align: center;">
+                        <h3><i class="fas fa-cogs"></i> アウトプット (Output)</h3>
+                        <p><strong>作ったモノ</strong></p>
+                        <p class="fragment">例：ログイン機能をリリースした</p>
+                    </div>
+                    <div class="column" style="text-align: center;">
+                        <h3><i class="fas fa-chart-line"></i> アウトカム (Outcome)</h3>
+                        <p><strong>もたらされた価値・変化</strong></p>
+                        <p class="fragment">例：ユーザー登録率が20%向上した</p>
+                    </div>
+                </div>
+                <p style="margin-top: 40px;" class="fragment">チームが多忙でも価値を生み出せない<strong>「ビルドトラップ」</strong>からの脱却を目指します。</p>
+            </section>
+
+            <!-- 9. EBM -->
+            <section>
+                <h2>アウトカムをどう測るか？ <i class="fas fa-arrow-right"></i> EBM</h2>
+                <p><strong>証拠に基づく経営 (Evidence-Based Management)</strong> を公式に統合。<br>価値を測定し、改善するための経験的なアプローチです。</p>
+                <div class="card-container">
+                    <div class="card fragment"><h4>CV<br>現在の価値</h4></div>
+                    <div class="card fragment"><h4>UV<br>未実現の価値</h4></div>
+                    <div class="card fragment"><h4>A2I<br>イノベーション能力</h4></div>
+                    <div class="card fragment"><h4>T2M<br>市場投入までの時間</h4></div>
+                </div>
+            </section>
+
+            <!-- 10. Comparison -->
+            <section data-background-color="#f0f4f8">
+                <h2>【第3部】新たな海図：何がどう拡張されたのか？</h2>
+                <p>スクラムチームとプラクティスの進化</p>
+            </section>
+
+            <!-- 11. PO Evolution -->
+            <section>
+                <h2>プロダクトオーナーの進化</h2>
+                <div class="evolution-box">
+                    <div class="step">
+                        <h4>Before: バックログ管理者</h4>
+                        <p>価値を最大化する責任を負う</p>
+                    </div>
+                    <div class="arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    <div class="step" style="border-top: 6px solid var(--r-link-color);">
+                        <h4>After: 価値戦略家</h4>
+                        <p>EBMを用い、プロダクトの事業成功に責任を負う戦略的リーダー</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 12. Developer Evolution -->
+            <section>
+                <h2>開発者の進化</h2>
+                 <div class="evolution-box">
+                    <div class="step">
+                        <h4>Before: 開発者</h4>
+                        <p>インクリメントを作成する専門家集団</p>
+                    </div>
+                    <div class="arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    <div class="step" style="border-top: 6px solid var(--r-link-color);">
+                        <h4>After: プロダクト開発者</h4>
+                        <p>コードだけでなく、プロダクトのアウトカムに共同で責任を持つ</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 13. SM Evolution -->
+            <section>
+                <h2>スクラムマスターの進化</h2>
+                 <div class="evolution-box">
+                    <div class="step">
+                        <h4>Before: 真のリーダー</h4>
+                        <p>スクラムを確立することでチームと組織に奉仕する</p>
+                    </div>
+                    <div class="arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    <div class="step" style="border-top: 6px solid var(--r-link-color);">
+                        <h4>After: 組織変革エージェント</h4>
+                        <p>アウトカム主導のマインドセットを組織全体にコーチングする</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 14. AI -->
+            <section data-background-image="https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=2070&auto=format&fit=crop" data-background-opacity="0.2">
+                <h2>未来への布石：AIはチームメンバーか？</h2>
+                <p class="fragment">エクスパンションパックは、AIを潜在的な<strong>「チームメンバー」</strong>として捉える先進的な視点を提示します。</p>
+                <ul class="fragment" style="font-size: 0.9em;">
+                    <li>コーディング支援</li>
+                    <li>テスト自動化</li>
+                    <li>EBMのためのデータ分析</li>
+                    <li>顧客フィードバックのパターン特定</li>
+                </ul>
+                <p class="fragment">これは単なるツールではなく、<br>新たな<strong>協働の形</strong>を模索する問いかけです。</p>
+            </section>
+            
+            <!-- 15. Application -->
+            <section data-background-color="#fff9e6">
+                <h2>【第4部】目的地へ：明日からの実践</h2>
+                <p>あなたの現場でどう活かすか？</p>
+            </section>
+
+            <!-- 16. Action Plan -->
+            <section>
+                <h2>明日から始めるアクションプラン</h2>
+                <div class="action-item fragment">
+                    <p><strong><i class="fas fa-user-tie"></i> プロダクトオーナーへ:</strong><br>
+                    次のスプリントで検証したい「アウトカムに繋がる仮説」は何か、チームと話してみよう。</p>
+                </div>
+                <div class="action-item fragment">
+                    <p><strong><i class="fas fa-laptop-code"></i> 開発者へ:</strong><br>
+                    「この機能は、どんな顧客の価値に繋がるのか？」をプロダクトオーナーに質問してみよう。</p>
+                </div>
+                <div class="action-item fragment">
+                    <p><strong><i class="fas fa-shield-alt"></i> スクラムマスターへ:</strong><br>
+                    レトロスペクティブで「どうすれば私たちのチームは、もっと価値(アウトカム)に集中できるか？」を問いかけてみよう。</p>
+                </div>
+            </section>
+
+            <!-- 17. Leadership -->
+            <section>
+                <h2>リーダーが育むべき「土壌」</h2>
+                <p>アウトカム中心のアプローチは、適切な環境があってこそ花開きます。</p>
+                <div style="font-size: 2em; margin-top: 50px;">
+                    <span class="fragment"><i class="fas fa-brain"></i> 心理的安全性</span> +
+                    <span class="fragment"><i class="fas fa-handshake"></i> 信頼</span> +
+                    <span class="fragment"><i class="fas fa-key"></i> 権限移譲</span>
+                </div>
+                <p class="fragment" style="margin-top: 50px;">チームが<strong>実験し、失敗から学べる文化</strong>を醸成することが、リーダーの最も重要な役割です。</p>
+            </section>
+            
+            <!-- 18. Conclusion -->
+            <section data-background-image="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop" data-background-opacity="0.3">
+                <h2>結論：スクラムの未来</h2>
+                <p class="fragment">エクスパンションパックはルールの変更ではなく、スクラムの<strong>成熟</strong>の証です。</p>
+                <p class="fragment">スクラムは、常に<strong>適応的</strong>で、<strong>経験的</strong>、そして<strong>価値</strong>に焦点を当て続けます。</p>
+                <p class="fragment">その進化は、GitHub上の「生きたドキュメント」として、<br>コミュニティとの継続的な<strong>対話</strong>の中で作られていきます。</p>
+                <p class="fragment" style="margin-top: 60px;">あなたの参加が、スクラムの未来を創ります。</p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            center: true,
+            margin: 0.04,
+            // Set resolution to 1920x1080
+            width: 1920,
+            height: 1080,
+            // Learn about plugins: https://revealjs.com/plugins/
+            // plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
