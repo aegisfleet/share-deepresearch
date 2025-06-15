@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：なぜメルカリから米が消えたのか？ - 市場調査レポート</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #F0F4F8;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 600px;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .arrow {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+        }
+        .arrow-down {
+            border-top: 20px solid #FFB366;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#66B2FF] mb-2">市場の終焉</h1>
+            <p class="text-xl md:text-2xl text-gray-700">なぜメルカリから米が消えたのか？ C2C市場の激変を紐解く</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <section class="md:col-span-2 lg:col-span-3 card">
+                <h2 class="text-2xl font-bold mb-4 text-[#FF5E5B]">第1章：パーフェクト・ストーム - 市場混乱への引き金</h2>
+                <p class="mb-6 text-gray-600">メルカリの米出品禁止は、単一の出来事ではありませんでした。米価の歴史的な高騰と、それに対応するための政府の市場介入という二つの大きな力が衝突し、転売活動が急増する「パーフェクト・ストーム」を生み出したのです。このセクションでは、その連鎖反応を可視化します。</p>
+                <div class="flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="text-center p-4 rounded-lg bg-blue-50 w-full md:w-1/3">
+                        <div class="text-4xl mb-2">🌾</div>
+                        <h3 class="text-xl font-bold text-blue-800">米価の高騰</h3>
+                        <p class="text-blue-600">前年比<strong class="text-2xl">1.5〜2倍</strong>に急騰。生産コストの上昇と供給懸念が背景にありました。</p>
+                    </div>
+                    <div class="text-5xl text-[#FFB366] font-bold self-center transform md:rotate-0 rotate-90">+</div>
+                    <div class="text-center p-4 rounded-lg bg-green-50 w-full md:w-1/3">
+                        <div class="text-4xl mb-2">🏛️</div>
+                        <h3 class="text-xl font-bold text-green-800">政府の市場介入</h3>
+                        <p class="text-green-600">価格抑制のため、安価な<strong class="text-lg">「政府備蓄米」</strong>を市場に放出しました。</p>
+                    </div>
+                    <div class="arrow arrow-down hidden md:block mx-4 self-center"></div>
+                    <div class="text-5xl text-[#FFB366] font-bold self-center md:hidden my-4">↓</div>
+                     <div class="text-center p-4 rounded-lg bg-red-50 w-full md:w-1/3">
+                        <div class="text-4xl mb-2">💸</div>
+                        <h3 class="text-xl font-bold text-red-800">「利ざや」の発生</h3>
+                        <p class="text-red-600">市場価格と備蓄米の<strong class="text-lg">大きな価格差</strong>が、転売の温床となりました。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="lg:col-span-1 card">
+                <h2 class="text-2xl font-bold mb-4 text-[#66FF66]">第2章：失われた成長市場</h2>
+                <p class="mb-4 text-gray-600">規制強化の前、C2Cプラットフォームにおける農産物、特に米の市場は驚異的な成長を遂げていました。楽天「ラクマ」の2018年のデータは、この失われた市場のポテンシャルを物語っています。米は最も人気のあるカテゴリーでした。</p>
+                <div class="chart-container h-80">
+                    <canvas id="growthChart"></canvas>
+                </div>
+                 <p class="mt-4 text-center text-gray-700">消費者は一般小売価格より1kgあたり平均<strong class="text-2xl text-[#66B2FF]">75円</strong>安く米を購入できていました。</p>
+            </section>
+            
+            <section class="lg:col-span-2 card">
+                <h2 class="text-2xl font-bold mb-4 text-[#FFB366]">第3章：C2C米市場のプレイヤーたち</h2>
+                <p class="mb-4 text-gray-600">メルカリの米市場は、単純な構図ではありませんでした。誠実な農家から悪質な販売者まで、様々なプレイヤーが混在していました。価格危機はこのバランスを崩し、転売業者（類型C）の活動が市場を支配するようになりました。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="chart-container h-64">
+                        <canvas id="marketShareBefore"></canvas>
+                        <p class="text-center font-bold mt-2">危機以前の市場（推定）</p>
+                    </div>
+                    <div class="chart-container h-64">
+                        <canvas id="marketShareDuring"></canvas>
+                        <p class="text-center font-bold mt-2">危機下の市場（推定）</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 lg:col-span-3 card">
+                 <h2 class="text-2xl font-bold mb-4 text-[#FFB366]">出品者の4類型</h2>
+                 <p class="mb-6 text-gray-600">市場には主に4つのタイプの出品者が存在し、それぞれが異なる動機と品質を持っていました。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 bg-green-50 rounded-lg">
+                        <div class="text-5xl mb-2">👨‍🌾</div>
+                        <h3 class="font-bold text-lg text-green-800">A: 正規の農家</h3>
+                        <p class="text-sm text-green-700">「農家直送」を掲げ、品質と想いを伝える。市場の中核。</p>
+                    </div>
+                    <div class="p-4 bg-blue-50 rounded-lg">
+                        <div class="text-5xl mb-2">🤔</div>
+                        <h3 class="font-bold text-lg text-blue-800">B: 趣味・余剰分販売</h3>
+                        <p class="text-sm text-blue-700">自家消費用の余剰分を販売。小規模だが生産者本人。</p>
+                    </div>
+                    <div class="p-4 bg-red-50 rounded-lg">
+                        <div class="text-5xl mb-2">🤑</div>
+                        <h3 class="font-bold text-lg text-red-800">C: 転売業者</h3>
+                        <p class="text-sm text-red-700">安く仕入れ高く売る。規制の直接的な原因となったグループ。</p>
+                    </div>
+                    <div class="p-4 bg-yellow-50 rounded-lg">
+                        <div class="text-5xl mb-2">🗑️</div>
+                        <h3 class="font-bold text-lg text-yellow-800">D: 低品質販売者</h3>
+                        <p class="text-sm text-yellow-700">「クズ米」などを高品質と偽り販売。消費者の信頼を損なう。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 lg:col-span-3 card">
+                <h2 class="text-2xl font-bold mb-4 text-[#FFFF66]">第4章：消費者のジレンマ - 「米ガチャ」の現実</h2>
+                <p class="mb-6 text-gray-600">消費者にとってC2Cの米市場は、価格や鮮度といった魅力と、品質の不確実性という大きなリスクが同居する場所でした。いつしか「米ガチャ」と呼ばれるようになり、自己責任での購入が求められるようになりました。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-green-800 mb-3">✅ メリット</h3>
+                        <ul class="space-y-2 text-green-700">
+                            <li class="flex items-start"><span class="mr-2 mt-1">💰</span><span><strong>価格：</strong>小売店より大幅に安く、家計に優しい。</span></li>
+                            <li class="flex items-start"><span class="mr-2 mt-1">🌿</span><span><strong>鮮度と繋がり：</strong>生産者から直接届く新鮮さと安心感。</span></li>
+                            <li class="flex items-start"><span class="mr-2 mt-1"> variété</span><span><strong>多様性：</strong>地域独自の品種など、珍しい米に出会える。</span></li>
+                        </ul>
+                    </div>
+                     <div class="bg-red-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-red-800 mb-3">❌ リスク</h3>
+                        <ul class="space-y-2 text-red-700">
+                            <li class="flex items-start"><span class="mr-2 mt-1">📉</span><span><strong>品質問題：</strong>異臭、変色、砕米など、基準以下の商品が届く可能性。</span></li>
+                            <li class="flex items-start"><span class="mr-2 mt-1">🎭</span><span><strong>情報の非対称性：</strong>売り手が本当の農家か転売業者か見分けるのが困難。</span></li>
+                            <li class="flex items-start"><span class="mr-2 mt-1">❓</span><span><strong>信頼の欠如：</strong>レビューが品質を正確に反映していない場合がある。</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 lg:col-span-3 card">
+                <h2 class="text-2xl font-bold mb-4 text-[#66B2FF]">第5章：未来への道筋 - D2C農産物ECの新たな常識</h2>
+                <p class="mb-6 text-gray-600">今回の措置は、個人の農家にとって大きな打撃でしたが、市場が完全に閉ざされたわけではありません。販売の道はより公式で、信頼性が重視される方向へとシフトしました。これは、D2C（消費者直接販売）の新たな時代の幕開けを意味します。</p>
+                
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-center mb-4">販売チャネルの変化</h3>
+                    <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
+                        <div class="w-full md:w-2/5 p-4 border-4 border-dashed border-red-300 rounded-lg text-center">
+                            <h4 class="font-bold text-red-600">【旧】個人の出品</h4>
+                            <p class="text-red-500">誰でも気軽に出品可能</p>
+                            <div class="text-5xl font-bold text-red-400 my-2">→ 🚫</div>
+                            <p class="font-bold text-red-600">規制により禁止</p>
+                        </div>
+                        <div class="w-full md:w-3/5 p-4 border-4 border-solid border-green-400 bg-green-50 rounded-lg">
+                            <h4 class="font-bold text-green-700">【新】公式な販売チャネル</h4>
+                            <ul class="text-left space-y-2 text-green-600 mt-2 pl-4 list-disc">
+                                <li><strong>メルカリShops：</strong>「法人」であれば出品可能</li>
+                                <li><strong>専門ECサイト：</strong>食べチョク、ポケットマルシェ等</li>
+                                <li><strong>自社ECサイト：</strong>独自のブランド構築</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-center mb-4">農業事業者が取るべき3つの戦略</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                        <div class="p-3 bg-blue-50 rounded-lg">
+                            <div class="text-3xl mb-2">🏢</div>
+                            <h4 class="font-bold">1. 事業の法人化</h4>
+                            <p class="text-sm">プラットフォームの要件を満たし、信頼性を高める。</p>
+                        </div>
+                        <div class="p-3 bg-blue-50 rounded-lg">
+                            <div class="text-3xl mb-2">🌐</div>
+                            <h4 class="font-bold">2. チャネルの多様化</h4>
+                            <p class="text-sm">単一プラットフォームへの依存リスクを分散させる。</p>
+                        </div>
+                        <div class="p-3 bg-blue-50 rounded-lg">
+                            <div class="text-3xl mb-2">🛡️</div>
+                            <h4 class="font-bold">3. 信頼の構築</h4>
+                            <p class="text-sm">トレーサビリティや第三者認証で品質を客観的に証明する。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>本インフォグラフィックは、公開情報に基づき作成された調査レポートを視覚化したものです。</p>
+            <p>&copy; 2025 Market Research Visualization. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const FONT_COLOR = '#374151';
+    const GRID_COLOR = '#E5E7EB';
+
+    const wrapLabel = (label, maxLength) => {
+        if (typeof label !== 'string' || label.length <= maxLength) {
+            return label;
+        }
+        const words = label.split('');
+        const lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + word).length > maxLength) {
+                lines.push(currentLine);
+                currentLine = '';
+            }
+            currentLine += word;
+        });
+        lines.push(currentLine);
+        return lines;
+    };
+    
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+          return label.join('');
+        }
+        return label;
+    };
+
+    const sharedChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                labels: {
+                    color: FONT_COLOR,
+                    font: {
+                        family: "'Inter', 'Noto Sans JP', sans-serif"
+                    }
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: { color: FONT_COLOR },
+                grid: { color: GRID_COLOR }
+            },
+            y: {
+                ticks: { color: FONT_COLOR },
+                grid: { color: GRID_COLOR },
+                beginAtZero: true
+            }
+        }
+    };
+
+    const COLORS = {
+        RED: '#FF5E5B',
+        ORANGE: '#FFB366',
+        YELLOW: '#FFFF66',
+        GREEN: '#66FF66',
+        BLUE: '#66B2FF',
+        GRAY: '#A0AEC0'
+    };
+
+    const growthCtx = document.getElementById('growthChart')?.getContext('2d');
+    if (growthCtx) {
+        new Chart(growthCtx, {
+            type: 'bar',
+            data: {
+                labels: ['野菜 (11.9倍)', '果物 (5.9倍)', '米 (4.8倍)'],
+                datasets: [{
+                    label: 'カテゴリー別成長率 (前年同月比)',
+                    data: [11.9, 5.9, 4.8],
+                    backgroundColor: [COLORS.GREEN, COLORS.ORANGE, COLORS.BLUE],
+                    borderColor: 'white',
+                    borderWidth: 2
+                }]
+            },
+            options: { ...sharedChartOptions, indexAxis: 'y' }
+        });
+    }
+
+    const marketShareBeforeCtx = document.getElementById('marketShareBefore')?.getContext('2d');
+    if (marketShareBeforeCtx) {
+        new Chart(marketShareBeforeCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['A: 正規農家', 'B: 趣味/余剰', 'C: 転売業者', 'D: 低品質'],
+                datasets: [{
+                    data: [65, 20, 10, 5],
+                    backgroundColor: [COLORS.GREEN, COLORS.BLUE, COLORS.RED, COLORS.YELLOW],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { color: FONT_COLOR, font: { family: "'Inter', 'Noto Sans JP', sans-serif" }}},
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+    }
+
+    const marketShareDuringCtx = document.getElementById('marketShareDuring')?.getContext('2d');
+    if (marketShareDuringCtx) {
+        new Chart(marketShareDuringCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['A: 正規農家', 'B: 趣味/余剰', 'C: 転売業者', 'D: 低品質'],
+                datasets: [{
+                    data: [25, 5, 60, 10],
+                     backgroundColor: [COLORS.GREEN, COLORS.BLUE, COLORS.RED, COLORS.YELLOW],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { color: FONT_COLOR, font: { family: "'Inter', 'Noto Sans JP', sans-serif" }}},
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+    }
+});
+</script>
+</body>
+</html>

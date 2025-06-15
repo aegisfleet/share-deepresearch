@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>メルカリ米穀出品禁止の真相</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/serif.min.css" id="theme">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts for better Japanese typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Animate.css for subtle animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        :root {
+            --r-main-font: 'Noto Sans JP', sans-serif;
+            --r-heading-font: 'Noto Sans JP', sans-serif;
+            --r-heading-font-weight: 700;
+            --r-main-color: #333;
+            --r-heading-color: #111;
+            --r-link-color: #c70000;
+            --r-link-color-hover: #e84a4a;
+            --r-background-color: #f8f8f8;
+        }
+
+        .reveal {
+            font-family: var(--r-main-font);
+        }
+
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: var(--r-heading-font);
+            font-weight: var(--r-heading-font-weight);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .reveal .slides section {
+            text-align: left;
+        }
+        
+        .reveal .slides section.center-align {
+            text-align: center;
+        }
+
+        .reveal h1 { font-size: 3.5em; }
+        .reveal h2 { font-size: 2.5em; }
+        .reveal h3 { font-size: 1.8em; }
+        .reveal p, .reveal li { font-size: 1.15em; line-height: 1.55; }
+
+        .icon {
+            color: var(--r-link-color);
+            margin-right: 15px;
+        }
+        
+        .box-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .box {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 25px;
+            flex: 1;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .box i {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+        }
+        .box h4 {
+            margin-top: 0;
+            font-size: 1.2em;
+            color: var(--r-heading-color);
+        }
+
+        .flowchart {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        .flowchart .arrow {
+            font-size: 3em;
+            color: #555;
+        }
+        
+        .vs-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+        }
+        .vs-item { text-align: center; }
+        .vs-text { font-size: 4em; font-weight: bold; color: #555; }
+        
+        .agenda-list { list-style: none; padding-left: 0; }
+        .agenda-list li { display: flex; align-items: center; margin-bottom: 25px; font-size: 1.4em;}
+        .agenda-list .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--r-link-color);
+            margin-right: 30px;
+            line-height: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Slide 1: Title (No Change) -->
+            <section class="center-align" data-background-image="https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" data-background-opacity="0.4">
+                <h1 class="animate__animated animate__fadeInDown">メルカリ米穀出品禁止の真相</h1>
+                <p class="animate__animated animate__fadeInUp" style="margin-top: 30px; font-size: 1.5em;">規制、市場、そして農家直送D2Cの未来</p>
+            </section>
+
+            <!-- Slide 2: Introduction (Adjusted) -->
+            <section>
+                <h2><i class="fas fa-question-circle icon"></i>なぜ今、この問題を掘り下げるのか？</h2>
+                <p class="fragment" data-fragment-index="1">2025年6月、メルカリが「米」の出品を全面禁止。消費者と出品者に衝撃が走りました。</p>
+                <p class="fragment" data-fragment-index="2">健全な「農家直送」の出品者までもが、市場から姿を消す事態に。</p>
+                <p class="fragment" data-fragment-index="3">この決定の裏には何があったのか？</p>
+                <p class="fragment" data-fragment-index="4">本資料は、その<strong style="color:var(--r-link-color);">背景、実態、そして農産物D2Cの未来</strong>を解き明かします。</p>
+            </section>
+
+            <!-- Slide 3: Agenda (No Change) -->
+            <section>
+                <h2><i class="fas fa-bars icon"></i>Agenda</h2>
+                <ul class="agenda-list">
+                    <li class="fragment"><span class="number">1</span><div><strong>発端 (The Trigger):</strong> なぜ米は出品禁止になったのか？</div></li>
+                    <li class="fragment"><span class="number">2</span><div><strong>市場 (The Market):</strong> 混乱を招いた経済的背景</div></li>
+                    <li class="fragment"><span class="number">3</span><div><strong>実態 (The Reality):</strong> 消えた「農家直送」のシェア</div></li>
+                    <li class="fragment"><span class="number">4</span><div><strong>未来 (The Future):</strong> D2C農産物ECの次の一手</div></li>
+                </ul>
+            </section>
+
+            <!-- Slide 4: Trigger 1 (Adjusted) -->
+            <section>
+                <h2><i class="fas fa-gavel icon"></i>発端(1): 引き金は「政府の規制」</h2>
+                <p>メルカリの決定は、自発的ではなく政府の法改正に対応するものでした。</p>
+                <div class="box-container">
+                    <div class="box fragment">
+                        <i class="fas fa-scroll" style="color:#a0522d;"></i>
+                        <h4>根拠法</h4>
+                        <p>国民生活安定緊急措置法</p>
+                    </div>
+                    <div class="box fragment">
+                        <i class="fas fa-ban" style="color:#d9534f;"></i>
+                        <h4>規制内容</h4>
+                        <p>米の「高額転売」を禁止</p>
+                    </div>
+                    <div class="box fragment">
+                        <i class="fas fa-balance-scale-left" style="color:#555;"></i>
+                        <h4>罰則</h4>
+                        <p>最大で拘禁刑・罰金100万円</p>
+                    </div>
+                </div>
+                <p class="fragment" style="margin-top:30px; text-align:center; font-weight:bold;">→ プラットフォームにとって看過できない法的リスクが発生</p>
+            </section>
+            
+            <!-- Slide 5: Trigger 2 (Adjusted) -->
+            <section>
+                <h2><i class="fas fa-user-secret icon"></i>発端(2): なぜ「正規の農家」まで？</h2>
+                <p>規制対象は「転売業者」のはず。しかし、プラットフォームには根本的な課題がありました。</p>
+                <div class="vs-container" style="margin-top: 60px;">
+                    <div class="vs-item fragment">
+                        <i class="fas fa-tractor" style="font-size: 6em; color: #28a745;"></i>
+                        <h3>正規の農家</h3>
+                        <p>(販売OK)</p>
+                    </div>
+                    <div class="vs-text fragment">VS</div>
+                    <div class="vs-item fragment">
+                        <i class="fas fa-user-ninja" style="font-size: 6em; color: #dc3545;"></i>
+                        <h3>転売業者</h3>
+                        <p>(販売NG)</p>
+                    </div>
+                </div>
+                <p class="fragment" style="margin-top: 40px; text-align: center; background-color: #fff0f0; padding: 20px; border-radius: 8px; border-left: 5px solid #dc3545;">
+                    <strong style="font-size: 1.2em;">課題：</strong>両者を大規模・正確に識別するのは不可能。<br>
+                    「農家直送」の偽装が容易なため、リスク回避として個人出品を一律禁止。
+                </p>
+            </section>
+
+            <!-- Slide 6: Market 1 (Adjusted) -->
+            <section>
+                <h2><i class="fas fa-cloud-showers-heavy icon"></i>市場(1): 規制を招いた「パーフェクト・ストーム」</h2>
+                <p>転売が横行する完璧な状況（パーフェクト・ストーム）が生まれていました。</p>
+                 <div class="box-container">
+                    <div class="box fragment">
+                        <i class="fas fa-chart-line" style="color: #dc3545;"></i>
+                        <h4>要因１：米価の異常高騰</h4>
+                        <p>価格が前年比 <strong>1.5〜2倍</strong> に。</p>
+                    </div>
+                    <div class="box fragment">
+                        <i class="fas fa-landmark" style="color: #17a2b8;"></i>
+                        <h4>要因２：政府の市場介入</h4>
+                        <p>安価な「備蓄米」放出で価格差が拡大。</p>
+                    </div>
+                </div>
+                 <p class="fragment" style="margin-top:40px; text-align:center; font-size: 1.3em;">
+                    この <strong style="color:var(--r-link-color);">大きな価格差</strong> が、転売の温床となりました。
+                </p>
+            </section>
+            
+            <!-- Slide 7: Market 2 (Adjusted) -->
+            <section>
+                <h2><i class="fas fa-cogs icon"></i>市場(2): 意図せざる転売エンジン</h2>
+                <p>C2Cプラットフォームの特性が、期せずして裁定取引の場となってしまいました。</p>
+                <div class="flowchart" style="margin-top: 80px;">
+                    <div class="box fragment">
+                        <h4>安く買う</h4>
+                        <i class="fas fa-store" style="font-size: 4em; color: #17a2b8;"></i>
+                        <p>小売店で備蓄米を購入</p>
+                    </div>
+                    <div class="arrow fragment"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    <div class="box fragment">
+                        <h4>メルカリで売る</h4>
+                        <i class="fas fa-mobile-alt" style="font-size: 4em; color: #e84a4a;"></i>
+                        <p>市場価格で出品</p>
+                    </div>
+                    <div class="arrow fragment"><i class="fas fa-long-arrow-alt-right"></i></div>
+                     <div class="box fragment">
+                        <h4>利益を得る</h4>
+                        <i class="fas fa-yen-sign" style="font-size: 4em; color: #28a745;"></i>
+                        <p>価格差が利益に</p>
+                    </div>
+                </div>
+                 <p class="fragment" style="margin-top: 50px; text-align:center;">本来の売買の場が、主要食料品の<strong style="color:var(--r-link-color);">グレーマーケット</strong>へと変貌しました。</p>
+            </section>
+            
+            <!-- Slide 8: Reality 1 (Adjusted) -->
+            <section class="center-align">
+                <h2><i class="fas fa-chart-pie icon"></i>実態(1): 消えた「農家直送」のシェアは？</h2>
+                <p style="font-size: 1.4em;">核心の問い：禁止以前、出品者に占める農家の割合は？</p>
+                <div class="fragment" style="margin-top: 50px;">
+                    <i class="far fa-file-excel" style="font-size: 8em; color: #ccc;"></i>
+                    <h3 style="color: #555;">公式データは非公開</h3>
+                    <p>メルカリは出品者構成を公開しておらず、正確な数字は不明です。</p>
+                </div>
+                <p class="fragment" style="margin-top: 30px; font-size: 1.3em;">
+                    <i class="fas fa-search"></i> そこで、<strong>間接的な証拠</strong>から実態を推定します。
+                </p>
+            </section>
+            
+            <!-- Slide 9: Reality 2 (Adjusted) -->
+            <section>
+                <h2><i class="fas fa-lightbulb icon"></i>実態(2): ヒントは競合「ラクマ」に</h2>
+                <p>2018年の楽天「ラクマ」の調査が、危機以前の健全な市場を知る手がかりになります。</p>
+                <div class="box-container">
+                    <div class="box fragment">
+                        <i class="fas fa-seedling" style="color: #28a745;"></i>
+                        <h4>米の取引額</h4>
+                        <p>1年間で <strong>4.8倍</strong> に成長</p>
+                    </div>
+                    <div class="box fragment">
+                         <i class="fas fa-trophy" style="color: #ffc107;"></i>
+                        <h4>人気No.1</h4>
+                        <p>全農産物で取引額最大</p>
+                    </div>
+                    <div class="box fragment">
+                         <i class="fas fa-tags" style="color: #17a2b8;"></i>
+                        <h4>価格メリット</h4>
+                        <p>一般小売より <strong>75円/kg</strong> 安い</p>
+                    </div>
+                </div>
+                <p class="fragment" style="margin-top: 40px; text-align: center; background-color: #f0f9f2; padding: 20px; border-radius: 8px; border-left: 5px solid #28a745;">
+                    <strong>示唆：</strong> 危機以前、C2Cには<strong style="color:#006400;">大規模で活発な「農家直送」市場が確かに存在</strong>しました。
+                </p>
+            </section>
+
+            <!-- Slide 10: Reality 3 (Adjusted) -->
+            <section>
+                <h2><i class="fas fa-users icon"></i>実態(3): メルカリ米市場の4つの顔</h2>
+                <p>市場には4つの出品者類型が混在し、単純な二元論では語れませんでした。</p>
+                 <div class="box-container">
+                    <div class="box fragment" style="border-color: #28a745;">
+                        <i class="fas fa-tractor" style="color: #28a745;"></i>
+                        <h4>A: 正規の農家</h4>
+                        <p>「農家直送」を掲げる市場の中核。</p>
+                    </div>
+                    <div class="box fragment" style="border-color: #17a2b8;">
+                        <i class="fas fa-leaf" style="color: #17a2b8;"></i>
+                        <h4>B: 趣味/余剰分</h4>
+                        <p>自家消費の余剰分などを販売。</p>
+                    </div>
+                 </div>
+                 <div class="box-container">
+                     <div class="box fragment" style="border-color: #ffc107;">
+                        <i class="fas fa-user-secret" style="color: #ffc107;"></i>
+                        <h4>C: 転売業者</h4>
+                        <p>利ざや目的。農家を装うことも。</p>
+                    </div>
+                    <div class="box fragment" style="border-color: #dc3545;">
+                        <i class="fas fa-skull-crossbones" style="color: #dc3545;"></i>
+                        <h4>D: 低品質な販売者</h4>
+                        <p>「クズ米」等を高品質と偽装。</p>
+                    </div>
+                 </div>
+            </section>
+            
+            <!-- Slide 11: Reality 4 (Adjusted) -->
+            <section>
+                <h2><i class="fas fa-shopping-cart icon"></i>実態(4): 消費者の天国と地獄</h2>
+                <p>C2C市場は、大きな魅力とリスクが同居する場でした。</p>
+                <div class="vs-container" style="margin-top: 50px;">
+                    <div class="vs-item fragment">
+                        <i class="fas fa-sun" style="font-size: 6em; color: #ffc107;"></i>
+                        <h3>光 (メリット)</h3>
+                        <ul style="text-align: left; list-style-position: inside;">
+                            <li>魅力的な価格</li>
+                            <li>鮮度・生産者との繋がり</li>
+                            <li>豊富な品種</li>
+                        </ul>
+                    </div>
+                    <div class="vs-item fragment">
+                        <i class="fas fa-moon" style="font-size: 6em; color: #4a4a4a;"></i>
+                        <h3>影 (リスク)</h3>
+                         <ul style="text-align: left; list-style-position: inside;">
+                            <li>深刻な品質問題</li>
+                            <li>出品者の不透明性</li>
+                            <li>市場の信頼失墜</li>
+                        </ul>
+                    </div>
+                </div>
+                 <p class="fragment" style="margin-top: 40px; text-align: center; font-size: 1.5em; font-weight: bold;">
+                    まさに <strong style="color:var(--r-link-color);">「米ガチャ」</strong> 状態。
+                </p>
+            </section>
+
+            <!-- Slide 12: Future 1 (Adjusted) -->
+            <section>
+                <h2><i class="fas fa-sync-alt icon"></i>未来(1): 市場のリセットと新たな道</h2>
+                <p>この措置は、単なる出品禁止ではなく「市場のリセット」を意味します。</p>
+                <div class="flowchart" style="margin-top: 80px;">
+                    <div class="fragment">
+                        <i class="fas fa-user-slash" style="font-size: 5em; color: #dc3545;"></i>
+                        <p><strong>個人・個人事業主</strong><br>出品禁止</p>
+                    </div>
+                    <div class="arrow fragment"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    <div class="fragment">
+                        <i class="far fa-lightbulb" style="font-size: 5em; color: #28a745;"></i>
+                        <p><strong>重要な例外</strong></p>
+                    </div>
+                     <div class="arrow fragment"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    <div class="fragment">
+                        <i class="fas fa-building" style="font-size: 5em; color: #007bff;"></i>
+                        <p><strong>法人</strong><br>メルカリShopsで販売可能</p>
+                    </div>
+                </div>
+                <p class="fragment" style="margin-top: 60px; text-align: center;">
+                    <strong>示唆：</strong> 匿名の個人(C2C)から、<strong style="color:var(--r-link-color);">身元が確かな事業者(B2C)中心のモデルへ</strong>と移行。
+                </p>
+            </section>
+            
+            <!-- Slide 13: Future 2 (Adjusted) -->
+            <section>
+                <h2><i class="fas fa-map-signs icon"></i>未来(2): 農業事業者の次の一手</h2>
+                <p>この変化に適応し、成長するための3つの戦略提言です。</p>
+                <div class="box-container">
+                    <div class="box fragment">
+                        <i class="fas fa-briefcase" style="color: #007bff;"></i>
+                        <h4>1. 事業の公式化 (法人化)</h4>
+                        <p>主要プラットフォームでの販売継続に不可欠。</p>
+                    </div>
+                    <div class="box fragment">
+                        <i class="fas fa-random" style="color: #6f42c1;"></i>
+                        <h4>2. チャネルの多様化</h4>
+                        <p>複数チャネル（専門EC、自社サイト等）でリスクを分散。</p>
+                    </div>
+                    <div class="box fragment">
+                        <i class="fas fa-shield-alt" style="color: #28a745;"></i>
+                        <h4>3.「検証可能な信頼」の構築</h4>
+                        <p>情報開示、トレーサビリティ、認証等で信頼を可視化。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Slide 14: Conclusion (Adjusted) -->
+            <section>
+                <h2><i class="fas fa-flag-checkered icon"></i>総括: 危機が促したD2Cの進化</h2>
+                <div style="padding: 0 5%;">
+                    <p class="fragment"><strong>原因:</strong> 政府規制と市場混乱が重なり、プラットフォームは一律禁止を選択せざるを得ませんでした。</p>
+                    <p class="fragment"><strong>実態:</strong> 転売・悪質業者の急増が健全な市場を崩壊させ、消費者リスクも増大しました。</p>
+                    <p class="fragment"><strong>未来:</strong> この「市場のリセット」は、信頼性が問われるD2C新時代への移行を促します。これは<strong style="color:var(--r-link-color);">強靭なビジネスを築く好機</strong>でもあります。</p>
+                </div>
+                <div class="fragment" style="text-align: center; margin-top: 40px;">
+                    <i class="fas fa-arrow-down" style="font-size: 3em; color: #ccc;"></i><br>
+                    <strong style="font-size: 1.8em; color: #28a745;">D2Cの成熟化</strong>
+                </div>
+            </section>
+
+            <!-- Slide 15: Thank You (No Change) -->
+            <section class="center-align" data-background-image="https://images.unsplash.com/photo-1560493676-04071c5f467b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" data-background-opacity="0.5">
+                <h1 style="color: white; text-shadow: 2px 2px 4px #000;">ご清覧ありがとうございました</h1>
+                <p style="color: white; text-shadow: 1px 1px 3px #000; font-size: 1.2em;">詳細な参考文献は、元の調査報告書をご参照ください。</p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 1.5,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+        });
+    </script>
+</body>
+</html>
