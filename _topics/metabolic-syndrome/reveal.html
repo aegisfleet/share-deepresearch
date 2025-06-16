@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>忍び寄るサイレントキラー：メタボリックシンドロームの正体</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/white.min.css" id="theme">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --r-main-font: 'Noto Sans JP', sans-serif;
+            --r-heading-font: 'Noto Sans JP', sans-serif;
+            --r-heading-font-weight: 700;
+            --r-main-color: #333;
+            --r-heading-color: #111;
+            --r-link-color: #007bff;
+            --r-link-color-hover: #0056b3;
+            --r-background-color: #f8f9fa;
+        }
+
+        .reveal {
+            font-family: var(--r-main-font);
+        }
+
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: var(--r-heading-font);
+            font-weight: var(--r-heading-font-weight);
+            color: var(--r-heading-color);
+        }
+
+        .reveal h1 { font-size: 3.5em; }
+        .reveal h2 { font-size: 2.5em; }
+        .reveal h3 { font-size: 1.8em; }
+
+        .reveal .subtitle {
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 20px;
+        }
+        .reveal .source-text {
+            font-size: 0.5em;
+            color: #888;
+            margin-top: 40px;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .flex-item {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .icon-large { font-size: 3em; margin-bottom: 20px; }
+        .fa-thumbs-up { color: #28a745; }
+        .fa-thumbs-down { color: #dc3545; }
+        .arrow { font-size: 3em; color: #6c757d; align-self: center; }
+        
+        .flow-chart {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .flow-box {
+            padding: 15px 25px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            background: #e7f3ff;
+            min-width: 200px;
+            text-align: center;
+        }
+        .flow-arrow { font-size: 2.5em; color: #007bff; }
+
+        .warning-box {
+            border: 3px solid #dc3545;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fbeeed;
+        }
+        
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 50px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #dee2e6;
+            transform: translateY(-50%);
+            z-index: -1;
+        }
+        .timeline-item {
+            position: relative;
+            text-align: center;
+            width: 20%;
+        }
+        .timeline-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #007bff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            border: 4px solid #f8f9fa;
+            font-size: 1.5em;
+        }
+        .timeline-item.danger .timeline-icon {
+            background-color: #dc3545;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 100px 1fr;
+            align-items: center;
+            gap: 20px;
+        }
+        .comparison-item {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .comparison-item.young { background-color: #e6f7ff; border: 2px solid #91d5ff; }
+        .comparison-item.old { background-color: #fff1f0; border: 2px solid #ffa39e; }
+
+        /* Styles for Image Replacement */
+        .hub-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .hub-center-box {
+            padding: 20px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            width: 220px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.3em;
+            flex-shrink: 0;
+        }
+        .spoke-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>忍び寄るサイレントキラー</h1>
+                <h2 class="subtitle">メタボリックシンドロームの正体と<br>加齢との宿命</h2>
+                <p class="source-text">
+                    「メタボリックシンドロームの病態生理：その発症機序と加齢との本質的関連性に関する理論的考察」を元に作成
+                </p>
+            </section>
+
+            <section>
+                <h2>メタボは、単なる「肥満」ではない</h2>
+                <p class="fragment">心筋梗塞や脳卒中、2型糖尿病のリスクを著しく高める、<br>代謝異常の集合体です。</p>
+                <div class="flex-container fragment" data-fragment-index="1" style="margin-top: 50px;">
+                    <div class="flex-item">
+                        <i class="fa-solid fa-circle-nodes icon-large" style="color: #ff6b6b;"></i>
+                        <h3>物語の核心①<br>内臓脂肪</h3>
+                    </div>
+                    <div class="flex-item">
+                         <i class="fa-solid fa-person-cane icon-large" style="color: #4c6ef5;"></i>
+                        <h3>物語の核心②<br>加齢</h3>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>あなたは大丈夫？ 日本の診断基準</h2>
+                <p>内臓脂肪蓄積は<span style="color: #dc3545; font-weight: bold;">必須項目</span>です。</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">診断項目</th>
+                            <th>基準値</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: #dc3545;">必須項目</strong><br>内臓脂肪蓄積</td>
+                            <td>ウエスト周囲径<br>男性 ≥85 cm / 女性 ≥90 cm</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: #007bff;">選択項目</strong><br>（上記に加え2項目以上）</td>
+                            <td>
+                                <ul style="list-style: none; padding-left: 0; margin: 0;">
+                                    <li><i class="fa-solid fa-arrow-up-right-dots"></i> <strong>脂質異常</strong>: 中性脂肪 ≥150mg/dL or HDLコレステロール <40mg/dL</li>
+                                    <li><i class="fa-solid fa-heart-pulse"></i> <strong>高血圧</strong>: 収縮期 ≥130mmHg or 拡張期 ≥85mmHg</li>
+                                    <li><i class="fa-solid fa-cubes-stacked"></i> <strong>高血糖</strong>: 空腹時血糖 ≥110mg/dL</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                 <p style="font-size: 0.6em; text-align: right; margin-top: 10px;">※薬剤治療中も項目に含まれます。</p>
+            </section>
+            
+            <section data-auto-animate>
+                <h2>すべての始まり：主犯は「内臓脂肪」</h2>
+                <div data-id="visceral-fat-diagram" style="position: relative; width: 300px; height: 450px; margin: auto;">
+                    <i class="fa-solid fa-person" style="font-size: 450px; color: #ccc;"></i>
+                    <div data-id="fat-indicator" style="position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background-color: rgba(220, 53, 69, 0.6); border-radius: 50%; transition: all 1s ease;"></div>
+                </div>
+                <p>脂肪は単なるエネルギー貯蔵庫ではありません。</p>
+            </section>
+
+            <section data-auto-animate>
+                <h2>すべての始まり：主犯は「内臓脂肪」</h2>
+                 <div data-id="visceral-fat-diagram" style="position: relative; width: 300px; height: 350px; margin: auto;">
+                    <i class="fa-solid fa-person" style="font-size: 350px; color: #ccc;"></i>
+                    <div data-id="fat-indicator" style="position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; background-color: rgba(220, 53, 69, 0.8); border-radius: 50%; transition: all 1s ease;"></div>
+                </div>
+                 <p>特に内臓脂肪は、ホルモンを分泌する<br><span style="color: #dc3545; font-size: 1.5em; font-weight: bold;">「暴走する内分泌器官」</span>へと変貌します。</p>
+            </section>
+            
+            <section>
+                <h2>善玉 vs 悪玉ホルモン</h2>
+                <p>肥大化した内臓脂肪は、ホルモン（アディポサイトカイン）の分泌バランスを崩壊させます。</p>
+                <div class="flex-container" style="margin-top: 40px;">
+                    <div class="flex-item fragment">
+                        <i class="fa-solid fa-thumbs-up icon-large"></i>
+                        <h3>善玉の減少</h3>
+                        <p><strong>アディポネクチン</strong><br>インスリン感受性を高め、血管を守る保護的なホルモンが減ってしまう。</p>
+                    </div>
+                     <div class="arrow fragment"><i class="fa-solid fa-right-left"></i></div>
+                    <div class="flex-item fragment">
+                         <i class="fa-solid fa-thumbs-down icon-large"></i>
+                        <h3>悪玉の急増</h3>
+                        <p><strong>TNF-α, PAI-1, etc.</strong><br>炎症を起こし、血栓を作り、血圧を上げる有害なホルモンが溢れ出す。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>悪玉ホルモンが引き起こす3つの悲劇</h2>
+                <p>一つの原因（内臓脂肪の暴走）が、メタボの各症状を直接引き起こします。</p>
+                <div style="text-align: center; margin-top: 60px;">
+                    <div class="flow-box" style="background: #fdf2f2; border-color: #ff8787;">
+                        <i class="fa-solid fa-skull-crossbones"></i> <strong>悪玉ホルモン増加</strong>
+                    </div>
+                </div>
+                <div class="flow-chart">
+                    <div class="fragment" data-fragment-index="1">
+                        <div class="flow-arrow"><i class="fa-solid fa-arrow-down-long"></i></div>
+                        <div class="flow-box"><strong>TNF-α</strong><br>→ 高血糖</div>
+                    </div>
+                    <div class="fragment" data-fragment-index="2">
+                        <div class="flow-arrow"><i class="fa-solid fa-arrow-down-long"></i></div>
+                        <div class="flow-box"><strong>PAI-1</strong><br>→ 血栓</div>
+                    </div>
+                    <div class="fragment" data-fragment-index="3">
+                        <div class="flow-arrow"><i class="fa-solid fa-arrow-down-long"></i></div>
+                        <div class="flow-box"><strong>アンジオテンシノーゲン</strong><br>→ 高血圧</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>物語のハブ：「インスリン抵抗性」</h2>
+                <p>悪玉ホルモンの影響で、血糖値を下げるインスリンが効きにくくなる状態です。</p>
+                <div class="fragment">
+                    <p>これが、メタボの多様な病態を結びつける<span style="font-size: 1.5em; color: #007bff; font-weight: bold;">中心的なハブ</span>として機能します。</p>
+                    <div class="hub-container">
+                        <div class="spoke-column">
+                            <div class="flow-box">高血圧</div>
+                            <div class="flow-box">脂質異常</div>
+                        </div>
+                        <i class="fa-solid fa-left-right" style="font-size: 3em; color: #007bff;"></i>
+                        <div class="hub-center-box">インスリン<br>抵抗性</div>
+                        <i class="fa-solid fa-left-right" style="font-size: 3em; color: #007bff;"></i>
+                        <div class="spoke-column">
+                            <div class="flow-box">高血糖</div>
+                            <div class="flow-box">血栓傾向</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>負のスパイラル</h2>
+                <p>インスリン抵抗性に対する身体の「代償反応」が、事態をさらに悪化させます。</p>
+                <div class="flow-chart" style="flex-direction: column; gap: 0;">
+                    <div class="flow-box fragment">1. インスリンが効きにくい（抵抗性）</div>
+                    <div class="flow-arrow fragment"><i class="fa-solid fa-arrow-down-long"></i></div>
+                    <div class="flow-box fragment">2. 膵臓が頑張ってインスリンを過剰分泌<br>（高インスリン血症）</div>
+                    <div class="flow-arrow fragment"><i class="fa-solid fa-arrow-down-long"></i></div>
+                    <div class="warning-box fragment">
+                        <strong>3. この過剰なインスリンが...</strong><br>
+                        <i class="fa-solid fa-heart-pulse"></i> 高血圧 と <i class="fa-solid fa-arrow-up-right-dots"></i> 脂質異常症 を直接悪化させる！
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>行き着く先：「2型糖尿病」</h2>
+                <p>長年インスリンを過剰分泌し続けた膵臓は、やがて疲弊し、機能が低下。</p>
+                <div class="fragment">
+                    <p>ついに血糖コントロールは破綻し、顕性の<span style="font-size: 1.5em; color: #dc3545; font-weight:bold;">2型糖尿病</span>へと移行します。</p>
+                    <div class="flex-container" style="align-items: center; margin-top: 40px;">
+                        <div class="flex-item">
+                            <i class="fa-solid fa-bolt fa-beat" style="font-size: 4em; color: #fcc419; --fa-animation-duration: 0.5s;"></i>
+                            <h3>元気な膵臓</h3>
+                            <p>（高インスリン血症期）</p>
+                        </div>
+                        <div class="arrow"><i class="fa-solid fa-arrow-right-long"></i></div>
+                        <div class="flex-item">
+                            <div style="font-size: 3em; color: #868e96; display: flex; align-items: center; justify-content: center; gap: 15px;">
+                                <i class="fa-solid fa-battery-full fragment" data-fragment-index="1"></i>
+                                <i class="fa-solid fa-arrow-right-long fragment" data-fragment-index="2" style="font-size: 0.8em;"></i>
+                                <i class="fa-solid fa-battery-half fragment" data-fragment-index="2"></i>
+                                <i class="fa-solid fa-arrow-right-long fragment" data-fragment-index="3" style="font-size: 0.8em;"></i>
+                                <i class="fa-solid fa-battery-empty fragment" data-fragment-index="3"></i>
+                            </div>
+                            <h3>膵臓の疲弊</h3>
+                            <p>（インスリン分泌低下）</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>なぜ年を取るとリスクが高まるのか？</h2>
+                <h3>加齢という名の「促進因子」</h3>
+                <p>加齢は、メタボのリスクを多角的に、そして強力に加速させます。</p>
+                <div class="flex-container" style="margin-top: 50px;">
+                    <div class="flex-item fragment">① 身体の変化</div>
+                    <div class="flex-item fragment">② ホルモンの衰え</div>
+                    <div class="flex-item fragment">③ 累積的ダメージ</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>加齢の影響① 身体の変化</h2>
+                <div class="flex-container">
+                    <div style="flex: 1;">
+                        <h3>筋肉の減少（サルコペニア）</h3>
+                        <p>筋肉は、血糖値の主要な<span style="color: #007bff; font-weight: bold;">「受け皿」</span>です。筋肉が減ると、血糖が処理されにくくなり、インスリン抵抗性が悪化します。</p>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3>基礎代謝の低下</h3>
+                        <p>筋肉が減ることで、安静時のエネルギー消費も低下。同じ量を食べても脂肪がつきやすくなります。</p>
+                    </div>
+                </div>
+                <div class="fragment" style="margin-top: 40px; display: flex; justify-content: space-around; align-items: center; background-color: #f1f3f5; padding: 20px; border-radius: 10px;">
+                    <div>
+                        <i class="fa-solid fa-cubes-stacked" style="font-size: 3em; color: #e8590c;"></i>
+                        <p>血管内の糖</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right-long" style="font-size: 3em; color: #495057;"></i>
+                    <div>
+                        <i class="fa-solid fa-dumbbell" style="font-size: 4em; color: #1971c2;"></i>
+                        <p>筋肉（糖の受け皿）</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-right-long" style="font-size: 3em; color: #495057;"></i>
+                    <div>
+                         <i class="fa-solid fa-fire" style="font-size: 3em; color: #f03e3e;"></i>
+                        <p>エネルギーとして消費</p>
+                    </div>
+                </div>
+                <p class="fragment">加齢で「受け皿」が小さくなると、糖が行き場を失います。</p>
+            </section>
+
+            <section>
+                <h2>最悪のコンビ「サルコペニア肥満」</h2>
+                <p>筋肉が少なく、脂肪が多い状態は、破滅的な悪循環を生み出します。</p>
+                <div class="flow-chart" style="margin-top: 40px;">
+                     <div class="flow-box fragment" data-fragment-index="1"><strong>筋肉が減る</strong><br><small>(サルコペニア)</small></div>
+                     <div class="flow-arrow fragment" data-fragment-index="2"><i class="fa-solid fa-arrow-right-long"></i></div>
+                     <div class="flow-box fragment" data-fragment-index="2"><strong>脂肪が増える</strong><br><small>(代謝低下)</small></div>
+                     <div class="flow-arrow fragment" data-fragment-index="3"><i class="fa-solid fa-arrow-right-long"></i></div>
+                     <div class="flow-box fragment" data-fragment-index="3" style="background: #fdf2f2; border-color: #ff8787;"><strong>脂肪が炎症を起こす</strong></div>
+                     <div class="flow-arrow fragment" data-fragment-index="4"><i class="fa-solid fa-arrow-right-long" style="transform: rotate(180deg) translateX(100%); position: relative; top: -70px;"></i></div>
+                </div>
+                 <p class="fragment" data-fragment-index="4" style="position: relative; top: -60px;">増えた脂肪が、<span style="color: #dc3545;">さらに筋肉の分解を促進する</span></p>
+            </section>
+            
+            <section>
+                <h2>加齢の影響② ホルモンの衰え</h2>
+                <p>代謝を制御するホルモンも、加齢とともに劇的に変化します。</p>
+                 <div class="flex-container" style="margin-top: 40px;">
+                    <div class="flex-item fragment">
+                        <i class="fa-solid fa-person icon-large"></i>
+                        <h4>ソマトポーズ (男女)</h4>
+                        <p>成長ホルモン低下 → 筋肉減少・脂肪増加</p>
+                    </div>
+                    <div class="flex-item fragment">
+                         <i class="fa-solid fa-venus icon-large"></i>
+                        <h4>メノポーズ (女性)</h4>
+                        <p>エストロゲン低下 → 内臓脂肪へ再分配</p>
+                    </div>
+                    <div class="flex-item fragment">
+                         <i class="fa-solid fa-mars icon-large"></i>
+                        <h4>アンドロポーズ (男性)</h4>
+                        <p>テストステロン低下 → 筋肉減少・内臓脂肪増加</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>加齢の影響③ 累積的ダメージ</h2>
+                <p>「遺伝」という設計図の上に、長年の「生活習慣」が積み重なります。</p>
+                <div class="flow-chart">
+                    <div class="flow-box" style="border-style: dashed;">遺伝的素因</div>
+                    <div class="flow-arrow"><i class="fa-solid fa-plus"></i></div>
+                    <div class="flow-box">
+                        <ul style="text-align: left; font-size: 0.8em; list-style: none; padding-left: 0;">
+                            <li><i class="fa-solid fa-utensils"></i> 食事</li>
+                            <li><i class="fa-solid fa-person-running"></i> 運動不足</li>
+                            <li><i class="fa-solid fa-brain"></i> ストレス</li>
+                            <li><i class="fa-solid fa-bed"></i> 睡眠不足</li>
+                        </ul>
+                    </div>
+                    <div class="flow-arrow"><i class="fa-solid fa-equals"></i></div>
+                    <div class="flow-box warning-box">
+                        <strong>発症リスク</strong>
+                    </div>
+                </div>
+                <p class="fragment" style="margin-top: 30px;">問題は、これらの影響が単純な足し算ではないことです。</p>
+            </section>
+
+            <section>
+                <h2>リスクの「乗数効果」</h2>
+                <p>加齢は体の「ハードウェア」を変化させ、生活習慣の悪影響を<span style="font-size: 1.5em; color: #dc3545; font-weight: bold;">何倍にも増幅</span>させます。</p>
+                <div class="comparison-container" style="margin-top: 40px;">
+                    <div class="comparison-item young fragment">
+                        <h4>若い身体</h4>
+                        <p>高い基礎代謝と豊富な筋肉量で、多少の不摂生は緩衝できる。</p>
+                    </div>
+                    <div class="fragment">
+                        <i class="fa-solid fa-fire-flame-curved" style="font-size: 2em; color: #ffa94d;"></i><br>
+                        <small>不健康な生活習慣</small>
+                    </div>
+                    <div class="comparison-item old fragment">
+                        <h4>加齢した身体</h4>
+                        <p>代謝も筋肉も落ち、準備万端の身体に悪影響が直撃。深刻な結果に。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2>メタボの進行と「終着駅」</h2>
+                <p>病態は静かに、しかし着実に進行します。</p>
+                <div class="timeline">
+                    <div class="timeline-item fragment">
+                        <div class="timeline-icon"><i class="fa-solid fa-ruler-horizontal"></i></div>
+                        <strong>腹囲増</strong>
+                    </div>
+                    <div class="timeline-item fragment">
+                        <div class="timeline-icon"><i class="fa-solid fa-arrow-up-right-dots"></i></div>
+                        <strong>脂質異常</strong>
+                    </div>
+                     <div class="timeline-item fragment">
+                        <div class="timeline-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <strong>高血圧</strong>
+                    </div>
+                    <div class="timeline-item fragment">
+                        <div class="timeline-icon"><i class="fa-solid fa-cubes-stacked"></i></div>
+                        <strong>高血糖</strong>
+                    </div>
+                    <div class="timeline-item danger fragment">
+                        <div class="timeline-icon"><i class="fa-solid fa-skull"></i></div>
+                        <strong>心筋梗塞<br>脳卒中</strong>
+                    </div>
+                </div>
+                <p class="fragment" style="margin-top: 40px;">これら全てが血管を傷つけ、動脈硬化を促進します。</p>
+            </section>
+            
+            <section>
+                <h2>高齢者医療の新しい視点</h2>
+                <p>しかし、後期高齢者では優先順位が変わります。</p>
+                <div class="warning-box">
+                    <h3><i class="fa-solid fa-triangle-exclamation"></i> 過度な管理の危険性</h3>
+                    <p>フレイル（虚弱）な高齢者への厳格なカロリー制限は、筋肉減少（サルコペニア）を加速させ、転倒や寝たきりのリスクを高める可能性があります。</p>
+                </div>
+                <p class="fragment" style="margin-top: 30px; font-size: 1.2em; font-weight: bold;">
+                    目標は理想的な数値から、<span style="color: #28a745;">「筋力と生活の質の維持」</span>へ。
+                </p>
+            </section>
+            
+            <section>
+                <h2>結論：生涯を通じたプロセス</h2>
+                <p>メタボリックシンドロームは…</p>
+                <ul style="font-size: 1.1em;">
+                    <li class="fragment"><span style="color: #dc3545; font-weight:bold;">「内臓脂肪の暴走」</span>から始まり、</li>
+                    <li class="fragment"><span style="color: #007bff; font-weight:bold;">「インスリン抵抗性」</span>をハブとして全身に広がり、</li>
+                    <li class="fragment"><span style="color: #4c6ef5; font-weight:bold;">「加齢」</span>という避けられない要因によって加速される、</li>
+                </ul>
+                <p class="fragment" style="margin-top: 30px; font-size: 1.3em;">
+                    生涯にわたる、複雑でダイナミックなプロセスです。
+                </p>
+                 <p class="fragment" style="margin-top: 30px;">
+                    各ライフステージに応じた理解と対策が不可欠です。
+                </p>
+            </section>
+
+            <section>
+                <h2>ご清覧ありがとうございました</h2>
+                <p style="margin-top: 80px;">本資料は、科学的知見に基づき、メタボリックシンドロームの理解を深めるために作成されました。</p>
+                <p class="source-text">
+                    出典:「メタボリックシンドロームの病態生理：その発症機序と加齢との本質的関連性に関する理論的考察」<br>
+                    および、関連する厚生労働省、日本老年医学会等の公開資料。
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+        });
+    </script>
+</body>
+</html>

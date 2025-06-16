@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：メタボリックシンドロームの深層</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 600px;
+            height: 320px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow::after {
+            content: '▼';
+            display: block;
+            text-align: center;
+            font-size: 2rem;
+            color: #0096C7;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="bg-[#F0F8FF]">
+
+    <header class="bg-[#004AAD] text-white text-center py-8 px-4">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">メタボリックシンドロームの深層</h1>
+        <p class="text-lg md:text-xl text-[#CAF0F8]">なぜ加齢とともにリスクは増大するのか？その理論とメカニズム</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <section id="definition" class="md:col-span-2 bg-white rounded-lg shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-[#004AAD] mb-4">1. 脅威の正体：メタボリックシンドロームとは？</h2>
+                <p class="mb-6 text-gray-700">メタボリックシンドロームは、単なる肥満ではありません。生命を脅かす心血管疾患や糖尿病の強力な危険因子となる、代謝異常の複合体です。その全ての引き金は、お腹の奥深くにある「内臓脂肪」の機能不全から始まります。</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-[#CAF0F8] rounded-lg p-4">
+                        <p class="text-5xl mb-2">①</p>
+                        <h3 class="text-xl font-bold text-[#004AAD]">内臓脂肪の蓄積</h3>
+                        <p class="text-sm text-gray-600">全ての始まり。ウエスト周囲径が男性 ≥85cm, 女性 ≥90cmが基準。</p>
+                    </div>
+                    <div class="bg-[#ADE8F4] rounded-lg p-4">
+                        <p class="text-5xl mb-2">②</p>
+                        <h3 class="text-xl font-bold text-[#004AAD]">複数の代謝異常</h3>
+                        <p class="text-sm text-gray-600">「高血圧」「高血糖」「脂質異常」のうち2つ以上が合併する状態。</p>
+                    </div>
+                    <div class="bg-[#48CAE4] rounded-lg p-4">
+                         <p class="text-5xl mb-2">③</p>
+                        <h3 class="text-xl font-bold text-[#004AAD]">深刻なリスク</h3>
+                        <p class="text-sm text-gray-600">動脈硬化を急速に進行させ、心筋梗塞や脳卒中のリスクを飛躍的に高める。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="adipocytokine" class="bg-white rounded-lg shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-[#004AAD] mb-4">2. 疾患のエンジン：暴走する内臓脂肪</h2>
+                <p class="mb-6 text-gray-700">過剰に蓄積し肥大化した内臓脂肪細胞は、もはや単なるエネルギー貯蔵庫ではありません。有害物質を分泌する「炎症性の内分泌器官」へと変貌し、全身の代謝バランスを破壊します。</p>
+                <div class="chart-container h-80">
+                    <canvas id="adipokineChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">内臓脂肪の機能不全は、インスリン感受性を高める保護的なアディポネクチン（善玉）の分泌を減少させ、インスリン抵抗性や血栓、高血圧を引き起こす有害な物質（悪玉）の分泌を増加させます。</p>
+            </section>
+
+            <section id="flowchart" class="bg-white rounded-lg shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-[#004AAD] mb-4">3. 負の連鎖：病態進行のフローチャート</h2>
+                <p class="mb-6 text-gray-700">一つの機能不全が、ドミノ倒しのように次々と新たな問題を引き起こし、全身を蝕んでいくプロセスを可視化します。</p>
+                 <div class="space-y-4">
+                    <div class="bg-gray-100 p-3 rounded-lg text-center flow-arrow">
+                        <h4 class="font-bold text-lg text-gray-800">内臓脂肪の蓄積・機能不全</h4>
+                        <p class="text-sm text-gray-600">有害物質（TNF-α等）を分泌</p>
+                    </div>
+                    <div class="bg-gray-100 p-3 rounded-lg text-center flow-arrow">
+                        <h4 class="font-bold text-lg text-gray-800">インスリン抵抗性</h4>
+                        <p class="text-sm text-gray-600">インスリンが効きにくくなり、血糖値が上昇</p>
+                    </div>
+                     <div class="bg-gray-100 p-3 rounded-lg text-center flow-arrow">
+                        <h4 class="font-bold text-lg text-gray-800">高インスリン血症</h4>
+                        <p class="text-sm text-gray-600">膵臓が過剰にインスリンを分泌して代償</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                       <div class="bg-red-100 p-3 rounded-lg text-center">
+                            <h4 class="font-bold text-red-700">高血圧</h4>
+                             <p class="text-sm text-gray-600">インスリンが腎臓に作用</p>
+                        </div>
+                        <div class="bg-yellow-100 p-3 rounded-lg text-center">
+                            <h4 class="font-bold text-yellow-700">脂質異常症</h4>
+                             <p class="text-sm text-gray-600">インスリンが肝臓に作用</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="aging-muscle" class="bg-white rounded-lg shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-[#004AAD] mb-4">4. 加齢というアクセル①：身体組成の変化</h2>
+                 <p class="mb-6 text-gray-700">加齢は、メタボリックシンドロームの進行を加速させる最大の要因です。その一つが、筋肉の減少（サルコペニア）と基礎代謝の低下です。</p>
+                <div class="chart-container h-80">
+                    <canvas id="bodyCompositionChart"></canvas>
+                </div>
+                <p class="mt-4 text-sm text-gray-600">加齢により筋肉量が減少すると、基礎代謝が低下し、エネルギーが消費されにくくなります。さらに、血糖の最大の受け皿である筋肉を失うことで、インスリン抵抗性が悪化。この悪循環が内臓脂肪の蓄積をさらに促進します。</p>
+            </section>
+
+            <section id="aging-hormone" class="bg-white rounded-lg shadow-xl p-6">
+                 <h2 class="text-2xl font-bold text-[#004AAD] mb-4">5. 加齢というアクセル②：内分泌系の変化</h2>
+                 <p class="mb-6 text-gray-700">加齢は、代謝を制御するホルモンバランスも劇的に変化させます。これが内臓脂肪の蓄積と筋肉の減少に拍車をかけます。</p>
+                 <div class="chart-container h-80">
+                    <canvas id="hormoneDeclineChart"></canvas>
+                </div>
+                 <p class="mt-4 text-sm text-gray-600">成長ホルモン、女性ホルモン（エストロゲン）、男性ホルモン（テストステロン）は、いずれも筋肉量を維持し、脂肪の蓄積を抑制する働きがあります。これらのホルモンの加齢に伴う低下は、メタボリックリスクを直接的に増大させます。</p>
+            </section>
+            
+            <section id="lifestyle" class="md:col-span-2 bg-white rounded-lg shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-[#004AAD] mb-4">6. リスクの乗数：生活習慣の累積的影響</h2>
+                <p class="mb-6 text-gray-700">加齢によって脆弱化した身体に、不適切な生活習慣が加わると、その悪影響は何倍にも増幅されます。若年期には問題にならなかった習慣が、老年期に深刻な結果をもたらすのはこのためです。</p>
+                <div class="chart-container h-96">
+                    <canvas id="lifestyleImpactChart"></canvas>
+                </div>
+                 <p class="mt-4 text-sm text-gray-600 text-center">不適切な食事や運動不足はもちろん、慢性的なストレスや睡眠不足も、ホルモンバランスを乱し、インスリン抵抗性を悪化させる強力なリスク因子となります。</p>
+            </section>
+
+             <section id="timeline" class="md:col-span-2 bg-white rounded-lg shadow-xl p-6">
+                <h2 class="text-2xl font-bold text-[#004AAD] mb-4">7. 臨床的進行と生涯の目標</h2>
+                <p class="mb-6 text-gray-700">メタボリックシンドロームは、静かに、しかし着実に進行します。その典型的な進行経路と、ライフステージに応じた対策の重要性を理解することが不可欠です。</p>
+                <div class="relative w-full">
+                    <div class="border-t-4 border-[#0096C7] absolute top-1/2 left-0 w-full"></div>
+                    <div class="relative flex justify-between items-start">
+                        <div class="w-1/4 text-center">
+                            <div class="bg-[#0096C7] text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2 text-xl font-bold">1</div>
+                            <h3 class="font-bold text-[#004AAD]">腹囲の増大</h3>
+                            <p class="text-xs text-gray-500">若年成人期〜</p>
+                        </div>
+                        <div class="w-1/4 text-center">
+                             <div class="bg-[#0096C7] text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2 text-xl font-bold">2</div>
+                            <h3 class="font-bold text-[#004AAD]">脂質異常</h3>
+                            <p class="text-xs text-gray-500">中年期〜</p>
+                        </div>
+                        <div class="w-1/4 text-center">
+                             <div class="bg-[#0096C7] text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2 text-xl font-bold">3</div>
+                            <h3 class="font-bold text-[#004AAD]">高血圧</h3>
+                            <p class="text-xs text-gray-500">中年期後期〜</p>
+                        </div>
+                        <div class="w-1/4 text-center">
+                            <div class="bg-[#0096C7] text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2 text-xl font-bold">4</div>
+                            <h3 class="font-bold text-[#004AAD]">高血糖</h3>
+                            <p class="text-xs text-gray-500">老年期〜</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-md">
+                    <h4 class="font-bold">高齢者における注意点</h4>
+                    <p>後期高齢者では、過度な減量はサルコペニアを悪化させ、フレイル（虚弱）を招く危険があります。目標は理想的な数値の追求から、「筋力と生活の質の維持」へとシフトする必要があります。</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="text-center p-6 mt-8 bg-[#004AAD] text-white">
+        <p>本インフォグラフィックは提供された研究報告に基づき作成されたものです。</p>
+        <p class="text-xs mt-2 text-[#CAF0F8]">Copyright &copy; 2025. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        const colorPalette = {
+            primary: '#004AAD',
+            secondary: '#0096C7',
+            tertiary: '#48CAE4',
+            light: '#ADE8F4',
+            lightest: '#CAF0F8',
+            accentGood: '#2E7D32',
+            accentBad: '#C62828',
+            font: '#374151'
+        };
+
+        function wrapLabel(str, maxWidth) {
+            if (typeof str !== 'string' || str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(/\s+/);
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine.length > 0) {
+                lines.push(currentLine);
+            }
+            return lines;
+        }
+
+        const sharedTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            return Array.isArray(label) ? label.join(' ') : label;
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: colorPalette.font
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: colorPalette.font },
+                    grid: { color: 'rgba(0,0,0,0.05)' }
+                },
+                x: {
+                    ticks: { color: colorPalette.font },
+                    grid: { color: 'rgba(0,0,0,0.05)' }
+                }
+            },
+            responsive: true,
+            maintainAspectRatio: false
+        };
+
+        new Chart(document.getElementById('adipokineChart'), {
+            type: 'bar',
+            data: {
+                labels: ['アディポネクチン (善玉)', 'TNF-α (悪玉)', 'PAI-1 (悪玉)'],
+                datasets: [
+                    {
+                        label: '健康な内臓脂肪',
+                        data: [100, 20, 20],
+                        backgroundColor: colorPalette.accentGood,
+                        borderColor: colorPalette.accentGood,
+                        borderWidth: 1
+                    },
+                    {
+                        label: '機能不全の内臓脂肪',
+                        data: [30, 100, 100],
+                        backgroundColor: colorPalette.accentBad,
+                        borderColor: colorPalette.accentBad,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                ...sharedTooltipOptions,
+                plugins: {
+                     ...sharedTooltipOptions.plugins,
+                    title: {
+                        display: true,
+                        text: 'アディポサイトカイン分泌の変化',
+                        color: colorPalette.font,
+                        font: { size: 16 }
+                    }
+                },
+                scales: {
+                    y: { ...sharedTooltipOptions.scales.y, title: { display: true, text: '相対的分泌量' } },
+                    x: { ...sharedTooltipOptions.scales.x }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('bodyCompositionChart'), {
+            type: 'bar',
+            data: {
+                labels: ['30代', '50代', '70代'],
+                datasets: [
+                    {
+                        label: '筋肉量',
+                        data: [45, 38, 30],
+                        backgroundColor: colorPalette.primary,
+                    },
+                    {
+                        label: '脂肪量',
+                        data: [20, 28, 35],
+                        backgroundColor: colorPalette.secondary,
+                    }
+                ]
+            },
+            options: {
+                ...sharedTooltipOptions,
+                 plugins: {
+                    ...sharedTooltipOptions.plugins,
+                    title: {
+                        display: true,
+                        text: '加齢に伴う身体組成の変化',
+                        color: colorPalette.font,
+                        font: { size: 16 }
+                    }
+                },
+                scales: {
+                    x: { stacked: true },
+                    y: { stacked: true, title: { display: true, text: '体重に占める割合 (%)' } }
+                },
+            }
+        });
+        
+        new Chart(document.getElementById('hormoneDeclineChart'), {
+            type: 'line',
+            data: {
+                labels: ['20', '30', '40', '50', '60', '70', '80'],
+                datasets: [
+                    {
+                        label: '成長ホルモン (男女)',
+                        data: [100, 85, 65, 45, 30, 20, 15],
+                        borderColor: colorPalette.primary,
+                        backgroundColor: 'transparent',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'エストロゲン (女性)',
+                        data: [95, 100, 90, 70, 20, 15, 10],
+                        borderColor: colorPalette.secondary,
+                        backgroundColor: 'transparent',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'テストステロン (男性)',
+                        data: [90, 100, 95, 85, 75, 65, 55],
+                        borderColor: colorPalette.tertiary,
+                        backgroundColor: 'transparent',
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                 ...sharedTooltipOptions,
+                 plugins: {
+                    ...sharedTooltipOptions.plugins,
+                    title: {
+                        display: true,
+                        text: '主要ホルモンの加齢による変化 (相対値)',
+                        color: colorPalette.font,
+                        font: { size: 16 }
+                    }
+                },
+                scales: {
+                     y: { ...sharedTooltipOptions.scales.y, title: { display: true, text: '分泌レベル (ピーク時=100)' } },
+                     x: { ...sharedTooltipOptions.scales.x, title: { display: true, text: '年齢 (歳)' } }
+                }
+            }
+        });
+
+        const lifestyleLabels = [
+            wrapLabel('高脂肪・高糖質の食事', 16),
+            wrapLabel('運動不足・座りがちな生活', 16),
+            '慢性的な心理的ストレス',
+            '睡眠不足・質の悪い睡眠'
+        ];
+
+        new Chart(document.getElementById('lifestyleImpactChart'), {
+            type: 'bubble',
+            data: {
+                labels: lifestyleLabels,
+                datasets: [{
+                    label: '生活習慣リスク',
+                    data: [
+                        {x: 20, y: 30, r: 25},
+                        {x: 40, y: 60, r: 28},
+                        {x: 70, y: 70, r: 18},
+                        {x: 60, y: 20, r: 22}
+                    ],
+                    backgroundColor: [
+                        colorPalette.primary,
+                        colorPalette.secondary,
+                        colorPalette.tertiary,
+                        colorPalette.light
+                    ],
+                    hoverBackgroundColor: colorPalette.primary,
+                }]
+            },
+            options: {
+                 ...sharedTooltipOptions,
+                 plugins: {
+                    ...sharedTooltipOptions.plugins,
+                    title: {
+                        display: true,
+                        text: '生活習慣因子のインパクト',
+                        color: colorPalette.font,
+                        font: { size: 16 }
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: { display: false },
+                    x: { display: false }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
