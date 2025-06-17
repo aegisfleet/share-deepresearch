@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devin Enterprise導入に関する技術ガイド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        
+        /* Energetic & Playful Palette */
+        .text-primary-dark { color: #004d40; } /* teal-900 */
+        .text-primary { color: #00796b; } /* teal-700 */
+        .text-primary-light { color: #009688; } /* teal-500 */
+        .text-accent-orange { color: #f57c00; } /* orange-600 */
+        .text-accent-pink { color: #e91e63; } /* pink-500 */
+        
+        .bg-primary-dark { background-color: #004d40; }
+        .bg-primary-lightest { background-color: #e0f2f1; } /* teal-50 */
+        .bg-accent-orange { background-color: #f57c00; }
+        .border-primary-light { border-color: #009688; }
+        .border-accent-orange { border-color: #f57c00; }
+
+        .kpi-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+        .kpi-number {
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #004d40;
+        }
+        .kpi-label {
+            margin-top: 0.75rem;
+            font-size: 1.25rem;
+            color: #00796b;
+        }
+        .flow-node {
+            background-color: white;
+            border: 2px solid #b2dfdb; /* teal-100 */
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            flex: 1;
+            min-width: 180px;
+        }
+        .flow-arrow {
+            font-size: 2.5rem;
+            color: #00796b;
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-primary-dark text-white text-center py-16 px-4">
+        <h1 class="text-4xl md:text-5xl font-black uppercase tracking-wider">Devin Enterpriseの導入</h1>
+        <p class="mt-4 text-lg md:text-xl max-w-4xl mx-auto text-teal-200">Cognition AIのDevinをプライベートGitHub環境に統合するためのビジュアル技術ガイド</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="intro" class="my-12 text-center max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-primary-dark mb-4">自社コードベースのためのAIソフトウェアエンジニア</h2>
+            <p class="text-lg text-gray-700">Devin Enterpriseは、開発者の生産性を向上させる強力なツール群を提供します。Devin Searchはコードに対する自然言語クエリを可能にし、Devin Wikiは詳細なドキュメントとアーキテクチャ図を自動生成することで、チームに前例のないコンテキストとスピードをもたらします。</p>
+        </section>
+
+        <section id="deployment-models" class="my-16">
+            <h2 class="text-3xl font-bold text-primary-dark mb-8 text-center">導入アーキテクチャの選択</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-primary-light">
+                    <h3 class="text-2xl font-bold text-primary-dark mb-3">SaaSモデル</h3>
+                    <p class="mb-4">スピードと最小限のオーバーヘッドを優先するチーム向け。Cognition AIによる完全マネージド型。</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center"><span class="text-primary mr-2">✓</span> 迅速なセットアップ（数分）</li>
+                        <li class="flex items-center"><span class="text-primary mr-2">✓</span> インフラのメンテナンス不要</li>
+                        <li class="flex items-center"><span class="text-primary mr-2">✓</span> アップデートへの即時アクセス</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-accent-orange">
+                    <h3 class="text-2xl font-bold text-accent-orange mb-3">VPCモデル</h3>
+                    <p class="mb-4">厳格なセキュリティとデータガバナンス要件を持つ企業向け。</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-center"><span class="text-accent-orange mr-2">✓</span> 最大限のデータ分離</li>
+                        <li class="flex items-center"><span class="text-accent-orange mr-2">✓</span> 顧客管理下のネットワーク</li>
+                        <li class="flex items-center"><span class="text-accent-orange mr-2">✓</span> ゼロデータ保持ポリシー</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="vpc-architecture" class="my-16 bg-primary-lightest p-8 rounded-lg shadow-inner">
+            <h2 class="text-3xl font-bold text-primary-dark mb-6 text-center">VPCハイブリッドアーキテクチャの理解</h2>
+            <p class="text-center max-w-3xl mx-auto mb-8">VPCモデルは完全なオンプレミスではありません。実行環境は顧客クラウド内に配置されますが、AIコントロールプレーンはCognition側に残り、セキュアなアウトバウンド接続を必要とするハイブリッド構成です。</p>
+            <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0">
+                <div class="flow-node border-accent-orange">
+                    <div class="text-lg font-bold text-accent-orange">貴社クラウド (AWS/Azure)</div>
+                    <div class="text-sm mt-2">ソースコード & データ</div>
+                    <div class="text-4xl my-3">🏢</div>
+                    <div class="font-semibold">実行環境</div>
+                    <div class="text-xs text-gray-600">(DevBox VM)</div>
+                </div>
+                
+                <div class="flex items-center flow-arrow transform md:rotate-0 rotate-90">
+                    <div class="text-sm font-semibold whitespace-nowrap -mt-10 md:mt-0">HTTPS/443</div>
+                    ⇄
+                </div>
+
+                <div class="flow-node border-primary-light">
+                    <div class="text-lg font-bold text-primary">Cognition AI クラウド</div>
+                    <div class="text-sm mt-2">制御 & ロジック</div>
+                    <div class="text-4xl my-3">🧠</div>
+                    <div class="font-semibold">AIコントロールプレーン</div>
+                    <div class="text-xs text-gray-600">(「頭脳」部分)</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tco" class="my-16">
+             <h2 class="text-3xl font-bold text-primary-dark mb-8 text-center">VPCモデルの総所有コスト (TCO)</h2>
+             <p class="text-center max-w-3xl mx-auto mb-8">エンタープライズライセンス料に加え、VPCモデルでは顧客管理による多額のインフラコストが発生します。DevBox実行環境をホストするために、高性能な仮想化対応インスタンスが必要です。</p>
+             <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="chart-container">
+                    <canvas id="tcoChart"></canvas>
+                </div>
+             </div>
+        </section>
+
+        <section id="multi-repo" class="my-16">
+            <h2 class="text-3xl font-bold text-primary-dark mb-8 text-center">課題：複数リポジトリを横断した作業</h2>
+            <p class="text-center max-w-3xl mx-auto mb-8">Devin Searchのスコープはリポジトリ単位であり、マイクロサービスアーキテクチャでは課題となります。Devinがコードベース全体を理解し、横断的に作業するためには戦略的な回避策が不可欠です。</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-primary mb-2">1. タスクの分解</h3>
+                    <p class="text-sm">大規模なクロスリポジトリタスクを、検証可能な小さなサブタスクに分割します。各タスクを並列のDevinセッションで実行します。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-primary mb-2">2. MultiDevin & API</h3>
+                    <p class="text-sm">MultiDevin機能を使い、「マネージャー」Devinが最大10の「ワーカー」Devinにタスクを委任し、大規模な変更を実行させます。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="font-bold text-accent-orange mb-2">3. 戦略的コンテキスト (Repo Knowledge)</h3>
+                    <p class="text-sm">最も強力な方法：グローバルな「Repo Knowledge」を定義し、リポジトリ間の関係性をDevinに教え込み、全てのタスクに重要なコンテキストを提供します。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="security-practices" class="my-16 bg-primary-lightest p-8 rounded-lg shadow-inner">
+            <h2 class="text-3xl font-bold text-primary-dark mb-6 text-center">必須のセキュリティとエンジニアリングプラクティス</h2>
+            <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow-md flex items-start">
+                    <div class="text-accent-pink text-3xl mr-4">🛡️</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-primary-dark">Human-in-the-Loopの徹底</h3>
+                        <p class="text-gray-700">AIが生成したプルリクエストは全て人間がレビューする必要があります。これは最も重要なガードレールです。Devinの権限モデルはユーザー単位ではなく組織レベルであるため、監督の必要性が高まります。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md flex items-start">
+                    <div class="text-accent-pink text-3xl mr-4">⚙️</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-primary-dark">CI/CDパイプラインによる自動化</h3>
+                        <p class="text-gray-700">ブランチ保護ルールを活用します。DevinからのPRをマージする前に、全てのステータスチェック（テスト、リント、セキュリティスキャン）がパスすることを必須とします。</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md flex items-start">
+                    <div class="text-accent-pink text-3xl mr-4">🔑</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-primary-dark">最小権限の原則の適用</h3>
+                        <p class="text-gray-700">Devin GitHub Appには、必要なリポジトリへのアクセス権のみを付与します。潜在的な影響範囲を最小限に抑えるため、「全リポジトリ」への包括的な権限付与は避けてください。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-6 bg-primary-dark text-teal-200 mt-8">
+        <p>本インフォグラフィックは技術レポート「Devin SearchおよびDevin WikiのプライベートGitHubリポジトリへの導入に関する包括的技術レポート」に基づいています。</p>
+        <p>&copy; 2025 Canvas Infographics. 図解目的。</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const energeticPalette = {
+                darkTeal: '#004d40',
+                teal: '#00796b',
+                lightTeal: '#009688',
+                orange: '#f57c00',
+                pink: '#e91e63',
+                gray: '#4b5563',
+                grid: '#e2e8f0'
+            };
+
+            const globalChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                         labels: {
+                            color: energeticPalette.gray,
+                            font: { size: 14 }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join('');
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: energeticPalette.gray },
+                        grid: { color: energeticPalette.grid }
+                    },
+                    x: {
+                        ticks: { color: energeticPalette.gray },
+                        grid: { display: false }
+                    }
+                }
+            };
+            
+            function wrapLabel(str, maxLen = 10) { // Adjusted for Japanese
+                if (str.length <= maxLen) return str;
+                let result = [];
+                for (let i = 0; i < str.length; i += maxLen) {
+                    result.push(str.substring(i, i + maxLen));
+                }
+                return result;
+            }
+
+            new Chart(document.getElementById('tcoChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Devinライセンス', 'コンピューティング(AWS)', 'コンピューティング(Azure)', 'ストレージ＆データ', '人件費(設定/維持)'].map(label => wrapLabel(label)),
+                    datasets: [{
+                        label: '相対的な推定コスト構成比',
+                        data: [100, 85, 45, 15, 30],
+                        backgroundColor: [
+                            energeticPalette.darkTeal,
+                            energeticPalette.orange,
+                            energeticPalette.orange,
+                            energeticPalette.lightTeal,
+                            energeticPalette.teal
+                        ],
+                        borderColor: energeticPalette.darkTeal,
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: { 
+                    ...globalChartOptions,
+                    plugins: { 
+                        ...globalChartOptions.plugins, 
+                        legend: { display: false },
+                        tooltip: {
+                             callbacks: {
+                                ...globalChartOptions.plugins.tooltip.callbacks,
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y + '%';
+                                    }
+                                    return label;
+                                }
+                             }
+                        }
+                    },
+                    scales: {
+                        ...globalChartOptions.scales,
+                         y: {
+                            ...globalChartOptions.scales.y,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%'
+                                }
+                            },
+                             title: {
+                                display: true,
+                                text: '相対コスト指数'
+                            }
+                         }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

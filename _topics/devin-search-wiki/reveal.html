@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>AIソフトウェアエンジニア「Devin」導入ガイド</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/white.min.css" id="theme">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- カスタムスタイル --- */
+        :root {
+            --r-main-font: 'Roboto', 'Noto Sans JP', sans-serif;
+            --r-heading-font: 'Roboto', 'Noto Sans JP', sans-serif;
+            --r-main-color: #333;
+            --r-heading-color: #111;
+            --r-link-color: #007bff;
+            --r-link-color-hover: #0056b3;
+            --r-background-color: #f8f9fa;
+        }
+
+        .reveal {
+            font-family: var(--r-main-font);
+        }
+
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+            font-family: var(--r-heading-font);
+            font-weight: 700;
+            color: var(--r-heading-color);
+        }
+        
+        .reveal h2 {
+            font-size: 2.2em;
+            margin-bottom: 40px;
+        }
+        
+        .reveal p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .reveal .icon {
+            font-size: 4em;
+            color: var(--r-link-color);
+            margin: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .reveal .icon-small {
+            font-size: 2em;
+            color: var(--r-link-color);
+            margin: 0 15px;
+            vertical-align: middle;
+        }
+        
+        .reveal .accent {
+            color: var(--r-link-color);
+            font-weight: bold;
+        }
+        
+        .reveal .warning {
+            color: #d9534f;
+            font-weight: bold;
+        }
+        
+        .reveal .highlight-box {
+            background-color: #e9ecef;
+            border-left: 5px solid var(--r-link-color);
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        /* --- 自動再生アニメーション --- */
+        @keyframes autoFadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .auto-fade {
+            opacity: 0;
+            animation: autoFadeInUp 0.6s ease-out forwards;
+        }
+        
+        /* 各要素の表示遅延時間 */
+        .item-1 { animation-delay: 0.2s; }
+        .item-2 { animation-delay: 0.5s; }
+        .item-3 { animation-delay: 0.8s; }
+        .item-4 { animation-delay: 1.1s; }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .reveal .animated-icon {
+            animation: pulse 2s infinite ease-in-out;
+        }
+        
+        .flex-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .flex-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .flow-arrow {
+            font-size: 3em;
+            color: #adb5bd;
+            margin: 0 30px;
+            align-self: center;
+        }
+
+        .checklist li {
+            list-style-type: none;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .checklist .fa-check-square, .checklist .fa-square-xmark {
+            margin-right: 15px;
+            color: #28a745;
+        }
+        .checklist .fa-square-xmark {
+             color: #dc3545;
+        }
+
+    </style>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+
+        <!-- S1: タイトル -->
+        <section data-transition="zoom">
+            <i class="fa-solid fa-robot icon auto-fade item-1" style="font-size: 6em; margin-bottom: 40px;"></i>
+            <h1 class="auto-fade item-2">AIソフトウェアエンジニア「Devin」導入ガイド</h1>
+            <p class="auto-fade item-3">プライベートリポジトリ活用のための技術と戦略</p>
+        </section>
+
+        <!-- S2: 課題提起 -->
+        <section>
+            <h2>こんな課題、ありませんか？</h2>
+            <h3>開発現場が抱える「知識」のサイロ化</h3>
+            <div class="flex-container" style="margin-top: 50px;">
+                <div class="flex-item auto-fade item-1">
+                    <i class="fa-solid fa-user-plus icon"></i>
+                    <h4>オンボーディング</h4>
+                    <p>新メンバーの立ち上がりに時間がかかる</p>
+                </div>
+                <div class="flex-item auto-fade item-2">
+                    <i class="fa-solid fa-project-diagram icon"></i>
+                    <h4>コードの複雑化</h4>
+                    <p>巨大なコードベースの全体像が不明</p>
+                </div>
+                <div class="flex-item auto-fade item-3">
+                    <i class="fa-solid fa-book-skull icon"></i>
+                    <h4>ドキュメントの陳腐化</h4>
+                    <p>ドキュメントが古くて役に立たない</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- S3: 解決策の提示 -->
+        <section>
+            <h2>Devinが提供する「生きている知識」</h2>
+            <div class="flex-container" style="margin-top: 80px;">
+                <div class="flex-item auto-fade item-1">
+                    <i class="fa-solid fa-magnifying-glass icon"></i>
+                    <h3>Devin Search</h3>
+                    <p>自然言語でコードを<span class="accent">検索</span>し、<br>即座に回答を得る</p>
+                </div>
+                <div style="font-size: 4em; color: #ced4da; align-self: center;" class="auto-fade item-3">+</div>
+                <div class="flex-item auto-fade item-2">
+                    <i class="fa-solid fa-book-open icon"></i>
+                    <h3>Devin Wiki</h3>
+                    <p>リポジトリを<span class="accent">自動分析</span>し、<br>常に最新のドキュメントを生成</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- S4: デプロイモデルの選択 -->
+        <section>
+            <h2>導入モデルの選択: SaaS vs VPC</h2>
+            <div class="flex-container" style="align-items: center;">
+                <div class="flex-item auto-fade item-1">
+                    <i class="fa-solid fa-cloud icon"></i>
+                    <h3>SaaSモデル</h3>
+                    <p><strong>迅速</strong>なセットアップ<br>Cognitionによるマネージド環境</p>
+                </div>
+                <div class="flex-item auto-fade item-2">
+                    <i class="fa-solid fa-network-wired icon"></i>
+                    <h3>VPCモデル</h3>
+                    <p><strong>最大限のセキュリティ</strong><br>自社クラウド内でのデータ保持</p>
+                </div>
+            </div>
+            <div class="auto-fade item-3 highlight-box" style="margin-top: 60px;">
+                <p><i class="fa-solid fa-triangle-exclamation" style="color:#f0ad4e;"></i> <span class="accent">重要:</span> VPCモデルを選択する前に、次の事実を知る必要があります。</p>
+            </div>
+        </section>
+        
+        <!-- S5: アーキテクチャの真実 -->
+        <section data-auto-animate>
+            <h2>VPCモデルのアーキテクチャの"真実"</h2>
+            <p>これは完全なオンプレミスではありません</p>
+            <div class="flex-container" style="margin-top: 60px;">
+                 <div class="flex-item auto-fade item-1" style="border: 2px solid #ccc; padding: 20px; border-radius: 10px;">
+                     <p><strong>あなたのVPC (AWS/Azure)</strong></p>
+                     <i class="fa-solid fa-server icon"></i>
+                     <p>実行環境 (DevBox)</p>
+                     <small>コードはこちらで処理されます</small>
+                 </div>
+                 <div class="flow-arrow auto-fade item-2">
+                     <i class="fa-solid fa-arrows-left-right"></i>
+                     <p style="font-size: 0.4em; margin-top: 10px;">セキュアな<br>WebSocket通信<br><span class="warning">(必須)</span></p>
+                 </div>
+                 <div class="flex-item auto-fade item-3" style="border: 2px solid var(--r-link-color); padding: 20px; border-radius: 10px;">
+                     <p><strong>Cognition Cloud</strong></p>
+                     <i class="fa-solid fa-brain icon animated-icon"></i>
+                     <p>AIの頭脳 (制御プレーン)</p>
+                     <small>指示はこちらから来ます</small>
+                 </div>
+            </div>
+            <p class="auto-fade item-4" style="margin-top: 40px;">データは安全ですが、<span class="accent">AIの制御はCognition社のクラウドに依存するハイブリッド構造</span>です。</p>
+        </section>
+
+        <!-- S6: GitHub連携とセキュリティ -->
+        <section>
+            <h2>GitHub連携とセキュリティの鍵</h2>
+            <div class="flex-container" style="align-items: center; margin-top: 50px;">
+                <div class="flex-item auto-fade item-1">
+                    <i class="fa-solid fa-shield-halved icon"></i>
+                    <h4>最小権限の原則</h4>
+                    <p>Devinに許可するリポジトリは<br><span class="accent">必要最小限</span>に絞る</p>
+                </div>
+                <div class="flex-item auto-fade item-2">
+                    <i class="fa-solid fa-key icon"></i>
+                    <h4 class="warning">最重要: 組織レベルの権限</h4>
+                    <p>Devinの権限は「<span class="warning">組織</span>」に付与され、<br>個々のユーザー権限を<span class="warning">無視</span>します</p>
+                </div>
+            </div>
+             <div class="auto-fade item-3 highlight-box">
+                <p>つまり、Devinを使えるユーザーは誰でも、<span class="warning">Devinに与えられた全ての権限を行使できる</span>可能性があります。</p>
+            </div>
+        </section>
+
+        <!-- S7: Devin Searchの動作イメージ -->
+        <section>
+            <h2>How It Works: Devin Search</h2>
+            <div class="flex-container" style="margin-top: 80px;">
+                <div class="flex-item auto-fade item-1">
+                    <i class="fa-solid fa-keyboard icon-small"></i>
+                    <p><strong>1. 質問</strong></p>
+                    <p style="font-size:0.8em">「認証ロジックはどこ？」</p>
+                </div>
+                <i class="fa-solid fa-arrow-right flow-arrow auto-fade item-2"></i>
+                <div class="flex-item auto-fade item-2">
+                    <i class="fa-solid fa-magnifying-glass-location icon-small"></i>
+                    <p><strong>2. 検索</strong></p>
+                    <p style="font-size:0.8em">コードベースを探索</p>
+                </div>
+                <i class="fa-solid fa-arrow-right flow-arrow auto-fade item-3"></i>
+                <div class="flex-item auto-fade item-3">
+                    <i class="fa-solid fa-file-code icon-small"></i>
+                    <p><strong>3. 回答</strong></p>
+                    <p style="font-size:0.8em">コード引用付きで解説</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- S8: Devin Wikiの動作イメージ -->
+        <section>
+            <h2>How It Works: Devin Wiki</h2>
+            <div class="flex-container" style="margin-top: 80px;">
+                <div class="flex-item auto-fade item-1">
+                    <i class="fa-brands fa-github icon-small"></i>
+                    <p><strong>1. 接続</strong></p>
+                    <p style="font-size:0.8em">リポジトリを連携</p>
+                </div>
+                <i class="fa-solid fa-arrow-right flow-arrow auto-fade item-2"></i>
+                <div class="flex-item auto-fade item-2">
+                    <i class="fa-solid fa-gears icon-small"></i>
+                    <p><strong>2. 分析</strong></p>
+                    <p style="font-size:0.8em">コードと依存関係を解析</p>
+                </div>
+                <i class="fa-solid fa-arrow-right flow-arrow auto-fade item-3"></i>
+                <div class="flex-item auto-fade item-3">
+                    <i class="fa-solid fa-diagram-project icon-small"></i>
+                    <p><strong>3. 生成</strong></p>
+                    <p style="font-size:0.8em">アーキテクチャ図を含むWikiを作成</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- S9: 複数リポジトリの壁 (修正版) -->
+        <section>
+            <h2>しかし、現実のプロジェクトはもっと複雑…</h2>
+            <div style="position: relative; height: 500px; margin-top: 50px;">
+                <div class="auto-fade item-1" style="position:absolute; top: 10%; left: 15%; text-align: center;">
+                    <i class="fa-solid fa-box icon-small"></i>
+                    <p>Repo A (Frontend)</p>
+                </div>
+                <div class="auto-fade item-2" style="position:absolute; top: 10%; right: 15%; text-align: center;">
+                    <i class="fa-solid fa-box icon-small"></i>
+                    <p>Repo B (Backend)</p>
+                </div>
+                <div class="auto-fade item-3" style="position:absolute; top: 60%; left: 50%; transform: translateX(-50%); text-align: center;">
+                    <i class="fa-solid fa-box icon-small"></i>
+                    <p>Repo C (Shared Lib)</p>
+                </div>
+                <div class="auto-fade item-4" style="position: absolute; top: 40%; left: 50%; transform: translateX(-50%);">
+                    <i class="fa-solid fa-question-circle icon" style="font-size: 8em; color: #dc3545;"></i>
+                </div>
+            </div>
+            <p class="auto-fade item-4">1つの機能改修が、複数のリポジトリにまたがる場合は？</p>
+        </section>
+
+        <!-- S10: 横断検索の課題 -->
+        <section>
+            <h2>課題: Devin Searchの制約</h2>
+            <div style="text-align: center; margin-top: 50px;" class="auto-fade item-1">
+                <i class="fa-solid fa-user" style="font-size: 3em;"></i>
+                <i class="fa-solid fa-arrow-right" style="font-size: 2em; margin: 0 20px;"></i>
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 3em;"></i>
+            </div>
+            <div class="flex-container auto-fade item-2" style="margin-top: 40px; border-top: 2px dashed #ccc; padding-top: 20px;">
+                <div class="flex-item" style="border: 2px solid #ccc; padding:10px; border-radius: 5px;">Repo A</div>
+                <div class="flex-item" style="border: 2px solid #ccc; padding:10px; border-radius: 5px;">Repo B</div>
+                <div class="flex-item" style="border: 2px solid #ccc; padding:10px; border-radius: 5px;">Repo C</div>
+            </div>
+            <p class="auto-fade item-3" style="margin-top: 40px;">UIからの直接的な<span class="warning">複数リポジトリ横断検索</span>はサポートされていません。</p>
+        </section>
+
+        <!-- S11: 解決策1 -->
+        <section>
+            <h2>解決策①: 基本戦略</h2>
+            <h3>タスクを分割して並行実行</h3>
+            <div class="flex-container" style="margin-top: 80px;">
+                <div class="flex-item auto-fade item-1">
+                    <i class="fa-solid fa-puzzle-piece icon" style="font-size: 5em;"></i>
+                    <p>大規模タスク</p>
+                </div>
+                <div class="flow-arrow auto-fade item-2"><i class="fa-solid fa-right-long"></i></div>
+                <div class="flex-item auto-fade item-3">
+                    <div style="display: flex; justify-content: space-around;">
+                        <div>
+                            <i class="fa-solid fa-robot" style="font-size: 2.5em; color: #6c757d;"></i>
+                            <p>Devin A</p>
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-robot" style="font-size: 2.5em; color: #6c757d;"></i>
+                            <p>Devin B</p>
+                        </div>
+                    </div>
+                    <p>サブタスクに分割</p>
+                </div>
+            </div>
+             <p class="auto-fade item-4" style="font-size: 0.8em; margin-top: 40px;">基本的なアプローチですが、手動での管理が必要です。</p>
+        </section>
+
+        <!-- S12: 解決策2 -->
+        <section>
+            <h2>解決策②: <span class="accent">高度な戦略</span></h2>
+            <h3>Devinに「知識」と「手順」を教える</h3>
+            <div class="flex-container" style="margin-top: 80px;">
+                <div class="flex-item auto-fade item-1">
+                    <i class="fa-solid fa-lightbulb icon"></i>
+                    <h4>Repo Knowledge</h4>
+                    <p>リポジトリ間の<span class="accent">関係性</span>を<br>Devinに記憶させる</p>
+                </div>
+                <div class="flex-item auto-fade item-2">
+                    <i class="fa-solid fa-clipboard-list icon"></i>
+                    <h4>Playbooks</h4>
+                    <p>複数リポジトリにまたがる<br><span class="accent">定型作業</span>をテンプレート化する</p>
+                </div>
+            </div>
+            <p class="auto-fade item-3 highlight-box">これが複数リポジトリ環境を攻略する<span class="accent">真の鍵</span>です。</p>
+        </section>
+
+        <!-- S13: モノレポ考察 -->
+        <section>
+            <h2>戦略的考察: モノレポ vs マルチレポ</h2>
+            <p>Devinのポテンシャルを最大限に引き出すには？</p>
+            <div class="flex-container" style="margin-top: 80px;">
+                <div class="flex-item auto-fade item-1">
+                    <h4>マルチレポ</h4>
+                    <i class="fa-solid fa-cubes-stacked icon" style="color: #6c757d;"></i>
+                    <p>コンテキストが分断されがち<br>(高度な戦略が必須)</p>
+                </div>
+                <div class="flex-item auto-fade item-2">
+                    <h4>モノレポ</h4>
+                    <i class="fa-solid fa-cube icon"></i>
+                    <p>関連コードが1箇所に集約<br>(Devinが自然に全体を把握)</p>
+                </div>
+            </div>
+            <p class="auto-fade item-3" style="margin-top: 40px;">密結合なプロジェクトでは、<span class="accent">モノレポ</span>がDevinの効率を最大化する可能性があります。</p>
+        </section>
+
+        <!-- S14: 3つのチェックポイント -->
+        <section>
+            <h2>導入に向けた3つの最終チェックポイント</h2>
+            <div class="flex-container" style="margin-top: 80px;">
+                <div class="flex-item auto-fade item-1">
+                    <i class="fa-solid fa-shield-virus icon"></i>
+                    <h3>Security</h3>
+                    <p>AIのリスクをどう管理するか？</p>
+                </div>
+                <div class="flex-item auto-fade item-2">
+                    <i class="fa-solid fa-hand-holding-dollar icon"></i>
+                    <h3>Cost (TCO)</h3>
+                    <p>ライセンス以外の隠れコストは？</p>
+                </div>
+                <div class="flex-item auto-fade item-3">
+                    <i class="fa-solid fa-people-group icon"></i>
+                    <h3>Operation</h3>
+                    <p>チームはどう使いこなすか？</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- S15: Checklist Security -->
+        <section>
+            <h2>Checklist: <i class="fa-solid fa-shield-virus icon-small"></i>Security</h2>
+             <ul class="checklist" style="text-align: left; max-width: 800px; margin: 50px auto;">
+                <li class="auto-fade item-1"><i class="fa-solid fa-check-square"></i>人間によるコードレビューを必須のプロセスにする</li>
+                <li class="auto-fade item-2"><i class="fa-solid fa-check-square"></i>ブランチ保護ルールを徹底し、直接pushを防ぐ</li>
+                <li class="auto-fade item-3"><i class="fa-solid fa-check-square"></i>Devin Appに与えるリポジトリ権限を<span class="warning">最小限</span>にする</li>
+            </ul>
+        </section>
+
+        <!-- S16: Checklist Cost -->
+        <section>
+            <h2>Checklist: <i class="fa-solid fa-hand-holding-dollar icon-small"></i>Cost (TCO)</h2>
+            <p>総所有コスト(TCO)の内訳を正しく評価する</p>
+            <div style="font-size: 1.5em; margin-top: 60px;">
+                <span class="auto-fade item-1">ライセンス料</span>
+                <span class="auto-fade item-2">+</span>
+                <span class="auto-fade item-3" style="color: #dc3545; font-weight: bold;">高価なクラウドインスタンス費用</span>
+                <span class="auto-fade item-4">+</span>
+                <span class="auto-fade item-4" style="animation-delay: 1.4s;">ストレージ/通信費</span>
+                 <span class="auto-fade item-4" style="animation-delay: 1.7s;">+</span>
+                <span class="auto-fade item-4" style="animation-delay: 2.0s;">運用人件費</span>
+            </div>
+            <p class="auto-fade item-4 highlight-box" style="font-size:0.9em; margin-top: 40px; animation-delay: 2.3s;">VPCモデルはAWS i3.metalのような<span class="warning">高スペックなインスタンス</span>が必須なため、インフラコストの試算が重要です。</p>
+        </section>
+
+        <!-- S17: Checklist Operation -->
+        <section>
+            <h2>Checklist: <i class="fa-solid fa-people-group icon-small"></i>Operation</h2>
+             <ul class="checklist" style="text-align: left; max-width: 900px; margin: 50px auto;">
+                <li class="auto-fade item-1"><i class="fa-solid fa-check-square"></i>「スモールスタート」で簡単なタスクから始める</li>
+                <li class="auto-fade item-2"><i class="fa-solid fa-check-square"></i>「Repo Knowledge」をチームで育て、資産にする文化を作る</li>
+                <li class="auto-fade item-3"><i class="fa-solid fa-check-square"></i>Devinを<span class="accent">「指導とレビューが必要な、有能なジュニアエンジニア」</span>として扱う</li>
+            </ul>
+        </section>
+
+        <!-- S18: まとめ -->
+        <section data-transition="fade">
+            <h2 class="auto-fade item-1">Devinは「魔法の杖」ではない。</h2>
+            <h2 class="auto-fade item-2"><span class="accent">最高の「ペアプログラマー」である。</span></h2>
+            <div class="auto-fade item-3" style="margin-top: 80px;">
+                <i class="fa-solid fa-handshake-angle icon" style="font-size: 8em;"></i>
+            </div>
+            <p class="auto-fade item-4">正しい知識と戦略で、開発チームを次のレベルへ。</p>
+        </section>
+        
+        <!-- S19: Thank you -->
+        <section>
+             <i class="fa-solid fa-rocket icon auto-fade item-1" style="font-size: 6em; margin-bottom: 40px;"></i>
+            <h2 class="auto-fade item-2">ご清聴ありがとうございました</h2>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+<script>
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        center: true,
+        hash: true,
+        width: 1920,
+        height: 1080,
+        
+        // アニメーションはCSSで制御するため、フラグメント関連の設定は不要
+        
+        plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+    });
+
+    // スライドが変更されるたびに、新しいスライドのアニメーションをリセット＆再生するための処理
+    // これにより、一度表示したスライドに再度戻ってきたときにもアニメーションが再生されます。
+    Reveal.on('slidechanged', event => {
+        // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+        const currentSlide = event.currentSlide;
+        const animatedElements = currentSlide.querySelectorAll('.auto-fade');
+        
+        animatedElements.forEach(el => {
+            // 一瞬アニメーションをリセットして再トリガーする
+            el.style.animation = 'none';
+            // void el.offsetWidth; // DOMのリフローをトリガー
+            setTimeout(() => {
+                el.style.animation = '';
+            }, 10);
+        });
+    });
+
+</script>
+</body>
+</html>
