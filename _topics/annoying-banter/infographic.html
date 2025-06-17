@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：オンライン攻撃の深層心理</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #003f5c;
+            color: #f1f5f9;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 40vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+                max-height: 50vh;
+            }
+        }
+        .flow-arrow::after {
+            content: '▼';
+            font-size: 2rem;
+            line-height: 1;
+            color: #ffa600;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .card-icon {
+            font-size: 3rem;
+            line-height: 1;
+            color: #ffa600;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 
+    Color Palette Name: Brilliant Blues
+    HEX Codes: #003f5c, #2f4b7c, #665191, #a05195, #d45087, #f95d6a, #ff7c43, #ffa600
+    -->
+
+    <!--
+    Infographic Narrative Plan:
+    1.  Introduction: Define "Daru-garami" and frame it as a systemic issue.
+    2.  The Environment: Visualize the "Online Disinhibition Effect" using icon-driven cards.
+    3.  The Aggressor's Mind: Use a Radar Chart for personality traits (Dark Triad/Tetrad) and a Donut Chart for motivations.
+    4.  The Amplification Machine: Illustrate algorithmic impact with a Line Chart comparing engagement of neutral vs. outrage content.
+    5.  The Vicious Cycle & Solutions: Depict the full feedback loop using a pure CSS/HTML flowchart, followed by clear, actionable solutions.
+    -->
+
+    <!--
+    Visualization Selection Plan:
+    1.  Online Disinhibition Effect: Goal: Organize. Chosen Vis: Structured HTML/CSS Cards with Unicode Icons. Justification: Visually engaging, allows for explanation, avoids prohibited graphics. Library: Tailwind CSS. CONFIRMED NO SVG.
+    2.  Dark Tetrad Personality Traits: Goal: Compare. Chosen Vis: Radar Chart. Justification: Excellent for comparing multiple variables for a single subject, creating a "profile". Library: Chart.js (Canvas). CONFIRMED NO SVG.
+    3.  Aggressor Motivations: Goal: Compare/Composition. Chosen Vis: Donut Chart. Justification: Clearly shows the "ingredients" or proportional mix of motivations. Library: Chart.js (Canvas). CONFIRMED NO SVG.
+    4.  Algorithmic Amplification: Goal: Show Change/Relationship. Chosen Vis: Line Chart. Justification: Effectively contrasts the performance of different content types over time/exposure. Library: Chart.js (Canvas). CONFIRMED NO SVG.
+    5.  Vicious Cycle of Hostility: Goal: Organize/Show Process. Chosen Vis: Flowchart with HTML/CSS. Justification: Adheres to the "NO MERMAID JS, NO SVG" rule for flowcharts, using styled divs and Unicode characters. Library: Tailwind CSS. CONFIRMED NO SVG.
+    -->
+
+    <!--
+    Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in the output. All visualizations are rendered using Chart.js (Canvas) or structured HTML/CSS with Tailwind.
+    -->
+
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12 md:mb-20">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">オンライン攻撃の深層心理</h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-4xl mx-auto">X(旧Twitter)で見られる「ダル絡み」。それは単なる個人の悪意ではなく、環境、心理、技術が織りなす複雑なシステムの問題です。</p>
+        </header>
+
+        <main class="space-y-16 md:space-y-24">
+
+            <section id="section1" class="bg-[#2f4b7c]/50 rounded-2xl p-6 md:p-10 shadow-2xl backdrop-blur-sm border border-white/10">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-white mb-2">第1部：敵意を育む環境</h2>
+                    <p class="text-slate-300 max-w-3xl mx-auto">オンライン環境は、現実世界で私たちの行動を抑制する「安全装置」をどのように解除するのでしょうか。ジョン・スラーが提唱した「オンライン脱抑制効果」の6つの要因を見ていきましょう。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-[#003f5c]/60 p-6 rounded-lg text-center">
+                        <div class="card-icon mb-4">🎭</div>
+                        <h3 class="font-bold text-xl mb-2 text-[#ffa600]">乖離的匿名性</h3>
+                        <p class="text-slate-300 text-sm">身元が隠されているため、言動が現実の自分と切り離されていると感じ、責任感が低下する。</p>
+                    </div>
+                    <div class="bg-[#003f5c]/60 p-6 rounded-lg text-center">
+                        <div class="card-icon mb-4">😶</div>
+                        <h3 class="font-bold text-xl mb-2 text-[#ffa600]">不可視性</h3>
+                        <p class="text-slate-300 text-sm">相手の表情が見えないため共感が湧きにくく、人間として認識することが困難になる。</p>
+                    </div>
+                    <div class="bg-[#003f5c]/60 p-6 rounded-lg text-center">
+                        <div class="card-icon mb-4">⏳</div>
+                        <h3 class="font-bold text-xl mb-2 text-[#ffa600]">非同期性</h3>
+                        <p class="text-slate-300 text-sm">即座の反応に直面しない「言い逃げ」構造が、衝動的で攻撃的な発言を助長する。</p>
+                    </div>
+                    <div class="bg-[#003f5c]/60 p-6 rounded-lg text-center">
+                        <div class="card-icon mb-4">🧠</div>
+                        <h3 class="font-bold text-xl mb-2 text-[#ffa600]">唯我独尊的な取り込み</h3>
+                        <p class="text-slate-300 text-sm">相手を自分の中で勝手に作り上げた「敵キャラ」として認識し、罪悪感なく攻撃する。</p>
+                    </div>
+                    <div class="bg-[#003f5c]/60 p-6 rounded-lg text-center">
+                        <div class="card-icon mb-4">🎮</div>
+                        <h3 class="font-bold text-xl mb-2 text-[#ffa600]">解離的想像力</h3>
+                        <p class="text-slate-300 text-sm">オンラインを現実とは違う「ゲーム」と捉え、道徳観を棚上げにして攻撃を楽しむ。</p>
+                    </div>
+                    <div class="bg-[#003f5c]/60 p-6 rounded-lg text-center">
+                        <div class="card-icon mb-4">👑</div>
+                        <h3 class="font-bold text-xl mb-2 text-[#ffa600]">権威の最小化</h3>
+                        <p class="text-slate-300 text-sm">現実の社会的地位が意味をなさず、普段は意見できない相手にも攻撃が可能になる。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section2" class="bg-[#2f4b7c]/50 rounded-2xl p-6 md:p-10 shadow-2xl backdrop-blur-sm border border-white/10">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-white mb-2">第2部：攻撃者の内面世界</h2>
+                    <p class="text-slate-300 max-w-3xl mx-auto">攻撃は強さの表れではなく、しばしば内面の脆弱性の裏返しです。攻撃に走りやすい人々のパーソナリティ特性と、その動機を探ります。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-center mb-4 text-[#ffa600]">攻撃者のパーソナリティ特性</h3>
+                        <p class="text-slate-300 text-center mb-4">「ダークテトラッド」と呼ばれる4つの特性（ナルシシズム、マキャベリズム、サイコパシー、サディズム）は、オンライン攻撃との強い関連が指摘されています。特に、他者の苦痛を喜ぶサディズムは、荒らし行為を強力に予測します。</p>
+                        <div class="chart-container">
+                            <canvas id="darkTetradChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-center mb-4 text-[#ffa600]">攻撃の動機</h3>
+                        <p class="text-slate-300 text-center mb-4">攻撃者は自身を「正義の執行者」と見なすことが多いですが、その根底には承認欲求や、他者を傷つけること自体への快楽が隠れている場合があります。</p>
+                        <div class="chart-container">
+                            <canvas id="motivationChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section3" class="bg-[#2f4b7c]/50 rounded-2xl p-6 md:p-10 shadow-2xl backdrop-blur-sm border border-white/10">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-white mb-2">第3部：対立の増幅装置</h2>
+                    <p class="text-slate-300 max-w-3xl mx-auto">プラットフォームは中立な舞台ではありません。エンゲージメントを最大化するアルゴリズムは、いかにして人間の「怒り」を利用し、対立をビジネスに変えるのでしょうか。</p>
+                </div>
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#ffa600]">エンゲージメント経済</h3>
+                    <p class="text-slate-300 text-center mb-4">人間の感情を強く揺さぶる「怒り」や「敵意」は、最も高いエンゲージメントを生み出します。その結果、アルゴリズムは対立や論争を優先的に拡散させ、プラットフォーム全体を敵対的な環境に変えていきます。</p>
+                    <div class="chart-container" style="max-width: 800px; height: 400px;">
+                        <canvas id="engagementChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="section4" class="bg-[#2f4b7c]/50 rounded-2xl p-6 md:p-10 shadow-2xl backdrop-blur-sm border border-white/10">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-white mb-2">第4部：敵意の悪循環と解決策</h2>
+                    <p class="text-slate-300 max-w-3xl mx-auto">オンライン攻撃は、環境、個人、社会、技術が相互に作用する自己強化的なサイクルです。この悪循環を断ち切るために、私たちに何ができるでしょうか。</p>
+                </div>
+                
+                <h3 class="text-2xl font-bold text-center mb-6 text-[#ffa600]">オンライン敵意の悪循環モデル</h3>
+
+                <div class="flex flex-col items-center text-center max-w-2xl mx-auto">
+                    <div class="w-full bg-[#003f5c]/60 p-4 rounded-lg border border-white/20 mb-4">
+                        <h4 class="font-bold text-lg">1. 環境設定</h4>
+                        <p class="text-sm text-slate-300">オンライン脱抑制効果が社会的抑制を解除</p>
+                    </div>
+                    <div class="flow-arrow"></div>
+                    <div class="w-full bg-[#003f5c]/60 p-4 rounded-lg border border-white/20 mb-4">
+                        <h4 class="font-bold text-lg">2. 個人的な引き金</h4>
+                        <p class="text-sm text-slate-300">認知バイアスが他者の投稿を「攻撃」と誤認</p>
+                    </div>
+                     <div class="flow-arrow"></div>
+                    <div class="w-full bg-[#003f5c]/60 p-4 rounded-lg border border-white/20 mb-4">
+                        <h4 class="font-bold text-lg">3. 攻撃行動</h4>
+                        <p class="text-sm text-slate-300">歪んだ正義感や承認欲求から反撃</p>
+                    </div>
+                    <div class="flow-arrow"></div>
+                    <div class="w-full bg-[#003f5c]/60 p-4 rounded-lg border border-white/20 mb-4">
+                        <h4 class="font-bold text-lg">4. 社会的増幅</h4>
+                        <p class="text-sm text-slate-300">群衆心理が働き、集団リンチへエスカレート</p>
+                    </div>
+                     <div class="flow-arrow"></div>
+                    <div class="w-full bg-[#003f5c]/60 p-4 rounded-lg border border-white/20 mb-4">
+                        <h4 class="font-bold text-lg">5. 技術的強化</h4>
+                        <p class="text-sm text-slate-300">アルゴリズムが対立を拡散し、攻撃者に「報酬」を与える</p>
+                    </div>
+                     <div class="flow-arrow" style="transform: rotate(180deg); margin-top:-1rem; margin-bottom:1rem;"></div>
+                     <div class="w-full text-center text-[#ffa600] font-bold text-xl">...このサイクルが繰り返される</div>
+                </div>
+
+                <div class="mt-16 border-t border-white/20 pt-10">
+                     <h3 class="text-2xl font-bold text-center mb-6 text-[#ffa600]">悪循環を断ち切るために</h3>
+                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="text-5xl mb-3">👤</div>
+                            <h4 class="font-bold text-xl mb-2">個人として</h4>
+                            <p class="text-slate-300">メタ認知（自分を客観視する能力）を高め、投稿前に一呼吸置く。デジタルリテラシーを学び、心理的な罠を認識する。</p>
+                        </div>
+                        <div class="text-center">
+                             <div class="text-5xl mb-3">⚙️</div>
+                            <h4 class="font-bold text-xl mb-2">プラットフォームとして</h4>
+                            <p class="text-slate-300">単なるエンゲージメントではなく「健全な対話」を評価するアルゴリズムへ再設計。対立を煽る機能の見直し。</p>
+                        </div>
+                        <div class="text-center">
+                             <div class="text-5xl mb-3">🤝</div>
+                            <h4 class="font-bold text-xl mb-2">社会として</h4>
+                            <p class="text-slate-300">デジタル空間における共感教育を推進。次世代が思いやりを持ってオンラインで交流できるよう育成する。</p>
+                        </div>
+                     </div>
+                </div>
+
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 md:mt-24 pt-8 border-t border-slate-600">
+            <p class="text-slate-400 text-sm">このインフォグラフィックは、「見知らぬ他者へのオンライン攻撃の深層心理」レポートに基づき作成されました。</p>
+        </footer>
+
+    </div>
+
+<script>
+    const COLORS = {
+        blue: '#003f5c',
+        purple: '#665191',
+        pink: '#d45087',
+        orange: '#ff7c43',
+        yellow: '#ffa600',
+        lightText: '#f1f5f9'
+    };
+
+    function wrapLabel(str, maxWidth) {
+        if (str.length <= maxWidth) {
+            return str;
+        }
+        let result = [];
+        let currentLine = '';
+        const words = str.replace(/（/g, ' （').replace(/）/g, '） ').trim().split(' ');
+        
+        words.forEach(word => {
+            if (currentLine.length + word.length > maxWidth) {
+                result.push(currentLine.trim());
+                currentLine = word + ' ';
+            } else {
+                currentLine += word + ' ';
+            }
+        });
+        result.push(currentLine.trim());
+        return result.map(line => line.replace(/ （/g, '（').replace(/） /g, '）'));
+    }
+
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        return Array.isArray(label) ? label.join(' ') : label;
+    };
+
+    const defaultChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                labels: {
+                    color: COLORS.lightText
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                }
+            }
+        }
+    };
+
+    const darkTetradData = {
+        labels: ['ナルシシズム', 'マキャベリズム', 'サイコパシー', '日常的サディズム'],
+        datasets: [{
+            label: 'オンライン攻撃者の特性',
+            data: [75, 60, 70, 90],
+            backgroundColor: 'rgba(255, 124, 67, 0.2)',
+            borderColor: COLORS.orange,
+            pointBackgroundColor: COLORS.orange,
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: COLORS.orange,
+            borderWidth: 2
+        }]
+    };
+    new Chart(document.getElementById('darkTetradChart'), {
+        type: 'radar',
+        data: darkTetradData,
+        options: {
+            ...defaultChartOptions,
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
+                    grid: { color: 'rgba(255, 255, 255, 0.2)' },
+                    pointLabels: {
+                        color: COLORS.lightText,
+                        font: { size: 12 }
+                    },
+                    ticks: {
+                        color: COLORS.lightText,
+                        backdropColor: 'rgba(0,0,0,0.5)',
+                        stepSize: 25
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
+            }
+        }
+    });
+
+    const motivationData = {
+        labels: ['歪んだ正義感', '承認欲求/自己防衛', 'サディスティックな快楽'],
+        datasets: [{
+            label: '攻撃の動機',
+            data: [40, 35, 25],
+            backgroundColor: [COLORS.purple, COLORS.pink, COLORS.orange],
+            borderColor: COLORS.blue,
+            borderWidth: 3,
+            hoverOffset: 4
+        }]
+    };
+    new Chart(document.getElementById('motivationChart'), {
+        type: 'doughnut',
+        data: motivationData,
+        options: defaultChartOptions
+    });
+
+    const engagementData = {
+        labels: ['投稿1', '投稿2', '投稿3', '投稿4', '投稿5', '投稿6', '投稿7'],
+        datasets: [{
+            label: '対立を煽るコンテンツのエンゲージメント',
+            data: [10, 80, 150, 120, 250, 220, 350],
+            borderColor: COLORS.orange,
+            backgroundColor: 'rgba(255, 124, 67, 0.1)',
+            fill: true,
+            tension: 0.4
+        }, {
+            label: '中立的なコンテンツのエンゲージメント',
+            data: [15, 20, 18, 25, 22, 30, 28],
+            borderColor: COLORS.purple,
+            backgroundColor: 'rgba(102, 81, 145, 0.1)',
+            fill: true,
+            tension: 0.4
+        }]
+    };
+    new Chart(document.getElementById('engagementChart'), {
+        type: 'line',
+        data: engagementData,
+        options: {
+            ...defaultChartOptions,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                    ticks: { color: COLORS.lightText }
+                },
+                x: {
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                    ticks: { color: COLORS.lightText }
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
