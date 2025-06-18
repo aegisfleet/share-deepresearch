@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JaCoCo技術調査インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 
+    Infographic Plan:
+    1.  Introduction: Hook with a key statement about JaCoCo being the industry standard.
+    2.  Core Mechanism: Explain on-the-fly bytecode instrumentation with a simplified HTML/CSS flowchart.
+    3.  Metrics Deep Dive: Compare coverage metrics using Donut and Bar charts.
+    4.  Pitfalls & Inaccuracies: Visualize issues like compiler-generated code with a comparative Bar chart.
+    5.  Performance Bottleneck: Show the high-concurrency performance degradation with a Line chart.
+    6.  Strategic Integration: Illustrate best practices like "Diff Coverage" with a clear comparison table.
+    7.  Conclusion: Summarize with key takeaways.
+
+    Color Palette Selection:
+    -   Name: "Brilliant Blues & Oranges" (Customized from "Brilliant Blues" for technical infographics)
+    -   Usage: Blues and teals for primary content, backgrounds, and positive data. Oranges and reds for warnings, performance issues, and call-outs.
+    -   HEX Codes:
+        -   Background: #F8F9FA
+        -   Dark Text/Primary: #003049
+        -   Accent Blue: #005F73
+        -   Accent Teal: #0A9396
+        -   Good/Covered: #94D2BD
+        -   Warning/Partial: #EE9B00
+        -   Danger/Uncovered: #D62828
+        -   Highlight: #F77F00
+
+    Visualization Choices & Justification (NO SVG, NO MERMAID JS):
+    -   Flowchart (Core Mechanism): Implemented with structured HTML divs and Tailwind CSS. Goal: Organize. Method: HTML/CSS.
+    -   Donut Chart (Metrics): Show composition of covered/uncovered code. Goal: Inform. Library: Chart.js (Canvas).
+    -   Bar Chart (Metrics Comparison): Compare the qualitative value of different metrics. Goal: Compare. Library: Chart.js (Canvas).
+    -   Bar Chart (Pitfalls): Compare reported vs. actual coverage. Goal: Compare. Library: Chart.js (Canvas).
+    -   Line Chart (Performance): Show change over time/load. Goal: Change. Library: Chart.js (Canvas).
+    -   Table (Best Practices): Organize and compare two approaches. Goal: Organize. Method: HTML/CSS.
+    -   All charts use Chart.js, rendering to Canvas, strictly avoiding SVG. Diagrams use HTML/CSS.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #F8F9FA;
+            color: #1a202c;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        h1, h2, h3 {
+             font-family: 'Inter', sans-serif;
+             font-weight: 700;
+             color: #003049;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .flow-arrow {
+            color: #0A9396;
+            font-size: 2rem;
+            line-height: 1;
+        }
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <span class="tag bg-blue-100 text-blue-800 mb-4">Code Coverage Analysis</span>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">JaCoCo技術の深層分析</h1>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                JavaエコシステムのデファクトスタンダードであるJaCoCo。その動作原理から実践的な課題、そして戦略的な活用法までを一枚のインフォグラフィックで解き明かします。
+            </p>
+        </header>
+
+        <main class="space-y-16">
+
+            <section id="mechanism">
+                <h2 class="text-3xl text-center mb-8">1. コアメカニズム：オンザフライ・バイトコードインスツルメンテーション</h2>
+                <p class="text-center max-w-2xl mx-auto mb-10 text-gray-600">JaCoCoはソースコードを直接扱わず、クラスロード時にJVMのメモリ上でJavaバイトコードを動的に書き換えます。この「オンザフライ」アプローチにより、ビルドプロセスを簡潔に保ちながら、正確な実行追跡を実現します。</p>
+                <div class="card md:col-span-2">
+                    <div class="flex flex-col md:flex-row items-center justify-around text-center p-4 gap-4">
+                        <div class="flex flex-col items-center">
+                            <div class="text-5xl mb-2">①</div>
+                            <div class="w-40 h-20 flex items-center justify-center bg-gray-100 rounded-lg shadow">
+                                <span class="font-semibold text-gray-700">開発者のコード<br>(.java)</span>
+                            </div>
+                        </div>
+                        <div class="flow-arrow hidden md:block">→</div>
+                        <div class="flow-arrow md:hidden">↓</div>
+                        <div class="flex flex-col items-center">
+                            <div class="text-5xl mb-2">②</div>
+                            <div class="w-40 h-20 flex items-center justify-center bg-blue-100 rounded-lg shadow">
+                                <span class="font-semibold text-blue-800">コンパイル<br>(.class)</span>
+                            </div>
+                        </div>
+                        <div class="flow-arrow hidden md:block">→</div>
+                        <div class="flow-arrow md:hidden">↓</div>
+                        <div class="flex flex-col items-center">
+                            <div class="text-5xl mb-2">③</div>
+                             <div class="relative w-40 h-20 flex items-center justify-center bg-teal-100 rounded-lg shadow">
+                                <span class="font-bold text-teal-800">JaCoCoエージェント<br>が介入</span>
+                                <span class="absolute -top-2 -right-2 text-2xl">🔧</span>
+                            </div>
+                             <p class="text-xs mt-2 max-w-xs text-gray-500">クラスロード時にプローブを挿入</p>
+                        </div>
+                        <div class="flow-arrow hidden md:block">→</div>
+                        <div class="flow-arrow md:hidden">↓</div>
+                        <div class="flex flex-col items-center">
+                             <div class="text-5xl mb-2">④</div>
+                            <div class="w-40 h-20 flex items-center justify-center bg-green-100 rounded-lg shadow">
+                                <span class="font-semibold text-green-800">テスト実行 &<br>データ収集</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="metrics">
+                <h2 class="text-3xl text-center mb-8">2. カバレッジメトリクスの探求</h2>
+                <p class="text-center max-w-2xl mx-auto mb-10 text-gray-600">JaCoCoは複数のメトリクスを提供しますが、それぞれが示す意味は異なります。「行カバレッジ」は直感的ですが、「分岐カバレッジ」はコードの論理的な網羅性を測る上でより重要です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card">
+                        <h3 class="text-xl mb-4 text-center">カバレッジスコアの例</h3>
+                        <p class="text-sm text-center text-gray-500 mb-4">一般的なプロジェクトにおける各メトリクスの達成状況の例です。</p>
+                        <div class="chart-container h-64 md:h-80"><canvas id="coverageDonutChart"></canvas></div>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-xl mb-4 text-center">メトリクスの「質」の比較</h3>
+                        <p class="text-sm text-center text-gray-500 mb-4">品質保証の観点から、どのメトリクスがより深い洞察を提供するかを示します。</p>
+                        <div class="chart-container h-64 md:h-80"><canvas id="metricsQualityBarChart"></canvas></div>
+                    </div>
+                </div>
+                 <div class="mt-8 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-r-lg">
+                    <p class="font-bold">重要ポイント：</p>
+                    <p>行カバレッジが100%でも、条件分岐の一部がテストされていない可能性があります。レポートの黄色いひし形（◇）は、未実行の分岐を示しており、テストケースの追加が必要な箇所を教えてくれます。</p>
+                </div>
+            </section>
+
+            <section id="pitfalls">
+                <h2 class="text-3xl text-center mb-8">3. 精度と限界：隠れた落とし穴</h2>
+                 <p class="text-center max-w-2xl mx-auto mb-10 text-gray-600">JaCoCoはバイトコードを解析するため、コンパイラが生成する「合成コード」（例：Kotlinコルーチン）によってカバレッジが不当に低く報告されることがあります。これはJaCoCoのバグではなく、その動作原理に起因する特性です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card">
+                         <h3 class="text-xl mb-4">ケーススタディ：Kotlinコルーチン</h3>
+                        <p class="text-gray-600 mb-4">
+                            Kotlinの<code>suspend</code>関数は、コンパイラによって複雑なステートマシンに変換されます。JaCoCoはこの自動生成された分岐も計測対象とするため、開発者が書いたコードが完全にテストされていても、分岐カバレッジが100%にならないことがあります。
+                        </p>
+                        <div class="chart-container h-64 md:h-80"><canvas id="kotlinPitfallChart"></canvas></div>
+                        <p class="text-xs text-center mt-4 text-gray-500">この乖離は、Lombokや`try-with-resources`構文でも同様に発生する可能性があります。</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-xl mb-4">互換性の問題</h3>
+                        <ul class="space-y-4 text-gray-700">
+                            <li class="flex items-start">
+                                <span class="text-xl mr-3 text-red-500">⚡</span>
+                                <div>
+                                    <strong class="text-red-700">PowerMock/Mockitoとの競合</strong>
+                                    <p class="text-sm">両ツールがバイトコードを書き換えるため競合し、カバレッジが0%になる問題が発生します。解決策としてJaCoCoの「オフラインインスツルメンテーション」の利用が推奨されます。</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-xl mr-3 text-red-500">🔍</span>
+                                <div>
+                                    <strong class="text-red-700">リフレクションへの影響</strong>
+                                    <p class="text-sm">JaCoCoは計測用の合成メンバー（<code>$jacocoData</code>）をクラスに挿入します。リフレクションで全メンバーを走査するコードは、<code>isSynthetic()</code>でこれらを除外する必要があります。</p>
+                                </div>
+                            </li>
+                        </ul>
+                         <div class="mt-6 p-4 bg-green-100 border-l-4 border-green-500 text-green-700 rounded-r-lg">
+                            <p class="font-bold">解決策</p>
+                            <p>JaCoCoは継続的にフィルタを更新し、これらの問題を軽減しています。Lombokには`lombok.config`で`@Generated`注釈を付与させる設定が有効です。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="performance">
+                <h2 class="text-3xl text-center mb-8">4. パフォーマンス：高並行環境でのボトルネック</h2>
+                <p class="text-center max-w-2xl mx-auto mb-10 text-gray-600">通常、JaCoCoのオーバーヘッドは軽微ですが、多数のスレッドが同時に実行される高負荷な環境では、深刻なパフォーマンス低下を引き起こすことが報告されています。</p>
+                <div class="card md:col-span-2">
+                    <h3 class="text-xl mb-4 text-center">テスト実行時間の比較</h3>
+                    <p class="text-sm text-center text-gray-500 mb-4">原因は、複数のスレッドが単一の共有プローブ配列に書き込もうとすることで生じる「CPUキャッシュコンテンション」です。</p>
+                    <div class="chart-container h-80"><canvas id="performanceChart"></canvas></div>
+                </div>
+            </section>
+
+            <section id="strategy">
+                <h2 class="text-3xl text-center mb-8">5. 戦略的インテグレーション</h2>
+                <p class="text-center max-w-2xl mx-auto mb-10 text-gray-600">カバレッジ率という数値を追うだけでは品質は向上しません。現代のCI/CDパイプラインでは、より実践的なアプローチが求められます。</p>
+                <div class="card">
+                     <h3 class="text-xl mb-6 text-center">品質ゲートの進化：「全体カバレッジ」から「差分カバレッジ」へ</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                        <div class="border border-gray-200 rounded-lg p-6">
+                            <h4 class="font-bold text-lg mb-2 text-red-700">旧来の方法：全体のカバレッジ</h4>
+                            <p class="text-gray-600 mb-4">「プロジェクト全体でカバレッジ80%を維持する」</p>
+                            <ul class="text-sm text-left list-disc list-inside space-y-2">
+                                <li class="flex items-start"><span class="text-red-500 mr-2">❌</span> レガシーコードが多いと達成困難</li>
+                                <li class="flex items-start"><span class="text-red-500 mr-2">❌</span> 新規コードの品質を直接担保しない</li>
+                                <li class="flex items-start"><span class="text-red-500 mr-2">❌</span> 技術的負債の改善が進まない</li>
+                            </ul>
+                        </div>
+                        <div class="border-2 border-green-500 rounded-lg p-6 bg-green-50">
+                            <h4 class="font-bold text-lg mb-2 text-green-700">現代的な方法：差分カバレッジ (Diff Coverage)</h4>
+                             <p class="text-gray-700 mb-4">「このPull Requestで変更されたコードのカバレッジを80%以上にする」</p>
+                            <ul class="text-sm text-left list-disc list-inside space-y-2">
+                                <li class="flex items-start"><span class="text-green-500 mr-2">✔️</span> 新たな技術的負債を防ぐ ("Clean as You Code")</li>
+                                <li class="flex items-start"><span class="text-green-500 mr-2">✔️</span> 開発者に具体的で達成可能な目標を与える</li>
+                                <li class="flex items-start"><span class="text-green-500 mr-2">✔️</span> コードベースを漸進的に改善できる</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-200">
+             <p class="text-gray-500">このインフォグラフィックは、JaCoCoの技術レポートに基づいて作成されました。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const wrapLabel = (label, maxLength = 16) => {
+                if (typeof label !== 'string' || label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine.length > 0) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            };
+
+            const donutChartCtx = document.getElementById('coverageDonutChart').getContext('2d');
+            new Chart(donutChartCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['分岐 (Branch)', '行 (Line)', '命令 (Instruction)'],
+                    datasets: [{
+                        label: 'Coverage %',
+                        data: [72, 85, 88],
+                        backgroundColor: ['#0A9396', '#94D2BD', '#E9D8A6'],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 3,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    },
+                    cutout: '60%'
+                }
+            });
+
+            const metricsQualityBarChartCtx = document.getElementById('metricsQualityBarChart').getContext('2d');
+            const qualityLabels = ['命令 (C0)', '行', 'メソッド/クラス', '分岐 (C1)', 'サイクロマティック複雑度'];
+            new Chart(metricsQualityBarChartCtx, {
+                type: 'bar',
+                data: {
+                    labels: qualityLabels.map(l => wrapLabel(l)),
+                    datasets: [{
+                        label: '品質洞察の深さ',
+                        data: [5, 6, 4, 9, 8],
+                        backgroundColor: '#0A9396',
+                        borderColor: '#005F73',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                display: false
+                            }
+                        },
+                        y: {
+                             grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        title: {
+                            display: false,
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+
+            const kotlinPitfallChartCtx = document.getElementById('kotlinPitfallChart').getContext('2d');
+            new Chart(kotlinPitfallChartCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['行カバレッジ', '分岐カバレッジ'],
+                    datasets: [
+                        {
+                            label: 'JaCoCoレポート上の値',
+                            data: [100, 65],
+                            backgroundColor: '#EE9B00',
+                        },
+                        {
+                            label: '開発者が書いたコードの真のカバレッジ',
+                            data: [100, 100],
+                            backgroundColor: '#0A9396',
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 110,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+            
+            const performanceChartCtx = document.getElementById('performanceChart').getContext('2d');
+            new Chart(performanceChartCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1', '2', '4', '8', '16', '32', '64'],
+                    datasets: [
+                        {
+                            label: 'JaCoCo無効時',
+                            data: [10, 11, 12, 13, 14, 15, 16],
+                            borderColor: '#0A9396',
+                            backgroundColor: '#0A939620',
+                            fill: true,
+                            tension: 0.1
+                        },
+                        {
+                            label: 'JaCoCo有効時',
+                            data: [12, 25, 55, 90, 150, 210, 250],
+                            borderColor: '#D62828',
+                            backgroundColor: '#D6282820',
+                            fill: true,
+                            tension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '並列スレッド数'
+                            }
+                        },
+                        y: {
+                             title: {
+                                display: true,
+                                text: 'テスト実行時間 (秒)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

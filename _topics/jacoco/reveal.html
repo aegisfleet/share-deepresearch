@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>JaCoCoを使いこなすための技術深掘りとベストプラクティス</title>
+    <meta name="viewport" content="width=1920, height=1080, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/white.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --r-main-font: 'Helvetica Neue', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Arial', 'Yu Gothic', 'Meiryo', sans-serif;
+            --r-heading-font: 'Helvetica Neue', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Arial', 'Yu Gothic', 'Meiryo', sans-serif;
+            --r-main-color: #333;
+            --r-heading-color: #111;
+            --r-link-color: #007bff;
+            --r-background-color: #fdfdfd;
+        }
+
+        .reveal {
+            font-size: 38px; /* 基本フォントサイズを大きく */
+        }
+
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            text-transform: none;
+            font-weight: 600;
+        }
+
+        .reveal h1 {
+            font-size: 3.2em; /* バランス調整 */
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .reveal h2 {
+            font-size: 2.0em; /* バランス調整 */
+            border-bottom: 3px solid #eee;
+            padding-bottom: 0.3em;
+            margin-bottom: 1em;
+        }
+
+        .reveal .subtitle {
+            font-size: 1.2em;
+            color: #555;
+            font-weight: 300;
+        }
+        
+        .reveal .description {
+            font-size: 0.8em; /* 補足説明用のクラス */
+            color: #555;
+            display: block;
+            margin-top: 8px;
+        }
+
+        .reveal .icon {
+            font-size: 1.5em;
+            margin-right: 25px;
+            color: var(--r-link-color);
+            vertical-align: middle;
+            width: 50px; /* アイコンの幅を固定 */
+            text-align: center;
+        }
+
+        .reveal .large-icon {
+            font-size: 6em;
+            color: var(--r-link-color);
+            opacity: 0.1;
+            position: absolute;
+            right: 50px;
+            bottom: 50px;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal .slides section.present .animated {
+            animation-name: fadeInUp;
+            animation-duration: 0.8s;
+            animation-fill-mode: both;
+        }
+
+        /* Staggered animation delays */
+        .reveal .slides section.present .anim-1 { animation-delay: 0.1s; }
+        .reveal .slides section.present .anim-2 { animation-delay: 0.3s; }
+        .reveal .slides section.present .anim-3 { animation-delay: 0.5s; }
+        .reveal .slides section.present .anim-4 { animation-delay: 0.7s; }
+        .reveal .slides section.present .anim-5 { animation-delay: 0.9s; }
+        .reveal .slides section.present .anim-6 { animation-delay: 1.1s; }
+
+        .reveal ul {
+            list-style-type: none;
+            padding-left: 0;
+            width: 100%;
+        }
+        .reveal li {
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .box-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .box {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5em;
+            width: 30%;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .box h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+        .box .icon {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            width: auto;
+        }
+        
+        .color-box {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: white;
+            display: inline-block;
+        }
+        .bg-green { background-color: #28a745; }
+        .bg-yellow { background-color: #ffc107; color: #333 }
+        .bg-red { background-color: #dc3545; }
+        .text-important { color: #e44d26; font-weight: bold; }
+        .highlight { background-color: rgba(0, 123, 255, 0.1); padding: 5px 10px; border-radius: 5px; }
+
+        .arrow {
+            font-size: 3em;
+            color: #ccc;
+            margin: 0 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <i class="fa-solid fa-microscope large-icon anim-1" style="left:50px; opacity:0.05;"></i>
+                <i class="fa-solid fa-rocket large-icon anim-2" style="opacity:0.05;"></i>
+                <h1 class="animated anim-1">JaCoCoを使いこなす</h1>
+                <p class="subtitle animated anim-2">コードカバレッジの「先」へ進むための技術深掘りとベストプラクティス</p>
+            </section>
+
+            <section>
+                <h2>JaCoCoとは？ - コードカバレッジの重要性</h2>
+                <i class="fa-brands fa-java large-icon"></i>
+                <ul>
+                    <li class="animated anim-1">
+                        <span class="icon"><i class="fa-solid fa-magnifying-glass-chart"></i></span>
+                        <div>
+                            <strong>テスト実行箇所を「可視化」</strong>
+                            <span class="description">Javaコードカバレッジ計測の標準ツールです。</span>
+                        </div>
+                    </li>
+                    <li class="animated anim-2">
+                        <span class="icon"><i class="fa-solid fa-shield-halved"></i></span>
+                        <div>
+                            <strong>品質向上のための重要指標</strong>
+                            <span class="description">テストの穴を見つけ、品質を向上させます。</span>
+                        </div>
+                    </li>
+                    <li class="animated anim-3">
+                        <span class="icon"><i class="fa-solid fa-puzzle-piece"></i></span>
+                        <div>
+                             <strong>CI/CDへの統合</strong>
+                            <span class="description">CI/CDと連携し、コード品質を自動で維持します。</span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2>【起】JaCoCoの心臓部：オンザフライ・バイトコードインスツルメンテーション</h2>
+                <div class="box-container" style="align-items: center; margin-top: 2em;">
+                    <div class="animated anim-1" style="text-align:center;">
+                        <i class="fas fa-file-code" style="font-size:4em;"></i><br>
+                        YourCode.java
+                    </div>
+                    <div class="arrow animated anim-2">&rarr;</div>
+                    <div class="animated anim-3" style="text-align:center;">
+                        <i class="fas fa-microchip" style="font-size:4em;"></i><br>
+                        コンパイル
+                    </div>
+                    <div class="arrow animated anim-4">&rarr;</div>
+                    <div class="animated anim-5" style="position:relative; text-align:center;">
+                         <i class="fas fa-file-alt" style="font-size:4em;"></i>
+                         <i class="fas fa-bolt" style="position:absolute; top:0; right:0; font-size: 2em; color: #ffc107;"></i><br>
+                         YourCode.class<br>
+                         <small class="highlight">実行時に動的書き換え</small>
+                    </div>
+                </div>
+                <p class="animated anim-6" style="margin-top: 2em;">JaCoCoはソースコードではなく、<span class="text-important">Javaバイトコード</span>を直接書き換えて動作。<br>ビルドを複雑にせず、柔軟な計測を実現します。</p>
+            </section>
+            
+            <section>
+                <h2>【承】何を測っているのか？ - 主要なカバレッジメトリクス</h2>
+                <i class="fa-solid fa-ruler-combined large-icon"></i>
+                <div class="box-container">
+                    <div class="box animated anim-1">
+                        <span class="icon"><i class="fa-solid fa-ruler-horizontal"></i></span>
+                        <h3>行カバレッジ</h3>
+                        <p>実行されたコード行数。直感的だが、論理的な網羅性は不十分な場合がある。</p>
+                    </div>
+                    <div class="box animated anim-2" style="border-color: var(--r-link-color); border-width: 2px;">
+                        <span class="icon"><i class="fa-solid fa-code-branch"></i></span>
+                        <h3 class="text-important">分岐カバレッジ (C1)</h3>
+                        <p><strong>最重要！</strong> `if`等の全経路を網羅したかを示す。論理的な欠陥を発見する鍵。</p>
+                    </div>
+                     <div class="box animated anim-3">
+                        <span class="icon"><i class="fa-solid fa-microchip"></i></span>
+                        <h3>命令カバレッジ (C0)</h3>
+                        <p>実行されたバイトコード命令数。基本単位だが、開発者には直感的ではない。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>レポートの解読法 - 色と記号が示す「テストの穴」</h2>
+                <i class="fa-solid fa-map-location-dot large-icon"></i>
+                <ul>
+                    <li class="animated anim-1">
+                        <span class="icon"><i class="fa-solid fa-circle-check" style="color: #28a745;"></i></span>
+                        <div><span class="color-box bg-green">緑色: 完全網羅</span><span class="description">全てのコードが実行済み</span></div>
+                    </li>
+                    <li class="animated anim-2">
+                        <span class="icon"><i class="fa-solid fa-triangle-exclamation" style="color: #ffc107;"></i></span>
+                        <div><span class="color-box bg-yellow">黄色: 部分的網羅</span> <span class="text-important">&larr; 要注意！</span><span class="description">一部のコードが未実行</span></div>
+                    </li>
+                    <li class="animated anim-3">
+                        <span class="icon"><i class="fa-solid fa-circle-xmark" style="color: #dc3545;"></i></span>
+                        <div><span class="color-box bg-red">赤色: 未網羅</span><span class="description">コードが全く実行されていない</span></div>
+                    </li>
+                    <li class="animated anim-4">
+                        <span class="icon"><i class="fa-solid fa-diamond" style="color: #ffc107;"></i></span>
+                        <div><strong>黄色のひし形</strong><span class="description">分岐の網羅が不十分なサイン。`if/else`の片方しか通っていないケースなど。</span></div>
+                    </li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2>【転】落とし穴① 精度の問題 - コンパイラが作る「見えないコード」</h2>
+                <div class="box-container" style="align-items: center;">
+                    <div class="animated anim-1" style="text-align:center;">
+                        <i class="fas fa-user-edit" style="font-size:4em;"></i><br>
+                        開発者のコード
+                    </div>
+                    <div class="arrow animated anim-2">&rarr;</div>
+                    <div class="animated anim-3" style="text-align:center;">
+                        <i class="fas fa-cogs" style="font-size:4em;"></i><br>
+                        コンパイラが変換<br>
+                        <span class="description">(Kotlinコルーチン等)</span>
+                    </div>
+                    <div class="arrow animated anim-4">&rarr;</div>
+                    <div class="animated anim-5" style="text-align:center;">
+                        <i class="fas fa-code" style="font-size:4em;"></i><br>
+                        複雑なバイトコード
+                    </div>
+                </div>
+                <p class="animated anim-6" style="margin-top: 2em;">JaCoCoはコンパイラが作る<span class="text-important">「見えないコード」</span>も計測します。<br>そのため、開発者の直感と反し、カバレッジが不当に低く見えることがあります。</p>
+                 <i class="fa-solid fa-ghost large-icon"></i>
+            </section>
+
+            <section>
+                <h2>【転】落とし穴② パフォーマンス問題 - 高並行環境での思わぬ罠</h2>
+                 <i class="fa-solid fa-gauge-high large-icon"></i>
+                <div class="box-container">
+                    <div class="box animated anim-1">
+                        <span class="icon"><i class="fa-solid fa-person-running"></i></span>
+                        <h3>通常のテスト</h3>
+                        <p>オーバーヘッドは軽微で、一般的に問題になりません。</p>
+                    </div>
+                    <div class="box animated anim-2" style="border-color: #dc3545; border-width: 2px;">
+                        <span class="icon"><i class="fa-solid fa-users-gear" style="color: #dc3545;"></i></span>
+                        <h3>高並行アプリケーション</h3>
+                        <p>複数スレッドが殺到し<span class="text-important">キャッシュ競合</span>が発生。実行時間が<span class="text-important">10倍以上</span>に悪化することも。</p>
+                    </div>
+                </div>
+                 <p class="animated anim-3" style="margin-top: 2em;">高負荷システムでは、JaCoCo自体がボトルネックになりうることを認識すべきです。</p>
+            </section>
+
+            <section>
+                <h2>【結】解決策とベストプラクティス - JaCoCoを賢く使う</h2>
+                <i class="fa-solid fa-lightbulb large-icon"></i>
+                <div class="box-container">
+                    <div class="box animated anim-1">
+                        <span class="icon"><i class="fa-solid fa-filter"></i></span>
+                        <h3>1. 正確なレポーティング</h3>
+                        <p>Lombok等の自動生成コードを除外し、意味のあるコードのみを計測対象にします。</p>
+                    </div>
+                    <div class="box animated anim-2">
+                        <span class="icon"><i class="fa-solid fa-traffic-light"></i></span>
+                        <h3>2. CI/CDへの戦略的統合</h3>
+                        <p>カバレッジ率を「品質ゲート」として利用し、品質の低下を自動で防ぎます。</p>
+                    </div>
+                    <div class="box animated anim-3">
+                        <span class="icon"><i class="fa-solid fa-bullseye"></i></span>
+                        <h3>3. 現実的な目標設定</h3>
+                        <p>「100%」の幻想を追わず、重要なビジネスロジックに集中します。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>モダンな品質管理：「Diff Coverage」という進化</h2>
+                <i class="fa-solid fa-code-compare large-icon"></i>
+                <div class="box-container" style="align-items: center;">
+                    <div class="box animated anim-1" style="width: 40%;">
+                        <h3>従来の方法</h3>
+                        <i class="fas fa-chart-area" style="font-size: 3em; color:#999; margin-bottom: 0.5em;"></i>
+                        <p>プロジェクト<span class="text-important">全体</span>のカバレッジを目標。レガシーコードがあると達成困難。</p>
+                    </div>
+                    <div class="box animated anim-2" style="width: 40%; border-color: var(--r-link-color); border-width: 2px;">
+                        <h3>モダンな方法 (推奨)</h3>
+                         <i class="fas fa-plus-circle" style="font-size: 3em; color:var(--r-link-color); margin-bottom: 0.5em;"></i>
+                        <p>PRの<span class="highlight">新規・変更コード</span>のみを対象に。<br><strong>"Clean as You Code"</strong></p>
+                    </div>
+                </div>
+                <p class="animated anim-3" style="margin-top: 2em;">新たな技術的負債を防ぎ、品質を漸進的に向上させる、効果的なアプローチです。</p>
+            </section>
+            
+            <section>
+                <h2>チームのための戦略 - 役割別の提言</h2>
+                <i class="fa-solid fa-users large-icon"></i>
+                <ul>
+                    <li class="animated anim-1">
+                        <span class="icon"><i class="fa-solid fa-user-code"></i></span>
+                        <div><strong>開発者へ:</strong><span class="description">目標は行カバレッジより<span class="text-important">「黄色のひし形」</span>の解消。</span></div>
+                    </li>
+                    <li class="animated anim-2">
+                        <span class="icon"><i class="fa-solid fa-building-columns"></i></span>
+                        <div><strong>アーキテクトへ:</strong><span class="description">品質ゲートとして<span class="highlight">Diff Coverage</span>の導入を主導。</span></div>
+                    </li>
+                    <li class="animated anim-3">
+                        <span class="icon"><i class="fa-solid fa-vial-circle-check"></i></span>
+                        <div><strong>QA / SDETへ:</strong><span class="description">カバレッジを計測し、<span class="text-important">「デッドコード」</span>の発見に活用。</span></div>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>まとめ - 成功への鍵</h2>
+                 <i class="fa-solid fa-key large-icon"></i>
+                 <div class="box-container">
+                    <div class="box animated anim-1">
+                        <span class="icon"><i class="fa-solid fa-handshake-angle"></i></span>
+                        <h3>JaCoCoは強力な味方</h3>
+                        <p>成熟し、標準化された堅牢なツール。</p>
+                    </div>
+                    <div class="box animated anim-2">
+                        <span class="icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                        <h3>ただし特性の理解が必須</h3>
+                        <p>コンパイラ依存やパフォーマンス問題などの弱点も。</p>
+                    </div>
+                </div>
+                <h3 class="animated anim-3" style="margin-top:2em;">
+                    <span class="highlight">Diff Coverage</span>と<span class="highlight">分岐カバレッジ</span>への集中が<br>品質を向上させる鍵です。
+                </h3>
+            </section>
+
+            <section>
+                <h1 class="animated anim-1">ありがとうございました</h1>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            hash: true,
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+        });
+    </script>
+</body>
+</html>
