@@ -128,20 +128,26 @@ iOSアプリケーションをビルドするには、以下のツールチェ�
 
 1. Cordova CLIのインストール:  
    ターミナルを開き、npmを使用してCordova CLIをグローバルにインストールする 33。  
-   Bash  
-   npm install \-g cordova
+
+   ```Bash
+   npm install -g cordova
+   ```
 
 2. 新規プロジェクトの作成:  
    cordova createコマンドを使用して、新しいプロジェクトを生成する 8。  
-   Bash  
+
+   ```Bash
    cordova create my-app com.example.myapp MyApp
+   ```
 
    このコマンドの引数は、左から順に「プロジェクトフォルダ名」「アプリケーションID（iOSのBundle Identifier）」「アプリケーション表示名（Xcodeプロジェクト名）」を意味する 8。  
 3. iOSプラットフォームの追加:  
    作成したプロジェクトディレクトリに移動し、cordova platform addコマンドでiOSプラットフォームを追加する 21。  
-   Bash  
-   cd my-app  
+
+   ```Bash
+   cd my-app
    cordova platform add ios
+   ```
 
    このコマンドは、cordova-iosプラットフォームライブラリをダウンロードし、プロジェクト内にplatforms/iosディレクトリを生成する。このディレクトリには、ネイティブのXcodeプロジェクトファイル群が格納される 8。  
 4. **ビルドと実行**:  
@@ -160,8 +166,10 @@ CordovaとCocoaPodsの連携を円滑に行うための鍵となるのが、cord
 
 * **目的**: このプラグインは、Cordovaのビルドプロセスにフックし、プロジェクト内の依存関係定義を基にPodfileを自動生成し、pod installを実行することで、手動でのXcodeプロジェクト編集を不要にする 19。AndroidにおけるGradleでの依存関係管理が標準でサポートされているのに対し、iOSではこの種のプラグインがその役割を担う 16。  
 * **インストール**: Cordova CLIを使用してプラグインをプロジェクトに追加する。  
-  Bash  
+
+  ```Bash  
   cordova plugin add cordova-plugin-cocoapod-supportx
+  ```
 
   注: cordova-plugin-cocoapod-supportは長期間更新されていないため、バグ修正や新機能が追加されているフォーク版（例: cordova-plugin-cocoapod-supportx）の使用が推奨される 16。  
 * **動作メカニズム**: プラグインは、Cordovaのフックスクリプトを利用して動作する。具体的には、config.xml（アプリケーション全体）と、インストールされている全プラグインのplugin.xmlファイルをスキャンし、\<pod\>というXMLタグで宣言された依存関係をすべて収集する。その後、これらの情報を基にplatforms/ios/Podfileを動的に生成し、pod install（またはpod update）コマンドを内部で実行する 19。
@@ -174,32 +182,36 @@ CocoaPodsの依存関係は、その利用目的に応じて2つの異なるXML�
   特定のネイティブSDKをラップするような再利用可能なCordovaプラグインを作成する場合、その依存関係はプラグイン自身のplugin.xmlファイル内で宣言する 16。これにより、プラグインは自己完結型となり、他のプロジェクトへの導入が容易になる。宣言は  
   \<platform name="ios"\>タグ内で行う。  
   **plugin.xmlでの記述例:**  
-  XML  
-  \<?xml version='1.0' encoding='UTF-8'?\>  
-  \<plugin id\="cordova-plugin-my-custom-sdk" version\="1.0.0" xmlns\="http://apache.org/cordova/ns/plugins/1.0"\>  
-      \<name\>My Custom SDK Plugin\</name\>  
-      \<dependency id\="cordova-plugin-cocoapod-supportx"/\>  
-      \<platform name\="ios"\>  
-          \<pod name\="AFNetworking" spec\="\~\> 3.0" /\>  
-      \</platform\>  
-  \</plugin\>
+
+  ```XML
+  <?xml version='1.0' encoding='UTF-8'?>  
+  <plugin id="cordova-plugin-my-custom-sdk" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0">  
+      <name>My Custom SDK Plugin</name>  
+      <dependency id="cordova-plugin-cocoapod-supportx"/>  
+      <platform name="ios">  
+          <pod name="AFNetworking" spec="~> 3.0" />  
+      </platform>  
+  </plugin>
+  ```
 
 * プロジェクト固有の要求の場合 (config.xml):  
   特定のアプリケーションでのみ使用するライブラリを追加する場合や、プラグイン間の依存関係の競合を解決する場合には、プロジェクトルートにあるconfig.xmlファイルに直接\<pod\>タグを記述する 16。  
   config.xmlでの宣言は、各plugin.xmlでの宣言よりも優先されるため、バージョン競合の解決に特に有効である 16。  
   **config.xmlでの記述例:**  
-  XML  
-  \<?xml version='1.0' encoding='utf-8'?\>  
-  \<widget id\="com.example.myapp" version\="1.0.0" xmlns\="http://www.w3.org/ns/widgets" xmlns:cdv\="http://cordova.apache.org/ns/1.0"\>  
-      \<name\>MyApp\</name\>  
+
+  ```XML
+  <?xml version='1.0' encoding='utf-8'?>  
+  <widget id="com.example.myapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">  
+      <name>MyApp</name>  
      ...  
-      \<platform name\="ios"\>  
+      <platform name="ios">  
          ...  
-          \<pod name\="Alamofire" version\="5.4.0" /\>  
-          \<pod name\="MyPrivatePod" git\="https://github.com/my-company/my-private-pod.git" tag\="v1.2.3" /\>  
-          \<pod name\="DebugUtility" configuration\="debug" /\>  
-      \</platform\>  
-  \</widget\>
+          <pod name="Alamofire" version="5.4.0" />  
+          <pod name="MyPrivatePod" git="https://github.com/my-company/my-private-pod.git" tag="v1.2.3" />  
+          <pod name="DebugUtility" configuration="debug" />  
+      </platform>  
+  </widget>
+  ```
 
   このプラグインは、バージョン指定、Gitリポジトリからの直接取得（ブランチ、タグ、コミットハッシュ指定も可能）、ビルド構成ごとの依存関係指定など、CocoaPodsのPodfileがサポートする多様な宣言方法に対応している 16。
 
@@ -256,8 +268,10 @@ Cordovaは、この署名の自動化のためにbuild.jsonという設定ファ
 
 * **目的**: build.jsonは、プロジェクトのルートディレクトリに配置するJSONファイルで、Cordova CLIに対して署名情報やビルド設定を提供する 41。このファイルを使用することで、Xcodeを一切開くことなく、コマンドラインからデバッグビルドやリリースビルドの署名が可能になる。  
 * **使用方法**: cordova buildまたはcordova runコマンドに--buildConfigフラグを付けてbuild.jsonファイルのパスを指定する。  
-  Bash  
-  cordova build ios \--release \--device \--buildConfig=build.json
+
+  ```Bash
+  cordova build ios --release --device --buildConfig=build.json
+  ```
 
 * **構造**: ファイルはトップレベルにiosキーを持ち、その下にdebugとreleaseのオブジェクトを配置して、それぞれのビルドタイプに応じた設定を記述する 41。
 
@@ -301,8 +315,7 @@ build.jsonを正しく構成するためには、各キーの意味と、その�
 build.jsonの組み立て例  
 上記で特定した情報を基に、プロジェクトのルートディレクトリにbuild.jsonファイルを作成する。
 
-JSON
-
+```JSON
 {  
     "ios": {  
         "debug": {  
@@ -319,6 +332,7 @@ JSON
         }  
     }  
 }
+```
 
 このファイルを適切に設定することで、cordova build ios \--release \--device \--buildConfig=build.jsonのような単一のコマンドで、署名済みのリリースビルドを生成することが可能になる。
 
@@ -359,19 +373,23 @@ Cordovaプロジェクトにおけるバージョン管理、特に.gitignoreの
 
   4. 戦略3: プラグイン変数の利用:  
      競合しているプラグインのドキュメントを確認する。一部のプラグインは、インストール時に変数を渡すことで、依存するSDKのバージョンを指定できる機能を提供していることがある 61。  
-     Bash  
-     \# 例: firebasexプラグインでiOS Firebase SDKのバージョンを指定  
-     cordova plugin add cordova-plugin-firebasex \--variable IOS\_FIREBASE\_SDK\_VERSION=8.13.0
+
+     ```Bash
+     # 例: firebasexプラグインでiOS Firebase SDKのバージョンを指定  
+     cordova plugin add cordova-plugin-firebasex --variable IOS_FIREBASE_SDK_VERSION=8.13.0
+     ```
 
   5. 戦略4: クリーン＆リビルド:  
      プロジェクトの状態が破損している可能性もある。完全なクリーンアップが問題を解決することがある。  
-     Bash  
-     cordova platform rm ios  
-     \# 必要に応じてnode\_modules, plugins, Podfile.lockを削除  
-     rm \-rf node\_modules/ plugins/ platforms/  
-     npm install  
-     cordova platform add ios  
+
+     ```Bash
+     cordova platform rm ios
+     # 必要に応じてnode_modules, plugins, Podfile.lockを削除
+     rm -rf node_modules/ plugins/ platforms/
+     npm install
+     cordova platform add ios
      cordova build ios
+     ```
 
   6. 戦略5: プラグインのフォーク（最終手段）:  
      上記のいずれの方法でも解決できない場合、問題を引き起こしているプラグインをフォーク（複製）し、そのplugin.xmlを直接編集して互換性のある依存関係バージョンを指定する。その後、ローカルまたはGitリポジトリからフォークしたプラグインをインストールする 57。これは最も手間がかかるが、完全な制御を可能にする最終手段である。
