@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cordova iOS開発の完全自動化ガイド</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/white.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --r-main-font: 'Poppins', sans-serif;
+            --r-heading-font: 'Poppins', sans-serif;
+            --r-main-color: #333;
+            --r-heading-color: #333;
+            --r-link-color: #3498db;
+            --r-selection-background-color: #3498db;
+        }
+
+        .reveal {
+            font-weight: 400;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            font-weight: 700;
+            text-transform: none;
+        }
+        
+        .reveal h1 { font-size: 3em; }
+        .reveal h2 { font-size: 2em; }
+        .reveal h3 { font-size: 1.5em; }
+
+        .reveal .icon {
+            color: #3498db;
+            font-size: 1.5em;
+            margin: 0 15px;
+        }
+        
+        .reveal .icon-lg {
+            font-size: 4em;
+            color: #3498db;
+            transition: transform 0.3s ease;
+        }
+        
+        .reveal .icon-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .reveal .icon-box p {
+            margin-top: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        
+        .reveal .plus-icon, .reveal .arrow-icon {
+            font-size: 3em;
+            color: #bdc3c7;
+            align-self: center;
+        }
+
+        .reveal .equals-icon {
+            font-size: 3em;
+            color: #2ecc71;
+            align-self: center;
+        }
+
+        .reveal .flex-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .reveal .flow-box {
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            padding: 25px;
+            background-color: #f9f9f9;
+            width: 300px;
+            text-align: center;
+        }
+        
+        .reveal .flow-box .fa-file-code { font-size: 3em; color: #3498db; }
+        .reveal .flow-box .fa-cogs { font-size: 3em; color: #f39c12; }
+        .reveal .flow-box .fa-rocket { font-size: 3em; color: #2ecc71; }
+
+        .reveal code {
+            font-family: 'SF Mono', 'Consolas', monospace;
+            background: #f5f5f5;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+        }
+        
+        .reveal .final-command {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px 30px;
+            border-radius: 10px;
+            font-family: 'SF Mono', 'Consolas', monospace;
+            font-size: 1.2em;
+            display: inline-block;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+
+        .reveal .slides section.present[data-auto-animate] * {
+            --slide-anim-duration: 0.6s;
+            --slide-anim-delay: 0s;
+            animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation-fill-mode: both;
+        }
+
+        .reveal .slides section.present .fragment.fade-in-up, .reveal .slides section.present .anim-up { animation-name: fadeInUp; animation-duration: var(--slide-anim-duration); animation-delay: var(--slide-anim-delay); }
+        .reveal .slides section.present .fragment.fade-in-left, .reveal .slides section.present .anim-left { animation-name: fadeInLeft; animation-duration: var(--slide-anim-duration); animation-delay: var(--slide-anim-delay); }
+        .reveal .slides section.present .fragment.fade-in-right, .reveal .slides section.present .anim-right { animation-name: fadeInRight; animation-duration: var(--slide-anim-duration); animation-delay: var(--slide-anim-delay); }
+        .reveal .slides section.present .fragment.pop-in, .reveal .slides section.present .anim-pop { animation-name: popIn; animation-duration: var(--slide-anim-duration); animation-delay: var(--slide-anim-delay); }
+        
+        .d-1 { --slide-anim-delay: 0.1s !important; }
+        .d-2 { --slide-anim-delay: 0.2s !important; }
+        .d-3 { --slide-anim-delay: 0.3s !important; }
+        .d-4 { --slide-anim-delay: 0.4s !important; }
+        .d-5 { --slide-anim-delay: 0.5s !important; }
+        .d-6 { --slide-anim-delay: 0.6s !important; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-auto-animate>
+                <i class="fa-solid fa-rocket icon-lg anim-pop"></i>
+                <h1 class="anim-up d-1">Cordova iOS開発<br>完全自動化ガイド</h1>
+                <h3 class="anim-up d-2" style="color: #7f8c8d;">ビルドと署名の課題を克服する</h3>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="anim-up">ハイブリッド開発の「壁」</h2>
+                <div class="flex-container" style="margin-top: 50px;">
+                    <div class="icon-box anim-left d-1">
+                        <i class="fa-solid fa-puzzle-piece icon-lg"></i>
+                        <p>ネイティブ機能との<br>複雑な連携</p>
+                    </div>
+                    <div class="icon-box anim-up d-2">
+                        <i class="fa-solid fa-sliders icon-lg"></i>
+                        <p>手動での煩雑な<br>プロジェクト設定</p>
+                    </div>
+                    <div class="icon-box anim-right d-3">
+                        <i class="fa-solid fa-key icon-lg"></i>
+                        <p>エラーの温床となる<br>コード署名プロセス</p>
+                    </div>
+                </div>
+                <p class="fragment fade-in-up" style="margin-top: 60px;">これらの課題が、開発効率を著しく低下させる…</p>
+            </section>
+
+            <section data-auto-animate>
+                 <h2 class="anim-up">本ガイドが示す道筋</h2>
+                 <ol style="width: 80%; margin: 40px auto; font-size: 1.2em;">
+                    <li class="fragment fade-in-left d-1"><b>基礎技術</b>：CordovaとCocoaPodsの役割を理解する</li>
+                    <li class="fragment fade-in-left d-2"><b>自動化の鍵</b>：2つの核心ツールでプロセスを自動化する</li>
+                    <li class="fragment fade-in-left d-3"><b>あるべき姿</b>：ベストプラクティスで安定した開発基盤を築く</li>
+                 </ol>
+            </section>
+            
+            <section data-auto-animate>
+                <h2 class="anim-up">基礎技術①：Apache Cordova</h2>
+                <h3 class="anim-up d-1" style="color:#7f8c8d;">Webとネイティブを繋ぐ「橋」</h3>
+                <div class="flex-container" style="margin-top: 50px;">
+                    <div class="icon-box anim-left d-2">
+                        <div class="flex-container">
+                            <i class="fa-brands fa-html5 icon"></i>
+                            <i class="fa-brands fa-css3-alt icon"></i>
+                            <i class="fa-brands fa-js-square icon"></i>
+                        </div>
+                        <p>Web技術</p>
+                    </div>
+                    <div class="arrow-icon anim-pop d-3"><i class="fa-solid fa-right-long"></i></div>
+                     <div class="icon-box anim-pop d-4">
+                        <i class="fa-solid fa-mobile-screen-button icon-lg"></i>
+                        <p>ネイティブアプリ</p>
+                    </div>
+                </div>
+                <p class="fragment fade-in-up" style="margin-top: 40px;">WebViewとプラグイン機構で、ネイティブ機能へのアクセスを実現</p>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="anim-up">基礎技術②：CocoaPods</h2>
+                <h3 class="anim-up d-1" style="color:#7f8c8d;">iOSライブラリの「標準管理者」</h3>
+                <div class="flex-container" style="margin-top: 50px;">
+                    <div class="icon-box anim-left d-2">
+                        <i class="fa-brands fa-apple icon-lg"></i>
+                        <p>iOS/macOS開発</p>
+                    </div>
+                    <div class="arrow-icon anim-pop d-3"><i class="fa-solid fa-right-long"></i></div>
+                    <div class="icon-box anim-right d-4">
+                        <i class="fa-solid fa-boxes-stacked icon-lg"></i>
+                        <p>ライブラリ依存関係を<br><code>Podfile</code>で簡単管理</p>
+                    </div>
+                </div>
+                 <p class="fragment fade-in-up" style="margin-top: 40px;">10万以上のライブラリが利用可能。ビルドの再現性を保証する<code>Podfile.lock</code>が鍵。</p>
+            </section>
+            
+            <section data-auto-animate>
+                <h2 class="anim-up">なぜ連携させるのか？</h2>
+                <h3 class="anim-up d-1" style="color:#7f8c8d;">「橋」の上に、さらに「橋」を架ける</h3>
+                <div class="flex-container" style="margin-top: 50px;">
+                    <div class="icon-box anim-left d-2">
+                        <i class="fa-brands fa-cordova icon-lg"></i>
+                        <p>Cordova</p>
+                    </div>
+                    <div class="plus-icon anim-pop d-3"><i class="fa-solid fa-plus"></i></div>
+                    <div class="icon-box anim-pop d-4">
+                        <i class="fa-solid fa-box-open icon-lg"></i>
+                        <p>CocoaPods</p>
+                    </div>
+                    <div class="equals-icon anim-pop d-5"><i class="fa-solid fa-equals"></i></div>
+                    <div class="icon-box anim-right d-6">
+                        <i class="fa-solid fa-wand-magic-sparkles icon-lg"></i>
+                        <p>高度なネイティブSDKを<br>Cordovaアプリへ簡単に導入</p>
+                    </div>
+                </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="anim-up">自動化の鍵①：依存関係の管理</h2>
+                <h3 class="anim-up d-1" style="color:#f39c12;">cordova-plugin-cocoapod-support</h3>
+                <div class="flex-container" style="margin-top: 60px;">
+                    <div class="flow-box anim-left d-2">
+                        <i class="fa-solid fa-file-code"></i>
+                        <h4>宣言</h4>
+                        <p><code>config.xml</code>や<code>plugin.xml</code>に依存Podを記述</p>
+                    </div>
+                    <div class="arrow-icon anim-pop d-3"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="flow-box anim-up d-4">
+                        <i class="fa-solid fa-cogs"></i>
+                        <h4>自動生成</h4>
+                        <p>プラグインが<code>Podfile</code>を動的に生成し、<code>pod install</code>を実行</p>
+                    </div>
+                    <div class="arrow-icon anim-pop d-5"><i class="fa-solid fa-arrow-right"></i></div>
+                    <div class="flow-box anim-right d-6">
+                         <i class="fa-solid fa-rocket"></i>
+                         <h4>統合完了</h4>
+                        <p>ネイティブ依存関係がXcodeプロジェクトに統合される</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section data-auto-animate>
+                <h2 class="anim-up">自動化の鍵②：コード署名</h2>
+                <h3 class="anim-up d-1" style="color:#e74c3c;">build.json</h3>
+                 <div class="flex-container" style="margin-top: 50px;">
+                    <div class="icon-box anim-left d-2">
+                        <i class="fa-solid fa-file-signature icon-lg"></i>
+                        <p>手動でのXcode設定は<br>CI/CDの妨げに</p>
+                    </div>
+                    <div class="arrow-icon anim-pop d-3"><i class="fa-solid fa-right-long"></i></div>
+                    <div class="icon-box anim-right d-4">
+                        <i class="fa-solid fa-file-invoice icon-lg" style="color:#2ecc71;"></i>
+                        <p><code>build.json</code>で署名情報を<br>コマンドラインから注入</p>
+                    </div>
+                </div>
+                <p class="fragment fade-in-up" style="margin-top: 40px;">Xcodeを開くことなく、署名済みビルドを生成可能に。</p>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="anim-up">ベストプラクティス①：バージョン管理</h2>
+                <h3 class="anim-up d-1"><code>platforms</code>ディレクトリはコミットすべきか？</h3>
+                <div class="flex-container" style="margin-top: 60px;">
+                    <div class="icon-box anim-left d-2">
+                         <i class="fa-solid fa-circle-xmark icon-lg" style="color:#e74c3c;"></i>
+                        <p><b>傳統:</b> 無視する<br>(ビルド成果物だから)</p>
+                    </div>
+                     <div class="arrow-icon anim-pop d-3"><i class="fa-solid fa-right-long"></i></div>
+                    <div class="icon-box anim-right d-4">
+                         <i class="fa-solid fa-circle-check icon-lg" style="color:#2ecc71;"></i>
+                        <p><b>推奨:</b> コミットする<br>(<code>Podfile.lock</code>を含めビルドの再現性を保証するため)</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section data-auto-animate>
+                 <h2 class="anim-up">ベストプラクティス②：依存関係の競合解決</h2>
+                 <h3 class="anim-up d-1" style="color:#7f8c8d;">"依存関係地獄"への対処法</h3>
+                 <div class="flex-container" style="margin-top: 50px; align-items: flex-start;">
+                    <div class="icon-box anim-left d-2" style="width: 400px;">
+                        <i class="fa-solid fa-triangle-exclamation icon-lg" style="color:#f39c12;"></i>
+                        <h4>問題</h4>
+                        <p>複数のプラグインが、同じライブラリの異なるバージョンを要求し、競合が発生。</p>
+                    </div>
+                    <div class="icon-box anim-right d-3" style="width: 400px;">
+                         <i class="fa-solid fa-lightbulb icon-lg" style="color:#2ecc71;"></i>
+                        <h4>解決策</h4>
+                        <p>プロジェクトの<code>config.xml</code>で<br>優先的にバージョンを明示指定する。</p>
+                        <code class="fragment fade-in-up">&lt;pod name="SomePod" spec="1.2.3" /&gt;</code>
+                    </div>
+                 </div>
+            </section>
+
+            <section data-auto-animate>
+                <h2 class="anim-up">最終目標：ワンコマンド・ビルド</h2>
+                <p class="anim-up d-1" style="margin-top: 30px; font-size: 1.2em;">
+                    目指すのは、誰が・どこで実行しても同じ成果物が得られる、<br>一貫性と再現性の高い開発パイプラインです。
+                </p>
+                <div class="anim-pop d-2" style="margin-top: 80px;">
+                    <p class="final-command">$ cordova build ios --release --buildConfig=build.json</p>
+                </div>
+                 <p class="fragment fade-in-up" style="margin-top: 80px;">
+                    これにより、開発チームは本質的な価値創造に集中できます。
+                </p>
+            </section>
+            
+            <section data-auto-animate>
+                <i class="fa-solid fa-hands-clapping icon-lg anim-pop" style="color:#2ecc71;"></i>
+                <h2 class="anim-up d-1">ご清聴ありがとうございました</h2>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            center: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            // Automatically start progression animation on slide change
+            autoAnimate: true,
+            autoAnimateEasing: 'ease-in-out',
+            autoAnimateDuration: 0.6,
+        });
+
+        // Custom auto-animation trigger
+        Reveal.addEventListener('slidechanged', function(event) {
+            // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+            const currentSlide = event.currentSlide;
+            const animatedElements = currentSlide.querySelectorAll('.anim-up, .anim-left, .anim-right, .anim-pop');
+            
+            // This is a bit of a hack to re-trigger animations on revisit
+            animatedElements.forEach(el => {
+                const animName = Array.from(el.classList).find(c => c.startsWith('anim-')).replace('anim-', 'fadeIn');
+                if(el.classList.contains('anim-pop')) animName = 'popIn';
+                
+                el.style.animation = 'none';
+                el.offsetHeight; // Trigger reflow
+                el.style.animation = null; 
+            });
+        });
+    </script>
+</body>
+</html>
