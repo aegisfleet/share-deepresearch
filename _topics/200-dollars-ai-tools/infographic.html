@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>月200ドルで構築する最強のAIツールスタック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 500px;
+        }
+        .flow-arrow::after {
+            content: '▼';
+            position: absolute;
+            bottom: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: #74C6D4;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- 
+        Color Palette: Brilliant Blues (#004AAD, #0094C6, #74C6D4, B8E3E9)
+        Infographic Plan:
+        1.  Hero Section: Introduce the topic with a hook and a key statistic.
+        2.  Market Landscape: Explain the three strategic approaches to building an AI stack (Platform, Point Solution, Workflow Hub).
+        3.  Portfolio Showcase: Detail 5 different persona-based portfolios using cards, donut charts for cost breakdown, and HTML/CSS flowcharts for synergy.
+        4.  Cost Comparison: A horizontal bar chart comparing the total cost of each portfolio.
+        5.  Strategic Takeaways: Conclude with actionable advice for evaluating and managing AI tools.
+
+        Visualization Choices:
+        - Hero Stat: Goal: Inform -> Single Big Number (HTML/CSS). Justification: High impact for a key takeaway. NO SVG.
+        - Strategic Approaches: Goal: Organize -> Diagram (HTML/CSS). Justification: Visually separates core concepts. NO SVG/Mermaid.
+        - Portfolio Cost Breakdown: Goal: Compare -> Donut Chart (Chart.js/Canvas). Justification: Clearly shows composition of costs. NO SVG.
+        - Portfolio Workflow: Goal: Organize -> Flow Chart (HTML/CSS). Justification: Illustrates process and synergy simply. NO SVG/Mermaid.
+        - Portfolio Cost Comparison: Goal: Compare -> Bar Chart (Chart.js/Canvas). Justification: Best for direct value comparison across categories. NO SVG.
+        - Evaluation Framework: Goal: Organize -> List (HTML/CSS). Justification: Clear and readable for actionable steps. NO SVG.
+
+        Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All visuals are rendered using Chart.js on Canvas or structured with standard HTML and Tailwind CSS.
+    -->
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl font-bold text-[#004AAD]">AIツール戦略ガイド</h1>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#landscape" class="text-gray-600 hover:text-[#0094C6] transition-colors">市場概観</a>
+                    <a href="#portfolios" class="text-gray-600 hover:text-[#0094C6] transition-colors">ポートフォリオ</a>
+                    <a href="#comparison" class="text-gray-600 hover:text-[#0094C6] transition-colors">コスト比較</a>
+                    <a href="#strategy" class="text-gray-600 hover:text-[#0094C6] transition-colors">導入戦略</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="hero" class="text-center mb-24">
+            <h2 class="text-4xl md:text-6xl font-bold text-[#004AAD] mb-4">月200ドルで構築する<br>最強のAIツールスタック</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">無数のAIツールの中から、機能の重複なく、相乗効果を最大化する組み合わせを見つけ出すための戦略的ガイド。</p>
+            <div class="bg-white rounded-lg shadow-xl p-8 inline-block">
+                <p class="text-2xl text-gray-700 mb-2">年間契約を選ぶだけで…</p>
+                <p class="text-7xl font-bold text-[#0094C6]">約20%</p>
+                <p class="text-2xl text-gray-700 mt-2">のコストを削減可能！</p>
+            </div>
+        </section>
+
+        <section id="landscape" class="mb-24">
+            <h3 class="text-3xl font-bold text-center text-[#004AAD] mb-4">AIツール選択の3つの戦略</h3>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">あなたのAI戦略の核となるアプローチを理解することが、最適なツール選びの第一歩です。</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-[#004AAD]">
+                    <div class="text-5xl mb-4">🏛️</div>
+                    <h4 class="text-xl font-bold mb-2">プラットフォーム型</h4>
+                    <p class="text-gray-600">Microsoft CopilotやNotion AIのように、既存の作業環境にAIを統合。利便性と一元管理を最優先する場合に最適です。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-[#0094C6]">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h4 class="text-xl font-bold mb-2">単機能特化型</h4>
+                    <p class="text-gray-600">MidjourneyやElevenLabsのように、特定機能で最高の品質を追求。アウトプットの質に一切妥協できないプロ向けです。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-[#74C6D4]">
+                    <div class="text-5xl mb-4">🧩</div>
+                    <h4 class="text-xl font-bold mb-2">ワークフロー特化型</h4>
+                    <p class="text-gray-600">WritesonicやOtter.aiのように、SEOや会議など特定の業務プロセス全体を支援。専門分野の効率を最大化します。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolios" class="mb-24">
+            <h3 class="text-3xl font-bold text-center text-[#004AAD] mb-12">ペルソナ別・最適AIポートフォリオ5選</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col">
+                    <h4 class="text-2xl font-bold text-[#004AAD] mb-1">A: ソロコンテンツクリエイター</h4>
+                    <p class="text-gray-500 mb-6">高品質な文章、ビジュアル、映像を量産する個人向け</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
+                        <div class="flex flex-col items-center justify-center">
+                            <p class="text-gray-600">合計コスト（年払い実質月額）</p>
+                            <p class="text-5xl font-bold text-[#0094C6] my-2">$101.33</p>
+                            <div class="chart-container h-64">
+                                <canvas id="portfolioAChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <h5 class="font-bold text-center mb-4">制作ワークフロー</h5>
+                            <div class="space-y-12 relative">
+                                <div class="bg-blue-50 p-3 rounded-lg shadow text-center relative flow-arrow">
+                                    <p class="font-bold">① スクリプト作成</p><p class="text-sm">ChatGPT Plus</p>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg shadow text-center relative flow-arrow">
+                                    <p class="font-bold">② ナレーション制作</p><p class="text-sm">ElevenLabs</p>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg shadow text-center relative flow-arrow">
+                                    <p class="font-bold">③ ビジュアル制作</p><p class="text-sm">Midjourney</p>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded-lg shadow text-center">
+                                    <p class="font-bold">④ 動画化</p><p class="text-sm">Pictory</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col">
+                    <h4 class="text-2xl font-bold text-[#004AAD] mb-1">B: デジタルマーケター & SEO専門家</h4>
+                    <p class="text-gray-500 mb-6">データ駆動型のコンテンツ戦略とSEOを自動化</p>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
+                        <div class="flex flex-col items-center justify-center">
+                            <p class="text-gray-600">合計コスト（年払い実質月額）</p>
+                            <p class="text-5xl font-bold text-[#0094C6] my-2">$105.87</p>
+                            <div class="chart-container h-64">
+                                <canvas id="portfolioBChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <h5 class="font-bold text-center mb-4">マーケティングフロー</h5>
+                            <div class="space-y-12 relative">
+                                <div class="bg-cyan-50 p-3 rounded-lg shadow text-center relative flow-arrow">
+                                    <p class="font-bold">① リサーチ＆戦略</p><p class="text-sm">Perplexity Pro</p>
+                                </div>
+                                <div class="bg-cyan-50 p-3 rounded-lg shadow text-center relative flow-arrow">
+                                    <p class="font-bold">② SEOコンテンツ生成</p><p class="text-sm">Writesonic</p>
+                                </div>
+                                <div class="bg-cyan-50 p-3 rounded-lg shadow text-center">
+                                    <p class="font-bold">③ アセット制作</p><p class="text-sm">Canva Pro</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col">
+                    <h4 class="text-2xl font-bold text-[#004AAD] mb-1">C: フリーランス開発者 & ライター</h4>
+                    <p class="text-gray-500 mb-6">コーディングと技術文書作成の効率を最大化</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
+                        <div class="flex flex-col items-center justify-center">
+                            <p class="text-gray-600">合計コスト（年払い実質月額）</p>
+                            <p class="text-5xl font-bold text-[#0094C6] my-2">$33.07</p>
+                            <div class="chart-container h-64">
+                                <canvas id="portfolioCChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <h5 class="font-bold text-center mb-4">開発ワークフロー</h5>
+                            <div class="space-y-12 relative">
+                                <div class="bg-teal-50 p-3 rounded-lg shadow text-center relative flow-arrow">
+                                    <p class="font-bold">① コーディング支援</p><p class="text-sm">GitHub Copilot</p>
+                                </div>
+                                <div class="bg-teal-50 p-3 rounded-lg shadow text-center relative flow-arrow">
+                                    <p class="font-bold">② ドキュメント管理</p><p class="text-sm">Notion AI</p>
+                                </div>
+                                <div class="bg-teal-50 p-3 rounded-lg shadow text-center">
+                                    <p class="font-bold">③ グローバル化</p><p class="text-sm">DeepL Pro</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col">
+                    <h4 class="text-2xl font-bold text-[#004AAD] mb-1">D: 学術研究者 & アナリスト</h4>
+                    <p class="text-gray-500 mb-6">文献レビューから論文執筆までを高速化</p>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
+                        <div class="flex flex-col items-center justify-center">
+                            <p class="text-gray-600">合計コスト（年払い実質月額）</p>
+                            <p class="text-5xl font-bold text-[#0094C6] my-2">$71.42</p>
+                            <div class="chart-container h-64">
+                                <canvas id="portfolioDChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <h5 class="font-bold text-center mb-4">研究ワークフロー</h5>
+                            <div class="space-y-12 relative">
+                                <div class="bg-sky-50 p-3 rounded-lg shadow text-center relative flow-arrow">
+                                    <p class="font-bold">① 文献レビュー</p><p class="text-sm">Elicit</p>
+                                </div>
+                                <div class="bg-sky-50 p-3 rounded-lg shadow text-center relative flow-arrow">
+                                    <p class="font-bold">② 情報収集・分析</p><p class="text-sm">Perplexity & ChatGPT</p>
+                                </div>
+                                <div class="bg-sky-50 p-3 rounded-lg shadow text-center">
+                                    <p class="font-bold">③ 視覚化</p><p class="text-sm">Visme</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="mt-12 max-w-4xl mx-auto">
+                 <div class="bg-white rounded-lg shadow-xl p-6 flex flex-col">
+                    <h4 class="text-2xl font-bold text-[#004AAD] mb-1">E: 「万能型」小規模事業者</h4>
+                    <p class="text-gray-500 mb-6">日々の業務全般の生産性をバランス良く向上</p>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-grow">
+                        <div class="flex flex-col items-center justify-center">
+                            <p class="text-gray-600">合計コスト（年払い実質月額）</p>
+                            <p class="text-5xl font-bold text-[#0094C6] my-2">$38.33</p>
+                            <div class="chart-container h-64">
+                                <canvas id="portfolioEChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <h5 class="font-bold text-center mb-4">業務効率化フロー</h5>
+                            <div class="space-y-12 relative">
+                                <div class="bg-indigo-50 p-3 rounded-lg shadow text-center relative flow-arrow">
+                                    <p class="font-bold">① 業務ハブ</p><p class="text-sm">Microsoft Copilot Pro</p>
+                                </div>
+                                <div class="bg-indigo-50 p-3 rounded-lg shadow text-center relative flow-arrow">
+                                    <p class="font-bold">② 会議インテリジェンス</p><p class="text-sm">Otter.ai</p>
+                                </div>
+                                <div class="bg-indigo-50 p-3 rounded-lg shadow text-center">
+                                    <p class="font-bold">③ ビジュアル伝達</p><p class="text-sm">Canva Pro</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="comparison" class="mb-24">
+            <h3 class="text-3xl font-bold text-center text-[#004AAD] mb-4">全ポートフォリオ コスト比較</h3>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">各ペルソナに最適化されたスタックの総コスト（年払い実質月額）を一目で比較。あなたの予算とニーズに最も近いものは？</p>
+            <div class="bg-white rounded-lg shadow-xl p-6">
+                 <div class="chart-container h-96 max-w-4xl">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="strategy">
+            <h3 class="text-3xl font-bold text-center text-[#004AAD] mb-4">将来を見据えたAI投資戦略</h3>
+             <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">AIツールは急速に進化します。投資価値を維持するための3つの重要な問い。</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                 <div class="bg-white rounded-lg shadow-lg p-8">
+                    <p class="text-3xl font-bold text-[#0094C6] mb-4">1.</p>
+                    <h4 class="text-xl font-bold mb-2">新しい問題か、既存の改善か？</h4>
+                    <p class="text-gray-600">そのツールは、全く新しい能力を提供しますか？それとも既存のツールの性能を少し上げるだけですか？</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-lg p-8">
+                    <p class="text-3xl font-bold text-[#0094C6] mb-4">2.</p>
+                    <h4 class="text-xl font-bold mb-2">真の立ち位置は何か？</h4>
+                    <p class="text-gray-600">プラットフォーム、単機能特化、ワークフローハブのどれですか？これが既存スタックとの関係性を決めます。</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-lg p-8">
+                    <p class="text-3xl font-bold text-[#0094C6] mb-4">3.</p>
+                    <h4 class="text-xl font-bold mb-2">真のコストは何か？</h4>
+                    <p class="text-gray-600">月額制、従量課金制、アドオン形式のどれですか？隠れたコストを見極めることが重要です。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#004AAD] text-white mt-20">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p>&copy; 2025 AIツール戦略ガイド. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const brilliantBlues = ['#004AAD', '#0094C6', '#74C6D4', '#B8E3E9'];
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                           family: "'Noto Sans JP', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    bodyFont: {
+                        family: "'Noto Sans JP', sans-serif"
+                    },
+                    titleFont: {
+                        family: "'Noto Sans JP', sans-serif"
+                    }
+                }
+            }
+        };
+
+        const wrapLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            let words = label.split('');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine);
+                    currentLine = '';
+                }
+                currentLine += word;
+            });
+            lines.push(currentLine);
+            return lines;
+        };
+
+        new Chart(document.getElementById('portfolioAChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['ChatGPT Plus', 'Midjourney', 'ElevenLabs', 'Pictory'],
+                datasets: [{
+                    label: 'コスト内訳',
+                    data: [20.00, 24.00, 18.33, 39.00],
+                    backgroundColor: brilliantBlues,
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            },
+            options: commonChartOptions
+        });
+
+        new Chart(document.getElementById('portfolioBChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Writesonic', 'Perplexity Pro', 'Canva Pro'],
+                datasets: [{
+                    label: 'コスト内訳',
+                    data: [79.20, 16.67, 10.00],
+                    backgroundColor: brilliantBlues,
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            },
+            options: commonChartOptions
+        });
+
+        new Chart(document.getElementById('portfolioCChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['GitHub Copilot', 'Notion + AI', 'DeepL Pro'],
+                datasets: [{
+                    label: 'コスト内訳',
+                    data: [8.33, 16.00, 8.74],
+                    backgroundColor: brilliantBlues,
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            },
+            options: commonChartOptions
+        });
+
+        new Chart(document.getElementById('portfolioDChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Elicit', 'Perplexity Pro', 'ChatGPT Plus', 'Visme'],
+                datasets: [{
+                    label: 'コスト内訳',
+                    data: [10.00, 16.67, 20.00, 24.75],
+                    backgroundColor: brilliantBlues,
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            },
+            options: commonChartOptions
+        });
+
+        new Chart(document.getElementById('portfolioEChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['MS Copilot Pro', 'Otter.ai', 'Canva Pro'],
+                datasets: [{
+                    label: 'コスト内訳',
+                    data: [20.00, 8.33, 10.00],
+                    backgroundColor: brilliantBlues,
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            },
+            options: commonChartOptions
+        });
+        
+        const comparisonLabels = [
+            'C: フリーランス開発者＆ライター',
+            'E: 「万能型」小規模事業者',
+            'D: 学術研究者＆アナリスト',
+            'A: ソロコンテンツクリエイター',
+            'B: デジタルマーケター＆SEO専門家',
+        ].map(label => wrapLabel(label));
+
+        new Chart(document.getElementById('comparisonChart'), {
+            type: 'bar',
+            data: {
+                labels: comparisonLabels,
+                datasets: [{
+                    label: '合計コスト（年払い実質月額）',
+                    data: [33.07, 38.33, 71.42, 101.33, 105.87],
+                    backgroundColor: '#0094C6',
+                    borderColor: '#004AAD',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'USD ($)'
+                        }
+                    },
+                    y: {
+                        ticks: {
+                             font: {
+                                size: 12
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                     tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
