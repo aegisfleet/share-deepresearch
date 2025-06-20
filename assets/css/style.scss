@@ -512,6 +512,79 @@ a:hover {
     color: var(--text-color);
 }
 
+/* 見出しの基本スタイル */
+.topic h1, .topic h2, .topic h3 {
+    margin: 2rem 0 1rem;
+    padding: 0.8rem 1rem 0.8rem 3.5rem; /* アイコン分広げる */
+    position: relative;
+    border-radius: 8px;
+    line-height: 1.4;
+}
+
+.topic h1 {
+    font-size: 1.8rem;
+    background: linear-gradient(to right, rgba(255, 119, 51, 0.2), transparent);
+    border-left: 4px solid var(--primary-color);
+}
+
+.topic h2 {
+    font-size: 1.5rem;
+    background: rgba(255, 119, 51, 0.1);
+    border-left: 3px solid var(--primary-color);
+}
+
+.topic h3 {
+    font-size: 1.3rem;
+    background: rgba(255, 119, 51, 0.05);
+    border-left: 2px solid var(--primary-color);
+}
+
+/* 見出しのアイコン位置調整 */
+.topic h1::before,
+.topic h2::before,
+.topic h3::before {
+    position: absolute;
+    left: 0.8rem;
+}
+
+/* コンテンツの可読性向上 */
+.topic p {
+    line-height: 1.8;
+    margin: 1.2rem 0;
+}
+
+.topic ul, .topic ol {
+    margin: 1.2rem 0;
+    padding-left: 2rem;
+}
+
+.topic li {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+/* リンクの視認性向上 */
+.topic a {
+    padding: 0.1rem 0.3rem;
+    margin: -0.1rem -0.3rem;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+.topic a:hover {
+    background-color: rgba(255, 119, 51, 0.1);
+    text-decoration: none;
+}
+
+/* 引用のスタイル改善 */
+.topic blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid var(--primary-color);
+    background: rgba(45, 45, 45, 0.5);
+    border-radius: 0 8px 8px 0;
+}
+
 /* リストのインデント調整 */
 ul, ol {
     padding-left: 1.5rem; /* デフォルトのインデントを少し減らす */
