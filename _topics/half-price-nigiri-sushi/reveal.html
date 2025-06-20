@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>半額寿司、価値の検証</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --r-main-font: 'Noto Sans JP', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Noto Sans JP', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: #eee;
+            --r-heading-color: #fff;
+            --r-link-color: #42affa;
+            --r-link-color-hover: #62cffa;
+            --custom-green: #2ECC71;
+            --custom-red: #E74C3C;
+            --custom-yellow: #F1C40F;
+        }
+
+        .reveal {
+            font-size: 32px;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; }
+
+        .reveal .subtitle {
+            font-size: 1.2em;
+            font-weight: 300;
+            color: var(--r-link-color);
+            margin-top: 20px;
+        }
+
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.7em; }
+        .reveal strong { color: var(--r-link-color); font-weight: 700; }
+        .reveal strong.green { color: var(--custom-green); }
+        .reveal strong.red { color: var(--custom-red); }
+        .reveal strong.yellow { color: var(--custom-yellow); }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .flex-box {
+            flex: 1;
+            background: rgba(40, 40, 40, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .flex-box i {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #555;
+            padding: 15px;
+            text-align: left;
+            font-size: 0.8em;
+        }
+        .comparison-table th {
+            background-color: var(--r-link-color);
+            color: #000;
+        }
+        .comparison-table td:first-child {
+            font-weight: bold;
+            color: var(--r-link-color);
+        }
+        .comparison-table .ok { background-color: rgba(46, 204, 113, 0.2); }
+        .comparison-table .warning { background-color: rgba(241, 196, 15, 0.2); }
+        .comparison-table .danger { background-color: rgba(231, 76, 60, 0.2); }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-image="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" data-background-opacity="0.3">
+                <h1>半額寿司、価値の検証</h1>
+                <p class="subtitle">割引にぎりの科学的・経済的価値評価</p>
+                <p style="margin-top: 50px;">その「お得感」、本当に信じて大丈夫？</p>
+            </section>
+
+            <section>
+                <h2>本プレゼンテーションでわかること</h2>
+                <ul class="left-align" style="font-size: 1.2em; margin-top: 50px; list-style-type: none;">
+                    <li class="fragment" data-fragment-index="1"><i class="fa-solid fa-right-long fa-fw" style="color: var(--r-link-color);"></i> <strong>起: 問題提起</strong> - なぜ半額寿司は「パラドックス」なのか？</li>
+                    <li class="fragment" data-fragment-index="2"><i class="fa-solid fa-right-long fa-fw" style="color: var(--r-link-color);"></i> <strong>承: 科学的分析</strong> - 時間が寿司にもたらす「鮮度劣化」と「うま味の罠」</li>
+                    <li class="fragment" data-fragment-index="3"><i class="fa-solid fa-right-long fa-fw" style="color: var(--r-link-color);"></i> <strong>転: 経済とリスク</strong> - 店の戦略、消費者の心理、そして「見えない脅威」</li>
+                    <li class="fragment" data-fragment-index="4"><i class="fa-solid fa-right-long fa-fw" style="color: var(--r-link-color);"></i> <strong>結: 最終評決</strong> - 半額寿司は買うべきか？賢明な消費者のための行動指針</li>
+                </ul>
+            </section>
+            
+            <section>
+              <section>
+                <h2><i class="fa-solid fa-lightbulb"></i> 起: 問題提起</h2>
+              </section>
+
+              <section>
+                  <h2>半額寿司のパラドックス</h2>
+                  <p>消費者は「半額」という価格に<strong>経済的魅力</strong>を感じるが、<br>その裏には<strong>品質低下</strong>と<strong>安全性リスク</strong>が潜んでいる。</p>
+                  <div class="flex-container" style="margin-top: 40px; align-items: center;">
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-tags" style="color: var(--custom-green);"></i>
+                          <h4>お得感という引力</h4>
+                          <p class="small-text">定価の半額で手に入るご馳走。家計の味方であり、食品ロス削減にも貢献？</p>
+                      </div>
+                      <div class="fragment" style="font-size: 4em; padding: 0 40px;">
+                          <i class="fa-solid fa-code-compare"></i>
+                      </div>
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-triangle-exclamation" style="color: var(--custom-red);"></i>
+                          <h4>見えないリスク</h4>
+                          <p class="small-text">時間の経過と共に劣化する鮮度。そして、五感では検知できない食中毒の脅威。</p>
+                      </div>
+                  </div>
+                  <p class="fragment" style="margin-top: 50px;">この割引は、品質低下のリスクを適切に反映しているのか？ <strong class="red">本質的な価値</strong>を問う。</p>
+              </section>
+            </section>
+            
+            <section>
+              <section>
+                <h2><i class="fa-solid fa-flask-vial"></i> 承: 科学的分析</h2>
+              </section>
+              
+              <section>
+                  <h3>鮮度の数値化：K値とは？</h3>
+                  <p>魚の鮮度は「K値」という科学的指標で客観的に評価できる。</p>
+                  <p class="small-text left-align" style="margin-top: 30px;">
+                    <strong style="font-size: 1.2em;">K値</strong>: 魚の死後、筋肉のエネルギー源(ATP)が自己消化酵素により分解されていく進行度を示す指標。
+                    <br>K値が低いほど鮮度が高く、高いほど鮮度が低いことを意味する。
+                  </p>
+                  <ul class="left-align" style="margin-top: 30px; font-size: 0.9em;">
+                      <li class="fragment"><strong class="green">K値 20%以下</strong>: 刺身として生食可能な極めて高い鮮度。 <strong>(定価の寿司の基準)</strong></li>
+                      <li class="fragment"><strong class="yellow">K値 20%～50%</strong>: 加熱調理用としては問題ないレベル。</li>
+                      <li class="fragment"><strong class="red">K値 60%以上</strong>: 初期腐敗。食用には適さない。</li>
+                  </ul>
+                  <p class="fragment" style="margin-top: 30px;">特にマグロなどの赤身魚は、白身魚よりK値の上昇が速い。</p>
+              </section>
+
+              <section>
+                  <h3>8時間後の劣化曲線：温度が鮮度の命運を分ける</h3>
+                  <p>スーパーの陳列温度によって、8時間後のマグロの品質は劇的に変化する。</p>
+                  <table class="comparison-table">
+                      <thead>
+                          <tr>
+                              <th>保管温度</th>
+                              <th>8時間後の推定K値 (%)</th>
+                              <th>鮮度の状態評価</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr class="fragment ok">
+                              <td><strong>4℃（最適）</strong></td>
+                              <td>5 - 8% </td>
+                              <td><i class="fa-solid fa-circle-check"></i> 刺身用として高品質</td>
+                          </tr>
+                          <tr class="fragment warning">
+                              <td><strong>8℃（準最適）</strong></td>
+                              <td>10 - 15%</td>
+                              <td><i class="fa-solid fa-circle-exclamation"></i> 刺身用として許容範囲だが、鮮度は低下</td>
+                          </tr>
+                          <tr class="fragment danger">
+                              <td><strong>10℃（劣悪）</strong></td>
+                              <td>> 20% </td>
+                              <td><i class="fa-solid fa-circle-xmark"></i> 刺身用としては不適格。加熱調理推奨</td>
+                          </tr>
+                      </tbody>
+                  </table>
+                  <p class="fragment" style="margin-top: 40px;">消費者は陳列ケースの正確な温度を知る術がない。<br>わずか数度の差が、<strong class="red">「高品質な刺身」</strong>を<strong class="red">「生食不適格な魚」</strong>に変える可能性がある。</p>
+              </section>
+
+              <section>
+                  <h3>うま味のパラドックス：「美味しい」が「危ない」のサイン？</h3>
+                   <p>「新鮮＝美味しい」とは限らない。ここに「うま味の罠」がある。</p>
+                  <div class="flex-container" style="margin-top: 50px; align-items: center;">
+                      <div class="fragment" style="flex: 2; text-align: left;">
+                          <p>魚の死後、ATPが分解される過程で、うま味成分である<strong>イノシン酸(IMP)</strong>が生成される。</p>
+                          <p>IMPが増加する「食べごろ」（熟成）のタイミングが存在する。</p>
+                      </div>
+                      <div class="fragment" style="flex: 3;">
+                           <img src="https://i.imgur.com/uGzD3bY.png" alt="Umami Curve" style="background: white; border-radius: 10px; padding: 10px;">
+                      </div>
+                  </div>
+                  <p class="fragment" style="margin-top: 30px;">
+                    <strong class="red">しかし、うま味のピークは品質劣化が本格化する直前のタイミングと重なる。</strong><br>
+                    半額寿司の「意外な美味しさ」は、実は鮮度が限界点に近づいている危険信号かもしれない。
+                  </p>
+              </section>
+            </section>
+            
+            <section>
+              <section>
+                <h2><i class="fa-solid fa-biohazard"></i> 転: 経済とリスク</h2>
+              </section>
+              
+               <section>
+                  <h2>見えざる脅威：ヒスタミン食中毒</h2>
+                  <p>マグロなどの赤身魚には、特有の食中毒リスクが潜む。</p>
+                  <div class="flex-container" style="margin-top: 50px;">
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-bacteria" style="color: var(--custom-yellow);"></i>
+                          <h4>発生メカニズム</h4>
+                          <p class="small-text">ヒスタミン産生菌が、魚に含まれるヒスチジンを分解し、アレルギー様症状を引き起こす化学物質「ヒスタミン」を生成する。</p>
+                      </div>
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-mask" style="color: var(--custom-red);"></i>
+                          <h4>脅威の特性</h4>
+                          <p class="small-text"><strong>【熱に強い】</strong>加熱調理しても分解されない。<br><strong>【無味無臭】</strong>五感で危険を察知できない。<br>発症が早く、食中毒と気づかれにくい。</p>
+                      </div>
+                  </div>
+                  <p class="fragment" style="margin-top: 40px;">ヒスタミンは、半額寿司の価値を根底から揺るがす<strong class="red">最大の隠れリスク</strong>である。</p>
+              </section>
+
+              <section>
+                  <h3>8時間後のヒスタミンリスク評価</h3>
+                  <p>ヒスタミン産生菌の増殖も、K値と同様に<strong>温度に強く依存する</strong>。</p>
+                  <table class="comparison-table">
+                      <thead>
+                          <tr>
+                              <th>保管温度</th>
+                              <th>8時間後のヒスタミンリスク</th>
+                              <th>リスクレベル</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr class="fragment ok">
+                              <td><strong>4℃（最適）</strong></td>
+                              <td>安全域。リスクは極めて低い。</td>
+                              <td><strong class="green">低</strong></td>
+                          </tr>
+                          <tr class="fragment warning">
+                              <td><strong>10℃（準最適）</strong></td>
+                              <td>菌は着実に増殖。リスクは無視できないレベルに上昇。</td>
+                              <td><strong class="yellow">中</strong></td>
+                          </tr>
+                          <tr class="fragment danger">
+                              <td><strong>25℃（常温放置）</strong></td>
+                              <td>わずか12～24時間で危険量に達する可能性。 8時間でもリスクは急増。</td>
+                              <td><strong class="red">高</strong></td>
+                          </tr>
+                      </tbody>
+                  </table>
+                  <p class="fragment" style="margin-top: 40px;">半額寿司の安全性は、消費者が確認できない<strong class="red">「温度履歴」というブラックボックス</strong>に完全に依存している。</p>
+              </section>
+
+              <section>
+                  <h2>値引きの裏側：店の経済学と消費者の心理学</h2>
+                  <div class="flex-container" style="margin-top: 50px;">
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-store" style="color: var(--r-link-color);"></i>
+                          <h4>スーパーの戦略</h4>
+                          <p class="small-text">値引きは、廃棄による<strong>損失を最小化</strong>するための合理的な経営戦略。 異なる支払い意欲を持つ顧客層にアプローチする<strong>価格差別</strong>でもある。</p>
+                      </div>
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-brain" style="color: var(--r-link-color);"></i>
+                          <h4>消費者の心理</h4>
+                          <p class="small-text"><strong>アンカリング効果</strong>により「定価からいくら得したか」に注目してしまい、品質への懸念が薄れる。 「今しかない」という<strong>損失回避</strong>の感情も購買を後押しする。</p>
+                      </div>
+                  </div>
+                   <p class="fragment" style="margin-top: 40px;">値引きシールは、食品安全のリスク評価責任を<br>実質的に<strong class="yellow">消費者に転嫁する構造</strong>を内包している。</p>
+              </section>
+            </section>
+
+            <section>
+              <section>
+                  <h2><i class="fa-solid fa-gavel"></i> 結: 最終評決と行動指針</h2>
+              </section>
+              
+              <section>
+                  <h2>最終評決：半額寿司は本当に「お得」なのか？</h2>
+                  <p style="margin-top: 50px;">本レポートの結論は、品質と安全性を最優先するならば、</p>
+                  <h2 class="fragment" style="margin-top: 50px;"><strong class="red">否</strong> である。</h2>
+                  <p class="fragment" style="margin-top: 50px;">
+                      多くの場合、製造から8時間が経過した半額寿司は、<br>
+                      その価格（定価の50%）に見合う価値を保持していない。
+                  </p>
+                  <p class="fragment" style="margin-top: 30px;">
+                      それは「半分の価格で半分の価値」を得る取引ではなく、<br>
+                      <strong>「半分の価格で、ゼロに近い生食価値と、未知の健康リスクを引き受ける」</strong>取引に近い。
+                  </p>
+              </section>
+
+              <section>
+                  <h3>消費者のための実践的評価ガイド</h3>
+                  <p>リスクを最小限に抑えるため、購入前にこれらの点をチェックしよう。</p>
+                  <table class="comparison-table small-text">
+                      <thead>
+                          <tr>
+                              <th>評価項目</th>
+                              <th>チェックポイント</th>
+                              <th>危険なサイン</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td><i class="fa-solid fa-eye"></i> <strong>色</strong></td>
+                              <td>深く、透明感のある鮮やかな赤色か？</td>
+                              <td>茶色や黒ずんだ色、白っぽくパサついた色</td>
+                          </tr>
+                          <tr>
+                              <td><i class="fa-solid fa-star"></i> <strong>ツヤ</strong></td>
+                              <td>表面にみずみずしい光沢があるか？</td>
+                              <td>表面が乾燥、またはぬめりがある</td>
+                          </tr>
+                           <tr>
+                              <td><i class="fa-solid fa-droplet"></i> <strong>ドリップ</strong></td>
+                              <td>パックの底は過度に濡れていないか？</td>
+                              <td>吸水シートが血や水分でびしょ濡れ </td>
+                          </tr>
+                          <tr>
+                              <td><i class="fa-solid fa-fish-fins"></i> <strong>身の状態</strong></td>
+                              <td>ネタの角がシャープに立っているか？</td>
+                              <td>角が丸まり、身が崩れている</td>
+                          </tr>
+                      </tbody>
+                  </table>
+                  <p class="fragment" style="margin-top: 30px;"><strong class="yellow">一つでも当てはまる場合は、購入を避けるのが賢明。</strong></p>
+              </section>
+              
+              <section>
+                  <h3>購入後のプロトコルと【最重要警告】</h3>
+                  <div class="flex-container" style="margin-top: 50px;">
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-clock" style="color: var(--r-link-color);"></i>
+                          <h4>即時消費の原則</h4>
+                          <p class="small-text">購入後は寄り道をせず直ちに帰宅し、可能な限り速やかに（1～2時間以内）消費する。<strong>冷蔵庫での再保管は絶対に避ける。</strong></p>
+                      </div>
+                      <div class="flex-box fragment">
+                          <i class="fa-solid fa-fire-burner" style="color: var(--r-link-color);"></i>
+                          <h4>加熱調理の限界</h4>
+                          <p class="small-text">加熱は腸炎ビブリオ等の細菌や寄生虫には有効だが、 <strong>ヒスタミンは分解できない。</strong></p>
+                      </div>
+                  </div>
+                  <div class="fragment" style="margin-top: 50px; border: 5px solid var(--custom-red); border-radius: 10px; padding: 20px;">
+                      <h2><i class="fa-solid fa-skull-crossbones"></i> 最重要警告</h2>
+                      <p>もし口にした際に、<strong class="red">舌先がピリピリするような刺激</strong>を感じたら、それは高濃度のヒスタミンのサインかもしれない。<br><strong>直ちに食べるのをやめ、迷わず廃棄すること。</strong></p>
+                  </div>
+              </section>
+
+              <section>
+                  <h2>まとめ: 賢明な消費者であるために</h2>
+                  <ul class="left-align" style="font-size: 1.0em; margin-top: 50px; list-style-type: none;">
+                      <li class="fragment"><i class="fa-solid fa-check fa-fw" style="color: var(--custom-green);"></i> 半額寿司の価値は、<strong class="yellow">温度管理というブラックボックス</strong>に依存し、多くの場合半額以下である。</li>
+                      <li class="fragment"><i class="fa-solid fa-check fa-fw" style="color: var(--custom-green);"></i> K値（鮮度）の劣化と、目に見えず加熱でも消えない<strong class="red">ヒスタミンリスク</strong>が二大脅威。</li>
+                      <li class="fragment"><i class="fa-solid fa-check fa-fw" style="color: var(--custom-green);"></i> 経済合理性と消費者心理が「お得感」を演出するが、<strong class="yellow">リスク評価の責任は消費者に転嫁</strong>されている。</li>
+                      <li class="fragment"><i class="fa-solid fa-check fa-fw" style="color: var(--custom-green);"></i> 賢明な消費とは、価格、品質、安全性のトレードオフを理解し、時には<strong class="red">購入を断念する勇気</strong>を持つことである。</li>
+                  </ul>
+              </section>
+
+              <section>
+                  <h2>ご清聴ありがとうございました</h2>
+                  <p class="small-text" style="margin-top: 250px;">
+                      本資料は、提示されたレポート「半額寿司、価値の検証」を基に作成されました。
+                  </p>
+              </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

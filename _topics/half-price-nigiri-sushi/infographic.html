@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：半額寿司、その価値の真実</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 
+        Color Palette Selection: Energetic & Playful
+        #FF6B6B (Red), #FFD166 (Yellow), #06D6A0 (Green), #118AB2 (Blue), #073B4C (Dark Blue/Black)
+        This palette was chosen for its high contrast and vibrant feel, making the data engaging while maintaining a professional look.
+    -->
+    <!-- 
+        Narrative Plan & Structure:
+        1.  Hook: The Half-Price Sushi Paradox.
+        2.  Section 1: The Science of Freshness (K-Value).
+        3.  Section 2: The Hidden Danger (Histamine).
+        4.  Section 3: The Supermarket's Logic (Discount Flowchart).
+        5.  Section 4: The Psychology of a Bargain.
+        6.  Section 5: Consumer Checklist.
+        7.  Conclusion: The Final Verdict.
+    -->
+    <!--
+        Visualization Choices:
+        1.  K-Value Trend: Line Chart (Chart.js). Goal: Change. Justification: Shows trend over time clearly. NO SVG.
+        2.  K-Value Threshold: Donut Chart (Chart.js). Goal: Inform. Justification: Visualizes the critical 20% limit as a part-to-whole relationship. NO SVG.
+        3.  Histamine Risk: Bar Chart (Chart.js). Goal: Compare. Justification: Compares risk levels across different temperature conditions. NO SVG.
+        4.  Discount Flowchart: HTML/CSS Diagram. Goal: Organize. Justification: Clearly shows a process without using prohibited libraries like Mermaid JS or SVG.
+        5.  Consumer Checklist: HTML/CSS List. Goal: Organize. Justification: Presents actionable information in a clear, easy-to-read format. NO SVG.
+        Confirmation: NEITHER Mermaid JS NOR SVG were used in this output.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 380px;
+            }
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+        }
+        .flowchart-arrow {
+            font-size: 2rem;
+            color: #FFD166;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="bg-[#073B4C] text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12 py-12 bg-white/10 rounded-xl">
+            <h1 class="text-4xl md:text-6xl font-bold text-white text-shadow">半額寿司のパラドックス</h1>
+            <p class="mt-4 text-lg md:text-xl text-white/90 text-shadow">その一枚のシールは、本当にお得な取引か、それとも危険な賭けか？</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section id="k-value" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#073B4C] mb-2">第1章：価値の生化学</h2>
+                <p class="text-xl font-semibold text-[#118AB2] mb-6">マグロの鮮度、8時間の追跡</p>
+                <p class="mb-8 text-base">寿司の価値はネタの鮮度で決まります。科学的な鮮度指標「K値」は、魚の自己消化の進行度を示します。K値が20%を超えると、生食には推奨されません。スーパーの陳列棚という不確実な環境で8時間が経過すると、マグロの価値はどう変化するのでしょうか？</p>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+                    <div class="md:col-span-3">
+                        <div class="chart-container">
+                            <canvas id="kValueChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-gray-500 mt-2">保管温度による8時間後のK値（推定値）</p>
+                    </div>
+                    <div class="md:col-span-2 text-center">
+                         <div class="chart-container h-64 md:h-80">
+                            <canvas id="kValueDonutChart"></canvas>
+                        </div>
+                        <p class="mt-4 font-bold text-lg text-[#FF6B6B]">K値20%が「生食の限界」</p>
+                        <p class="text-gray-600">この値を超えると、品質は加熱調理用のレベルに低下します。</p>
+                    </div>
+                </div>
+                 <div class="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h3 class="font-bold text-lg text-[#118AB2]">分析の要点</h3>
+                    <p class="mt-2 text-gray-700">理想的な4℃管理下でもK値は上昇しますが、生食基準内に留まります。しかし、陳列ケースの温度がわずかに高い8℃〜10℃になると、K値は8時間で危険水域に急接近、あるいは突入します。消費者はこの温度を知ることができず、ここに最初の大きなリスクが潜んでいます。</p>
+                </div>
+            </section>
+            
+            <section id="histamine" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#073B4C] mb-2">第2章：見えざる脅威</h2>
+                <p class="text-xl font-semibold text-[#FF6B6B] mb-6">無味無臭の危険、ヒスタミン食中毒</p>
+                <p class="mb-8 text-base">半額寿司の最大のリスクは、味や匂いで検知できない「ヒスタミン」です。マグロなどの赤身魚が不適切な温度に置かれると、細菌がヒスチジンというアミノ酸を分解してヒスタミンを生成します。これは加熱しても分解されず、アレルギー様の食中毒を引き起こします。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <div class="chart-container">
+                            <canvas id="histamineRiskChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-gray-500 mt-2">保管温度と8時間後のヒスタミンリスクレベル</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                            <h4 class="font-bold text-lg text-[#FF6B6B]">最大の罠：加熱しても無意味</h4>
+                            <p class="text-gray-700">ヒスタミンは熱に非常に強く、焼いても煮ても分解されません。怪しいと思っても「火を通せば大丈夫」という考えは通用しないのです。</p>
+                        </div>
+                        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg">
+                            <h4 class="font-bold text-lg text-[#FFD166]">サインは舌のピリピリ感</h4>
+                            <p class="text-gray-700">もし食べた時に舌先がピリピリしたら、それは高濃度のヒスタミンの警告かもしれません。直ちに食べるのをやめましょう。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="economics" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#073B4C] mb-2">第3章：シールの裏側</h2>
+                <p class="text-xl font-semibold text-[#06D6A0] mb-6">スーパーの戦略と消費者の心理</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-bold text-lg text-[#118AB2] mb-4">なぜ「半額」は生まれるのか？</h3>
+                        <p class="mb-6">値引きは、廃棄による100%の損失を避けるための合理的な経営戦略です。閉店時間が近づくにつれ、段階的に割引率が上がり、損失を最小限に抑えます。</p>
+                        <div class="space-y-4 text-center">
+                            <div class="bg-gray-100 p-4 rounded-lg shadow">
+                                <p class="font-bold text-lg">定価販売</p>
+                                <p class="text-sm">鮮度と利便性を求める顧客向け</p>
+                            </div>
+                            <div class="flowchart-arrow">▼</div>
+                             <div class="bg-gray-100 p-4 rounded-lg shadow">
+                                <p class="font-bold text-lg text-[#118AB2]">20-30% OFF</p>
+                                <p class="text-sm">価格に少し敏感な顧客向け（夕方）</p>
+                            </div>
+                            <div class="flowchart-arrow">▼</div>
+                            <div class="bg-yellow-100 p-4 rounded-lg shadow ring-2 ring-[#FFD166]">
+                                <p class="font-bold text-lg text-[#FFD166]">半額 (50% OFF)</p>
+                                <p class="text-sm">価格最優先の顧客向け（閉店間際）</p>
+                            </div>
+                             <div class="flowchart-arrow">▼</div>
+                            <div class="bg-red-100 p-4 rounded-lg shadow">
+                                <p class="font-bold text-lg text-[#FF6B6B]">廃棄</p>
+                                <p class="text-sm">売れ残った場合の最終的な損失</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-[#118AB2] mb-4">なぜ「半額」に惹かれるのか？</h3>
+                        <p class="mb-6">私たちの脳は、品質の低下よりも「お得感」に強く反応するようにできています。</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-2xl mr-4 text-[#FFD166]">⚓</span>
+                                <div>
+                                    <h4 class="font-bold">アンカリング効果</h4>
+                                    <p class="text-sm text-gray-600">元の価格（アンカー）を基準に「いくら得したか」で判断してしまい、冷静な価値評価が難しくなります。</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="text-2xl mr-4 text-[#FF6B6B]">💨</span>
+                                <div>
+                                    <h4 class="font-bold">損失回避と希少性</h4>
+                                    <p class="text-sm text-gray-600">「今買わないと損をする」という焦りが、時間と数量の限定された値引き品への衝動買いを促します。</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-2xl mr-4 text-[#06D6A0]">✅</span>
+                                <div>
+                                    <h4 class="font-bold">購入の正当化</h4>
+                                    <p class="text-sm text-gray-600">「半額なら」という言い訳が、寿司という少し贅沢な品に対する心理的な壁を取り払い、購入を後押しします。</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="checklist" class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#073B4C] mb-2">第4章：消費者の選択</h2>
+                <p class="text-xl font-semibold text-[#118AB2] mb-6">購入前の最終確認チェックリスト</p>
+                <p class="mb-8">それでも半額寿司を買うならば、リスクを最小限に抑えるために五感を研ぎ澄ませましょう。以下のサインを見つけたら、購入を見送るのが賢明です。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                        <h4 class="font-bold text-lg">色 <span class="text-xl ml-2">🎨</span></h4>
+                        <p class="font-semibold text-red-500 mt-2">危険なサイン:</p>
+                        <p class="text-gray-700">マグロが茶色・黒ずんでいる。白っぽくパサついている。</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                        <h4 class="font-bold text-lg">ツヤ <span class="text-xl ml-2">✨</span></h4>
+                        <p class="font-semibold text-red-500 mt-2">危険なサイン:</p>
+                        <p class="text-gray-700">表面が乾燥している。または逆にぬめりがある。</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                        <h4 class="font-bold text-lg">ドリップ <span class="text-xl ml-2">💧</span></h4>
+                        <p class="font-semibold text-red-500 mt-2">危険なサイン:</p>
+                        <p class="text-gray-700">パックの底に血や水分が溜まっている。</p>
+                    </div>
+                     <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                        <h4 class="font-bold text-lg">身の状態 <span class="text-xl ml-2">🍣</span></h4>
+                        <p class="font-semibold text-red-500 mt-2">危険なサイン:</p>
+                        <p class="text-gray-700">ネタの角が丸く、身が崩れている、ひび割れている。</p>
+                    </div>
+                     <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                        <h4 class="font-bold text-lg">他のネタ <span class="text-xl ml-2">🦐</span></h4>
+                        <p class="font-semibold text-red-500 mt-2">危険なサイン:</p>
+                        <p class="text-gray-700">白身魚が黄ばんでいる。イカが白く濁っている。</p>
+                    </div>
+                     <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                        <h4 class="font-bold text-lg">シャリ <span class="text-xl ml-2">🍚</span></h4>
+                        <p class="font-semibold text-red-500 mt-2">危険なサイン:</p>
+                        <p class="text-gray-700">ご飯が乾燥して硬そう。変色している。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="conclusion" class="text-center py-12 bg-white/10 rounded-xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-white text-shadow">最終評決</h2>
+                <p class="mt-4 text-lg md:text-xl max-w-4xl mx-auto text-white/90 text-shadow">製造から8時間経過した半額寿司は、「半額の価値」すら失っている可能性が高い。失われた鮮度と目に見えない安全リスクは、50%の割引では到底補えません。それは「半額で半分の価値」ではなく、「半額で、ゼロに近い生食価値と未知のリスクを引き受ける」取引です。</p>
+                <p class="mt-6 text-2xl font-bold text-[#FFD166] text-shadow">最も価値ある選択は、時には「買わない」勇気を持つことです。</p>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const FONT_COLOR = '#073B4C';
+            const GRID_COLOR = '#d1d5db';
+            
+            const PALETTE = {
+                red: '#FF6B6B',
+                yellow: '#FFD166',
+                green: '#06D6A0',
+                blue: '#118AB2',
+                darkBlue: '#073B4C'
+            };
+
+            const baseChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: FONT_COLOR,
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: FONT_COLOR
+                        },
+                        grid: {
+                            color: GRID_COLOR,
+                            display: false
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: FONT_COLOR
+                        },
+                        grid: {
+                            color: GRID_COLOR
+                        }
+                    }
+                }
+            };
+            
+            const wrapLabel = (label, maxLength = 16) => {
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine.trim());
+                }
+                return lines;
+            };
+
+            const kValueCtx = document.getElementById('kValueChart');
+            if (kValueCtx) {
+                new Chart(kValueCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['製造直後', '2時間後', '4時間後', '6時間後', '8時間後'],
+                        datasets: [
+                            {
+                                label: '4℃管理 (最適)',
+                                data: [2, 3, 4, 6, 7],
+                                borderColor: PALETTE.green,
+                                backgroundColor: 'rgba(6, 214, 160, 0.1)',
+                                tension: 0.1,
+                                fill: true,
+                            },
+                            {
+                                label: '8℃管理 (準最適)',
+                                data: [2, 5, 8, 12, 15],
+                                borderColor: PALETTE.yellow,
+                                backgroundColor: 'rgba(255, 209, 102, 0.1)',
+                                tension: 0.1,
+                                fill: true,
+                            },
+                            {
+                                label: '10℃管理 (劣悪)',
+                                data: [2, 6, 11, 17, 22],
+                                borderColor: PALETTE.red,
+                                backgroundColor: 'rgba(255, 107, 107, 0.1)',
+                                tension: 0.1,
+                                fill: true,
+                            },
+                            {
+                                label: '生食限界ライン',
+                                data: [20, 20, 20, 20, 20],
+                                borderColor: PALETTE.darkBlue,
+                                borderDash: [5, 5],
+                                pointRadius: 0,
+                                fill: false,
+                            }
+                        ]
+                    },
+                    options: {
+                        ...baseChartOptions,
+                        scales: {
+                           ...baseChartOptions.scales,
+                            y: {
+                               ...baseChartOptions.scales.y,
+                                title: {
+                                    display: true,
+                                    text: 'K値 (%)',
+                                    color: FONT_COLOR
+                                }
+                            }
+                        },
+                        plugins: {
+                            ...baseChartOptions.plugins,
+                            annotation: { 
+                                annotations: {
+                                    box1: {
+                                        type: 'box',
+                                        yMin: 20,
+                                        yMax: 30,
+                                        backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                                        borderColor: 'rgba(255, 99, 132, 0)',
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            const kValueDonutCtx = document.getElementById('kValueDonutChart');
+            if (kValueDonutCtx) {
+                new Chart(kValueDonutCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['生食可能域', '生食不適格域'],
+                        datasets: [{
+                            data: [20, 80],
+                            backgroundColor: [PALETTE.blue, PALETTE.red],
+                            borderColor: ['#FFFFFF'],
+                            borderWidth: 4,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: '70%',
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    color: FONT_COLOR,
+                                    font: { size: 12 }
+                                }
+                            },
+                            tooltip: baseChartOptions.plugins.tooltip
+                        }
+                    }
+                });
+            }
+
+            const histamineRiskCtx = document.getElementById('histamineRiskChart');
+            if (histamineRiskCtx) {
+                new Chart(histamineRiskCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['4℃ (最適)', '10℃ (準最適)', '25℃ (常温放置)'],
+                        datasets: [{
+                            label: 'ヒスタミン生成リスク',
+                            data: [1, 4, 9], 
+                            backgroundColor: [PALETTE.green, PALETTE.yellow, PALETTE.red],
+                        }]
+                    },
+                    options: {
+                        ...baseChartOptions,
+                        scales: {
+                           ...baseChartOptions.scales,
+                            y: {
+                               ...baseChartOptions.scales.y,
+                                ticks: {
+                                    callback: function(value) {
+                                        if (value >= 9) return '高';
+                                        if (value >= 4) return '中';
+                                        return '低';
+                                    }
+                                },
+                                title: {
+                                    display: true,
+                                    text: '相対的リスクレベル',
+                                    color: FONT_COLOR
+                                }
+                            }
+                        },
+                        plugins: {
+                            ...baseChartOptions.plugins,
+                             legend: { display: false }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
