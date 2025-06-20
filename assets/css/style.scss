@@ -553,6 +553,15 @@ a:hover {
     margin: 1.2rem 0;
 }
 
+/* 太字テキストの視認性向上 */
+.topic strong,
+.topic b {
+    color: var(--text-color);
+    background: linear-gradient(transparent 60%, rgba(255, 119, 51, 0.2) 60%);
+    font-weight: 600;
+    padding: 0 0.2rem;
+}
+
 .topic ul, .topic ol {
     margin: 1.2rem 0;
     padding-left: 2rem;
