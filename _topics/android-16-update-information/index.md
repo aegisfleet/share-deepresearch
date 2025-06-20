@@ -153,12 +153,11 @@ Pixel 9 Pro Foldのユーザー（または購入検討者）は、Android 16が
 #### **引用文献**
 
 1. Every single new feature in Android 16 \[Video\] \- 9to5Google, 6月 12, 2025にアクセス、 [https://9to5google.com/2025/06/11/android-16-every-new-feature/](https://9to5google.com/2025/06/11/android-16-every-new-feature/)  
-2. Android 16 review: Same difference | Android Central, 6月 12, 2025にアクセス、 [https://www.androidcentral.com/apps-software/android-os/android-16-review](https://www.androidcentral.com/apps-software/android-os/android-16-review)  
+2. Android 16 review: Same difference Android Central, 6月 12, 2025にアクセス、 [https://www.androidcentral.com/apps-software/android-os/android-16-review](https://www.androidcentral.com/apps-software/android-os/android-16-review)  
 3. Google's Pixel phones get stable Android 16 update with new ..., 6月 12, 2025にアクセス、 [https://www.sammobile.com/news/google-stable-android-16-released-pixel-phones-wait-one-ui-8-0/](https://www.sammobile.com/news/google-stable-android-16-released-pixel-phones-wait-one-ui-8-0/)  
 4. Android 16 review: It's actually a big update, and I don't want to hear otherwise, 6月 12, 2025にアクセス、 [https://www.androidauthority.com/android-16-review-3566047/](https://www.androidauthority.com/android-16-review-3566047/)  
 5. Android 16's Secret Desktop Mode is Looking Slick Here \- Droid Life, 6月 12, 2025にアクセス、 [https://www.droid-life.com/2025/06/11/android-16-desktop-mode-features/](https://www.droid-life.com/2025/06/11/android-16-desktop-mode-features/)  
 6. Google's on the right track with desktop mode in Android 16, 6月 12, 2025にアクセス、 [https://www.androidcentral.com/apps-software/android-os/googles-on-the-right-track-with-desktop-mode-in-android-16](https://www.androidcentral.com/apps-software/android-os/googles-on-the-right-track-with-desktop-mode-in-android-16)  
 7. Pixel 9 Pro Fold Features and Specs \- Google Store, 6月 12, 2025にアクセス、 [https://store.google.com/product/pixel\_9\_pro\_fold\_specs?hl=en-US](https://store.google.com/product/pixel_9_pro_fold_specs?hl=en-US)  
-8. The Google Pixel 9 Pro Fold | The New Foldable Pixel Powered by Google AI., 6月 12, 2025にアクセス、 [https://fi.google.com/about/phones/pixel-9-pro-fold](https://fi.google.com/about/phones/pixel-9-pro-fold)  
+8. The Google Pixel 9 Pro Fold The New Foldable Pixel Powered by Google AI., 6月 12, 2025にアクセス、 [https://fi.google.com/about/phones/pixel-9-pro-fold](https://fi.google.com/about/phones/pixel-9-pro-fold)  
 9. Pixel VIPs, Android 16 and more updates in the June Pixel Drop, 6月 12, 2025にアクセス、 [https://blog.google/products/pixel/pixel-drop-june-2025/](https://blog.google/products/pixel/pixel-drop-june-2025/)  
-10. Use & manage apps in Gemini \- Android \- Google Help, 6月 12, 2025にアクセス、 [https://support.google.com/gemini/answer/13695044?hl=en\&co=GENIE.Platform%3DAndroid](https://support.google.com/gemini/answer/13695044?hl=en&co=GENIE.Platform%3DAndroid)

@@ -440,7 +440,7 @@ GitHub Issue管理におけるAI統合の道のりはまだ始まったばかり
 
 #### **引用文献**
 
-1. How AI Agents Work with Github Issues & Best Use Cases | Guru, 6月 9, 2025にアクセス、 [https://www.getguru.com/he/reference/github-issues-ai-agent](https://www.getguru.com/he/reference/github-issues-ai-agent)  
+1. How AI Agents Work with Github Issues & Best Use Cases Guru, 6月 9, 2025にアクセス、 [https://www.getguru.com/he/reference/github-issues-ai-agent](https://www.getguru.com/he/reference/github-issues-ai-agent)  
 2. Github Issues AI Agent: How It Works and Use Cases \- Guru, 6月 9, 2025にアクセス、 [https://www.getguru.com/tr/reference/github-issues-ai-agent](https://www.getguru.com/tr/reference/github-issues-ai-agent)  
 3. What are AI agents? \- GitHub, 6月 9, 2025にアクセス、 [https://github.com/resources/articles/ai/what-are-ai-agents](https://github.com/resources/articles/ai/what-are-ai-agents)  
 4. Automating GitHub Issue Triage \- Dosu, 6月 9, 2025にアクセス、 [https://blog.dosu.dev/automating-github-issue-triage/](https://blog.dosu.dev/automating-github-issue-triage/)  
@@ -475,4 +475,3 @@ GitHub Issue管理におけるAI統合の道のりはまだ始まったばかり
 33. Limitations of AI-Driven Workflows in Software Development: What You Need to Know, 6月 9, 2025にアクセス、 [https://dev.to/adityabhuyan/limitations-of-ai-driven-workflows-in-software-development-what-you-need-to-know-hoa](https://dev.to/adityabhuyan/limitations-of-ai-driven-workflows-in-software-development-what-you-need-to-know-hoa)  
 34. Joint Cybersecurity Information AI Data Security, 6月 9, 2025にアクセス、 [https://media.defense.gov/2025/May/22/2003720601/-1/-1/0/CSI\_AI\_DATA\_SECURITY.PDF](https://media.defense.gov/2025/May/22/2003720601/-1/-1/0/CSI_AI_DATA_SECURITY.PDF)  
 35. Manage AI – Process to manage AI \- Cloud Adoption Framework ..., 6月 9, 2025にアクセス、 [https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/manage](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/manage)  
-36. CI/CD cost optimization for data science teams \- CircleCI, 6月 9, 2025にアクセス、 [https://circleci.com/blog/ci-cd-cost-optimization-data-science-teams/](https://circleci.com/blog/ci-cd-cost-optimization-data-science-teams/)

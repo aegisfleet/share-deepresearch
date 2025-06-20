@@ -317,7 +317,6 @@ supplementary_materials:
 10. 退職代行サービスおすすめ23選！料金や評判、対応範囲や即日退職 ..., 6月 1, 2025にアクセス、 [https://doneru.jp/business-tips/recommended-retirement-agency/](https://doneru.jp/business-tips/recommended-retirement-agency/)  
 11. 退職代行の流れを徹底解説｜いつまでに依頼すべき？退職日までの ..., 6月 1, 2025にアクセス、 [https://roudou-pro.com/columns/544/](https://roudou-pro.com/columns/544/)  
 12. 退職代行の流れ・手順は？いつまでに依頼するべき？当日にやる ..., 6月 1, 2025にアクセス、 [https://doneru.jp/business-tips/retirement-agency-flow/](https://doneru.jp/business-tips/retirement-agency-flow/)  
-13. ご利用者様の声 | 24時間対応＆即日退職可能！退職代行サービス ..., 6月 1, 2025にアクセス、 [https://plus3-service.com/voice/](https://plus3-service.com/voice/)  
+13. ご利用者様の声 24時間対応＆即日退職可能！退職代行サービス ..., 6月 1, 2025にアクセス、 [https://plus3-service.com/voice/](https://plus3-service.com/voice/)  
 14. 失業保険サポート, 6月 1, 2025にアクセス、 [https://shitsugyouhoken-support.com/](https://shitsugyouhoken-support.com/)  
 15. 退職代行TORIKESHIの口コミと評判！利用者のリアルな声 ..., 6月 1, 2025にアクセス、 [https://goal4864.com/taisyokudaikou/torikeshi-reputaion/](https://goal4864.com/taisyokudaikou/torikeshi-reputaion/)  
-16. 退職代行おすすめ比較ランキング23社！口コミ・特徴・選び方 ..., 6月 1, 2025にアクセス、 [https://taisyokunavi.xsrv.jp/](https://taisyokunavi.xsrv.jp/)

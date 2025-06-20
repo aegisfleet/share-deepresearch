@@ -192,7 +192,7 @@ iDeCoをはじめとする私的年金制度の拡充は、公的年金だけで
 
 #### **引用文献**
 
-1. 年金改革関連法案が閣議決定 106万円の壁撤廃など国会で議論へ | ツギノジダイ, 6月 1, 2025にアクセス、 [https://smbiz.asahi.com/article/15771907](https://smbiz.asahi.com/article/15771907)  
+1. 年金改革関連法案が閣議決定 106万円の壁撤廃など国会で議論へ ツギノジダイ, 6月 1, 2025にアクセス、 [https://smbiz.asahi.com/article/15771907](https://smbiz.asahi.com/article/15771907)  
 2. 年金制度改正法案を国会に提出しました \- 厚生労働省, 6月 1, 2025にアクセス、 [https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000147284\_00017.html](https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000147284_00017.html)  
 3. 社会経済の変化を踏まえた年金制度の機能強化のための 国民年金法等の一部を改正する等の法律案について \- 第一生命 年金通信, 6月 1, 2025にアクセス、 [https://nenkintsushin.dai-ichi-life.co.jp/download.php?c=2029](https://nenkintsushin.dai-ichi-life.co.jp/download.php?c=2029)  
 4. 社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律案の概要 \- 厚生労働省, 6月 1, 2025にアクセス、 [https://www.mhlw.go.jp/content/12500000/001490414.pdf](https://www.mhlw.go.jp/content/12500000/001490414.pdf)  
@@ -200,7 +200,7 @@ iDeCoをはじめとする私的年金制度の拡充は、公的年金だけで
 6. 2025年5月29日(木) 年金制度改革の申し入れについて｜ニュース｜活動情報 \- 日本維新の会, 6月 1, 2025にアクセス、 [https://o-ishin.jp/news/2025/05/29/16925.html](https://o-ishin.jp/news/2025/05/29/16925.html)  
 7. www.mhlw.go.jp, 6月 1, 2025にアクセス、 [https://www.mhlw.go.jp/content/12500000/001489508.pdf](https://www.mhlw.go.jp/content/12500000/001489508.pdf)  
 8. 年金制度改正法（令和２年法律第40号）が成立しました \- 厚生労働省, 6月 1, 2025にアクセス、 [https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000147284\_00006.html](https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000147284_00006.html)  
-9. 令和7年5月｜年金制度改正法案、短時間労働者も社会保険の適用拡大へ | SATO PORTAL, 6月 1, 2025にアクセス、 [https://www.sato-group-sr.jp/portal/archives/3749](https://www.sato-group-sr.jp/portal/archives/3749)  
+9. 令和7年5月｜年金制度改正法案、短時間労働者も社会保険の適用拡大へ SATO PORTAL, 6月 1, 2025にアクセス、 [https://www.sato-group-sr.jp/portal/archives/3749](https://www.sato-group-sr.jp/portal/archives/3749)  
 10. 【速報解説】2025年度 年金制度改正でどう変わる？ ～暮らしに影響 ..., 6月 1, 2025にアクセス、 [https://www.mylifeplan.net/column/104-concierge/778-concierge-54](https://www.mylifeplan.net/column/104-concierge/778-concierge-54)  
 11. www.mhlw.go.jp, 6月 1, 2025にアクセス、 [https://www.mhlw.go.jp/content/001488226.pdf](https://www.mhlw.go.jp/content/001488226.pdf)  
 12. www.mhlw.go.jp, 6月 1, 2025にアクセス、 [https://www.mhlw.go.jp/content/001488402.pdf](https://www.mhlw.go.jp/content/001488402.pdf)  
@@ -208,9 +208,9 @@ iDeCoをはじめとする私的年金制度の拡充は、公的年金だけで
 14. www.mhlw.go.jp, 6月 1, 2025にアクセス、 [https://www.mhlw.go.jp/content/001488227.pdf](https://www.mhlw.go.jp/content/001488227.pdf)  
 15. 「年金改革法案」で基礎年金が底上げ！？どの世代が得して損する ..., 6月 1, 2025にアクセス、 [https://imasaranews.com/government/471/](https://imasaranews.com/government/471/)  
 16. 【衆院本会議】年金制度改正法案「骨抜き法案のままでは、現役 ..., 6月 1, 2025にアクセス、 [https://cdp-japan.jp/news/20250520\_9250](https://cdp-japan.jp/news/20250520_9250)  
-17. 年金法改正2025 財政検証結果はこう見る ～年金部会での公表を受けて～ | 小川 伊知郎, 6月 1, 2025にアクセス、 [https://www.dlri.co.jp/report/ld/348005.html](https://www.dlri.co.jp/report/ld/348005.html)  
+17. 年金法改正2025 財政検証結果はこう見る ～年金部会での公表を受けて～ 小川 伊知郎, 6月 1, 2025にアクセス、 [https://www.dlri.co.jp/report/ld/348005.html](https://www.dlri.co.jp/report/ld/348005.html)  
 18. 財政検証の結果発表：政府は年金保険料納付の5年間延長案を撤回, 6月 1, 2025にアクセス、 [https://www.nri.com/jp/media/column/kiuchi/20240703\_2.html](https://www.nri.com/jp/media/column/kiuchi/20240703_2.html)  
-19. 2025年の年金改正のポイント | 研究プログラム | 東京財団, 6月 1, 2025にアクセス、 [https://www.tkfd.or.jp/research/detail.php?id=4622](https://www.tkfd.or.jp/research/detail.php?id=4622)  
+19. 2025年の年金改正のポイント 研究プログラム 東京財団, 6月 1, 2025にアクセス、 [https://www.tkfd.or.jp/research/detail.php?id=4622](https://www.tkfd.or.jp/research/detail.php?id=4622)  
 20. 次期年金制度改正について, 6月 1, 2025にアクセス、 [https://www.cas.go.jp/jp/seisaku/zensedai\_hosyo/dai20/01\_siryou1.pdf](https://www.cas.go.jp/jp/seisaku/zensedai_hosyo/dai20/01_siryou1.pdf)  
 21. 令和7年（2025年）年金法改正に向けて、在職老齢年金制度については現在どのような議論が行われているのでしょうか？ \- FP奥野文夫事務所, 6月 1, 2025にアクセス、 [https://www.syakaihoken.jp/16992528378151](https://www.syakaihoken.jp/16992528378151)  
 22. 2024年に実施される公的年金制度の見直し・改正点論議内容を税理士事務所が解説, 6月 1, 2025にアクセス、 [https://hirose-office.jp/new/revision-of-the-public-pension-system-to-be-implemented-in-2024](https://hirose-office.jp/new/revision-of-the-public-pension-system-to-be-implemented-in-2024)  
@@ -233,7 +233,7 @@ iDeCoをはじめとする私的年金制度の拡充は、公的年金だけで
 39. 令和６(2024)年財政検証結果の概要, 6月 1, 2025にアクセス、 [https://www.mhlw.go.jp/content/001270476.pdf](https://www.mhlw.go.jp/content/001270476.pdf)  
 40. 【LIVE】年金改革法案修正案 衆厚労委可決 衆院通過の見通し（2025年5月30日） \- YouTube, 6月 1, 2025にアクセス、 [https://www.youtube.com/watch?v=L8eX56xtMts](https://www.youtube.com/watch?v=L8eX56xtMts)  
 41. 次期年金制度改正に向けた 基本的見解, 6月 1, 2025にアクセス、 [https://www.keidanren.or.jp/policy/2024/064\_gaiyo.pdf](https://www.keidanren.or.jp/policy/2024/064_gaiyo.pdf)  
-42. 多様なライフスタイルに対応年金制度改革法案が衆院通過 | お知らせ ..., 6月 1, 2025にアクセス、 [https://www.jimin.jp/news/information/210701.html](https://www.jimin.jp/news/information/210701.html)  
+42. 多様なライフスタイルに対応年金制度改革法案が衆院通過 お知らせ ..., 6月 1, 2025にアクセス、 [https://www.jimin.jp/news/information/210701.html](https://www.jimin.jp/news/information/210701.html)  
 43. 年金制度改革法案が衆議院で可決 「基礎年金の底上げ」で現在63歳以上の男性と67歳以上の女性は受給額“マイナス”に シニア世代からは不満、“就職氷河期”世代は「手取り増やして」 \- FNNプライムオンライン, 6月 1, 2025にアクセス、 [https://www.fnn.jp/articles/-/879867](https://www.fnn.jp/articles/-/879867)  
 44. 最近のうごき（厚生労働省関連トピックス） \- 中谷社会保険労務士事務所, 6月 1, 2025にアクセス、 [https://www.zinzi-nakatani.jp/131369330](https://www.zinzi-nakatani.jp/131369330)  
 45. 【年金】2025年金改正 今話題の基礎年金底上げ案とは【社労士解説】立憲民主党案 \- YouTube, 6月 1, 2025にアクセス、 [https://www.youtube.com/watch?v=vbBGkb8Hn-U](https://www.youtube.com/watch?v=vbBGkb8Hn-U)  
@@ -241,4 +241,3 @@ iDeCoをはじめとする私的年金制度の拡充は、公的年金だけで
 47. 基礎年金の底上げ、損する人・得する人【2025年年金改革法案】 \- FPナナコの部屋, 6月 1, 2025にアクセス、 [https://mamasuma.com/nenkin-choseikikan/](https://mamasuma.com/nenkin-choseikikan/)  
 48. 国民年金法改正案 減らない年金の実現を 修正案と討論 2025.5.30 \- YouTube, 6月 1, 2025にアクセス、 [https://www.youtube.com/watch?v=FAtKZwln1fU](https://www.youtube.com/watch?v=FAtKZwln1fU)  
 49. 【年金】2025年金改正 基礎年金底上げ案 今国会で成立へ【社労士解説】 \- YouTube, 6月 1, 2025にアクセス、 [https://www.youtube.com/watch?v=T57egra2-Tc](https://www.youtube.com/watch?v=T57egra2-Tc)  
-50. 年金制度大改革の＜損↓得↑＞を徹底検証！5年に1度の大改正であなたの受取額はどう変わる？ \- ダイヤモンド・オンライン, 6月 1, 2025にアクセス、 [https://diamond.jp/articles/-/358018](https://diamond.jp/articles/-/358018)

@@ -202,15 +202,15 @@ supplementary_materials:
 
 #### **引用文献**
 
-1. 環境大臣 小泉 進次郎 (こいずみ しんじろう) | 菅内閣 閣僚等名簿 \- 首相官邸, 5月 24, 2025にアクセス、 [https://www.kantei.go.jp/jp/99\_suga/meibo/daijin/koizumi\_shinjiro.html](https://www.kantei.go.jp/jp/99_suga/meibo/daijin/koizumi_shinjiro.html)  
+1. 環境大臣 小泉 進次郎 (こいずみ しんじろう) 菅内閣 閣僚等名簿 \- 首相官邸, 5月 24, 2025にアクセス、 [https://www.kantei.go.jp/jp/99\_suga/meibo/daijin/koizumi\_shinjiro.html](https://www.kantei.go.jp/jp/99_suga/meibo/daijin/koizumi_shinjiro.html)  
 2. 小泉進次郎 \- Wikipedia, 5月 24, 2025にアクセス、 [https://ja.wikipedia.org/wiki/%E5%B0%8F%E6%B3%89%E9%80%B2%E6%AC%A1%E9%83%8E](https://ja.wikipedia.org/wiki/%E5%B0%8F%E6%B3%89%E9%80%B2%E6%AC%A1%E9%83%8E)  
-3. 【コメ価格】小泉進次郎農水大臣のもとで下がる？下がらない？ 識者も意見分かれる『石破総理の５ｋｇ３０００円台発言』『コメの絶対量が足りない』【解説】 | 特集 \- MBS 毎日放送, 5月 24, 2025にアクセス、 [https://www.mbs.jp/news/feature/specialist/article/2025/05/106607.shtml](https://www.mbs.jp/news/feature/specialist/article/2025/05/106607.shtml)  
+3. 【コメ価格】小泉進次郎農水大臣のもとで下がる？下がらない？ 識者も意見分かれる『石破総理の５ｋｇ３０００円台発言』『コメの絶対量が足りない』【解説】 特集 \- MBS 毎日放送, 5月 24, 2025にアクセス、 [https://www.mbs.jp/news/feature/specialist/article/2025/05/106607.shtml](https://www.mbs.jp/news/feature/specialist/article/2025/05/106607.shtml)  
 4. 「滑り大臣」更迭 小泉進次郎農水相の待ったなし米価対策 「火中の栗をプリンスに？」参議院選挙までに手腕問われる, 5月 24, 2025にアクセス、 [https://www.mbs.jp/news/feature/specialist/article/2025/05/106593.shtml](https://www.mbs.jp/news/feature/specialist/article/2025/05/106593.shtml)  
 5. 再注目の「進次郎構文」は農相就任でさらに浸透確実だが…識者は「炎上」リスクを指摘, 5月 24, 2025にアクセス、 [https://www.nikkan-gendai.com/articles/view/geino/372214](https://www.nikkan-gendai.com/articles/view/geino/372214)  
 6. お米不足から考えるおコメ生産の現状｜味の農園, 5月 24, 2025にアクセス、 [https://www.ajfarm.com/31051/](https://www.ajfarm.com/31051/)  
 7. 令和の米騒動が起きた背景と農業の現状～米の価格高騰はなぜ起き ..., 5月 24, 2025にアクセス、 [https://www.nli-research.co.jp/report/detail/id=81723?site=nli](https://www.nli-research.co.jp/report/detail/id=81723?site=nli)  
-8. 令和のコメ騒動 農水省が招く飢饉 | キヤノングローバル戦略研究所, 5月 24, 2025にアクセス、 [https://cigs.canon/article/20250425\_8830.html](https://cigs.canon/article/20250425_8830.html)  
-9. やっぱり｢消えたコメ｣はありませんでした…｢コメはある｣と言い続けた農水省の姑息すぎる"手のひら返し" | キヤノングローバル戦略研究所, 5月 24, 2025にアクセス、 [https://cigs.canon/article/20250410\_8781.html](https://cigs.canon/article/20250410_8781.html)  
+8. 令和のコメ騒動 農水省が招く飢饉 キヤノングローバル戦略研究所, 5月 24, 2025にアクセス、 [https://cigs.canon/article/20250425\_8830.html](https://cigs.canon/article/20250425_8830.html)  
+9. やっぱり｢消えたコメ｣はありませんでした…｢コメはある｣と言い続けた農水省の姑息すぎる"手のひら返し" キヤノングローバル戦略研究所, 5月 24, 2025にアクセス、 [https://cigs.canon/article/20250410\_8781.html](https://cigs.canon/article/20250410_8781.html)  
 10. 【速報】小泉進次郎氏がコメント 農水大臣の後任に起用へ（2025年5月21日）｜TBS NEWS DIG, 5月 24, 2025にアクセス、 [https://www.youtube.com/watch?v=ar2Cfro-uf4](https://www.youtube.com/watch?v=ar2Cfro-uf4)  
 11. 【ノーカット】小泉進次郎新農相 記者会見 \- YouTube, 5月 24, 2025にアクセス、 [https://www.youtube.com/watch?v=QauwIqHKt-Q](https://www.youtube.com/watch?v=QauwIqHKt-Q)  
 12. 小泉農林水産大臣就任記者会見概要：農林水産省, 5月 24, 2025にアクセス、 [https://www.maff.go.jp/j/press-conf/250521.html](https://www.maff.go.jp/j/press-conf/250521.html)  
@@ -218,7 +218,7 @@ supplementary_materials:
 14. 農業改革：小泉進次郎の挑戦は続く \- キヤノングローバル戦略研究所, 5月 24, 2025にアクセス、 [https://cigs.canon/article/20161226\_4074.html](https://cigs.canon/article/20161226_4074.html)  
 15. 【プレイバック】小泉進次郎氏と農業政策 党の農林部会長時代に密着…JA全農とバチバチ攻防 新農相就任でコメ価格どうなる？ \- YouTube, 5月 24, 2025にアクセス、 [https://www.youtube.com/watch?v=MISMjmQr49Y](https://www.youtube.com/watch?v=MISMjmQr49Y)  
 16. 小泉進次郎という政治家を徹底分析してみる この10年の活動や成果 ..., 5月 24, 2025にアクセス、 [https://toyokeizai.net/articles/-/291310?display=b](https://toyokeizai.net/articles/-/291310?display=b)  
-17. 「農林中金不要論」をぶち上げた小泉進次郎に大ブーイング | AERA DIGITAL（アエラデジタル）, 5月 24, 2025にアクセス、 [https://dot.asahi.com/articles/-/109271?page=1](https://dot.asahi.com/articles/-/109271?page=1)  
+17. 「農林中金不要論」をぶち上げた小泉進次郎に大ブーイング AERA DIGITAL（アエラデジタル）, 5月 24, 2025にアクセス、 [https://dot.asahi.com/articles/-/109271?page=1](https://dot.asahi.com/articles/-/109271?page=1)  
 18. 泣くな小泉進次郎！農協への｢要請｣で終わる－農業村の抵抗に挑む ..., 5月 24, 2025にアクセス、 [https://cigs.canon/article/20161213\_4052.html](https://cigs.canon/article/20161213_4052.html)  
 19. ｢コメが売るほどある｣江藤大臣には一生わからない…｢高いコメを買わされる国民｣を国会議員が軽視するワケ \- BIGLOBEニュース, 5月 24, 2025にアクセス、 [https://news.biglobe.ne.jp/economy/0521/pre\_250521\_3242745967.html](https://news.biglobe.ne.jp/economy/0521/pre_250521_3242745967.html)  
 20. 食料安全保障強化政策大綱, 5月 24, 2025にアクセス、 [https://www.kantei.go.jp/jp/singi/nousui/pdf/20231227honbun.pdf](https://www.kantei.go.jp/jp/singi/nousui/pdf/20231227honbun.pdf)  
@@ -228,4 +228,3 @@ supplementary_materials:
 24. スマート農業の展開について \- 総務省, 5月 24, 2025にアクセス、 [https://www.soumu.go.jp/main\_content/000775128.pdf](https://www.soumu.go.jp/main_content/000775128.pdf)  
 25. 令和4年度スマート農業実証プロジェクト \- 水田作 \- 農林水産技術会議, 5月 24, 2025にアクセス、 [https://www.affrc.maff.go.jp/docs/smart\_agri\_pro/pamphlet/r4/suiden\_saku/index.htm](https://www.affrc.maff.go.jp/docs/smart_agri_pro/pamphlet/r4/suiden_saku/index.htm)  
 26. 暴走する進次郎コメ担当大臣ブチ上げ 備蓄米放出「随意契約」は ..., 5月 24, 2025にアクセス、 [https://www.nikkan-gendai.com/articles/view/news/372223](https://www.nikkan-gendai.com/articles/view/news/372223)  
-27. 令和の米騒動からの小泉進次郎農相登場にあたり、Facebookに ..., 5月 24, 2025にアクセス、 [https://note.com/waterplanet/n/n7a02bd36673f](https://note.com/waterplanet/n/n7a02bd36673f)
