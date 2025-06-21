@@ -9,7 +9,7 @@ audio: "/share-deepresearch/assets/audio/half-price-nigiri-sushi.mp3"
 supplementary_materials:
   - title: "インフォグラフィック：半額寿司、その価値の真実"
     url: "/share-deepresearch/topics/half-price-nigiri-sushi/infographic.html"
-  - title: "半額寿司、価値の検証"
+  - title: "半額寿司のパラドックス：割引シールの裏に隠された科学的・経済的真実"
     url: "/share-deepresearch/topics/half-price-nigiri-sushi/reveal.html"
 ---
 

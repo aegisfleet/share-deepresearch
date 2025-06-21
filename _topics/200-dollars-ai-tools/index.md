@@ -9,7 +9,7 @@ audio: "/share-deepresearch/assets/audio/200-dollars-ai-tools.mp3"
 supplementary_materials:
   - title: "月200ドルで構築する最強のAIツールスタック"
     url: "/share-deepresearch/topics/200-dollars-ai-tools/infographic.html"
-  - title: "月200ドルで築く 最強のAI仕事術"
+  - title: "月額$200で築く、最強のAIツールスタック"
     url: "/share-deepresearch/topics/200-dollars-ai-tools/reveal.html"
 ---
 

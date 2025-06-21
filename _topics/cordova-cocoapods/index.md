@@ -9,7 +9,7 @@ audio: "/share-deepresearch/assets/audio/cordova-cocoapods.mp3"
 supplementary_materials:
   - title: "Cordova iOS: 堅牢なビルド・署名パイプラインの構築"
     url: "/share-deepresearch/topics/cordova-cocoapods/infographic.html"
-  - title: "Cordova iOS開発の完全自動化ガイド"
+  - title: "CI/CDのためのモダンiOSビルド戦略: 依存関係管理とコード署名の完全自動化ガイド"
     url: "/share-deepresearch/topics/cordova-cocoapods/reveal.html"
 ---
 

@@ -1,533 +1,356 @@
 <!doctype html>
 <html lang="ja">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>堅牢なCordova/iOSビルドパイプラインの構築</title>
+    <title>CI/CDのためのモダンiOSビルド戦略: 依存関係管理とコード署名の完全自動化ガイド</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reset.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" id="theme">
-
-    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Custom Styles (前回と同じ) */
         :root {
-            --r-main-font: 'Noto Sans JP', sans-serif;
-            --r-heading-font: 'Noto Sans JP', sans-serif;
-            --r-main-font-size: 36px;
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
             --r-heading-text-transform: none;
             --r-heading-font-weight: 700;
-            --r-main-color: #333;
-            --r-heading-color: #111;
-            --r-link-color: #007aff;
-            --r-link-color-hover: #0056b3;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
         }
 
-        .reveal {
-            font-family: var(--r-main-font);
-        }
-        
-        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
-            font-family: var(--r-heading-font);
-            text-transform: var(--r-heading-text-transform);
-            font-weight: var(--r-heading-font-weight);
-            color: var(--r-heading-color);
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { line-height: 1.7; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.7em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
         }
 
-        .reveal .slides section {
-            text-align: left;
-            padding: 20px 40px;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
         }
 
-        .reveal .slides section.center-content {
-            text-align: center;
-        }
-        
-        .reveal h1 { font-size: 3.5em; }
-        .reveal h2 { font-size: 2.2em; }
-        .reveal h3 { font-size: 1.6em; }
-        .reveal p, .reveal li { font-size: 1.2em; line-height: 1.6; }
-
-        .icon {
-            color: var(--r-link-color);
-            margin-right: 0.5em;
-            width: 1.2em;
-            text-align: center;
+        .animated {
+            opacity: 0;
         }
 
-        .icon-large {
-            font-size: 4em;
-            margin-bottom: 0.5em;
-            display: block;
-            text-align: center;
-            color: #007aff;
-        }
-        
-        .icon-xl {
-            font-size: 6em;
-        }
-        
-        .icon-xxl {
-            font-size: 8em;
-            margin-bottom: 0.3em;
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
         }
 
-        .flex-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            gap: 20px;
-            width: 100%;
-        }
-        
-        .flex-item {
-            flex: 1;
-            background: #f9f9f9;
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            border: 1px solid #eee;
-        }
-        
-        .flex-item p {
-            font-size: 1em;
-            margin-top: 0.5em;
-        }
-        
-        .arrow {
-            font-size: 3em;
-            color: #ccc;
-        }
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
 
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        li {
-            margin-bottom: 0.8em;
-        }
-        
-        .problem-list li {
-            background: #f9f9f9;
-            padding: 15px 20px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .problem-list .icon {
-            font-size: 1.5em;
-        }
-
-        .highlight {
-            color: var(--r-link-color);
-            font-weight: 700;
-        }
-        
-        code {
-            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-            background: rgba(0, 122, 255, 0.08);
-            color: #333;
-            padding: 0.2em 0.4em;
-            border-radius: 3px;
-        }
-        
-        .flow-diagram {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 40px;
-        }
-        .flow-diagram .step {
-            text-align: center;
-            flex-basis: 150px;
-        }
-        .flow-diagram .step .icon-large {
-            margin-bottom: 0.2em;
-        }
-        .flow-diagram .step p {
-            font-size: 0.8em;
-        }
-        .flow-diagram .arrow-right {
-            font-size: 2.5em;
-            color: #ccc;
-        }
-        
-        .comparison-table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
-        .comparison-table th, .comparison-table td {
-            border: 1px solid #ddd;
-            padding: 15px;
-            text-align: left;
-            vertical-align: top;
-            font-size: 0.9em;
-        }
-        .comparison-table th {
-            background-color: #f2f2f2;
-            font-weight: 700;
-        }
-        .comparison-table .fa-check-circle { color: #28a745; }
-        .comparison-table .fa-times-circle { color: #dc3545; }
-        
-        .checklist li {
-            font-size: 1.1em;
-        }
-        .checklist .icon {
-            color: #28a745;
-        }
     </style>
 </head>
 <body>
     <div class="reveal">
         <div class="slides">
+<section
+  data-transition="zoom"
+  data-background-image="https://images.unsplash.com/photo-1555066931-4365d14bab8c"
+  data-background-opacity="0.2"
+>
+  <h1 class="animated delay-1">Cordova &amp; CocoaPods</h1>
+  <p class="subtitle animated delay-2">CI/CDのためのモダンiOSビルド戦略<br />依存関係管理とコード署名の完全自動化ガイド</p>
+</section>
 
-            <!-- Slide 1: Title -->
-            <section class="center-content">
-                <h1 style="font-size: 3em;">堅牢なCordova/iOS<br>ビルドパイプラインの構築</h1>
-                <p class="fragment" style="font-size: 1.5em; margin-top: 50px;">
-                    <code>config.xml</code>, <code>CocoaPods</code>, <code>fastlane</code>で実現する自動化の世界
-                </p>
-                <div class="fragment" style="margin-top: 80px; font-size: 2em; color: #007aff;">
-                    <i class="fas fa-file-code"></i>
-                    <i class="fas fa-plus" style="font-size: 0.6em; margin: 0 20px; vertical-align: middle;"></i>
-                    <i class="fas fa-cubes"></i>
-                    <i class="fas fa-plus" style="font-size: 0.6em; margin: 0 20px; vertical-align: middle;"></i>
-                    <i class="fas fa-rocket"></i>
-                    <i class="fas fa-equals" style="font-size: 0.6em; margin: 0 20px; vertical-align: middle;"></i>
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-            </section>
+<section data-transition="slide" class="left-align">
+  <h2 class="animated delay-1">Agenda</h2>
+  <ol style="margin-top: 50px;">
+    <li class="animated delay-2"><strong>課題:</strong> なぜCordovaのビルドは複雑なのか？</li>
+    <li class="animated delay-3"><strong>解決策:</strong> CordovaとCocoaPodsの連携アーキテクチャ</li>
+    <li class="animated delay-4"><strong>実践:</strong> 依存関係管理とコード署名の完全自動化</li>
+    <li class="animated delay-5"><strong>結論:</strong> 目指すべき未来のビルドパイプライン</li>
+  </ol>
+</section>
 
-            <!-- Slide 2: Problem -->
-            <section>
-                <h2>"ビルド"の悩み</h2>
-                <p>CordovaでのiOSアプリ開発、こんな課題はありませんか？</p>
-                <ul class="problem-list" style="margin-top: 40px;">
-                    <li class="fragment fade-up"><i class="icon fas fa-laptop-code"></i> 「自分のPCでは動くのに...」 環境差によるビルド失敗。</li>
-                    <li class="fragment fade-up"><i class="icon fas fa-key"></i> 複雑な証明書管理。有効期限切れや引き継ぎの悪夢。</li>
-                    <li class="fragment fade-up"><i class="icon fas fa-redo fa-spin"></i> ビルドや申請時の手作業が多く、人的ミスが頻発する。</li>
-                    <li class="fragment fade-up"><i class="icon fas fa-trash-alt"></i> <code>platform</code> を再作成したら、Xcodeの設定が全部消えた！</li>
-                </ul>
-            </section>
+<section data-transition="convex">
+  <h2 class="animated delay-1">ハイブリッドアプリ開発の「見えざる壁」</h2>
+  <p class="animated delay-2">Web技術だけでは、ネイティブSDKの高度な利用や複雑なビルド設定が大きな障壁となります。</p>
+  <div class="flex-container" style="margin-top: 50px;">
+    <div class="flex-box animated delay-3">
+      <i class="fa-solid fa-code"></i>
+      <h3>Web技術</h3>
+      <p class="small-text">HTML, CSS, JS</p>
+    </div>
+    <div class="animated delay-4" style="text-align: center;">
+      <i class="fa-solid fa-arrow-right-long fa-3x"></i>
+      <p class="small-text" style="margin-top: 10px;"><strong>見えざる壁</strong><br>手動設定, 依存エラー<br>複雑な署名プロセス</p>
+    </div>
+    <div class="flex-box animated delay-5">
+      <i class="fa-brands fa-apple"></i>
+      <h3>ネイティブ機能</h3>
+      <p class="small-text">高度なSDK, パフォーマンス</p>
+    </div>
+  </div>
+</section>
 
-            <!-- Slide 3: Solution -->
-            <section class="center-content">
-                <h2>解決策：<span class="highlight">宣言的</span>・<span class="highlight">自動化</span>されたパイプライン</h2>
-                <p>3つのコア技術で、これらの悩みを根本から解決します。</p>
-                <div class="flex-container" style="margin-top: 60px;">
-                    <div class="fragment flex-item">
-                        <i class="icon-large fas fa-file-code"></i>
-                        <h3>config.xml</h3>
-                        <p>設定の心臓部<br><strong>唯一の真実</strong></p>
-                    </div>
-                    <div class="fragment flex-item">
-                        <i class="icon-large fas fa-cubes"></i>
-                        <h3>CocoaPods</h3>
-                        <p>ネイティブライブラリの<br><strong>依存関係管理</strong></p>
-                    </div>
-                    <div class="fragment flex-item">
-                        <i class="icon-large fas fa-rocket"></i>
-                        <h3>fastlane</h3>
-                        <p>ビルド・署名・配信の<br><strong>完全自動化</strong></p>
-                    </div>
-                </div>
-            </section>
+<section data-transition="slide">
+  <h2 class="animated delay-1">2つのコア技術</h2>
+  <div class="flex-container" style="margin-top: 50px; align-items: flex-start;">
+    <div class="flex-box animated delay-2 left-align">
+      <i class="fa-solid fa-bridge-water"></i>
+      <h3>Apache Cordova</h3>
+      <p>Web技術とネイティブ機能の<strong>架け橋</strong>となるフレームワーク。一度書けば、iOSやAndroidなど複数のプラットフォームで動作します。 </p>
+    </div>
+    <div class="flex-box animated delay-3 left-align">
+      <i class="fa-solid fa-cubes-stacked"></i>
+      <h3>CocoaPods</h3>
+      <p>iOSネイティブライブラリの<strong>依存関係を管理</strong>するデファクトスタンダード。膨大なライブラリ資産を活用可能にします。 </p>
+    </div>
+  </div>
+</section>
 
-            <!-- Slide 4: Key 1: config.xml -->
-            <section data-auto-animate>
-                <h2>第1の鍵: <code>config.xml</code> を唯一の真実にする</h2>
-                <div class="flex-container" style="align-items: flex-start; margin-top: 50px;">
-                    <div style="flex: 1.5;">
-                        <p>プロジェクトのアイデンティティと設定を<code>config.xml</code>に集約。<br>Xcodeプロジェクトの<span style="text-decoration: line-through;">手動編集</span>はもうやめましょう。</p>
-                        <ul style="margin-top: 30px;">
-                            <li class="fragment"><i class="icon fas fa-id-badge"></i> アプリID & バージョン</li>
-                            <li class="fragment"><i class="icon fas fa-bullseye"></i> iOSデプロイメントターゲット</li>
-                            <li class="fragment"><i class="icon fas fa-link"></i> CocoaPodsの依存関係</li>
-                        </ul>
-                    </div>
-                    <div class="fragment" style="text-align: center; flex: 1;">
-                         <i class="fas fa-file-code icon-xxl" style="color: #333;"></i>
-                         <p style="font-weight: bold; font-size: 1.2em;">Single Source of Truth</p>
-                    </div>
-                </div>
-            </section>
+<section data-transition="slide">
+  <h2 class="animated delay-1">「橋の上の橋」- The Synergy</h2>
+  <p class="animated delay-2"><code>cordova-plugin-cocoapod-support</code> がCordovaとCocoaPodsを繋ぎ、ネイティブSDKの統合を自動化します。 </p>
+  <div class="flex-container" style="margin-top: 50px;">
+    <div class="flex-box animated delay-3">
+      <i class="fa-brands fa-html5"></i>
+      <p>Web App</p>
+    </div>
+    <div class="animated delay-4"><i class="fa-solid fa-arrow-right-long fa-2x"></i><p class="small-text">Cordova</p></div>
+    <div class="flex-box animated delay-5">
+      <i class="fa-brands fa-apple"></i>
+      <p>Native Container</p>
+    </div>
+    <div class="animated delay-6"><i class="fa-solid fa-arrow-right-long fa-2x"></i><p class="small-text">Plugin</p></div>
+    <div class="flex-box animated delay-7">
+      <i class="fa-solid fa-cubes"></i>
+      <p>CocoaPods Libs</p>
+    </div>
+  </div>
+</section>
 
-            <!-- Slide 5: CocoaPods Integration -->
-            <section>
-                <h2><code>config.xml</code> でのCocoaPods管理</h2>
-                <p><code>cordova-plugin-cocoapod-supportx</code> が魔法をかけます。</p>
-                <div class="flow-diagram">
-                    <div class="step fragment">
-                        <i class="icon-large fas fa-edit"></i>
-                        <p>1. <code>config.xml</code> に<br><code><pod></code> タグを記述</p>
-                    </div>
-                    <div class="arrow-right fragment"><i class="fas fa-chevron-right"></i></div>
-                    <div class="step fragment">
-                        <i class="icon-large fas fa-cogs"></i>
-                        <p>2. プラグインが<br>ビルドプロセスにフック</p>
-                    </div>
-                    <div class="arrow-right fragment"><i class="fas fa-chevron-right"></i></div>
-                    <div class="step fragment">
-                        <i class="icon-large fas fa-file-alt"></i>
-                        <p>3. <code>Podfile</code> を<br>自動で生成・更新</p>
-                    </div>
-                    <div class="arrow-right fragment"><i class="fas fa-chevron-right"></i></div>
-                    <div class="step fragment">
-                        <i class="icon-large fas fa-download"></i>
-                        <p>4. <code>pod install</code> を<br>自動で実行</p>
-                    </div>
-                </div>
-                <p class="fragment" style="text-align: center; font-size: 1.3em; margin-top: 60px; font-weight: bold;">
-                    これで <code>platforms</code> ディレクトリをいつ消しても安心！
-                </p>
-            </section>
+<section data-transition="slide">
+    <h2 class="animated delay-1">成功の土台：ツールチェーン</h2>
+    <p class="animated delay-2">開発を始める前に、これらのツールのバージョン互換性を確認することが不可欠です。 </p>
+    <div class="flex-container" style="margin-top: 60px; justify-content: space-evenly;">
+        <div class="animated delay-3" style="text-align: center;"><i class="fa-brands fa-node-js fa-4x"></i><p>Node.js</p></div>
+        <div class="animated delay-4" style="text-align: center;"><i class="fa-solid fa-gem fa-4x"></i><p>Ruby</p></div>
+        <div class="animated delay-5" style="text-align: center;"><i class="fa-brands fa-apple fa-4x"></i><p>Xcode</p></div>
+        <div class="animated delay-6" style="text-align: center;"><i class="fa-solid fa-cube fa-4x"></i><p>CocoaPods</p></div>
+        <div class="animated delay-7" style="text-align: center;"><i class="fa-solid fa-mobile-screen-button fa-4x"></i><p>ios-deploy</p></div>
+    </div>
+</section>
 
-            <!-- Slide 6: Key 2: fastlane match -->
-            <section class="center-content">
-                <h2>第2の鍵: <code>fastlane match</code> で署名を中央管理</h2>
-                <p>"証明書の悪夢" から解放されましょう。</p>
-                
-                <div class="flex-container" style="margin-top: 50px; align-items: center;">
-                    <div class="fragment" style="text-align: center;">
-                        <i class="icon-xl fas fa-laptop"></i>
-                        <p>開発者A</p>
-                    </div>
-                     <i class="fas fa-arrows-alt-h fragment" style="font-size: 2em; color: #ccc;"></i>
-                    <div class="fragment flex-item" style="flex: 2;">
-                        <i class="icon-large fab fa-git-alt"></i>
-                        <h3>Secure Git Repo</h3>
-                        <p><i class="fas fa-key"></i> 証明書 & プロファイル</p>
-                    </div>
-                     <i class="fas fa-arrows-alt-h fragment" style="font-size: 2em; color: #ccc;"></i>
-                    <div class="fragment" style="text-align: center;">
-                        <i class="icon-xl fas fa-server"></i>
-                        <p>CIサーバー</p>
-                    </div>
-                </div>
-                 <p class="fragment" style="margin-top: 40px; font-size: 1.2em; font-style: italic;">"One Repo to Rule Them All"</p>
-            </section>
-            
-            <!-- Slide 7: match workflow -->
-            <section>
-                <h2><code>fastlane match</code> のシンプルなワークフロー</h2>
-                <div class="flex-container" style="gap: 50px; align-items: flex-start;">
-                    <div class="flex-item fragment" style="background: #eef7ff;">
-                        <h3>初回・更新時</h3>
-                        <p style="text-align: left; font-size: 1em; line-height: 2;">
-                            <i class="fas fa-angle-right icon"></i> <code>fastlane match appstore</code><br>
-                            <i class="fas fa-arrow-down" style="margin-left: 2em; color: #aaa;"></i><br>
-                            <i class="fab fa-apple icon"></i> Apple Portalに証明書/プロファイル作成<br>
-                            <i class="fas fa-arrow-down" style="margin-left: 2em; color: #aaa;"></i><br>
-                            <i class="fas fa-upload icon"></i> Gitリポジトリへ暗号化して保存
-                        </p>
-                    </div>
-                    <div class="flex-item fragment" style="background: #f0fff0;">
-                        <h3>利用時 (CI/別PC)</h3>
-                        <p style="text-align: left; font-size: 1em; line-height: 2;">
-                           <i class="fas fa-angle-right icon"></i> <code>fastlane match --readonly</code><br>
-                           <i class="fas fa-arrow-down" style="margin-left: 2em; color: #aaa;"></i><br>
-                           <i class="fas fa-download icon"></i> Gitリポジトリから取得<br>
-                           <i class="fas fa-arrow-down" style="margin-left: 2em; color: #aaa;"></i><br>
-                           <i class="fas fa-check-circle icon"></i> ローカルにインストール
-                        </p>
-                    </div>
-                </div>
-            </section>
+<section data-transition="convex">
+  <h2 class="animated delay-1">How to Manage Dependencies?</h2>
+  <p class="animated delay-2"><strong>再利用</strong>するなら <code>plugin.xml</code> に、<strong>プロジェクト固有</strong>の依存は <code>config.xml</code> に記述します。 </p>
+  <div class="flex-container" style="margin-top: 30px; align-items: flex-start;">
+    <div class="flex-box animated delay-3 left-align">
+      <h3 style="text-align: center;">plugin.xml</h3>
+      <p class="small-text" style="text-align: center;">再利用可能なプラグイン用</p>
+      <pre style="font-size: 0.6em;"><code class="xml" data-line-numbers="5-7">&lt;plugin ...&gt;
+  ...
+  &lt;platform name="ios"&gt;
+    &lt;!-- このプラグインが依存するPodを宣言 --&gt;
+    &lt;pod name="AFNetworking" spec="~&gt; 3.0" /&gt;
+  &lt;/platform&gt;
+&lt;/plugin&gt;</code></pre>
+    </div>
+    <div class="flex-box animated delay-4 left-align">
+      <h3 style="text-align: center;">config.xml</h3>
+      <p class="small-text" style="text-align: center;">プロジェクト固有・バージョン固定用</p>
+      <pre style="font-size: 0.6em;"><code class="xml" data-line-numbers="5-7">&lt;widget ...&gt;
+  ...
+  &lt;platform name="ios"&gt;
+    &lt;!-- 競合解決やバージョン固定のために宣言 --&gt;
+    &lt;pod name="Alamofire" version="5.4.0" /&gt;
+  &lt;/platform&gt;
+&lt;/widget&gt;</code></pre>
+    </div>
+  </div>
+</section>
 
-            <!-- Slide 8: Fastfile -->
-            <section>
-                <h2>統合: <code>Fastfile</code>でビルドパイプラインを組む</h2>
-                <p>これまでの要素を、一つのスクリプトにまとめ上げます。</p>
-                <div style="background: #f8f8f8; padding: 20px 40px; border-radius: 10px; margin-top: 30px;">
-                    <h3 style="margin-bottom: 20px;"><i class="fas fa-running" style="color:#A00000;"></i> lane :beta do</h3>
-                    <ol style="font-size: 1.1em; padding-left: 20px; line-height: 2;">
-                        <li class="fragment"><strong><code>match</code></strong>: 署名情報をGitリポジトリから同期 <i class="fas fa-sync-alt" style="color:#007aff;"></i></li>
-                        <li class="fragment"><strong><code>cocoapods</code></strong>: ネイティブ依存関係をインストール <i class="fas fa-cubes" style="color:#007aff;"></i></li>
-                        <li class="fragment"><strong><code>cordova</code></strong>: アプリをビルド (with plugin) <i class="fas fa-mobile-alt" style="color:#007aff;"></i></li>
-                        <li class="fragment"><strong><code>pilot</code></strong>: TestFlightへアップロード <i class="fas fa-paper-plane" style="color:#007aff;"></i></li>
-                    </ol>
-                    <h3 style="margin-top: 10px;">end</h3>
-                </div>
-            </section>
-            
-            <!-- Slide 9: Cordova Hooks -->
-            <section>
-                <h2>応用①: <code>Cordovaフック</code>で変更を自動化</h2>
-                <p>
-                    <span class="highlight">問題:</span> <code>platforms</code> ディレクトリは一時的なもの。GoogleService-Info.plistなどを手で置くと、いつか消えてしまいます。<br>
-                    <span class="highlight">解決策:</span> <code>config.xml</code>にフックを定義し、ファイルコピーなどをスクリプトで自動実行させます。
-                </p>
-                <div class="flow-diagram">
-                     <div class="step fragment">
-                        <i class="icon-large fas fa-file-code"></i>
-                        <p>1. <code>config.xml</code> に<br><code><hook></code> を定義</p>
-                    </div>
-                    <div class="arrow-right fragment"><i class="fas fa-chevron-right"></i></div>
-                    <div class="step fragment">
-                        <i class="icon-large fab fa-node-js"></i>
-                        <p>2. <code>after_prepare</code> で<br>スクリプトが起動</p>
-                    </div>
-                    <div class="arrow-right fragment"><i class="fas fa-chevron-right"></i></div>
-                    <div class="step fragment">
-                        <i class="icon-large fas fa-copy"></i>
-                        <p>3. 必要なファイルを<br><code>platforms</code>へ自動コピー</p>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Slide 10: Versioning -->
-            <section>
-                <h2>応用②: バージョン地獄を避ける</h2>
-                <p>動作環境をファイルで固定し、誰が実行しても同じ結果になるようにします。</p>
-                 <div class="flex-container" style="gap: 50px; align-items: stretch; margin-top: 50px;">
-                    <div class="flex-item fragment">
-                        <i class="icon-large fab fa-ruby" style="color: #CC342D;"></i>
-                        <h3>Gemfile</h3>
-                        <p><code>fastlane</code> とRuby gemのバージョンを固定。<br>実行は必ず <code>bundle exec fastlane</code> で。</p>
-                    </div>
-                    <div class="flex-item fragment">
-                        <i class="icon-large fab fa-npm" style="color: #CB3837;"></i>
-                        <h3>package.json</h3>
-                        <p><code>cordova</code> 本体とプラグイン、フックスクリプトの依存関係を固定。</p>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Slide 11: Troubleshooting -->
-            <section>
-                <h2>よくあるエラーと解決策</h2>
-                <p>困ったときは、まずここをチェック！</p>
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 35%;">症状 <i class="fas fa-bug"></i></th>
-                            <th>原因と解決策 <i class="fas fa-wrench"></i></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="fragment">
-                            <td>Podの互換性エラー</td>
-                            <td><strong>原因:</strong> デプロイメントターゲットが古い。<br><strong>解決:</strong> <code>config.xml</code>の<code>deployment-target</code>を更新。</td>
-                        </tr>
-                        <tr class="fragment">
-                            <td>署名エラー (プロファイルが見つからない)</td>
-                            <td><strong>原因:</strong> Appケーパビリティ変更でプロファイルが無効化。<br><strong>解決:</strong> <code>produce</code>でサービス有効化 → <code>match --force</code>で再生成。</td>
-                        </tr>
-                        <tr class="fragment">
-                            <td>Swiftモジュールが見つからない</td>
-                            <td><strong>原因:</strong> <code>use_frameworks!</code> が未設定。<br><strong>解決:</strong> <code>config.xml</code>の<code><pods-config></code>で<code>use-frameworks="true"</code>を設定。</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+<section data-transition="slide">
+  <h2 class="animated delay-1">さよなら、Xcodeの手動署名</h2>
+  <p class="animated delay-2"><code>build.json</code> を使えば、コマンドラインからビルドする際に必要な署名情報をCLIに提供し、<strong>完全な自動化</strong>を実現します。</p>
+  <div class="flex-container" style="margin-top: 50px;">
+    <div class="flex-box animated delay-3">
+      <i class="fa-solid fa-person-digging"></i>
+      <h3>Before: 手動作業</h3>
+      <p>Xcodeを開き、証明書やプロファイルを手で設定。CI/CDの妨げとなり、エラーの温床に。 </p>
+    </div>
+    <div class="flex-box animated delay-4">
+      <i class="fa-solid fa-robot"></i>
+      <h3>After: 自動化</h3>
+      <p><code>cordova build --buildConfig</code> コマンド一発で完了。高速かつ誰が実行しても同じ結果に。</p>
+    </div>
+  </div>
+</section>
 
-            <!-- Slide 12: Architecture -->
-            <section class="center-content">
-                <h2>推奨アーキテクチャの全体像</h2>
-                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTYwMHB4IiBoZWlnaHQ9IjgwMHB4IiB2aWV3Qm94PSIwIDAgMTYwMCA4MDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8dGl0bGU+QXJjaGl0ZWN0dXJlIERpYWdyYW08L3RpdGxlPgogICAgPGRlZnM+CiAgICAgICAgPG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOCIgcmVmWT0iNSIgbWFya2VXaWR0aD0iNiIgbWFya2VIZWlnaHQ9IjYiIG9yaWVudD0iYXV0byI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0gMCAwIEwgMTAgNSBMIDAgMTAgeiIgZmlsbD0iIzMzMyIvPgogICAgICAgIDwvbWFya2VyPgogICAgPC9kZWZzPgogICAgPGcgaWQ9IlBhZ2UtMSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZm9udC1mYW1pbHk9Ik5vdG8gU2FucyB KUEiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj4KICAgICAgICÀdGV4dCBmb250LXNpemU9IjQwIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzMzMyI+PHRzcGFuIHg9IjE1MCIgeT0iNzAiPkRldmVsb3BlciAmYW1wOyBTb3VyY2VzPC90c3Bhbj48L3RleHQ+CiAgICAgICAgPHJlY3QgZmlsbD0iI0YwRjVGNyIgeD0iNTAiIHk9IjEwMCIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI2MDAiIHJ4PSIxMCIvPgogICAgICAgIAogICAgICAgIDx0ZXh0IGZpbGw9IiMwMDdBRkYiPjx0c3BhbiB4PSI4MCIgeT0iMTYwIj7in6U8L3RzcGFuPjx0c3BhbiB4PSIxMjAiIHk9IjE2MCI+RGV2ZWxvcGVyPC90c3Bhbj48L3RleHQ+CiAgICAgICAgPHBhdGggZD0iTTIyNSwzMDAgQzMwMCwzMDAgMzAwLDIwMCAzNzUsMjAwIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KICAgICAgICAKICAgICAgICA8ZyBjbGFzcz0iZnJhZ21lbnQiIGRhdGEtZnJhZ21lbnQtaW5kZXg9IjEiPgogICAgICAgIDx0ZXh0IGZpbGw9IiMzMzMiPjx0c3BhbiB4PSI4MCIgeT0iMjQwIj7in6Q8L3RzcGFuPjx0c3BhbiB4PSIxMjAiIHk9IjI0MCI+Y29uZmlnLnhtbDwvdHNwYW4+PC90ZXh0PgogICAgICAgIDx0ZXh0IGZpbGw9IiM3NzciIGZvbnQtc2l6ZT0iMTgiPjx0c3BhbiB4PSIxMjUiIHk9IjI3MCI+KElELCBQb2RzLCBIdWtzKTwvdHNwYW4+PC90ZXh0PgogICAgICAgIDx0ZXh0IGZpbGw9IiMzMzMiPjx0c3BhbiB4PSI4MCIgeT0iMzMwIj7in6Q8L3RzcGFuPjx0c3BhbiB4PSIxMjAiIHk9IjMzMCI+RmFzdGZpbGU8L3RzcGFuPjwvdGV4dD4KICAgICAgICA8dGV4dCBmaWxsPSIjNz c3IiBmb250LXNpemU9IjE4Ij48dHNwYW4geD0iMTI1IiB5PSIzNjAiPihMYW5lcyk8L3RzcGFuPjwvdGV4dD4KICAgICAgICA8dGV4dCBmaWxsPSIjMzMzIj48dHNwYW4geD0iODAiIHk9IjQyMCI+4p+lPC90c3Bhbj48dHNwYW4geD0iMTIwIiB5PSI0MjAiPkdlbWZpbGU8L3RzcGFuPjwvdGV4dD4KICAgICAgICA8dGV4dCBmaWxsPSIjNz c3IiBmb250LXNpemU9IjE4Ij48dHNwYW4geD0iMTI1IiB5PSI0NTAiPihGYXN0bGFuZSBWZXJzaW9uKTwvdHNwYW4+PC90ZXh0PgogICAgICAgIDx0ZXh0IGZpbGw9IiMzMzMiPjx0c3BhbiB4PSI4MCIgeT0iNTEwIj7in6U8L3RzcGFuPjx0c3BhbiB4PSIxMjAiIHk9IjUxMCI+cGFja2FnZS5qc29uPC90c3Bhbj48L3RleHQ+CiAgICAgICAgPHRleHQgZmlsbD0iIzc3NyIgZm9udC1zaXplPSIxOCI+PHRzcGFuIHg9IjEyNSIgeT0iNTQwIj4oQ29yZG92YSBWZXJzaW9uKTwvdHNwYW4+PC90ZXh0PgogICAgICAgIDx0ZXh0IGZpbGw9IiMzMzMiPjx0c3BhbiB4PSI4MCIgeT0iNjAwIj7in6U8L3RzcGFuPjx0c3BhbiB4PSIxMjAiIHk9IjYwMCI+SG9vayBTY3JpcHRzPC90c3Bhbj48L3RleHQ+CiAgICAgICAgPC9nPgogICAgICAgIAogICAgICAgIDx0ZXh0IGZvbnQtc2l6ZT0iNDAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMzMzIj48dHNwYW4geD0iNzE1IiB5PSI3MCI+Q0kvQ0QgU2VydmVyPC90c3Bhbj48L3RleHQ+CiAgICAgICAgPHJlY3QgZmlsbD0iI0YwRjVGNyIgeD0iNjAwIiB5PSIxMDAiIHdpZHRoPSI0MDAiIGhlaWdodD0iNjAwIiByeD0iMTAiLz4KICAgICAgICA8ZyBjbGFzcz0iZnJhZ21lbnQiIGRhdGEtZnJhZ21lbnQtaW5kZXg9IjIiPgogICAgICAgIDx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNDQjM4MzciPjx0c3BhbiB4PSI4MDAiIHk9IjE2MCI+8J+ltDwvdHNwYW4+PC90ZXh0PgogICAgICAgIDx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMwMDdBRkYiPjx0c3BhbiB4PSI4MDAiIHk9IjIwMCI+ZmFzdGxhbmU8L3RzcGFuPjwvdGV4dD4KICAgICAgICAKICAgICAgICA8cGF0aCBkPSJNNDUwLDI0MCBMNjAwLDI0MCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CiAgICAgICAgPHBhdGggZD0iTTQ1MCwzMzAgTDYwMCwzMzAiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgogICAgICAgIDxwYXRoIGQ9Ik00NTAsNDIwIEw2MDAsNDIwIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KICAgICAgICA8cGF0aCBkPSJNNDUwLDUxMCBMNjAwLDUxMCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CiAgICAgICAgPHBhdGggZD0iTTQ1MCw2MDAgTDYwMCw2MDAiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgogICAgICAgIAogICAgICAgIDxyZWN0IGZpbGw9IiNGRkYiIHN0cm9rZT0iIzBBN0ZGRiIgc3Ryb2tlLXdpZHRoPSIyIiB4PSI2NTAiIHk9IjI1MCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSI0MDAiIHJ4PSI1Ii8+CiAgICAgICAgPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzMzMyI+PHRzcGFuIHg9IjgwMCIgeT0iMjk1Ij7in6QgbWF0Y2g8L3RzcGFuPjwvdGV4dD4KICAgICAgICA8cGF0aCBkPSJNNzM1LDM3MCBMNzM1LDMyMCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CiAgICAgICAgPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzMzMyI+PHRzcGFuIHg9IjgwMCIgeT0iMzk1Ij7in6QgY29jb2Fwb2RzPC90c3Bhbj48L3RleHQ+CiAgICAgICAgPHBhdGggZD0iTTczNSw0NzAgTDczNSw0MjAiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1ybCgjYXJyb3cpIi8+CiAgICAgICAgPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzMzMyI+PHRzcGFuIHg9IjgwMCIgeT0iNDk1Ij7in6QgY29yZG92YTwvdHNwYW4+PC90ZXh0PgogICAgICAgIDxwYXRoIGQ9Ik03MzUsNTcwIEw3MzUsNTIwIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KICAgICAgICÀdGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMzMzIj48dHNwYW4geD0iODAwIiB5PSI1OTUiPuKfpCBwaWxvdDwvdHNwYW4+PC90ZXh0PgogICAgICAgIDwvZz4KICAgICAgICAKICAgICAgICA8dGV4dCBmb250LXNpemU9IjQwIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzMzMyI+PHRzcGFuIHg9IjExNzUiIHk9IjcwIj5EZXBlbmRlbmNpZXMmIzgyMDM7PC90c3Bhbj48dHNwYW4geD0iMTE5MCIgeT0iMTIwIj5EZXBsb3ltZW50PC90c3Bhbj48L3RleHQ+CiAgICAgICAgPHJlY3QgZmlsbD0iI0YwRjVGNyIgeD0iMTE1MCIgeT0iMTUwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgcng9IjEwIi8+CiAgICAgICAgPHJlY3QgZmlsbD0iI0YwRjVGNyIgeD0iMTE1MCIgeT0iNDUwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgcng9IjEwIi8+CiAgICAgICAgPGcgY2xhc3M9ImZyYWdtZW50IiBkYXRhLWZyYWdtZW50LWluZGV4PSIzIj4CiAgICAgICAgPHRleHQgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzMzMyI+PHRzcGFuIHg9IjEzMDAiIHk9IjIwMCI+8J+MizwvdHNwYW4+PHRzcGFuIHg9IjEzMDAiIHk9IjIzNSI+U2VjdXJlIEdpdCBSZXBvPC90c3Bhbj48dHNwYW4geD0iMTMwMCIgeT0iMjcwIj4oQ29kZXNpZ25pbmcpPC90c3Bhbj48L3RleHQ+CiAgICAgICAgPHBhdGggZD0iTTk1MCwzMTAgTDExNTAsMjUwIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWRhc2hhcnJheT0iNSw1IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgogICAgICAgIDxwYXRoIGQ9Ik0xMTUwLDI1MCBMOTUwLDMzMCIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1kYXNoYXJyYXk9IjUsNSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KICAgICAgICAKICAgICAgICA8dGV4dCB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMzMzIj48dHNwYW4geD0iMTMwMCIgeT0iNTAwIj7wn5GC8J+PtDwvdHNwYW4+PHRzcGFuIHg9IjEzMDAiIHk9IjUzNSI+QXBwIFN0b3JlIENvbm5lY3Q8L3RzcGFuPjx0c3BhbiB4PSIxMzAwIiB5PSI1NzAIPlRlc3RGbGlnaHQvQXBwU3RvcmU8L3RzcGFuPjwvdGV4dD4KICAgICAgICA8cGF0aCBkPSJNMTAwMCw1OTAgTDExNTAsNTUwIiBzdHJva2U9IiMzMzMyIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=" alt="推奨アーキテクチャの全体像" style="width: 90%; margin-top: 20px;">
-                <p class="fragment" data-fragment-index="4" style="font-size: 1.1em; margin-top: 20px;">宣言的なソースファイル群が、CI/CDサーバー上で自動化されたプロセスを経て、安全にアプリを配信します。</p>
-            </section>
-            
-            <!-- Slide 13: Checklist -->
-            <section>
-                <h2>最終チェックリスト</h2>
-                <p>あなたのプロジェクトは、堅牢なパイプラインの準備ができていますか？</p>
-                <ul class="checklist" style="margin-top: 40px;">
-                    <li class="fragment"><i class="icon fas fa-check-square"></i> <code>config.xml</code>は唯一の真実か？</li>
-                    <li class="fragment"><i class="icon fas fa-check-square"></i> <code>fastlane match</code>で署名を管理しているか？</li>
-                    <li class="fragment"><i class="icon fas fa-check-square"></i> <code>Gemfile</code>と<code>package.json</code>でバージョンを固定しているか？</li>
-                    <li class="fragment"><i class="icon fas fa-check-square"></i> <code>bundle exec</code>を徹底しているか？</li>
-                    <li class="fragment"><i class="icon fas fa-check-square"></i> 手動でのXcodeプロジェクト編集をフックで自動化できているか？</li>
-                </ul>
-            </section>
-            
-            <!-- Slide 14: Conclusion -->
-            <section class="center-content">
-                 <h2 style="font-size: 2.5em;">宣言的な自動化で、<br>より良い開発体験を。</h2>
-                 <div style="margin-top: 100px; font-size: 6em;">
-                    <span class="fragment"><i class="fas fa-rocket" style="color: #007aff;"></i></span>
-                    <span class="fragment"><i class="fas fa-cogs" style="color: #555;"></i></span>
-                    <span class="fragment"><i class="fas fa-check-circle" style="color: #28a745;"></i></span>
-                 </div>
-                 <p class="fragment" style="margin-top: 80px; font-size: 1.2em;">お読みいただき、ありがとうございました。</p>
-            </section>
+<section data-transition="slide">
+    <h2 class="animated delay-1"><code>build.json</code> の構成要素</h2>
+    <p class="animated delay-2">3つの重要な情報（<code>codeSignIdentity</code>, <code>developmentTeam</code>, <code>provisioningProfile</code>）を特定し、ファイルに記述します。 </p>
+    <table class="comparison-table animated delay-3">
+        <thead>
+            <tr>
+                <th>キー</th>
+                <th>説明</th>
+                <th>値の取得方法</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>codeSignIdentity</td>
+                <td>署名証明書の名前</td>
+                <td><code>security find-identity ...</code> コマンドで確認</td>
+            </tr>
+            <tr>
+                <td>developmentTeam</td>
+                <td>10桁のチームID</td>
+                <td>Apple Developerポータルで確認</td>
+            </tr>
+            <tr>
+                <td>provisioningProfile</td>
+                <td>プロファイルの36桁UUID</td>
+                <td><code>.mobileprovision</code> ファイルをテキストエディタで開いて確認</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
+<section data-transition="slide">
+  <h2 class="animated delay-1">再現性のジレンマ: <code>platforms</code> をコミットすべきか？</h2>
+  <p class="animated delay-2">CocoaPodsを多用するプロジェクトでは、ビルドの<strong>再現性</strong>のためにコミットが強く推奨されます。</p>
+  <div class="flex-container" style="margin-top: 50px;">
+    <div class="flex-box animated delay-3">
+      <i class="fa-solid fa-file-circle-xmark"></i>
+      <h3>非推奨: Ignore <code>platforms/</code></h3>
+      <p><code>pod install</code>が環境毎に実行され、依存バージョンがズレる危険性。ビルド失敗の原因となります。 </p>
+    </div>
+    <div class="flex-box animated delay-4">
+      <i class="fa-solid fa-file-circle-check"></i>
+      <h3>推奨: Commit <code>platforms/</code></h3>
+      <p><code>Podfile.lock</code>がバージョン管理され、チーム全員でビルドの<strong>一貫性と再現性を保証</strong>します。</p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide" class="left-align">
+  <h2 class="animated delay-1">依存関係地獄の処方箋</h2>
+  <p class="animated delay-2">Podのバージョン競合が発生した際の、体系的な解決ステップ。</p>
+  <ul style="margin-top: 30px; list-style-type: none;">
+    <li class="animated delay-3"><i class="fa-solid fa-magnifying-glass fa-fw" style="color: var(--accent-color);"></i> <strong>1. エラー分析:</strong> まずはエラーメッセージを読み、競合原因を特定する。</li>
+    <li class="animated delay-4"><i class="fa-solid fa-wrench fa-fw" style="color: var(--accent-color);"></i> <strong>2. <code>config.xml</code>で上書き:</strong> プロジェクト全体でバージョンを明示的に固定する、最も効果的な解決策。 </li>
+    <li class="animated delay-5"><i class="fa-solid fa-screwdriver-wrench fa-fw" style="color: var(--accent-color);"></i> <strong>3. クリーン＆リビルド:</strong> <code>platforms</code>, <code>node_modules</code> 等を削除し、再構築する。</li>
+    <li class="animated delay-6"><i class="fa-solid fa-code-fork fa-fw" style="color: var(--accent-color);"></i> <strong>4. プラグインのFork:</strong> 問題のあるプラグインをフォークし、<code>plugin.xml</code>を直接修正する最終手段。</li>
+  </ul>
+</section>
+
+<section data-transition="zoom">
+  <h2 class="animated delay-1">The Goal: One-Command Build</h2>
+  <p class="animated delay-2">本戦略で、<strong>信頼性が高く、誰が実行しても同じ結果</strong>になるビルドパイプラインを構築できます。</p>
+  <div class="animated delay-3">
+    <pre style="margin-top: 60px; width: 80%; margin-left: auto; margin-right: auto;"><code class="bash">$ cordova build ios --release --device --buildConfig=build.json</code></pre>
+  </div>
+  <div class="flex-container animated delay-4" style="margin-top: 60px; font-size: 0.8em;">
+      <p><strong>宣言的</strong> (Declarative)</p>
+      <p><strong>再現性</strong> (Reproducible)</p>
+      <p><strong>自動化</strong> (Automated)</p>
+  </div>
+</section>
+
+<section
+  data-background-image="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+  data-background-opacity="0.2"
+>
+  <h1 class="animated delay-1">Thank You</h1>
+  <p class="subtitle animated delay-2">Build, Automate, and Innovate.</p>
+</section>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/notes/notes.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/markdown/markdown.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/highlight/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
     <script>
-        // More info about initialization & config:
-        // - https://revealjs.com/initialization/
-        // - https://revealjs.com/config/
         Reveal.initialize({
+            hash: false, 
             hash: true,
             width: 1920,
             height: 1080,
             margin: 0.04,
             minScale: 0.2,
             maxScale: 2.0,
-            
-            // --- ここからが変更点 ---
-            // デフォルトでは自動再生をオフに設定
-            autoSlide: 0,
-            // ユーザーが操作しても自動再生を止めないようにする
-            autoSlideStoppable: false,
-            // --- ここまでが変更点 ---
-            
-            // Learn about plugins: https://revealjs.com/plugins/
             plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
         });
-
-        // --- ここからが追加したスクリプト ---
-        // 目的: ページ遷移時にフラグメントを自動再生し、最後のフラグメントが表示されたら停止する
-        
-        // 新しいスライドが表示されたときの処理
-        Reveal.on('slidechanged', event => {
-          // 現在のスライドに .fragment クラスを持つ要素があるかチェック
-          const hasFragments = event.currentSlide.querySelectorAll('.fragment').length > 0;
-          
-          if (hasFragments) {
-            // フラグメントがある場合、800ミリ秒間隔で自動再生を開始
-            Reveal.configure({ autoSlide: 800 });
-          } else {
-            // フラグメントがない場合、自動再生をオフにする
-            Reveal.configure({ autoSlide: 0 });
-          }
-        });
-
-        // フラグメントが表示されたときの処理
-        Reveal.on('fragmentshown', event => {
-          // これが現在のスライドの最後のフラグメントかどうかをチェック
-          if (Reveal.isLastFragment()) {
-            // 最後のフラグメントなら、自動再生を停止
-            Reveal.configure({ autoSlide: 0 });
-          }
-        });
-
-        // プレゼンテーションの最初のスライドに移動したときも
-        // slidechangedイベントが発火するので、初期状態もこのロジックでカバーされます。
-        // --- ここまでが追加したスクリプト ---
     </script>
 </body>
 </html>

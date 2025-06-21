@@ -1,310 +1,350 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>月200ドルで築く 最強のAI仕事術</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>月額$200で築く、最強のAIツールスタック</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --r-background-color: #000000;
-            --r-main-font: 'Noto Sans JP', sans-serif;
-            --r-heading-font: 'Noto Sans JP', sans-serif;
-            --r-main-font-size: 42px;
-            --r-heading-color: #ffffff;
-            --r-main-color: #ffffff;
-            --r-link-color: #38bdf8; /* sky-400 */
-        }
-        .reveal .slides {
-            font-family: var(--r-main-font);
-        }
-        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
-            font-family: var(--r-heading-font);
-        }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .anim { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
-        .anim.delay-1 { animation-delay: 0.3s; }
-        .anim.delay-2 { animation-delay: 0.6s; }
-        .anim.delay-3 { animation-delay: 0.9s; }
-        .anim.delay-4 { animation-delay: 1.2s; }
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
 
-        .slide-content {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 5rem;
-            text-align: center;
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
         }
-        .slide-content.left-align {
-            align-items: flex-start;
-            text-align: left;
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { line-height: 1.7; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.7em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
         }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 0.8s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+
     </style>
 </head>
 <body>
     <div class="reveal">
         <div class="slides">
-            <section>
-                <div class="slide-content">
-                    <h1 class="font-black text-8xl anim">月200ドルで築く<br><span class="text-sky-400">最強のAI仕事術</span></h1>
-                    <p class="mt-8 text-4xl font-normal text-neutral-200 anim delay-1">高パフォーマンス＆重複ゼロのツール組み合わせ戦略</p>
-                </div>
-            </section>
+<section data-transition="zoom" data-background-color="var(--main-background-color)">
+    <h1 class="animated delay-1">月額$200で築く、最強のAIツールスタック</h1>
+    <p class="subtitle animated delay-2">高パフォーマンスで重複のないAIスタックへの戦略的ガイド</p>
+    <p class="small-text animated delay-3" style="margin-top: 100px;">Based on "AI Tool Kit Report"</p>
+</section>
 
-            <section>
-                <div class="slide-content left-align p-24">
-                    <h2 class="font-bold text-6xl anim">AIツールは、<span class="text-sky-400">戦国時代</span>へ。</h2>
-                    <p class="mt-12 text-4xl font-normal text-neutral-200 anim delay-1">選択肢が多すぎて、何が最適か分からない。</p>
-                    <p class="mt-6 text-4xl font-normal text-neutral-200 anim delay-2">気づけば、機能が重複したツールに無駄なコストを払っている…。</p>
-                    <p class="mt-12 text-4xl font-bold text-white anim delay-3">あなたの仕事に本当に必要な「AIスタック」を見つけませんか？</p>
-                </div>
-            </section>
+<section data-transition="slide" data-background-color="var(--main-background-color)">
+    <div class="flex-container">
+        <div class="flex-box" style="flex: 0.5; background: none; text-align: left;">
+            <h2 class="animated delay-1"><i class="fa-solid fa-list-check" style="color: var(--accent-color);"></i> Agenda</h2>
+        </div>
+        <div class="flex-box" style="background: none; text-align: left;">
+            <ul style="list-style: none;">
+                <li class="animated delay-2"><h3><span style="color:var(--accent-color)">1.</span> AIツールの"3つの思想"を理解する</h3></li>
+                <li class="animated delay-3"><h3><span style="color:var(--accent-color)">2.</span> ペルソナ別・最適ポートフォリオの発見</h3></li>
+                <li class="animated delay-4"><h3><span style="color:var(--accent-color)">3.</span> 未来のための賢いAI投資戦略</h3></li>
+            </ul>
+        </div>
+    </div>
+</section>
 
-            <section>
-                <div class="slide-content left-align p-24">
-                    <h2 class="font-bold text-6xl mb-16 anim">Agenda</h2>
-                    <ol class="text-5xl font-bold list-decimal list-inside space-y-8">
-                        <li class="anim delay-1"><span class="text-sky-400">市場の全体像</span>：3つのAI勢力を知る</li>
-                        <li class="anim delay-2"><span class="text-sky-400">5つの最適解</span>：ペルソナ別ポートフォリオ提案</li>
-                        <li class="anim delay-3"><span class="text-sky-400">未来への戦略</span>：賢いAI投資の結論</li>
-                    </ol>
-                </div>
-            </section>
+<section data-transition="convex" data-background-color="var(--main-background-color)">
+    <h2 class="animated delay-1"><i class="fa-solid fa-compass-drafting"></i> どのツールを選ぶべきか？</h2>
+    <p class="animated delay-2" style="margin-top: 40px;">
+        今日のAIツール市場は、急速な技術革新と多様化で非常に複雑です 。<br>
+        個々の機能だけでなく、市場全体の<strong>構造と戦略的立ち位置</strong>を把握することが成功の鍵となります 。
+    </p>
+</section>
 
-            <section>
-                <div class="slide-content p-24">
-                    <h2 class="font-bold text-6xl mb-16 anim">AI市場を支配する<span class="text-sky-400">3つの思想</span></h2>
-                    <div class="grid grid-cols-3 gap-12 w-full text-center">
-                        <div class="bg-neutral-900 p-8 rounded-2xl anim delay-1">
-                            <h3 class="text-4xl font-black text-sky-400">プラットフォーム型</h3>
-                            <p class="mt-4 text-3xl text-neutral-200">利便性・統合性重視</p>
-                            <p class="mt-2 text-2xl text-neutral-400">Microsoft Copilot, Notion AI</p>
-                        </div>
-                        <div class="bg-neutral-900 p-8 rounded-2xl anim delay-2">
-                            <h3 class="text-4xl font-black text-sky-400">単機能特化型</h3>
-                            <p class="mt-4 text-3xl text-neutral-200">最高品質・専門性重視</p>
-                            <p class="mt-2 text-2xl text-neutral-400">Midjourney, ElevenLabs, DeepL</p>
-                        </div>
-                        <div class="bg-neutral-900 p-8 rounded-2xl anim delay-3">
-                            <h3 class="text-4xl font-black text-sky-400">ワークフロー型</h3>
-                            <p class="mt-4 text-3xl text-neutral-200">特定業務の効率化</p>
-                            <p class="mt-2 text-2xl text-neutral-400">Writesonic, Otter.ai</p>
-                        </div>
-                    </div>
-                     <p class="mt-16 text-3xl text-neutral-300 anim delay-4">最初の選択は、<span class="text-white font-bold">どの思想を選ぶか</span>です。</p>
-                </div>
-            </section>
+<section data-transition="slide" data-background-color="var(--main-background-color)">
+    <h2 class="animated delay-1">AIツールを動かす「3つの戦略的思想」</h2>
+    <div class="flex-container" style="margin-top: 50px; align-items: stretch;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-puzzle-piece"></i>
+            <h3>プラットフォーム型</h3>
+            <p class="small-text">既存のワークフローにAIを統合し、<strong>利便性</strong>を最大化する。（例: Microsoft Copilot, Notion AI）</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-star"></i>
+            <h3>単機能特化型</h3>
+            <p class="small-text">特定機能で<strong>クラス最高の品質</strong>を追求する。（例: Midjourney, ElevenLabs）</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-diagram-project"></i>
+            <h3>ワークフロー型</h3>
+            <p class="small-text">専門的な業務プロセス全体を<strong>ハブとして自動化</strong>する。（例: Writesonic, Otter.ai）</p>
+        </div>
+    </div>
+</section>
 
-            <section>
-                <div class="slide-content p-24">
-                    <h2 class="font-bold text-6xl mb-16 anim">あなたのための<span class="text-sky-400">AIポートフォリオ</span></h2>
-                    <div class="grid grid-cols-5 gap-8 w-full text-center">
-                        <div class="anim delay-1"><div class="bg-neutral-900 p-8 rounded-2xl h-full flex flex-col justify-center"><h3 class="text-4xl font-bold">ソロ<br>クリエイター</h3><p class="mt-2 text-2xl text-neutral-400">高品質コンテンツ量産</p></div></div>
-                        <div class="anim delay-2"><div class="bg-neutral-900 p-8 rounded-2xl h-full flex flex-col justify-center"><h3 class="text-4xl font-bold">デジタル<br>マーケター</h3><p class="mt-2 text-2xl text-neutral-400">データ駆動の成果追求</p></div></div>
-                        <div class="anim delay-3"><div class="bg-neutral-900 p-8 rounded-2xl h-full flex flex-col justify-center"><h3 class="text-4xl font-bold">フリーランス<br>開発者</h3><p class="mt-2 text-2xl text-neutral-400">コーディング効率最大化</p></div></div>
-                        <div class="anim delay-4"><div class="bg-neutral-900 p-8 rounded-2xl h-full flex flex-col justify-center"><h3 class="text-4xl font-bold">学術研究者<br>& アナリスト</h3><p class="mt-2 text-2xl text-neutral-400">リサーチと分析の高速化</p></div></div>
-                        <div class="anim" style="animation-delay: 1.5s;"><div class="bg-neutral-900 p-8 rounded-2xl h-full flex flex-col justify-center"><h3 class="text-4xl font-bold">小規模<br>事業者</h3><p class="mt-2 text-2xl text-neutral-400">業務全般の効率化</p></div></div>
-                    </div>
-                </div>
-            </section>
+<section data-transition="slide" data-background-color="var(--main-background-color)">
+    <h2 class="animated delay-1">多様な価格モデルの理解が鍵</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <h3>サブスクリプション</h3>
+            <p>月額・年額の固定料金。<br><strong>ChatGPT Plus, Perplexity Pro</strong>など 。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <h3>従量課金 / クレジット</h3>
+            <p>使用量に応じて課金。断続的な利用に強い。<br><strong>Midjourney, DreamStudio</strong>など 。</p>
+        </div>
+    </div>
+    <p class="animated delay-4" style="margin-top: 40px;"><i class="fa-solid fa-tags"></i> <strong>年払い</strong>を選択すると、多くのツールで<strong>15-33%の大幅な割引</strong>が適用されます 。</p>
+</section>
 
-            <section>
-                <div class="slide-content p-24 flex-col justify-center w-full h-full">
-                    <h2 class="font-bold text-6xl mb-8 anim">ペルソナ別・AIスタック<span class="text-sky-400">月額コスト</span> (年払い)</h2>
-                    <div class="w-full h-[600px] anim delay-1">
-                        <canvas id="costChart"></canvas>
-                    </div>
-                </div>
-            </section>
+<section data-transition="convex" data-background-color="var(--main-background-color)">
+    <h2 class="animated delay-1">ペルソナ別・最適AIスタック5選</h2>
+    <div class="flex-container" style="margin-top: 60px; gap: 50px;">
+        <i class="fa-solid fa-feather-pointed animated delay-2" style="font-size: 3em;"></i>
+        <i class="fa-solid fa-bullhorn animated delay-3" style="font-size: 3em;"></i>
+        <i class="fa-solid fa-code animated delay-4" style="font-size: 3em;"></i>
+        <i class="fa-solid fa-flask animated delay-5" style="font-size: 3em;"></i>
+        <i class="fa-solid fa-briefcase animated delay-5" style="font-size: 3em;"></i>
+    </div>
+    <p class="animated delay-5" style="margin-top: 40px;">ここでは代表的な3つのポートフォリオを詳しく見ていきます。</p>
+</section>
 
-            <section>
-                <div class="slide-content p-24 grid grid-cols-2 gap-16 items-center w-full h-full">
-                    <div class="text-left anim">
-                        <p class="text-sky-400 font-bold text-3xl">Portfolio A: Solo Creator</p>
-                        <h2 class="font-black text-7xl mt-2">最高品質の創作を、<br>一直線に。</h2>
-                        <p class="mt-8 text-3xl text-neutral-200">文章、音声、ビジュアルの各分野でクラス最高峰のツールを組み合わせ、コンテンツ制作をパイプライン化します。</p>
-                        <p class="mt-4 text-4xl font-bold">$101.33<span class="text-2xl text-neutral-400">/月 (年払い)</span></p>
-                    </div>
-                    <div class="space-y-6 anim delay-1">
-                        <div class="bg-neutral-900 p-6 rounded-lg text-4xl font-bold">ChatGPT <span class="text-2xl text-neutral-400 font-normal">→ スクリプト</span></div>
-                        <div class="text-4xl text-sky-400 font-black">↓</div>
-                        <div class="bg-neutral-900 p-6 rounded-lg text-4xl font-bold">ElevenLabs <span class="text-2xl text-neutral-400 font-normal">→ 高品質ナレーション</span></div>
-                        <div class="text-4xl text-sky-400 font-black">↓</div>
-                        <div class="bg-neutral-900 p-6 rounded-lg text-4xl font-bold">Midjourney <span class="text-2xl text-neutral-400 font-normal">→ オリジナル画像</span></div>
-                        <div class="text-4xl text-sky-400 font-black">↓</div>
-                        <div class="bg-neutral-900 p-6 rounded-lg text-4xl font-bold">Pictory <span class="text-2xl text-neutral-400 font-normal">→ 自動動画編集</span></div>
-                    </div>
-                </div>
-            </section>
-            
-            <section>
-                <div class="slide-content p-24 grid grid-cols-2 gap-16 items-center w-full h-full">
-                    <div class="text-left anim">
-                        <p class="text-sky-400 font-bold text-3xl">Portfolio B: Digital Marketer</p>
-                        <h2 class="font-black text-7xl mt-2">データが導く、<br>成果直結の戦略。</h2>
-                        <p class="mt-8 text-3xl text-neutral-200">リサーチからSEO最適化コンテンツ制作、マーケティング資料作成までを一気通貫で実行するマシンを構築します。</p>
-                        <p class="mt-4 text-4xl font-bold">$105.87<span class="text-2xl text-neutral-400">/月 (年払い)</span></p>
-                    </div>
-                    <div class="space-y-8 anim delay-1">
-                        <div class="bg-neutral-900 p-6 rounded-lg text-4xl font-bold">Perplexity <span class="text-2xl text-neutral-400 font-normal">→ 競合・市場リサーチ</span></div>
-                        <div class="text-4xl text-sky-400 font-black">↓</div>
-                        <div class="bg-neutral-900 p-6 rounded-lg text-4xl font-bold">Writesonic <span class="text-2xl text-neutral-400 font-normal">→ SEOコンテンツ生成</span></div>
-                        <div class="text-4xl text-sky-400 font-black">↓</div>
-                        <div class="bg-neutral-900 p-6 rounded-lg text-4xl font-bold">Canva <span class="text-2xl text-neutral-400 font-normal">→ SNS投稿・資料作成</span></div>
-                    </div>
-                </div>
-            </section>
-            
-            <section>
-                <div class="slide-content p-24 grid grid-cols-2 gap-16 items-center w-full h-full">
-                    <div class="text-left anim">
-                        <p class="text-sky-400 font-bold text-3xl">Portfolio C: Freelance Developer</p>
-                        <h2 class="font-black text-7xl mt-2">驚異のコスパで、<br>開発を加速。</h2>
-                        <p class="mt-8 text-3xl text-neutral-200">コーディング、ドキュメント作成、翻訳という技術的作業に特化し、生産性を極限まで高めます。</p>
-                        <p class="mt-4 text-4xl font-bold text-sky-400">$33.07<span class="text-2xl text-neutral-400">/月 (年払い)</span></p>
-                    </div>
-                    <div class="space-y-8 anim delay-1">
-                        <div class="bg-neutral-900 p-8 rounded-lg text-4xl font-bold">GitHub Copilot<br><span class="text-2xl text-neutral-400 font-normal">AIコーディング支援</span></div>
-                        <div class="bg-neutral-900 p-8 rounded-lg text-4xl font-bold">Notion AI<br><span class="text-2xl text-neutral-400 font-normal">技術文書＆プロジェクト管理</span></div>
-                        <div class="bg-neutral-900 p-8 rounded-lg text-4xl font-bold">DeepL Pro<br><span class="text-2xl text-neutral-400 font-normal">高精度な技術翻訳</span></div>
-                    </div>
-                </div>
-            </section>
+<section data-transition="slide-in fade-out" data-background-color="var(--main-background-color)">
+    <h2 class="animated delay-1">Portfolio A: ソロコンテンツクリエイター</h2>
+    <div class="flex-container">
+        <div class="flex-box" style="flex: 0.8; background: none; text-align: left;">
+            <p class="animated delay-2"><strong>戦略:</strong> 各分野で最高品質を追求する<strong>単機能特化型</strong>スタック 。</p>
+            <p class="animated delay-3" style="font-size: 1.2em;"><strong>合計コスト (年払): <span style="color:var(--accent-color)">月額 約$101</span></strong> </p>
+        </div>
+        <div class="flex-box" style="background: none;">
+            <div class="flex-container animated delay-4">
+                <div class="flex-box" style="flex:0.3"><i class="fa-solid fa-robot"></i><p class="small-text">ChatGPT</p></div>
+                <i class="fa-solid fa-arrow-right-long" style="font-size: 2em;"></i>
+                <div class="flex-box" style="flex:0.3"><i class="fa-solid fa-palette"></i><p class="small-text">Midjourney</p></div>
+                <i class="fa-solid fa-arrow-right-long" style="font-size: 2em;"></i>
+                <div class="flex-box" style="flex:0.3"><i class="fa-solid fa-microphone-lines"></i><p class="small-text">ElevenLabs</p></div>
+                <i class="fa-solid fa-arrow-right-long" style="font-size: 2em;"></i>
+                <div class="flex-box" style="flex:0.3"><i class="fa-solid fa-film"></i><p class="small-text">Pictory</p></div>
+            </div>
+             <p class="animated delay-5" style="margin-top: 20px;">アイデア出しから高品質な動画制作までを一気通貫で実現します 。</p>
+        </div>
+    </div>
+</section>
 
-            <section>
-                <div class="slide-content">
-                    <h2 class="font-black text-8xl anim">あなたの戦略は？</h2>
-                    <p class="mt-16 text-6xl font-bold anim delay-1">
-                        利便性の<span class="text-sky-400">プラットフォーム</span>か、<br><br>
-                        最高品質の<span class="text-sky-400">専門ツール</span>か。
-                    </p>
-                     <p class="mt-16 text-3xl text-neutral-300 anim delay-2">この選択が、あなたのAI活用の成否を分けます。</p>
-                </div>
-            </section>
+<section data-transition="slide-in fade-out" data-background-color="var(--main-background-color)">
+    <h2 class="animated delay-1">Portfolio C: フリーランス開発者</h2>
+    <div class="flex-container">
+        <div class="flex-box" style="flex: 0.8; background: none; text-align: left;">
+            <p class="animated delay-2"><strong>戦略:</strong> コーディングと文書化を効率化する<strong>高コスパ</strong>スタック 。</p>
+            <p class="animated delay-3" style="font-size: 1.2em;"><strong>合計コスト (年払): <span style="color:var(--accent-color)">月額 約$33</span></strong> </p>
+        </div>
+        <div class="flex-box" style="background: none;">
+            <div class="flex-container animated delay-4">
+                <div class="flex-box" style="flex:0.3"><i class="fa-brands fa-github"></i><p class="small-text">Copilot</p></div>
+                <i class="fa-solid fa-arrow-right-long" style="font-size: 2em;"></i>
+                <div class="flex-box" style="flex:0.3"><i class="fa-solid fa-book"></i><p class="small-text">Notion AI</p></div>
+                <i class="fa-solid fa-arrow-right-long" style="font-size: 2em;"></i>
+                <div class="flex-box" style="flex:0.3"><i class="fa-solid fa-language"></i><p class="small-text">DeepL</p></div>
+            </div>
+             <p class="animated delay-5" style="margin-top: 20px;">開発、文書化、翻訳のワークフローをシームレスに連携させます 。</p>
+        </div>
+    </div>
+</section>
 
-            <section>
-                <div class="slide-content left-align p-24">
-                    <h2 class="font-bold text-6xl mb-16 anim">未来のための<span class="text-sky-400">アクションプラン</span></h2>
-                    <div class="space-y-12 text-4xl font-normal text-neutral-200">
-                        <div class="anim delay-1">
-                            <h3 class="text-5xl font-bold text-white">1. <span class="text-sky-400">年払い</span>でコストを最適化する</h3>
-                            <p class="mt-2 ml-12">多くのツールで15-33%割引。実質予算を増やし、より強力なスタックを構築。</p>
-                        </div>
-                        <div class="anim delay-2">
-                            <h3 class="text-5xl font-bold text-white">2. <span class="text-sky-400">半年に一度</span>スタックを見直す</h3>
-                            <p class="mt-2 ml-12">AI市場は猛スピードで進化。現在の最適解が、未来の最適解とは限らない。</p>
-                        </div>
-                        <div class="anim delay-3">
-                            <h3 class="text-5xl font-bold text-white">3. <span class="text-sky-400">真の価値</span>で新ツールを評価する</h3>
-                            <p class="mt-2 ml-12">「何を解決するか」「立ち位置はどこか」「真のコストはいくらか」を自問する。</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+<section data-transition="slide-in fade-out" data-background-color="var(--main-background-color)">
+    <h2 class="animated delay-1">Portfolio E: 「万能型」小規模事業者</h2>
+     <div class="flex-container">
+        <div class="flex-box" style="flex: 0.8; background: none; text-align: left;">
+            <p class="animated delay-2"><strong>戦略:</strong> 日常業務にAIを統合し、<strong>利便性</strong>を最大化する<strong>プラットフォーム型</strong>スタック 。</p>
+            <p class="animated delay-3" style="font-size: 1.2em;"><strong>合計コスト (年払): <span style="color:var(--accent-color)">月額 約$38</span></strong> </p>
+        </div>
+        <div class="flex-box" style="background: none;">
+            <div class="flex-container animated delay-4" style="gap: 50px;">
+                <div class="flex-box" style="flex:0.3"><i class="fa-brands fa-microsoft"></i><p class="small-text">MS Copilot</p></div>
+                <div class="flex-box" style="flex:0.3"><i class="fa-solid fa-otter"></i><p class="small-text">Otter.ai</p></div>
+                <div class="flex-box" style="flex:0.3"><i class="fa-solid fa-pen-ruler"></i><p class="small-text">Canva</p></div>
+            </div>
+             <p class="animated delay-5" style="margin-top: 20px;">メール、会議、資料作成など、日々の業務を使い慣れた環境で効率化します 。</p>
+        </div>
+    </div>
+</section>
 
-            <section>
-                <div class="slide-content">
-                    <h2 class="font-black text-8xl anim">Thank You.</h2>
-                    <p class="mt-8 text-3xl font-normal text-neutral-400 anim delay-1">
-                        Data Source: 最適なAIツールキットの構築：月額200ドルの予算で構築する、高パフォーマンスで重複のないAIスタックへの戦略的ガイド
-                    </p>
-                </div>
-            </section>
+<section data-transition="fade-in slide-out" data-background-color="var(--main-background-color)">
+    <h2 class="animated delay-1">ポートフォリオ比較</h2>
+    <table class="comparison-table animated delay-2">
+        <thead>
+            <tr>
+                <th>ペルソナ</th>
+                <th>提供価値</th>
+                <th>月額目安（年払）</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="animated delay-3">
+                <td>A: クリエイター</td>
+                <td>クラス最高のコンテンツ制作</td>
+                <td>~$101 </td>
+            </tr>
+            <tr class="animated delay-4">
+                <td>C: 開発者</td>
+                <td>コーディングと文書化の極限効率化</td>
+                <td>~$33 </td>
+            </tr>
+            <tr class="animated delay-5">
+                <td>E: 小規模事業者</td>
+                <td>日常業務へのシームレスな統合と利便性</td>
+                <td>~$38 </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section data-transition="convex" data-background-color="var(--main-background-color)">
+    <h2 class="animated delay-1">あなたの戦略はどちら？</h2>
+    <div class="flex-container" style="margin-top: 50px; align-items: stretch;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-puzzle-piece"></i>
+            <h3>プラットフォーム型</h3>
+            <p><strong>利便性</strong>と<strong>統合性</strong>を最優先</p>
+        </div>
+        <h3 class="animated delay-3" style="align-self: center;">VS</h3>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-star"></i>
+            <h3>単機能特化型</h3>
+            <p><strong>妥協のない品質</strong>を最優先</p>
+        </div>
+    </div>
+    <p class="animated delay-5" style="margin-top:40px;">どちらの思想を選ぶかが、全てのツール選びの出発点となります 。</p>
+</section>
+
+<section data-transition="slide" data-background-color="var(--main-background-color)">
+    <h2 class="animated delay-1">賢いAI投資のための3つのアクション</h2>
+    <div class="flex-container" style="margin-top: 50px; align-items: stretch;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-calendar-days"></i>
+            <h3>年払いを活用する</h3>
+            <p class="small-text">最も簡単で効果的なコスト削減策です 。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+            <h3>定期的に見直す</h3>
+            <p class="small-text">半年〜1年ごとにポートフォリオを評価し、陳腐化を防ぎます 。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h3>新規ツールを評価する</h3>
+            <p class="small-text">「新しい問題」を解決するツールかを見極めます 。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="zoom-out" data-background-color="var(--main-background-color)">
+    <h1 class="animated delay-1">Thank You.</h1>
+    <i class="fa-solid fa-rocket animated delay-2" style="color: var(--accent-color); font-size: 2em; margin-top: 20px;"></i>
+</section>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
     <script>
-        // 1. Reveal.jsを初期化
         Reveal.initialize({
+            hash: false, 
+            hash: true,
             width: 1920,
             height: 1080,
             margin: 0.04,
             minScale: 0.2,
             maxScale: 2.0,
-            hash: true,
-            center: true,
-            transition: 'fade',
-            backgroundTransition: 'fade',
-            fragments: false // fragment機能を明示的に無効化
-        });
-
-        // 2. Chart.jsの共通設定とデータ定義
-        const defaultChartOptions = {
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    enabled: true,
-                    titleFont: { size: 20, family: "'Noto Sans JP', sans-serif" },
-                    bodyFont: { size: 16, family: "'Noto Sans JP', sans-serif" },
-                    callbacks: {
-                        label: function(context) {
-                            return `月額 $${context.parsed.y}`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: { color: '#a3a3a3', font: { size: 20, family: "'Noto Sans JP', sans-serif", weight: 'bold' } },
-                    grid: { display: false }
-                },
-                y: {
-                    beginAtZero: true,
-                    ticks: { 
-                        color: '#a3a3a3', 
-                        font: { size: 16, family: "'Noto Sans JP', sans-serif" },
-                        callback: function(value) {
-                            return '$' + value;
-                        }
-                    },
-                    grid: { color: 'rgba(163, 163, 163, 0.2)' }
-                }
-            }
-        };
-
-        const costChartData = {
-            labels: ['クリエイター', 'マーケター', '開発者', '研究者', '小規模事業者'],
-            datasets: [{
-                label: '月額コスト（年払い）',
-                data: [101.33, 105.87, 33.07, 71.42, 38.33],
-                backgroundColor: 'rgba(56, 189, 248, 0.7)', // sky-400 with alpha
-                borderColor: 'rgb(56, 189, 248)', // sky-400
-                borderWidth: 2,
-                borderRadius: 5,
-                barThickness: 80
-            }]
-        };
-
-        // 3. Reveal.jsの準備完了後に実行される処理
-        Reveal.on('ready', event => {
-            const ctx = document.getElementById('costChart');
-            if (ctx) {
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: costChartData,
-                    options: defaultChartOptions
-                });
-            }
-        });
-
-        // 4. スライド遷移時の処理 (今回は特に不要)
-        Reveal.on('slidechanged', event => {
-            // 必要であれば、表示されたスライドに応じた処理をここに記述
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
         });
     </script>
 </body>
