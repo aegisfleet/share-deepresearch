@@ -79,28 +79,38 @@ DeepResearchの結果をドキュメント化する際の推奨手順は以下�
 - 生成された`<section>`タグ群は、後述するreveal.jsのHTMLテンプレート内にそのまま挿入できる形式であること。
 
 ### 目的と構成
-- **目的:** 添付のレポート内容を、アイコンや多彩なレイアウトを用いて直感的に要約し、読み手が一人でプレゼンテーションを見るように学べるようにする。
-- **構成:** 全体で8〜10枚程度のスライドに「起承転結」を意識してまとめる。（タイトル、アジェンダ、起、承、転、結、最終スライド）
+- 目的:
+    - 添付のレポート内容を、アイコンや多彩なレイアウトを用いて直感的に要約すること。**【最重要】特に、ユーザーがクリック操作をしなくても、スライドが切り替わるだけで各要素が自動的にアニメーション再生され、読み手が映像を見るように一人で学べる体験を創出する。**
+- 構成:
+    - 全体で12〜15枚程度のスライドに「起承転結」を意識してまとめる。（タイトル、アジェンダ、起、承、転、結、最終スライド）
 
 ### デザインと技術仕様
-- **カラーテーマ:**
-    - **背景はダークグレー（例: #2c3e50）、アクセントカラーはオレンジ（例: #F39C12）**を基調としたデザインにしてください。リンク、アイコン、グラフの強調色などにオレンジを効果的に使用してください。
-- **【最重要】レスポンシブ対応と可読性:**
+- カラーテーマ:
+    - 背景はダークグレー（例: #1a1a1a）、アクセントカラーはオレンジ（例: #ff7733）を基調としたデザインにしてください。リンク、アイコン、グラフの強調色などにオレンジを効果的に使用してください。
+- レスポンシブ対応と可読性:
     - PCの横長画面では、`.flex-container`などを用いて要素を効果的に左右に配置してください。
-    - **スマートフォンの縦長画面では、文字が小さくなりすぎないよう、十分なフォントサイズを確保してください。**横並びレイアウトはCSSによって自動的に「縦積み」になることを前提としてコンテンツを構成してください。
-- **レイアウト:**
+    - スマートフォンの縦長画面では、文字が小さくなりすぎないよう、十分なフォントサイズを確保してください。横並びレイアウトはCSSによって自動的に「縦積み」になることを前提としてコンテンツを構成してください。
+- レイアウト:
     - 提供されたCSSクラス（`.flex-container`, `.flex-box`, `.comparison-table`など）を効果的に使用し、情報を視覚的に整理してください。
-- **アニメーションとアイコン:**
-    - `.fragment`クラスで要素を段階的に表示し、話の流れを演出してください。
-    - 内容を象徴するFont Awesome 6のアイコン（`<i class="...">`）を積極的に使用してください。
-- **テキスト:**
+- アニメーション、アイコン、演出:
+    - メインアニメーション（ページ遷移時の自動再生）:
+        - 本プレゼンテーションの基本原則です。スライドが表示されたタイミングで、すべての主要な要素（アイコン、`.flex-box`、見出し、テキストブロック等）が時間差で自動的にアニメーション表示されるようにしてください。
+        - 提供されたCSSの `.animated` クラスと `.delay-*` クラス（例: `class="animated delay-1"`）をすべての要素に適用し、リッチな登場演出を実現してください。
+    - 補助的なアニメーション（クリックで進行）:
+        - 原則としてアニメーションは自動再生とし、ユーザーのクリック操作は不要とします。
+        - 話の流れ上、どうしても意図的に情報を一つずつ見せたい場合に限り、例外的に `.fragment` クラスを使用してください。
+    - スライド間の切り替え効果:
+        - スライドが切り替わる際の演出として、`<section>` タグに `data-transition` 属性を追加してください。（例: `data-transition="slide"`）
+        - 基本のトランジションは `slide`（横スライド）とし、章の区切りなど、場面転換を強調したい箇所では `convex` や `zoom` などを効果的に使用してください。
+    - アイコンの活用:
+        - 内容を象徴するFont Awesome 6のアイコン（`<i class="...">`）を積極的に使用し、情報を視覚的に補強してください。
+- テキスト:
     - 各スライドのメッセージは、短い見出しと2〜3文の文章に要約してください。重要なキーワードは`<strong>`タグで強調してください。
 
 ### 作成手順
-1.  まず、添付のレポートを分析し、上記の構成案と仕様に基づいた各スライドのプランを提案してください。プランには、**PCでのレイアウト概要**と、**スマートフォンでどのように見えるか**の簡単な説明を含めてください。
-2.  私がそのプランを確認し、承認します。
-3.  承認後、そのプランに基づいて、完全な`<section>`タグ群を生成してください。
-
+1. まず、添付のレポートを分析し、上記の構成案と仕様に基づいた各スライドのプランを提案してください。プランには、**PCでのレイアウト概要**と、**スマートフォンでどのように見えるか**の簡単な説明、そして**スライド遷移時に自動再生されるアニメーション効果**の具体的な提案を含めてください。
+2. 私がそのプランを確認し、承認します。
+3. 承認後、そのプランに基づいて、完全な`<section>`タグ群を生成してください。
 
 ### SPAのイメージ
 <!doctype html>
@@ -119,20 +129,16 @@ DeepResearchの結果をドキュメント化する際の推奨手順は以下�
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    
+
     <style>
-        /* === カラーテーマと基本スタイルの設定 === */
         :root {
-            /* ▼▼ 色のカスタマイズはここで行います ▼▼ */
             --main-background-color: #1a1a1a;
             --box-background-color: #2d2d2d;
             --text-color: #e0e0e0;
             --heading-color: #ffffff;
             --accent-color: #ff7733;
             --accent-color-hover: #ff9966;
-            /* ▲▲ 色のカスタマイズはここまで ▲▲ */
 
-            /* reveal.jsの標準変数を上書き */
             --r-background-color: var(--main-background-color);
             --r-main-font: 'Roboto', sans-serif;
             --r-code-font: 'Fira Code', monospace;
@@ -161,24 +167,22 @@ DeepResearchの結果をドキュメント化する際の推奨手順は以下�
         .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
         .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
         .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
-        
+
         .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
         .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
         .comparison-table th { background-color: var(--accent-color); color: #000; }
         .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
-        
-        /* === スマートフォン向けスタイル（可読性向上） === */
+
         @media (max-width: 768px) {
             .reveal {
-                font-size: 28px; /* スマホ用に基本フォントサイズをさらに大きく */
+                font-size: 40px;
             }
             .reveal h1 { font-size: 2.2em; }
             .reveal h2 { font-size: 1.7em; }
             .reveal h3 { font-size: 1.3em; }
-            .reveal p { font-size: 1em; line-height: 1.65; } /* 段落の文字を大きく */
-            .reveal li { font-size: 1em; line-height: 1.65; } /* リストの文字を大きく */
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
 
-            /* 横並びレイアウトを縦積みに変更 */
             .flex-container {
                 flex-direction: column;
                 gap: 25px;
@@ -188,19 +192,43 @@ DeepResearchの結果をドキュメント化する際の推奨手順は以下�
                 font-size: 2.5em;
                 margin-bottom: 15px;
             }
-            
-            .comparison-table { font-size: 0.9em; } /* 表の文字を少し大きく */
 
-            /* コードと図解のレイアウトを縦積みに */
-            .code-diagram-layout > div {
-                 flex: none;
-                 width: 100%;
-            }
-            .code-diagram-layout i.fa-arrow-right-long {
-                transform: rotate(90deg); /* 矢印を縦向きに */
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
                 margin: 20px 0;
             }
         }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
     </style>
 </head>
 <body>
@@ -219,6 +247,7 @@ DeepResearchの結果をドキュメント化する際の推奨手順は以下�
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
     <script>
         Reveal.initialize({
+            hash: false, 
             hash: true,
             width: 1920,
             height: 1080,
