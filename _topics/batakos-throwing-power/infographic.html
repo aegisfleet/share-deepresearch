@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>理論物理学で解明するバタコさんの投擲能力</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F7CAC9;
+        }
+        .font-roboto {
+            font-family: 'Roboto', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .kpi-value {
+            color: #FF6F61;
+        }
+        .section-bg {
+            background-color: #92A8D1;
+        }
+        .card-bg {
+            background-color: white;
+        }
+        .accent-color {
+            color: #6B5B95;
+        }
+        .text-main {
+            color: #333;
+        }
+        .text-sub {
+            color: #555;
+        }
+        .flow-arrow {
+            font-size: 2.5rem;
+            line-height: 1;
+            color: #88B04B;
+            align-self: center;
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body class="text-main">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold accent-color mb-4">理論物理学で解明するバタコさんの投擲能力</h1>
+            <p class="text-lg text-sub">アニメの象徴的シーンを科学の目で分析した、その驚くべき結論。</p>
+        </header>
+
+        <main class="space-y-12">
+            
+            <section id="scenarios" class="card-bg rounded-xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 accent-color">分析の前提：3つの「顔」モデル</h2>
+                <p class="text-center text-sub mb-8">アンパンマンの顔の質量は諸説あるため、本分析は異なる物理モデルに基づく3つのシナリオで進行する。</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="border-2 border-pink-200 rounded-lg p-4">
+                        <h3 class="text-xl font-bold accent-color">シナリオA</h3>
+                        <p class="font-bold text-lg mb-2">「職人芸」モデル</p>
+                        <p class="font-roboto text-4xl kpi-value">4.0 <span class="text-lg text-sub">kg</span></p>
+                        <p class="text-sm text-sub mt-2">実物大レシピに基づく物理的に最も確実な推定値。</p>
+                    </div>
+                    <div class="border-2 border-blue-200 rounded-lg p-4">
+                        <h3 class="text-xl font-bold accent-color">シナリオB</h3>
+                        <p class="font-bold text-lg mb-2">「スケールアップあんぱん」モデル</p>
+                        <p class="font-roboto text-4xl kpi-value">38.5 <span class="text-lg text-sub">kg</span></p>
+                        <p class="text-sm text-sub mt-2">市販のあんぱんを幾何学的に拡大した中間的な推定値。</p>
+                    </div>
+                    <div class="border-2 border-green-200 rounded-lg p-4">
+                        <h3 class="text-xl font-bold accent-color">シナリオC</h3>
+                        <p class="font-bold text-lg mb-2">「最大推計」モデル</p>
+                        <p class="font-roboto text-4xl kpi-value">110.0 <span class="text-lg text-sub">kg</span></p>
+                        <p class="text-sm text-sub mt-2">通説に基づく理論的探求のための上限値。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="velocity" class="card-bg rounded-xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-2 accent-color">投擲速度の算出：空気抵抗という巨大な壁</h2>
+                <p class="text-center text-sub mb-8">距離100mを3秒で到達するには、巨大な顔が受ける空気抵抗を克服する必要がある。質量が大きいほど、その影響は相対的に小さくなる。</p>
+                <div class="chart-container">
+                    <canvas id="velocityChart"></canvas>
+                </div>
+            </section>
+            
+            <section id="power" class="card-bg rounded-xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-2 accent-color">超人的パワー：運動エネルギー比較</h2>
+                <p class="text-center text-sub mb-8">バタコさんの投擲が生み出すエネルギーは、世界トップクラスのアスリートさえ比較にならないレベルに達する。</p>
+                <div class="chart-container">
+                    <canvas id="powerChart"></canvas>
+                </div>
+            </section>
+
+            <section id="technique" class="card-bg rounded-xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-2 accent-color">驚異の精度を支える物理法則</h2>
+                <p class="text-center text-sub mb-8">100m先で完璧にドッキングさせる技術は、単なる力任せでは不可能。そこには高度な物理原理の応用が隠されている。</p>
+                <div class="flex flex-col md:flex-row justify-center items-center p-4">
+                    <div class="text-center p-4 border border-gray-200 rounded-lg max-w-xs">
+                        <h4 class="font-bold text-lg accent-color">課題</h4>
+                        <p class="text-sub">巨大な球形物体は空気力学的に不安定で、高速で投げると不規則に回転（タンブリング）し、制御不能になる。</p>
+                    </div>
+                    <div class="transform md:rotate-0 rotate-90 flow-arrow">➔</div>
+                    <div class="text-center p-4 bg-green-100 border border-green-300 rounded-lg max-w-xs">
+                        <h4 class="font-bold text-lg text-green-800">解決策：ジャイロ効果</h4>
+                        <p class="text-green-700">進行軸に沿った強力なスピン（回転）を与えることでジャイロ効果が発生。投射物の姿勢が安定し、一直線に飛翔する。</p>
+                    </div>
+                </div>
+                 <p class="text-center text-sub mt-6">結論：バタコさんは「投手」ではなく、生物学的ペイロードを射出・安定させる「射出技術者」である。</p>
+            </section>
+            
+        </main>
+
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            <p>このインフォグラフィックは、『それいけ！アンパンマン』に関する公開情報と物理法則に基づき作成された理論的分析を視覚化したものです。</p>
+            <p>&copy; 2025 Theoretical Batako-san Dynamics Institute. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function wrapLabel(str, maxWidth) {
+            if (typeof str !== 'string' || str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine.length > 0) {
+                lines.push(currentLine);
+            }
+            return lines;
+        }
+
+        const sharedTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        const palette = {
+            coral: '#FF6F61',
+            purple: '#6B5B95',
+            green: '#88B04B',
+            pink: '#F7CAC9',
+            blue: '#92A8D1',
+            lightGray: '#dddddd'
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const velocityCtx = document.getElementById('velocityChart').getContext('2d');
+            new Chart(velocityCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['シナリオA (4kg)', 'シナリオB (38.5kg)', 'シナリオC (110kg)'],
+                    datasets: [{
+                        label: '必要初速度 (空気抵抗あり)',
+                        data: [195, 143, 127],
+                        backgroundColor: palette.coral,
+                        borderColor: 'white',
+                        borderWidth: 2
+                    }, {
+                        label: '基準速度 (真空)',
+                        data: [120, 120, 120],
+                        type: 'line',
+                        borderColor: palette.purple,
+                        backgroundColor: 'transparent',
+                        pointBackgroundColor: palette.purple,
+                        borderWidth: 3,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    ...sharedTooltipOptions,
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '速度 (km/h)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        ...sharedTooltipOptions.plugins,
+                        title: {
+                            display: true,
+                            text: 'シナリオ別・必要投擲速度',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            const powerCtx = document.getElementById('powerChart').getContext('2d');
+            const powerData = [
+                { label: 'MLB投手 (世界記録級)', value: 160, color: palette.blue },
+                { label: '五輪砲丸投選手 (世界記録)', value: 700, color: palette.green },
+                { label: 'バタコさん (シナリオA)', value: 5900, color: palette.coral },
+                { label: 'バタコさん (シナリオB)', value: 30200, color: palette.coral },
+                { label: 'バタコさん (シナリオC)', value: 68800, color: palette.coral }
+            ].sort((a, b) => a.value - b.value);
+
+            new Chart(powerCtx, {
+                type: 'bar',
+                data: {
+                    labels: powerData.map(d => wrapLabel(d.label, 16)),
+                    datasets: [{
+                        label: '運動エネルギー (ジュール)',
+                        data: powerData.map(d => d.value),
+                        backgroundColor: powerData.map(d => d.color),
+                        borderColor: 'white',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...sharedTooltipOptions,
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: '運動エネルギー (J) [対数スケール]'
+                            }
+                        }
+                    },
+                    plugins: {
+                        ...sharedTooltipOptions.plugins,
+                        title: {
+                            display: true,
+                            text: '投擲エネルギー比較：バタコさん vs. アスリート',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    <!-- NEITHER Mermaid JS NOR SVG were used anywhere in the output. -->
+</body>
+</html>

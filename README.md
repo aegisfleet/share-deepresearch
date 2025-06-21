@@ -71,19 +71,165 @@ DeepResearchの結果をドキュメント化する際の推奨手順は以下�
 - Impress.jsを用いたインフォグラフィックなプレゼン資料、スマートフォンへの表示にも対応することに留意する。
 
 ```text
-添付ファイルの内容を伝えるための高品質なスライドを作成するためのプランを立てて、最終的にHTMLファイルを作成して欲しい。
+あなたはプロのプレゼンテーションデザイナー兼フロントエンドエンジニアです。
+添付されたレポートの内容を元に、プレゼンテーションライブラリ「reveal.js」で動作する、高品質なスライドのHTMLコンテンツを生成してください。
 
-### スライドの目的
-- このスライドは添付ファイルの内容をイラストで要約して分かりやすく伝えることを目的とし、発表者は存在しない。
-- 起承転結を綺麗にまとめて、読み手にとって学びがある内容にする。
-- 小さな文字は使いたくないので、文章を端的にまとめる。
-- 各スライドで記載すべき内容を丁寧にプランニングする。
+### 最終成果物
+- レポートの内容を要約した、一連の`<section>`タグ群。
+- 生成された`<section>`タグ群は、後述するreveal.jsのHTMLテンプレート内にそのまま挿入できる形式であること。
 
-### スライドの仕様
-- Reveal.jsを使用して1920x1080サイズの横長スライドを作成する。
-- 画像は使用せず、Font AwesomeのアイコンとCSSアニメーションを使用して、白基調のデザイン性の高い資料にする。
-- オブジェクトは上から下、左から右の順で表示されるようにする。
-- ページ遷移したタイミングでアニメーションを自動再生する。
+### 目的と構成
+- **目的:** 添付のレポート内容を、アイコンや多彩なレイアウトを用いて直感的に要約し、読み手が一人でプレゼンテーションを見るように学べるようにする。
+- **構成:** 全体で8〜10枚程度のスライドに「起承転結」を意識してまとめる。（タイトル、アジェンダ、起、承、転、結、最終スライド）
+
+### デザインと技術仕様
+- **カラーテーマ:**
+    - **背景はダークグレー（例: #2c3e50）、アクセントカラーはオレンジ（例: #F39C12）**を基調としたデザインにしてください。リンク、アイコン、グラフの強調色などにオレンジを効果的に使用してください。
+- **【最重要】レスポンシブ対応と可読性:**
+    - PCの横長画面では、`.flex-container`などを用いて要素を効果的に左右に配置してください。
+    - **スマートフォンの縦長画面では、文字が小さくなりすぎないよう、十分なフォントサイズを確保してください。**横並びレイアウトはCSSによって自動的に「縦積み」になることを前提としてコンテンツを構成してください。
+- **レイアウト:**
+    - 提供されたCSSクラス（`.flex-container`, `.flex-box`, `.comparison-table`など）を効果的に使用し、情報を視覚的に整理してください。
+- **アニメーションとアイコン:**
+    - `.fragment`クラスで要素を段階的に表示し、話の流れを演出してください。
+    - 内容を象徴するFont Awesome 6のアイコン（`<i class="...">`）を積極的に使用してください。
+- **テキスト:**
+    - 各スライドのメッセージは、短い見出しと2〜3文の文章に要約してください。重要なキーワードは`<strong>`タグで強調してください。
+
+### 作成手順
+1.  まず、添付のレポートを分析し、上記の構成案と仕様に基づいた各スライドのプランを提案してください。プランには、**PCでのレイアウト概要**と、**スマートフォンでどのように見えるか**の簡単な説明を含めてください。
+2.  私がそのプランを確認し、承認します。
+3.  承認後、そのプランに基づいて、完全な`<section>`タグ群を生成してください。
+
+
+### SPAのイメージ
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>DeepResearch Report Summary</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === カラーテーマと基本スタイルの設定 === */
+        :root {
+            /* ▼▼ 色のカスタマイズはここで行います ▼▼ */
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+            /* ▲▲ 色のカスタマイズはここまで ▲▲ */
+
+            /* reveal.jsの標準変数を上書き */
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { line-height: 1.7; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.7em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+        
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+        
+        /* === スマートフォン向けスタイル（可読性向上） === */
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 28px; /* スマホ用に基本フォントサイズをさらに大きく */
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1em; line-height: 1.65; } /* 段落の文字を大きく */
+            .reveal li { font-size: 1em; line-height: 1.65; } /* リストの文字を大きく */
+
+            /* 横並びレイアウトを縦積みに変更 */
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+            
+            .comparison-table { font-size: 0.9em; } /* 表の文字を少し大きく */
+
+            /* コードと図解のレイアウトを縦積みに */
+            .code-diagram-layout > div {
+                 flex: none;
+                 width: 100%;
+            }
+            .code-diagram-layout i.fa-arrow-right-long {
+                transform: rotate(90deg); /* 矢印を縦向きに */
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-color="var(--main-background-color)">
+                <h1>スライドタイトル</h1>
+                <p>このテンプレートはダークグレーとオレンジを基調としています。<br>スマートフォンで表示すると、文字が大きくなり、レイアウトが縦に変わります。</p>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
 ```
 
 ## ローカルでの開発

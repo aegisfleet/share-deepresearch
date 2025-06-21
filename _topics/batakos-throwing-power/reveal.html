@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>バタコさんの投擲の謎を解明する</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === カラーテーマと基本スタイルの設定 === */
+        :root {
+            /* ▼▼ 色のカスタマイズはここで行います ▼▼ */
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+            /* ▲▲ 色のカスタマイズはここまで ▲▲ */
+
+            /* reveal.jsの標準変数を上書き */
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { line-height: 1.7; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.7em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+        
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+        
+        /* === スマートフォン向けスタイル（可読性向上） === */
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 28px; /* スマホ用に基本フォントサイズをさらに大きく */
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1em; line-height: 1.65; } /* 段落の文字を大きく */
+            .reveal li { font-size: 1em; line-height: 1.65; } /* リストの文字を大きく */
+
+            /* 横並びレイアウトを縦積みに変更 */
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+            
+            .comparison-table { font-size: 0.9em; } /* 表の文字を少し大きく */
+
+            /* コードと図解のレイアウトを縦積みに */
+            .code-diagram-layout > div {
+                 flex: none;
+                 width: 100%;
+            }
+            .code-diagram-layout i.fa-arrow-right-long {
+                transform: rotate(90deg); /* 矢印を縦向きに */
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section data-background-color="var(--main-background-color)">
+  <i class="fa-solid fa-bread-slice" style="font-size: 2em; color: var(--accent-color);"></i>
+  <h1>バタコさんの投擲の謎を解明する</h1>
+  <p class="subtitle">物理学的アプローチによる能力の再定義</p>
+  <i class="fa-solid fa-bolt" style="font-size: 2em; color: var(--accent-color); margin-top: 20px;"></i>
+</section>
+<section data-background-color="var(--main-background-color)" class="left-align">
+  <h2><i class="fa-solid fa-magnifying-glass" style="color:var(--accent-color); margin-right: 15px;"></i>本日の探求</h2>
+  <ul style="list-style: none; margin-top: 50px; font-size: 1.2em;">
+    <li class="fragment" style="margin-bottom: 30px;"><i class="fa-solid fa-ruler-combined" style="color:var(--accent-color); width: 50px;"></i> 投射物（顔）のスペック定義</li>
+    <li class="fragment" style="margin-bottom: 30px;"><i class="fa-solid fa-wind" style="color:var(--accent-color); width: 50px;"></i> 空気抵抗と速度の真実</li>
+    <li class="fragment" style="margin-bottom: 30px;"><i class="fa-solid fa-dumbbell" style="color:var(--accent-color); width: 50px;"></i> アスリートを超えるパワー</li>
+    <li class="fragment"><i class="fa-solid fa-crosshairs" style="color:var(--accent-color); width: 50px;"></i> 驚異の精密制御技術</li>
+  </ul>
+</section>
+<section data-background-color="var(--main-background-color)">
+  <h2><i class="fa-solid fa-weight-hanging" style="color:var(--accent-color); margin-right: 15px;"></i>【起】前提条件：顔の重さはどれくらい？</h2>
+  <p>アンパンマンの顔の質量は情報源により様々です 。<br>本分析では、この不確実性を考慮し、<strong>3つの代表的なシナリオ</strong>を設定します 。</p>
+  <div class="flex-container" style="margin-top: 40px;">
+    <div class="flex-box fragment">
+      <i class="fa-solid fa-cookie-bite"></i>
+      <h3>シナリオA<br>職人芸モデル</h3>
+      <p>実物大レシピに基づく最小値 。<br><strong>4.0 kg</strong> </p>
+    </div>
+    <div class="flex-box fragment">
+      <i class="fa-solid fa-chart-pie"></i>
+      <h3>シナリオB<br>あんぱんモデル</h3>
+      <p>通常あんぱんからのスケールアップ計算 。<br><strong>38.5 kg</strong> </p>
+    </div>
+    <div class="flex-box fragment">
+      <i class="fa-solid fa-database"></i>
+      <h3>シナリオC<br>最大推計モデル</h3>
+      <p>メディア等で語られる最大値 。<br><strong>110.0 kg</strong> </p>
+    </div>
+  </div>
+</section>
+<section data-background-color="var(--main-background-color)">
+  <h2><i class="fa-solid fa-gauge-high" style="color:var(--accent-color); margin-right: 15px;"></i>【承】速度計算：真空 vs 現実</h2>
+  <div class="flex-container" style="align-items: flex-start; margin-top: 40px;">
+    <div class="flex-box" style="flex: 0.8;">
+      <i class="fa-solid fa-rocket"></i>
+      <h3>理想的な真空状態</h3>
+      <p class="left-align" style="font-size: 0.8em;">空気抵抗を無視すると、顔の重さに関係なく初速は<strong>時速120km</strong>と算出されます 。しかし、これは非現実的な仮定です 。</p>
+    </div>
+    <div class="fragment" style="align-self: center; font-size: 4em; color: var(--accent-color); margin: 0 20px;">
+      <i class="fa-solid fa-arrow-right-long"></i>
+    </div>
+    <div class="flex-box fragment">
+      <i class="fa-solid fa-wind"></i>
+      <h3>空気抵抗を考慮した現実</h3>
+      <p class="left-align" style="font-size: 0.8em;">顔の巨大な断面積のため、空気抵抗は飛翔を支配する主要な力となります 。これを克服するため、<strong>さらに高速な初速が必要</strong>になります 。</p>
+    </div>
+  </div>
+</section>
+<section data-background-color="var(--main-background-color)">
+  <h2><i class="fa-solid fa-chart-line" style="color:var(--accent-color); margin-right: 15px;"></i>【転①】分析結果：重いほど"効率的"という逆説</h2>
+  <p>空気抵抗を考慮すると、軽い顔ほど大幅な速度アップが必要です 。<br>質量は<strong>空気抵抗への耐性（弾道慣性）</strong>として機能します 。</p>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>シナリオ</th>
+        <th>質量</th>
+        <th>真空モデル速度</th>
+        <th>現実モデル速度</th>
+        <th style="color: var(--accent-color);">速度増加率</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="fragment">
+        <td>A: 職人芸モデル</td>
+        <td>4.0 kg </td>
+        <td>120 km/h </td>
+        <td><strong>195 km/h</strong> </td>
+        <td><strong>+62.5%</strong> </td>
+      </tr>
+      <tr class="fragment">
+        <td>B: あんぱんモデル</td>
+        <td>38.5 kg </td>
+        <td>120 km/h </td>
+        <td><strong>143 km/h</strong> </td>
+        <td>+19.2% </td>
+      </tr>
+      <tr class="fragment">
+        <td>C: 最大推計モデル</td>
+        <td>110.0 kg </td>
+        <td>120 km/h </td>
+        <td><strong>127 km/h</strong> </td>
+        <td>+5.8% </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section data-background-color="var(--main-background-color)">
+  <h2><i class="fa-solid fa-dumbbell" style="color:var(--accent-color); margin-right: 15px;"></i>【転②】超人的パワー：アスリートとの比較</h2>
+  <p>投擲の凄さは速度だけではありません。質量を考慮した<strong>運動エネルギー</strong>で比較すると、その異次元性が明らかになります 。</p>
+  <div class="flex-container" style="align-items: flex-end; margin-top: 40px;">
+    <div class="flex-box fragment">
+      <i class="fa-solid fa-baseball-bat-ball"></i>
+      <h3>MLB投手</h3>
+      <p style="font-size: 1.5em; color: var(--accent-color);">~160 J </p>
+      <p class="small-text">(世界記録級) </p>
+    </div>
+    <div class="flex-box fragment">
+      <i class="fa-solid fa-medal"></i>
+      <h3>五輪砲丸投選手</h3>
+      <p style="font-size: 1.5em; color: var(--accent-color);">~700 J </p>
+      <p class="small-text">(世界記録) </p>
+    </div>
+    <div class="flex-box fragment">
+      <i class="fa-solid fa-user-astronaut"></i>
+      <h3>バタコさん (C)</h3>
+      <p style="font-size: 1.5em; color: var(--accent-color);">~68,800 J </p>
+      <p class="small-text">(最大推計モデル)</p>
+    </div>
+  </div>
+  <p class="fragment" style="margin-top: 30px;">シナリオCでは、バタコさんの出力は<strong>砲丸投世界記録の約100倍</strong>に達します 。</p>
+</section>
+<section data-background-color="var(--main-background-color)">
+  <h2><i class="fa-solid fa-crosshairs" style="color:var(--accent-color); margin-right: 15px;"></i>【結①】究極の技術：精密制御とジャイロ効果</h2>
+  <div class="flex-container" style="align-items: flex-start; margin-top: 40px;">
+    <div class="flex-box">
+      <i class="fa-solid fa-circle-question"></i>
+      <h3>課題：100m先の精密投擲</h3>
+      <p class="left-align" style="font-size: 0.8em;">なぜ巨大な球体を<strong>100m先へ正確に</strong>届けられるのでしょうか？  通常なら空気力学的な不安定性で不規則に回転（タンブリング）するはずです 。</p>
+    </div>
+    <div class="fragment" style="align-self: center; font-size: 4em; color: var(--accent-color); margin: 0 20px;">
+      <i class="fa-solid fa-arrow-right-long"></i>
+    </div>
+    <div class="flex-box fragment">
+      <i class="fa-solid fa-arrows-spin"></i>
+      <h3>解決策：ジャイロ効果</h3>
+      <p class="left-align" style="font-size: 0.8em;">唯一の物理的に妥当な説明は<strong>ジャイロ効果</strong>の利用です 。バタコさんは顔に強力なスピンをかけ、弾道を安定させていると考えられます 。</p>
+    </div>
+  </div>
+  <p class="fragment" style="margin-top: 30px;">彼女は単なる投手ではなく、高度な物理学を操る<strong>「射出技術者」</strong>と再定義できます 。</p>
+</section>
+<section data-background-color="var(--main-background-color)">
+  <h2><i class="fa-solid fa-infinity" style="color:var(--accent-color); margin-right: 15px;"></i>【結論】バタコさんに秘められた超常物理学</h2>
+  <p>バタコさんの投擲は、二つの超人的な特性によって定義されます。</p>
+  <div class="flex-container" style="margin-top: 40px;">
+    <div class="flex-box">
+      <i class="fa-solid fa-bolt"></i>
+      <h3>超人的パワー</h3>
+      <p>算出された運動エネルギーは、地球上の<strong>いかなるアスリートをも桁違いに凌駕</strong>します 。</p>
+    </div>
+    <div class="flex-box">
+      <i class="fa-solid fa-brain"></i>
+      <h3>高度な技術</h3>
+      <p>ジャイロ効果を応用し、<strong>完璧な精度と安定性</strong>を両立させる卓越したスキルです 。</p>
+    </div>
+  </div>
+  <p style="margin-top: 40px;">
+    この「顔を投げる」行為は、パワーと技術が融合した<strong>極めて高度な物理現象</strong>であり、彼女が物語の世界における計り知れない力を持つ存在であることを示唆しています 。
+  </p>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
