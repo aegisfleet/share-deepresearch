@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>iPhone 17: 噂から読み解くAppleの次なる戦略的転換点</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { line-height: 1.7; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.7em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section data-transition="zoom" data-background-image="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=2094&auto=format&fit=crop" data-background-opacity="0.2">
+    <h1 class="animated">iPhone 17: A New Chapter</h1>
+    <p class="subtitle animated delay-1">
+        噂から読み解くAppleの次なる戦略的転換点
+    </p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="left-align animated">Agenda</h2>
+    <ul class="left-align">
+        <li class="animated delay-1"><i class="fa-solid fa-flag-checkered fa-fw" style="color: var(--accent-color);"></i> <strong>戦略的転換点</strong>：なぜ"ただの新型"ではないのか</li>
+        <li class="animated delay-2"><i class="fa-solid fa-layer-group fa-fw" style="color: var(--accent-color);"></i> <strong>新ラインナップ</strong>：Plusの終焉とAirの台頭</li>
+        <li class="animated delay-3"><i class="fa-solid fa-palette fa-fw" style="color: var(--accent-color);"></i> <strong>デザインと技術</strong>：刷新される外観とディスプレイ</li>
+        <li class="animated delay-4"><i class="fa-solid fa-microchip fa-fw" style="color: var(--accent-color);"></i> <strong>パフォーマンス</strong>：AI時代を見据えた進化</li>
+        <li class="animated delay-5"><i class="fa-solid fa-lightbulb fa-fw" style="color: var(--accent-color);"></i> <strong>結論と提言</strong>：リスク、リワード、そしてあなたへの推奨</li>
+    </ul>
+</section>
+
+<section data-transition="zoom">
+    <div class="flex-container">
+        <div class="flex-box" style="background: none; flex: 0.8;">
+            <i class="fa-solid fa-map-signs animated" style="font-size: 8em;"></i>
+            <h2 class="animated">戦略的転換点</h2>
+        </div>
+        <div class="flex-box left-align animated delay-1" style="flex: 1.2;">
+            <h3 class="animated delay-1">iPhone 17は、単なるアップデートではなく、Appleの<strong>製品戦略における重要な転換点</strong>となる可能性を秘めています 。</h3>
+            <ul class="small-text">
+                <li class="animated delay-2">新たな<strong>「Air」モデル</strong>の導入 </li>
+                <li class="animated delay-3"><strong>ProMotion</strong>の全モデル展開 </li>
+                <li class="animated delay-4">大幅な<strong>デザイン刷新</strong> </li>
+                <li class="animated delay-5"><strong>オンデバイスAI</strong>のための性能向上 </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">新ラインナップ戦略：「Air」の登場</h2>
+    <p class="animated delay-1">「Plus」モデルが廃止され、薄さと軽さを価値とする「Air」へ 。<strong>"大きさ"から"体験"へ</strong>価値軸を転換します。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            <h3>iPhone 16 Plus</h3>
+            <p class="small-text">画面が大きい標準モデル</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long animated delay-3" style="font-size: 4em;"></i>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-feather-pointed"></i>
+            <h3>iPhone 17 Air</h3>
+            <p class="small-text"><strong>超薄型・軽量</strong>デザインモデル</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">iPhone 17 Air: 薄さという新たな価値</h2>
+    <div class="flex-container">
+        <div class="flex-box left-align animated delay-1">
+            <h3 style="color: var(--accent-color);">主な特徴</h3>
+            <ul>
+                <li><i class="fa-solid fa-ruler-vertical fa-fw"></i> <strong>史上最薄</strong>の約5.5mm </li>
+                <li><i class="fa-solid fa-weight-hanging fa-fw"></i> 驚異的な<strong>軽さ</strong> </li>
+                <li><i class="fa-solid fa-display fa-fw"></i> 6.6インチの<strong>大画面</strong> </li>
+            </ul>
+            <h3 style="color: var(--accent-color); margin-top: 30px;">トレードオフ</h3>
+            <ul>
+                <li><i class="fa-solid fa-camera fa-fw"></i> リアカメラは<strong>単眼レンズ</strong> </li>
+            </ul>
+        </div>
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-user-tie"></i>
+            <h3>ターゲット層</h3>
+            <p>性能よりも<strong>スタイル、携帯性、デザイン</strong>を重視する「ラグジュアリー・ライフスタイル」層 。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">デザインの刷新：水平カメラバー</h2>
+    <p class="animated delay-1">特にAirとProモデルは、従来のカメラデザインから脱却し、<strong>水平型のカメラバー</strong>へ変更されると噂されています 。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-grip-vertical"></i>
+            <h3>iPhone 17 / 従来</h3>
+            <p>垂直配置のデザインを継承 。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-grip-lines"></i>
+            <h3>iPhone 17 Air & Pro / 新デザイン</h3>
+            <p>デバイスの横幅に広がる<strong>水平バー</strong>へ 。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated">全モデルProMotion化：「Pro」の再定義</h2>
+    <div class="flex-container">
+        <div class="flex-box animated delay-1">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h3>プレミアムの民主化</h3>
+            <p>120Hzの滑らかな表示と常時表示ディスプレイが、<strong>ついに全モデルで利用可能に</strong> 。</p>
+        </div>
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-arrow-right-long"></i>
+            <h3>「Pro」の再定義</h3>
+            <p>Proの価値はディスプレイから、より専門的な<strong>①チップ性能 ②メモリ容量 ③カメラ性能</strong>の3本柱へとシフトします 。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">3段階のチップ戦略</h2>
+    <p class="animated delay-1">iPhone 17では、モデルごとにチップを分ける<strong>3段階の階層的戦略</strong>が採用される見込みです 。</p>
+    <div class="flex-container" style="align-items: stretch;">
+        <div class="flex-box animated delay-2">
+            <h3>iPhone 17 (標準)</h3>
+            <i class="fa-solid fa-microchip"></i>
+            <p><strong>A18</strong> チップ</p>
+            <p><strong>8GB</strong> RAM</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <h3>iPhone 17 Air</h3>
+            <i class="fa-solid fa-microchip" style="color: var(--accent-color);"></i>
+            <p><strong>A19</strong> チップ</p>
+            <p><strong>12GB</strong> RAM</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <h3>iPhone 17 Pro / Max</h3>
+            <i class="fa-solid fa-microchip" style="color: var(--accent-color); text-shadow: 0 0 15px var(--accent-color);"></i>
+            <p><strong>A19 Pro</strong> チップ</p>
+            <p><strong>12GB</strong> RAM</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">A19 Pro: AI時代のパフォーマンス</h2>
+    <div class="flex-container">
+        <div class="flex-box left-align animated delay-1">
+            <h3 style="color: var(--accent-color);">性能予測</h3>
+            <p>A19 ProはA18 Proに対し、シングルコアで<strong>約14%</strong>、マルチコアで<strong>約12%</strong>の性能向上が予測されます 。</p>
+            <div style="margin-top:20px; font-size: 0.8em;">
+                <span>A18 Pro</span>
+                <div style="background: #555; width: 88%; height: 30px; border-radius: 5px;"></div>
+                <span>A19 Pro</span>
+                <div style="background: var(--accent-color); width: 100%; height: 30px; border-radius: 5px;"></div>
+            </div>
+        </div>
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-brain"></i>
+            <h3>なぜ必要か？</h3>
+            <p>12GBへのRAM増量とチップ性能の向上は、より高度化する<strong>Apple Intelligence</strong>の機能をオンデバイスで快適に動作させるための必然的な対応です 。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated">Proを創る、究極のカメラ</h2>
+    <div class="flex-container" style="align-items: stretch;">
+        <div class="flex-box animated delay-1">
+            <h3><i class="fa-solid fa-users"></i> 全モデル共通の進化</h3>
+            <i class="fa-solid fa-camera" style="font-size: 4em; margin: 20px 0;"></i>
+            <p>フロントカメラが<strong>24MP</strong>にアップグレード 。セルフィーやビデオ通話の品質が大幅に向上します。</p>
+        </div>
+        <div class="flex-box animated delay-2" style="border: 2px solid var(--accent-color);">
+            <h3><i class="fa-solid fa-star"></i> Proだけの飛躍</h3>
+            <i class="fa-solid fa-circle-nodes" style="font-size: 4em; margin: 20px 0;"></i>
+            <p>広角・超広角・望遠の<strong>リアカメラ全てが48MP</strong>に進化 。これにより、待望の<strong>8Kビデオ撮影</strong>が可能になると噂されています 。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">アップグレードすべきか？：ユーザー別提言</h2>
+    <div class="flex-container" style="align-items: stretch;">
+        <div class="flex-box animated delay-1">
+            <i class="fa-solid fa-mobile-vintage"></i>
+            <h3>iPhone 14以前のユーザー</h3>
+            <p><strong>強く推奨</strong>。120Hzディスプレイなど、全ての面で劇的な体験向上を享受できます。</p>
+        </div>
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            <h3>標準15/16ユーザー</h3>
+            <p><strong>Airが魅力的</strong>。性能よりも、薄さや軽さに価値を感じるなら検討の価値があります。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-mobile-screen"></i>
+            <h3>Pro 15/16ユーザー</h3>
+            <p><strong>カメラとAIが動機</strong>。トリプル48MPカメラや将来のAI機能に期待するなら価値ある投資です。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="zoom">
+    <h2 class="animated">結論：Appleの新たな賭け</h2>
+    <div class="flex-container">
+        <div class="flex-box animated delay-1">
+            <i class="fa-solid fa-feather-pointed"></i>
+            <h3>"Air"という賭け</h3>
+            <p>新たな市場を開拓する可能性がある一方、機能的妥協が受け入れられないリスクも 。</p>
+        </div>
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h3>"Pro"の再定義</h3>
+            <p>価値を性能に集約する戦略。専門家には響くが、一般ユーザーには差が分かりにくくなる可能性も。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="zoom" data-background-image="https://images.unsplash.com/photo-1611144027734-5f4019a8a892?q=80&w=1974&auto=format&fit=crop" data-background-opacity="0.2">
+    <h1 class="animated">The Future is (Almost) Here.</h1>
+    <p class="subtitle animated delay-1">
+        iPhone 17は、Appleの未来への大胆な一歩を示す象徴的な製品となるでしょう。
+    </p>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

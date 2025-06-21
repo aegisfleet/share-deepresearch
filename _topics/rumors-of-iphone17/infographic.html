@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 17 Rumors Infographic: A New Era</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #665191, #d45087, #ff7c43);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-node {
+            border: 2px solid #2f4b7c;
+            background-color: #ffffff;
+            color: #003f5c;
+        }
+        .flowchart-arrow::after {
+            content: '▼';
+            color: #665191;
+            display: block;
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        .flowchart-line {
+            width: 2px;
+            background-color: #665191;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="bg-[#003f5c] text-gray-800">
+
+    <!-- Color Palette: Brilliant Blues (#003f5c, #2f4b7c, #665191, #a05195, #d45087, #f95d6a, #ff7c43, #ffa600) -->
+    <!-- NEITHER Mermaid JS NOR SVG were used in this output. -->
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center my-8 md:my-12">
+            <h1 class="text-4xl md:text-6xl font-black text-white">iPhone 17</h1>
+            <p class="text-2xl md:text-4xl font-bold gradient-text mt-2">A New Era: Analyzing the 2025 Strategic Shift</p>
+            <p class="text-white/80 mt-4 max-w-3xl mx-auto">2025年のiPhone 17は単なるアップデートではありません。製品ラインナップ、デザイン、そしてパフォーマンスにおけるAppleの根本的な戦略転換を示唆しています。</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section id="key-features" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center text-white shadow-lg border border-white/20">
+                    <p class="text-5xl font-extrabold text-[#ffa600]">4</p>
+                    <h3 class="text-xl font-bold mt-2">MODELS</h3>
+                    <p class="mt-2 text-white/80 text-sm">超薄型の「Air」モデルが登場し、ラインナップが再定義されます。</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center text-white shadow-lg border border-white/20">
+                    <p class="text-5xl font-extrabold text-[#ff7c43]">120Hz</p>
+                    <h3 class="text-xl font-bold mt-2">FOR ALL</h3>
+                    <p class="mt-2 text-white/80 text-sm">ProMotionディスプレイが全モデルに拡大され、滑らかな表示が標準になります。</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center text-white shadow-lg border border-white/20">
+                     <p class="text-5xl font-extrabold text-[#f95d6a]">24MP</p>
+                    <h3 class="text-xl font-bold mt-2">FRONT CAMERA</h3>
+                    <p class="mt-2 text-white/80 text-sm">フロントカメラが大幅にアップグレードされ、セルフィーの品質が向上します。</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center text-white shadow-lg border border-white/20">
+                    <p class="text-5xl font-extrabold text-[#d45087]">A19</p>
+                    <h3 class="text-xl font-bold mt-2">PRO CHIP</h3>
+                    <p class="mt-2 text-white/80 text-sm">次世代チップがProモデルの性能を新たな高みへと引き上げます。</p>
+                </div>
+            </section>
+            
+            <section id="lineup-comparison" class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c]">The 2025 Lineup: A New Hierarchy</h2>
+                <p class="text-center mt-2 max-w-2xl mx-auto">iPhone 17シリーズは、性能とデザインで明確に差別化された4つのモデルで構成されると噂されています。特にAirモデルとProモデルのRAMが12GBに増強され、高度なタスクやAI機能への対応が強化されます。</p>
+                <div class="chart-container mt-6 h-64 md:h-80">
+                    <canvas id="ramChart"></canvas>
+                </div>
+            </section>
+
+            <section id="air-focus" class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-center text-[#003f5c]">Meet the iPhone 17 "Air"</h2>
+                    <p class="text-center mt-2">性能よりも携帯性やスタイルを重視する、全く新しいカテゴリーの誕生です。</p>
+                    <div class="flex justify-around text-center mt-6">
+                        <div>
+                            <p class="text-5xl font-extrabold gradient-text">5.5<span class="text-2xl">mm</span></p>
+                            <p class="font-bold text-[#003f5c] mt-1">Ultra-Thin Design</p>
+                        </div>
+                        <div>
+                            <p class="text-5xl font-extrabold gradient-text">~145<span class="text-2xl">g</span></p>
+                            <p class="font-bold text-[#003f5c] mt-1">Feather-Light</p>
+                        </div>
+                    </div>
+                     <p class="text-center mt-6 text-sm">その驚異的な薄さを実現するため、リアカメラは超広角や望遠を持たない単眼48MPレンズになるというトレードオフが存在します。</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+                     <h2 class="text-3xl font-bold text-center text-[#003f5c]">Pro Power Unleashed</h2>
+                     <p class="text-center mt-2 max-w-2xl mx-auto">ProモデルはA19 Proチップを搭載し、パフォーマンスが飛躍的に向上すると予測されています。これにより、8Kビデオ撮影や高度なAI処理が可能になります。</p>
+                     <div class="chart-container mt-6 h-64 md:h-80">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="pro-camera" class="bg-white rounded-2xl shadow-2xl p-6 md:p-8 text-center">
+                 <h2 class="text-3xl font-bold text-[#003f5c]">Pro Camera System: Triple 48MP</h2>
+                 <p class="mt-2 max-w-2xl mx-auto">iPhone 17 Proの最大の進化はカメラにあります。広角、超広角、望遠の3つのレンズすべてが48MPセンサーにアップグレードされ、あらゆるシーンで驚異的なディテールを捉えます。</p>
+                 <div class="flex justify-center items-center space-x-4 mt-6">
+                    <div class="text-center">
+                        <p class="text-6xl">📷</p>
+                        <p class="font-bold mt-2">48MP Wide</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-6xl">📷</p>
+                        <p class="font-bold mt-2">48MP Ultrawide</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-6xl">📷</p>
+                        <p class="font-bold mt-2">48MP Telephoto</p>
+                    </div>
+                 </div>
+            </section>
+            
+            <section id="upgrade-path" class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c]">Should You Upgrade?</h2>
+                <p class="text-center mt-2 max-w-2xl mx-auto">あなたの現在のiPhoneから、どのiPhone 17が最適か見てみましょう。</p>
+                <div class="mt-8 text-center">
+                    <div class="flowchart-node rounded-lg p-4 font-bold max-w-md mx-auto">あなたの現在のiPhoneは？</div>
+                    <div class="flowchart-arrow"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        
+                        <div class="flex flex-col items-center">
+                            <div class="flowchart-node rounded-lg p-4 font-bold w-full">iPhone 14以前</div>
+                            <div class="h-4 w-px bg-[#665191] my-2"></div>
+                            <div class="bg-gray-100 rounded-lg p-4 text-sm w-full grow">どのモデルを選んでも劇的な進化を体験できます。特に120Hzディスプレイは大きな魅力です。</div>
+                        </div>
+
+                        <div class="flex flex-col items-center">
+                            <div class="flowchart-node rounded-lg p-4 font-bold w-full">iPhone 15 / 16 標準</div>
+                            <div class="h-4 w-px bg-[#665191] my-2"></div>
+                            <div class="bg-gray-100 rounded-lg p-4 text-sm w-full grow">デザインを重視するなら「Air」、究極の性能を求めるなら「Pro」が魅力的な選択肢になります。</div>
+                        </div>
+
+                        <div class="flex flex-col items-center">
+                           <div class="flowchart-node rounded-lg p-4 font-bold w-full">iPhone 15 / 16 Pro</div>
+                            <div class="h-4 w-px bg-[#665191] my-2"></div>
+                            <div class="bg-gray-100 rounded-lg p-4 text-sm w-full grow">カメラシステムの進化と将来のAI機能が最大の動機。クリエイターに特におすすめです。</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <section id="timeline" class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c]">Predicted Launch Timeline</h2>
+                <div class="mt-8 flex flex-col md:flex-row justify-around items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="text-center">
+                        <div class="bg-[#2f4b7c] text-white rounded-full w-24 h-24 flex items-center justify-center text-xl font-bold shadow-md">Step 1</div>
+                        <h3 class="font-bold text-lg mt-3">製品発表</h3>
+                        <p class="text-gray-600">2025年 9月9日頃</p>
+                    </div>
+                     <div class="w-16 h-1 bg-[#a05195] rounded-full hidden md:block"></div>
+                    <div class="text-center">
+                        <div class="bg-[#665191] text-white rounded-full w-24 h-24 flex items-center justify-center text-xl font-bold shadow-md">Step 2</div>
+                        <h3 class="font-bold text-lg mt-3">予約受付開始</h3>
+                        <p class="text-gray-600">2025年 9月12日</p>
+                    </div>
+                     <div class="w-16 h-1 bg-[#d45087] rounded-full hidden md:block"></div>
+                    <div class="text-center">
+                        <div class="bg-[#a05195] text-white rounded-full w-24 h-24 flex items-center justify-center text-xl font-bold shadow-md">Step 3</div>
+                        <h3 class="font-bold text-lg mt-3">発売日</h3>
+                        <p class="text-gray-600">2025年 9月19日</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center text-white/50 text-xs mt-12 pb-4">
+            <p>This infographic is based on publicly available rumors, analyst reports, and speculation as of June 2024. All specifications and features are subject to change.</p>
+            <p>このインフォグラフィックは2024年6月時点の公開されている噂、アナリストレポート、推測に基づいています。すべての仕様や機能は変更される可能性があります。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const brilliantBlues = ['#2f4b7c', '#665191', '#a05195', '#d45087'];
+        const accentColors = ['#f95d6a', '#ff7c43', '#ffa600'];
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#4b5563',
+                        font: {
+                           family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: '#003f5c',
+                    titleFont: { size: 16, family: "'Inter', sans-serif" },
+                    bodyFont: { size: 14, family: "'Inter', sans-serif" },
+                    padding: 12,
+                    cornerRadius: 8,
+                    boxPadding: 4
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: '#4b5563', font: { family: "'Inter', sans-serif" } },
+                    grid: { color: '#e5e7eb' }
+                },
+                x: {
+                    ticks: { color: '#4b5563', font: { family: "'Inter', sans-serif" } },
+                    grid: { display: false }
+                }
+            }
+        };
+
+        const wrapLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine += ' ' + word;
+                }
+            }
+            lines.push(currentLine.trim());
+            return lines.filter(line => line);
+        };
+
+        // RAM Chart
+        const ramCtx = document.getElementById('ramChart').getContext('2d');
+        new Chart(ramCtx, {
+            type: 'bar',
+            data: {
+                labels: ['iPhone 17', 'iPhone 17 Air', 'iPhone 17 Pro', 'iPhone 17 Pro Max'],
+                datasets: [{
+                    label: 'Rumored RAM (GB)',
+                    data: [8, 12, 12, 12],
+                    backgroundColor: brilliantBlues,
+                    borderColor: brilliantBlues.map(c => c + 'FF'),
+                    borderWidth: 1,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                         ticks: { color: '#4b5563', font: { family: "'Inter', sans-serif" } },
+                         grid: { color: '#e5e7eb' },
+                         title: { display: true, text: 'GB', color: '#4b5563' }
+                    },
+                     y: {
+                        ticks: { color: '#4b5563', font: { family: "'Inter', sans-serif" } },
+                        grid: { display: false }
+                    }
+                },
+                 plugins: { ...defaultChartOptions.plugins, legend: { display: false } }
+            }
+        });
+
+        // Performance Chart
+        const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+        new Chart(performanceCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Single-Core', 'Multi-Core'],
+                datasets: [
+                    {
+                        label: 'A18 Pro (est.)',
+                        data: [3500, 8900],
+                        backgroundColor: '#665191',
+                        borderRadius: 5
+                    },
+                    {
+                        label: 'A19 Pro (pred.)',
+                        data: [4000, 10000],
+                        backgroundColor: '#ff7c43',
+                        borderRadius: 5
+                    }
+                ]
+            },
+            options: {
+                 ...defaultChartOptions,
+                 scales: {
+                    y: {
+                        ticks: { color: '#4b5563', font: { family: "'Inter', sans-serif" } },
+                        grid: { color: '#e5e7eb' },
+                        title: { display: true, text: 'Geekbench 6 Score', color: '#4b5563' }
+                    },
+                     x: {
+                        ticks: { color: '#4b5563', font: { family: "'Inter', sans-serif" } },
+                        grid: { display: false }
+                    }
+                },
+                 plugins: { ...defaultChartOptions.plugins, legend: { position: 'top' } }
+            }
+        });
+    </script>
+
+</body>
+</html>
