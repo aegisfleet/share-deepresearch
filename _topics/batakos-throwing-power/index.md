@@ -143,11 +143,11 @@ v=100 m/3 s=33.3 m/s
 
 #### **引用文献**
 
-1. アンパンマンの顔で何人が満腹になる？ | ダ・ヴィンチWeb, 6月 21, 2025にアクセス、 [https://ddnavi.com/article/d364687/a/](https://ddnavi.com/article/d364687/a/)  
-2. アンパンマンの顔交換 | 一太郎二姫の育ち方, 6月 21, 2025にアクセス、 [https://ameblo.jp/march-strawberry-sesame/entry-12737637272.html](https://ameblo.jp/march-strawberry-sesame/entry-12737637272.html)  
+1. アンパンマンの顔で何人が満腹になる？ ダ・ヴィンチWeb, 6月 21, 2025にアクセス、 [https://ddnavi.com/article/d364687/a/](https://ddnavi.com/article/d364687/a/)  
+2. アンパンマンの顔交換 一太郎二姫の育ち方, 6月 21, 2025にアクセス、 [https://ameblo.jp/march-strawberry-sesame/entry-12737637272.html](https://ameblo.jp/march-strawberry-sesame/entry-12737637272.html)  
 3. アンパンマンの顔交換！そして、バタコさんのスゴ技 \- novalue \- 自分らしさで彩るメディア, 6月 21, 2025にアクセス、 [https://no-value.jp/other/63386/](https://no-value.jp/other/63386/)  
 4. サイエンスブレイク177「アンパンマンのバタコさんの腕力は？(顔が飛ぶ軌道を考える)」, 6月 21, 2025にアクセス、 [https://plaza.rakuten.co.jp/minasubi/diary/201908170000/](https://plaza.rakuten.co.jp/minasubi/diary/201908170000/)  
-5. 実物大アンパンマンの顔、出来ました！ | 妄想グルメのレシピ帖 by ..., 6月 21, 2025にアクセス、 [https://ameblo.jp/mosogourmet/entry-11292238132.html](https://ameblo.jp/mosogourmet/entry-11292238132.html)  
+5. 実物大アンパンマンの顔、出来ました！ 妄想グルメのレシピ帖 by ..., 6月 21, 2025にアクセス、 [https://ameblo.jp/mosogourmet/entry-11292238132.html](https://ameblo.jp/mosogourmet/entry-11292238132.html)  
 6. アンパンマンの本体は胴体｜薮内たけのこ \- note, 6月 21, 2025にアクセス、 [https://note.com/ajinohiraki/n/n98c66df4f137](https://note.com/ajinohiraki/n/n98c66df4f137)  
 7. 君は、バタコさんという凄腕ピッチャーを知っているか？ \- note, 6月 21, 2025にアクセス、 [https://note.com/memento\_mori1/n/n233c499c24c1](https://note.com/memento_mori1/n/n233c499c24c1)  
 8. 空気抵抗の基礎と速度依存性の違い：1乗と2乗で何が異なるのか？, 6月 21, 2025にアクセス、 [https://ushitora.net/archives/5656](https://ushitora.net/archives/5656)  
@@ -161,5 +161,4 @@ v=100 m/3 s=33.3 m/s
 16. 不思議な飛行物体「ピーク」を作って飛ばそう\!, 6月 21, 2025にアクセス、 [https://static.hokkaido-np.co.jp/files/o/files/pdf/manabun/rinpei/rinpei201404.pdf](https://static.hokkaido-np.co.jp/files/o/files/pdf/manabun/rinpei/rinpei201404.pdf)  
 17. ジャイロボールとは？ 種類や投げ方・握り方について解説 \- ALPEN GROUP MAGAZINE, 6月 21, 2025にアクセス、 [https://media.alpen-group.jp/media/detail/baseball\_210514\_01.html](https://media.alpen-group.jp/media/detail/baseball_210514_01.html)  
 18. ジャイロボール \- Wikipedia, 6月 21, 2025にアクセス、 [https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AD%E3%83%9C%E3%83%BC%E3%83%AB](https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AD%E3%83%9C%E3%83%BC%E3%83%AB)  
-19. (2ページ目)足が速い、肩が強い、動きがよい…落合博満監督を楽しませ続けた“ナンバーワン控え選手”が見せた“最後の雄姿” | 文春オンライン, 6月 21, 2025にアクセス、 [https://bunshun.jp/articles/-/47082?page=2](https://bunshun.jp/articles/-/47082?page=2)  
-20. ジャムおじさん | アンパンマンキャラDB \- TGWS, 6月 21, 2025にアクセス、 [https://tgws.plus/anpandb/jamuojisan](https://tgws.plus/anpandb/jamuojisan)
+19. (2ページ目)足が速い、肩が強い、動きがよい…落合博満監督を楽しませ続けた“ナンバーワン控え選手”が見せた“最後の雄姿” 文春オンライン, 6月 21, 2025にアクセス、 [https://bunshun.jp/articles/-/47082?page=2](https://bunshun.jp/articles/-/47082?page=2)  
