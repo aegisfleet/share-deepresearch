@@ -2,7 +2,7 @@
 layout: topic
 title: "バタコさんによるアンパンマンの顔面投擲における速度の理論的考察"
 date: 2025-06-21
-prompt: "バタ子さんがアンパンマンの顔を投げる時の速度はどのくらいなのか理論的に説明して欲しい。"
+prompt: "バタコさんがアンパンマンの顔を投げる時の速度はどのくらいなのか理論的に説明して欲しい。"
 category: "playful"
 tags: [物理学]
 audio: "/share-deepresearch/assets/audio/batakos-throwing-power.mp3"
