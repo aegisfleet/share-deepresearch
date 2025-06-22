@@ -35,6 +35,26 @@ layout: default
     </div>
     {% endif %}
 
+    {% if page.ga4_metrics %}
+    <div class="ga4-metrics">
+        <h2>閲覧データ（過去30日間）</h2>
+        <div class="metrics-container">
+            <div class="metric">
+                <span class="metric-label">ページビュー数:</span>
+                <span class="metric-value">{{ page.ga4_metrics.pageViews }}</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">ユニークユーザー数:</span>
+                <span class="metric-value">{{ page.ga4_metrics.users }}</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">平均セッション時間:</span>
+                <span class="metric-value">{{ page.ga4_metrics.avgSessionDuration | round: 2 }}秒</span>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
     {% if page.prompt %}
     <div class="prompt-section">
         <h2>プロンプト</h2>
