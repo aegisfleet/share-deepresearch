@@ -24,9 +24,9 @@ def get_ga4_metrics(property_id, credentials_path):
     try:
         client = BetaAnalyticsDataClient.from_service_account_json(credentials_path)
         
-        # 過去30日間のデータを取得
+        # 過去90日間のデータを取得
         end_date = datetime.now().date()
-        start_date = end_date - timedelta(days=30)
+        start_date = end_date - timedelta(days=90)
         logger.info(f"期間: {start_date} から {end_date}")
         
         request = RunReportRequest(
@@ -117,15 +117,23 @@ def update_markdown_files(metrics_dict):
                     "users": metrics["users"],
                     "avgSessionDuration": metrics["avgSessionDuration"]
                 }
-                
-                # ファイルを保存
-                with open(md_file, 'wb') as f:
-                    frontmatter.dump(post, f)
-                updated_files += 1
-                logger.info(f"ファイルの更新完了: {md_file}")
             else:
                 logger.warning(f"メトリクスが見つかりません: {url_path} ({md_file})")
                 logger.debug(f"試行したパス: {possible_paths}")
+                # Front Matterを更新（すべての値を0に設定）
+                post = frontmatter.load(md_file)
+                post["ga4_metrics"] = {
+                    "pageViews": 0,
+                    "users": 0,
+                    "avgSessionDuration": 0.0
+                }
+                logger.info(f"メトリクスを0に設定: {md_file}")
+            # ファイルを保存（最後に改行を追加）
+            with open(md_file, 'wb') as f:
+                frontmatter.dump(post, f)
+                f.write(b'\n')  # 最後に改行を追加
+            updated_files += 1
+            logger.info(f"ファイルの更新完了: {md_file}")
         except Exception as e:
             logger.error(f"ファイル {md_file} の更新中にエラーが発生: {str(e)}")
     
