@@ -1,11 +1,16 @@
 ---
-layout: topic
-title: "戸籍における新たな振り仮名制度：背景、規則、そして選択肢"
+audio: /share-deepresearch/assets/audio/family-register-reading.mp3
+category: research
 date: 2025-06-01
-prompt: "戸籍に記載される振り仮名について、その制度の背景と今まで使っていた読み仮名とは違うものを任意に設定できるのか教えて欲しい。"
-category: "research"
-tags: [法改正]
-audio: "/share-deepresearch/assets/audio/family-register-reading.mp3"
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
+layout: topic
+prompt: 戸籍に記載される振り仮名について、その制度の背景と今まで使っていた読み仮名とは違うものを任意に設定できるのか教えて欲しい。
+tags:
+- 法改正
+title: 戸籍における新たな振り仮名制度：背景、規則、そして選択肢
 ---
 
 # **戸籍における新たな振り仮名制度：背景、規則、そして選択肢**
@@ -217,4 +222,4 @@ audio: "/share-deepresearch/assets/audio/family-register-reading.mp3"
 19. 【解説】戸籍に「読み仮名」記載へ どこまでOK?『知りたいッ！』 \- YouTube, 6月 1, 2025にアクセス、 [https://www.youtube.com/watch?v=Lmja4ATyo\_U](https://www.youtube.com/watch?v=Lmja4ATyo_U)  
 20. 戸籍に振り仮名を記録する取り組みが始まります \- 中央区, 6月 1, 2025にアクセス、 [https://www.city.chuo.lg.jp/a0012/kurashi/touroku/koseki/furigana.html](https://www.city.chuo.lg.jp/a0012/kurashi/touroku/koseki/furigana.html)  
 21. 戸籍のフリガナ記載が必須に！ 改正戸籍法は2025年5月施行【弁護士が解説】 \- FReeNANCe, 6月 1, 2025にアクセス、 [https://freenance.net/media/legal/38814/](https://freenance.net/media/legal/38814/)  
-22. 氏名のフリガナに関するQ\&A ＜全般＞ Ｑ１ 氏名のフリガナとはどのようなものですか, 6月 1, 2025にアクセス、 [https://www.mofa.go.jp/mofaj/files/100818526.pdf](https://www.mofa.go.jp/mofaj/files/100818526.pdf)  
+22. 氏名のフリガナに関するQ\&A ＜全般＞ Ｑ１ 氏名のフリガナとはどのようなものですか, 6月 1, 2025にアクセス、 [https://www.mofa.go.jp/mofaj/files/100818526.pdf](https://www.mofa.go.jp/mofaj/files/100818526.pdf)

@@ -1,14 +1,19 @@
 ---
-layout: topic
-title: "退職代行サービス徹底解説：利用前に知っておくべき全て"
+audio: /share-deepresearch/assets/audio/resignation-agency.mp3
+category: research
 date: 2025-06-01
-prompt: "退職代行サービスの詳細を知りたい。何を代行してくれるのか、代金はいくらぐらいなのか、退職後にも何かサービスがあるのかなど、詳しく教えて欲しい。"
-category: "research"
-tags: [退職代行]
-audio: "/share-deepresearch/assets/audio/resignation-agency.mp3"
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
+layout: topic
+prompt: 退職代行サービスの詳細を知りたい。何を代行してくれるのか、代金はいくらぐらいなのか、退職後にも何かサービスがあるのかなど、詳しく教えて欲しい。
 supplementary_materials:
-  - title: "退職代行サービス業界トレンド・市場調査インフォグラフィック"
-    url: "/share-deepresearch/topics/resignation-agency/infographic.html"
+- title: 退職代行サービス業界トレンド・市場調査インフォグラフィック
+  url: /share-deepresearch/topics/resignation-agency/infographic.html
+tags:
+- 退職代行
+title: 退職代行サービス徹底解説：利用前に知っておくべき全て
 ---
 
 # **退職代行サービス徹底解説：利用前に知っておくべき全て**
@@ -319,4 +324,4 @@ supplementary_materials:
 12. 退職代行の流れ・手順は？いつまでに依頼するべき？当日にやる ..., 6月 1, 2025にアクセス、 [https://doneru.jp/business-tips/retirement-agency-flow/](https://doneru.jp/business-tips/retirement-agency-flow/)  
 13. ご利用者様の声 24時間対応＆即日退職可能！退職代行サービス ..., 6月 1, 2025にアクセス、 [https://plus3-service.com/voice/](https://plus3-service.com/voice/)  
 14. 失業保険サポート, 6月 1, 2025にアクセス、 [https://shitsugyouhoken-support.com/](https://shitsugyouhoken-support.com/)  
-15. 退職代行TORIKESHIの口コミと評判！利用者のリアルな声 ..., 6月 1, 2025にアクセス、 [https://goal4864.com/taisyokudaikou/torikeshi-reputaion/](https://goal4864.com/taisyokudaikou/torikeshi-reputaion/)  
+15. 退職代行TORIKESHIの口コミと評判！利用者のリアルな声 ..., 6月 1, 2025にアクセス、 [https://goal4864.com/taisyokudaikou/torikeshi-reputaion/](https://goal4864.com/taisyokudaikou/torikeshi-reputaion/)

@@ -2,6 +2,10 @@
 audio: /share-deepresearch/assets/audio/ai-driven-workforce-reduction.mp3
 category: research
 date: 2025-06-22
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: AIの活用により社員の削減（解雇）が目立つように成ってきたが、具体的にどのような役職の人がどのような理由で削減されているのか詳しく調査したい。また、どの国が一番AIを理由にした解雇が多いのかも知りたい。
 supplementary_materials:
