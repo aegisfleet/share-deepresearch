@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ディズニーランド職種別キャリアパス</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { line-height: 1.7; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.7em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section data-background-image="https://images.unsplash.com/photo-1597588390248-648a17374a8d" data-background-opacity="0.3" data-transition="zoom">
+    <h1 class="animated delay-1">ディズニーランド職種別キャリアパス</h1>
+    <p class="subtitle animated delay-2">夢と魔法の王国への航路図</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">本日の航路図（アジェンダ）</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-user-tie"></i>
+            <h3>OLC正社員</h3>
+            <p>経営を担うプロフェッショナル</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h3>準社員 "キャスト"</h3>
+            <p>魔法を創りだす最前線</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-star"></i>
+            <h3>出演者</h3>
+            <p>ショーの主役たち</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="zoom">
+    <h2 class="animated delay-1">TDRを支える3つのキャリア</h2>
+    <div class="flex-container" style="align-items: flex-start; margin-top: 40px;">
+        <div class="left-align animated delay-2" style="flex: 1.2;">
+            <p>東京ディズニーリゾートのキャリアは、単一の道ではありません。<strong>役割、報酬、キャリア展望が異なる3つの大きな柱</strong>で構成されています。</p>
+            <p>自分の適性と目標に合った道を選ぶことが、成功への鍵となります。</p>
+        </div>
+        <div style="flex: 0.8;">
+            <div class="flex-box animated delay-3" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-sitemap"></i>
+                <p><strong>正社員</strong> (経営の中核)</p>
+            </div>
+            <div class="flex-box animated delay-4" style="margin-bottom: 20px;">
+                <i class="fa-solid fa-people-group"></i>
+                <p><strong>準社員</strong> (運営の最前線)</p>
+            </div>
+            <div class="flex-box animated delay-5">
+                <i class="fa-solid fa-masks-theater"></i>
+                <p><strong>出演者</strong> (パフォーマンス)</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">正社員① 総合職 - ビジネスの設計者</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-arrows-rotate"></i>
+            <h3>ジョブローテーション</h3>
+            <p>多様な部門を経験し、経営の視点を養う</p>
+        </div>
+        <div class="flex-box left-align animated delay-3">
+            <p style="text-align: center;"><i class="fa-solid fa-chart-line"></i> <strong>主な役割</strong></p>
+            <ul>
+                <li>経営戦略・事業統括</li>
+                <li>マーケティング・広報</li>
+                <li>商品企画・管理</li>
+                <li>人事・経理などの管理部門</li>
+            </ul>
+        </div>
+    </div>
+    <p class="small-text animated delay-4" style="margin-top: 30px;">将来の<strong>経営幹部候補</strong>として、企業価値の最大化を目指すキャリアパスです。</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">正社員② 専門職 - 技術のプロフェッショナル</h2>
+    <p class="animated delay-2" style="font-size: 0.8em;">特定の分野で事業の根幹を支えるスペシャリスト。<strong>市場価値を反映した報酬</strong>が設定される傾向にあります。</p>
+    <div class="flex-container" style="margin-top: 40px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-gears"></i>
+            <h3>技術職</h3>
+            <p>アトラクションや施設の設計・保守</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-microchip"></i>
+            <h3>IT職</h3>
+            <p>リゾートのデジタルインフラを支える</p>
+        </div>
+        <div class="flex-box animated delay-5">
+            <i class="fa-solid fa-utensils"></i>
+            <h3>調理・デザイン職</h3>
+            <p>食や商品の体験価値を創造する</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">準社員「キャスト」 - 魔法の心臓部</h2>
+     <div class="flex-container" style="align-items: center;">
+        <div class="left-align animated delay-2" style="flex: 1.2;">
+            <p>TDRの労働力の大部分を占める、パーク運営の最前線。単なる「アルバイト」ではなく、<strong>プロ意識を持つ「準社員」</strong>と位置づけられています。</p>
+            <p>学歴や職歴に関わらず、<strong>TDRでのキャリアを始めるための最も現実的な第一歩</strong>です。</p>
+        </div>
+        <div class="animated delay-3" style="flex: 0.8; text-align: center;">
+            <i class="fa-solid fa-hand-holding-magic" style="font-size: 5em; color: var(--accent-color);"></i>
+            <p style="margin-top: 20px;">ゲストに最も近い存在</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">キャストから正社員への道</h2>
+    <p class="animated delay-2">優れたキャストには、正社員へのキャリアアップの道が用意されています。</p>
+    <div class="flex-container" style="margin-top: 80px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-people-group"></i>
+            <h3>準社員（キャスト）</h3>
+            <p>現場での経験と実績</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long animated delay-4" style="font-size: 4em;"></i>
+        <div class="flex-box animated delay-5">
+            <i class="fa-solid fa-user-tie"></i>
+            <h3>テーマパーク<br>運営職（正社員）</h3>
+            <p>現場のリーダーへ</p>
+        </div>
+    </div>
+    <p class="small-text animated delay-5" style="margin-top: 30px;"><strong>テーマパークオペレーション社員登用制度</strong>が、才能を内部から育成するシステムとして機能しています。</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">出演者 - ショーの主役たち</h2>
+    <p class="animated delay-2">ショーやパレードに命を吹き込む、高度なスキルを持つアーティストたちです。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-hat-wizard"></i>
+            <h3>キャラクター</h3>
+            <p>ノンバーバルな演技で世界観を体現</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-person-running"></i>
+            <h3>ダンサー</h3>
+            <p>華麗なパフォーマンスでゲストを魅了</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">出演者というキャリアの現実</h2>
+    <p class="animated delay-2">夢を体現する仕事である一方、キャリアには不確実性が伴います。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-file-signature"></i>
+            <h3>有期契約</h3>
+            <p>雇用は最長1年の契約ベース。<strong>自動更新はなく、</strong>パフォーマンスや事業ニーズに基づき判断されます。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <h3>募集の変動</h3>
+            <p><strong>【重要】2025年度のダンサー新規募集は停止</strong>されています。会社の経営判断がキャリアに直接影響します。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">舞台裏の力 - グループ会社</h2>
+    <p class="animated delay-2">OLC本体だけでなく、リゾート運営に不可欠な専門機能を担うグループ会社も重要なキャリアの選択肢です。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3>セキュリティ</h3>
+            <p>ゲストの安全を守る警備業務 (例: 株式会社MBM)</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-broom"></i>
+            <h3>カストーディアル</h3>
+            <p>パークの清潔さと美観を保つ清掃業務</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="zoom">
+    <h2 class="animated delay-1">キャリア別 年収レンジ比較</h2>
+    <table class="comparison-table animated delay-2">
+        <thead>
+            <tr>
+                <th>職種</th>
+                <th>役職 / 経験の目安</th>
+                <th>推定年収範囲</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>総合職</td>
+                <td>20代（主任クラス）</td>
+                <td>450万円～650万円</td>
+            </tr>
+            <tr>
+                <td>総合職</td>
+                <td>40歳〜（課長クラス）</td>
+                <td>800万円～1,000万円以上</td>
+            </tr>
+             <tr>
+                <td>専門職</td>
+                <td>技術職（経験6年以上）</td>
+                <td>600万円～730万円</td>
+            </tr>
+            <tr>
+                <td>準社員(キャスト)</td>
+                <td>時給1,300円〜 ※フルタイム勤務の場合</td>
+                <td>約250万円～</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="small-text animated delay-3" style="margin-top: 20px;">※本レポートの情報を基に作成。総合職・専門職は賞与や手当を含む。キャストはあくまで一例の試算です。</p>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">結論：あなたに最適な航路図は？</h2>
+    <div class="flex-container" style="gap: 15px; align-items: stretch; margin-top: 40px;">
+        <div class="flex-box left-align animated delay-2" style="flex: 1;">
+            <h4><i class="fa-solid fa-graduation-cap"></i> 経営幹部を目指すなら</h4>
+            <p><strong>総合職</strong>。ジョブローテーションで経営の根幹を学ぶ。</p>
+        </div>
+        <div class="flex-box left-align animated delay-3" style="flex: 1;">
+            <h4><i class="fa-solid fa-screwdriver-wrench"></i> 専門スキルを活かすなら</h4>
+            <p><strong>専門職</strong>。市場価値に見合った待遇で即戦力として活躍。</p>
+        </div>
+    </div>
+    <div class="flex-container" style="gap: 15px; align-items: stretch; margin-top: 15px;">
+        <div class="flex-box left-align animated delay-4" style="flex: 1;">
+            <h4><i class="fa-solid fa-heart"></i> TDRの世界に飛び込むなら</h4>
+            <p><strong>準社員(キャスト)</strong>。最も門戸が広く、正社員への道も開かれている。</p>
+        </div>
+        <div class="flex-box left-align animated delay-5" style="flex: 1;">
+            <h4><i class="fa-solid fa-star-of-david"></i> パフォーマンスで輝くなら</h4>
+            <p><strong>出演者</strong>。才能が求められるが、契約の現実も理解する必要がある。</p>
+        </div>
+    </div>
+</section>
+
+<section data-background-image="https://images.unsplash.com/photo-1569949381669-ecf31ae8e613" data-background-opacity="0.3" data-transition="zoom">
+    <h1 class="animated delay-1">Your Journey Begins</h1>
+    <p class="subtitle animated delay-2">公式サイトで、あなただけのキャリアを探し始めよう。</p>
+    <a href="https://www.olc.co.jp/ja/recruit.html" target="_blank" class="animated delay-3" style="font-size: 0.8em; margin-top: 30px; display: inline-block;">オリエンタルランドグループ 採用情報へ</a>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

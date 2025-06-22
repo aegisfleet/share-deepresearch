@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：東京ディズニーリゾートのキャリアマップ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F7F9FB;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #FFD166;
+        }
+        .pyramid-level {
+            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#073B4C] mb-2">夢の国のキャリアマップ</h1>
+            <p class="text-lg text-[#118AB2]">東京ディズニーリゾートの仕事、給与、そして未来</p>
+        </header>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#073B4C]">TDRを支える3つのキャリアの柱</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-[#118AB2]">
+                    <h3 class="text-2xl font-bold text-[#118AB2] mb-2">正社員</h3>
+                    <p class="text-sm">事業を動かす経営・管理の中核。総合職、専門職など多様なプロフェッショナルが活躍。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-[#06D6A0]">
+                    <h3 class="text-2xl font-bold text-[#06D6A0] mb-2">準社員 (キャスト)</h3>
+                    <p class="text-sm">パーク運営の最前線を担う「魔法」の心臓部。TDRキャリアの最も広い入り口。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-[#FF6B6B]">
+                    <h3 class="text-2xl font-bold text-[#FF6B6B] mb-2">出演者</h3>
+                    <p class="text-sm">ショーの主役となるアーティスト。専門技能が求められる契約ベースの夢の舞台。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 bg-white p-6 md:p-8 rounded-lg shadow-xl">
+            <h2 class="text-3xl font-bold text-center mb-2 text-[#073B4C]">コーポレートアーキテクト：OLCの正社員</h2>
+            <p class="text-center text-gray-600 mb-8">リゾートの戦略を描き、未来を創造する頭脳。キャリアパスは大きく2つに分かれます。</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-[#118AB2] mb-4">総合職のキャリアと年収推移</h3>
+                    <p class="text-sm text-gray-600 mb-4">ジョブローテーションを通じて経営幹部を目指すゼネラリスト。年収は役職と共に着実に上昇します。</p>
+                    <div class="chart-container">
+                        <canvas id="generalistSalaryChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-[#118AB2] mb-4">専門職の想定年収比較</h3>
+                    <p class="text-sm text-gray-600 mb-4">特定の技術やスキルで事業を支えるスペシャリスト。市場価値が報酬に反映されやすい傾向にあります。</p>
+                    <div class="chart-container">
+                        <canvas id="specialistSalaryChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-[#118AB2] mb-4">総合職 採用への道のり</h3>
+                     <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                        <div class="p-4 bg-white rounded-lg shadow-md w-full md:w-auto">
+                            <p class="font-bold">1. エントリー</p>
+                            <p class="text-xs">採用サイトから登録</p>
+                        </div>
+                        <div class="flow-arrow transform md:rotate-0">↓</div>
+                        <div class="p-4 bg-white rounded-lg shadow-md w-full md:w-auto">
+                            <p class="font-bold">2. 書類提出</p>
+                            <p class="text-xs">OLCチャレンジシート</p>
+                        </div>
+                        <div class="flow-arrow transform md:rotate-0">↓</div>
+                        <div class="p-4 bg-white rounded-lg shadow-md w-full md:w-auto">
+                            <p class="font-bold">3. 適性検査</p>
+                            <p class="text-xs">SPIなど</p>
+                        </div>
+                        <div class="flow-arrow transform md:rotate-0">↓</div>
+                        <div class="p-4 bg-white rounded-lg shadow-md w-full md:w-auto">
+                            <p class="font-bold">4. グループ選考</p>
+                            <p class="text-xs">協調性・論理性を評価</p>
+                        </div>
+                         <div class="flow-arrow transform md:rotate-0">↓</div>
+                        <div class="p-4 bg-white rounded-lg shadow-md w-full md:w-auto">
+                            <p class="font-bold">5. 面接 (複数回)</p>
+                            <p class="text-xs">ポテンシャルを重視</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 bg-white p-6 md:p-8 rounded-lg shadow-xl">
+            <h2 class="text-3xl font-bold text-center mb-2 text-[#073B4C]">パークの心臓部：準社員「キャスト」</h2>
+            <p class="text-center text-gray-600 mb-8">ゲストに最も近い場所で魔法をかける主役たち。その数は19,000人以上。</p>
+             <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-3 bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-[#06D6A0] mb-4">職種別 基本時給レンジ</h3>
+                    <p class="text-sm text-gray-600 mb-4">職務内容によって時給は様々。専門性や時間帯によっても変動します。</p>
+                    <div class="chart-container h-96 md:h-[500px]">
+                        <canvas id="castWageChart"></canvas>
+                    </div>
+                </div>
+                <div class="lg:col-span-2 bg-gray-50 p-6 rounded-lg flex flex-col justify-center">
+                    <h3 class="text-xl font-bold text-[#06D6A0] mb-4">キャリアアップの道</h3>
+                    <p class="text-sm text-gray-600 mb-6">優れた準社員には、正社員への扉が開かれています。</p>
+                    <div class="text-center">
+                        <div class="p-6 bg-white rounded-lg shadow-md mb-4">
+                            <p class="text-lg font-bold">準社員 (キャスト)</p>
+                            <p class="text-xs">現場での経験と実績</p>
+                        </div>
+                        <div class="text-3xl font-bold text-[#FFD166]">↓</div>
+                        <div class="p-6 bg-[#06D6A0] text-white rounded-lg shadow-md mt-4">
+                            <p class="text-lg font-bold">テーマパーク<br>オペレーション社員 (正社員)</p>
+                            <p class="text-xs">登用制度を利用</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 bg-white p-6 md:p-8 rounded-lg shadow-xl">
+            <h2 class="text-3xl font-bold text-center mb-2 text-[#073B4C]">ショーの主役たち：出演者</h2>
+            <p class="text-center text-gray-600 mb-8">卓越した才能が求められるアーティストの世界。契約は有期で、不安定さも伴います。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-[#FF6B6B] mb-4">キャラクター出演者</h3>
+                    <p class="text-sm text-gray-600 mb-4">身体能力と表現力が鍵。オーディションは長期戦です。</p>
+                    <div class="bg-white p-4 rounded-lg shadow-inner space-y-3">
+                        <p><span class="font-bold">📏 身長:</span> 138cm ～ 188cm</p>
+                        <p><span class="font-bold">🗓️ 契約:</span> 最長1年（更新可能性あり）</p>
+                        <p><span class="font-bold">⏳ 選考期間:</span> 4ヶ月以上</p>
+                    </div>
+                </div>
+                <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-4">ダンサー志望者への重要なお知らせ</h3>
+                    <p>2025年4月現在、OLCはダンサーの新規募集を行っていません。最新情報は公式サイトで確認が必要です。</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#073B4C]">あなたの夢への航路図</h2>
+             <div class="relative w-full max-w-sm mx-auto h-64">
+                <div class="absolute bottom-0 w-full h-3/5 bg-[#06D6A0] pyramid-level flex items-center justify-center text-white p-2">
+                    <span class="font-bold text-lg">準社員 (~19,000人+)</span>
+                </div>
+                <div class="absolute bottom-0 w-4/5 left-1/2 -translate-x-1/2 h-2/5 bg-[#118AB2] pyramid-level flex items-center justify-center text-white p-2">
+                    <span class="font-bold">正社員 (~3,000人)</span>
+                </div>
+                <div class="absolute bottom-0 w-2/5 left-1/2 -translate-x-1/2 h-1/5 bg-[#FF6B6B] pyramid-level flex items-center justify-center text-white p-2">
+                    <span class="font-bold">出演者</span>
+                </div>
+            </div>
+            <p class="mt-8 text-gray-600">このインフォグラフィックは公開情報に基づき作成されたものです。<br>キャリアを選択する際は、必ず公式サイトで最新情報をご確認ください。</p>
+        </footer>
+
+    </div>
+
+<script>
+    const energeticPlayfulPalette = {
+        red: '#FF6B6B',
+        yellow: '#FFD166',
+        green: '#06D6A0',
+        blue: '#118AB2',
+        darkBlue: '#073B4C',
+        background: 'rgba(17, 138, 178, 0.1)'
+    };
+
+    const wrapLabel = (label) => {
+        const maxLength = 16;
+        if (typeof label === 'string' && label.length > maxLength) {
+            const words = label.split('');
+            let currentLine = '';
+            const lines = [];
+            for (const word of words) {
+                if ((currentLine + word).length > 8) {
+                    lines.push(currentLine);
+                    currentLine = '';
+                }
+                currentLine += word;
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+        return label;
+    };
+
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+            return label.join('');
+        }
+        return label;
+    };
+    
+    const commonChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                },
+                backgroundColor: '#073B4C',
+                titleFont: { size: 14, weight: 'bold' },
+                bodyFont: { size: 12 },
+                padding: 12,
+                cornerRadius: 4
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    font: {
+                        size: 10
+                    },
+                    color: energeticPlayfulPalette.darkBlue
+                },
+                grid: {
+                    display: false
+                }
+            },
+            y: {
+                beginAtZero: true,
+                ticks: {
+                     font: {
+                        size: 10
+                    },
+                    color: energeticPlayfulPalette.darkBlue
+                },
+                grid: {
+                    color: '#e0e0e0'
+                }
+            }
+        }
+    };
+
+
+    const generalistSalaryCtx = document.getElementById('generalistSalaryChart').getContext('2d');
+    new Chart(generalistSalaryCtx, {
+        type: 'line',
+        data: {
+            labels: ['一般 (22-25歳)', '主任 (26-34歳)', ['課長代理', '(35-45歳)'], '課長 (40歳-)', '部長 (シニア)'],
+            datasets: [{
+                label: '下限年収 (万円)',
+                data: [400, 450, 600, 800, 1000],
+                borderColor: energeticPlayfulPalette.blue,
+                backgroundColor: 'transparent',
+                tension: 0.1,
+                pointBackgroundColor: energeticPlayfulPalette.blue,
+                pointRadius: 5
+            }, {
+                label: '上限年収 (万円)',
+                data: [450, 650, 800, 1000, 1200],
+                borderColor: energeticPlayfulPalette.green,
+                backgroundColor: energeticPlayfulPalette.background,
+                fill: '-1',
+                tension: 0.1,
+                pointBackgroundColor: energeticPlayfulPalette.green,
+                pointRadius: 5
+            }]
+        },
+        options: {
+            ...commonChartOptions,
+            scales: {
+                ...commonChartOptions.scales,
+                y: {
+                    ...commonChartOptions.scales.y,
+                    ticks: {
+                        ...commonChartOptions.scales.y.ticks,
+                        callback: function(value) { return value + '万円'; }
+                    }
+                }
+            },
+            plugins: {
+                 ...commonChartOptions.plugins,
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                        font: { size: 10 }
+                    }
+                }
+            }
+        }
+    });
+
+    const specialistSalaryCtx = document.getElementById('specialistSalaryChart').getContext('2d');
+    new Chart(specialistSalaryCtx, {
+        type: 'bar',
+        data: {
+            labels: [wrapLabel('機械系エンジニア (6年+)'), wrapLabel('建築技術者 (6年+)'), wrapLabel('社内SE (5年+)'), wrapLabel('アプリエンジニア (5年+)')],
+            datasets: [{
+                label: '想定年収 (万円)',
+                data: [[600, 730], [580, 730], [550, 730], [550, 730]],
+                backgroundColor: [energeticPlayfulPalette.yellow, energeticPlayfulPalette.green, energeticPlayfulPalette.blue, energeticPlayfulPalette.red],
+                borderColor: energeticPlayfulPalette.darkBlue,
+                borderWidth: 1,
+                borderSkipped: false,
+            }]
+        },
+        options: {
+            ...commonChartOptions,
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    beginAtZero: false,
+                    min: 500,
+                    ticks: {
+                        callback: function(value) { return value + '万円'; }
+                    }
+                },
+                y: {
+                    ticks: {
+                        font: { size: 12 }
+                    }
+                }
+            },
+            plugins: {
+                 ...commonChartOptions.plugins,
+                tooltip: {
+                     ...commonChartOptions.plugins.tooltip,
+                    callbacks: {
+                         ...commonChartOptions.plugins.tooltip.callbacks,
+                        label: function(context) {
+                            const val = context.raw;
+                            return `年収: ${val[0]}万円 - ${val[1]}万円`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    const castWageCtx = document.getElementById('castWageChart').getContext('2d');
+    new Chart(castWageCtx, {
+        type: 'bar',
+        data: {
+            labels: [wrapLabel('カリナリー(調理)'), wrapLabel('カストーディアル(清掃)'), wrapLabel('ショーサービス(操船)'), wrapLabel('レストランサービス'), wrapLabel('セキュリティ(警備)'), wrapLabel('商品販売'), wrapLabel('ハウスキーピング')],
+            datasets: [{
+                label: '時給 (円)',
+                data: [[1470, 2138], [1480, 1800], [1470, 1470], [1420, 2075], [1330, 1863], [1320, 1950], [1280, 1320]],
+                backgroundColor: [
+                    energeticPlayfulPalette.red,
+                    energeticPlayfulPalette.yellow,
+                    energeticPlayfulPalette.green,
+                    energeticPlayfulPalette.blue,
+                    energeticPlayfulPalette.darkBlue,
+                    energeticPlayfulPalette.red,
+                    energeticPlayfulPalette.yellow
+                ],
+                borderWidth: 1,
+                borderSkipped: false,
+            }]
+        },
+        options: {
+             ...commonChartOptions,
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    beginAtZero: false,
+                    min: 1200,
+                    ticks: {
+                        callback: function(value) { return value + '円'; }
+                    }
+                },
+                y: {
+                     ticks: {
+                        font: { size: 12 }
+                    }
+                }
+            },
+            plugins: {
+                 ...commonChartOptions.plugins,
+                 tooltip: {
+                     ...commonChartOptions.plugins.tooltip,
+                    callbacks: {
+                        ...commonChartOptions.plugins.tooltip.callbacks,
+                        label: function(context) {
+                            const val = context.raw;
+                            if (val[0] === val[1]) {
+                                return `時給: ${val[0]}円`;
+                            }
+                            return `時給: ${val[0]}円 - ${val[1]}円`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
