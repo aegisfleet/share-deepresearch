@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>AI駆動型人員削減の分析と未来志向のタレント戦略ガイド</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { line-height: 1.7; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.7em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section data-transition="zoom" data-background-image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" data-background-opacity="0.3">
+    <h1 class="animated">The Great Reallocation</h1>
+    <p class="subtitle animated delay-1">AI駆動型人員削減の分析と未来志向のタレント戦略ガイド</p>
+    <p class="small-text animated delay-2">The Great Reallocation: AI駆動型人員削減の分析と未来志向のタレント戦略ガイド</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="left-align animated">Agenda</h2>
+    <ul class="left-align" style="list-style-type: none; margin-left: 0;">
+        <li class="animated delay-1"><i class="fa-solid fa-globe" style="color: var(--accent-color); width: 40px;"></i> <strong>本質:</strong> 大失業から「大再配置」へのパラダイムシフト</li>
+        <li class="animated delay-2"><i class="fa-solid fa-magnifying-glass-chart" style="color: var(--accent-color); width: 40px;"></i> <strong>分析:</strong> 世界の動向と、Klarnaの教訓</li>
+        <li class="animated delay-3"><i class="fa-solid fa-arrows-split-up-and-left" style="color: var(--accent-color); width: 40px;"></i> <strong>戦略:</strong> 代替モデル vs 能力拡張モデル</li>
+        <li class="animated delay-4"><i class="fa-solid fa-person-running" style="color: var(--accent-color); width: 40px;"></i> <strong>行動:</strong> 企業と個人が今すぐ始めるべきこと</li>
+    </ul>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">本質は「雇用の喪失」ではない</h2>
+    <p class="animated delay-1">求められるスキルセットと職務内容の前例のない規模での移行、それが「大再配置」の時代です。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2" style="border: 2px dashed #555;">
+            <i class="fa-solid fa-users-slash"></i>
+            <h3 style="text-decoration: line-through; color: #999;">大失業時代</h3>
+            <p class="small-text">単純な雇用の喪失</p>
+        </div>
+        <div class="animated delay-3">
+            <i class="fa-solid fa-arrow-right-long" style="font-size: 3em; color: var(--accent-color);"></i>
+        </div>
+        <div class="flex-box animated delay-4" style="border: 2px solid var(--accent-color);">
+            <i class="fa-solid fa-people-arrows"></i>
+            <h3><strong>大再配置</strong>の時代</h3>
+            <p class="small-text">労働力の大規模な移動と再編 </p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">自動化の最前線：リスクに晒される職種</h2>
+    <p class="animated delay-1">「定型的な認知業務」がAIによる自動化の直接的な影響を受けています。</p>
+    <div class="flex-container" style="flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 30px;">
+        <div class="flex-box animated delay-2" style="flex: 1 1 22%;">
+            <i class="fa-solid fa-code"></i><p>ソフトウェア開発者 </p>
+        </div>
+        <div class="flex-box animated delay-3" style="flex: 1 1 22%;">
+            <i class="fa-solid fa-user-tie"></i><p>人事 (HR) </p>
+        </div>
+        <div class="flex-box animated delay-4" style="flex: 1 1 22%;">
+            <i class="fa-solid fa-pen-nib"></i><p>コンテンツライター </p>
+        </div>
+        <div class="flex-box animated delay-5" style="flex: 1 1 22%;">
+            <i class="fa-solid fa-headset"></i><p>カスタマーサービス </p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">人員削減の裏にある、企業の二つの動機</h2>
+    <div class="flex-container" style="align-items: stretch; margin-top: 40px;">
+        <div class="flex-box left-align animated delay-1">
+            <i class="fa-solid fa-piggy-bank"></i>
+            <h3>戦術的な効率化</h3>
+            <p>AIによる業務自動化で生まれた余剰リソースを、<strong>コストとして削減する</strong>という短期的な判断です。</p>
+        </div>
+        <div class="flex-box left-align animated delay-2">
+            <i class="fa-solid fa-chess-king"></i>
+            <h3>戦略的な事業変革</h3>
+            <p>余剰リソースを新たな価値創造に再投資し、<strong>AIネイティブなビジネスモデルへ転換する</strong>ための布石です。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">世界の３つのアプローチ</h2>
+    <div class="flex-container" style="align-items: stretch; margin-top: 40px;">
+        <div class="flex-box animated delay-1">
+            <i class="fa-solid fa-flag-usa"></i>
+            <h3>米国：迅速な再編</h3>
+            <p class="small-text">柔軟な労働市場を背景に、AIを理由とした大規模な人員削減が最も顕著です。</p>
+        </div>
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-landmark"></i>
+            <h3>欧州：規制と対話</h3>
+            <p class="small-text">厳格な労働法（EU AI法など）がペースを抑制し、再教育や配置転換を優先する傾向があります。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-people-group"></i>
+            <h3>日本：労働力補充</h3>
+            <p class="small-text">構造的な人手不足から、AIは「人員削減」ではなく「労働力不足を補う」ツールと位置づけられています。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated">ケーススタディ：Klarnaの挑戦</h2>
+    <div class="flex-container" style="margin-top: 40px;">
+        <div class="left-align animated delay-1" style="flex: 1.2;">
+            <p>スウェーデンのフィンテック大手Klarnaは、「AIファースト」戦略を推進しました。</p>
+            <ul>
+                <li>AIチャットボットが<strong>700人相当の業務を代替</strong> </li>
+                <li>月間<strong>230万件</strong>の顧客対話を処理 </li>
+                <li>年間<strong>4,000万ドル</strong>の利益改善を見込む</li>
+            </ul>
+        </div>
+        <div class="flex-box animated delay-2" style="flex: 0.8;">
+            <p>平均解決時間</p>
+            <div style="font-size: 2.5em; font-weight: bold;">
+                <span style="text-decoration: line-through; color: #999;">11分</span>
+                <i class="fa-solid fa-arrow-right-long" style="color: var(--accent-color); margin: 0 20px;"></i>
+                <span>2分</span>
+            </div>
+            <p class="small-text">AI導入による効率化</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">Klarnaの蹉跌：見過ごされた品質</h2>
+    <div class="flex-container" style="margin-top: 40px;">
+        <div class="flex-box animated delay-1" style="flex: 0.8; text-align: center;">
+            <i class="fa-solid fa-face-sad-tear" style="font-size: 4em;"></i>
+            <p style="margin-top: 20px;">顧客満足度の低下 </p>
+        </div>
+        <div class="left-align animated delay-2" style="flex: 1.2;">
+            <p>しかし、この急進的な自動化は顧客体験の質を損ないました。</p>
+            <ul>
+                <li>AIの応答が「不正確」「ロボットのようだ」との不満が噴出 </li>
+                <li>CEO自ら、コスト削減の過度な重視が<strong>「より低い品質」に繋がった</strong>と認める結果に </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">Klarnaの教訓：ハイブリッドモデルへの回帰</h2>
+    <p class="animated delay-1" style="font-size: 1.5em; font-weight: bold; margin: 40px 0;">
+        "AI gives us <strong style="font-size: 1.2em;">speed</strong>. Talent gives us <strong style="font-size: 1.2em;">empathy</strong>."
+    </p>
+    <div class="flex-container animated delay-2">
+        <div class="flex-box" style="flex:1;">
+            <i class="fa-solid fa-robot"></i><p>定型業務</p>
+        </div>
+        <div style="font-size: 2em; padding: 0 20px;">+</div>
+        <div class="flex-box" style="flex:1;">
+            <i class="fa-solid fa-hand-holding-heart"></i><p>複雑な問題・共感</p>
+        </div>
+    </div>
+    <p class="animated delay-3" style="margin-top: 30px;">最終的に、AIと人間のエージェントが協働するハイブリッドモデルへと戦略を転換しました。 </p>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated">結論：代替か、能力拡張か</h2>
+    <p class="animated delay-1">AI導入の戦略は、大きく二つの道に分かれています。</p>
+    <table class="comparison-table animated delay-2">
+        <thead>
+            <tr>
+                <th></th>
+                <th>代替モデル (Replacement)</th>
+                <th>能力拡張モデル (Augmentation)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>主体</td>
+                <td>米テック大手 (Microsoft, IBM) </td>
+                <td>日本主要企業 (トヨタ, イオン) </td>
+            </tr>
+            <tr>
+                <td>目的</td>
+                <td>既存業務の自動化によるコスト削減、戦略的転換 </td>
+                <td>人手不足を補い、既存従業員の能力を高める </td>
+            </tr>
+            <tr>
+                <td>人材戦略</td>
+                <td>スキルセットの入れ替え (解雇と新規採用) </td>
+                <td>社内での大規模な再教育と再配置 </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">企業戦略：成功への「3つのR」</h2>
+    <div class="flex-container" style="align-items: stretch; margin-top: 40px;">
+        <div class="flex-box animated delay-1">
+            <i class="fa-solid fa-people-arrows"></i>
+            <h3>再配置 (Redeploy)</h3>
+            <p class="small-text">AIで生まれた余剰リソースを、より付加価値の高い業務へ戦略的に再配置する。</p>
+        </div>
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-brain"></i>
+            <h3>再教育 (Reskill)</h3>
+            <p class="small-text">AIを使いこなし、AIにはない人間的スキルを磨くための、継続的な学び直しへ投資する。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-sitemap"></i>
+            <h3>再編成 (Reorganize)</h3>
+            <p class="small-text">固定的な役職ではなく、変化に動的に対応できる「スキルのポートフォリオ」として組織を再編成する。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">個人の戦略：T字型AIプロフェッショナルを目指す</h2>
+    <div class="flex-container" style="align-items: center; margin-top: 40px;">
+        <div class="animated delay-1" style="flex: 1; text-align: center;">
+            <div style="font-size: 5em; font-weight: bold; color: var(--accent-color);">T</div>
+            <p><strong>深い専門性</strong> × <strong>広いAI活用能力</strong></p>
+        </div>
+        <div class="left-align animated delay-2" style="flex: 1.5;">
+            <p>AIに代替されにくい人間固有のスキルを磨くことが重要です。</p>
+            <ul style="list-style-type: none; margin-left: 0;">
+                <li><i class="fa-solid fa-lightbulb" style="color: var(--accent-color); width: 30px;"></i> 創造性・独創性</li>
+                <li><i class="fa-solid fa-magnifying-glass" style="color: var(--accent-color); width: 30px;"></i> 批判的思考力</li>
+                <li><i class="fa-solid fa-comments" style="color: var(--accent-color); width: 30px;"></i> 人間的なコミュニケーション </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section data-transition="zoom">
+    <h2 class="animated">未来は、我々の選択にかかっている</h2>
+    <p class="subtitle animated delay-2" style="line-height: 1.8;">
+        AIは、仕事を奪う存在ではない。<br>
+        <strong>人の可能性を拡張するパートナー</strong>として活用する道を、<br>
+        我々は選ぶことができる。
+    </p>
+</section>
+
+<section data-background-image="https://images.unsplash.com/photo-1581092580497-c2d226792f3?q=80&w=2070&auto=format&fit=crop" data-background-opacity="0.3">
+    <h1 class="animated">ご清聴ありがとうございました</h1>
+    <p class="animated delay-1">Q & A</p>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
