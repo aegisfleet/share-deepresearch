@@ -5,7 +5,7 @@ date: 2025-06-22
 layout: topic
 prompt: AIの活用により社員の削減（解雇）が目立つように成ってきたが、具体的にどのような役職の人がどのような理由で削減されているのか詳しく調査したい。また、どの国が一番AIを理由にした解雇が多いのかも知りたい。
 supplementary_materials:
-- title: 月200ドルで構築するインフォグラフィック：AIによる大変革時代 - The Great Reallocation最強のAIツールスタック
+- title: インフォグラフィック：AIによる大変革時代 - The Great Reallocation
   url: /share-deepresearch/topics/ai-driven-workforce-reduction/infographic.html
 - title: AI駆動型人員削減の分析と未来志向のタレント戦略ガイド
   url: /share-deepresearch/topics/ai-driven-workforce-reduction/reveal.html
