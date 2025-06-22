@@ -1,14 +1,19 @@
 ---
-layout: topic
-title: "ふるさと納税 徹底解説：仕組み、税控除、そして賢い活用法"
+audio: /share-deepresearch/assets/audio/hometown-tax.mp3
+category: research
 date: 2025-05-30
-prompt: "ふるさと納税の仕組みが良く分からない。うまくやれば自分が住んでいる自治体への納税はゼロになる？それとも少しは払う必要がある？"
-category: "research"
-tags: [ふるさと納税]
-audio: "/share-deepresearch/assets/audio/hometown-tax.mp3"
+ga4_metrics:
+  avgSessionDuration: 74.60009166666667
+  pageViews: 5
+  users: 2
+layout: topic
+prompt: ふるさと納税の仕組みが良く分からない。うまくやれば自分が住んでいる自治体への納税はゼロになる？それとも少しは払う必要がある？
 supplementary_materials:
-  - title: "ふるさと納税市場トレンド インフォグラフィック"
-    url: "/share-deepresearch/topics/hometown-tax/infographic.html"
+- title: ふるさと納税市場トレンド インフォグラフィック
+  url: /share-deepresearch/topics/hometown-tax/infographic.html
+tags:
+- ふるさと納税
+title: ふるさと納税 徹底解説：仕組み、税控除、そして賢い活用法
 ---
 
 # **ふるさと納税 徹底解説：仕組み、税控除、そして賢い活用法**
@@ -321,4 +326,4 @@ supplementary_materials:
 20. ふるさと納税をしないほうがいい人は？意外なデメリット7つと回避方法を税理士が解説 \- マネイロ, 5月 30, 2025にアクセス、 [https://moneiro.jp/media/article/furusatotax-demerit](https://moneiro.jp/media/article/furusatotax-demerit)  
 21. ふるさと納税の住民税が安くならないのはなぜ？原因とすぐできる対処法をわかりやすく解説, 5月 30, 2025にアクセス、 [https://furusato.asahi.co.jp/howto/other/post-826/](https://furusato.asahi.co.jp/howto/other/post-826/)  
 22. ふるさと納税10個のデメリットと利用をおすすめできない方の特徴 \- 小谷野税理士法人, 5月 30, 2025にアクセス、 [https://koyano-cpa.gr.jp/nobiyo-kaikei/column/5621/](https://koyano-cpa.gr.jp/nobiyo-kaikei/column/5621/)  
-23. ふるさと納税サイトのポイント付与が禁止に。2025年10月からの変更点を解説, 5月 30, 2025にアクセス、 [https://matome-navi.docomo.ne.jp/furusato/furusato-tax-news/point\_kinshi/](https://matome-navi.docomo.ne.jp/furusato/furusato-tax-news/point_kinshi/)  
+23. ふるさと納税サイトのポイント付与が禁止に。2025年10月からの変更点を解説, 5月 30, 2025にアクセス、 [https://matome-navi.docomo.ne.jp/furusato/furusato-tax-news/point\_kinshi/](https://matome-navi.docomo.ne.jp/furusato/furusato-tax-news/point_kinshi/)

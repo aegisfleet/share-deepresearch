@@ -1,16 +1,25 @@
 ---
-layout: topic
-title: "GitHub IssueをトリガーとするAIエージェント：自動化とインテリジェンスによる開発ワークフローの変革"
+audio: /share-deepresearch/assets/audio/github-issue-ai-agent.mp3
+category: ai
 date: 2025-06-09
-prompt: "GitHub Issueの操作をトリガーに駆動できるAIエージェントの情報をまとめて欲しい。GitHub Actionsを利用する方法でも構わない。"
-category: "ai"
-tags: [GitHub,GitHub Copilot,GitHub Actions,AI Agent,自動化]
-audio: "/share-deepresearch/assets/audio/github-issue-ai-agent.mp3"
+ga4_metrics:
+  avgSessionDuration: 192.497826
+  pageViews: 31
+  users: 3
+layout: topic
+prompt: GitHub Issueの操作をトリガーに駆動できるAIエージェントの情報をまとめて欲しい。GitHub Actionsを利用する方法でも構わない。
 supplementary_materials:
-  - title: "インフォグラフィック：GitHub IssueをトリガーとするAIエージェント"
-    url: "/share-deepresearch/topics/github-issue-ai-agent/infographic.html"
-  - title: "プレゼンテーション：GitHub IssueをトリガーとするAIエージェント"
-    url: "/share-deepresearch/topics/github-issue-ai-agent/reveal.html"
+- title: インフォグラフィック：GitHub IssueをトリガーとするAIエージェント
+  url: /share-deepresearch/topics/github-issue-ai-agent/infographic.html
+- title: プレゼンテーション：GitHub IssueをトリガーとするAIエージェント
+  url: /share-deepresearch/topics/github-issue-ai-agent/reveal.html
+tags:
+- GitHub
+- GitHub Copilot
+- GitHub Actions
+- AI Agent
+- 自動化
+title: GitHub IssueをトリガーとするAIエージェント：自動化とインテリジェンスによる開発ワークフローの変革
 ---
 
 # **GitHub IssueをトリガーとするAIエージェント：自動化とインテリジェンスによる開発ワークフローの変革**
@@ -474,4 +483,4 @@ GitHub Issue管理におけるAI統合の道のりはまだ始まったばかり
 32. AI and Software Development: Risks of Over-Reliance and How to ..., 6月 9, 2025にアクセス、 [https://techtalks.qima.com/ai-and-software-development-risks-of-over-reliance-and-how-to-mitigate-them/](https://techtalks.qima.com/ai-and-software-development-risks-of-over-reliance-and-how-to-mitigate-them/)  
 33. Limitations of AI-Driven Workflows in Software Development: What You Need to Know, 6月 9, 2025にアクセス、 [https://dev.to/adityabhuyan/limitations-of-ai-driven-workflows-in-software-development-what-you-need-to-know-hoa](https://dev.to/adityabhuyan/limitations-of-ai-driven-workflows-in-software-development-what-you-need-to-know-hoa)  
 34. Joint Cybersecurity Information AI Data Security, 6月 9, 2025にアクセス、 [https://media.defense.gov/2025/May/22/2003720601/-1/-1/0/CSI\_AI\_DATA\_SECURITY.PDF](https://media.defense.gov/2025/May/22/2003720601/-1/-1/0/CSI_AI_DATA_SECURITY.PDF)  
-35. Manage AI – Process to manage AI \- Cloud Adoption Framework ..., 6月 9, 2025にアクセス、 [https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/manage](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/manage)  
+35. Manage AI – Process to manage AI \- Cloud Adoption Framework ..., 6月 9, 2025にアクセス、 [https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/manage](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/manage)

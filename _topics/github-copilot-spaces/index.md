@@ -1,14 +1,20 @@
 ---
-layout: topic
-title: "GitHub Copilot Spaces 最新情報と具体的な活用事例"
+audio: /share-deepresearch/assets/audio/github-copilot-spaces.mp3
+category: ai
 date: 2025-05-31
-prompt: "GitHub Copilot Spacesについて最新情報を調査し、具体的な活用事例をまとめて欲しい。"
-category: "ai"
-tags: [GitHub,GitHub Copilot]
-audio: "/share-deepresearch/assets/audio/github-copilot-spaces.mp3"
+ga4_metrics:
+  avgSessionDuration: 320.5974412
+  pageViews: 8
+  users: 7
+layout: topic
+prompt: GitHub Copilot Spacesについて最新情報を調査し、具体的な活用事例をまとめて欲しい。
 supplementary_materials:
-  - title: "GitHub Copilot Spaces 活用事例 インフォグラフィック"
-    url: "/share-deepresearch/topics/github-copilot-spaces/infographic.html"
+- title: GitHub Copilot Spaces 活用事例 インフォグラフィック
+  url: /share-deepresearch/topics/github-copilot-spaces/infographic.html
+tags:
+- GitHub
+- GitHub Copilot
+title: GitHub Copilot Spaces 最新情報と具体的な活用事例
 ---
 
 # **GitHub Copilot Spaces 最新情報と具体的な活用事例**
@@ -382,4 +388,4 @@ GitHub Copilot Spacesは、開発のあり方を大きく変える可能性を�
 57. GitHub Copilot Workspace: Welcome to the Copilot-native developer environment, 5月 31, 2025にアクセス、 [https://github.blog/news-insights/product-news/github-copilot-workspace/](https://github.blog/news-insights/product-news/github-copilot-workspace/)  
 58. Is there a copilot roadmap anywhere? Or an insider that knows things :) : r/GithubCopilot, 5月 31, 2025にアクセス、 [https://www.reddit.com/r/GithubCopilot/comments/11ts97l/is\_there\_a\_copilot\_roadmap\_anywhere\_or\_an\_insider/](https://www.reddit.com/r/GithubCopilot/comments/11ts97l/is_there_a_copilot_roadmap_anywhere_or_an_insider/)  
 59. Best practices for using Copilot to work on tasks \- GitHub Docs, 5月 31, 2025にアクセス、 [https://docs.github.com/en/copilot/using-github-copilot/coding-agent/best-practices-for-using-copilot-to-work-on-tasks](https://docs.github.com/en/copilot/using-github-copilot/coding-agent/best-practices-for-using-copilot-to-work-on-tasks)  
-60. Modernizing legacy code with GitHub Copilot, 5月 31, 2025にアクセス、 [https://docs.github.com/en/copilot/using-github-copilot/guides-on-using-github-copilot/modernizing-legacy-code-with-github-copilot](https://docs.github.com/en/copilot/using-github-copilot/guides-on-using-github-copilot/modernizing-legacy-code-with-github-copilot)  
+60. Modernizing legacy code with GitHub Copilot, 5月 31, 2025にアクセス、 [https://docs.github.com/en/copilot/using-github-copilot/guides-on-using-github-copilot/modernizing-legacy-code-with-github-copilot](https://docs.github.com/en/copilot/using-github-copilot/guides-on-using-github-copilot/modernizing-legacy-code-with-github-copilot)

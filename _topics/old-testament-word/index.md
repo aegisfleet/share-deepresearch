@@ -1,18 +1,23 @@
 ---
-layout: topic
-title: "旧約聖書に眠る中二病的ワードの探求：禁断の知識と大いなる運命の響き"
+audio: /share-deepresearch/assets/audio/old-testament-word.mp3
+category: playful
 date: 2025-06-08
-prompt: "旧約聖書に登場する中二病的な単語をできるだけ多く集めて欲しい。"
-category: "playful"
-tags: [中二病]
-audio: "/share-deepresearch/assets/audio/old-testament-word.mp3"
+ga4_metrics:
+  avgSessionDuration: 241.23918466666666
+  pageViews: 8
+  users: 3
+layout: topic
+prompt: 旧約聖書に登場する中二病的な単語をできるだけ多く集めて欲しい。
 supplementary_materials:
-  - title: "旧約聖書「中二病」ワード市場調査インフォグラフィック"
-    url: "/share-deepresearch/topics/old-testament-word/infographic.html"
-  - title: "旧約聖書「中二病」ワード探求プレゼンテーション"
-    url: "/share-deepresearch/topics/old-testament-word/reveal.html"
-  - title: "旧約聖書に眠る中二病的ワードの探求"
-    url: "/share-deepresearch/topics/old-testament-word/impress.html"
+- title: 旧約聖書「中二病」ワード市場調査インフォグラフィック
+  url: /share-deepresearch/topics/old-testament-word/infographic.html
+- title: 旧約聖書「中二病」ワード探求プレゼンテーション
+  url: /share-deepresearch/topics/old-testament-word/reveal.html
+- title: 旧約聖書に眠る中二病的ワードの探求
+  url: /share-deepresearch/topics/old-testament-word/impress.html
+tags:
+- 中二病
+title: 旧約聖書に眠る中二病的ワードの探求：禁断の知識と大いなる運命の響き
 ---
 
 # **旧約聖書に眠る中二病的ワードの探求：禁断の知識と大いなる運命の響き**
@@ -548,4 +553,4 @@ supplementary_materials:
 215. 【全学教職員礼拝説教】ヨブの試練と神の自由 \- 宮城学院女子大学, 6月 8, 2025にアクセス、 [https://news.mgu.ac.jp/message/7477.html](https://news.mgu.ac.jp/message/7477.html)  
 216. 60分でわかる旧約聖書（18）ヨブ記 メッセージステーション, 6月 8, 2025にアクセス、 [https://message-station.net/episode/1726/](https://message-station.net/episode/1726/)  
 217. ヨブ記 \- Wikipedia, 6月 8, 2025にアクセス、 [https://ja.wikipedia.org/wiki/%E3%83%A8%E3%83%96%E8%A8%98](https://ja.wikipedia.org/wiki/%E3%83%A8%E3%83%96%E8%A8%98)  
-218. ヨシュア記 \- Wikipedia, 6月 8, 2025にアクセス、 [https://ja.wikipedia.org/wiki/%E3%83%A8%E3%82%B7%E3%83%A5%E3%82%A2%E8%A8%98](https://ja.wikipedia.org/wiki/%E3%83%A8%E3%82%B7%E3%83%A5%E3%82%A2%E8%A8%98)  
+218. ヨシュア記 \- Wikipedia, 6月 8, 2025にアクセス、 [https://ja.wikipedia.org/wiki/%E3%83%A8%E3%82%B7%E3%83%A5%E3%82%A2%E8%A8%98](https://ja.wikipedia.org/wiki/%E3%83%A8%E3%82%B7%E3%83%A5%E3%82%A2%E8%A8%98)

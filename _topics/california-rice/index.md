@@ -1,14 +1,20 @@
 ---
-layout: topic
-title: "カリフォルニア米と日本米の安全性に関する多角的比較分析：農薬リスクを中心に"
+audio: /share-deepresearch/assets/audio/california-rice.mp3
+category: research
 date: 2025-05-29
-prompt: "カリフォルニア米は日本米に比べて農薬のリスクが高いと聞いたが、農薬以外の観点も含めて多角的に比較して安全性についてまとめて欲しい。"
-category: "research"
-tags: ["化学","米"]
-audio: "/share-deepresearch/assets/audio/california-rice.mp3"
+ga4_metrics:
+  avgSessionDuration: 176.53620053333336
+  pageViews: 50
+  users: 41
+layout: topic
+prompt: カリフォルニア米は日本米に比べて農薬のリスクが高いと聞いたが、農薬以外の観点も含めて多角的に比較して安全性についてまとめて欲しい。
 supplementary_materials:
-  - title: "インフォグラフィック：カリフォルニア米と日本米の安全性"
-    url: "/share-deepresearch/topics/california-rice/infographic.html"
+- title: インフォグラフィック：カリフォルニア米と日本米の安全性
+  url: /share-deepresearch/topics/california-rice/infographic.html
+tags:
+- 化学
+- 米
+title: カリフォルニア米と日本米の安全性に関する多角的比較分析：農薬リスクを中心に
 ---
 
 # **カリフォルニア米と日本米の安全性に関する多角的比較分析：農薬リスクを中心に**
@@ -428,4 +434,4 @@ JA（農業協同組合）の調査によると、JAの約6割が農薬使用を
 95. 流域スケール農薬動態予測モデル PCPF-1@SWAT \- 農研機構, 5月 29, 2025にアクセス、 [https://www.naro.affrc.go.jp/archive/niaes/magazine/156/mgzn15601\_3.pdf](https://www.naro.affrc.go.jp/archive/niaes/magazine/156/mgzn15601_3.pdf)  
 96. 水田土壌及び水稲における化学形態別ヒ素の動態に関する 最近の研究動向（総説） Recent study \- 農研機構, 5月 29, 2025にアクセス、 [https://www.naro.affrc.go.jp/archive/niaes/sinfo/publish/bulletin/niaes26-2.pdf](https://www.naro.affrc.go.jp/archive/niaes/sinfo/publish/bulletin/niaes26-2.pdf)  
 97. 農薬及び肥料中における重金属等有害物質の含有状況ならびに使用実績等に関する質問主意書 \- 参議院, 5月 29, 2025にアクセス、 [https://www.sangiin.go.jp/japanese/joho1/kousei/syuisyo/071/syuh/s071010.htm](https://www.sangiin.go.jp/japanese/joho1/kousei/syuisyo/071/syuh/s071010.htm)  
-98. 自然由来重金属等による地下水・土壌汚染問題の本質:水銀 \- 応用地質, 5月 29, 2025にアクセス、 [https://www.oyo.co.jp/pdf/technology\_annual/2010\_02.pdf](https://www.oyo.co.jp/pdf/technology_annual/2010_02.pdf)  
+98. 自然由来重金属等による地下水・土壌汚染問題の本質:水銀 \- 応用地質, 5月 29, 2025にアクセス、 [https://www.oyo.co.jp/pdf/technology\_annual/2010\_02.pdf](https://www.oyo.co.jp/pdf/technology_annual/2010_02.pdf)

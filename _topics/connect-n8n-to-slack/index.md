@@ -1,16 +1,23 @@
 ---
-layout: topic
-title: "n8nとAWSを活用したSlackリアクションからのGitHub Issue自動作成ガイド"
+audio: /share-deepresearch/assets/audio/connect-n8n-to-slack.mp3
+category: engineering
 date: 2025-06-03
-prompt: "n8nを使ってSlackとGitHubの連携を行いたい。特にSlackのリアク字に反応してIssueを作成したいので、その方法をまとめて欲しい。AWSでホストする前提となる。"
-category: "engineering"
-tags: [n8n,CI/CD,GitHub]
-audio: "/share-deepresearch/assets/audio/connect-n8n-to-slack.mp3"
+ga4_metrics:
+  avgSessionDuration: 41.43522675
+  pageViews: 4
+  users: 3
+layout: topic
+prompt: n8nを使ってSlackとGitHubの連携を行いたい。特にSlackのリアク字に反応してIssueを作成したいので、その方法をまとめて欲しい。AWSでホストする前提となる。
 supplementary_materials:
-  - title: "ワークフロー自動化市場の動向とインサイト 2025"
-    url: "/share-deepresearch/topics/connect-n8n-to-slack/infographic.html"
-  - title: "環境構成図：Slack・AWS(n8n)・GitHub連携"
-    url: "/share-deepresearch/topics/connect-n8n-to-slack/diagram.html"
+- title: ワークフロー自動化市場の動向とインサイト 2025
+  url: /share-deepresearch/topics/connect-n8n-to-slack/infographic.html
+- title: 環境構成図：Slack・AWS(n8n)・GitHub連携
+  url: /share-deepresearch/topics/connect-n8n-to-slack/diagram.html
+tags:
+- n8n
+- CI/CD
+- GitHub
+title: n8nとAWSを活用したSlackリアクションからのGitHub Issue自動作成ガイド
 ---
 
 # **n8nとAWSを活用したSlackリアクションからのGitHub Issue自動作成ガイド**
@@ -363,4 +370,4 @@ GitHubでIssueが正しい詳細で作成されたことを確認します。
 33. Are there any generic try/catch n8n nodes that can do error handing for my nodes?, 6月 3, 2025にアクセス、 [https://community.n8n.io/t/are-there-any-generic-try-catch-n8n-nodes-that-can-do-error-handing-for-my-nodes/101677](https://community.n8n.io/t/are-there-any-generic-try-catch-n8n-nodes-that-can-do-error-handing-for-my-nodes/101677)  
 34. How To Handle Errors In Your N8N Workflows \- Reddit, 6月 3, 2025にアクセス、 [https://www.reddit.com/r/n8n/comments/1kqz2pm/how\_to\_handle\_errors\_in\_your\_n8n\_workflows/](https://www.reddit.com/r/n8n/comments/1kqz2pm/how_to_handle_errors_in_your_n8n_workflows/)  
 35. n8n Best Practices for Clean, Profitable Automations (Or, How to Stop Making Dumb Mistakes) \- Reddit, 6月 3, 2025にアクセス、 [https://www.reddit.com/r/n8n/comments/1k47ats/n8n\_best\_practices\_for\_clean\_profitable/](https://www.reddit.com/r/n8n/comments/1k47ats/n8n_best_practices_for_clean_profitable/)  
-36. Rate limits for the REST API \- GitHub Docs, 6月 3, 2025にアクセス、 [https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api)  
+36. Rate limits for the REST API \- GitHub Docs, 6月 3, 2025にアクセス、 [https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api)

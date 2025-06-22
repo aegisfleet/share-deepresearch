@@ -1,16 +1,21 @@
 ---
-layout: topic
-title: "CordovaとiOSにおけるCocoaPodsとfastlaneを用いた堅牢なビルド・署名パイプラインの構築"
+audio: /share-deepresearch/assets/audio/cordova-cocoapods.mp3
+category: engineering
 date: 2025-06-18
-prompt: "iOSのアプリをCordovaで作成する際、CocoaPodsによりライブラリの管理を行いたい。fastlaneで署名の設定を行う想定なのだが、ビルド環境の構成について調査を行い、署名のやり方など注意すべきポイントをまとめて欲しい。"
-category: "engineering"
-tags: [開発環境]
-audio: "/share-deepresearch/assets/audio/cordova-cocoapods.mp3"
+ga4_metrics:
+  avgSessionDuration: 376.8326862
+  pageViews: 6
+  users: 2
+layout: topic
+prompt: iOSのアプリをCordovaで作成する際、CocoaPodsによりライブラリの管理を行いたい。fastlaneで署名の設定を行う想定なのだが、ビルド環境の構成について調査を行い、署名のやり方など注意すべきポイントをまとめて欲しい。
 supplementary_materials:
-  - title: "Cordova iOS: 堅牢なビルド・署名パイプラインの構築"
-    url: "/share-deepresearch/topics/cordova-cocoapods/infographic.html"
-  - title: "CI/CDのためのモダンiOSビルド戦略: 依存関係管理とコード署名の完全自動化ガイド"
-    url: "/share-deepresearch/topics/cordova-cocoapods/reveal.html"
+- title: 'Cordova iOS: 堅牢なビルド・署名パイプラインの構築'
+  url: /share-deepresearch/topics/cordova-cocoapods/infographic.html
+- title: 'CI/CDのためのモダンiOSビルド戦略: 依存関係管理とコード署名の完全自動化ガイド'
+  url: /share-deepresearch/topics/cordova-cocoapods/reveal.html
+tags:
+- 開発環境
+title: CordovaとiOSにおけるCocoaPodsとfastlaneを用いた堅牢なビルド・署名パイプラインの構築
 ---
 
 # **CordovaとiOSにおけるCocoaPodsとfastlaneを用いた堅牢なビルド・署名パイプラインの構築**
@@ -379,4 +384,4 @@ Cordova自動化における最大の障害点は、platforms/iosディレクト
 40. Getting started with fastlane for Android, 6月 18, 2025にアクセス、 [https://docs.fastlane.tools/getting-started/android/setup/](https://docs.fastlane.tools/getting-started/android/setup/)  
 41. \[Camera Plugin\] Swift Language Version not compatible \- OutSystems, 6月 18, 2025にアクセス、 [https://www.outsystems.com/forums/discussion/99228/camera-plugin-swift-language-version-not-compatible/](https://www.outsystems.com/forums/discussion/99228/camera-plugin-swift-language-version-not-compatible/)  
 42. Cordova plugin with Cocoapod dependency is not working properly \- Stack Overflow, 6月 18, 2025にアクセス、 [https://stackoverflow.com/questions/48098166/cordova-plugin-with-cocoapod-dependency-is-not-working-properly](https://stackoverflow.com/questions/48098166/cordova-plugin-with-cocoapod-dependency-is-not-working-properly)  
-43. How to use Fastlane to enable capabilities in provision profile? \- Stack Overflow, 6月 18, 2025にアクセス、 [https://stackoverflow.com/questions/68913813/how-to-use-fastlane-to-enable-capabilities-in-provision-profile](https://stackoverflow.com/questions/68913813/how-to-use-fastlane-to-enable-capabilities-in-provision-profile)  
+43. How to use Fastlane to enable capabilities in provision profile? \- Stack Overflow, 6月 18, 2025にアクセス、 [https://stackoverflow.com/questions/68913813/how-to-use-fastlane-to-enable-capabilities-in-provision-profile](https://stackoverflow.com/questions/68913813/how-to-use-fastlane-to-enable-capabilities-in-provision-profile)

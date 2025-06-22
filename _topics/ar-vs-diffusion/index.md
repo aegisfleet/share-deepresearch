@@ -1,18 +1,24 @@
 ---
-layout: topic
-title: "テキスト生成モデルの性能限界と拡散モデルの将来性：Gemini Diffusionを例に"
+audio: /share-deepresearch/assets/audio/ar-vs-diffusion.mp3
+category: ai
 date: 2025-05-22
-prompt: "Gemini Diffusionに代表されるテキスト拡散モデルの性能の限界を知りたい。自己回帰モデルや拡散モデルのようなモデルごとの特徴を調査し、拡散モデルの将来性についてまとめて欲しい。"
-category: "ai"
-tags: ["AIモデル","コーディング"]
-audio: "/share-deepresearch/assets/audio/ar-vs-diffusion.mp3"
+ga4_metrics:
+  avgSessionDuration: 162.573357
+  pageViews: 1
+  users: 1
+layout: topic
+prompt: Gemini Diffusionに代表されるテキスト拡散モデルの性能の限界を知りたい。自己回帰モデルや拡散モデルのようなモデルごとの特徴を調査し、拡散モデルの将来性についてまとめて欲しい。
 supplementary_materials:
-  - title: "補足資料：テキスト生成モデル市場トレンド インフォグラフィック"
-    url: "/share-deepresearch/topics/ar-vs-diffusion/infographic.html"
-  - title: "補足資料：インタラクティブSPA：テキスト拡散モデルの性能と将来性"
-    url: "/share-deepresearch/topics/ar-vs-diffusion/dashboard.html"
-  - title: "補足資料：AR vs 拡散モデル：インタラクティブ比較学習"
-    url: "/share-deepresearch/topics/ar-vs-diffusion/play.html"
+- title: 補足資料：テキスト生成モデル市場トレンド インフォグラフィック
+  url: /share-deepresearch/topics/ar-vs-diffusion/infographic.html
+- title: 補足資料：インタラクティブSPA：テキスト拡散モデルの性能と将来性
+  url: /share-deepresearch/topics/ar-vs-diffusion/dashboard.html
+- title: 補足資料：AR vs 拡散モデル：インタラクティブ比較学習
+  url: /share-deepresearch/topics/ar-vs-diffusion/play.html
+tags:
+- AIモデル
+- コーディング
+title: テキスト生成モデルの性能限界と拡散モデルの将来性：Gemini Diffusionを例に
 ---
 
 # **テキスト生成モデルの性能限界と拡散モデルの将来性：Gemini Diffusionを例に**
@@ -398,4 +404,4 @@ Google DeepMindのGemini Diffusionは、テキスト拡散における先進的�
 56. \[D\] Yann LeCun Auto-Regressive LLMs are Doomed : r/MachineLearning \- Reddit, 5月 22, 2025にアクセス、 [https://www.reddit.com/r/MachineLearning/comments/1jvrk68/d\_yann\_lecun\_autoregressive\_llms\_are\_doomed/](https://www.reddit.com/r/MachineLearning/comments/1jvrk68/d_yann_lecun_autoregressive_llms_are_doomed/)  
 57. Introducing GPT-4.1 in the API \- OpenAI, 5月 22, 2025にアクセス、 [https://openai.com/index/gpt-4-1/](https://openai.com/index/gpt-4-1/)  
 58. Introducing OpenAI o3 and o4-mini, 5月 22, 2025にアクセス、 [https://openai.com/index/introducing-o3-and-o4-mini/](https://openai.com/index/introducing-o3-and-o4-mini/)  
-59. Christopher Manning \- Stanford NLP Group, 5月 22, 2025にアクセス、 [https://nlp.stanford.edu/\~manning/](https://nlp.stanford.edu/~manning/)  
+59. Christopher Manning \- Stanford NLP Group, 5月 22, 2025にアクセス、 [https://nlp.stanford.edu/\~manning/](https://nlp.stanford.edu/~manning/)

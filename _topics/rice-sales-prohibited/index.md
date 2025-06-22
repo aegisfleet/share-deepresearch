@@ -1,16 +1,22 @@
 ---
-layout: topic
-title: "メルカリにおける米穀出品禁止と農家直販の実態に関する調査報告"
+audio: /share-deepresearch/assets/audio/rice-sales-prohibited.mp3
+category: research
 date: 2025-06-15
-prompt: "メルカリで穀物類の出品が禁止されたが、実際メルカリで販売されていた穀物類で農家からの直接の出品はどれぐらいの割合だったのか調べて欲しい。"
-category: "research"
-tags: [米,政治]
-audio: "/share-deepresearch/assets/audio/rice-sales-prohibited.mp3"
+ga4_metrics:
+  avgSessionDuration: 5.711028
+  pageViews: 2
+  users: 2
+layout: topic
+prompt: メルカリで穀物類の出品が禁止されたが、実際メルカリで販売されていた穀物類で農家からの直接の出品はどれぐらいの割合だったのか調べて欲しい。
 supplementary_materials:
-  - title: "インフォグラフィック：なぜメルカリから米が消えたのか？ - 市場調査レポート"
-    url: "/share-deepresearch/topics/rice-sales-prohibited/infographic.html"
-  - title: "メルカリ米穀出品禁止の真相"
-    url: "/share-deepresearch/topics/rice-sales-prohibited/reveal.html"
+- title: インフォグラフィック：なぜメルカリから米が消えたのか？ - 市場調査レポート
+  url: /share-deepresearch/topics/rice-sales-prohibited/infographic.html
+- title: メルカリ米穀出品禁止の真相
+  url: /share-deepresearch/topics/rice-sales-prohibited/reveal.html
+tags:
+- 米
+- 政治
+title: メルカリにおける米穀出品禁止と農家直販の実態に関する調査報告
 ---
 
 # **メルカリにおける米穀出品禁止と農家直販の実態に関する調査報告**
@@ -216,4 +222,4 @@ C2C農産物取引の価値提案は、鮮度、品質、そして生産者の�
 27. 訳ありでも大満足！メルカリで楽しむお取り寄せ果物の世界 \- Mercari, 6月 15, 2025にアクセス、 [https://jp-news.mercari.com/contents/23691](https://jp-news.mercari.com/contents/23691)  
 28. 農家さんがメルカリで野菜や果物を販売（出品）するメリット・デメリット, 6月 15, 2025にアクセス、 [https://takaguchidesign.com/wp/mercari](https://takaguchidesign.com/wp/mercari)  
 29. ショップの評価 \- メルカリShops, 6月 15, 2025にアクセス、 [https://mercari-shops.com/shops/Tf76SJw4sFG95FopjgvU2F/reviews](https://mercari-shops.com/shops/Tf76SJw4sFG95FopjgvU2F/reviews)  
-30. 産直（産地直送）りんごをメルカリで！おすすめショップとお得な買い方 \- Mercari, 6月 15, 2025にアクセス、 [https://jp-news.mercari.com/contents/23226](https://jp-news.mercari.com/contents/23226)  
+30. 産直（産地直送）りんごをメルカリで！おすすめショップとお得な買い方 \- Mercari, 6月 15, 2025にアクセス、 [https://jp-news.mercari.com/contents/23226](https://jp-news.mercari.com/contents/23226)

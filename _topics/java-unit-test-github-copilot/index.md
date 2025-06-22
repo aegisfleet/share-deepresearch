@@ -1,14 +1,20 @@
 ---
-layout: topic
-title: "GitHub Copilotを活用したJavaユニットテスト自動生成ガイド"
+audio: /share-deepresearch/assets/audio/java-unit-test-github-copilot.mp3
+category: ai
 date: 2025-06-05
-prompt: "Javaのユニットテストを自動で作成したい。GitHub Copilotでユニットテストを作成する方法をまとめて欲しい。"
-category: "ai"
-tags: [ユニットテスト,GitHub Copilot]
-audio: "/share-deepresearch/assets/audio/java-unit-test-github-copilot.mp3"
+ga4_metrics:
+  avgSessionDuration: 97.37479888888889
+  pageViews: 12
+  users: 7
+layout: topic
+prompt: Javaのユニットテストを自動で作成したい。GitHub Copilotでユニットテストを作成する方法をまとめて欲しい。
 supplementary_materials:
-  - title: "インフォグラフィック：GitHub CopilotによるJavaユニットテスト自動生成"
-    url: "/share-deepresearch/topics/java-unit-test-github-copilot/infographic.html"
+- title: インフォグラフィック：GitHub CopilotによるJavaユニットテスト自動生成
+  url: /share-deepresearch/topics/java-unit-test-github-copilot/infographic.html
+tags:
+- ユニットテスト
+- GitHub Copilot
+title: GitHub Copilotを活用したJavaユニットテスト自動生成ガイド
 ---
 
 # **GitHub Copilotを活用したJavaユニットテスト自動生成ガイド**
@@ -295,4 +301,4 @@ GitHub Copilotは、ソフトウェア開発におけるAI活用の潮流を代�
 25. Refactoring code with GitHub Copilot, 6月 5, 2025にアクセス、 [https://docs.github.com/en/copilot/using-github-copilot/guides-on-using-github-copilot/refactoring-code-with-github-copilot](https://docs.github.com/en/copilot/using-github-copilot/guides-on-using-github-copilot/refactoring-code-with-github-copilot)  
 26. Writing tests with GitHub Copilot \- GitHub Docs, 6月 5, 2025にアクセス、 [https://docs.github.com/en/copilot/using-github-copilot/guides-on-using-github-copilot/writing-tests-with-github-copilot](https://docs.github.com/en/copilot/using-github-copilot/guides-on-using-github-copilot/writing-tests-with-github-copilot)  
 27. www.utupub.fi, 6月 5, 2025にアクセス、 [https://www.utupub.fi/bitstream/10024/178695/1/Humalajoki\_Sami\_opinnayte.pdf](https://www.utupub.fi/bitstream/10024/178695/1/Humalajoki_Sami_opinnayte.pdf)  
-28. Diffblue Cover and GitHub Copilot: A study comparing speed ..., 6月 5, 2025にアクセス、 [https://www.diffblue.com/resources/diffblue-cover-and-github-copilot-a-study-comparing-speed-reliability-and-accuracy/](https://www.diffblue.com/resources/diffblue-cover-and-github-copilot-a-study-comparing-speed-reliability-and-accuracy/)  
+28. Diffblue Cover and GitHub Copilot: A study comparing speed ..., 6月 5, 2025にアクセス、 [https://www.diffblue.com/resources/diffblue-cover-and-github-copilot-a-study-comparing-speed-reliability-and-accuracy/](https://www.diffblue.com/resources/diffblue-cover-and-github-copilot-a-study-comparing-speed-reliability-and-accuracy/)

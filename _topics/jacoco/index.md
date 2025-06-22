@@ -1,16 +1,21 @@
 ---
-layout: topic
-title: "JaCoCoコードカバレッジライブラリの包括的な技術分析"
+audio: /share-deepresearch/assets/audio/jacoco.mp3
+category: engineering
 date: 2025-06-18
-prompt: "JaCoCoの技術的な調査を行いたい。どの様にカバレッジを計測しているのか、精度や懸念など多角的に調べて欲しい。"
-category: "engineering"
-tags: [開発環境]
-audio: "/share-deepresearch/assets/audio/jacoco.mp3"
+ga4_metrics:
+  avgSessionDuration: 186.62727773913045
+  pageViews: 27
+  users: 11
+layout: topic
+prompt: JaCoCoの技術的な調査を行いたい。どの様にカバレッジを計測しているのか、精度や懸念など多角的に調べて欲しい。
 supplementary_materials:
-  - title: "JaCoCo技術調査インフォグラフィック"
-    url: "/share-deepresearch/topics/jacoco/infographic.html"
-  - title: "JaCoCoを使いこなすための技術深掘りとベストプラクティス"
-    url: "/share-deepresearch/topics/jacoco/reveal.html"
+- title: JaCoCo技術調査インフォグラフィック
+  url: /share-deepresearch/topics/jacoco/infographic.html
+- title: JaCoCoを使いこなすための技術深掘りとベストプラクティス
+  url: /share-deepresearch/topics/jacoco/reveal.html
+tags:
+- 開発環境
+title: JaCoCoコードカバレッジライブラリの包括的な技術分析
 ---
 
 # **JaCoCoコードカバレッジライブラリの包括的な技術分析**
@@ -402,4 +407,4 @@ JaCoCoは、その技術的特性と限界を深く理解し、現代的なベ�
 74. Add SonarQube quality gates to your Jenkins build pipeline Tom Gregory, 6月 18, 2025にアクセス、 [https://tomgregory.com/jenkins/sonarqube-quality-gates-in-jenkins-build-pipeline/](https://tomgregory.com/jenkins/sonarqube-quality-gates-in-jenkins-build-pipeline/)  
 75. Coverage \- Jenkins Plugins, 6月 18, 2025にアクセス、 [https://plugins.jenkins.io/coverage/](https://plugins.jenkins.io/coverage/)  
 76. JaCoCo Report · Actions · GitHub Marketplace, 6月 18, 2025にアクセス、 [https://github.com/marketplace/actions/jacoco-report](https://github.com/marketplace/actions/jacoco-report)  
-77. Code Coverage Guide Venice, 6月 18, 2025にアクセス、 [http://venicedb.org/docs/dev\_guide/how\_to/code\_coverage\_guide](http://venicedb.org/docs/dev_guide/how_to/code_coverage_guide)  
+77. Code Coverage Guide Venice, 6月 18, 2025にアクセス、 [http://venicedb.org/docs/dev\_guide/how\_to/code\_coverage\_guide](http://venicedb.org/docs/dev_guide/how_to/code_coverage_guide)

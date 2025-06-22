@@ -1,14 +1,19 @@
 ---
-layout: topic
-title: "Javaユニットテスト自動生成ツールEvoSuiteとRandoopの機能比較と評価"
+audio: /share-deepresearch/assets/audio/java-unit-test-evosuite-vs-randoop.mp3
+category: engineering
 date: 2025-06-05
-prompt: "Javaのユニットテストを自動で作成したい。EvoSuiteとRandoopの機能を比較して、実行環境や特徴などそれぞれのツールの良し悪しをまとめて欲しい。"
-category: "engineering"
-tags: [ユニットテスト]
-audio: "/share-deepresearch/assets/audio/java-unit-test-evosuite-vs-randoop.mp3"
+ga4_metrics:
+  avgSessionDuration: 231.3461342
+  pageViews: 6
+  users: 4
+layout: topic
+prompt: Javaのユニットテストを自動で作成したい。EvoSuiteとRandoopの機能を比較して、実行環境や特徴などそれぞれのツールの良し悪しをまとめて欲しい。
 supplementary_materials:
-  - title: "Javaユニットテスト自動生成ツール比較：EvoSuite vs Randoop"
-    url: "/share-deepresearch/topics/java-unit-test-evosuite-vs-randoop/infographic.html"
+- title: Javaユニットテスト自動生成ツール比較：EvoSuite vs Randoop
+  url: /share-deepresearch/topics/java-unit-test-evosuite-vs-randoop/infographic.html
+tags:
+- ユニットテスト
+title: Javaユニットテスト自動生成ツールEvoSuiteとRandoopの機能比較と評価
 ---
 
 # **Javaユニットテスト自動生成ツールEvoSuiteとRandoopの機能比較と評価**
@@ -415,4 +420,4 @@ Tackle-test 6 のように両方の戦略を活用するツールや、Toradocu 
 62. Bachelor Degree Project Empirical Comparison Between Conventional and AI-based Automated Unit Test Generation Tools in Java \- DiVA portal, 6月 5, 2025にアクセス、 [https://www.diva-portal.org/smash/get/diva2:1764443/FULLTEXT01.pdf](https://www.diva-portal.org/smash/get/diva2:1764443/FULLTEXT01.pdf)  
 63. Automatic Generation of Oracles for Exceptional Behaviors \- The IMDEA Software Institute, 6月 5, 2025にアクセス、 [https://software.imdea.org/\~alessandra.gorla/papers/Goffi-Toradocu-ISSTA16.pdf](https://software.imdea.org/~alessandra.gorla/papers/Goffi-Toradocu-ISSTA16.pdf)  
 64. 1月 1, 1970にアクセス、 [https://www.evosuite.org/documentation/tutorial-part-4-extending-evosuite/](https://www.evosuite.org/documentation/tutorial-part-4-extending-evosuite/)  
-65. 1月 1, 1970にアクセス、 [https://www.evosuite.org/documentation/master/cfg/](https://www.evosuite.org/documentation/master/cfg/)  
+65. 1月 1, 1970にアクセス、 [https://www.evosuite.org/documentation/master/cfg/](https://www.evosuite.org/documentation/master/cfg/)

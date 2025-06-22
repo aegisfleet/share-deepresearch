@@ -1,15 +1,24 @@
 ---
-layout: topic
-title: "自律型AIエージェントの現状と展望：Devinと主要競合の徹底比較"
+audio: /share-deepresearch/assets/audio/ai-agent-comparison.mp3
+category: ai
 date: 2025-05-27
-description: "本レポートは、Devinを代表とする自律型AIエージェントの現状を調査し、主要な競合AIエージェントの特徴と優位性を比較分析します。技術的課題や倫理的考察、今後の展望についても解説します。"
-prompt: "Devinを代表とする自立型のAIエージェントを調査したい。現在広く普及しているAIエージェントについて、その特徴と各エージェントの優位性についてまとめて欲しい。"
-category: "ai"
-tags: ["AI Agent", "Devin","GitHub Copilot","OpenHands","開発環境"]
-audio: "/share-deepresearch/assets/audio/ai-agent-comparison.mp3"
+description: 本レポートは、Devinを代表とする自律型AIエージェントの現状を調査し、主要な競合AIエージェントの特徴と優位性を比較分析します。技術的課題や倫理的考察、今後の展望についても解説します。
+ga4_metrics:
+  avgSessionDuration: 134.42356420000002
+  pageViews: 5
+  users: 5
+layout: topic
+prompt: Devinを代表とする自立型のAIエージェントを調査したい。現在広く普及しているAIエージェントについて、その特徴と各エージェントの優位性についてまとめて欲しい。
 supplementary_materials:
-  - title: "自律型AIエージェント市場トレンド インフォグラフィック"
-    url: "/share-deepresearch/topics/ai-agent-comparison/infographic.html"
+- title: 自律型AIエージェント市場トレンド インフォグラフィック
+  url: /share-deepresearch/topics/ai-agent-comparison/infographic.html
+tags:
+- AI Agent
+- Devin
+- GitHub Copilot
+- OpenHands
+- 開発環境
+title: 自律型AIエージェントの現状と展望：Devinと主要競合の徹底比較
 ---
 
 # **自律型AIエージェントの現状と展望：Devinと主要競合の徹底比較**
@@ -526,4 +535,4 @@ GitHub Copilot Coding AgentやGoogle Julesといった大手テック企業の�
 113. Top AI Agent Trends for 2025 \- Writesonic Blog, 5月 27, 2025にアクセス、 [https://writesonic.com/blog/ai-agent-trends](https://writesonic.com/blog/ai-agent-trends)  
 114. Top 10 AI Agent Trends and Predictions for 2025 \- Analytics Vidhya, 5月 27, 2025にアクセス、 [https://www.analyticsvidhya.com/blog/2024/12/ai-agent-trends/](https://www.analyticsvidhya.com/blog/2024/12/ai-agent-trends/)  
 115. AgentRxiv: Towards Collaborative Autonomous Research \- arXiv, 5月 27, 2025にアクセス、 [https://arxiv.org/html/2503.18102v1](https://arxiv.org/html/2503.18102v1)  
-116. Amazon introduces SWE-PolyBench, a multilingual benchmark for AI Coding Agents \- AWS, 5月 27, 2025にアクセス、 [https://aws.amazon.com/blogs/devops/amazon-introduces-swe-polybench-a-multi-lingual-benchmark-for-ai-coding-agents/](https://aws.amazon.com/blogs/devops/amazon-introduces-swe-polybench-a-multi-lingual-benchmark-for-ai-coding-agents/)  
+116. Amazon introduces SWE-PolyBench, a multilingual benchmark for AI Coding Agents \- AWS, 5月 27, 2025にアクセス、 [https://aws.amazon.com/blogs/devops/amazon-introduces-swe-polybench-a-multi-lingual-benchmark-for-ai-coding-agents/](https://aws.amazon.com/blogs/devops/amazon-introduces-swe-polybench-a-multi-lingual-benchmark-for-ai-coding-agents/)

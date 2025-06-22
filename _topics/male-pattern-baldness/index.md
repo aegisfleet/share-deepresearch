@@ -1,16 +1,21 @@
 ---
-layout: topic
-title: "男性型脱毛症の進化的パラドックス：近接要因と究極要因の統合的考察"
+audio: /share-deepresearch/assets/audio/male-pattern-baldness.mp3
+category: playful
 date: 2025-06-15
-prompt: "人間の今の姿が自然淘汰された進化の結果だとしたら、男性がハゲる理由は何故なのか理論的に説明して欲しい。"
-category: "playful"
-tags: [科学]
-audio: "/share-deepresearch/assets/audio/male-pattern-baldness.mp3"
+ga4_metrics:
+  avgSessionDuration: 6.274224
+  pageViews: 1
+  users: 1
+layout: topic
+prompt: 人間の今の姿が自然淘汰された進化の結果だとしたら、男性がハゲる理由は何故なのか理論的に説明して欲しい。
 supplementary_materials:
-  - title: "インフォグラフィック：なぜ男性はハゲるのか？進化が教える科学的真実"
-    url: "/share-deepresearch/topics/male-pattern-baldness/infographic.html"
-  - title: "なぜ男性は禿げるのか？ - 男性型脱毛症(AGA)の進化的パラドックス"
-    url: "/share-deepresearch/topics/male-pattern-baldness/reveal.html"
+- title: インフォグラフィック：なぜ男性はハゲるのか？進化が教える科学的真実
+  url: /share-deepresearch/topics/male-pattern-baldness/infographic.html
+- title: なぜ男性は禿げるのか？ - 男性型脱毛症(AGA)の進化的パラドックス
+  url: /share-deepresearch/topics/male-pattern-baldness/reveal.html
+tags:
+- 科学
+title: 男性型脱毛症の進化的パラドックス：近接要因と究極要因の統合的考察
 ---
 
 # **男性型脱毛症の進化的パラドックス：近接要因と究極要因の統合的考察**
@@ -270,4 +275,4 @@ AGAは、この不可欠なアンドロゲンシステムの、後年に現れ�
 87. 頭皮の冷却による抜け毛と脱毛, 6月 15, 2025にアクセス、 [https://coldcap.com/ja/%E9%A0%AD%E7%9A%AE%E3%82%92%E5%86%B7%E3%82%84%E3%81%99%E3%81%93%E3%81%A8%E3%81%AB%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F/%E6%8A%9C%E3%81%91%E6%AF%9B/](https://coldcap.com/ja/%E9%A0%AD%E7%9A%AE%E3%82%92%E5%86%B7%E3%82%84%E3%81%99%E3%81%93%E3%81%A8%E3%81%AB%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F/%E6%8A%9C%E3%81%91%E6%AF%9B/)  
 88. なぜ人類は「無毛」へと進化したのか？ その科学的な理由と背景｜東京 AI 研究所 \- note, 6月 15, 2025にアクセス、 [https://note.com/modern\_ferret431/n/n5bbe6bede9fe](https://note.com/modern_ferret431/n/n5bbe6bede9fe)  
 89. 抗がん剤終了後～ほんとうに髪は生えますか？② \- チームオンコロジー.Com（J-TOP）, 6月 15, 2025にアクセス、 [https://www.teamoncology.com/bbs/theme?coid=1\&tid=3525](https://www.teamoncology.com/bbs/theme?coid=1&tid=3525)  
-90. 本当におすすめできる育毛剤・発毛剤ランキング30選を紹介！選び方や利用時の注意点を解説 \- しもむら本町レディースクリニックへ, 6月 15, 2025にアクセス、 [https://www.honmachi-slc.com/trichology/hair-restorer/](https://www.honmachi-slc.com/trichology/hair-restorer/)  
+90. 本当におすすめできる育毛剤・発毛剤ランキング30選を紹介！選び方や利用時の注意点を解説 \- しもむら本町レディースクリニックへ, 6月 15, 2025にアクセス、 [https://www.honmachi-slc.com/trichology/hair-restorer/](https://www.honmachi-slc.com/trichology/hair-restorer/)

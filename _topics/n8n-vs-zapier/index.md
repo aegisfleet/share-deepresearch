@@ -1,16 +1,23 @@
 ---
-layout: topic
-title: "n8nとZapierの比較分析レポート：SlackおよびGitHub連携を中心として"
+audio: /share-deepresearch/assets/audio/n8n-vs-zapier.mp3
+category: engineering
 date: 2025-06-03
-prompt: "n8nとZapierの比較を行いたい。特にSlackとGitHubへの連携については資料に必ず入れて欲しい。"
-category: "engineering"
-tags: [n8n,CI/CD,GitHub]
-audio: "/share-deepresearch/assets/audio/n8n-vs-zapier.mp3"
+ga4_metrics:
+  avgSessionDuration: 102.62838145454545
+  pageViews: 17
+  users: 8
+layout: topic
+prompt: n8nとZapierの比較を行いたい。特にSlackとGitHubへの連携については資料に必ず入れて欲しい。
 supplementary_materials:
-  - title: "n8n vs Zapier: ワークフロー自動化ツールの徹底比較インフォグラフィック"
-    url: "/share-deepresearch/topics/n8n-vs-zapier/infographic.html"
-  - title: "インフォグラフィックプレゼン: n8n vs Zapier"
-    url: "/share-deepresearch/topics/n8n-vs-zapier/slide.html"
+- title: 'n8n vs Zapier: ワークフロー自動化ツールの徹底比較インフォグラフィック'
+  url: /share-deepresearch/topics/n8n-vs-zapier/infographic.html
+- title: 'インフォグラフィックプレゼン: n8n vs Zapier'
+  url: /share-deepresearch/topics/n8n-vs-zapier/slide.html
+tags:
+- n8n
+- CI/CD
+- GitHub
+title: n8nとZapierの比較分析レポート：SlackおよびGitHub連携を中心として
 ---
 
 # **n8nとZapierの比較分析レポート：SlackおよびGitHub連携を中心として**
@@ -445,4 +452,4 @@ n8nとZapierは、それぞれ異なる強みとターゲットユーザーを�
 55. GitHub Anthropic (Claude) Integration \- Quick Connect \- Zapier, 6月 3, 2025にアクセス、 [https://zapier.com/apps/github/integrations/anthropic-claude](https://zapier.com/apps/github/integrations/anthropic-claude)  
 56. Zapier and Github integration Automated Workflows with Latenode, 6月 3, 2025にアクセス、 [https://latenode.com/integrations/zapier/github](https://latenode.com/integrations/zapier/github)  
 57. How to Get Started With Github – Zapier, 6月 3, 2025にアクセス、 [https://help.zapier.com/hc/en-us/articles/8495966414349-How-to-Get-Started-With-Github](https://help.zapier.com/hc/en-us/articles/8495966414349-How-to-Get-Started-With-Github)  
-58. GitHub Smartsheet Integration \- Quick Connect \- Zapier, 6月 3, 2025にアクセス、 [https://zapier.com/apps/github/integrations/smartsheet](https://zapier.com/apps/github/integrations/smartsheet)  
+58. GitHub Smartsheet Integration \- Quick Connect \- Zapier, 6月 3, 2025にアクセス、 [https://zapier.com/apps/github/integrations/smartsheet](https://zapier.com/apps/github/integrations/smartsheet)

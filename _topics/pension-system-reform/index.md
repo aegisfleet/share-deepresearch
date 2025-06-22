@@ -1,14 +1,20 @@
 ---
-layout: topic
-title: "年金制度改革の最新動向：【社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律案】詳解"
+audio: /share-deepresearch/assets/audio/pension-system-reform.mp3
+category: research
 date: 2025-06-01
-prompt: "年金制度改革の関連法案において、最新の内容では具体的に何が変わるのか詳しく解説して欲しい。"
-category: "research"
-tags: [政治,法改正]
-audio: "/share-deepresearch/assets/audio/pension-system-reform.mp3"
+ga4_metrics:
+  avgSessionDuration: 197.83688883333332
+  pageViews: 9
+  users: 6
+layout: topic
+prompt: 年金制度改革の関連法案において、最新の内容では具体的に何が変わるのか詳しく解説して欲しい。
 supplementary_materials:
-  - title: "【図解】年金制度改革2025：あなたの未来はどう変わる？"
-    url: "/share-deepresearch/topics/pension-system-reform/infographic.html"
+- title: 【図解】年金制度改革2025：あなたの未来はどう変わる？
+  url: /share-deepresearch/topics/pension-system-reform/infographic.html
+tags:
+- 政治
+- 法改正
+title: 年金制度改革の最新動向：【社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律案】詳解
 ---
 
 # **年金制度改革の最新動向：【社会経済の変化を踏まえた年金制度の機能強化のための国民年金法等の一部を改正する等の法律案】詳解**
@@ -240,4 +246,4 @@ iDeCoをはじめとする私的年金制度の拡充は、公的年金だけで
 46. 【国会中継】衆院厚生労働委員会 「年金改革法案」に対する質疑（2025年5月21日） \- YouTube, 6月 1, 2025にアクセス、 [https://www.youtube.com/watch?v=zIbLsJaflbA](https://www.youtube.com/watch?v=zIbLsJaflbA)  
 47. 基礎年金の底上げ、損する人・得する人【2025年年金改革法案】 \- FPナナコの部屋, 6月 1, 2025にアクセス、 [https://mamasuma.com/nenkin-choseikikan/](https://mamasuma.com/nenkin-choseikikan/)  
 48. 国民年金法改正案 減らない年金の実現を 修正案と討論 2025.5.30 \- YouTube, 6月 1, 2025にアクセス、 [https://www.youtube.com/watch?v=FAtKZwln1fU](https://www.youtube.com/watch?v=FAtKZwln1fU)  
-49. 【年金】2025年金改正 基礎年金底上げ案 今国会で成立へ【社労士解説】 \- YouTube, 6月 1, 2025にアクセス、 [https://www.youtube.com/watch?v=T57egra2-Tc](https://www.youtube.com/watch?v=T57egra2-Tc)  
+49. 【年金】2025年金改正 基礎年金底上げ案 今国会で成立へ【社労士解説】 \- YouTube, 6月 1, 2025にアクセス、 [https://www.youtube.com/watch?v=T57egra2-Tc](https://www.youtube.com/watch?v=T57egra2-Tc)

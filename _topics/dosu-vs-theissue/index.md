@@ -1,16 +1,24 @@
 ---
-layout: topic
-title: "AI開発支援ツール比較分析：Dosu.ai、theissue.ai および主要類似サービス"
+audio: /share-deepresearch/assets/audio/dosu-vs-theissue.mp3
+category: ai
 date: 2025-06-09
-prompt: "Dosu.aiとtheissue.aiの機能を比較して、それぞれの特徴とメリデメをまとめて欲しい。また類似サービスがあれば比較対象に追加して欲しい。"
-category: "ai"
-tags: [GitHub,GitHub Copilot,AI Agent,自動化]
-audio: "/share-deepresearch/assets/audio/dosu-vs-theissue.mp3"
+ga4_metrics:
+  avgSessionDuration: 176.10772133333333
+  pageViews: 5
+  users: 3
+layout: topic
+prompt: Dosu.aiとtheissue.aiの機能を比較して、それぞれの特徴とメリデメをまとめて欲しい。また類似サービスがあれば比較対象に追加して欲しい。
 supplementary_materials:
-  - title: "AI開発支援ツール市場分析インフォグラフィック"
-    url: "/share-deepresearch/topics/dosu-vs-theissue/infographic.html"
-  - title: "AI開発支援ツール市場分析プレゼンテーション"
-    url: "/share-deepresearch/topics/dosu-vs-theissue/reveal.html"
+- title: AI開発支援ツール市場分析インフォグラフィック
+  url: /share-deepresearch/topics/dosu-vs-theissue/infographic.html
+- title: AI開発支援ツール市場分析プレゼンテーション
+  url: /share-deepresearch/topics/dosu-vs-theissue/reveal.html
+tags:
+- GitHub
+- GitHub Copilot
+- AI Agent
+- 自動化
+title: AI開発支援ツール比較分析：Dosu.ai、theissue.ai および主要類似サービス
 ---
 
 # **AI開発支援ツール比較分析：Dosu.ai、theissue.ai および主要類似サービス**
@@ -266,4 +274,4 @@ AI開発支援ツールの分析から、いくつかの重要な傾向と戦略
 18. Terms of Service \- AI Code Reviews CodeRabbit Try for Free, 6月 9, 2025にアクセス、 [https://coderabbit.ai/terms-of-service](https://coderabbit.ai/terms-of-service)  
 19. How we built our AI code review agent for IDEs \- CodeRabbit, 6月 9, 2025にアクセス、 [https://www.coderabbit.ai/blog/how-we-built-our-ai-code-review-tool-for-ides](https://www.coderabbit.ai/blog/how-we-built-our-ai-code-review-tool-for-ides)  
 20. AI Code Reviews CodeRabbit Try for Free, 6月 9, 2025にアクセス、 [https://www.coderabbit.ai/blog/?utm\_medium=cpc\&utm\_source=bing\&utm\_campaign=567791347\&utm\_content=1188573808034271\&utm\_term=gitlab\&msclkid=273d7de4970019c2813a1b285c79fdfc](https://www.coderabbit.ai/blog/?utm_medium=cpc&utm_source=bing&utm_campaign=567791347&utm_content=1188573808034271&utm_term=gitlab&msclkid=273d7de4970019c2813a1b285c79fdfc)  
-21. Creates a PR to solve an issue using ChatGPT \- GitHub Marketplace, 6月 9, 2025にアクセス、 [https://github.com/marketplace/actions/creates-a-pr-to-solve-an-issue-using-chatgpt](https://github.com/marketplace/actions/creates-a-pr-to-solve-an-issue-using-chatgpt)  
+21. Creates a PR to solve an issue using ChatGPT \- GitHub Marketplace, 6月 9, 2025にアクセス、 [https://github.com/marketplace/actions/creates-a-pr-to-solve-an-issue-using-chatgpt](https://github.com/marketplace/actions/creates-a-pr-to-solve-an-issue-using-chatgpt)

@@ -1,14 +1,20 @@
 ---
-layout: topic
-title: "CI/CDからDevOpsへ：役割の比較と成功への道筋"
+audio: /share-deepresearch/assets/audio/cicd-to-devops.mp3
+category: engineering
 date: 2025-05-28
-prompt: "CI/CDを主体に行なっているチームがDevOpsを目指している。それぞれの役割を比較してDevOpsを行うにあたり必要なものが何になるのかまとめて欲しい。"
-category: "engineering"
-tags: [CI/CD,DevOps]
-audio: "/share-deepresearch/assets/audio/cicd-to-devops.mp3"
+ga4_metrics:
+  avgSessionDuration: 23.27319266666667
+  pageViews: 3
+  users: 3
+layout: topic
+prompt: CI/CDを主体に行なっているチームがDevOpsを目指している。それぞれの役割を比較してDevOpsを行うにあたり必要なものが何になるのかまとめて欲しい。
 supplementary_materials:
-  - title: "CI/CDからDevOpsへ：変革のインフォグラフィック"
-    url: "/share-deepresearch/topics/cicd-to-devops/infographic.html"
+- title: CI/CDからDevOpsへ：変革のインフォグラフィック
+  url: /share-deepresearch/topics/cicd-to-devops/infographic.html
+tags:
+- CI/CD
+- DevOps
+title: CI/CDからDevOpsへ：役割の比較と成功への道筋
 ---
 
 # **CI/CDからDevOpsへ：役割の比較と成功への道筋**
@@ -286,4 +292,4 @@ CI/CDからDevOpsへの移行は、確かに時間と労力を要する「マラ
 21. DevOps ツールチェーン: 重要な考慮事項 アトラシアン \- Atlassian, 5月 28, 2025にアクセス、 [https://www.atlassian.com/ja/devops/devops-tools/choose-devops-tools](https://www.atlassian.com/ja/devops/devops-tools/choose-devops-tools)  
 22. CI / CD パイプラインで API デリバリーを自動化するための 6 つの ..., 5月 28, 2025にアクセス、 [https://cloud.google.com/blog/ja/products/api-management/automating-api-delivery-with-cicd-pipelines](https://cloud.google.com/blog/ja/products/api-management/automating-api-delivery-with-cicd-pipelines)  
 23. CI／CDパイプライン構築に重要なデプロイパイプラインとは ..., 5月 28, 2025にアクセス、 [https://www.pagerduty.co.jp/blog/what-is-a-deployment-pipeline/](https://www.pagerduty.co.jp/blog/what-is-a-deployment-pipeline/)  
-24. JenkinsからGitLabへのスムーズな移行, 5月 28, 2025にアクセス、 [https://about.gitlab.com/ja-jp/blog/2024/02/01/jenkins-to-gitlab-migration-made-easy/](https://about.gitlab.com/ja-jp/blog/2024/02/01/jenkins-to-gitlab-migration-made-easy/)  
+24. JenkinsからGitLabへのスムーズな移行, 5月 28, 2025にアクセス、 [https://about.gitlab.com/ja-jp/blog/2024/02/01/jenkins-to-gitlab-migration-made-easy/](https://about.gitlab.com/ja-jp/blog/2024/02/01/jenkins-to-gitlab-migration-made-easy/)

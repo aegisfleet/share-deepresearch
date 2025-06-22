@@ -1,14 +1,19 @@
 ---
-layout: topic
-title: "UI変更に伴うマニュアル画像改訂の効率化：影響範囲の特定手法"
+audio: /share-deepresearch/assets/audio/image-extraction-method.mp3
+category: engineering
 date: 2025-06-06
-prompt: "UIの変更に伴いマニュアルに使用している画像の差し替えが発生した。UIの変更に影響がある画像だけを抽出したいが、良い方法はあるだろうか。画像はpngで管理している。"
-category: "engineering"
-tags: [自動化]
-audio: "/share-deepresearch/assets/audio/image-extraction-method.mp3"
+ga4_metrics:
+  avgSessionDuration: 330.889519
+  pageViews: 5
+  users: 2
+layout: topic
+prompt: UIの変更に伴いマニュアルに使用している画像の差し替えが発生した。UIの変更に影響がある画像だけを抽出したいが、良い方法はあるだろうか。画像はpngで管理している。
 supplementary_materials:
-  - title: "インフォグラフィック：UI変更における画像更新の効率化"
-    url: "/share-deepresearch/topics/image-extraction-method/infographic.html"
+- title: インフォグラフィック：UI変更における画像更新の効率化
+  url: /share-deepresearch/topics/image-extraction-method/infographic.html
+tags:
+- 自動化
+title: UI変更に伴うマニュアル画像改訂の効率化：影響範囲の特定手法
 ---
 
 # **UI変更に伴うマニュアル画像改訂の効率化：影響範囲の特定手法**
@@ -425,4 +430,4 @@ UI変更に伴うマニュアル画像の更新は、多くの組織にとって
 41. 画像編集機能の初期設定値を変更する（Windows デスクトップアプリ） Teachme Biz, 6月 6, 2025にアクセス、 [https://teachme.jp/8/manuals/1836819/](https://teachme.jp/8/manuals/1836819/)  
 42. Webブラウザ版デザインリニューアルのご紹介 – マニュアル作成・共有システム 「Teachme Biz」, 6月 6, 2025にアクセス、 [https://biz.teachme.jp/function/ui-renewal-2018/](https://biz.teachme.jp/function/ui-renewal-2018/)  
 43. マニュアル作成システム「PMX」トピック差分表示機能 マニュアルDXを推進するサイバーテック, 6月 6, 2025にアクセス、 [https://www.cybertech.co.jp/xml/xmldb/pmx/function-detail/diff/diff1.php](https://www.cybertech.co.jp/xml/xmldb/pmx/function-detail/diff/diff1.php)  
-44. マニュアル作成の方法とポイント｜おすすめツールと無料テンプレート \- Kaizen Penguin, 6月 6, 2025にアクセス、 [https://kaizen-penguin.com/howto-and-point-about-manual-4419/](https://kaizen-penguin.com/howto-and-point-about-manual-4419/)  
+44. マニュアル作成の方法とポイント｜おすすめツールと無料テンプレート \- Kaizen Penguin, 6月 6, 2025にアクセス、 [https://kaizen-penguin.com/howto-and-point-about-manual-4419/](https://kaizen-penguin.com/howto-and-point-about-manual-4419/)

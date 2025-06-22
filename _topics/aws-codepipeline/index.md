@@ -1,14 +1,22 @@
 ---
-layout: topic
-title: "AWS CodePipelineとCodeBuildにおける一般的な問題と高度なトラブルシューシューティングガイド"
+audio: /share-deepresearch/assets/audio/aws-codepipeline.mp3
+category: engineering
 date: 2025-06-02
-prompt: "AWS CodePipelineとCodeBuildで発生する問題をまとめたい。エンジニアが良く陥るあるあるネタや、発生頻度は低いが解決に時間が掛かる問題などを集めて欲しい。"
-category: "engineering"
-tags: ["AWS","CI/CD","DevOps","自動化"]
-audio: "/share-deepresearch/assets/audio/aws-codepipeline.mp3"
+ga4_metrics:
+  avgSessionDuration: 357.68169154545456
+  pageViews: 9
+  users: 6
+layout: topic
+prompt: AWS CodePipelineとCodeBuildで発生する問題をまとめたい。エンジニアが良く陥るあるあるネタや、発生頻度は低いが解決に時間が掛かる問題などを集めて欲しい。
 supplementary_materials:
-  - title: "AWS CI/CDインフォグラフィック：CodePipeline & CodeBuild 問題解決ガイド"
-    url: "/share-deepresearch/topics/aws-codepipeline/infographic.html"
+- title: AWS CI/CDインフォグラフィック：CodePipeline & CodeBuild 問題解決ガイド
+  url: /share-deepresearch/topics/aws-codepipeline/infographic.html
+tags:
+- AWS
+- CI/CD
+- DevOps
+- 自動化
+title: AWS CodePipelineとCodeBuildにおける一般的な問題と高度なトラブルシューシューティングガイド
 ---
 
 # **AWS CodePipelineとCodeBuildにおける一般的な問題と高度なトラブルシューシューティングガイド**
@@ -424,4 +432,4 @@ CI/CDは反復的なプロセスであり、パイプラインは継続的に監
 55. 【AWS CodePipeline】GitHubソースのVersion 1→ 2移行は大事故が起こる可能性があるため注意 \- Zenn, 6月 2, 2025にアクセス、 [https://zenn.dev/bm\_sms/articles/b80b6670c04263](https://zenn.dev/bm_sms/articles/b80b6670c04263)  
 56. Add a manual approval action to a pipeline in CodePipeline \- AWS ..., 6月 2, 2025にアクセス、 [https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-action-add.html](https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-action-add.html)  
 57. Amazon Aurora Noise Page 3, 6月 2, 2025にアクセス、 [https://noise.getoto.net/tag/amazon-aurora/page/3/](https://noise.getoto.net/tag/amazon-aurora/page/3/)  
-58. AWS Cloud Operations Blog, 6月 2, 2025にアクセス、 [https://aws.amazon.com/blogs/mt/](https://aws.amazon.com/blogs/mt/)  
+58. AWS Cloud Operations Blog, 6月 2, 2025にアクセス、 [https://aws.amazon.com/blogs/mt/](https://aws.amazon.com/blogs/mt/)

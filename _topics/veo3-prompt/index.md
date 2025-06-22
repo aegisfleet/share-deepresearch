@@ -1,14 +1,19 @@
 ---
-layout: topic
-title: "AIビデオ生成技術の最前線：Google Veo 3 徹底解剖"
+audio: /share-deepresearch/assets/audio/veo3-prompt.mp3
+category: ai
 date: 2025-05-26
-prompt: "GoogleのVeo3を使用する際のプロンプトの例を知りたい。特に実写やアニメ調など、映像の質に影響を与えるものをまとめて欲しい。"
-category: "ai"
-tags: [AIモデル]
-audio: "/share-deepresearch/assets/audio/veo3-prompt.mp3"
+ga4_metrics:
+  avgSessionDuration: 2.252129
+  pageViews: 2
+  users: 1
+layout: topic
+prompt: GoogleのVeo3を使用する際のプロンプトの例を知りたい。特に実写やアニメ調など、映像の質に影響を与えるものをまとめて欲しい。
 supplementary_materials:
-  - title: "AIビデオ生成技術の最前線：Google Veo 3 徹底解剖"
-    url: "/share-deepresearch/topics/veo3-prompt/infographic.html"
+- title: AIビデオ生成技術の最前線：Google Veo 3 徹底解剖
+  url: /share-deepresearch/topics/veo3-prompt/infographic.html
+tags:
+- AIモデル
+title: AIビデオ生成技術の最前線：Google Veo 3 徹底解剖
 ---
 
 # **Google Veo 3のポテンシャルを最大限に引き出す：高品質ビデオ生成のためのプロンプトエンジニアリングガイド**
@@ -336,4 +341,4 @@ Veo 3の能力は目覚ましいものがありますが、最終的な出力の
 19. sitting on park bench prompts \- PromptHero, 5月 26, 2025にアクセス、 [https://prompthero.com/search?q=sitting+on+park+bench\&source=3f935646aa7](https://prompthero.com/search?q=sitting+on+park+bench&source=3f935646aa7)  
 20. Google's Veo 3: A Guide With Practical Examples \- DataCamp, 5月 26, 2025にアクセス、 [https://www.datacamp.com/tutorial/veo-3](https://www.datacamp.com/tutorial/veo-3)  
 21. Makoto Shinkai prompts \- PromptHero, 5月 26, 2025にアクセス、 [https://prompthero.com/search?q=Makoto+Shinkai](https://prompthero.com/search?q=Makoto+Shinkai)  
-22. Generate video using Veo Gemini API Google AI for Developers, 5月 26, 2025にアクセス、 [https://ai.google.dev/gemini-api/docs/video](https://ai.google.dev/gemini-api/docs/video)  
+22. Generate video using Veo Gemini API Google AI for Developers, 5月 26, 2025にアクセス、 [https://ai.google.dev/gemini-api/docs/video](https://ai.google.dev/gemini-api/docs/video)

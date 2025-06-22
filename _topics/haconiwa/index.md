@@ -1,16 +1,22 @@
 ---
-layout: topic
-title: "Haconiwa: 宣言的AI中心開発環境のアーキテクチャ分析"
+audio: /share-deepresearch/assets/audio/haconiwa.mp3
+category: ai
 date: 2025-06-14
-prompt: "箱庭というプロジェクトについて、中の技術的要素を体系的にまとめて欲しい。https://github.com/dai-motoki/haconiwa"
-category: "ai"
-tags: [開発環境,LLMOps]
-audio: "/share-deepresearch/assets/audio/haconiwa.mp3"
+ga4_metrics:
+  avgSessionDuration: 113.0382473
+  pageViews: 13
+  users: 7
+layout: topic
+prompt: 箱庭というプロジェクトについて、中の技術的要素を体系的にまとめて欲しい。https://github.com/dai-motoki/haconiwa
 supplementary_materials:
-  - title: "Haconiwa: 宣言的AI開発環境インフォグラフィック"
-    url: "/share-deepresearch/topics/haconiwa/infographic.html"
-  - title: "Haconiwa: 宣言的AI中心開発環境のアーキテクチャ分析"
-    url: "/share-deepresearch/topics/haconiwa/reveal.html"
+- title: 'Haconiwa: 宣言的AI開発環境インフォグラフィック'
+  url: /share-deepresearch/topics/haconiwa/infographic.html
+- title: 'Haconiwa: 宣言的AI中心開発環境のアーキテクチャ分析'
+  url: /share-deepresearch/topics/haconiwa/reveal.html
+tags:
+- 開発環境
+- LLMOps
+title: 'Haconiwa: 宣言的AI中心開発環境のアーキテクチャ分析'
 ---
 
 # **Haconiwa: 宣言的AI中心開発環境のアーキテクチャ分析**
@@ -284,4 +290,4 @@ Haconiwaの独自の立ち位置を明確にするため、他の著名なエー
 43. AutoGPT: Exploring The Power of Autonomous AI Agents \- Webisoft, 6月 14, 2025にアクセス、 [https://webisoft.com/articles/autogpt/](https://webisoft.com/articles/autogpt/)  
 44. CrewAI: Introduction, 6月 14, 2025にアクセス、 [https://docs.crewai.com/introduction](https://docs.crewai.com/introduction)  
 45. Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks. \- GitHub, 6月 14, 2025にアクセス、 [https://github.com/crewAIInc/crewAI](https://github.com/crewAIInc/crewAI)  
-46. Crewai: Features, Use Cases & Alternatives \- Metaschool, 6月 14, 2025にアクセス、 [https://metaschool.so/ai-agents/crewai](https://metaschool.so/ai-agents/crewai)  
+46. Crewai: Features, Use Cases & Alternatives \- Metaschool, 6月 14, 2025にアクセス、 [https://metaschool.so/ai-agents/crewai](https://metaschool.so/ai-agents/crewai)

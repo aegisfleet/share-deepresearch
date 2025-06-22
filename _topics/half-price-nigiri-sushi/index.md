@@ -1,16 +1,21 @@
 ---
-layout: topic
-title: "半額寿司のパラドックス：割引にぎりの科学的・経済的価値評価"
+audio: /share-deepresearch/assets/audio/half-price-nigiri-sushi.mp3
+category: playful
 date: 2025-06-20
-prompt: "スーパーで半額になったにぎり寿司は半額以上の価値があるのか調査したい。まぐろの鮮度を基準にして、8時間経過した時点の鮮度がどうなるかという視点でまとめて欲しい。"
-category: "playful"
-tags: [経済学]
-audio: "/share-deepresearch/assets/audio/half-price-nigiri-sushi.mp3"
+ga4_metrics:
+  avgSessionDuration: 2138.120376
+  pageViews: 16
+  users: 1
+layout: topic
+prompt: スーパーで半額になったにぎり寿司は半額以上の価値があるのか調査したい。まぐろの鮮度を基準にして、8時間経過した時点の鮮度がどうなるかという視点でまとめて欲しい。
 supplementary_materials:
-  - title: "インフォグラフィック：半額寿司、その価値の真実"
-    url: "/share-deepresearch/topics/half-price-nigiri-sushi/infographic.html"
-  - title: "半額寿司のパラドックス：割引シールの裏に隠された科学的・経済的真実"
-    url: "/share-deepresearch/topics/half-price-nigiri-sushi/reveal.html"
+- title: インフォグラフィック：半額寿司、その価値の真実
+  url: /share-deepresearch/topics/half-price-nigiri-sushi/infographic.html
+- title: 半額寿司のパラドックス：割引シールの裏に隠された科学的・経済的真実
+  url: /share-deepresearch/topics/half-price-nigiri-sushi/reveal.html
+tags:
+- 経済学
+title: 半額寿司のパラドックス：割引にぎりの科学的・経済的価値評価
 ---
 
 # **半額寿司のパラドックス：割引にぎりの科学的・経済的価値評価**
@@ -367,4 +372,4 @@ K値(%)=ATP+ADP+AMP+IMP+HxR+HxHxR+Hx​×100
 107. AI活用で食品ロスを削減！需要予測から在庫管理まで最新事例を紹介 \- AI Market, 6月 20, 2025にアクセス、 [https://ai-market.jp/purpose/food-loss-ai/](https://ai-market.jp/purpose/food-loss-ai/)  
 108. COLUMN AIの需要予測で食品ロスを削減！ システムの導入事例まで解説 \- B-Luck, 6月 20, 2025にアクセス、 [https://b-luck.jp/column/24-11-14-03/](https://b-luck.jp/column/24-11-14-03/)  
 109. フードテックグランプリ2024 TECH PLANTER by リバネス, 6月 20, 2025にアクセス、 [https://techplanter.lne.st/foodtech/2024/](https://techplanter.lne.st/foodtech/2024/)  
-110. Evigence Sensorsが約23億円を調達、食品鮮度をリアルタイムに測定するセンサーシールの商用化を拡大 Foovo, 6月 20, 2025にアクセス、 [https://foodtech-japan.com/2023/01/23/evigence-sensors/](https://foodtech-japan.com/2023/01/23/evigence-sensors/)  
+110. Evigence Sensorsが約23億円を調達、食品鮮度をリアルタイムに測定するセンサーシールの商用化を拡大 Foovo, 6月 20, 2025にアクセス、 [https://foodtech-japan.com/2023/01/23/evigence-sensors/](https://foodtech-japan.com/2023/01/23/evigence-sensors/)

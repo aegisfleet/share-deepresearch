@@ -1,14 +1,23 @@
 ---
-layout: topic
-title: "OpenHands、GitHub Actions、Playwright-MCPを活用したブラウザ操作自動化ワークフローの実現可能性調査と実践ガイド"
+audio: /share-deepresearch/assets/audio/openhands-mcp.mp3
+category: ai
 date: 2025-05-27
-prompt: "OpenHandsとGitHub ActionsとPlaywright-MCPを使って、ワークフローの中でブラウザ操作の自動化を行いたい。実現可能か調査し、可能であれば具体的な使用例をまとめて欲しい。"
-category: "ai"
-tags: [OpenHands,GitHub,GitHub Actions,MCP,Playwright-MCP]
-audio: "/share-deepresearch/assets/audio/openhands-mcp.mp3"
+ga4_metrics:
+  avgSessionDuration: 176.0739329
+  pageViews: 11
+  users: 7
+layout: topic
+prompt: OpenHandsとGitHub ActionsとPlaywright-MCPを使って、ワークフローの中でブラウザ操作の自動化を行いたい。実現可能か調査し、可能であれば具体的な使用例をまとめて欲しい。
 supplementary_materials:
-  - title: "AI駆動型開発自動化の最前線：市場トレンド分析"
-    url: "/share-deepresearch/topics/openhands-mcp/infographic.html"
+- title: AI駆動型開発自動化の最前線：市場トレンド分析
+  url: /share-deepresearch/topics/openhands-mcp/infographic.html
+tags:
+- OpenHands
+- GitHub
+- GitHub Actions
+- MCP
+- Playwright-MCP
+title: OpenHands、GitHub Actions、Playwright-MCPを活用したブラウザ操作自動化ワークフローの実現可能性調査と実践ガイド
 ---
 
 # **OpenHands、GitHub Actions、Playwright-MCPを活用したブラウザ操作自動化ワークフローの実現可能性調査と実践ガイド**
@@ -516,4 +525,4 @@ OpenHandsが内部的にブラウザ操作を行う際に利用するBrowserGym�
 31. Playwright MCP Server Explained: A Guide to Multi-Client Browser Automation \- QA Touch, 5月 27, 2025にアクセス、 [https://www.qatouch.com/blog/playwright-mcp-server/](https://www.qatouch.com/blog/playwright-mcp-server/)  
 32. OpenHands OpenHands, 5月 27, 2025にアクセス、 [https://docs.all-hands.dev/](https://docs.all-hands.dev/)  
 33. Fullstack Open Source Projects That Will Help You Become AI Devs (Python, JavaScript, AI), 5月 27, 2025にアクセス、 [https://dev.to/fast/fullstack-open-source-projects-that-will-help-you-become-ai-devs-python-javascript-ai-4m9a](https://dev.to/fast/fullstack-open-source-projects-that-will-help-you-become-ai-devs-python-javascript-ai-4m9a)  
-34. Welcome to BrowserGym's documentation\! \- Read the Docs, 5月 27, 2025にアクセス、 [https://browsergym.readthedocs.io/latest/](https://browsergym.readthedocs.io/latest/)  
+34. Welcome to BrowserGym's documentation\! \- Read the Docs, 5月 27, 2025にアクセス、 [https://browsergym.readthedocs.io/latest/](https://browsergym.readthedocs.io/latest/)

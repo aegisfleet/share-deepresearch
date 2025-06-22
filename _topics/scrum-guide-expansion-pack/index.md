@@ -1,16 +1,21 @@
 ---
-layout: topic
-title: "次世代アジリティへの航海：スクラムガイド2020とスクラムガイド・エクスパンションパックの比較分析"
+audio: /share-deepresearch/assets/audio/scrum-guide-expansion-pack.mp3
+category: engineering
 date: 2025-06-14
-prompt: "Scrum Guide Expansion Packの内容について、元々のスクラムガイドと対比させてどこが拡張されたのかまとめて欲しい。"
-category: "engineering"
-tags: [開発手法]
-audio: "/share-deepresearch/assets/audio/scrum-guide-expansion-pack.mp3"
+ga4_metrics:
+  avgSessionDuration: 41.06226516666667
+  pageViews: 6
+  users: 5
+layout: topic
+prompt: Scrum Guide Expansion Packの内容について、元々のスクラムガイドと対比させてどこが拡張されたのかまとめて欲しい。
 supplementary_materials:
-  - title: "スクラムの進化：スクラムガイド2020 vs エクスパンションパック"
-    url: "/share-deepresearch/topics/scrum-guide-expansion-pack/infographic.html"
-  - title: "次世代アジリティへの航海：スクラムガイド2020とエクスパンションパックの比較分析"
-    url: "/share-deepresearch/topics/scrum-guide-expansion-pack/reveal.html"
+- title: スクラムの進化：スクラムガイド2020 vs エクスパンションパック
+  url: /share-deepresearch/topics/scrum-guide-expansion-pack/infographic.html
+- title: 次世代アジリティへの航海：スクラムガイド2020とエクスパンションパックの比較分析
+  url: /share-deepresearch/topics/scrum-guide-expansion-pack/reveal.html
+tags:
+- 開発手法
+title: 次世代アジリティへの航海：スクラムガイド2020とスクラムガイド・エクスパンションパックの比較分析
 ---
 
 # **次世代アジリティへの航海：スクラムガイド2020とスクラムガイド・エクスパンションパックの比較分析**
@@ -201,4 +206,4 @@ supplementary_materials:
 27. How to stop developers from depending on my presence (Scrum Master) during the daily scrum? \- Reddit, 6月 14, 2025にアクセス、 [https://www.reddit.com/r/scrum/comments/181flnp/how\_to\_stop\_developers\_from\_depending\_on\_my/](https://www.reddit.com/r/scrum/comments/181flnp/how_to_stop_developers_from_depending_on_my/)  
 28. New Scrum Guide launching soon with AI content : r/agile \- Reddit, 6月 14, 2025にアクセス、 [https://www.reddit.com/r/agile/comments/1l30o3g/new\_scrum\_guide\_launching\_soon\_with\_ai\_content/](https://www.reddit.com/r/agile/comments/1l30o3g/new_scrum_guide_launching_soon_with_ai_content/)  
 29. Test-driven development with GitHub Copilot: A beginner's practical guide \- YouTube, 6月 14, 2025にアクセス、 [https://www.youtube.com/watch?v=arn6hqERKn4](https://www.youtube.com/watch?v=arn6hqERKn4)  
-30. Scrum Guide Expansion Pack Launch Event \- YouTube, 6月 14, 2025にアクセス、 [https://www.youtube.com/watch?v=\_z3Gvg7VK6g](https://www.youtube.com/watch?v=_z3Gvg7VK6g)  
+30. Scrum Guide Expansion Pack Launch Event \- YouTube, 6月 14, 2025にアクセス、 [https://www.youtube.com/watch?v=\_z3Gvg7VK6g](https://www.youtube.com/watch?v=_z3Gvg7VK6g)

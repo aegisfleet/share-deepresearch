@@ -1,16 +1,21 @@
 ---
-layout: topic
-title: "メタボリックシンドロームの病態生理：その発症機序と加齢との本質的関連性に関する理論的考察"
+audio: /share-deepresearch/assets/audio/metabolic-syndrome.mp3
+category: research
 date: 2025-06-16
-prompt: "メタボリックシンドロームがなぜ起きるのか理論的に説明して欲しい。特に年齢との相関について詳しく知りたい。"
-category: "research"
-tags: [健康]
-audio: "/share-deepresearch/assets/audio/metabolic-syndrome.mp3"
+ga4_metrics:
+  avgSessionDuration: 109.4974328888889
+  pageViews: 9
+  users: 5
+layout: topic
+prompt: メタボリックシンドロームがなぜ起きるのか理論的に説明して欲しい。特に年齢との相関について詳しく知りたい。
 supplementary_materials:
-  - title: "インフォグラフィック：メタボリックシンドロームの深層"
-    url: "/share-deepresearch/topics/metabolic-syndrome/infographic.html"
-  - title: "忍び寄るサイレントキラー：メタボリックシンドロームの正体"
-    url: "/share-deepresearch/topics/metabolic-syndrome/reveal.html"
+- title: インフォグラフィック：メタボリックシンドロームの深層
+  url: /share-deepresearch/topics/metabolic-syndrome/infographic.html
+- title: 忍び寄るサイレントキラー：メタボリックシンドロームの正体
+  url: /share-deepresearch/topics/metabolic-syndrome/reveal.html
+tags:
+- 健康
+title: メタボリックシンドロームの病態生理：その発症機序と加齢との本質的関連性に関する理論的考察
 ---
 
 # **メタボリックシンドロームの病態生理：その発症機序と加齢との本質的関連性に関する理論的考察**
@@ -257,4 +262,4 @@ BMR低下の最大の原因は、加齢に伴う骨格筋の量と機能の進�
 49. メタボリックシンドローム（内臓脂肪症候群） – 代謝疾患 \- 神戸きしだクリニック, 6月 16, 2025にアクセス、 [https://kobe-kishida-clinic.com/metabolism/metabolic-disorder/metabolic-syndrome/](https://kobe-kishida-clinic.com/metabolism/metabolic-disorder/metabolic-syndrome/)  
 50. ﾒﾀﾎﾞﾘｯｸｼﾝﾄﾞﾛｰﾑの理解と対策 \- 厚生労働省, 6月 16, 2025にアクセス、 [https://kouseikyoku.mhlw.go.jp/chugokushikoku/sendan/documents/01.pdf](https://kouseikyoku.mhlw.go.jp/chugokushikoku/sendan/documents/01.pdf)  
 51. 27\. 糖尿病と高血圧 糖尿病セミナー, 6月 16, 2025にアクセス、 [https://dm-net.co.jp/seminar/27\_/index\_2.php](https://dm-net.co.jp/seminar/27_/index_2.php)  
-52. 60 歳を超えてからの生活 \- 高岡駅南クリニック, 6月 16, 2025にアクセス、 [https://www.ekinan-clinic.com/publication/868](https://www.ekinan-clinic.com/publication/868)  
+52. 60 歳を超えてからの生活 \- 高岡駅南クリニック, 6月 16, 2025にアクセス、 [https://www.ekinan-clinic.com/publication/868](https://www.ekinan-clinic.com/publication/868)

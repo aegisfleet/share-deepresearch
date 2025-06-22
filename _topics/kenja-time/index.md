@@ -1,14 +1,19 @@
 ---
-layout: topic
-title: "「賢者タイム」の語源調査報告：その起源と意味の変遷"
+audio: /share-deepresearch/assets/audio/kenja-time.mp3
+category: playful
 date: 2025-05-26
-prompt: "賢者タイムの起源を知りたい。誰が言い出したのか突き止めて欲しい。"
-category: "playful"
-tags: [ネットスラング]
-audio: "/share-deepresearch/assets/audio/kenja-time.mp3"
+ga4_metrics:
+  avgSessionDuration: 0.683698
+  pageViews: 1
+  users: 1
+layout: topic
+prompt: 賢者タイムの起源を知りたい。誰が言い出したのか突き止めて欲しい。
 supplementary_materials:
-  - title: "「賢者タイム」現象の徹底解剖 SPAインフォグラフィック"
-    url: "/share-deepresearch/topics/kenja-time/infographic.html"
+- title: 「賢者タイム」現象の徹底解剖 SPAインフォグラフィック
+  url: /share-deepresearch/topics/kenja-time/infographic.html
+tags:
+- ネットスラング
+title: 「賢者タイム」の語源調査報告：その起源と意味の変遷
 ---
 
 # **「賢者タイム」の語源調査報告：その起源と意味の変遷**
@@ -164,4 +169,4 @@ supplementary_materials:
 25. 「ピーター・グリルと賢者の時間」放送開始日時明らかに、OPはヰ世界情緒が担当 \- ナタリー, 5月 26, 2025にアクセス、 [https://natalie.mu/comic/news/485837](https://natalie.mu/comic/news/485837)  
 26. ピーター・グリルと賢者の時間 \- Wikipedia, 5月 26, 2025にアクセス、 [https://ja.wikipedia.org/wiki/%E3%83%94%E3%83%BC%E3%82%BF%E3%83%BC%E3%83%BB%E3%82%B0%E3%83%AA%E3%83%AB%E3%81%A8%E8%B3%A2%E8%80%85%E3%81%AE%E6%99%82%E9%96%93](https://ja.wikipedia.org/wiki/%E3%83%94%E3%83%BC%E3%82%BF%E3%83%BC%E3%83%BB%E3%82%B0%E3%83%AA%E3%83%AB%E3%81%A8%E8%B3%A2%E8%80%85%E3%81%AE%E6%99%82%E9%96%93)  
 27. 賢者タイムだけ勇者 1 (1巻) (YKコミックス) 羽鳥 まりえ |本 通販 Amazon, 5月 26, 2025にアクセス、 [https://www.amazon.co.jp/%E8%B3%A2%E8%80%85%E3%82%BF%E3%82%A4%E3%83%A0%E3%81%A0%E3%81%91%E5%8B%87%E8%80%85-1%E5%B7%BB-YK%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9-%E7%BE%BD%E9%B3%A5-%E3%81%BE%E3%82%8A%E3%81%88/dp/4785975326](https://www.amazon.co.jp/%E8%B3%A2%E8%80%85%E3%82%BF%E3%82%A4%E3%83%A0%E3%81%A0%E3%81%91%E5%8B%87%E8%80%85-1%E5%B7%BB-YK%E3%82%B3%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B9-%E7%BE%BD%E9%B3%A5-%E3%81%BE%E3%82%8A%E3%81%88/dp/4785975326)  
-28. www.tenga.co.jp, 5月 26, 2025にアクセス、 [https://www.tenga.co.jp/uploads/2018/08/ca71e99c0279d95ab20c4c95f63163cf.pdf](https://www.tenga.co.jp/uploads/2018/08/ca71e99c0279d95ab20c4c95f63163cf.pdf)  
+28. www.tenga.co.jp, 5月 26, 2025にアクセス、 [https://www.tenga.co.jp/uploads/2018/08/ca71e99c0279d95ab20c4c95f63163cf.pdf](https://www.tenga.co.jp/uploads/2018/08/ca71e99c0279d95ab20c4c95f63163cf.pdf)

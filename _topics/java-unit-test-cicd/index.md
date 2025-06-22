@@ -1,14 +1,20 @@
 ---
-layout: topic
-title: "Javaユニットテスト自動生成とGitHub Actions CI/CDパイプラインへの統合"
+audio: /share-deepresearch/assets/audio/java-unit-test-cicd.mp3
+category: ai
 date: 2025-06-05
-prompt: "Javaのユニットテストを自動で作成したい。CI/CD（GitHub Actions）で自動生成できると尚良い。"
-category: "ai"
-tags: [ユニットテスト,GitHub Actions]
-audio: "/share-deepresearch/assets/audio/java-unit-test-cicd.mp3"
+ga4_metrics:
+  avgSessionDuration: 103.443938
+  pageViews: 7
+  users: 2
+layout: topic
+prompt: Javaのユニットテストを自動で作成したい。CI/CD（GitHub Actions）で自動生成できると尚良い。
 supplementary_materials:
-  - title: "インフォグラフィック: Javaユニットテスト自動化のトレンド"
-    url: "/share-deepresearch/topics/java-unit-test-cicd/infographic.html"
+- title: 'インフォグラフィック: Javaユニットテスト自動化のトレンド'
+  url: /share-deepresearch/topics/java-unit-test-cicd/infographic.html
+tags:
+- ユニットテスト
+- GitHub Actions
+title: Javaユニットテスト自動生成とGitHub Actions CI/CDパイプラインへの統合
 ---
 
 # **Javaユニットテスト自動生成とGitHub Actions CI/CDパイプラインへの統合**
@@ -343,4 +349,4 @@ AI技術は進化を続けており、将来的には自己修復テスト（コ
 32. Unit Testing in Java — Best Tools and Frameworks for Your Project \- Refraction.dev, 6月 5, 2025にアクセス、 [https://refraction.dev/blog/unit-testing-java-tools-frameworks](https://refraction.dev/blog/unit-testing-java-tools-frameworks)  
 33. The Top 10 Test Automation Challenges \- Ranorex, 6月 5, 2025にアクセス、 [https://www.ranorex.com/blog/the-top-10-test-automation-challenges/](https://www.ranorex.com/blog/the-top-10-test-automation-challenges/)  
 34. 10 Challenges of Test Automation (and How to Overcome Them) \- TestDevLab, 6月 5, 2025にアクセス、 [https://www.testdevlab.com/blog/test-automation-challenges-and-how-to-overcome-them](https://www.testdevlab.com/blog/test-automation-challenges-and-how-to-overcome-them)  
-35. AI-driven test management: Streamlining your QA workflow \- Deviniti, 6月 5, 2025にアクセス、 [https://deviniti.com/blog/software-engineering/ai-test-management-streamlining-your-qa-workflow/](https://deviniti.com/blog/software-engineering/ai-test-management-streamlining-your-qa-workflow/)  
+35. AI-driven test management: Streamlining your QA workflow \- Deviniti, 6月 5, 2025にアクセス、 [https://deviniti.com/blog/software-engineering/ai-test-management-streamlining-your-qa-workflow/](https://deviniti.com/blog/software-engineering/ai-test-management-streamlining-your-qa-workflow/)

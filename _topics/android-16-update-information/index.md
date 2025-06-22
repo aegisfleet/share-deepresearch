@@ -1,14 +1,19 @@
 ---
-layout: topic
-title: "Android 16徹底解説 – Pixel 9 Pro Foldで開花する新機能"
+audio: /share-deepresearch/assets/audio/android-16-update-information.mp3
+category: research
 date: 2025-06-12
-prompt: "Android16の新機能をまとめて欲しい。特にPixel 9 Pro Foldで新規に使えるようになった機能があれば教えて欲しい。"
-category: "research"
-tags: ["Android"]
-audio: "/share-deepresearch/assets/audio/android-16-update-information.mp3"
+ga4_metrics:
+  avgSessionDuration: 62.796483
+  pageViews: 10
+  users: 3
+layout: topic
+prompt: Android16の新機能をまとめて欲しい。特にPixel 9 Pro Foldで新規に使えるようになった機能があれば教えて欲しい。
 supplementary_materials:
-  - title: "インフォグラフィック：Android 16とPixel 9 Pro Foldの新機能"
-    url: "/share-deepresearch/topics/android-16-update-information/infographic.html"
+- title: インフォグラフィック：Android 16とPixel 9 Pro Foldの新機能
+  url: /share-deepresearch/topics/android-16-update-information/infographic.html
+tags:
+- Android
+title: Android 16徹底解説 – Pixel 9 Pro Foldで開花する新機能
 ---
 
 # **Android 16徹底解説 – Pixel 9 Pro Foldで開花する新機能**
@@ -160,4 +165,4 @@ Pixel 9 Pro Foldのユーザー（または購入検討者）は、Android 16が
 6. Google's on the right track with desktop mode in Android 16, 6月 12, 2025にアクセス、 [https://www.androidcentral.com/apps-software/android-os/googles-on-the-right-track-with-desktop-mode-in-android-16](https://www.androidcentral.com/apps-software/android-os/googles-on-the-right-track-with-desktop-mode-in-android-16)  
 7. Pixel 9 Pro Fold Features and Specs \- Google Store, 6月 12, 2025にアクセス、 [https://store.google.com/product/pixel\_9\_pro\_fold\_specs?hl=en-US](https://store.google.com/product/pixel_9_pro_fold_specs?hl=en-US)  
 8. The Google Pixel 9 Pro Fold The New Foldable Pixel Powered by Google AI., 6月 12, 2025にアクセス、 [https://fi.google.com/about/phones/pixel-9-pro-fold](https://fi.google.com/about/phones/pixel-9-pro-fold)  
-9. Pixel VIPs, Android 16 and more updates in the June Pixel Drop, 6月 12, 2025にアクセス、 [https://blog.google/products/pixel/pixel-drop-june-2025/](https://blog.google/products/pixel/pixel-drop-june-2025/)  
+9. Pixel VIPs, Android 16 and more updates in the June Pixel Drop, 6月 12, 2025にアクセス、 [https://blog.google/products/pixel/pixel-drop-june-2025/](https://blog.google/products/pixel/pixel-drop-june-2025/)

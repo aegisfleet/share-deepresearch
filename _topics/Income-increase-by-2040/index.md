@@ -1,16 +1,21 @@
 ---
-layout: topic
-title: "2040年 日本の平均所得5割増は実現可能か：数値的根拠に基づく専門的分析"
+audio: /share-deepresearch/assets/audio/Income-increase-by-2040.mp3
+category: research
 date: 2025-06-11
-prompt: "2040年に日本人の平均所得を5割増させる事ができるのか、数値的根拠を示して解説して欲しい。"
-category: "research"
-tags: ["政治"]
-audio: "/share-deepresearch/assets/audio/Income-increase-by-2040.mp3"
+ga4_metrics:
+  avgSessionDuration: 396.8200316
+  pageViews: 6
+  users: 5
+layout: topic
+prompt: 2040年に日本人の平均所得を5割増させる事ができるのか、数値的根拠を示して解説して欲しい。
 supplementary_materials:
-  - title: "インフォグラフィック：2040年 日本の所得向上への道"
-    url: "/share-deepresearch/topics/Income-increase-by-2040/infographic.html"
-  - title: "2040年 平均所得5割増の可能性"
-    url: "/share-deepresearch/topics/Income-increase-by-2040/reveal.html"
+- title: インフォグラフィック：2040年 日本の所得向上への道
+  url: /share-deepresearch/topics/Income-increase-by-2040/infographic.html
+- title: 2040年 平均所得5割増の可能性
+  url: /share-deepresearch/topics/Income-increase-by-2040/reveal.html
+tags:
+- 政治
+title: 2040年 日本の平均所得5割増は実現可能か：数値的根拠に基づく専門的分析
 ---
 
 # **2040年 日本の平均所得5割増は実現可能か：数値的根拠に基づく専門的分析**
@@ -254,4 +259,4 @@ AIによる生産性向上が平均所得の5割増に繋がるかどうかは�
 32. 労働分配率は低下している ～分配政策の壁は何か？～ 熊野 英生, 6月 11, 2025にアクセス、 [https://www.dlri.co.jp/report/macro/192113.html](https://www.dlri.co.jp/report/macro/192113.html)  
 33. 規模別労働分配率の推移 \- 厚生労働省, 6月 11, 2025にアクセス、 [https://www.mhlw.go.jp/stf/shingi/2r9852000002790h-att/2r98520000027bof.pdf](https://www.mhlw.go.jp/stf/shingi/2r9852000002790h-att/2r98520000027bof.pdf)  
 34. 日本における労働分配率の決定要因分析, 6月 11, 2025にアクセス、 [https://www.rieti.go.jp/jp/publications/dp/21j006.pdf](https://www.rieti.go.jp/jp/publications/dp/21j006.pdf)  
-35. ～近年の労働分配率低下の要因分析～, 6月 11, 2025にアクセス、 [https://www5.cao.go.jp/keizai3/discussion-paper/dp183.pdf](https://www5.cao.go.jp/keizai3/discussion-paper/dp183.pdf)  
+35. ～近年の労働分配率低下の要因分析～, 6月 11, 2025にアクセス、 [https://www5.cao.go.jp/keizai3/discussion-paper/dp183.pdf](https://www5.cao.go.jp/keizai3/discussion-paper/dp183.pdf)

@@ -1,14 +1,19 @@
 ---
-layout: topic
-title: "日本政治における自民党の持続的支配：不満と安定のパラドクス"
+audio: /share-deepresearch/assets/audio/maintaining-power.mp3
+category: research
 date: 2025-05-31
-prompt: "なぜ日本人は自民党に不満がありつつも、自民党政権が続いているのか、その本質的な理由を知りたい。恐らく他に良い党が無いのが一番だと思うが、本当にそれだけだろうか。"
-category: "research"
-tags: [政治]
-audio: "/share-deepresearch/assets/audio/maintaining-power.mp3"
+ga4_metrics:
+  avgSessionDuration: 1.006737
+  pageViews: 1
+  users: 1
+layout: topic
+prompt: なぜ日本人は自民党に不満がありつつも、自民党政権が続いているのか、その本質的な理由を知りたい。恐らく他に良い党が無いのが一番だと思うが、本当にそれだけだろうか。
 supplementary_materials:
-  - title: "インフォグラフィック：自民党政権はなぜ続くのか？"
-    url: "/share-deepresearch/topics/maintaining-power/infographic.html"
+- title: インフォグラフィック：自民党政権はなぜ続くのか？
+  url: /share-deepresearch/topics/maintaining-power/infographic.html
+tags:
+- 政治
+title: 日本政治における自民党の持続的支配：不満と安定のパラドクス
 ---
 
 # **日本政治における自民党の持続的支配：不満と安定のパラドクス**
@@ -264,4 +269,4 @@ supplementary_materials:
 68. 自民党派閥の政治資金パーティー裏金事件を問う 神戸大学ニュースサイト \- Kobe University, 5月 31, 2025にアクセス、 [https://www.kobe-u.ac.jp/ja/news/article/20240226-21790/](https://www.kobe-u.ac.jp/ja/news/article/20240226-21790/)  
 69. 単著・編著 \- 中北浩爾研究室, 5月 31, 2025にアクセス、 [http://www.kojinakakita.com/kenkyuu\_tantyo.html](http://www.kojinakakita.com/kenkyuu_tantyo.html)  
 70. 自民党政権の政策過程の変容, 5月 31, 2025にアクセス、 [https://tsukuba.repo.nii.ac.jp/record/40606/files/03%E5%92%8C%E5%B6%8B.pdf](https://tsukuba.repo.nii.ac.jp/record/40606/files/03%E5%92%8C%E5%B6%8B.pdf)  
-71. 存続する自民3派閥はどうなる？「岸田総理のクーデター」全舞台裏 \- ダイヤモンド・オンライン, 5月 31, 2025にアクセス、 [https://diamond.jp/articles/-/337825](https://diamond.jp/articles/-/337825)  
+71. 存続する自民3派閥はどうなる？「岸田総理のクーデター」全舞台裏 \- ダイヤモンド・オンライン, 5月 31, 2025にアクセス、 [https://diamond.jp/articles/-/337825](https://diamond.jp/articles/-/337825)

@@ -1,14 +1,19 @@
 ---
-layout: topic
-title: "Javaユニットテスト自動化のための無料ツール調査：AI活用とAzure連携の可能性"
+audio: /share-deepresearch/assets/audio/java-unit-test.mp3
+category: ai
 date: 2025-06-05
-prompt: "Javaのユニットテストを自動で作成したい。前提条件として無料で使用できる必要がある。生成AIを使用する場合はAzureと接続できるものとする。"
-category: "ai"
-tags: [ユニットテスト]
-audio: "/share-deepresearch/assets/audio/java-unit-test.mp3"
+ga4_metrics:
+  avgSessionDuration: 430.1827308888889
+  pageViews: 12
+  users: 6
+layout: topic
+prompt: Javaのユニットテストを自動で作成したい。前提条件として無料で使用できる必要がある。生成AIを使用する場合はAzureと接続できるものとする。
 supplementary_materials:
-  - title: "Javaユニットテスト自動化ツール インフォグラフィック"
-    url: "/share-deepresearch/topics/java-unit-test/infographic.html"
+- title: Javaユニットテスト自動化ツール インフォグラフィック
+  url: /share-deepresearch/topics/java-unit-test/infographic.html
+tags:
+- ユニットテスト
+title: Javaユニットテスト自動化のための無料ツール調査：AI活用とAzure連携の可能性
 ---
 
 # **Javaユニットテスト自動化のための無料ツール調査：AI活用とAzure連携の可能性**
@@ -366,4 +371,4 @@ LLMがよりコモディティ化し、APIが標準化されるにつれて、�
 83. Azure OpenAI in Azure AI Foundry Models quotas and limits \- Learn Microsoft, 6月 5, 2025にアクセス、 [https://learn.microsoft.com/en-us/azure/ai-services/openai/quotas-limits](https://learn.microsoft.com/en-us/azure/ai-services/openai/quotas-limits)  
 84. www.eweek.com, 6月 5, 2025にアクセス、 [https://www.eweek.com/it-management/jtest-5.0-eliminates-excuses/\#:\~:text=Pricing%20for%20Jtest%205.0%20starts%20at%20%243%2C495.\&text=PRO%3A%20Extensive%20control%20of%20coding,click%20repair%20of%20many%20errors.](https://www.eweek.com/it-management/jtest-5.0-eliminates-excuses/#:~:text=Pricing%20for%20Jtest%205.0%20starts%20at%20%243%2C495.&text=PRO%3A%20Extensive%20control%20of%20coding,click%20repair%20of%20many%20errors.)  
 85. Jtest 5.0 Eliminates Excuses \- eWEEK, 6月 5, 2025にアクセス、 [https://www.eweek.com/it-management/jtest-5.0-eliminates-excuses/](https://www.eweek.com/it-management/jtest-5.0-eliminates-excuses/)  
-86. Acceptance Test Generation with Large Language Models: An Industrial Case Study \- arXiv, 6月 5, 2025にアクセス、 [https://arxiv.org/html/2504.07244v1](https://arxiv.org/html/2504.07244v1)  
+86. Acceptance Test Generation with Large Language Models: An Industrial Case Study \- arXiv, 6月 5, 2025にアクセス、 [https://arxiv.org/html/2504.07244v1](https://arxiv.org/html/2504.07244v1)

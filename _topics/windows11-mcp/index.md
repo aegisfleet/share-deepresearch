@@ -1,14 +1,21 @@
 ---
-layout: topic
-title: "Windows 11におけるModel Context Protocol (MCP)ネイティブサポート：その意味とMicrosoftの戦略"
+audio: /share-deepresearch/assets/audio/windows11-mcp.mp3
+category: ai
 date: 2025-05-26
-prompt: "Windows11でModel Context Protocol（MCP）がネイティブ対応される予定だが、これは誰にとってどのような意味があるのか知りたい。また、Microsoftはどのような使用方法を想定しているのかも併せて調査して欲しい。"
-category: "ai"
-tags: [Windows11,MCP,AI Agent]
-audio: "/share-deepresearch/assets/audio/windows11-mcp.mp3"
+ga4_metrics:
+  avgSessionDuration: 7.039246
+  pageViews: 1
+  users: 1
+layout: topic
+prompt: Windows11でModel Context Protocol（MCP）がネイティブ対応される予定だが、これは誰にとってどのような意味があるのか知りたい。また、Microsoftはどのような使用方法を想定しているのかも併せて調査して欲しい。
 supplementary_materials:
-  - title: "MCPとWindows 11：AIエージェント新時代のインフォグラフィック"
-    url: "/share-deepresearch/topics/windows11-mcp/infographic.html"
+- title: MCPとWindows 11：AIエージェント新時代のインフォグラフィック
+  url: /share-deepresearch/topics/windows11-mcp/infographic.html
+tags:
+- Windows11
+- MCP
+- AI Agent
+title: Windows 11におけるModel Context Protocol (MCP)ネイティブサポート：その意味とMicrosoftの戦略
 ---
 
 # **Windows 11におけるModel Context Protocol (MCP)ネイティブサポート：その意味とMicrosoftの戦略**
@@ -269,4 +276,4 @@ MCPの広範な採用は、より分散化され、構成可能なソフトウ�
 29. Microsoft Build 2025 \- Microsoft News, 5月 26, 2025にアクセス、 [https://news.microsoft.com/build-2025/](https://news.microsoft.com/build-2025/)  
 30. Microsoft Gives Orgs More Power to 'Tune' AI Agents \- Redmond Channel Partner, 5月 26, 2025にアクセス、 [https://rcpmag.com/articles/2025/05/20/microsoft-tune-ai-agents.aspx](https://rcpmag.com/articles/2025/05/20/microsoft-tune-ai-agents.aspx)  
 31. Microsoft Build 2025 Recap: What's New in AI and Developer Tools \- Shawn Wallace, 5月 26, 2025にアクセス、 [https://www.shawnewallace.com/2025-05-23-microsoft-build-2025-recap/](https://www.shawnewallace.com/2025-05-23-microsoft-build-2025-recap/)  
-32. Key Takeaways from Microsoft Build 2025 on AI, Copilot, and NPUs \- GoCodeo, 5月 26, 2025にアクセス、 [https://www.gocodeo.com/post/key-takeaways-from-microsoft-build-2025](https://www.gocodeo.com/post/key-takeaways-from-microsoft-build-2025)  
+32. Key Takeaways from Microsoft Build 2025 on AI, Copilot, and NPUs \- GoCodeo, 5月 26, 2025にアクセス、 [https://www.gocodeo.com/post/key-takeaways-from-microsoft-build-2025](https://www.gocodeo.com/post/key-takeaways-from-microsoft-build-2025)

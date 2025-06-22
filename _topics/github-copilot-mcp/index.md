@@ -1,14 +1,21 @@
 ---
-layout: topic
-title: "GitHub Copilotを強化する人気MCPサーバーとその開発作業への貢献"
+audio: /share-deepresearch/assets/audio/github-copilot-mcp.mp3
+category: ai
 date: 2025-06-01
-prompt: "GitHub Copilotで使えるMCPサーバーで開発者に人気のものをまとめて欲しい。"
-category: "ai"
-tags: [GitHub,GitHub Copilot,MCP]
-audio: "/share-deepresearch/assets/audio/github-copilot-mcp.mp3"
+ga4_metrics:
+  avgSessionDuration: 387.0177835
+  pageViews: 2
+  users: 2
+layout: topic
+prompt: GitHub Copilotで使えるMCPサーバーで開発者に人気のものをまとめて欲しい。
 supplementary_materials:
-  - title: "GitHub Copilot MCPサーバー インフォグラフィック"
-    url: "/share-deepresearch/topics/github-copilot-mcp/infographic.html"
+- title: GitHub Copilot MCPサーバー インフォグラフィック
+  url: /share-deepresearch/topics/github-copilot-mcp/infographic.html
+tags:
+- GitHub
+- GitHub Copilot
+- MCP
+title: GitHub Copilotを強化する人気MCPサーバーとその開発作業への貢献
 ---
 
 # **GitHub Copilotを強化する人気MCPサーバーとその開発作業への貢献**
@@ -395,4 +402,3 @@ GitHub CopilotとMCPサーバーの連携がもたらす恩恵は計り知れま
 GitHub CopilotとMCPサーバーの組み合わせは、単に開発を効率化するツールセットであるだけでなく、エンジニアの働き方やスキルセットそのものを変革し、新たなキャリアの可能性を切り拓く力を持っています。この新しい技術の波を積極的に捉え、探求し、そして賢明に活用することで、エンジニアはこれまでにないレベルの創造性と生産性を発揮できるはずです。
 
 #### **引用文献**
-

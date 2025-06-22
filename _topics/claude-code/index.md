@@ -1,16 +1,22 @@
 ---
-layout: topic
-title: "Claude Codeが他のAIエージェントと比較して高く評価される理由：詳細分析"
+audio: /share-deepresearch/assets/audio/claude-code.mp3
+category: ai
 date: 2025-06-10
-prompt: "Claude Codeが他のAIエージェントと比べて高く評価されている理由を調べて欲しい。併せてその裏付けとなる事例も集めては欲しい。"
-category: "ai"
-tags: [Claude Code,AI Agent]
-audio: "/share-deepresearch/assets/audio/claude-code.mp3"
+ga4_metrics:
+  avgSessionDuration: 100.38214957142857
+  pageViews: 8
+  users: 7
+layout: topic
+prompt: Claude Codeが他のAIエージェントと比べて高く評価されている理由を調べて欲しい。併せてその裏付けとなる事例も集めては欲しい。
 supplementary_materials:
-  - title: "Claude Code 優位性インフォグラフィック"
-    url: "/share-deepresearch/topics/claude-code/infographic.html"
-  - title: "Claude Code 優位性プレゼンテーション"
-    url: "/share-deepresearch/topics/claude-code/reveal.html"
+- title: Claude Code 優位性インフォグラフィック
+  url: /share-deepresearch/topics/claude-code/infographic.html
+- title: Claude Code 優位性プレゼンテーション
+  url: /share-deepresearch/topics/claude-code/reveal.html
+tags:
+- Claude Code
+- AI Agent
+title: Claude Codeが他のAIエージェントと比較して高く評価される理由：詳細分析
 ---
 
 # **Claude Codeが他のAIエージェントと比較して高く評価される理由：詳細分析**
@@ -259,4 +265,4 @@ Claude Codeは強力ですが、将来は連携可能な特化型AIエージェ�
 17. Microsoft Copilot vs ChatGPT vs Claude vs Gemini vs DeepSeek: Full Guide, Report & Comparison of Core Features, Use-Case Strengths, Multimodality, Context Limits, Pricing Tie, and more \- Data Studios EXAFIN, 6月 10, 2025にアクセス、 [https://www.datastudios.org/post/microsoft-copilot-vs-chatgpt-vs-claude-vs-gemini-vs-deepseek-full-guide-report-comparison-of-cor](https://www.datastudios.org/post/microsoft-copilot-vs-chatgpt-vs-claude-vs-gemini-vs-deepseek-full-guide-report-comparison-of-cor)  
 18. Microsoft Copilot vs. ChatGPT vs. Claude vs. Gemini: 2025 Full-Spectrum Comparison and Performance Report \- Data Studios EXAFIN, 6月 10, 2025にアクセス、 [https://www.datastudios.org/post/microsoft-copilot-vs-chatgpt-vs-claude-vs-gemini-2025-full-spectrum-comparison-and-performance-r](https://www.datastudios.org/post/microsoft-copilot-vs-chatgpt-vs-claude-vs-gemini-2025-full-spectrum-comparison-and-performance-r)  
 19. Claude 3.7 vs 3.5 Sonnet for Coding \- Which One Should You Use? 16x Prompt, 6月 10, 2025にアクセス、 [https://prompt.16x.engineer/blog/claude-37-vs-35-sonnet-coding](https://prompt.16x.engineer/blog/claude-37-vs-35-sonnet-coding)  
-20. JetBrains builds developer tools with Claude in Amazon Bedrock \- Anthropic, 6月 10, 2025にアクセス、 [https://www.anthropic.com/customers/jetbrains](https://www.anthropic.com/customers/jetbrains)  
+20. JetBrains builds developer tools with Claude in Amazon Bedrock \- Anthropic, 6月 10, 2025にアクセス、 [https://www.anthropic.com/customers/jetbrains](https://www.anthropic.com/customers/jetbrains)

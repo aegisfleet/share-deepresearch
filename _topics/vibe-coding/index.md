@@ -1,16 +1,22 @@
 ---
-layout: topic
-title: "Vibe Codingにおける品質担保の考え方：AI生成コードを信頼するための戦略的アプローチ"
+audio: /share-deepresearch/assets/audio/vibe-coding.mp3
+category: engineering
 date: 2025-05-25
-prompt: "Vibe Codingを行う際のポイントをまとめたい。生成AIが作ったコードを基本的に信じることになるが、どのように品質を担保すれば良いのか、その考え方を知りたい。"
-category: "engineering"
-tags: [Vibe Coding,コーディング]
-audio: "/share-deepresearch/assets/audio/vibe-coding.mp3"
+ga4_metrics:
+  avgSessionDuration: 1.322186
+  pageViews: 1
+  users: 1
+layout: topic
+prompt: Vibe Codingを行う際のポイントをまとめたい。生成AIが作ったコードを基本的に信じることになるが、どのように品質を担保すれば良いのか、その考え方を知りたい。
 supplementary_materials:
-  - title: "Vibe Coding：業界トレンドと品質戦略インフォグラフィック"
-    url: "/share-deepresearch/topics/vibe-coding/infographic.html"
-  - title: "Vibe Coding品質担保 インタラクティブSPA"
-    url: "/share-deepresearch/topics/vibe-coding/dashboard.html"
+- title: Vibe Coding：業界トレンドと品質戦略インフォグラフィック
+  url: /share-deepresearch/topics/vibe-coding/infographic.html
+- title: Vibe Coding品質担保 インタラクティブSPA
+  url: /share-deepresearch/topics/vibe-coding/dashboard.html
+tags:
+- Vibe Coding
+- コーディング
+title: Vibe Codingにおける品質担保の考え方：AI生成コードを信頼するための戦略的アプローチ
 ---
 
 # **Vibe Codingにおける品質担保の考え方：AI生成コードを信頼するための戦略的アプローチ**
@@ -514,4 +520,4 @@ Vibe Codingは、ソフトウェア開発の風景を塗り替える可能性を
 117. Prompt Engineering for Generative AI: Future-Proof Inputs for ..., 5月 25, 2025にアクセス、 [https://www.amazon.com/Prompt-Engineering-Generative-AI-Future-Proof/dp/109815343X](https://www.amazon.com/Prompt-Engineering-Generative-AI-Future-Proof/dp/109815343X)  
 118. 0\. AI Security Overview – AI Exchange, 5月 25, 2025にアクセス、 [https://owaspai.org/docs/ai\_security\_overview/](https://owaspai.org/docs/ai_security_overview/)  
 119. NIST AI Risk Management Framework: A tl;dr \- Wiz, 5月 25, 2025にアクセス、 [https://www.wiz.io/academy/nist-ai-risk-management-framework](https://www.wiz.io/academy/nist-ai-risk-management-framework)  
-120. Process to develop an AI strategy \- Cloud Adoption Framework Microsoft Learn, 5月 25, 2025にアクセス、 [https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/strategy](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/strategy)  
+120. Process to develop an AI strategy \- Cloud Adoption Framework Microsoft Learn, 5月 25, 2025にアクセス、 [https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/strategy](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/strategy)

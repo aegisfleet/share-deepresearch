@@ -1,16 +1,21 @@
 ---
-layout: topic
-title: "最適なAIツールキットの構築：月額200ドルの予算で構築する、高パフォーマンスで重複のないAIスタックへの戦略的ガイド"
+audio: /share-deepresearch/assets/audio/200-dollars-ai-tools.mp3
+category: ai
 date: 2025-06-19
-prompt: "有償のAIツールの利用を検討している。なるべく用途が被らないように、200米ドルで使えるツールの組み合わせをたくさん提案して欲しい。"
-category: "ai"
-tags: [AIツール]
-audio: "/share-deepresearch/assets/audio/200-dollars-ai-tools.mp3"
+ga4_metrics:
+  avgSessionDuration: 178.16684033333334
+  pageViews: 10
+  users: 4
+layout: topic
+prompt: 有償のAIツールの利用を検討している。なるべく用途が被らないように、200米ドルで使えるツールの組み合わせをたくさん提案して欲しい。
 supplementary_materials:
-  - title: "月200ドルで構築する最強のAIツールスタック"
-    url: "/share-deepresearch/topics/200-dollars-ai-tools/infographic.html"
-  - title: "月額$200で築く、最強のAIツールスタック"
-    url: "/share-deepresearch/topics/200-dollars-ai-tools/reveal.html"
+- title: 月200ドルで構築する最強のAIツールスタック
+  url: /share-deepresearch/topics/200-dollars-ai-tools/infographic.html
+- title: 月額$200で築く、最強のAIツールスタック
+  url: /share-deepresearch/topics/200-dollars-ai-tools/reveal.html
+tags:
+- AIツール
+title: 最適なAIツールキットの構築：月額200ドルの予算で構築する、高パフォーマンスで重複のないAIスタックへの戦略的ガイド
 ---
 
 # **最適なAIツールキットの構築：月額200ドルの予算で構築する、高パフォーマンスで重複のないAIスタックへの戦略的ガイド**
@@ -408,4 +413,4 @@ AIスタックを構築することは、一度きりの決定ではありませ
 56. Design with Canva: Easy AI design tools in one place, 6月 19, 2025にアクセス、 [https://www.design.ing/](https://www.design.ing/)  
 57. Visme: AI Presentation maker, Infographics, and One pager templates, 6月 19, 2025にアクセス、 [https://www.visme.co/](https://www.visme.co/)  
 58. Create beautiful content. Faster. \- Visme, 6月 19, 2025にアクセス、 [https://dashboard.visme.co/v2/pricing-old?lang=en](https://dashboard.visme.co/v2/pricing-old?lang=en)  
-59. Visme Pricing \- Digital Tools Mentor, 6月 19, 2025にアクセス、 [https://www.bestdigitaltoolsmentor.com/ai-tools/ai-tools-pricing/visme-pricing/](https://www.bestdigitaltoolsmentor.com/ai-tools/ai-tools-pricing/visme-pricing/)  
+59. Visme Pricing \- Digital Tools Mentor, 6月 19, 2025にアクセス、 [https://www.bestdigitaltoolsmentor.com/ai-tools/ai-tools-pricing/visme-pricing/](https://www.bestdigitaltoolsmentor.com/ai-tools/ai-tools-pricing/visme-pricing/)

@@ -1,16 +1,21 @@
 ---
-layout: topic
-title: "血圧測定機能付きスマートデバイスの性能と価格：専門家による徹底比較"
+audio: /share-deepresearch/assets/audio/blood-pressure-measuring.mp3
+category: research
 date: 2025-06-08
-prompt: "血圧が測れるスマートデバイスを調べて、その性能や価格を比較して欲しい。"
-category: "research"
-tags: ["健康"]
-audio: "/share-deepresearch/assets/audio/blood-pressure-measuring.mp3"
+ga4_metrics:
+  avgSessionDuration: 5.3508805
+  pageViews: 2
+  users: 1
+layout: topic
+prompt: 血圧が測れるスマートデバイスを調べて、その性能や価格を比較して欲しい。
 supplementary_materials:
-  - title: "血圧測定スマートデバイス市場インフォグラフィック"
-    url: "/share-deepresearch/topics/blood-pressure-measuring/infographic.html"
-  - title: "血圧測定スマートデバイス比較調査"
-    url: "/share-deepresearch/topics/blood-pressure-measuring/reveal.html"
+- title: 血圧測定スマートデバイス市場インフォグラフィック
+  url: /share-deepresearch/topics/blood-pressure-measuring/infographic.html
+- title: 血圧測定スマートデバイス比較調査
+  url: /share-deepresearch/topics/blood-pressure-measuring/reveal.html
+tags:
+- 健康
+title: 血圧測定機能付きスマートデバイスの性能と価格：専門家による徹底比較
 ---
 
 # **血圧測定機能付きスマートデバイスの性能と価格：専門家による徹底比較**
@@ -294,4 +299,4 @@ Apple社やSamsung社は、より高度で、将来的には連続的かつ非�
 32. VivoWatch \- ASUS好きのZenBlog（ゼンブログ）, 6月 8, 2025にアクセス、 [https://asus.blog.jp/archives/cat\_916283.html](https://asus.blog.jp/archives/cat_916283.html)  
 33. 【2025年最新】おすすめ血圧計 手首or上腕式 ？ の選び方をサポート \- ホームショッピング, 6月 8, 2025にアクセス、 [https://shop.homeshopping.co.jp/article/%E8%A1%80%E5%9C%A7%E8%A8%88%E6%89%8B%E9%A6%96%E4%B8%8A%E8%85%95%E3%81%A9%E3%81%A3%E3%81%A1/](https://shop.homeshopping.co.jp/article/%E8%A1%80%E5%9C%A7%E8%A8%88%E6%89%8B%E9%A6%96%E4%B8%8A%E8%85%95%E3%81%A9%E3%81%A3%E3%81%A1/)  
 34. 血圧計にて手首式と上腕式血圧計は、どちらが正確ですか？ よくあるご質問 \- ノジマ, 6月 8, 2025にアクセス、 [https://www.nojima.co.jp/support/faq/10572/](https://www.nojima.co.jp/support/faq/10572/)  
-35. 非接触計測も可能な体動を利用した カフレス血圧推定方法, 6月 8, 2025にアクセス、 [https://shingi.jst.go.jp/pdf/2024/2024\_fukushima-u\_005.pdf](https://shingi.jst.go.jp/pdf/2024/2024_fukushima-u_005.pdf)  
+35. 非接触計測も可能な体動を利用した カフレス血圧推定方法, 6月 8, 2025にアクセス、 [https://shingi.jst.go.jp/pdf/2024/2024\_fukushima-u\_005.pdf](https://shingi.jst.go.jp/pdf/2024/2024_fukushima-u_005.pdf)

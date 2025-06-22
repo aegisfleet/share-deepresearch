@@ -1,14 +1,22 @@
 ---
-layout: topic
-title: "Anthropic Claude Code 詳細調査報告：VSCode及びGitHub Actions連携の深掘り"
+audio: /share-deepresearch/assets/audio/claude-code-research.mp3
+category: ai
 date: 2025-05-25
-prompt: "AnthropicのClaude Codeの使用例を詳細に調査したい。特にVScodeとの連携、GitHub Actionsとの連携についてはより深堀りして欲しい。"
-category: "ai"
-tags: [VSCode,GitHub Actions,Claude Code,AI Agent]
-audio: "/share-deepresearch/assets/audio/claude-code-research.mp3"
+ga4_metrics:
+  avgSessionDuration: 150.848024
+  pageViews: 1
+  users: 1
+layout: topic
+prompt: AnthropicのClaude Codeの使用例を詳細に調査したい。特にVScodeとの連携、GitHub Actionsとの連携についてはより深堀りして欲しい。
 supplementary_materials:
-  - title: "補足資料：Anthropic Claude Code 詳細調査報告 SPA"
-    url: "/share-deepresearch/topics/claude-code-research/dashboard.html"
+- title: 補足資料：Anthropic Claude Code 詳細調査報告 SPA
+  url: /share-deepresearch/topics/claude-code-research/dashboard.html
+tags:
+- VSCode
+- GitHub Actions
+- Claude Code
+- AI Agent
+title: Anthropic Claude Code 詳細調査報告：VSCode及びGitHub Actions連携の深掘り
 ---
 
 # **Anthropic Claude Code 詳細調査報告：VSCode及びGitHub Actions連携の深掘り**
@@ -462,4 +470,4 @@ Claude Code自体の開発（80%の自己コーディングの主張 56 を含�
 55. Claude AI: Breaking Down Barriers and Limitations \- AutoGPT, 5月 25, 2025にアクセス、 [https://autogpt.net/claude-ai-breaking-down-barriers-and-limitations/](https://autogpt.net/claude-ai-breaking-down-barriers-and-limitations/)  
 56. Can an AI Really Code Itself? — Inside Anthropic's “Claude Code” Phenomenon \- SmythOS, 5月 25, 2025にアクセス、 [https://smythos.com/ai-industry-solutions/process-automation/can-an-ai-code-itself-claude-code/](https://smythos.com/ai-industry-solutions/process-automation/can-an-ai-code-itself-claude-code/)  
 57. "Claude Code wrote 80% of its own code" \- anthropic dev : r/singularity \- Reddit, 5月 25, 2025にアクセス、 [https://www.reddit.com/r/singularity/comments/1khxwjh/claude\_code\_wrote\_80\_of\_its\_own\_code\_anthropic\_dev/](https://www.reddit.com/r/singularity/comments/1khxwjh/claude_code_wrote_80_of_its_own_code_anthropic_dev/)  
-58. VSCode \+ Claude 3.7 Is The FASTEST Coding AI EVER \- YouTube, 5月 25, 2025にアクセス、 [https://www.youtube.com/watch?v=WE0lUPt3xG4](https://www.youtube.com/watch?v=WE0lUPt3xG4)  
+58. VSCode \+ Claude 3.7 Is The FASTEST Coding AI EVER \- YouTube, 5月 25, 2025にアクセス、 [https://www.youtube.com/watch?v=WE0lUPt3xG4](https://www.youtube.com/watch?v=WE0lUPt3xG4)

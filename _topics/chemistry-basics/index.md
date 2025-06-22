@@ -1,18 +1,23 @@
 ---
-layout: topic
-title: "化学基礎 重要用語マスターガイド"
+audio: /share-deepresearch/assets/audio/chemistry-basics.mp3
+category: study
 date: 2025-05-25
-prompt: "化学基礎に出てくる単語の復習にしようする資料を作成したい。高校生が理解できる内容で丁寧にまとめて欲しい。"
-category: "study"
-tags: [化学]
-audio: "/share-deepresearch/assets/audio/chemistry-basics.mp3"
+ga4_metrics:
+  avgSessionDuration: 299.3370745217391
+  pageViews: 45
+  users: 17
+layout: topic
+prompt: 化学基礎に出てくる単語の復習にしようする資料を作成したい。高校生が理解できる内容で丁寧にまとめて欲しい。
 supplementary_materials:
-  - title: "化学基礎 重要ポイント解説 インフォグラフィック"
-    url: "/share-deepresearch/topics/chemistry-basics/infographic.html"
-  - title: "化学基礎 インタラクティブ学習"
-    url: "/share-deepresearch/topics/chemistry-basics/play.html"
-  - title: "化学基礎 用語クイズ"
-    url: "/share-deepresearch/topics/chemistry-basics/quiz.html"
+- title: 化学基礎 重要ポイント解説 インフォグラフィック
+  url: /share-deepresearch/topics/chemistry-basics/infographic.html
+- title: 化学基礎 インタラクティブ学習
+  url: /share-deepresearch/topics/chemistry-basics/play.html
+- title: 化学基礎 用語クイズ
+  url: /share-deepresearch/topics/chemistry-basics/quiz.html
+tags:
+- 化学
+title: 化学基礎 重要用語マスターガイド
 ---
 
 # **化学基礎 重要用語マスターガイド**
@@ -813,4 +818,4 @@ Li \> K \> Ca \> Na \> Mg \> Al \> Zn \> Fe \> Ni \> Sn \> Pb \> (H) \> Cu \> Hg
 124. 【高校化学の勉強法】平均点超えを目指す定期テスト対策を現役教師が解説！, 5月 25, 2025にアクセス、 [https://ways-sch.jp/method/56221](https://ways-sch.jp/method/56221)  
 125. 学生のための創造的なコンセプトマップ20+例 \- Boardmix, 5月 25, 2025にアクセス、 [https://boardmix.com/jp/examples/concept-map/](https://boardmix.com/jp/examples/concept-map/)  
 126. 『初心者向け』コンセプトマップの作り方と例ーXmind, 5月 25, 2025にアクセス、 [https://xmind.app/jp/blog/concept-map-tutorial/](https://xmind.app/jp/blog/concept-map-tutorial/)  
-127. ［化学］化学用語を覚えよう① \- Educational Lounge, 5月 25, 2025にアクセス、 [https://www.educational-lounge.com/?p=749](https://www.educational-lounge.com/?p=749)  
+127. ［化学］化学用語を覚えよう① \- Educational Lounge, 5月 25, 2025にアクセス、 [https://www.educational-lounge.com/?p=749](https://www.educational-lounge.com/?p=749)

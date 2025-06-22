@@ -1,14 +1,20 @@
 ---
-layout: topic
-title: "小泉進次郎農林水産大臣就任が日本の米農家にもたらす影響：推測的分析"
+audio: /share-deepresearch/assets/audio/shinjiro-impact.mp3
+category: research
 date: 2025-05-24
-prompt: "小泉進次郎が農林水産省の大臣になったことは、米農家にとってプラスになるのか、マイナスになるのか推測したい。"
-category: "research"
-tags: [政治,米]
-audio: "/share-deepresearch/assets/audio/shinjiro-impact.mp3"
+ga4_metrics:
+  avgSessionDuration: 306.7237625555556
+  pageViews: 13
+  users: 6
+layout: topic
+prompt: 小泉進次郎が農林水産省の大臣になったことは、米農家にとってプラスになるのか、マイナスになるのか推測したい。
 supplementary_materials:
-  - title: "小泉さんとお米の未来"
-    url: "/share-deepresearch/topics/shinjiro-impact/children.html"
+- title: 小泉さんとお米の未来
+  url: /share-deepresearch/topics/shinjiro-impact/children.html
+tags:
+- 政治
+- 米
+title: 小泉進次郎農林水産大臣就任が日本の米農家にもたらす影響：推測的分析
 ---
 
 # **小泉進次郎農林水産大臣就任が日本の米農家にもたらす影響：推測的分析**
@@ -227,4 +233,4 @@ supplementary_materials:
 23. 小泉進次郎 新農水大臣 就任会見 「明確にコメの価格を下げたい」【ノーカット】 \- YouTube, 5月 24, 2025にアクセス、 [https://www.youtube.com/watch?v=nBUnzymcXUM](https://www.youtube.com/watch?v=nBUnzymcXUM)  
 24. スマート農業の展開について \- 総務省, 5月 24, 2025にアクセス、 [https://www.soumu.go.jp/main\_content/000775128.pdf](https://www.soumu.go.jp/main_content/000775128.pdf)  
 25. 令和4年度スマート農業実証プロジェクト \- 水田作 \- 農林水産技術会議, 5月 24, 2025にアクセス、 [https://www.affrc.maff.go.jp/docs/smart\_agri\_pro/pamphlet/r4/suiden\_saku/index.htm](https://www.affrc.maff.go.jp/docs/smart_agri_pro/pamphlet/r4/suiden_saku/index.htm)  
-26. 暴走する進次郎コメ担当大臣ブチ上げ 備蓄米放出「随意契約」は ..., 5月 24, 2025にアクセス、 [https://www.nikkan-gendai.com/articles/view/news/372223](https://www.nikkan-gendai.com/articles/view/news/372223)  
+26. 暴走する進次郎コメ担当大臣ブチ上げ 備蓄米放出「随意契約」は ..., 5月 24, 2025にアクセス、 [https://www.nikkan-gendai.com/articles/view/news/372223](https://www.nikkan-gendai.com/articles/view/news/372223)

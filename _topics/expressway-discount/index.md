@@ -1,16 +1,22 @@
 ---
-layout: topic
-title: "2025年版 高速道路料金割引制度 完全ガイド"
+audio: /share-deepresearch/assets/audio/expressway-discount.mp3
+category: research
 date: 2025-05-28
-prompt: "高速道路の割引制度について、2025年現在利用可能なものをまとめて欲しい。"
-category: "research"
-tags: [高速道路,割引]
-audio: "/share-deepresearch/assets/audio/expressway-discount.mp3"
+ga4_metrics:
+  avgSessionDuration: 0.35386866666666666
+  pageViews: 3
+  users: 2
+layout: topic
+prompt: 高速道路の割引制度について、2025年現在利用可能なものをまとめて欲しい。
 supplementary_materials:
-  - title: "2025年 高速道路料金割引制度 インフォグラフィック"
-    url: "/share-deepresearch/topics/expressway-discount/infographic.html"
-  - title: "高速道路割引 かんたんガイド 2025年版"
-    url: "/share-deepresearch/topics/expressway-discount/easy.html"
+- title: 2025年 高速道路料金割引制度 インフォグラフィック
+  url: /share-deepresearch/topics/expressway-discount/infographic.html
+- title: 高速道路割引 かんたんガイド 2025年版
+  url: /share-deepresearch/topics/expressway-discount/easy.html
+tags:
+- 高速道路
+- 割引
+title: 2025年版 高速道路料金割引制度 完全ガイド
 ---
 
 # **2025年版 高速道路料金割引制度 完全ガイド**
@@ -510,4 +516,4 @@ NEXCOや都市高速道路以外にも、各都道府県や市町村が管理す
 63. 【2025年版】 二輪車定率割引とツーリングプラン4月1日から開始 Moto Lifez, 5月 28, 2025にアクセス、 [https://motolifez.site/blog/5696](https://motolifez.site/blog/5696)  
 64. ドライブ旅行なら「みち旅」 ｜ NEXCO西日本のドライブパス（周遊割引）とハイウェイツアーの申込専用サイト, 5月 28, 2025にアクセス、 [https://www.michitabi.com/](https://www.michitabi.com/)  
 65. NEXCO西日本が「ぶらり中国ドライブパス2017」を発売 \- 鳥取県, 5月 28, 2025にアクセス、 [https://www.pref.tottori.lg.jp/258751.htm](https://www.pref.tottori.lg.jp/258751.htm)  
-66. みち旅「ぶらり中国ドライブパス」中国地方の高速道路が乗り放題のETC割引、全国旅行支援と併用で山陽・山陰の周遊旅行がお得 \- トラベラーズナビ, 5月 28, 2025にアクセス、 [https://travelersnavi.com/coupon/chugokudrivepass18](https://travelersnavi.com/coupon/chugokudrivepass18)  
+66. みち旅「ぶらり中国ドライブパス」中国地方の高速道路が乗り放題のETC割引、全国旅行支援と併用で山陽・山陰の周遊旅行がお得 \- トラベラーズナビ, 5月 28, 2025にアクセス、 [https://travelersnavi.com/coupon/chugokudrivepass18](https://travelersnavi.com/coupon/chugokudrivepass18)

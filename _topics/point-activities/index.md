@@ -1,14 +1,19 @@
 ---
-layout: topic
-title: "2025年「ポイ活」徹底攻略ガイド：最新キャンペーン情報とポイント獲得戦略"
+audio: /share-deepresearch/assets/audio/point-activities.mp3
+category: research
 date: 2025-05-31
-prompt: "ポイント活動の最新情報を集めたい。これから予定されているキャンペーンも含めてどのサービスが一番ポイントを貯められるのか教えて欲しい。"
-category: "research"
-tags: [ポイ活]
-audio: "/share-deepresearch/assets/audio/point-activities.mp3"
+ga4_metrics:
+  avgSessionDuration: 27.450225111111113
+  pageViews: 9
+  users: 7
+layout: topic
+prompt: ポイント活動の最新情報を集めたい。これから予定されているキャンペーンも含めてどのサービスが一番ポイントを貯められるのか教えて欲しい。
 supplementary_materials:
-  - title: "2025年「ポイ活」市場インフォグラフィック"
-    url: "/share-deepresearch/topics/point-activities/infographic.html"
+- title: 2025年「ポイ活」市場インフォグラフィック
+  url: /share-deepresearch/topics/point-activities/infographic.html
+tags:
+- ポイ活
+title: 2025年「ポイ活」徹底攻略ガイド：最新キャンペーン情報とポイント獲得戦略
 ---
 
 # **2025年「ポイ活」徹底攻略ガイド：最新キャンペーン情報とポイント獲得戦略**
@@ -463,4 +468,4 @@ PayPayポイントは、国内最大級のQRコード決済サービス「PayPay
 170. エディオン 広島本店そごう新館９階 \- dポイントクラブ, 5月 31, 2025にアクセス、 [https://dpoint.docomo.ne.jp/map/114743\_152171/](https://dpoint.docomo.ne.jp/map/114743_152171/)  
 171. 楽天カード 入会キャンペーン 2025年5月 最新号｜2枚目の一番お得な作り方も紹介！ \- VOIX, 5月 31, 2025にアクセス、 [https://voix.jp/credit-cards/rakuten-card/rakutencard-campaign/](https://voix.jp/credit-cards/rakuten-card/rakutencard-campaign/)  
 172. 楽天カード10000ポイントのもらい方とキャンペーン攻略法【2025年5月 最新版】 \- VOIX, 5月 31, 2025にアクセス、 [https://voix.jp/credit-cards/rakuten-card/rakutencvard-30milion/](https://voix.jp/credit-cards/rakuten-card/rakutencvard-30milion/)  
-173. 【ベストコスメ】シャンプー&コンディショナー大賞は、ロクシタン！【2025上半期べスコス】 \- non-no, 5月 31, 2025にアクセス、 [https://nonno.hpplus.jp/beauty/cosmecatalog/239188/](https://nonno.hpplus.jp/beauty/cosmecatalog/239188/)  
+173. 【ベストコスメ】シャンプー&コンディショナー大賞は、ロクシタン！【2025上半期べスコス】 \- non-no, 5月 31, 2025にアクセス、 [https://nonno.hpplus.jp/beauty/cosmecatalog/239188/](https://nonno.hpplus.jp/beauty/cosmecatalog/239188/)

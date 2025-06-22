@@ -1,16 +1,21 @@
 ---
-layout: topic
-title: "見知らぬ他者へのオンライン攻撃の深層心理：X（旧Twitter）における「ダル絡み」の精神状態に関する包括的分析"
+audio: /share-deepresearch/assets/audio/annoying-banter.mp3
+category: research
 date: 2025-06-17
-prompt: "𝕏（Twitter）を見ていると他人のポストにダル絡みする人が居るが、見ず知らずの他人に対して敵意を向ける人の精神状態について詳しく教えて欲しい。"
-category: "research"
-tags: [心理学]
-audio: "/share-deepresearch/assets/audio/annoying-banter.mp3"
+ga4_metrics:
+  avgSessionDuration: 8.394528
+  pageViews: 3
+  users: 2
+layout: topic
+prompt: "\U0001D54F（Twitter）を見ていると他人のポストにダル絡みする人が居るが、見ず知らずの他人に対して敵意を向ける人の精神状態について詳しく教えて欲しい。"
 supplementary_materials:
-  - title: "インフォグラフィック：オンライン攻撃の深層心理"
-    url: "/share-deepresearch/topics/annoying-banter/infographic.html"
-  - title: "オンライン攻撃の深層心理"
-    url: "/share-deepresearch/topics/annoying-banter/reveal.html"
+- title: インフォグラフィック：オンライン攻撃の深層心理
+  url: /share-deepresearch/topics/annoying-banter/infographic.html
+- title: オンライン攻撃の深層心理
+  url: /share-deepresearch/topics/annoying-banter/reveal.html
+tags:
+- 心理学
+title: 見知らぬ他者へのオンライン攻撃の深層心理：X（旧Twitter）における「ダル絡み」の精神状態に関する包括的分析
 ---
 
 # **見知らぬ他者へのオンライン攻撃の深層心理：X（旧Twitter）における「ダル絡み」の精神状態に関する包括的分析**
@@ -260,4 +265,4 @@ X上で見られる「ダル絡み」は、一部の「悪意ある」個人に�
 40. SNS時代に気をつけたい「エコーチェンバー現象」とは？問題点、対策について解説, 6月 17, 2025にアクセス、 [https://www.sowelleber.jp/beplanning/content/sns%E6%99%82%E4%BB%A3%E3%81%AB%E6%B0%97%E3%82%92%E3%81%A4%E3%81%91%E3%81%9F%E3%81%84%E3%80%8C%E3%82%A8%E3%82%B3%E3%83%BC%E3%83%81%E3%82%A7%E3%83%B3%E3%83%90%E3%83%BC%E7%8F%BE%E8%B1%A1%E3%80%8D/](https://www.sowelleber.jp/beplanning/content/sns%E6%99%82%E4%BB%A3%E3%81%AB%E6%B0%97%E3%82%92%E3%81%A4%E3%81%91%E3%81%9F%E3%81%84%E3%80%8C%E3%82%A8%E3%82%B3%E3%83%BC%E3%83%81%E3%82%A7%E3%83%B3%E3%83%90%E3%83%BC%E7%8F%BE%E8%B1%A1%E3%80%8D/)  
 41. エコーチェンバーとは\~SNSの情報は偏っている\!? SHARE info Press, 6月 17, 2025にアクセス、 [https://blog.theshare.info/sharing-economy/echo\_chamber/](https://blog.theshare.info/sharing-economy/echo_chamber/)  
 42. 引用リツイート合戦が嫌いな理由を説明しよう｜うにぽん \- note, 6月 17, 2025にアクセス、 [https://note.com/donaiya/n/naa8021627025](https://note.com/donaiya/n/naa8021627025)  
-43. 攻撃的ツイートに対する拡散行動促進要因に関する 探索的研究 \- 信州大学, 6月 17, 2025にアクセス、 [https://www.shinshu-u.ac.jp/faculty/education/course/psychology/paper/21/099.pdf](https://www.shinshu-u.ac.jp/faculty/education/course/psychology/paper/21/099.pdf)  
+43. 攻撃的ツイートに対する拡散行動促進要因に関する 探索的研究 \- 信州大学, 6月 17, 2025にアクセス、 [https://www.shinshu-u.ac.jp/faculty/education/course/psychology/paper/21/099.pdf](https://www.shinshu-u.ac.jp/faculty/education/course/psychology/paper/21/099.pdf)

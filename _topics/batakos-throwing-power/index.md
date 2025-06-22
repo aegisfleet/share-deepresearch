@@ -1,16 +1,21 @@
 ---
-layout: topic
-title: "バタコさんによるアンパンマンの顔面投擲における速度の理論的考察"
+audio: /share-deepresearch/assets/audio/batakos-throwing-power.mp3
+category: playful
 date: 2025-06-21
-prompt: "バタコさんがアンパンマンの顔を投げる時の速度はどのくらいなのか理論的に説明して欲しい。"
-category: "playful"
-tags: [物理学]
-audio: "/share-deepresearch/assets/audio/batakos-throwing-power.mp3"
+ga4_metrics:
+  avgSessionDuration: 171.2153925
+  pageViews: 5
+  users: 4
+layout: topic
+prompt: バタコさんがアンパンマンの顔を投げる時の速度はどのくらいなのか理論的に説明して欲しい。
 supplementary_materials:
-  - title: "理論物理学で解明するバタコさんの投擲能力"
-    url: "/share-deepresearch/topics/batakos-throwing-power/infographic.html"
-  - title: "バタコさんの投擲の謎を解明する"
-    url: "/share-deepresearch/topics/batakos-throwing-power/reveal.html"
+- title: 理論物理学で解明するバタコさんの投擲能力
+  url: /share-deepresearch/topics/batakos-throwing-power/infographic.html
+- title: バタコさんの投擲の謎を解明する
+  url: /share-deepresearch/topics/batakos-throwing-power/reveal.html
+tags:
+- 物理学
+title: バタコさんによるアンパンマンの顔面投擲における速度の理論的考察
 ---
 
 # **バタコさんによるアンパンマンの顔面投擲における速度の理論的考察**
@@ -161,4 +166,4 @@ v=100 m/3 s=33.3 m/s
 16. 不思議な飛行物体「ピーク」を作って飛ばそう\!, 6月 21, 2025にアクセス、 [https://static.hokkaido-np.co.jp/files/o/files/pdf/manabun/rinpei/rinpei201404.pdf](https://static.hokkaido-np.co.jp/files/o/files/pdf/manabun/rinpei/rinpei201404.pdf)  
 17. ジャイロボールとは？ 種類や投げ方・握り方について解説 \- ALPEN GROUP MAGAZINE, 6月 21, 2025にアクセス、 [https://media.alpen-group.jp/media/detail/baseball\_210514\_01.html](https://media.alpen-group.jp/media/detail/baseball_210514_01.html)  
 18. ジャイロボール \- Wikipedia, 6月 21, 2025にアクセス、 [https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AD%E3%83%9C%E3%83%BC%E3%83%AB](https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AD%E3%83%9C%E3%83%BC%E3%83%AB)  
-19. (2ページ目)足が速い、肩が強い、動きがよい…落合博満監督を楽しませ続けた“ナンバーワン控え選手”が見せた“最後の雄姿” 文春オンライン, 6月 21, 2025にアクセス、 [https://bunshun.jp/articles/-/47082?page=2](https://bunshun.jp/articles/-/47082?page=2)  
+19. (2ページ目)足が速い、肩が強い、動きがよい…落合博満監督を楽しませ続けた“ナンバーワン控え選手”が見せた“最後の雄姿” 文春オンライン, 6月 21, 2025にアクセス、 [https://bunshun.jp/articles/-/47082?page=2](https://bunshun.jp/articles/-/47082?page=2)

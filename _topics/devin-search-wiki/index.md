@@ -1,16 +1,22 @@
 ---
-layout: topic
-title: "Devin SearchおよびDevin WikiのプライベートGitHubリポジトリへの導入に関する包括的技術レポート"
+audio: /share-deepresearch/assets/audio/devin-search-wiki.mp3
+category: ai
 date: 2025-06-17
-prompt: "Devin SearchとDevin Wikiについて、社内の非公開なGitHubリポジトリに対してセットアップする詳細な手順をまとめて欲しい。どうやってWikiに対してアクセスするのか、複数のリポジトリに対して一斉に検索できるかなど、様々なユースケースを考慮して調べて欲しい。"
-category: "ai"
-tags: [Devin,開発環境]
-audio: "/share-deepresearch/assets/audio/devin-search-wiki.mp3"
+ga4_metrics:
+  avgSessionDuration: 378.15569625
+  pageViews: 6
+  users: 3
+layout: topic
+prompt: Devin SearchとDevin Wikiについて、社内の非公開なGitHubリポジトリに対してセットアップする詳細な手順をまとめて欲しい。どうやってWikiに対してアクセスするのか、複数のリポジトリに対して一斉に検索できるかなど、様々なユースケースを考慮して調べて欲しい。
 supplementary_materials:
-  - title: "Devin Enterprise導入に関する技術ガイド"
-    url: "/share-deepresearch/topics/devin-search-wiki/infographic.html"
-  - title: "AIソフトウェアエンジニア「Devin」導入ガイド"
-    url: "/share-deepresearch/topics/devin-search-wiki/reveal.html"
+- title: Devin Enterprise導入に関する技術ガイド
+  url: /share-deepresearch/topics/devin-search-wiki/infographic.html
+- title: AIソフトウェアエンジニア「Devin」導入ガイド
+  url: /share-deepresearch/topics/devin-search-wiki/reveal.html
+tags:
+- Devin
+- 開発環境
+title: Devin SearchおよびDevin WikiのプライベートGitHubリポジトリへの導入に関する包括的技術レポート
 ---
 
 # **Devin SearchおよびDevin WikiのプライベートGitHubリポジトリへの導入に関する包括的技術レポート**
@@ -549,4 +555,4 @@ Devin SearchとDevin Wikiは、正しく理解し、戦略的に導入・運用�
 49. Guide To Calculating TCO On AWS And Tools To Help \- CloudZero, 6月 17, 2025にアクセス、 [https://www.cloudzero.com/blog/tco-aws/](https://www.cloudzero.com/blog/tco-aws/)  
 50. AWS Pricing/TCO Tools, 6月 17, 2025にアクセス、 [https://docs.aws.amazon.com/whitepapers/latest/how-aws-pricing-works/aws-pricingtco-tools.html](https://docs.aws.amazon.com/whitepapers/latest/how-aws-pricing-works/aws-pricingtco-tools.html)  
 51. Azure Pricing and TCO Calculator \- GeeksforGeeks, 6月 17, 2025にアクセス、 [https://www.geeksforgeeks.org/azure-pricing-and-tco-calculator/](https://www.geeksforgeeks.org/azure-pricing-and-tco-calculator/)  
-52. Practical Use of TCO and Pricing Calculator for Cost Management \- DEV Community, 6月 17, 2025にアクセス、 [https://dev.to/celestina\_odili/practical-use-of-tco-and-pricing-calculator-for-cost-management-2j9a](https://dev.to/celestina_odili/practical-use-of-tco-and-pricing-calculator-for-cost-management-2j9a)  
+52. Practical Use of TCO and Pricing Calculator for Cost Management \- DEV Community, 6月 17, 2025にアクセス、 [https://dev.to/celestina\_odili/practical-use-of-tco-and-pricing-calculator-for-cost-management-2j9a](https://dev.to/celestina_odili/practical-use-of-tco-and-pricing-calculator-for-cost-management-2j9a)

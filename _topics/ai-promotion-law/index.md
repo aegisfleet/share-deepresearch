@@ -1,14 +1,20 @@
 ---
-layout: topic
-title: "AI関連技術の研究開発・活用推進法がもたらす影響：包括的分析"
+audio: /share-deepresearch/assets/audio/ai-promotion-law.mp3
+category: ai
 date: 2025-05-29
-prompt: "AI関連技術の研究開発・活用推進法の内容から、どのような影響が出るのかまとめて欲しい。"
-category: "ai"
-tags: ["政治","法改正"]
-audio: "/share-deepresearch/assets/audio/ai-promotion-law.mp3"
+ga4_metrics:
+  avgSessionDuration: 41.062797
+  pageViews: 2
+  users: 1
+layout: topic
+prompt: AI関連技術の研究開発・活用推進法の内容から、どのような影響が出るのかまとめて欲しい。
 supplementary_materials:
-  - title: "AI推進法：日本の産業と市場への影響"
-    url: "/share-deepresearch/topics/ai-promotion-law/infographic.html"
+- title: AI推進法：日本の産業と市場への影響
+  url: /share-deepresearch/topics/ai-promotion-law/infographic.html
+tags:
+- 政治
+- 法改正
+title: AI関連技術の研究開発・活用推進法がもたらす影響：包括的分析
 ---
 
 # **AI関連技術の研究開発・活用推進法がもたらす影響：包括的分析**
@@ -378,4 +384,4 @@ AI推進法は、日本がAIの変革力を活用するための重要な法的�
 104. 半導体・デジタル産業戦略, 5月 29, 2025にアクセス、 [https://www.meti.go.jp/policy/mono\_info\_service/joho/conference/semiconductors\_and\_digital.pdf](https://www.meti.go.jp/policy/mono_info_service/joho/conference/semiconductors_and_digital.pdf)  
 105. AIの経済・金融への影響と各国の規制や支援の枠組み, 5月 29, 2025にアクセス、 [https://www.iima.or.jp/docs/newsletter/2024/nl2024.35.pdf](https://www.iima.or.jp/docs/newsletter/2024/nl2024.35.pdf)  
 106. 脳型 AI アクセラレータ \- 科学技術振興機構（JST）, 5月 29, 2025にアクセス、 [https://www.jst.go.jp/crds/pdf/2020/SP/CRDS-FY2020-SP-04.pdf](https://www.jst.go.jp/crds/pdf/2020/SP/CRDS-FY2020-SP-04.pdf)  
-107. 産学連携によるAI人材等の育成に関する 文部科学省の取組, 5月 29, 2025にアクセス、 [https://www.mext.go.jp/component/a\_menu/education/detail/\_\_icsFiles/afieldfile/2019/01/30/1413186\_4\_1.pdf](https://www.mext.go.jp/component/a_menu/education/detail/__icsFiles/afieldfile/2019/01/30/1413186_4_1.pdf)  
+107. 産学連携によるAI人材等の育成に関する 文部科学省の取組, 5月 29, 2025にアクセス、 [https://www.mext.go.jp/component/a\_menu/education/detail/\_\_icsFiles/afieldfile/2019/01/30/1413186\_4\_1.pdf](https://www.mext.go.jp/component/a_menu/education/detail/__icsFiles/afieldfile/2019/01/30/1413186_4_1.pdf)

@@ -1,16 +1,23 @@
 ---
-layout: topic
-title: "Model Context Protocol対応AIエージェントのGitHub Actionsにおける活用調査"
+audio: /share-deepresearch/assets/audio/mcp-client-compatible-ai-agent.mp3
+category: ai
 date: 2025-05-24
-prompt: "Model Context Protocol (MCP)クライアントに対応したAIエージェントで、GitHub Actionsのランナー上で動作する、もしくはランナーから指示が出せるものを調査して欲しい。"
-category: "ai"
-tags: [MCP,GitHub,GitHub Actions]
-audio: "/share-deepresearch/assets/audio/mcp-client-compatible-ai-agent.mp3"
+ga4_metrics:
+  avgSessionDuration: 222.31666122222222
+  pageViews: 14
+  users: 5
+layout: topic
+prompt: Model Context Protocol (MCP)クライアントに対応したAIエージェントで、GitHub Actionsのランナー上で動作する、もしくはランナーから指示が出せるものを調査して欲しい。
 supplementary_materials:
-  - title: "MCP対応AIエージェント調査レポート SPA"
-    url: "/share-deepresearch/topics/mcp-client-compatible-ai-agent/dashboard.html"
-  - title: "AIエージェント技術動向SPAインフォグラフィック：GitHub Actions連携"
-    url: "/share-deepresearch/topics/mcp-client-compatible-ai-agent/infographic.html"
+- title: MCP対応AIエージェント調査レポート SPA
+  url: /share-deepresearch/topics/mcp-client-compatible-ai-agent/dashboard.html
+- title: AIエージェント技術動向SPAインフォグラフィック：GitHub Actions連携
+  url: /share-deepresearch/topics/mcp-client-compatible-ai-agent/infographic.html
+tags:
+- MCP
+- GitHub
+- GitHub Actions
+title: Model Context Protocol対応AIエージェントのGitHub Actionsにおける活用調査
 ---
 
 # **Model Context Protocol対応AIエージェントのGitHub Actionsにおける活用調査**
@@ -533,4 +540,4 @@ AIが複雑なソフトウェア開発や運用タスクの自動化において
 61. MCP Server in Python — Everything I Wish I'd Known on Day One DigitalOcean, 5月 25, 2025にアクセス、 [https://www.digitalocean.com/community/tutorials/mcp-server-python](https://www.digitalocean.com/community/tutorials/mcp-server-python)  
 62. prayanks/mcp-sqlite-server: These are MCP server implementations for accessing a SQLite database in your MCP client. There is both a SDIO and a SSE implementation. \- GitHub, 5月 25, 2025にアクセス、 [https://github.com/prayanks/mcp-sqlite-server](https://github.com/prayanks/mcp-sqlite-server)  
 63. Use InvokeAgent with an AWS SDK \- Amazon Bedrock, 5月 25, 2025にアクセス、 [https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-agent-runtime\_example\_bedrock-agent-runtime\_InvokeAgent\_section.html](https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-agent-runtime_example_bedrock-agent-runtime_InvokeAgent_section.html)  
-64. Integration with Pydantic AI · langfuse · Discussion \#5036 \- GitHub, 5月 25, 2025にアクセス、 [https://github.com/orgs/langfuse/discussions/5036](https://github.com/orgs/langfuse/discussions/5036)  
+64. Integration with Pydantic AI · langfuse · Discussion \#5036 \- GitHub, 5月 25, 2025にアクセス、 [https://github.com/orgs/langfuse/discussions/5036](https://github.com/orgs/langfuse/discussions/5036)
