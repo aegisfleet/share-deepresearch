@@ -2,8 +2,8 @@ name: Update GA4 Metrics
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 毎日午前0時に実行
-  workflow_dispatch:      # 手動実行も可能
+    - cron: '0 15 * * *'  # JSTの深夜0時（UTC+9）に実行
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -11,25 +11,25 @@ permissions:
 jobs:
   update-metrics:
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-          
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install google-analytics-data
           pip install python-frontmatter
-          
+
       - name: Create credentials file
         run: |
           echo '${{ secrets.GA4_CREDENTIALS_JSON }}' > ga4-credentials.json
-          
+
       - name: Update GA4 metrics
         env:
           GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
@@ -37,7 +37,7 @@ jobs:
         run: |
           python scripts/update_ga4_metrics.py
           rm ga4-credentials.json
-        
+
       - name: Commit changes
         run: |
           # Configure git user

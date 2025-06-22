@@ -134,7 +134,7 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-                    <p class="date">{{ topic.date | date: "%Y年%m月%d日" }}</p>
+                    <p class="date">📊 {{ topic.ga4_metrics.pageViews | default: 0 }} / {{ topic.date | date: "%Y年%m月%d日" }}</p>
                 </div>
             </li>
         {% endfor %}
