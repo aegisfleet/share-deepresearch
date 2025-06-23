@@ -2,7 +2,7 @@ name: Update GA4 Metrics
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # JSTの18時（UTC+9）に実行
+    - cron: '0 */3 * * *'  # 3時間おきに実行（JST: 9時、12時、15時、18時、21時、0時、3時、6時）
   workflow_dispatch:
 
 permissions:
