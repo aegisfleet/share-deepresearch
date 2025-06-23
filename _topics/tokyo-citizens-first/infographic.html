@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025年東京都議選：インフォグラフィック分析</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .font-roboto {
+            font-family: 'Roboto', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 50vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 450px;
+            }
+        }
+        .flow-arrow {
+            position: relative;
+            padding: 1rem;
+            text-align: center;
+        }
+        .flow-arrow::after {
+            content: '▼';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            color: #005f73;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+    <main class="max-w-5xl mx-auto p-4 sm:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#005f73] mb-4">東京の新たな夜明け</h1>
+            <p class="text-lg md:text-xl text-slate-600">2025年都議選インフォグラフィック分析：都民ファーストの会、第一党奪還後の首都の未来</p>
+        </header>
+
+        <section id="election-results" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#005f73] mb-2">勢力図の激変：2025年都議会選挙結果</h2>
+                <p class="text-slate-600 mb-6">今回の都議選で、都民ファーストの会が4年ぶりに第一党の座を奪還。一方、自民党は過去最低議席へと後退し、国民民主党や参政党が新たに議席を獲得するなど、都議会の構成は大きく変化しました。</p>
+                <div class="chart-container">
+                    <canvas id="seatDistributionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="coalition" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#005f73] mb-2">都政運営の鍵：新たな与党連合</h2>
+                <p class="text-slate-600 mb-6">単独過半数に届かない都民ファーストの会にとって、安定した都政運営には連立パートナーが不可欠です。これまで協力関係にあった公明党に加え、躍進した国民民主党との連携が実現すれば、過半数を確保する強力な与党連合が誕生します。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="chart-container" style="height: 300px; max-height: 350px;">
+                        <canvas id="coalitionChart"></canvas>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <div class="mb-4">
+                            <p class="text-4xl font-roboto font-bold text-[#0a9396]">60<span class="text-2xl ml-1">議席</span></p>
+                            <p class="font-bold text-slate-700">都民ファ＋公明＋国民</p>
+                            <p class="text-sm text-slate-500">3会派の合計議席数</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-roboto font-bold text-slate-500">64<span class="text-2xl ml-1">議席</span></p>
+                            <p class="font-bold text-slate-700">過半数ライン</p>
+                            <p class="text-sm text-slate-500">全127議席中の必要数</p>
+                        </div>
+                        <p class="mt-4 text-sm text-slate-600">この3会派の連携が、今後の政策実現のスピードと規模を大きく左右します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="policies" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#005f73] mb-2">「東京大改革」の柱：主要政策のビジョン</h2>
+                <p class="text-slate-600 mb-6">都民ファーストの会が掲げる公約は、小池都政の長期ビジョン「未来の東京」戦略と連動し、東京が直面する構造的課題に正面から向き合うものです。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center bg-[#e9d8a6] p-6 rounded-xl shadow-md border-b-4 border-[#ee9b00]">
+                        <div class="text-5xl mb-3">👶</div>
+                        <h3 class="font-bold text-lg text-[#9b2226] mb-2">チルドレン<br>ファースト</h3>
+                        <p class="text-sm text-slate-700">「018サポート」の継続・拡充や第二子の保育料無償化を目指します。</p>
+                    </div>
+                    <div class="text-center bg-[#e9d8a6] p-6 rounded-xl shadow-md border-b-4 border-[#ee9b00]">
+                        <div class="text-5xl mb-3">👵</div>
+                        <h3 class="font-bold text-lg text-[#9b2226] mb-2">インクルーシブな<br>長寿社会</h3>
+                        <p class="text-sm text-slate-700">介護職の時給1,500円や障害福祉の所得制限撤廃を掲げます。</p>
+                    </div>
+                    <div class="text-center bg-[#e9d8a6] p-6 rounded-xl shadow-md border-b-4 border-[#ee9b00]">
+                        <div class="text-5xl mb-3">📈</div>
+                        <h3 class="font-bold text-lg text-[#9b2226] mb-2">経済活性化と<br>格差是正</h3>
+                        <p class="text-sm text-slate-700">スタートアップ支援や「多摩格差」の解消を強力に推進します。</p>
+                    </div>
+                    <div class="text-center bg-[#e9d8a6] p-6 rounded-xl shadow-md border-b-4 border-[#ee9b00]">
+                        <div class="text-5xl mb-3">🌳</div>
+                        <h3 class="font-bold text-lg text-[#9b2226] mb-2">強靭で<br>グリーンな首都</h3>
+                        <p class="text-sm text-slate-700">無電柱化の加速や「ゼロエミッション東京」の実現を目指します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="key-people" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#005f73] mb-2">改革の建築家たち：注目すべき主要人物</h2>
+                <p class="text-slate-600 mb-6">都政の新たなフェーズは、経験豊かなリーダーと新しい視点を持つ論客たちによって牽引されます。彼らが都民ファーストの会の政策を具体化し、実行していく中心人物です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-slate-50 rounded-lg p-4 text-center transform hover:scale-105 transition-transform duration-300">
+                        <h3 class="font-bold text-lg text-[#005f73]">森村 隆行</h3>
+                        <p class="text-sm font-bold text-[#0a9396]">代表</p>
+                        <p class="text-xs text-slate-500 mt-2">大手企業での経験を活かし、党の顔として他会派との交渉を主導。</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-lg p-4 text-center transform hover:scale-105 transition-transform duration-300">
+                        <h3 class="font-bold text-lg text-[#005f73]">尾島 紘平</h3>
+                        <p class="text-sm font-bold text-[#0a9396]">幹事長</p>
+                        <p class="text-xs text-slate-500 mt-2">知事の側近として政策立案の中核を担う、若き実力者。</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-lg p-4 text-center transform hover:scale-105 transition-transform duration-300">
+                        <h3 class="font-bold text-lg text-[#005f73]">荒木 ちはる</h3>
+                        <p class="text-sm font-bold text-[#0a9396]">総務会長</p>
+                        <p class="text-xs text-slate-500 mt-2">元党代表。自身の子育て経験を基に、福祉政策を力強く提言。</p>
+                    </div>
+                    <div class="bg-slate-50 rounded-lg p-4 text-center transform hover:scale-105 transition-transform duration-300 md:col-span-2 lg:col-span-3">
+                        <h3 class="font-bold text-lg text-[#005f73]">乙武 洋匡</h3>
+                        <p class="text-sm font-bold text-[#0a9396]">副代表</p>
+                        <p class="text-xs text-slate-500 mt-2">党の象徴として多様性やインクルージョンの重要性を社会に発信するキーパーソン。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="risks" class="mb-8">
+             <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#005f73] mb-2">今後の針路：成功への道と潜在的リスク</h2>
+                <p class="text-slate-600 mb-6">「東京大改革」の加速が期待される一方、その実現にはいくつかの重要な要素が絡み合います。政策実行の成否は、これらのリスクをいかに管理できるかにかかっています。</p>
+                <div class="text-center">
+                    <div class="bg-[#005f73] text-white font-bold p-4 rounded-lg shadow-xl inline-block">
+                        都民ファーストの会<br>政策実現
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4">
+                        <div class="flow-arrow"></div>
+                        <div class="flow-arrow"></div>
+                        <div class="flow-arrow"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-amber-100 border-t-4 border-[#ca6702] rounded-b-lg p-4 shadow">
+                            <h4 class="font-bold text-[#9b2226]">小池知事の政治力</h4>
+                            <p class="text-xs text-slate-600 mt-1">党の求心力は知事個人に大きく依存しており、その影響力の変動が党の結束に直結する。</p>
+                        </div>
+                         <div class="bg-amber-100 border-t-4 border-[#ca6702] rounded-b-lg p-4 shadow">
+                            <h4 class="font-bold text-[#9b2226]">与党連合の安定性</h4>
+                            <p class="text-xs text-slate-600 mt-1">公明・国民民主との連携は政策実現の生命線。連合内の対立は都政の停滞を招く。</p>
+                        </div>
+                         <div class="bg-amber-100 border-t-4 border-[#ca6702] rounded-b-lg p-4 shadow">
+                            <h4 class="font-bold text-[#9b2226]">国政との関係</h4>
+                            <p class="text-xs text-slate-600 mt-1">国政自民党の動向は都政への圧力となり得る。国との緊張関係の管理が重要。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-4 text-xs text-slate-500">
+        <p>本インフォグラフィックは提供された調査レポートに基づき作成されました。無断転載を禁じます。</p>
+        <p>© 2025 Infographic Analysis. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const wrapLabel = (label, maxWidth = 16) => {
+            if (label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split('');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = '';
+                }
+                currentLine += word;
+            });
+            lines.push(currentLine);
+            return lines;
+        };
+
+        const multiLineTooltipTitle = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join('');
+                            }
+                            return label;
+                        }
+                    }
+                },
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                         boxWidth: 20,
+                         padding: 20
+                    }
+                }
+            }
+        };
+
+        const seatData = {
+            '都民ファーストの会': 31,
+            '自由民主党': 21,
+            '公明党': 19,
+            '立憲民主党': 17,
+            '日本共産党': 14,
+            '国民民主党': 9,
+            '参政党': 3,
+        };
+        const sortedParties = Object.keys(seatData).sort((a, b) => seatData[b] - seatData[a]);
+        
+        new Chart(document.getElementById('seatDistributionChart'), {
+            type: 'bar',
+            data: {
+                labels: sortedParties.map(label => wrapLabel(label)),
+                datasets: [{
+                    label: '獲得議席数',
+                    data: sortedParties.map(party => seatData[party]),
+                    backgroundColor: ['#0a9396', '#005f73', '#9b2226', '#ca6702', '#ee9b00', '#ae2012', '#bb3e03'],
+                    borderColor: '#ffffff',
+                    borderWidth: 2,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                ...multiLineTooltipTitle,
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                           display: false
+                        },
+                        ticks: {
+                            font: {
+                                family: "'Roboto', sans-serif",
+                                weight: '700'
+                            }
+                        }
+                    },
+                    y: {
+                         grid: {
+                           display: false
+                        },
+                        ticks: {
+                            font: {
+                                family: "'Noto Sans JP', sans-serif",
+                                weight: '700'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    ...multiLineTooltipTitle.plugins,
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        const totalSeats = 127;
+        const tominSeats = 31;
+        const komeiSeats = 19;
+        const kokuminSeats = 9;
+        const coalitionSeats = tominSeats + komeiSeats + kokuminSeats;
+        const otherSeats = totalSeats - coalitionSeats;
+
+        new Chart(document.getElementById('coalitionChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['与党連合 (都民F+公明+国民)', 'その他'],
+                datasets: [{
+                    data: [coalitionSeats, otherSeats],
+                    backgroundColor: ['#0a9396', '#e9d8a6'],
+                    borderColor: '#ffffff',
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                ...multiLineTooltipTitle,
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+            }
+        });
+    </script>
+</body>
+</html>
