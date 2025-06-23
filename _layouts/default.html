@@ -126,15 +126,17 @@
                     <a href="{{ topic.url | relative_url }}" class="topic-title">{{ topic.title }}</a>
                     {% if topic.prompt %}
                     <p class="topic-prompt">{{ topic.prompt }}</p>
-                    {% endif %}
-                    {% if topic.tags and topic.tags.size > 0 %}
+                    {% endif %}                    {% if topic.tags and topic.tags.size > 0 %}
                     <div class="topic-tags">
                         {% for tag in topic.tags %}
                         <span class="topic-tag" data-tag="{{ tag }}">🏷️ {{ tag }}</span>
                         {% endfor %}
                     </div>
                     {% endif %}
-                    <p class="date">📊 {{ topic.ga4_metrics.pageViews | default: 0 }} /  {{ topic.ga4_metrics.users | default: 0 }} /  {{ topic.ga4_metrics.avgSessionDuration | round: 0 | default: 0.0 }}秒 : {{ topic.date | date: "%Y年%m月%d日" }}</p>
+                    <div class="metrics-date-container">
+                        <span class="metrics">📊 {{ topic.ga4_metrics.pageViews | default: 0 }}回 /  {{ topic.ga4_metrics.users | default: 0 }}人 /  {{ topic.ga4_metrics.avgSessionDuration | round: 0 | default: 0.0 }}秒</span>
+                        <span class="date">{{ topic.date | date: "%Y年%m月%d日" }}</span>
+                    </div>
                 </div>
             </li>
         {% endfor %}

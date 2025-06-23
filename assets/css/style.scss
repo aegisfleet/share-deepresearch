@@ -209,7 +209,7 @@ a:hover {
     display: grid;
     grid-template-columns: repeat(2, 1fr);  /* 2列のグリッド */
     gap: 1rem;  /* グリッドアイテム間の間隔 */
-    margin-top: 1rem; // タグフィルターとの間にマージン
+    margin-top: 1rem;
 }
 
 .topic-list li {
@@ -239,6 +239,32 @@ a:hover {
     flex: 1;
     padding-bottom: 2rem;  /* 日付用のスペース確保 */
     height: 100%;  /* 親要素の高さいっぱいに広げる */
+    position: relative;  /* 子要素の絶対位置指定のための基準点 */
+}
+
+.metrics-date-container {
+    position: absolute;
+    bottom: 0.4rem;
+    left: 0.4rem;
+    right: 0.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: auto;
+    pointer-events: none;
+    gap: 1rem;
+}
+
+.metrics {
+    font-size: 0.85rem;
+    color: var(--secondary-color);
+    white-space: normal;
+    overflow: visible;
+    text-overflow: initial;
+    flex-shrink: 0;
+    flex-basis: 150px;
+    min-width: 0;
+    pointer-events: auto;
 }
 
 .topic-title {
@@ -294,15 +320,6 @@ a:hover {
 .topic-tag:hover {
     background-color: var(--tag-hover-bg, #404040);
     border-color: var(--tag-hover-border, #505050);
-}
-
-.date {
-    font-size: 0.85rem;
-    color: var(--secondary-color);
-    position: absolute;
-    bottom: 0.8rem;
-    right: 1.5rem;
-    margin: 0;
 }
 
 /* GA4メトリクス */
@@ -652,7 +669,7 @@ ul, ol {
 }
 
 /* レスポンシブデザイン */
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .topic-list {
         grid-template-columns: 1fr;  /* スマートフォンでは1列に */
     }
