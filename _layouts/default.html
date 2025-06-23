@@ -115,13 +115,23 @@
             {% endfor %}
         </div>
         <h2>トピック一覧</h2>
+        <div class="sort-options">
+            <button class="sort-btn" data-sort-by="pageViews" data-sort-order="desc" title="ページビュー順にソート">🔄ページビュー</button>
+            <button class="sort-btn" data-sort-by="users" data-sort-order="desc" title="ユーザー数順にソート">🔄ユーザー数</button>
+            <button class="sort-btn" data-sort-by="avgSessionDuration" data-sort-order="desc" title="平均セッション時間順にソート">🔄セッション</button>
+            <button class="sort-btn reset-sort" data-sort-by="date" data-sort-order="desc" title="投稿日時順にリセット">🔄リセット</button>
+        </div>
         <ul class="topic-list">
         {% assign sorted_topics = site.topics | sort: 'date' | reverse %}
         {% for topic in sorted_topics %}
             <li {% if topic.category %}data-category="{{ topic.category }}"{% endif %}
                 {% if topic.tags and topic.tags.size > 0 %}
                     data-tags="{{ topic.tags | join: ',' }}"
-                {% endif %}>
+                {% endif %}
+                data-date="{{ topic.date | date_to_xmlschema }}"
+                data-pageviews="{{ topic.ga4_metrics.pageViews | default: 0 }}"
+                data-users="{{ topic.ga4_metrics.users | default: 0 }}"
+                data-avgsessionduration="{{ topic.ga4_metrics.avgSessionDuration | round: 0 | default: 0.0 }}">
                 <div class="topic-content">
                     <a href="{{ topic.url | relative_url }}" class="topic-title">{{ topic.title }}</a>
                     {% if topic.prompt %}
@@ -167,6 +177,8 @@
             const tagButtons = document.querySelectorAll('.tag-filter .tag-btn');
             const topicListItems = document.querySelectorAll('.topic-list li');
             const topicTags = document.querySelectorAll('.topic-tag');
+            // ソートボタンの制御
+            const sortButtons = document.querySelectorAll('.sort-options .sort-btn');
 
             // スクロール位置に応じてボタンの表示/非表示を切り替え
             window.addEventListener('scroll', function() {
@@ -190,7 +202,7 @@
                 button.addEventListener('click', function() {
                     categoryButtons.forEach(btn => btn.classList.remove('active'));
                     this.classList.add('active');
-                    applyFilters();
+                    applyFiltersAndSort(); // フィルタ適用後にソートも実行
                 });
             });
 
@@ -199,12 +211,12 @@
                 tag.addEventListener('click', function(e) {
                     e.preventDefault(); // デフォルトのクリックイベントを防止
                     const clickedTag = this.getAttribute('data-tag');
-                    
+
                     // URLを更新
                     const url = new URL(window.location.href);
                     url.searchParams.set('tag', clickedTag);
                     window.history.pushState({}, '', url);
-                    
+
                     // タグフィルターボタンを更新
                     tagButtons.forEach(btn => {
                         if (btn.getAttribute('data-tag') === clickedTag) {
@@ -215,7 +227,7 @@
                     });
 
                     // フィルターを適用
-                    applyFilters();
+                    applyFiltersAndSort(); // フィルタ適用後にソートも実行
                 });
             });
 
@@ -223,7 +235,7 @@
             tagButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const clickedTag = this.getAttribute('data-tag');
-                    
+
                     // URLを更新
                     const url = new URL(window.location.href);
                     if (clickedTag === 'all') {
@@ -232,10 +244,38 @@
                         url.searchParams.set('tag', clickedTag);
                     }
                     window.history.pushState({}, '', url);
-                    
+
                     tagButtons.forEach(btn => btn.classList.remove('active'));
                     this.classList.add('active');
-                    applyFilters();
+                    applyFiltersAndSort(); // フィルタ適用後にソートも実行
+                });
+            });
+
+            // ソートボタンの制御
+            sortButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const isReset = this.classList.contains('reset-sort');
+                    
+                    sortButtons.forEach(btn => btn.classList.remove('active'));
+                    if (!isReset) {
+                        this.classList.add('active');
+                    }
+                    
+                    if (isReset) {
+                        // 日付順にリセット
+                        const topicList = document.querySelector('.topic-list');
+                        const topics = Array.from(topicList.querySelectorAll('li:not([style*="display: none"])'));
+                        
+                        topics.sort((a, b) => {
+                            const dateA = new Date(a.getAttribute('data-date'));
+                            const dateB = new Date(b.getAttribute('data-date'));
+                            return dateB - dateA;
+                        });
+                        
+                        topics.forEach(topic => topicList.appendChild(topic));
+                    } else {
+                        applySort(); // 通常のソートを実行
+                    }
                 });
             });
 
@@ -262,6 +302,30 @@
                 });
             }
 
+            // ソート適用関数
+            function applySort() {
+                const selectedSortButton = document.querySelector('.sort-options .sort-btn.active');
+                if (!selectedSortButton) return;
+
+                const sortBy = selectedSortButton.getAttribute('data-sort-by');
+                const topicList = document.querySelector('.topic-list');
+                const topics = Array.from(topicList.querySelectorAll('li:not([style*="display: none"])'));
+
+                topics.sort((a, b) => {
+                    const valueA = parseFloat(a.getAttribute(`data-${sortBy.toLowerCase()}`)) || 0;
+                    const valueB = parseFloat(b.getAttribute(`data-${sortBy.toLowerCase()}`)) || 0;
+                    return valueB - valueA; // 常に降順（大きい順）にソート
+                });
+
+                topics.forEach(topic => topicList.appendChild(topic));
+            }
+
+            // フィルタとソートをまとめて適用する関数
+            function applyFiltersAndSort() {
+                applyFilters();
+                applySort();
+            }
+
             // タグが指定されている場合、該当するタグボタンをアクティブにする
             if (selectedTag) {
                 tagButtons.forEach(btn => {
@@ -271,10 +335,40 @@
                         btn.classList.remove('active');
                     }
                 });
-                // フィルターを適用
-                applyFilters();
             }
+
+            // 初期表示時にフィルタとソートを適用
+            applyFiltersAndSort();
         });
     </script>
+    <style>
+        .sort-options .sort-btn {
+            background-color: #333;
+            color: white;
+            border: 1px solid #555;
+            padding: 4px 6px;
+            margin: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sort-options .sort-btn:hover {
+            background-color: #444;
+        }
+
+        .sort-options .sort-btn.active {
+            background-color: #555;
+            border-color: #666;
+        }
+
+        .sort-options .reset-sort {
+            background-color: #444;
+            border-color: #666;
+        }
+
+        .sort-options .reset-sort:hover {
+            background-color: #555;
+        }
+    </style>
 </body>
 </html>
