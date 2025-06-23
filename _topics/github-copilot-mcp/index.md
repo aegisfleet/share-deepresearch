@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/github-copilot-mcp.mp3
 category: ai
 date: 2025-06-01
 ga4_metrics:
-  avgSessionDuration: 387.0177835
-  pageViews: 2
-  users: 2
+  avgSessionDuration: 322.3486716666667
+  pageViews: 3
+  users: 3
 layout: topic
 prompt: GitHub Copilotで使えるMCPサーバーで開発者に人気のものをまとめて欲しい。
 supplementary_materials:

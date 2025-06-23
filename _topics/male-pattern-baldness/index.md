@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/male-pattern-baldness.mp3
 category: playful
 date: 2025-06-15
 ga4_metrics:
-  avgSessionDuration: 6.274224
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 359.178931
+  pageViews: 2
+  users: 2
 layout: topic
 prompt: 人間の今の姿が自然淘汰された進化の結果だとしたら、男性がハゲる理由は何故なのか理論的に説明して欲しい。
 supplementary_materials:

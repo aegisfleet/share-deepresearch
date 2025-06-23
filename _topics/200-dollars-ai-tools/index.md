@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/200-dollars-ai-tools.mp3
 category: ai
 date: 2025-06-19
 ga4_metrics:
-  avgSessionDuration: 178.16684033333334
-  pageViews: 10
+  avgSessionDuration: 194.61016971428575
+  pageViews: 12
   users: 4
 layout: topic
 prompt: 有償のAIツールの利用を検討している。なるべく用途が被らないように、200米ドルで使えるツールの組み合わせをたくさん提案して欲しい。

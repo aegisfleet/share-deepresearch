@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/devin-search-wiki.mp3
 category: ai
 date: 2025-06-17
 ga4_metrics:
-  avgSessionDuration: 378.15569625
-  pageViews: 6
+  avgSessionDuration: 558.3979676
+  pageViews: 8
   users: 3
 layout: topic
 prompt: Devin SearchとDevin Wikiについて、社内の非公開なGitHubリポジトリに対してセットアップする詳細な手順をまとめて欲しい。どうやってWikiに対してアクセスするのか、複数のリポジトリに対して一斉に検索できるかなど、様々なユースケースを考慮して調べて欲しい。

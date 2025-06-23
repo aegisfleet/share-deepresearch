@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/rumors-of-iphone17.mp3
 category: research
 date: 2025-06-21
 ga4_metrics:
-  avgSessionDuration: 7.770212
-  pageViews: 1
-  users: 2
+  avgSessionDuration: 296.728066
+  pageViews: 7
+  users: 4
 layout: topic
 prompt: iPhone17に関する噂を集めて欲しい。
 supplementary_materials:

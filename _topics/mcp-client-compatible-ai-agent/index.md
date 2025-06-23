@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/mcp-client-compatible-ai-agent.mp3
 category: ai
 date: 2025-05-24
 ga4_metrics:
-  avgSessionDuration: 222.31666122222222
-  pageViews: 14
+  avgSessionDuration: 203.5388393
+  pageViews: 16
   users: 5
 layout: topic
 prompt: Model Context Protocol (MCP)クライアントに対応したAIエージェントで、GitHub Actionsのランナー上で動作する、もしくはランナーから指示が出せるものを調査して欲しい。

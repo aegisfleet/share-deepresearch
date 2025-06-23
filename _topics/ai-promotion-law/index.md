@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/ai-promotion-law.mp3
 category: ai
 date: 2025-05-29
 ga4_metrics:
-  avgSessionDuration: 41.062797
-  pageViews: 2
+  avgSessionDuration: 23.092403
+  pageViews: 3
   users: 1
 layout: topic
 prompt: AI関連技術の研究開発・活用推進法の内容から、どのような影響が出るのかまとめて欲しい。

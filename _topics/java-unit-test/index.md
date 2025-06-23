@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/java-unit-test.mp3
 category: ai
 date: 2025-06-05
 ga4_metrics:
-  avgSessionDuration: 430.1827308888889
-  pageViews: 12
+  avgSessionDuration: 387.64332079999997
+  pageViews: 13
   users: 6
 layout: topic
 prompt: Javaのユニットテストを自動で作成したい。前提条件として無料で使用できる必要がある。生成AIを使用する場合はAzureと接続できるものとする。

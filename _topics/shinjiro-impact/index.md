@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/shinjiro-impact.mp3
 category: research
 date: 2025-05-24
 ga4_metrics:
-  avgSessionDuration: 306.7237625555556
-  pageViews: 13
+  avgSessionDuration: 276.0513863
+  pageViews: 14
   users: 6
 layout: topic
 prompt: 小泉進次郎が農林水産省の大臣になったことは、米農家にとってプラスになるのか、マイナスになるのか推測したい。

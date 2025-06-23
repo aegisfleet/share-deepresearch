@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/chemistry-basics.mp3
 category: study
 date: 2025-05-25
 ga4_metrics:
-  avgSessionDuration: 299.3370745217391
-  pageViews: 45
+  avgSessionDuration: 329.46878745833334
+  pageViews: 47
   users: 17
 layout: topic
 prompt: 化学基礎に出てくる単語の復習にしようする資料を作成したい。高校生が理解できる内容で丁寧にまとめて欲しい。

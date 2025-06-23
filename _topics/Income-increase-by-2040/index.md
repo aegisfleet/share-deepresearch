@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/Income-increase-by-2040.mp3
 category: research
 date: 2025-06-11
 ga4_metrics:
-  avgSessionDuration: 396.8200316
-  pageViews: 6
-  users: 5
+  avgSessionDuration: 330.68335966666666
+  pageViews: 7
+  users: 6
 layout: topic
 prompt: 2040年に日本人の平均所得を5割増させる事ができるのか、数値的根拠を示して解説して欲しい。
 supplementary_materials:
