@@ -2,6 +2,10 @@
 audio: /share-deepresearch/assets/audio/tokyo-citizens-first.mp3
 category: research
 date: 2025-06-23
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 2025年東京都議選にて都民ファーストの会が第1党となったことで今後の東京都はどうなるかまとめたい。また、今回当選した議員で注目すべき人が居れば併せて調査して欲しい。
 supplementary_materials:
