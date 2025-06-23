@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/tokyo-disney-resort.mp3
 category: research
 date: 2025-06-23
 ga4_metrics:
-  avgSessionDuration: 427.944996
-  pageViews: 2
+  avgSessionDuration: 289.6649155
+  pageViews: 4
   users: 2
 layout: topic
 prompt: ディズニーランド内の仕事を職種別に整理して、それぞれの年収とどうやればその職種に付けるのか調査して欲しい。
