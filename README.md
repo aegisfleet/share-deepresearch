@@ -19,6 +19,8 @@
 │   ├── audio/      # 音声ファイル
 │   ├── css/        # スタイルシート
 │   └── images/     # 画像ファイル
+├── .github/        # GitHub関連の設定
+│   └── workflows/  # GitHub Actionsのワークフロー
 └── index.md        # メインページ
 ```
 
@@ -34,15 +36,21 @@ title: "トピックのタイトル"
 date: YYYY-MM-DD
 category: "ai"  # "ai", "research", "code", "tutorial" のいずれかを指定
 tags: [タグ1, タグ2]
+description: "トピックの簡単な説明（150文字程度）"
 audio: "/share-deepresearch/assets/audio/your-audio-file.mp3"  # 音声ファイル（オプション）
+ga4_metrics:         # GA4の指標（自動更新）
+  users: 0
+  avgSessionDuration: 0
 supplementary_materials:  # 補足資料（オプション）
-  - title: "補足資料のタイトル"
-    url: "/share-deepresearch/topics/your-topic/dashboard.html"
+  - title: "インフォグラフィック"
+    url: "/share-deepresearch/topics/your-topic/infographic.html"
+  - title: "プレゼンテーション"
+    url: "/share-deepresearch/topics/your-topic/reveal.html"
 ---
 ```
 
 1. Markdownで内容を記述します
-1. 必要に応じて、補足資料用のHTMLファイル（`dashboard.html`等）を作成します
+1. 必要に応じて、補足資料用のHTMLファイル（`infographic.html`、`reveal.html`等）を作成します
 1. 音声ファイルがある場合は、`assets/audio/` フォルダに配置します
 
 ## ドキュメント作成のワークフロー
@@ -54,15 +62,28 @@ DeepResearchの結果をドキュメント化する際の推奨手順は以下�
 3. ダウンロードしたMarkdownファイルを`_topics/[トピック名]/index.md`として配置します
 4. Geminiで作成した音声概要をmp3形式でダウンロードし、`assets/audio/`フォルダに配置します
 5. 補足資料が必要な場合は、DeepResearchのレポート右上にある「作成」ボタンからダッシュボードなどを作成し、HTMLとしてエクスポートします
-6. エクスポートしたHTMLファイルを`_topics/[トピック名]/dashboard.html`として配置します
+6. エクスポートしたHTMLファイルを`_topics/[トピック名]/`フォルダに配置します
 
 このワークフローに従うことで、一貫性のあるドキュメント構造を維持できます。
 
+## 自動化ワークフロー
+
+このリポジトリには以下の2つのGitHub Actionsワークフローが設定されています：
+
+1. **Auto Update Files** (`auto-update-files.yml`)
+   - 引用文献セクションの整形
+   - HTMLファイルへのfaviconとGoogle AdSenseタグの追加
+   - mainブランチへのpush時とPRで自動実行
+
+2. **Update GA4 Metrics** (`update-ga4-metrics.yml`)
+   - Google Analytics 4からの指標取得と更新
+   - 3時間おきに自動実行
+   - 各トピックの閲覧数とセッション時間を自動更新
+
 ## プロンプトメモ
 
-- 資料を基にインフォグラフィックなデザインのWebサイトを作成したい。\
-スマートフォンでも見れるデザインを前提として、JavaScriptのSPAを作成する。\
-文量としては1000行程度のHTMLを想定している。
+### アプリ作成
+
 - スマートフォンを前提としたデザインで、○○を触って覚えるJavaScriptのSPAアプリ
 
 ### スライド作成
