@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/resignation-agency.mp3
 category: research
 date: 2025-06-01
 ga4_metrics:
-  avgSessionDuration: 156.934083
+  avgSessionDuration: 4.432002
   pageViews: 1
   users: 1
 layout: topic

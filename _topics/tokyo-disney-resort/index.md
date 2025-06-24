@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/tokyo-disney-resort.mp3
 category: research
 date: 2025-06-23
 ga4_metrics:
-  avgSessionDuration: 289.6649155
+  avgSessionDuration: 49.84895125
   pageViews: 4
   users: 2
 layout: topic

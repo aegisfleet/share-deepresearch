@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/shinjiro-impact.mp3
 category: research
 date: 2025-05-24
 ga4_metrics:
-  avgSessionDuration: 306.5928150909091
+  avgSessionDuration: 252.35329154545454
   pageViews: 15
   users: 6
 layout: topic

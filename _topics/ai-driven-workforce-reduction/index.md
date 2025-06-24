@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/ai-driven-workforce-reduction.mp3
 category: research
 date: 2025-06-22
 ga4_metrics:
-  avgSessionDuration: 69.62186166666667
+  avgSessionDuration: 58.04384266666667
   pageViews: 4
   users: 2
 layout: topic

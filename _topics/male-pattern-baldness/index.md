@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/male-pattern-baldness.mp3
 category: playful
 date: 2025-06-15
 ga4_metrics:
-  avgSessionDuration: 359.178931
+  avgSessionDuration: 3.9841005
   pageViews: 2
   users: 2
 layout: topic

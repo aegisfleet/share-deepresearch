@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/tokyo-citizens-first.mp3
 category: research
 date: 2025-06-23
 ga4_metrics:
-  avgSessionDuration: 535.245415
+  avgSessionDuration: 55.3380435
   pageViews: 3
   users: 2
 layout: topic

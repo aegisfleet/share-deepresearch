@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/devin-search-wiki.mp3
 category: ai
 date: 2025-06-17
 ga4_metrics:
-  avgSessionDuration: 558.3979676
+  avgSessionDuration: 305.66262539999997
   pageViews: 8
   users: 3
 layout: topic

@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/mcp-client-compatible-ai-agent.mp3
 category: ai
 date: 2025-05-24
 ga4_metrics:
-  avgSessionDuration: 203.5388393
+  avgSessionDuration: 200.6998703
   pageViews: 16
   users: 5
 layout: topic

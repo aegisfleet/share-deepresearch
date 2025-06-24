@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/200-dollars-ai-tools.mp3
 category: ai
 date: 2025-06-19
 ga4_metrics:
-  avgSessionDuration: 194.61016971428575
+  avgSessionDuration: 157.53318185714286
   pageViews: 12
   users: 4
 layout: topic

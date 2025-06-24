@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/Income-increase-by-2040.mp3
 category: research
 date: 2025-06-11
 ga4_metrics:
-  avgSessionDuration: 330.68335966666666
+  avgSessionDuration: 332.06701449999997
   pageViews: 7
   users: 6
 layout: topic

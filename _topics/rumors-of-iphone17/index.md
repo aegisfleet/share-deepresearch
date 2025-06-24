@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/rumors-of-iphone17.mp3
 category: research
 date: 2025-06-21
 ga4_metrics:
-  avgSessionDuration: 296.728066
+  avgSessionDuration: 327.680442
   pageViews: 7
   users: 4
 layout: topic

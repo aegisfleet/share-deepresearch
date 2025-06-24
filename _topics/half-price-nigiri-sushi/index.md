@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/half-price-nigiri-sushi.mp3
 category: playful
 date: 2025-06-20
 ga4_metrics:
-  avgSessionDuration: 1690.221141
+  avgSessionDuration: 1429.1064853333335
   pageViews: 18
   users: 1
 layout: topic

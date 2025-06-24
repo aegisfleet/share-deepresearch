@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/california-rice.mp3
 category: research
 date: 2025-05-29
 ga4_metrics:
-  avgSessionDuration: 173.31582799999998
+  avgSessionDuration: 169.64787559574467
   pageViews: 52
   users: 42
 layout: topic

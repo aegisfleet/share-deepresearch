@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/ai-promotion-law.mp3
 category: ai
 date: 2025-05-29
 ga4_metrics:
-  avgSessionDuration: 23.092403
+  avgSessionDuration: 25.631906
   pageViews: 3
   users: 1
 layout: topic

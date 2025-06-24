@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/maintaining-power.mp3
 category: research
 date: 2025-05-31
 ga4_metrics:
-  avgSessionDuration: 45.5538845
+  avgSessionDuration: 3.4812755
   pageViews: 2
   users: 2
 layout: topic

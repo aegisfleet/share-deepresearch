@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/chemistry-basics.mp3
 category: study
 date: 2025-05-25
 ga4_metrics:
-  avgSessionDuration: 329.46878745833334
+  avgSessionDuration: 287.3928867916667
   pageViews: 47
   users: 17
 layout: topic
