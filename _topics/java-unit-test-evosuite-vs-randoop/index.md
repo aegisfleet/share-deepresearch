@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/java-unit-test-evosuite-vs-randoop.mp3
 category: engineering
 date: 2025-06-05
 ga4_metrics:
-  avgSessionDuration: 490.65676633333334
+  avgSessionDuration: 420.5629425714286
   pageViews: 7
   users: 5
 layout: topic
