@@ -187,7 +187,7 @@ DeepResearchの結果をドキュメント化する際の推奨手順は以下�
 
         .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
         .reveal .left-align { text-align: left; }
-        .reveal .small-text { font-size: 0.7em; }
+        .reveal .small-text { font-size: 0.8em; }
         .reveal strong { color: var(--accent-color); font-weight: 700; }
 
         .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }

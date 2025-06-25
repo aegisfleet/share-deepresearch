@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>機動戦士Gundam GQuuuuuuX: データビジュアライゼーション</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #141414;
+            color: #E5E7EB;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .flowchart-arrow {
+            position: relative;
+            margin: 1rem 0;
+            padding-left: 2rem;
+            color: #FFB823;
+        }
+        .flowchart-arrow::before {
+            content: '▼';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 1.5rem;
+            height: 100%;
+            width: 4px;
+            background: #4B5563;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 4rem;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: calc(1.5rem - 0.625rem + 2px);
+            top: 0.25rem;
+            height: 1.25rem;
+            width: 1.25rem;
+            background-color: #00A6ED;
+            border-radius: 9999px;
+            border: 2px solid #141414;
+        }
+    </style>
+</head>
+<body class="bg-[#141414]">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight text-white mb-2">機動戦士GUNDAM GQUUUUUUX</h1>
+            <p class="text-lg md:text-2xl font-bold text-[#00A6ED]">解体サレタ宇宙世紀</p>
+        </header>
+
+        <main class="space-y-12 md:space-y-20">
+
+            <section>
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-white">SECTION 1: 分岐した世紀</h2>
+                    <p class="text-md text-gray-400 mt-2">U.C.0079、たった一つの事象が宇宙世紀の歴史を永遠に書き換えた。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-[#1F2937] rounded-lg shadow-2xl p-6">
+                        <h3 class="text-xl font-bold text-white mb-4">歴史の分岐点</h3>
+                        <div class="text-center">
+                             <div class="bg-gray-700 p-4 rounded-lg">
+                                <p class="font-bold text-lg text-white">正史：U.C.0079 サイド7</p>
+                                <p class="text-gray-300">アムロ・レイ、RX-78-2に搭乗</p>
+                            </div>
+                            <div class="flowchart-arrow"></div>
+                            <div class="bg-[#F35227] p-4 rounded-lg">
+                                 <p class="font-bold text-lg text-white">GQuuuuuuX史：U.C.0079 サイド7</p>
+                                <p class="text-gray-100">シャア・アズナブル、RX-78-2を鹵獲</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-2xl font-bold text-white">「赤いガンダム」の誕生</h3>
+                        <p class="mt-4 text-gray-300 leading-relaxed">シャア・アズナブルがガンダムを手にした瞬間、連邦の希望はジオンの最強の矛へと変貌した。後の「gMS-α 赤いガンダム」は一年戦争のパワーバランスを根底から覆し、ジオン公国に勝利をもたらす。しかし、その勝利の瞬間にシャアは謎の現象「ゼクノヴァ」と共に消失。これが全ての始まりだった。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-white">SECTION 2: U.C.0085 - 不穏な平和</h2>
+                    <p class="text-md text-gray-400 mt-2">戦争は終わった。だが、勝者であるジオン内部では新たな「冷戦」が始まっていた。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-[#1F2937] rounded-lg shadow-2xl p-6 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-4 text-center">ジオン公国 権力構造 (推定)</h3>
+                        <div class="chart-container flex-grow">
+                            <canvas id="factionChart"></canvas>
+                        </div>
+                        <p class="text-gray-400 mt-4 text-sm text-center">総帥ギレンを支持する強硬派と、月面都市グラナダを拠点とするキシリア派が、水面下で激しい権力闘争を繰り広げていた。</p>
+                    </div>
+                    <div class="bg-[#1F2937] rounded-lg shadow-2xl p-6 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-4 text-center">歴史改変による主要人物への影響</h3>
+                        <div class="chart-container flex-grow">
+                            <canvas id="characterChart"></canvas>
+                        </div>
+                        <p class="text-gray-400 mt-4 text-sm text-center">正史では戦死したキシリア・ザビとシャリア・ブルの生存が、新たな政治力学と物語の複雑さを生み出している。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2">
+                 <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-white">SECTION 3: 陰謀の連鎖</h2>
+                    <p class="text-md text-gray-400 mt-2">若者たちの決闘ごっこは終わりを告げ、物語は多元宇宙の謎と政治的謀略が渦巻く全面戦争へと突入する。</p>
+                </div>
+                <div class="bg-[#1F2937] rounded-lg shadow-2xl p-6 md:p-8">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h4 class="font-bold text-[#00A6ED] text-lg">第7話: トリオの崩壊</h4>
+                            <p class="text-gray-300">クランバトルが本物のテロに繋がり、シュウジはゼクノヴァで消滅。マチュ、ニャアン、シュウジの関係は暴力的に引き裂かれる。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h4 class="font-bold text-[#00A6ED] text-lg">第9話: シャロンの薔薇</h4>
+                            <p class="text-gray-300">地球に降下したマチュは、海底に沈む謎のMA「シャロンの薔薇」を発見。それは別宇宙から来た「エルメス」だった。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h4 class="font-bold text-[#00A6ED] text-lg">第10話: ジオン内戦勃発</h4>
+                            <p class="text-gray-300">キシリアが兄ギレンを暗殺。超兵器イオマグヌッソでギレン派艦隊を消滅させ、ジオンは全面内戦に突入する。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h4 class="font-bold text-[#00A6ED] text-lg">第11話: 世界の真実</h4>
+                            <p class="text-gray-300">全ての謎が解き明かされる。シャア、シュウジ、そしてゼクノヴァの真相。最後の敵として「白いガンダム」が出現する。</p>
+                        </div>
+                         <div class="timeline-item">
+                            <div class="timeline-dot" style="background-color: #F35227;"></div>
+                            <h4 class="font-bold text-[#F35227] text-lg">第12話: 輪廻の破壊</h4>
+                            <p class="text-gray-300">新世代を象徴するGQuuuuuuXが、過去の遺産である白いガンダムを破壊。悲劇の連鎖は断ち切られ、新たな未来が示される。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                 <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-white">SECTION 4: 核心の謎 - ゼクノヴァのメカニズム</h2>
+                    <p class="text-md text-gray-400 mt-2">シャアを消し、世界を揺るがした超常現象。その正体は、異なる宇宙を繋ぐ禁断の共鳴だった。</p>
+                </div>
+
+                <div class="bg-[#1F2937] rounded-lg shadow-2xl p-8">
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-4 text-center">
+                        <div class="border-2 border-[#F35227] p-4 rounded-lg">
+                            <p class="text-lg font-bold text-white">gMS-α 赤いガンダム</p>
+                            <p class="text-sm text-[#F35227]">アルファ型サイコミュ搭載</p>
+                        </div>
+                        <div class="text-3xl font-black text-[#FFB823] my-4 md:my-0 mx-8 transform md:rotate-90">⇋</div>
+                        <div class="border-2 border-[#00A6ED] p-4 rounded-lg">
+                            <p class="text-lg font-bold text-white">シャロンの薔薇 (エルメス)</p>
+                            <p class="text-sm text-[#00A6ED]">【別宇宙の】アルファ型サイコミュ搭載</p>
+                        </div>
+                    </div>
+                     <div class="text-4xl font-black text-center my-6 text-[#FFB823]">▼</div>
+                     <div class="bg-black/50 border-4 border-dashed border-[#FFB823] p-6 rounded-xl text-center">
+                        <h4 class="text-2xl font-black text-[#FFB823]">ZEKNOVA (ゼクノヴァ)</h4>
+                        <p class="text-white mt-2">時空を歪め、異なる宇宙を繋ぐゲートウェイ現象を発生させる</p>
+                    </div>
+                </div>
+                <p class="text-center text-gray-400 mt-6 leading-relaxed">本来、同じ宇宙に存在するはずのない二つの「アルファ型サイコミュ」が共鳴した時、ゼクノヴァは発生する。シャアの失踪も、イオマグヌッソによる大破壊も、全てはこの原理に基づいていた。物語の核心は、この宇宙の理を超えた現象を巡る争いだったのだ。</p>
+            </section>
+
+            <section>
+                 <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-white">SECTION 5: 新世代 vs 遺産</h2>
+                    <p class="text-md text-gray-400 mt-2">最終決戦は単なるMS戦ではない。過去の悲劇的運命に、新世代が「意志」の力で挑む思想闘争だった。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                    <div class="md:col-span-3 bg-[#1F2937] rounded-lg shadow-2xl p-6 flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-4 text-center">最終対立の構造</h3>
+                        <div class="chart-container flex-grow">
+                            <canvas id="conflictChart"></canvas>
+                        </div>
+                        <p class="text-gray-400 mt-4 text-sm text-center">物語は、単純な善悪の対立ではない。政治的、個人的、そして形而上学的な動機が複雑に絡み合い、最終決戦へと収束していく。</p>
+                    </div>
+                     <div class="md:col-span-2 text-center bg-[#1F2937] rounded-lg shadow-2xl p-6 flex flex-col justify-center items-center">
+                        <h3 class="text-xl font-bold text-white mb-4">遺産の象徴</h3>
+                        <p class="text-6xl font-black text-white">RX-78-2</p>
+                        <p class="text-lg font-bold text-gray-300 mb-6">白いガンダム</p>
+                        <div class="text-4xl font-black my-2 text-gray-500">VS</div>
+                         <h3 class="text-xl font-bold text-white mt-6 mb-4">新世代の意志</h3>
+                        <p class="text-6xl font-black text-[#00A6ED]">gMS-Ω</p>
+                        <p class="text-lg font-bold text-[#00A6ED]">GQUUUUUUX</p>
+                    </div>
+                </div>
+                 <p class="text-center text-gray-300 mt-8 leading-relaxed max-w-4xl mx-auto">最終的な敵は、ガンダムシリーズの象徴そのものである「白いガンダム」だった。これを撃破する行為は、新世代の主人公マチュが、繰り返される悲劇の運命（遺産）を自らの意志で断ち切り、新たな物語を創造するという、本作の核心的テーマを象徴している。</p>
+            </section>
+            
+            <section>
+                 <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-white">APPENDIX: 主要モビルスーツデータ</h2>
+                </div>
+                 <div class="bg-[#1F2937] rounded-lg shadow-2xl overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-700 text-sm text-gray-300 uppercase">
+                            <tr>
+                                <th class="p-4">型式番号</th>
+                                <th class="p-4">名称</th>
+                                <th class="p-4">主なパイロット</th>
+                                <th class="p-4">役割・重要性</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-200">
+                            <tr class="border-b border-gray-700">
+                                <td class="p-4 font-mono">gMS-Ω</td>
+                                <td class="p-4 font-bold text-white">GQuuuuuuX</td>
+                                <td class="p-4">マチュ, ニャアン</td>
+                                <td class="p-4">新世代と自己決定の意志を象徴する主役機。</td>
+                            </tr>
+                            <tr class="border-b border-gray-700 bg-black/20">
+                                <td class="p-4 font-mono">gMS-α</td>
+                                <td class="p-4 font-bold text-white">赤いガンダム</td>
+                                <td class="p-4">シャア, シュウジ</td>
+                                <td class="p-4">歴史改変の引き金であり、ゼクノヴァの原因。</td>
+                            </tr>
+                            <tr class="border-b border-gray-700">
+                                <td class="p-4 font-mono">RX-78-2</td>
+                                <td class="p-4 font-bold text-white">白いガンダム</td>
+                                <td class="p-4">シュウジ</td>
+                                <td class="p-4">乗り越えるべき「過去の遺産」の化身。最終ボス。</td>
+                            </tr>
+                            <tr class="bg-black/20">
+                                <td class="p-4 font-mono">不明</td>
+                                <td class="p-4 font-bold text-white">シャロンの薔薇</td>
+                                <td class="p-4">ララァ・スン (意識)</td>
+                                <td class="p-4">別宇宙のエルメス。全ての物語の根幹をなす謎。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-700">
+            <p class="text-sm text-gray-500">Gundam GQuuuuuuX Infographic. Data synthesized from public analysis reports for demonstrative purposes.</p>
+             <p class="text-xs text-gray-600 mt-2">Neither Mermaid JS nor SVG were used in the creation of this document. All charts rendered via Canvas API.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const FONT_COLOR = '#E5E7EB';
+            const GRID_COLOR = '#4B5563';
+            const PALETTE = {
+                blue: '#00A6ED',
+                red: '#F35227',
+                yellow: '#FFB823'
+            };
+
+            const wrapLabel = (label, maxLength = 16) => {
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine.trim());
+                }
+                return lines;
+            };
+            
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const commonChartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: FONT_COLOR,
+                            font: { size: 14 }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+            
+            const factionCtx = document.getElementById('factionChart');
+            if(factionCtx) {
+                new Chart(factionCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['ギレン・ザビ派 (強硬派)', 'キシリア・ザビ派 (革新派)'],
+                        datasets: [{
+                            label: '権力比率',
+                            data: [55, 45],
+                            backgroundColor: [PALETTE.red, PALETTE.blue],
+                            borderColor: '#1F2937',
+                            borderWidth: 4
+                        }]
+                    },
+                    options: {
+                        ...commonChartOptions,
+                        plugins: {
+                            ...commonChartOptions.plugins,
+                            legend: {
+                                ...commonChartOptions.plugins.legend,
+                                position: 'bottom',
+                            }
+                        }
+                    }
+                });
+            }
+
+            const characterCtx = document.getElementById('characterChart');
+            if(characterCtx) {
+                new Chart(characterCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['キシリア・ザビ', 'シャリア・ブル'],
+                        datasets: [
+                            {
+                                label: '正史での影響力 (戦死)',
+                                data: [0, 0],
+                                backgroundColor: '#6B7280',
+                            },
+                            {
+                                label: 'GQuuuuuuX史での影響力',
+                                data: [90, 75],
+                                backgroundColor: PALETTE.yellow,
+                            }
+                        ]
+                    },
+                    options: {
+                        ...commonChartOptions,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: GRID_COLOR },
+                                ticks: { color: FONT_COLOR }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: { color: FONT_COLOR, font: {size: 14} }
+                            }
+                        },
+                         plugins: {
+                            ...commonChartOptions.plugins,
+                            legend: {
+                                ...commonChartOptions.plugins.legend,
+                                position: 'bottom',
+                            }
+                        }
+                    }
+                });
+            }
+
+            const conflictCtx = document.getElementById('conflictChart');
+            if(conflictCtx){
+                new Chart(conflictCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: [wrapLabel('最終決戦における動機の構成')],
+                        datasets: [
+                            {
+                                label: '政治的動機 (ジオン内紛)',
+                                data: [30],
+                                backgroundColor: PALETTE.red,
+                            },
+                            {
+                                label: '個人的動機 (シャアの復讐)',
+                                data: [25],
+                                backgroundColor: PALETTE.yellow,
+                            },
+                             {
+                                label: '形而上学的動機 (世界の真実)',
+                                data: [45],
+                                backgroundColor: PALETTE.blue,
+                            }
+                        ]
+                    },
+                    options: {
+                        ...commonChartOptions,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                stacked: true,
+                                grid: { color: GRID_COLOR },
+                                ticks: { color: FONT_COLOR, callback: value => value + '%' }
+                            },
+                            y: {
+                                stacked: true,
+                                grid: { display: false },
+                                ticks: { color: FONT_COLOR, font: {size: 12} }
+                            }
+                        },
+                        plugins: {
+                           ...commonChartOptions.plugins,
+                           legend: {
+                               ...commonChartOptions.plugins.legend,
+                               position: 'bottom',
+                           },
+                           tooltip: {
+                               callbacks: {
+                                   ...commonChartOptions.plugins.tooltip.callbacks,
+                                   label: function(context) {
+                                       let label = context.dataset.label || '';
+                                       if (label) {
+                                           label += ': ';
+                                       }
+                                       if (context.parsed.x !== null) {
+                                           label += context.parsed.x + '%';
+                                       }
+                                       return label;
+                                   }
+                               }
+                           }
+                       }
+                    }
+                })
+            }
+        });
+    </script>
+</body>
+</html>

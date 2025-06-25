@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>分岐した世紀の解体：『機動戦士Gundam GQuuuuuuX』深層分析</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { line-height: 1.7; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.8em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section data-transition="zoom" data-background-image="https://images.unsplash.com/photo-1614728263952-84ea256ec346?q=80&w=2070&auto=format&fit=crop" data-background-opacity="0.3">
+    <h1 class="animated delay-1">分岐した世紀の解体：<br>『機動戦士Gundam GQuuuuuuX』深層分析</h1>
+    <p class="subtitle animated delay-2">
+        A "What If" Universe Where Zeon Won the One Year War
+    </p>
+</section>
+
+<section data-transition="zoom">
+    <h2 class="animated delay-1">本日の構成</h2>
+    <ul class="left-align" style="margin-top: 50px; list-style: none;">
+        <li class="animated delay-2" style="margin-bottom: 25px;"><i class="fa-solid fa-flag-checkered fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>序 (The Premise):</strong> ジオンが勝利したもう一つの宇宙世紀</li>
+        <li class="animated delay-3" style="margin-bottom: 25px;"><i class="fa-solid fa-globe fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>起 (The World):</strong> U.C.0085 - 偽りの平和とクリエイターの意図</li>
+        <li class="animated delay-4" style="margin-bottom: 25px;"><i class="fa-solid fa-bolt fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>転 (The Turmoil):</strong> 物語の激動と多元宇宙の謎</li>
+        <li class="animated delay-5" style="margin-bottom: 25px;"><i class="fa-solid fa-infinity fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>結 (The Meaning):</strong> 過去との対峙と、紡がれる未来</li>
+    </ul>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1"><i class="fa-solid fa-code-fork"></i> 序章：書き換えられた一年戦争</h2>
+    <div class="flex-container" style="margin-top: 40px; align-items: flex-start;">
+        <div class="flex-box left-align animated delay-2" style="flex: 1.2;">
+            <p>U.C.0079、シャアがガンダムを鹵獲したことで歴史は分岐。<br>この一点の変更がドミノの最初の一枚となり、<strong>アムロ・レイは歴史の表舞台から消え</strong>、最強の兵器はジオンの手に渡りました。</p>
+        </div>
+        <div class="flex-box animated delay-3" style="flex: 1.8;">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>登場人物</th>
+                        <th>正史の宇宙世紀</th>
+                        <th>『GQuuuuuuX』の世界</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>アムロ・レイ</td>
+                        <td>ガンダムのパイロット</td>
+                        <td>歴史に登場せず</td>
+                    </tr>
+                    <tr>
+                        <td>シャア</td>
+                        <td>アムロと相打ち後、消息不明</td>
+                        <td>「赤いガンダム」で活躍後、消失</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">ジオンの勝利と「ゼクノヴァ」の謎</h2>
+    <div class="flex-container" style="margin-top: 40px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-robot"></i>
+            <h3>赤いガンダムの猛威</h3>
+            <p class="small-text">シャアは鹵獲機で活躍し、ジオンのMS技術が飛躍的に発展しました。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-trophy"></i>
+            <h3>ジオンの勝利</h3>
+            <p class="small-text">U.C.0080、連邦は降伏。一年戦争はジオンの勝利で終結しました。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-burst"></i>
+            <h3>ゼクノヴァ現象</h3>
+            <p class="small-text">終戦直前、シャアとガンダムが閃光と共に消失。戦後の世界に大きな謎を残します。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">世界観：U.C.0085の「冷戦」</h2>
+    <div class="flex-container" style="margin-top: 40px; align-items: flex-start;">
+        <div class="flex-box left-align animated delay-2" style="flex: 1;">
+            <p>戦争は終わったものの、真の平和からは程遠い時代。鶴巻監督が描きたかったのは、いつ大きな戦争に発展するかわからない<strong>不安定な日常</strong>と、若者たちが抱える<strong>閉塞感</strong>でした。</p>
+        </div>
+        <div class="flex-box left-align animated delay-3" style="flex: 1;">
+            <ul style="list-style: none;">
+                <li class="animated delay-3"><i class="fa-solid fa-users-slash fa-fw"></i> <strong>格差と差別:</strong> 難民への差別が蔓延。</li>
+                <li class="animated delay-4" style="margin-top: 15px;"><i class="fa-solid fa-fist-raised fa-fw"></i> <strong>代理戦争:</strong> 非合法MS決闘「クランバトル」が若者の捌け口に。</li>
+                <li class="animated delay-5" style="margin-top: 15px;"><i class="fa-solid fa-chess fa-fw"></i> <strong>政治的陰謀:</strong> ジオン内部でギレン派とキシリア派が激しく対立。</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">制作：サンライズ × スタジオカラー</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-sun"></i>
+            <h3>サンライズ</h3>
+            <p>ガンダムの生みの親。「新しい血を取り入れたい」とオファー。</p>
+        </div>
+        <div class="animated delay-3">
+            <i class="fa-solid fa-plus fa-3x"></i>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-palette"></i>
+            <h3>スタジオカラー</h3>
+            <p>『エヴァ』の制作陣。「自由にやってください」という言葉に応えました。</p>
+        </div>
+    </div>
+    <p class="animated delay-5" style="margin-top: 30px;">ガンダムの歴史上、前代未聞の共同製作が実現しました。</p>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">庵野脚本と鶴巻ビジョン</h2>
+    <div class="flex-container" style="margin-top: 40px; align-items: flex-start;">
+        <div class="flex-box left-align animated delay-2">
+            <h3 style="text-align: center;"><i class="fa-solid fa-fire"></i> 庵野脚本：「二次創作」の正史化</h3>
+            <p>「ジオン勝利IF」という鶴巻監督の発想に庵野氏が反応。ファンが夢想するような<strong>タブー破りのプロット</strong>を、凄まじい熱量で脚本化しました。</p>
+        </div>
+        <div class="flex-box left-align animated delay-3">
+            <h3 style="text-align: center;"><i class="fa-solid fa-compass-drafting"></i> 鶴巻ビジョン：「本物か偽物か」</h3>
+            <p>庵野脚本をまとめ上げ、能動的な主人公と<strong>「閉塞感からの脱却」</strong>という若者へのメッセージ、そして「本物か偽物か」という核心的なテーマを作品に込めました。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">転換点：ゲームの終わり</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <h3>計画</h3>
+            <p class="small-text">主人公マチュ達は「クランバトル」を利用して地球への逃亡を図ります。</p>
+        </div>
+        <div class="animated delay-3">
+            <i class="fa-solid fa-arrow-right-long fa-3x"></i>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <h3>崩壊</h3>
+            <p class="small-text">しかし計画は裏切られ、本物のテロに巻き込まれます。仲間は消滅し、チームは崩壊。<strong>「戦争ごっこ」は終わりました</strong>。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">深まる謎と多元宇宙の片鱗</h2>
+    <div class="flex-container" style="margin-top: 40px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-spa"></i>
+            <h3>シャロンの薔薇</h3>
+            <p class="small-text">その正体は、<strong>別宇宙から来たモビルアーマー「エルメス」</strong>であり、別世界のララァの意識が眠っていました。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-satellite-dish"></i>
+            <h3>イオマグヌッソ</h3>
+            <p class="small-text">キシリアが建造した戦略兵器。ゼクノヴァを人為的に発生させ、<strong>ジオン内戦の引き金</strong>を引きます。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-ghost"></i>
+            <h3>白いガンダム</h3>
+            <p class="small-text">全ての謎が明かされた時、ゼクノヴァの中から<strong>「正史のRX-78-2 ガンダム」</strong>が出現し、最後の敵として立ちはだかります。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">最終決戦：偽りの世界 vs 新しい意志</h2>
+    <div class="flex-container" style="margin-top: 40px; align-items: stretch;">
+        <div class="flex-box left-align animated delay-2" style="border-right: 2px solid var(--accent-color);">
+            <h3 style="text-align: center;"><i class="fa-solid fa-shield-halved fa-rotate-180"></i> シュウジ & 白いガンダム</h3>
+            <p><strong>世界の守護者（破壊者）</strong>。</p>
+            <p class="small-text">ララァを悲劇から守るため、彼女が創った「夢の世界」を破壊し続ける宿命を背負っていました。</p>
+        </div>
+        <h2 class="animated delay-3" style="align-self: center; margin: 0 20px;">VS</h2>
+        <div class="flex-box left-align animated delay-4" style="border-left: 2px solid var(--accent-color);">
+            <h3 style="text-align: center;"><i class="fa-solid fa-shield-halved"></i> マチュ & ジークアクス</h3>
+            <p><strong>世界の肯定者</strong>。</p>
+            <p class="small-text">「この世界であなたと出会えたことに意味がある」。決定論を否定し、未来を創造する意志を示します。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="zoom">
+    <h2 class="animated delay-1">結論：悲劇の輪廻からの解放</h2>
+    <div class="animated delay-2" style="margin-top: 50px;">
+        <i class="fa-solid fa-recycle fa-4x" style="color: var(--accent-color);"></i>
+    </div>
+    <p class="animated delay-3" style="margin-top: 40px;">
+        マチュの言葉はシュウジの心を動かし、彼は使命を放棄します。
+    </p>
+    <p class="animated delay-4">
+        ジークアクスが白いガンダムを破壊する象徴的なシーンは、<strong>新世代が自らの意志で、旧世代の物語（遺産）の重圧を乗り越える</strong>ことを示しました。
+    </p>
+    <p class="animated delay-5">
+        本作はニュータイプの悲劇的決定論に対する明確な反論であり、未来への希望を提示して幕を閉じます。
+    </p>
+</section>
+
+<section data-background-image="https://images.unsplash.com/photo-1446776811953-b23d579d11d7?q=80&w=2072&auto=format&fit=crop" data-background-opacity="0.3">
+    <h1 class="animated delay-1">Thank You</h1>
+    <p class="subtitle animated delay-2">
+        『GQuuuuuuX』が拓いた、ガンダムの新たな可能性。
+    </p>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
