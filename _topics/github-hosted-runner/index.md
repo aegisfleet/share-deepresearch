@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/github-hosted-runner.mp3
 category: engineering
 date: 2025-06-24
 ga4_metrics:
-  avgSessionDuration: 281.25563
+  avgSessionDuration: 104.53800833333334
   pageViews: 1
-  users: 1
+  users: 2
 layout: topic
 prompt: GitHub Actionsで使用できるGitHubホステッドランナーについて、自前でセルフホステッドランナーを用意するより価格的に安いのか比較を行いたい。larger
   runnersも含めてGitHubで使用できるランナーのスペックと同じスペックでクラウドサービスを用いてセルフホステッドランナーを作成した際の価格の調査を行って欲しい。
