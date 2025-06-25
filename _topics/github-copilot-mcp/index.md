@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/github-copilot-mcp.mp3
 category: ai
 date: 2025-06-01
 ga4_metrics:
-  avgSessionDuration: 269.187347
+  avgSessionDuration: 270.84108675
   pageViews: 4
   users: 4
 layout: topic

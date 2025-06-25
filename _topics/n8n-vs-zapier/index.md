@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/n8n-vs-zapier.mp3
 category: engineering
 date: 2025-06-03
 ga4_metrics:
-  avgSessionDuration: 99.0547665
+  avgSessionDuration: 99.3273615
   pageViews: 21
   users: 11
 layout: topic

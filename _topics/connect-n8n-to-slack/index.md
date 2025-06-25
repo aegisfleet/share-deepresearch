@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/connect-n8n-to-slack.mp3
 category: engineering
 date: 2025-06-03
 ga4_metrics:
-  avgSessionDuration: 41.43522675
-  pageViews: 4
-  users: 3
+  avgSessionDuration: 28.72772983333333
+  pageViews: 5
+  users: 4
 layout: topic
 prompt: n8nを使ってSlackとGitHubの連携を行いたい。特にSlackのリアク字に反応してIssueを作成したいので、その方法をまとめて欲しい。AWSでホストする前提となる。
 supplementary_materials:

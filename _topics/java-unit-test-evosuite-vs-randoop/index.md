@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/java-unit-test-evosuite-vs-randoop.mp3
 category: engineering
 date: 2025-06-05
 ga4_metrics:
-  avgSessionDuration: 420.5629425714286
-  pageViews: 7
+  avgSessionDuration: 369.56089275
+  pageViews: 8
   users: 5
 layout: topic
 prompt: Javaのユニットテストを自動で作成したい。EvoSuiteとRandoopの機能を比較して、実行環境や特徴などそれぞれのツールの良し悪しをまとめて欲しい。
