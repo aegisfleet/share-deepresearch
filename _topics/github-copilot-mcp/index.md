@@ -16,6 +16,7 @@ tags:
 - GitHub Copilot
 - MCP
 title: GitHub Copilotを強化する人気MCPサーバーとその開発作業への貢献
+description: GitHub Copilotは、単なるコード補完ツールから、より自律的な「コーディングエージェント」へと進化を遂げつつあります。
 ---
 
 # **GitHub Copilotを強化する人気MCPサーバーとその開発作業への貢献**
