@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/gundam-gquuuuuux.mp3
 category: research
 date: 2025-06-25
 ga4_metrics:
-  avgSessionDuration: 954.6794153333334
-  pageViews: 5
-  users: 3
+  avgSessionDuration: 771.01875075
+  pageViews: 6
+  users: 4
 layout: topic
 prompt: 機動戦士Gundam GQuuuuuuXの設定をまとめたい。制作関係者のインタビューや公式設定資料などを基にして、作品内では語られなかった裏設定などを調査して作品に深みを与える資料を作成して欲しい。特にアニメ後半のエピソードに対して深く考察を行いたい。
 supplementary_materials:
