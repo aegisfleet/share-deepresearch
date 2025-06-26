@@ -2,6 +2,7 @@
 audio: /share-deepresearch/assets/audio/ar-vs-diffusion.mp3
 category: ai
 date: 2025-05-22
+description: 本レポートは、自己回帰（AR）モデルとテキスト拡散モデルの技術的な詳細分析を提供し、特にGemini Diffusionのような拡散モデルの特性、比較性能、限界、そして将来の展望に焦点を当てて解説します。
 ga4_metrics:
   avgSessionDuration: 162.573357
   pageViews: 1
@@ -19,7 +20,6 @@ tags:
 - AIモデル
 - コーディング
 title: テキスト生成モデルの性能限界と拡散モデルの将来性：Gemini Diffusionを例に
-description: 本レポートは、自己回帰（AR）モデルとテキスト拡散モデルの技術的な詳細分析を提供し、特にGemini Diffusionのような拡散モデルの特性、比較性能、限界、そして将来の展望に焦点を当てて解説します。
 ---
 
 # **テキスト生成モデルの性能限界と拡散モデルの将来性：Gemini Diffusionを例に**

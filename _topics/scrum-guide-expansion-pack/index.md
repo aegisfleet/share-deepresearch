@@ -2,11 +2,11 @@
 audio: /share-deepresearch/assets/audio/scrum-guide-expansion-pack.mp3
 category: engineering
 date: 2025-06-14
+description: 本レポートは、スクラムガイド2020とスクラムガイド・エクスパンションパックの詳細な比較分析を提供し、スクラムの進化、特にアウトプットからアウトカムへの焦点のシフト、EBMの統合、そしてAIのチームへの統合といった現代の現実への対応を解説する。
 ga4_metrics:
   avgSessionDuration: 41.06226516666667
   pageViews: 6
   users: 5
-description: 本レポートは、スクラムガイド2020とスクラムガイド・エクスパンションパックの詳細な比較分析を提供し、スクラムの進化、特にアウトプットからアウトカムへの焦点のシフト、EBMの統合、そしてAIのチームへの統合といった現代の現実への対応を解説する。
 layout: topic
 prompt: Scrum Guide Expansion Packの内容について、元々のスクラムガイドと対比させてどこが拡張されたのかまとめて欲しい。
 supplementary_materials:
