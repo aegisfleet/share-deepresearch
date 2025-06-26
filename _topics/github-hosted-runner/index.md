@@ -2,6 +2,7 @@
 audio: /share-deepresearch/assets/audio/github-hosted-runner.mp3
 category: engineering
 date: 2025-06-24
+description: GitHub Actionsのコスト構造を評価するにあたり、まずGitHubが提供するフルマネージドサービスであるGitHubホステッドランナーの性能とコストのベースラインを確立することが不可欠です。
 ga4_metrics:
   avgSessionDuration: 210.62081433333333
   pageViews: 3
@@ -19,7 +20,6 @@ tags:
 - 自動化
 - 開発環境
 title: 包括的コスト分析：GitHub ActionsにおけるGitHubホステッドランナー vs. セルフホステッドランナー
-description: GitHub Actionsのコスト構造を評価するにあたり、まずGitHubが提供するフルマネージドサービスであるGitHubホステッドランナーの性能とコストのベースラインを確立することが不可欠です。
 ---
 
 # **包括的コスト分析：GitHub ActionsにおけるGitHubホステッドランナー vs. セルフホステッドランナー**

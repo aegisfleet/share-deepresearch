@@ -2,6 +2,11 @@
 audio: /share-deepresearch/assets/audio/gemini-cli.mp3
 category: ai
 date: 2025-06-26
+description: Gemini CLIは、開発者の最も重要な作業環境であるターミナル内に、強力なAIエージェントを直接統合するという、Googleの野心的なビジョンを体現しています。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: Gemini CLIの活用例をカテゴリ毎に分解して解説して欲しい。特に画像や動画の生成など、Claude Codeではできない部分に触れて欲しい。
 supplementary_materials:
@@ -15,7 +20,6 @@ tags:
 - AI Agent
 - AIツール
 title: ターミナルに潜むエージェント：Gemini CLIの機能と競争優位性の徹底分析
-description: Gemini CLIは、開発者の最も重要な作業環境であるターミナル内に、強力なAIエージェントを直接統合するという、Googleの野心的なビジョンを体現しています。
 ---
 
 # **ターミナルに潜むエージェント：Gemini CLIの機能と競争優位性の徹底分析**
