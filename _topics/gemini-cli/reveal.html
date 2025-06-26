@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>ターミナルから世界を創造する：Gemini CLI &amp; Claude Code 徹底比較分析</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { line-height: 1.7; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.8em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section 
+    data-background-image="https://images.unsplash.com/photo-1550439062-609e1531270e" 
+    data-background-opacity="0.2">
+    <h1 class="animated">ターミナルから世界を創造する</h1>
+    <p class="subtitle animated delay-1">Gemini CLI &amp; Claude Code 徹底比較分析</p>
+</section>
+
+<section data-transition="convex">
+    <div class="flex-container">
+        <div class="flex-box" style="flex: 0.5; background: none; text-align: left;">
+            <h2 class="animated"><i class="fa-solid fa-list-check" style="color: var(--accent-color);"></i> 本日の内容</h2>
+        </div>
+        <div class="flex-box" style="flex: 1; background: none; text-align: left;">
+            <ol style="list-style-type: none; counter-reset: item;">
+                <li class="animated delay-1" style="font-size: 1.2em; margin-bottom: 20px;">Gemini CLIとは？</li>
+                <li class="animated delay-2" style="font-size: 1.2em; margin-bottom: 20px;">なぜ強力なのか？</li>
+                <li class="animated delay-3" style="font-size: 1.2em; margin-bottom: 20px;">Claudeとの決定的な違い</li>
+                <li class="animated delay-4" style="font-size: 1.2em;">未来のワークフロー</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="animated">ターミナルに潜むAIエージェント</h2>
+    <p class="left-align animated delay-1">
+        Gemini CLIは、開発者の最も重要な作業環境であるターミナル内に、<strong>強力なAIエージェント</strong>を直接統合するというGoogleの野心的なビジョンを体現しています。
+    </p>
+    <div class="flex-container" style="margin-top: 40px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-brands fa-github"></i>
+            <h3>オープンソース</h3>
+            <p class="small-text">Apache 2.0ライセンスで公開され、高い透明性と信頼性を確保しています。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3>ローカル実行</h3>
+            <p class="small-text">機密情報が外部に送信されず、高いセキュリティとプライバシーを提供します。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-gift"></i>
+            <h3>寛大な無料枠</h3>
+            <p class="small-text">個人開発者でも金銭的負担なく、最先端のAIエージェントを試すことが可能です。</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="flex-container">
+        <div class="flex-box" style="flex: 0.8; background: none; text-align: left;">
+            <h2 class="animated">Geminiを支える心臓部</h2>
+            <p class="animated delay-1">3つの先進技術が、その驚異的な能力を支えています。</p>
+        </div>
+        <div class="flex-box" style="flex: 1.2; background: none; text-align: left;">
+            <ul style="list-style: none;">
+                <li class="animated delay-2" style="margin-bottom: 25px;"><i class="fa-solid fa-microchip fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>Gemini 2.5 Pro:</strong> コーディングと論理的推論に卓越したコアモデルです。</li>
+                <li class="animated delay-3" style="margin-bottom: 25px;"><i class="fa-solid fa-book-open fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>100万トークン:</strong> プロジェクト全体を記憶し、一貫性を保ちます。</li>
+                <li class="animated delay-4"><i class="fa-solid fa-arrows-spin fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>ReActループ:</strong> 「推論」と「行動」を繰り返し、複雑なタスクを自律的に完遂します。</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="animated">開発者のコパイロット</h2>
+    <p class="animated delay-1">アイデアの実現から、コードの保守・改善までをシームレスに支援します。</p>
+    <div class="flex-container" style="align-items: stretch; margin-top: 30px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-rocket"></i>
+            <h3>アプリ全体生成</h3>
+            <p class="small-text">高レベルのプロンプトから、完全なコードベースを生成します。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-wrench"></i>
+            <h3>反復的な開発</h3>
+            <p class="small-text">対話を通じて、機能の追加やスタイルの変更を要求できます。</p>
+        </div>
+    </div>
+    <div class="flex-container" style="align-items: stretch; margin-top: 20px;">
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <h3>エラー駆動デバッグ</h3>
+            <p class="small-text">エラー内容を貼り付けるだけで、修正案を提案・適用します。</p>
+        </div>
+        <div class="flex-box animated delay-5">
+            <i class="fa-solid fa-diagram-project"></i>
+            <h3>大規模リファクタリング</h3>
+            <p class="small-text">プロジェクト全体のアーキテクチャを分析し、コードベースを改善します。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated">基本比較: Gemini CLI vs Claude Code</h2>
+    <p class="animated delay-1">基本的なスペックにおける両者の戦略的な違いを見てみましょう。</p>
+    <table class="comparison-table animated delay-2">
+        <thead>
+            <tr>
+                <th>特徴</th>
+                <th>Gemini CLI</th>
+                <th>Claude Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>コアモデル</td>
+                <td>Gemini 2.5 Pro</td>
+                <td>Claude 3 / 4 ファミリー</td>
+            </tr>
+            <tr>
+                <td>ライセンス</td>
+                <td><strong>オープンソース (Apache 2.0)</strong></td>
+                <td>プロプライエタリ（非公開）</td>
+            </tr>
+            <tr>
+                <td>コンテキスト</td>
+                <td><strong>100万トークン (無料枠)</strong></td>
+                <td>20万トークン (プランによる)</td>
+            </tr>
+            <tr>
+                <td>アクセスモデル</td>
+                <td><strong>寛大な無料枠 + APIキー</strong></td>
+                <td>サブスクリプションベース + APIキー</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2 class="animated">自律エージェント vs ペアプログラマー</h2>
+    <p class="animated delay-1">両ツールは、異なる開発哲学を体現しています。</p>
+    <div class="flex-container" style="margin-top: 40px; align-items: flex-start;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-robot"></i>
+            <h3>Gemini CLI: 自律エージェント</h3>
+            <p class="small-text">高レベルの目標を受け、<strong>自律的に計画・実行</strong>する「戦力増強装置」。大規模タスクの委任に最適です。</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long animated delay-3" style="font-size: 3em; margin-top: 80px;"></i>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-user-group"></i>
+            <h3>Claude Code: ペアプログラマー</h3>
+            <p class="small-text">問題を一歩一歩解決していく「協調的なパートナー」。<strong>慎重な反復的改良</strong>を要するタスクに向いています。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="zoom">
+    <h2 class="animated"><i class="fa-solid fa-image" style="color: var(--accent-color);"></i> 決定的差別化① 画像解析</h2>
+    <p class="animated delay-1">手書きのスケッチやPDFを解釈し、機能的なコードを生成します。</p>
+    <div class="flex-container">
+        <div class="flex-box animated delay-2" style="background: none; text-align: left;">
+            <ul style="list-style: none;">
+                <li style="margin-bottom: 20px;"><i class="fa-solid fa-pencil fa-fw" style="color:var(--accent-color); margin-right: 15px;"></i>スケッチからUIコンポーネントを生成。</li>
+                <li style="margin-bottom: 20px;"><i class="fa-solid fa-file-pdf fa-fw" style="color:var(--accent-color); margin-right: 15px;"></i>API仕様書(PDF)からクライアントライブラリを作成。</li>
+                <li><i class="fa-solid fa-sitemap fa-fw" style="color:var(--accent-color); margin-right: 15px;"></i>アーキテクチャ図を分析し、脆弱性を特定。</li>
+            </ul>
+        </div>
+        <div class="flex-box animated delay-3" style="background: none;">
+            <table class="comparison-table" style="font-size: 0.7em;">
+                 <thead>
+                    <tr><th>能力</th><th>Gemini CLI</th><th>Claude Code</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>画像分析</td><td style="color:#77dd77;"><strong>可 (安定)</strong></td><td style="color:#ffb347;">可 (不安定)</td></tr>
+                    <tr><td>PDF分析</td><td style="color:#77dd77;"><strong>可</strong></td><td style="color:#ff6961;"><strong>不可</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="animated"><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-color);"></i> 決定的差別化② 画像生成</h2>
+    <p class="animated delay-1">ターミナルから直接、画像を生成・編集可能。<strong>Claudeにはない独自機能</strong>です。</p>
+    <div class="flex-container" style="margin-top: 40px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-comment-dots"></i>
+            <h3>テキストから画像へ</h3>
+            <p class="small-text">説明文からアセットやロゴを生成します。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-pen-ruler"></i>
+            <h3>画像の編集</h3>
+            <p class="small-text">「この画像をカートゥーン風に」といった指示で編集します。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-images"></i>
+            <h3>インターリーブ出力</h3>
+            <p class="small-text">テキストと画像を混在させたドキュメントを一度に生成できます。</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="animated"><i class="fa-solid fa-film" style="color: var(--accent-color);"></i> 決定的差別化③ 動画分析</h2>
+    <p class="animated delay-1">動画をネイティブに分析し、Q&Aや要約が可能。これも<strong>Claudeにはない圧倒的な優位性</strong>です。</p>
+    <div class="flex-container">
+        <div class="flex-box animated delay-2" style="background: none; text-align: left;">
+            <ul style="list-style: none;">
+                <li style="margin-bottom: 20px;"><i class="fa-solid fa-video fa-fw" style="color:var(--accent-color); margin-right: 15px;"></i>映像と音声を同時に分析し、内容を深く理解。</li>
+                <li style="margin-bottom: 20px;"><i class="fa-solid fa-person-circle-question fa-fw" style="color:var(--accent-color); margin-right: 15px;"></i>「何が映っているか？」といった視覚的な質問に回答可能。</li>
+                <li><i class="fa-brands fa-youtube fa-fw" style="color:var(--accent-color); margin-right: 15px;"></i>ローカルファイルだけでなく、YouTube等のURLも参照できます。</li>
+            </ul>
+        </div>
+        <div class="flex-box animated delay-3" style="background: none;">
+            <table class="comparison-table" style="font-size: 0.7em;">
+                <thead>
+                    <tr><th>能力</th><th>Gemini CLI</th><th>Claude Code</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>ネイティブ動画分析</td><td style="color:#77dd77;"><strong>可</strong></td><td style="color:#ff6961;"><strong>不可</strong></td></tr>
+                    <tr><td>視覚内容のQ&A</td><td style="color:#77dd77;"><strong>可</strong></td><td style="color:#ff6961;"><strong>不可</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="animated"><i class="fa-solid fa-clapperboard" style="color: var(--accent-color);"></i> 決定的差別化④ 動画生成</h2>
+    <p class="animated delay-1">テキストや画像から、GoogleのVeoモデルを利用して短いビデオクリップを生成します。</p>
+    <div class="flex-container" style="margin-top: 40px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-file-lines"></i>
+            <h3>テキストから動画へ</h3>
+            <p class="small-text">「猫の冒険物語」といった説明から動画を作成します。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-image"></i>
+            <h3>画像から動画へ</h3>
+            <p class="small-text">提供した画像を開始点としてアニメーション化します。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated">どちらのツールを選ぶべきか？</h2>
+    <p class="animated delay-1">あなたのワークフローに最適なのはどちらか、具体的な指針を提示します。</p>
+    <div class="flex-container" style="align-items: flex-start; margin-top: 30px;">
+        <div class="flex-box animated delay-2" style="text-align: left; border-top: 5px solid var(--accent-color);">
+            <h3 style="text-align: center;"><i class="fa-solid fa-robot"></i> Gemini CLIを選ぶべき時</h3>
+            <ul>
+                <li><strong>マルチモーダルなコンテンツ作成</strong>（画像・動画）が必須の場合。</li>
+                <li>PDFや動画など<strong>リッチメディアをネイティブに分析</strong>したい場合。</li>
+                <li><strong>オープンソース</strong>のツールチェーンを重視する場合。</li>
+                <li><strong>寛大な無料枠</strong>で実験したい個人開発者。</li>
+            </ul>
+        </div>
+        <div class="flex-box animated delay-3" style="text-align: left; border-top: 5px solid #ccc;">
+            <h3 style="text-align: center;"><i class="fa-solid fa-user-group"></i> Claude Codeを検討すべき時</h3>
+            <ul>
+                <li>ワークフローが<strong>完全にコード中心</strong>である場合。</li>
+                <li>ガイド付きの<strong>「ペアプログラミング」</strong>的な対話を好む場合。</li>
+                <li>すぐに使える洗練された<strong>Git連携</strong>を必要とする場合。</li>
+                <li>Anthropicモデルが標準の企業環境で作業している場合。</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="animated">未来の展望: ターミナルからPC全体へ</h2>
+    <div class="animated delay-1" style="text-align: center; margin: 40px 0;">
+        <i class="fa-solid fa-rocket" style="font-size: 5em; color: var(--accent-color);"></i>
+    </div>
+    <p class="left-align animated delay-2">
+        AIエージェントは、コードアシスタントから「コンピュータ全体のための<strong>普遍的な自然言語インターフェース</strong>」へと進化しつつあります。マルチモーダル能力を主戦場として、開発者のワークフローは根本的に変わっていくでしょう。
+    </p>
+</section>
+
+<section 
+    data-background-image="https://images.unsplash.com/photo-1634992336384-18d4e5f73c62" 
+    data-background-opacity="0.3">
+    <h2 class="animated">The Future of Development<br>is in Your Terminal.</h2>
+    <p class="animated delay-1" style="margin-top: 40px;">ご清聴ありがとうございました。</p>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

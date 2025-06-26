@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini CLI: ターミナルから始まる次世代開発ワークフロー</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #230A59;
+            color: #F0F0F0;
+        }
+        .font-roboto-mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+        .card {
+            background-color: #342E59;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #4163A6;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 300px;
+            width: 100%;
+            max-width: 500px;
+        }
+         @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #F23D6D, #F2955E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #F2955E;
+            border: 3px solid #230A59;
+        }
+        .flow-arrow::after {
+            content: '→';
+            font-size: 2rem;
+            color: #F2955E;
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-8 md:my-12">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tighter">ターミナルから始まる<br class="md:hidden"><span class="gradient-text">次世代開発ワークフロー</span></h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">Gemini CLIは単なるコードアシスタントではない。コーディングからマルチメディア生成までを担う、真の開発エージェントだ。</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <section class="md:col-span-2 card">
+                <h2 class="text-2xl font-bold text-center mb-6">一目でわかる実力差：Gemini CLI vs Claude Code</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-gray-900/50 p-6 rounded-lg">
+                        <h3 class="text-lg font-bold text-gray-300">コンテキストウィンドウ</h3>
+                        <p class="font-black text-5xl gradient-text mt-2">100万</p>
+                        <p class="text-gray-400">トークン (Gemini)</p>
+                        <p class="mt-4 text-3xl font-bold">vs</p>
+                        <p class="font-bold text-4xl text-gray-300">20万</p>
+                        <p class="text-gray-400">トークン (Claude)</p>
+                    </div>
+                    <div class="bg-gray-900/50 p-6 rounded-lg">
+                        <h3 class="text-lg font-bold text-gray-300">ライセンス</h3>
+                        <p class="text-5xl mt-2">🔓</p>
+                        <p class="font-bold text-2xl text-green-400 mt-2">オープンソース</p>
+                        <p class="text-gray-400">(Gemini)</p>
+                        <p class="mt-4 text-3xl font-bold">vs</p>
+                         <p class="text-5xl mt-2">🔒</p>
+                        <p class="font-bold text-2xl text-red-400">プロプライエタリ</p>
+                        <p class="text-gray-400">(Claude)</p>
+                    </div>
+                    <div class="bg-gray-900/50 p-6 rounded-lg">
+                        <h3 class="text-lg font-bold text-gray-300">料金モデル (個人)</h3>
+                        <p class="font-bold text-3xl text-green-400 mt-6">寛大な無料枠</p>
+                        <p class="text-gray-400">1000リクエスト/日 (Gemini)</p>
+                        <p class="mt-4 text-3xl font-bold">vs</p>
+                        <p class="font-bold text-3xl text-yellow-400">サブスクリプション</p>
+                        <p class="text-gray-400">Proプラン (Claude)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 card">
+                 <h2 class="text-2xl font-bold text-center mb-2">機能比較：コードの領域を超えて</h2>
+                 <p class="text-center text-gray-400 mb-6">Gemini CLIは、Claude Codeが提供するコーディング支援を網羅し、さらにその先のマルチモーダル機能で圧倒する。</p>
+                 <div class="chart-container h-[400px]">
+                    <canvas id="featureComparisonChart"></canvas>
+                </div>
+            </section>
+            
+            <section class="card">
+                <h2 class="text-2xl font-bold mb-4">思考と行動のループ：<span class="font-roboto-mono">ReAct</span></h2>
+                <p class="mb-6 text-gray-300">Geminiは単に応答するだけではない。「推論(Reason)」と「行動(Act)」を自律的に繰り返し、複雑なタスクを完遂する。</p>
+                <div class="flex flex-col items-center space-y-2 font-roboto-mono">
+                    <div class="bg-gray-900/50 p-3 rounded-lg w-full text-center">推論 (Reason): 何をすべきか計画する</div>
+                    <div class="text-2xl text-orange-400">↓</div>
+                    <div class="bg-gray-900/50 p-3 rounded-lg w-full text-center">行動 (Act): ツールを実行する (例: `read-file`)</div>
+                    <div class="text-2xl text-orange-400">↓</div>
+                    <div class="bg-gray-900/50 p-3 rounded-lg w-full text-center">観測 (Observe): 結果を分析する</div>
+                    <div class="text-2xl text-orange-400">↻</div>
+                </div>
+            </section>
+            
+            <section class="card">
+                <h2 class="text-2xl font-bold mb-4">開発哲学の違い</h2>
+                 <p class="mb-6 text-gray-300">どちらのエージェントを選ぶかは、あなたの開発スタイル次第だ。</p>
+                <div class="space-y-4">
+                    <div class="bg-gray-900/50 p-4 rounded-lg">
+                        <h3 class="text-xl font-bold flex items-center"><span class="text-3xl mr-3">🚀</span> 戦力増強装置 (Gemini)</h3>
+                        <p class="mt-2 text-gray-400">高レベルの目標を与えれば、自律的に計画・実行。大規模タスクの一括委任に最適。</p>
+                    </div>
+                    <div class="bg-gray-900/50 p-4 rounded-lg">
+                        <h3 class="text-xl font-bold flex items-center"><span class="text-3xl mr-3">🤝</span> ペアプログラマー (Claude)</h3>
+                        <p class="mt-2 text-gray-400">対話を通じて段階的に問題を解決。慎重な反復開発を好む場合にフィット。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="md:col-span-2 card text-center">
+                <h2 class="text-3xl font-black gradient-text">マルチモーダルの最前線 (Part I): 画像</h2>
+                <p class="mt-2 text-gray-300 max-w-2xl mx-auto">Geminiの真価は、テキストとコードの世界を超えた場所で発揮される。これはClaudeにはない、決定的なアドバンテージだ。</p>
+            </section>
+
+            <section class="card">
+                <h3 class="text-xl font-bold mb-4">画像処理能力</h3>
+                <p class="mb-6 text-gray-300">Geminiは画像生成から高度な分析まで、視覚情報を自在に扱うことができる。</p>
+                <div class="chart-container h-[300px]">
+                    <canvas id="imageRadarChart"></canvas>
+                </div>
+            </section>
+
+            <section class="card">
+                <h3 class="text-xl font-bold mb-4">ビジョンからコードへ</h3>
+                <p class="mb-6 text-gray-300">手書きのスケッチやPDF仕様書から、直接コードを生成するワークフロー。</p>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-center font-roboto-mono text-sm md:text-base">
+                        <div class="p-3 bg-gray-900/50 rounded-lg text-center">📄<br>sketch.jpg</div>
+                        <div class="flow-arrow"></div>
+                        <div class="p-3 bg-gray-900/50 rounded-lg text-center">💻<br>React Component</div>
+                    </div>
+                    <div class="flex items-center justify-center font-roboto-mono text-sm md:text-base">
+                        <div class="p-3 bg-gray-900/50 rounded-lg text-center">📑<br>api-spec.pdf</div>
+                        <div class="flow-arrow"></div>
+                        <div class="p-3 bg-gray-900/50 rounded-lg text-center">📦<br>TypeScript Client</div>
+                    </div>
+                     <div class="mt-4 text-center">
+                        <p class="text-lg font-bold text-green-400">Gemini: ✅ (可能)</p>
+                        <p class="text-lg font-bold text-red-400">Claude: ❌ (PDF不可、画像も限定的)</p>
+                    </div>
+                </div>
+            </section>
+            
+             <section class="md:col-span-2 card text-center">
+                <h2 class="text-3xl font-black gradient-text">マルチモーダルの最前線 (Part II): 動画</h2>
+                <p class="mt-2 text-gray-300 max-w-2xl mx-auto">動画のネイティブな理解と生成。開発ワークフローが創造の領域にまで拡大する。</p>
+            </section>
+            
+            <section class="card">
+                <h3 class="text-xl font-bold text-center mb-4">ネイティブ動画分析</h3>
+                <p class="text-center text-gray-300 mb-6">動画ファイルを直接読み込み、映像と音声を統合的に分析。要約、Q&A、イベント特定が可能。</p>
+                <div class="text-center p-4 bg-gray-900/50 rounded-lg">
+                    <p class="text-5xl">🎥</p>
+                    <p class="font-roboto-mono mt-2">@ux_test.mp4 "UIで分かりにくい箇所は？"</p>
+                    <div class="mt-4">
+                        <p class="text-lg font-bold text-green-400">Gemini: ✅ (映像＋音声を直接分析)</p>
+                        <p class="text-lg font-bold text-red-400">Claude: ❌ (外部での文字起こしが必須)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h3 class="text-xl font-bold text-center mb-4">テキストから動画生成</h3>
+                 <p class="text-center text-gray-300 mb-6">GoogleのVeoモデルと連携し、プロンプトから短いビデオクリップをターミナル内で生成。</p>
+                <div class="text-center p-4 bg-gray-900/50 rounded-lg">
+                    <p class="text-5xl">✍️ → 🎬</p>
+                    <p class="font-roboto-mono mt-2">"新機能の短いデモ動画を作成して"</p>
+                     <div class="mt-4">
+                        <p class="text-lg font-bold text-green-400">Gemini: ✅ (可能)</p>
+                        <p class="text-lg font-bold text-red-400">Claude: ❌ (不可能)</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 card">
+                <h2 class="text-2xl font-bold text-center mb-6">進化した開発ワークフロー with Gemini CLI</h2>
+                <p class="text-center text-gray-300 mb-8 max-w-3xl mx-auto">一人の開発者がアイデア想起からマーケティング資料作成まで、すべてをターミナルから完結させる未来。</p>
+                <div class="relative w-full p-4 pl-12">
+                    <div class="absolute top-0 left-5 h-full w-0.5 bg-blue-500/50"></div>
+                    <div class="space-y-12">
+                        <div class="relative timeline-item">
+                            <h3 class="text-xl font-bold flex items-center"><span class="text-3xl mr-3">💡</span> アイデアとコーディング</h3>
+                            <p class="text-gray-300 mt-1">「モダンな画像編集Webアプリを作って」というプロンプトから、ReactとFastAPIのフルスタックコードを生成。</p>
+                        </div>
+                        <div class="relative timeline-item">
+                            <h3 class="text-xl font-bold flex items-center"><span class="text-3xl mr-3">🐞</span> デバッグとリファクタリング</h3>
+                            <p class="text-gray-300 mt-1">スタックトレースを貼り付けてエラーを自動修正。100万トークンコンテキストでプロジェクト全体のリファクタリングも可能。</p>
+                        </div>
+                        <div class="relative timeline-item">
+                             <h3 class="text-xl font-bold flex items-center"><span class="text-3xl mr-3">🎨</span> UIアセットとロゴの生成</h3>
+                             <p class="text-gray-300 mt-1">「アプリのロゴを生成して」と指示し、Imagen連携でビジュアルアセットをターミナルから直接作成。</p>
+                        </div>
+                        <div class="relative timeline-item">
+                            <h3 class="text-xl font-bold flex items-center"><span class="text-3xl mr-3">🎬</span> UX動画の分析</h3>
+                            <p class="text-gray-300 mt-1">アプリの操作録画を分析させ、「ユーザーが混乱しているUI要素」を特定し、改善点をリストアップ。</p>
+                        </div>
+                        <div class="relative timeline-item">
+                             <h3 class="text-xl font-bold flex items-center"><span class="text-3xl mr-3">📢</span> マーケティング動画の作成</h3>
+                             <p class="text-gray-300 mt-1">「主要機能を紹介する8秒のSNS用動画を作って」と指示し、Veo連携でプロモーション用クリップを生成。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="md:col-span-2 card">
+                <h2 class="text-2xl font-bold text-center mb-6">最終判断：あなたのコパイロットはどっち？</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-900/50 p-6 rounded-lg border-l-4 border-green-400">
+                        <h3 class="text-xl font-bold text-green-400">Gemini CLI を選ぶべき時</h3>
+                        <ul class="mt-4 space-y-2 list-disc list-inside text-gray-300">
+                            <li>画像・動画などマルチモーダルなコンテンツを扱いたい</li>
+                            <li>PDFや動画などリッチメディアを直接分析したい</li>
+                            <li>オープンソースのツールチェーンを重視する</li>
+                            <li>Google Cloud / Vertex AIエコシステムに投資している</li>
+                            <li>最も寛大な無料枠で最先端AIを試したい</li>
+                        </ul>
+                    </div>
+                     <div class="bg-gray-900/50 p-6 rounded-lg border-l-4 border-yellow-400">
+                        <h3 class="text-xl font-bold text-yellow-400">Claude Code を検討すべき時</h3>
+                        <ul class="mt-4 space-y-2 list-disc list-inside text-gray-300">
+                            <li>ワークフローが完全にコード中心である</li>
+                            <li>自律的な委任より「ペアプログラミング」スタイルを好む</li>
+                            <li>洗練されたGit連携やテスト自動化を最優先する</li>
+                            <li>Anthropicモデルを標準とする企業環境で作業している</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>このインフォグラフィックは提供された分析レポートに基づき生成されました。</p>
+            <p>Visualized with Tailwind CSS & Chart.js. No SVG or Mermaid JS were used in this output.</p>
+        </footer>
+    </div>
+
+    <script>
+        const FONT_COLOR = '#F0F0F0';
+        const GRID_COLOR = 'rgba(240, 240, 240, 0.2)';
+        const PALETTE = {
+            pink: '#F23D6D',
+            orange: '#F2955E',
+            blue: '#4163A6',
+        };
+
+        const wrapLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    if (currentLine) lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) lines.push(currentLine);
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        };
+        
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: FONT_COLOR,
+                        font: { size: 14 }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+        };
+
+        const featureComparisonCtx = document.getElementById('featureComparisonChart');
+        if (featureComparisonCtx) {
+            new Chart(featureComparisonCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['コード生成', '画像分析', '画像生成', '動画分析', '動画生成'],
+                    datasets: [
+                        {
+                            label: 'Gemini CLI',
+                            data: [100, 100, 100, 100, 100],
+                            backgroundColor: PALETTE.pink,
+                            borderColor: PALETTE.pink,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Claude Code',
+                            data: [95, 70, 0, 0, 0],
+                            backgroundColor: PALETTE.blue,
+                            borderColor: PALETTE.blue,
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    ...commonChartOptions,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { color: GRID_COLOR },
+                            ticks: { color: FONT_COLOR, callback: (value) => value + '%' },
+                            title: { display: true, text: '機能充足度', color: FONT_COLOR }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: FONT_COLOR }
+                        }
+                    }
+                }
+            });
+        }
+        
+        const imageRadarCtx = document.getElementById('imageRadarChart');
+        if(imageRadarCtx) {
+            new Chart(imageRadarCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['スケッチ→コード', 'PDF分析', '画像生成', '画像編集', '混在出力'],
+                    datasets: [{
+                        label: 'Gemini CLI',
+                        data: [100, 100, 100, 100, 100],
+                        fill: true,
+                        backgroundColor: 'rgba(242, 61, 109, 0.4)',
+                        borderColor: PALETTE.pink,
+                        pointBackgroundColor: PALETTE.pink,
+                    }, {
+                        label: 'Claude Code',
+                        data: [75, 0, 0, 0, 0],
+                        fill: true,
+                        backgroundColor: 'rgba(65, 99, 166, 0.4)',
+                        borderColor: PALETTE.blue,
+                        pointBackgroundColor: PALETTE.blue,
+                    }]
+                },
+                options: {
+                     ...commonChartOptions,
+                     scales: {
+                        r: {
+                            angleLines: { color: GRID_COLOR },
+                            grid: { color: GRID_COLOR },
+                            pointLabels: { color: FONT_COLOR, font: { size: 12 } },
+                            ticks: {
+                                color: FONT_COLOR,
+                                backdropColor: 'transparent',
+                                stepSize: 25,
+                                callback: (value) => value + '%'
+                            },
+                            min: 0,
+                            max: 100
+                        }
+                     }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
