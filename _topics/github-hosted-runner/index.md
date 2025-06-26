@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/github-hosted-runner.mp3
 category: engineering
 date: 2025-06-24
 ga4_metrics:
-  avgSessionDuration: 104.53800833333334
-  pageViews: 1
+  avgSessionDuration: 210.62081433333333
+  pageViews: 3
   users: 2
 layout: topic
 prompt: GitHub Actionsで使用できるGitHubホステッドランナーについて、自前でセルフホステッドランナーを用意するより価格的に安いのか比較を行いたい。larger

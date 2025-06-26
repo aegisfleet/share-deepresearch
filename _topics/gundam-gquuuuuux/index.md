@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/gundam-gquuuuuux.mp3
 category: research
 date: 2025-06-25
 ga4_metrics:
-  avgSessionDuration: 360.5114453333333
+  avgSessionDuration: 954.6794153333334
   pageViews: 5
   users: 3
 layout: topic
