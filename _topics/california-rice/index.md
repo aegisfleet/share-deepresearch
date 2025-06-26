@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/california-rice.mp3
 category: research
 date: 2025-05-29
 ga4_metrics:
-  avgSessionDuration: 164.87106604081632
-  pageViews: 54
-  users: 44
+  avgSessionDuration: 161.72185398
+  pageViews: 55
+  users: 45
 layout: topic
 prompt: カリフォルニア米は日本米に比べて農薬のリスクが高いと聞いたが、農薬以外の観点も含めて多角的に比較して安全性についてまとめて欲しい。
 supplementary_materials:
