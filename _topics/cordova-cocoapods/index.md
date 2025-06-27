@@ -2,6 +2,7 @@
 audio: /share-deepresearch/assets/audio/cordova-cocoapods.mp3
 category: engineering
 date: 2025-06-18
+description: 本レポートは、CordovaベースのiOSアプリケーション向けに、堅牢かつ自動化されたビルドおよびリリースパイプラインを確立するための、専門家レベルの包括的なガイドを提供することを目的とします。本稿では、Cordova、依存関係管理のためのCocoaPods、そしてビルドとコード署名自動化のためのfastlaneの統合について詳述します。
 ga4_metrics:
   avgSessionDuration: 376.8326862
   pageViews: 6

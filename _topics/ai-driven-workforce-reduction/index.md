@@ -2,6 +2,7 @@
 audio: /share-deepresearch/assets/audio/ai-driven-workforce-reduction.mp3
 category: research
 date: 2025-06-22
+description: 人工知能（AI）が労働市場に与える影響は、単なる「雇用の喪失」という一面的な物語では捉えきれない。世界中の経済が直面しているのは、雇用の「破壊」と「創造」、そして既存業務の「自動化」と「能力拡張」が同時に進行する、複雑かつダイナミックな構造変革である。本章では、この変革の全体像をマクロ的な視点から概観し、企業戦略の根底にある動機を解き明かす。
 ga4_metrics:
   avgSessionDuration: 882.52181325
   pageViews: 7
@@ -365,3 +366,5 @@ AIの進化は止められない。しかし、その影響をどのように社
 102. OECD Employment Outlook 2023, 6月 22, 2025にアクセス、 [https://www.oecd.org/en/publications/oecd-employment-outlook-2023\_08785bba-en.html](https://www.oecd.org/en/publications/oecd-employment-outlook-2023_08785bba-en.html)  
 103. AI and the Future of Work: Insights from the World Economic Forum's Future of Jobs Report 2025 \- Sand Technologies, 6月 22, 2025にアクセス、 [https://www.sandtech.com/insight/ai-and-the-future-of-work/](https://www.sandtech.com/insight/ai-and-the-future-of-work/)  
 104. The World Economic Forum's Future of Jobs Report Just Dropped—and It's Sending a Worrying Message About AI, 6月 22, 2025にアクセス、 [https://www.marketingaiinstitute.com/blog/world-economic-forum-future-of-jobs](https://www.marketingaiinstitute.com/blog/world-economic-forum-future-of-jobs)
+
+[end of _topics/ai-driven-workforce-reduction/index.md]

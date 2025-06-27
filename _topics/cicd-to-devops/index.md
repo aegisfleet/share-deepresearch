@@ -2,6 +2,7 @@
 audio: /share-deepresearch/assets/audio/cicd-to-devops.mp3
 category: engineering
 date: 2025-05-28
+description: 本レポートは、継続的インテグレーション/継続的デリバリー（CI/CD）を主体とするチームが、より包括的なDevOpsモデルへの移行を目指す際に直面する課題と機会を分析する。CI/CDはDevOpsの重要な技術的要素であるが、真のDevOpsトランスフォーメーションは、単なるパイプラインの自動化を超え、文化、プロセス、テクノロジー全般にわたる戦略的進化を必要とする。
 ga4_metrics:
   avgSessionDuration: 23.27319266666667
   pageViews: 3

@@ -2,6 +2,7 @@
 audio: /share-deepresearch/assets/audio/annoying-banter.mp3
 category: research
 date: 2025-06-17
+description: 本稿は、X（旧Twitter）などのソーシャルメディアプラットフォーム上で観察される、見知らぬ他者の投稿に対して執拗かつ無意味に、あるいは敵意をもって関与する「ダル絡み」と呼ばれる現象について、その背後にある精神状態を深く掘り下げることを目的とする。この行動は、単なる迷惑行為や「荒らし」という言葉で片付けられることが多いが、実際には個人の心理、社会力学、そしてテクノロジーが複雑に絡み合った、多層的な現象である 1。
 ga4_metrics:
   avgSessionDuration: 8.394528
   pageViews: 3

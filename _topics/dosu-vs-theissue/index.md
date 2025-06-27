@@ -2,6 +2,7 @@
 audio: /share-deepresearch/assets/audio/dosu-vs-theissue.mp3
 category: ai
 date: 2025-06-09
+description: 本レポートは、AIを活用した開発者支援ツールの現状を概観し、特にDosu.aiとtheissue.aiの機能、特徴、利点と欠点を比較分析する。さらに、GitHub Copilot、Bito.ai、CodeRabbitといった主要な類似サービスも比較対象に加え、それぞれのツールがソフトウェア開発ライフサイクル（SDLC）においてどのような価値を提供するかを明らかにする。
 ga4_metrics:
   avgSessionDuration: 176.10772133333333
   pageViews: 5

@@ -2,6 +2,7 @@
 audio: /share-deepresearch/assets/audio/ai-promotion-law.mp3
 category: ai
 date: 2025-05-29
+description: 本報告書は、2025年5月28日に成立した「人工知能関連技術の研究開発及び活用の推進に関する法律」（以下、「AI推進法」または「本法」）が、日本のAI研究開発、産業、社会、そしてガバナンスに与える多岐にわたる影響を分析するものである。本法は、AI技術の戦略的推進と社会実装を目的とした日本初の包括的な法的枠組みであり、その中核には内閣総理大臣を長とする「人工知能戦略本部」（AI戦略本部）の設置と、国家戦略の指針となる「人工知能基本計画」（AI基本計画）の策定が据えられている。
 ga4_metrics:
   avgSessionDuration: 25.631906
   pageViews: 3
@@ -278,7 +279,7 @@ AI推進法は、日本がAIの変革力を活用するための重要な法的�
 
 #### **引用文献**
 
-1. 「AI推進法案」とは？ 法案の目的、背景、構成を解説！ チワワテクノロジーズ, 5月 29, 2025にアクセス、 [https://chihuahua-tech.com/2025/05/18/%E3%80%8Cai%E6%8E%A8%E9%80%B2%E6%B3%95%E6%A1%88%E3%80%8D%E3%81%A8%E3%81%AF%EF%BC%9F-%E6%B3%95%E6%A1%88%E3%81%AE%E7%9B%AE%E7%9A%84%E3%80%81%E8%83%8C%E6%99%AF%E3%80%81%E6%A7%8B%E6%88%90%E3%82%92/](https://chihuahua-tech.com/2025/05/18/%E3%80%8Cai%E6%8E%A8%E9%80%B2%E6%B3%95%E6%A1%88%E3%80%8D%E3%81%A8%E3%81%AF%EF%BC%9F-%E6%B3%95%E6%A1%88%E3%81%AE%E7%9B%AE%E7%9A%84%E3%80%81%E8%83%8C%E6%99%AF%E3%80%81%E6%A7%8B%E6%88%90%E3%82%92/)  
+1. 「AI推進法案」とは？ 法案の目的、背景、構成を解説！ チワワテクノロジーズ, 5月 29, 2025にアクセス、 [https://chihuahua-tech.com/2025/05/18/%E3%80%8Cai%E6%8E%A8%E9%80%B2%E6%B3%95%E6%A1%88%E3%80%8D%E3%81%A8%E3%81%AF%EF%BC%9F-%E6%B3%95%E6%A1%88%E3%81%AE%E7%9B%AE%E7%9A%84%E3%80%81%E8%83%8C%E6%99%AF%E3%80%81%E6%A7%8B%E6%88%90%E3%82%92/](https://chihuahua-tech.com/2025/05/18/%E3%80%8Cai%E6%8E%A8%E9%80%B2%E6%B3%95%E6%A1%88%E3%80%8D%E3%81%A8%E3%81%AF%EF%BC%9F-%E6%B3%95%E6%A1%88%E3%81%AE%E7%9B%AE%E7%9A%84%E3%80%81%E8%83%8C%E6%99%景%E3%80%81%E6%A7%8B%E6%88%90%E3%82%92/)
 2. 日本におけるAI新法とは？法案の内容を解説【法案全文DLあり ..., 5月 29, 2025にアクセス、 [https://prospire-law.com/articles\_internetit/25041001/](https://prospire-law.com/articles_internetit/25041001/)  
 3. “AI推進法”成立 参院本会議で可決、賛成多数で \- ITmedia AI＋, 5月 29, 2025にアクセス、 [https://www.itmedia.co.jp/aiplus/articles/2505/28/news108.html](https://www.itmedia.co.jp/aiplus/articles/2505/28/news108.html)  
 4. 「AI推進法」可決へ 人工知能技術への理解と関心が“国民の責務”に \- KAI-YOU（カイユウ）, 5月 29, 2025にアクセス、 [https://kai-you.net/article/92534](https://kai-you.net/article/92534)  

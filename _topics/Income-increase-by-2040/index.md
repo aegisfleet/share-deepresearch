@@ -2,6 +2,7 @@
 audio: /share-deepresearch/assets/audio/Income-increase-by-2040.mp3
 category: research
 date: 2025-06-11
+description: 本報告書は、2040年までに日本国民の平均所得を5割増加させるという目標の実現可能性について、数値的根拠と経済予測に基づき専門的な分析を行うことを目的とする。所得向上は、特に成熟経済であり人口動態の課題に直面する日本において、国民生活の質的向上と持続可能な経済社会の構築に向けた重要なテーマである。この目標は非常に野心的であり、その達成は広範な影響をもたらすものと考えられる。
 ga4_metrics:
   avgSessionDuration: 332.06701449999997
   pageViews: 7
@@ -68,7 +69,7 @@ g≈0.0240 すなわち 2.40%
 
 ## **4\. 2040年に向けた経済成長の展望**
 
-平均所得の向上は、経済全体の成長と密接に関連している。ここでは、2040年に向けた日本の経済成長の展望を、人口動態の変化と主要機関による経済予測の観点から考察する。
+平均所得の向上は、経済全体の成長と密접に関連している。ここでは、2040年に向けた日本の経済成長の展望を、人口動態の変化と主要機関による経済予測の観点から考察する。
 
 ### **4.1. 人口動態の変化と労働力への影響**
 
@@ -260,3 +261,5 @@ AIによる生産性向上が平均所得の5割増に繋がるかどうかは�
 33. 規模別労働分配率の推移 \- 厚生労働省, 6月 11, 2025にアクセス、 [https://www.mhlw.go.jp/stf/shingi/2r9852000002790h-att/2r98520000027bof.pdf](https://www.mhlw.go.jp/stf/shingi/2r9852000002790h-att/2r98520000027bof.pdf)  
 34. 日本における労働分配率の決定要因分析, 6月 11, 2025にアクセス、 [https://www.rieti.go.jp/jp/publications/dp/21j006.pdf](https://www.rieti.go.jp/jp/publications/dp/21j006.pdf)  
 35. ～近年の労働分配率低下の要因分析～, 6月 11, 2025にアクセス、 [https://www5.cao.go.jp/keizai3/discussion-paper/dp183.pdf](https://www5.cao.go.jp/keizai3/discussion-paper/dp183.pdf)
+
+[end of _topics/Income-increase-by-2040/index.md]
