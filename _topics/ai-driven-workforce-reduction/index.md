@@ -366,5 +366,3 @@ AIの進化は止められない。しかし、その影響をどのように社
 102. OECD Employment Outlook 2023, 6月 22, 2025にアクセス、 [https://www.oecd.org/en/publications/oecd-employment-outlook-2023\_08785bba-en.html](https://www.oecd.org/en/publications/oecd-employment-outlook-2023_08785bba-en.html)  
 103. AI and the Future of Work: Insights from the World Economic Forum's Future of Jobs Report 2025 \- Sand Technologies, 6月 22, 2025にアクセス、 [https://www.sandtech.com/insight/ai-and-the-future-of-work/](https://www.sandtech.com/insight/ai-and-the-future-of-work/)  
 104. The World Economic Forum's Future of Jobs Report Just Dropped—and It's Sending a Worrying Message About AI, 6月 22, 2025にアクセス、 [https://www.marketingaiinstitute.com/blog/world-economic-forum-future-of-jobs](https://www.marketingaiinstitute.com/blog/world-economic-forum-future-of-jobs)
-
-[end of _topics/ai-driven-workforce-reduction/index.md]

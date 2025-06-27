@@ -69,7 +69,7 @@ g≈0.0240 すなわち 2.40%
 
 ## **4\. 2040年に向けた経済成長の展望**
 
-平均所得の向上は、経済全体の成長と密접に関連している。ここでは、2040年に向けた日本の経済成長の展望を、人口動態の変化と主要機関による経済予測の観点から考察する。
+平均所得の向上は、経済全体の成長と密接に関連している。ここでは、2040年に向けた日本の経済成長の展望を、人口動態の変化と主要機関による経済予測の観点から考察する。
 
 ### **4.1. 人口動態の変化と労働力への影響**
 
@@ -261,5 +261,3 @@ AIによる生産性向上が平均所得の5割増に繋がるかどうかは�
 33. 規模別労働分配率の推移 \- 厚生労働省, 6月 11, 2025にアクセス、 [https://www.mhlw.go.jp/stf/shingi/2r9852000002790h-att/2r98520000027bof.pdf](https://www.mhlw.go.jp/stf/shingi/2r9852000002790h-att/2r98520000027bof.pdf)  
 34. 日本における労働分配率の決定要因分析, 6月 11, 2025にアクセス、 [https://www.rieti.go.jp/jp/publications/dp/21j006.pdf](https://www.rieti.go.jp/jp/publications/dp/21j006.pdf)  
 35. ～近年の労働分配率低下の要因分析～, 6月 11, 2025にアクセス、 [https://www5.cao.go.jp/keizai3/discussion-paper/dp183.pdf](https://www5.cao.go.jp/keizai3/discussion-paper/dp183.pdf)
-
-[end of _topics/Income-increase-by-2040/index.md]
