@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haconiwa: 宣言的AI開発環境インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-line {
+            position: relative;
+            padding-left: 40px;
+            border-left: 2px dashed #0582CA;
+        }
+        .flow-line::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 9999px;
+            background-color: #F7B801;
+            border: 2px solid #0582CA;
+        }
+        .flow-line:first-child {
+            border-left: 2px dashed #0582CA;
+        }
+         .flow-line:last-child {
+            border-left: none;
+        }
+        .flow-line:last-child::after {
+             content: '';
+            position: absolute;
+            left: 2px;
+            bottom: -20px;
+            width: 2px;
+            height: 20px;
+            background-color: #0582CA;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-[#006494] mb-4">Haconiwa</h1>
+            <p class="text-xl md:text-2xl text-[#0582CA] font-semibold">宣言的AI中心開発環境のアーキテクチャ</p>
+            <p class="mt-4 max-w-3xl mx-auto text-gray-600">
+                AIエージェントが協調する複雑な開発ワークフローを、コードのように管理する。Haconiwaは、`tmux`と`git worktree`を駆使し、ローカル開発環境のオーケストレーションに革命をもたらします。
+            </p>
+        </header>
+
+        <main class="space-y-16">
+
+            <section id="problem-solution">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#006494]">マルチエージェント開発の複雑性</h2>
+                    <p class="mt-2 text-gray-600">複数のAIエージェントが単一のコードベースで同時に作業する際の混乱を解決します。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-500">
+                        <h3 class="text-xl font-bold mb-4 flex items-center"><span class="text-2xl mr-3">⚠️</span>従来のアプローチ</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><span class="font-bold text-red-600">手作業での環境設定:</span> 煩雑でエラーが発生しやすい。</li>
+                            <li><span class="font-bold text-red-600">ファイルコンフリクト:</span> 依存関係やビルド成果物が衝突。</li>
+                            <li><span class="font-bold text-red-600">非効率な並列作業:</span> 複数リポジトリのクローンやスタッシュが必須。</li>
+                            <li><span class="font-bold text-red-600">再現性の欠如:</span> 開発環境のセットアップがアドホック。</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg border-l-4 border-green-500">
+                        <h3 class="text-xl font-bold mb-4 flex items-center"><span class="text-2xl mr-3">💡</span>Haconiwaの解決策</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li><span class="font-bold text-green-600">Workspace-as-Code:</span> 宣言的なYAMLで環境を定義。</li>
+                            <li><span class="font-bold text-green-600">完全な分離:</span> `git worktree`でタスク毎にディレクトリを分離。</li>
+                            <li><span class="font-bold text-green-600">シームレスな並列性:</span> `tmux`でセッションを仮想化し、全エージェントを監視。</li>
+                            <li><span class="font-bold text-green-600">完全な再現性:</span> `haconiwa apply`で常に一貫した環境を構築。</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="architecture">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#006494]">Haconiwaアーキテクチャ</h2>
+                    <p class="mt-2 text-gray-600">単一のYAMLファイルが、どのようにして物理的な開発環境へと変換されるのか。</p>
+                </div>
+
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-xl">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                        <div class="w-full md:w-1/3 text-center">
+                            <div class="p-4 bg-gray-100 rounded-lg">
+                                <span class="text-5xl">📄</span>
+                                <h3 class="text-xl font-bold mt-2 text-[#006494]">1. 宣言的定義</h3>
+                                <p class="text-sm text-gray-600 mt-1">`config.yaml` に `Organization`, `Space`, `Task` を定義します。</p>
+                            </div>
+                        </div>
+
+                        <div class="w-full md:w-1/3 text-center flex justify-center">
+                             <div class="text-center">
+                                <div class="p-4 bg-[#00A6FB] text-white rounded-full inline-block shadow-lg">
+                                    <span class="text-4xl">⚙️</span>
+                                 </div>
+                                <h3 class="text-xl font-bold mt-2 text-[#00A6FB]">Haconiwa CLI</h3>
+                                 <p class="text-sm text-gray-600 mt-1">`haconiwa apply`</p>
+                                <p class="text-5xl font-thin text-gray-300 my-4">→</p>
+                             </div>
+                        </div>
+
+                        <div class="w-full md:w-1/3 space-y-4">
+                            <div class="bg-gray-100 p-4 rounded-lg text-center">
+                                 <span class="text-5xl">💻</span>
+                                <h3 class="text-xl font-bold mt-2 text-[#006494]">2. 物理的環境</h3>
+                                <p class="text-sm text-gray-600 mt-1">環境がインスタンス化されます。</p>
+                            </div>
+                            <div class="bg-blue-50 p-3 rounded-md text-left text-sm">
+                                <p><span class="font-bold text-[#0582CA]">`tmux` セッション:</span> 各エージェント用の仮想ターミナルが生成</p>
+                            </div>
+                             <div class="bg-blue-50 p-3 rounded-md text-left text-sm">
+                                <p><span class="font-bold text-[#0582CA]">`git worktree`:</span> タスク毎の隔離されたディレクトリが作成</p>
+                            </div>
+                             <div class="bg-blue-50 p-3 rounded-md text-left text-sm">
+                                <p><span class="font-bold text-[#0582CA]">AIエージェント:</span> 各ペイン内でコマンドを実行</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="workflow">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#006494]">実践的なワークフロー</h2>
+                    <p class="mt-2 text-gray-600">定義から実行、破棄までのライフサイクル管理。</p>
+                </div>
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-xl">
+                    <div class="space-y-8">
+                        <div class="flow-line flex items-start gap-4">
+                            <div class="bg-[#00A6FB] text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center text-3xl font-bold shadow-md">1</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-[#006494]">環境の定義と適用</h3>
+                                <p class="text-gray-600 mt-1">`haconiwa apply -f config.yaml` を実行。YAMLの定義に基づき、tmuxセッションとgit worktreeが自動的に生成されます。</p>
+                            </div>
+                        </div>
+                        <div class="flow-line flex items-start gap-4">
+                             <div class="bg-[#F7B801] text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center text-3xl font-bold shadow-md">2</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-[#006494]">対話と実行</h3>
+                                <p class="text-gray-600 mt-1">`haconiwa space attach` でセッションに入り、`haconiwa space run` でAIエージェントにタスクを一斉に実行させ、その活動をリアルタイムで監視します。</p>
+                            </div>
+                        </div>
+                        <div class="flow-line flex items-start gap-4">
+                            <div class="bg-[#F4A261] text-white rounded-full w-16 h-16 flex-shrink-0 flex items-center justify-center text-3xl font-bold shadow-md">3</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-[#006494]">環境の破棄</h3>
+                                <p class="text-gray-600 mt-1">`haconiwa space delete --clean-dirs` を実行。セッションと関連する作業ディレクトリを完全にクリーンアップし、環境を初期状態に戻します。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="comparison">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#006494]">Haconiwa vs. 主要エージェントフレームワーク</h2>
+                    <p class="mt-2 text-gray-600">Haconiwaはエージェントの「頭脳」ではなく、「作業場」を提供します。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-white p-6 rounded-lg shadow-xl">
+                         <div class="chart-container">
+                            <canvas id="comparisonChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg shadow-md">
+                            <h3 class="font-bold text-lg text-[#00A6FB]">Haconiwa</h3>
+                            <p class="text-sm text-gray-700">【環境のオーケストレーション】`tmux`と`git worktree`を使い、エージェントが安全に並列作業できる物理的な「作業場」を構築・管理します。</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-md">
+                            <h3 class="font-bold text-lg text-[#F7B801]">CrewAI</h3>
+                            <p class="text-sm text-gray-700">【エージェントの協調】役割ベースのエージェントチームを定義し、タスクの委任や協力プロセスといった「チームワーク」を設計します。</p>
+                        </div>
+                         <div class="bg-white p-4 rounded-lg shadow-md">
+                            <h3 class="font-bold text-lg text-[#F4A261]">AutoGPT</h3>
+                            <p class="text-sm text-gray-700">【自律的なタスク達成】単一エージェントの思考・計画・行動のループを駆動させ、自律的に目標を達成する「認知アーキテクチャ」を提供します。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="security">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#006494]">未来のビジョン: Security as Code</h2>
+                    <p class="mt-2 text-gray-600">計画中の`Law` CRDは、宣言的なセキュリティポリシーの適用を可能にします。</p>
+                </div>
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-xl text-center">
+                    <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4">
+                        <div class="p-4 bg-gray-100 rounded-lg">
+                            <span class="text-4xl">📜</span>
+                            <h4 class="font-bold mt-2">`Law.yaml`</h4>
+                            <p class="text-xs text-gray-500">高レベルなルールを定義</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">→</div>
+                        <div class="p-4 bg-[#00A6FB] text-white rounded-lg">
+                            <span class="text-4xl">🛡️</span>
+                            <h4 class="font-bold mt-2">Haconiwa</h4>
+                            <p class="text-xs">ポリシーコンパイラとして機能</p>
+                        </div>
+                         <div class="text-2xl text-gray-400">→</div>
+                        <div class="p-4 bg-gray-100 rounded-lg">
+                            <span class="text-4xl">🔒</span>
+                            <h4 class="font-bold mt-2">低レベルプロファイル</h4>
+                            <p class="text-xs text-gray-500">`seccomp` / `AppArmor`</p>
+                        </div>
+                    </div>
+                    <p class="mt-6 text-gray-700 max-w-2xl mx-auto">このアプローチにより、ユーザーフレンドリーな形式で堅牢なサンドボックス化が実現し、LLMOpsのセキュリティを飛躍的に向上させる可能性があります。</p>
+                </div>
+            </section>
+
+             <section id="status">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#006494]">プロジェクトの現状とポテンシャル</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-xl mb-3 text-green-600">強み</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>革新的なアーキテクチャビジョン</li>
+                            <li>技術選定の的確さ (`tmux`, `git worktree`)</li>
+                            <li>宣言的で再現可能なワークフロー</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-xl mb-3 text-yellow-600">現状 (v0.4.0)</h3>
+                        <div class="h-48 w-48 mx-auto">
+                            <canvas id="statusChart"></canvas>
+                        </div>
+                         <p class="text-center text-gray-600 mt-2">初期アルファ段階であり、本番利用は非推奨です。</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="font-bold text-xl mb-3 text-blue-600">将来性</h3>
+                         <ul class="list-disc list-inside space-y-2 text-gray-700">
+                             <li>`Law` CRDによる宣言的セキュリティ</li>
+                             <li>LLMOpsの標準ツールとなる可能性</li>
+                             <li>マルチエージェント開発のライフサイクル管理</li>
+                         </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-300">
+            <p class="text-gray-500">このインフォグラフィックは `dai-motoki/haconiwa` プロジェクトの公開情報に基づき作成されました。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const processLabel = (label, maxLength = 16) => {
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(/\s+/);
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).length > maxLength && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = currentLine ? currentLine + ' ' + word : word;
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+            
+            const sharedTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+
+            const comparisonCtx = document.getElementById('comparisonChart');
+            if(comparisonCtx) {
+                new Chart(comparisonCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['環境オーケストレーション', 'エージェント協調', '自律的タスク達成', '宣言的定義', '物理的分離'],
+                        datasets: [{
+                            label: 'Haconiwa',
+                            data: [5, 2, 1, 5, 5],
+                            backgroundColor: 'rgba(0, 166, 251, 0.2)',
+                            borderColor: '#00A6FB',
+                            pointBackgroundColor: '#00A6FB',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#00A6FB'
+                        }, {
+                            label: 'CrewAI',
+                            data: [1, 5, 2, 3, 1],
+                            backgroundColor: 'rgba(247, 184, 1, 0.2)',
+                            borderColor: '#F7B801',
+                            pointBackgroundColor: '#F7B801',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#F7B801'
+                        }, {
+                            label: 'AutoGPT',
+                            data: [1, 1, 5, 2, 1],
+                            backgroundColor: 'rgba(244, 162, 97, 0.2)',
+                            borderColor: '#F4A261',
+                            pointBackgroundColor: '#F4A261',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: '#F4A261'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        ...sharedTooltipOptions,
+                        scales: {
+                            r: {
+                                angleLines: {
+                                    color: '#e2e8f0'
+                                },
+                                grid: {
+                                    color: '#e2e8f0'
+                                },
+                                pointLabels: {
+                                    font: {
+                                        size: 12
+                                    },
+                                    color: '#4a5568'
+                                },
+                                ticks: {
+                                    backdropColor: '#f0f4f8',
+                                    color: '#64748b'
+                                }
+                            }
+                        },
+                        plugins: {
+                           ...sharedTooltipOptions.plugins,
+                            legend: {
+                                position: 'top',
+                            },
+                        }
+                    }
+                });
+            }
+
+            const statusCtx = document.getElementById('statusChart');
+            if(statusCtx) {
+                 new Chart(statusCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['アルファ段階', '開発中'],
+                        datasets: [{
+                            data: [100, 0],
+                            backgroundColor: [
+                                '#F7B801',
+                                '#e2e8f0'
+                            ],
+                            borderColor: '#fff',
+                            borderWidth: 4,
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: '70%',
+                        plugins: {
+                            ...sharedTooltipOptions.plugins,
+                            legend: {
+                                display: false
+                            },
+                             title: {
+                                display: true,
+                                text: 'v0.4.0 Alpha',
+                                position: 'bottom',
+                                font: {
+                                    size: 16,
+                                    weight: 'bold'
+                                },
+                                color: '#4a5568',
+                                padding: {
+                                    top: 10
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

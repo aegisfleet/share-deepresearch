@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>完全自動運転の現在地と未来：事故調査レポートから読み解く技術・安全性・社会の課題</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { font-size: 1.3em; line-height: 1.5; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.8em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section data-background-image="https://images.unsplash.com/photo-1533618365129-1a73e5a5c6a5" data-background-opacity="0.2" data-transition="zoom">
+    <h1 class="animated delay-1">完全自動運転の現在地と未来</h1>
+    <p class="subtitle animated delay-2">事故調査レポートから読み解く技術・安全性・社会の課題</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="left-align animated delay-1">本日のアジェンダ</h2>
+    <ul class="left-align" style="list-style-type: none; margin-left: 0; padding-left: 0; margin-top: 40px;">
+        <li class="animated delay-2" style="margin-bottom: 25px;"><i class="fa-solid fa-car-side fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>序（起）</strong>: 自動運転の「いま」を知る</li>
+        <li class="animated delay-3" style="margin-bottom: 25px;"><i class="fa-solid fa-globe fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>承</strong>: 世界の開発競争と規制</li>
+        <li class="animated delay-4" style="margin-bottom: 25px;"><i class="fa-solid fa-shield-halved fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>転</strong>: 安全性の真実 - データ vs. 認識</li>
+        <li class="animated delay-5" style="margin-bottom: 25px;"><i class="fa-solid fa-triangle-exclamation fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>結</strong>: 事故から学び、未来への教訓</li>
+    </ul>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">レベル5はまだ未来の話</h2>
+    <p class="animated delay-2">本レポートが分析するのは、現在商用化されている最高レベルの「レベル4」です。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-road"></i>
+            <h3>レベル4: 高度運転自動化</h3>
+            <p>特定のエリアや条件下で、システムが<strong>完全に運転</strong>します。現在、商用化されている最高レベルです。</p>
+        </div>
+        <div class="animated delay-4" style="align-self: center;">
+            <i class="fa-solid fa-arrow-right-long fa-3x"></i>
+        </div>
+        <div class="flex-box animated delay-5">
+            <i class="fa-solid fa-infinity"></i>
+            <h3>レベル5: 完全運転自動化</h3>
+            <p>どんな状況でもシステムが運転する<strong>理論上の最終段階</strong>です。その実現はまだ遠い将来の課題とされています。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">本報告書の主要な登場人物</h2>
+    <div class="flex-container" style="align-items: stretch; margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-brands fa-google"></i>
+            <h3>Waymo</h3>
+            <p class="small-text">Alphabet傘下。米国の複数都市で<strong>商用ロボタクシー</strong>を展開する業界リーダーです。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-dragon"></i>
+            <h3>Baidu Apollo</h3>
+            <p class="small-text">中国の検索大手。国家戦略を背景に<strong>世界最大規模のロボタクシー</strong>を運用しています。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-car-burst"></i>
+            <h3>Cruise</h3>
+            <p class="small-text">GM傘下。重大事故と不透明な対応により<strong>事業停止</strong>に追い込まれ、業界の教訓となりました。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">世界の開発競争: 規制が戦略を決める</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-flag-usa"></i>
+            <h3>米国: イノベーション主導型</h3>
+            <p>州ごとにルールが異なる「パッチワーク」状態。 Waymoのように特定都市で深く掘り下げ、<strong>成功モデルを横展開</strong>する戦略を採ります。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-flag"></i>
+            <h3>中国: 国家主導型</h3>
+            <p>政府主導で大規模な実証実験区を整備。 Baiduのように複数都市で一気に展開し、<strong>規模（スケール）で優位</strong>に立つ戦略を採ります。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="left-align animated delay-1">欧州・その他の動向</h2>
+    <div class="flex-container" style="margin-top: 50px; align-items: flex-start; text-align: left;">
+        <div style="flex: 2;" class="animated delay-2">
+            <h3><i class="fa-brands fa-europa" style="color: var(--accent-color);"></i> 欧州：統一規制を目指す協調アプローチ</h3>
+            <p>ドイツがレベル4の国内法を世界に先駆け成立させました。 現在はEU全体での<strong>統一規制の導入</strong>を目指しており、実現すれば市場のスケールアップが期待されます。</p>
+        </div>
+        <div style="flex: 1; margin-left: 30px;" class="animated delay-3">
+            <div class="flex-box">
+                <h4><i class="fa-solid fa-map-pin"></i> その他の注目国</h4>
+                <p class="small-text">シンガポール、オランダ、英国なども、法整備やインフラの質で高い評価を得ています。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-transition="zoom">
+    <h2 class="animated delay-1">安全性の真実①：データの罠</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-robot"></i>
+            <h3>自動運転車 (AV)</h3>
+            <p>ごく軽微な接触も<strong>ほぼ100%報告</strong>する義務があります。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-user"></i>
+            <h3>人間ドライバー</h3>
+            <p>物損のみの事故の<strong>約60%は警察に未報告</strong>という推計も存在します。</p>
+        </div>
+    </div>
+    <p class="animated delay-4" style="margin-top: 30px;">単純な事故件数の比較は、<strong>自動運転車が不利に見える</strong>という誤解を生みます。</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">安全性の真実②：深刻な事故は激減</h2>
+    <p class="animated delay-2">報告バイアスの影響が少ない「<strong>負傷を伴う事故</strong>」や「<strong>警察への報告があった事故</strong>」で比較すると、自動運転の優位性が明確になります。</p>
+    <table class="comparison-table animated delay-3">
+        <thead>
+            <tr>
+                <th>指標 (100万マイルあたり)</th>
+                <th>Waymo</th>
+                <th>人間 (ベンチマーク)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>負傷を伴う事故率</td>
+                <td><strong>0.41</strong> 件</td>
+                <td>2.78 件</td>
+            </tr>
+            <tr>
+                <td>警察への報告があった事故率</td>
+                <td><strong>2.1</strong> 件</td>
+                <td>4.85 件</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">新たな課題: 「非人間的な」運転</h2>
+    <p class="animated delay-2">AVの安全性が、新たなリスクを生むというジレンマが存在します。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-traffic-light"></i>
+            <h3>AVの挙動</h3>
+            <p>交通法規を<strong>厳格に遵守</strong>し、常に安全マージンを確保。人間には「慎重すぎる」「予測不能」と映ることがあります。</p>
+        </div>
+        <div class="animated delay-4" style="align-self: center;">
+            <i class="fa-solid fa-arrow-right-long fa-3x"></i>
+        </div>
+        <div class="flex-box animated delay-5">
+            <i class="fa-solid fa-car-rear"></i>
+            <h3>人間の反応</h3>
+            <p>AVの挙動に<strong>いらだちや誤解</strong>を抱き、結果としてAVが被害者となる追突事故の一因となるケースが多数報告されています。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">事例研究：Cruise歩行者事故 (2023年)</h2>
+    <div class="flex-container" style="margin-top: 50px; align-items: flex-start;">
+        <div class="flex-box animated delay-2" style="flex: 1.2;">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+            <h3>事故の経緯</h3>
+            <p class="small-text">二次衝突後、システムは歩行者が<strong>車両下にいることを検知できず</strong>、安全な場所への移動プロトコルを実行。歩行者を引きずったまま約6m移動してしまいました。</p>
+        </div>
+        <div class="flex-box animated delay-3" style="flex: 1;">
+            <i class="fa-solid fa-eye-slash"></i>
+            <h3>致命的な失敗</h3>
+            <p class="small-text">技術的な「認識の失敗」 もさることながら、その後の報告で「引きずり」の事実を十分に開示しなかった<strong>透明性の欠如</strong>が、信頼を完全に失墜させました。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">もし事故に遭遇したら？ 乗員の役割は「保護されること」</h2>
+    <div class="flex-container" style="margin-top: 50px; align-items: flex-start;">
+        <div style="flex: 1;" class="left-align">
+            <h3 class="animated delay-2"><i class="fa-solid fa-circle-check" style="color: lightgreen;"></i> やるべきこと (Do's)</h3>
+            <ul class="animated delay-3">
+                <li>冷静に<strong>車内に留まる</strong></li>
+                <li><strong>遠隔サポートと通信</strong>する</li>
+                <li>警察や救急隊の<strong>指示に従う</strong></li>
+            </ul>
+        </div>
+        <div style="flex: 1;" class="left-align">
+            <h3 class="animated delay-4"><i class="fa-solid fa-circle-xmark" style="color: lightcoral;"></i> やってはいけないこと (Don'ts)</h3>
+            <ul class="animated delay-5">
+                <li>自分で<strong>車を操作</strong>しようとしない</li>
+                <li>現場で<strong>責任について言及</strong>しない</li>
+                <li><strong>不必要に車外</strong>に出ない</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">総括：到達点と残された課題</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-flag-checkered"></i>
+            <h3>到達点</h3>
+            <p>レベル4が<strong>商用化</strong>され、特に<strong>重篤な事故の削減</strong>において、人間を上回る大きな可能性を示しています。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-road-spikes"></i>
+            <h3>残された課題</h3>
+            <p>複雑な「<strong>エッジケース</strong>」への対応、グローバルな<strong>規制の調和</strong>、そして人間社会との<strong>相互理解</strong>が大きな課題です。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">未来への展望</h2>
+    <div class="flex-container" style="margin-top: 50px; align-items: stretch;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-microchip"></i>
+            <h4>技術の進化</h4>
+            <p class="small-text">ODDの段階的拡大と、自家用車の<strong>高度運転支援(レベル2+)の普及</strong>が現実的な進路となります。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-gavel"></i>
+            <h4>規制の進化</h4>
+            <p class="small-text">安全性とイノベーションのバランスを取りながら、<strong>国際的な規制調和</strong>が進んでいきます。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-users"></i>
+            <h4>社会の進化</h4>
+            <p class="small-text">プライバシー保護や雇用など、より<strong>現実的な倫理的・社会的議論</strong>が本格化します。</p>
+        </div>
+    </div>
+</section>
+
+<section data-background-image="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3" data-background-opacity="0.3" data-transition="zoom-out">
+    <h1 class="animated delay-1">ご清聴ありがとうございました</h1>
+    <p class="subtitle animated delay-2">技術と社会が共存する、より安全な未来へ</p>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

@@ -3,42 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-adsense-account" content="ca-pub-3122674942116250">
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z11MHHRE8B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Z11MHHRE8B');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250"
+    crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    
-    <!-- Favicon -->
+
     <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon/favicon-32x32.png' | relative_url }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon/favicon-16x16.png' | relative_url }}">
-    
+
     {% include head-ogp.html %}
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  {% if page.url == '/' %}
+  "@type": "WebSite",
+  "name": "{{ site.title | escape }}",
+  "url": "{{ site.url }}{{ site.baseurl }}/",
+  "description": "{{ site.description | escape }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ site.url }}{{ site.baseurl }}/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+  {% else if page.title %}
+  "@type": "Article",
+  "headline": "{{ page.title | escape }}",
+  "image": ["{{ site.url }}{% if page.ogp_image %}{{ page.ogp_image | relative_url }}{% else %}{{ '/assets/images/default-ogp.png' | relative_url }}{% endif %}"],
+  "datePublished": {% if page.date %}"{{ page.date | date_to_xmlschema }}"{% else %}"{{ site.time | date_to_xmlschema }}"{% endif %},
+  "dateModified": {% if page.last_modified_at %}"{{ page.last_modified_at | date_to_xmlschema }}"{% elsif page.date %}"{{ page.date | date_to_xmlschema }}"{% else %}"{{ site.time | date_to_xmlschema }}"{% endif %},
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.author.name | default: site.title | escape }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.title | escape }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}{{ '/assets/images/default-ogp.png' | relative_url }}"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ site.url }}{{ page.url | relative_url }}"
+  },
+  "description": "{% if page.description %}{{ page.description | strip_html | normalize_whitespace | escape }}{% else %}{{ site.description | strip_html | normalize_whitespace | escape }}{% endif %}"
+  {% endif %}
+}
+</script>
 </head>
 <body>
     <header class="page-header">
         <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
         <p>{{ site.description }}</p>
-    </header>    <main class="main-content">
-        {% if page.url == "/" %}
-            <h1>{{ page.title }}</h1>
-            <p>このサイトは、Google Gemini を使用した DeepResearch の結果を個人的にまとめたものです。</p>
-            <h2>トピック一覧</h2>            <ul class="topic-list">
-            {% assign sorted_topics = site.topics | sort: 'date' | reverse %}
-            {% for topic in sorted_topics %}
-                <li {% if topic.category %}data-category="{{ topic.category }}"{% endif %}>
-                    <a href="{{ topic.url | relative_url }}">{{ topic.title }}</a>
-                    <span class="date">{{ topic.date | date: "%Y年%m月%d日" }}</span>
-                </li>
+    </header>
+
+    <main class="main-content">
+    {% if page.url == "/" %}
+        <div style="text-align: center; margin-bottom: 2em;">
+            <img src="{{ '/assets/images/default-ogp.png' | relative_url }}" alt="{{ site.title }}" style="max-width: 800px; width: 100%; height: auto;">
+        </div>
+        <p style="text-align: center;">このサイトは、Google Gemini を使用した DeepResearch の結果を個人的にまとめたものです。</p>
+
+        <div class="category-filter">
+            <button class="category-btn active" data-category="all" title="すべて表示">📚</button>
+            {% assign categories = site.topics | map: 'category' | uniq | sort %}
+            {% for category in categories %}
+                {% if category %}
+                    {% assign emoji = "💡" %}
+                    {% case category %}
+                        {% when "ai" %}{% assign emoji = "🤖" %}
+                        {% when "engineering" %}{% assign emoji = "💻" %}
+                        {% when "playful" %}{% assign emoji = "🤪" %}
+                        {% when "research" %}{% assign emoji = "🔍" %}
+                        {% when "study" %}{% assign emoji = "✏️" %}
+                    {% endcase %}
+                    <button class="category-btn" data-category="{{ category }}" title="{{ category }}">{{ emoji }}</button>
+                {% endif %}
             {% endfor %}
-            </ul>
-        {% else %}
-            {{ content }}
-        {% endif %}
+        </div>
+
+        <div class="tag-filter">
+            <button class="tag-btn active" data-tag="all" title="すべてのタグ">🏷️ すべてのタグ</button>
+            {% assign all_tags = "" %}
+            {% for topic in site.topics %}
+                {% for tag in topic.tags %}
+                    {% unless all_tags contains tag %}
+                        {% assign all_tags = all_tags | append: tag | append: "," %}
+                    {% endunless %}
+                {% endfor %}
+            {% endfor %}
+            {% assign sorted_tags = all_tags | split: ',' | uniq | sort %}
+            {% for tag in sorted_tags %}
+                {% if tag != "" %}
+                    <button class="tag-btn" data-tag="{{ tag | escape }}" title="{{ tag | escape }}">{{ tag | escape }}</button>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <h2>トピック一覧</h2>
+        <div class="sort-options">
+            <button class="sort-btn" data-sort-by="pageViews" data-sort-order="desc" title="ページビュー順にソート">↕️ページビュー</button>
+            <button class="sort-btn" data-sort-by="users" data-sort-order="desc" title="ユーザー数順にソート">↕️ユーザー数</button>
+            <button class="sort-btn" data-sort-by="avgSessionDuration" data-sort-order="desc" title="平均セッション時間順にソート">↕️セッション</button>
+            <button class="sort-btn reset-sort" data-sort-by="date" data-sort-order="desc" title="投稿日時順にリセット">🔄リセット</button>
+        </div>
+        <ul class="topic-list">
+        {% assign sorted_topics = site.topics | sort: 'date' | reverse %}
+        {% for topic in sorted_topics %}
+            <li {% if topic.category %}data-category="{{ topic.category }}"{% endif %}
+                {% if topic.tags and topic.tags.size > 0 %}
+                    data-tags="{{ topic.tags | join: ',' }}"
+                {% endif %}
+                data-date="{{ topic.date | date_to_xmlschema }}"
+                data-pageviews="{{ topic.ga4_metrics.pageViews | default: 0 }}"
+                data-users="{{ topic.ga4_metrics.users | default: 0 }}"
+                data-avgsessionduration="{{ topic.ga4_metrics.avgSessionDuration | round: 0 | default: 0.0 }}">
+                <div class="topic-content">
+                    <a href="{{ topic.url | relative_url }}" class="topic-title">{{ topic.title }}</a>
+                    {% if topic.prompt %}
+                    <p class="topic-prompt">{{ topic.prompt }}</p>
+                    {% endif %}                    {% if topic.tags and topic.tags.size > 0 %}
+                    <div class="topic-tags">
+                        {% for tag in topic.tags %}
+                        <span class="topic-tag" data-tag="{{ tag }}">🏷️ {{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <div class="metrics-date-container">
+                        <span class="metrics">📊 {{ topic.ga4_metrics.pageViews | default: 0 }}回 /  {{ topic.ga4_metrics.users | default: 0 }}人 /  {{ topic.ga4_metrics.avgSessionDuration | round: 0 | default: 0.0 }}秒</span>
+                        <span class="date">{{ topic.date | date: "%Y年%m月%d日" }}</span>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        {{ content }}
+    {% endif %}
     </main>
+
+    <button class="scroll-to-top" aria-label="トップへ戻る"></button>
+
+    <button id="theme-toggle" title="テーマを切り替える" class="theme-toggle-button">🌓</button>
 
     <footer class="site-footer">
         <div class="footer-content">
             <p><a href="https://github.com/aegisfleet/share-deepresearch" target="_blank">コードはGitHubで公開中</a></p>
-            <p class="author">作者：ポち</p>
+            <p><a href="https://note.com/aegisfleet/n/n657f894e3a60" target="_blank">本サイトの作成方法はこちら</a> 作者：<a href="https://x.com/aegisfleet" target="_blank">ポち</a></p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', currentTheme);
+
+            themeToggle.addEventListener('click', () => {
+                let theme = document.body.getAttribute('data-theme');
+                if (theme === 'dark') {
+                    theme = 'light';
+                } else {
+                    theme = 'dark';
+                }
+                document.body.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+            });
+
+            // URLパラメータからタグを取得
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedTag = urlParams.get('tag');
+
+            // トップへ戻るボタンの制御
+            const scrollButton = document.querySelector('.scroll-to-top');
+            const homeButton = document.querySelector('.scroll-to-home');
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const tagButtons = document.querySelectorAll('.tag-filter .tag-btn');
+            const topicListItems = document.querySelectorAll('.topic-list li');
+            const topicTags = document.querySelectorAll('.topic-tag');
+            // ソートボタンの制御
+            const sortButtons = document.querySelectorAll('.sort-options .sort-btn');
+
+            // スクロール位置に応じてボタンの表示/非表示を切り替え
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    scrollButton.classList.add('visible');
+                    if (homeButton) homeButton.classList.add('visible');
+                } else {
+                    scrollButton.classList.remove('visible');
+                    if (homeButton) homeButton.classList.remove('visible');
+                }
+            });
+
+            // クリックでトップへスクロール
+            scrollButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            if (homeButton) {
+                homeButton.addEventListener('click', function() {
+                    window.location.href = "{{ '/' | relative_url }}";
+                });
+            }
+
+            // カテゴリフィルタの制御
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    applyFiltersAndSort(); // フィルタ適用後にソートも実行
+                });
+            });
+
+            // トピック内のタグクリックイベント
+            topicTags.forEach(tag => {
+                tag.addEventListener('click', function(e) {
+                    e.preventDefault(); // デフォルトのクリックイベントを防止
+                    const clickedTag = this.getAttribute('data-tag');
+
+                    // URLを更新
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('tag', clickedTag);
+                    window.history.pushState({}, '', url);
+
+                    // タグフィルターボタンを更新
+                    tagButtons.forEach(btn => {
+                        if (btn.getAttribute('data-tag') === clickedTag) {
+                            btn.classList.add('active');
+                        } else {
+                            btn.classList.remove('active');
+                        }
+                    });
+
+                    // フィルターを適用
+                    applyFiltersAndSort(); // フィルタ適用後にソートも実行
+                });
+            });
+
+            // タグフィルタの制御
+            tagButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const clickedTag = this.getAttribute('data-tag');
+
+                    // URLを更新
+                    const url = new URL(window.location.href);
+                    if (clickedTag === 'all') {
+                        url.searchParams.delete('tag');
+                    } else {
+                        url.searchParams.set('tag', clickedTag);
+                    }
+                    window.history.pushState({}, '', url);
+
+                    tagButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    applyFiltersAndSort(); // フィルタ適用後にソートも実行
+                });
+            });
+
+            // ソートボタンの制御
+            sortButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const isReset = this.classList.contains('reset-sort');
+                    
+                    sortButtons.forEach(btn => btn.classList.remove('active'));
+                    if (!isReset) {
+                        this.classList.add('active');
+                    }
+                    
+                    if (isReset) {
+                        // 日付順にリセット
+                        const topicList = document.querySelector('.topic-list');
+                        const topics = Array.from(topicList.querySelectorAll('li:not([style*="display: none"]'));
+                        
+                        topics.sort((a, b) => {
+                            const dateA = new Date(a.getAttribute('data-date'));
+                            const dateB = new Date(b.getAttribute('data-date'));
+                            return dateB - dateA;
+                        });
+                        
+                        topics.forEach(topic => topicList.appendChild(topic));
+                    } else {
+                        applySort(); // 通常のソートを実行
+                    }
+                });
+            });
+
+            // フィルタ適用関数
+            function applyFilters() {
+                const selectedCategoryButton = document.querySelector('.category-filter .category-btn.active');
+                const selectedTagButton = document.querySelector('.tag-filter .tag-btn.active');
+
+                const selectedCategory = selectedCategoryButton ? selectedCategoryButton.getAttribute('data-category') : 'all';
+                const selectedTag = selectedTagButton ? selectedTagButton.getAttribute('data-tag') : 'all';
+
+                topicListItems.forEach(topic => {
+                    const topicCategory = topic.getAttribute('data-category');
+                    const topicTags = topic.getAttribute('data-tags') ? topic.getAttribute('data-tags').split(',') : [];
+
+                    const categoryMatch = (selectedCategory === 'all' || selectedCategory === topicCategory);
+                    const tagMatch = (selectedTag === 'all' || topicTags.includes(selectedTag));
+
+                    if (categoryMatch && tagMatch) {
+                        topic.style.display = '';
+                    } else {
+                        topic.style.display = 'none';
+                    }
+                });
+            }
+
+            // ソート適用関数
+            function applySort() {
+                const selectedSortButton = document.querySelector('.sort-options .sort-btn.active');
+                if (!selectedSortButton) return;
+
+                const sortBy = selectedSortButton.getAttribute('data-sort-by');
+                const topicList = document.querySelector('.topic-list');
+                const topics = Array.from(topicList.querySelectorAll('li:not([style*="display: none"]'));
+
+                topics.sort((a, b) => {
+                    const valueA = parseFloat(a.getAttribute(`data-${sortBy.toLowerCase()}`)) || 0;
+                    const valueB = parseFloat(b.getAttribute(`data-${sortBy.toLowerCase()}`)) || 0;
+                    return valueB - valueA; // 常に降順（大きい順）にソート
+                });
+
+                topics.forEach(topic => topicList.appendChild(topic));
+            }
+
+            // フィルタとソートをまとめて適用する関数
+            function applyFiltersAndSort() {
+                applyFilters();
+                applySort();
+            }
+
+            // タグが指定されている場合、該当するタグボタンをアクティブにする
+            if (selectedTag) {
+                tagButtons.forEach(btn => {
+                    if (btn.getAttribute('data-tag') === selectedTag) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+            }
+
+            // 初期表示時にフィルタとソートを適用
+            applyFiltersAndSort();
+        });
+    </script>
+    <style>
+        #theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--card-background);
+            border: 1px solid var(--secondary-color);
+            color: var(--text-color);
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 5px 10px;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        #theme-toggle:hover {
+            background: var(--secondary-color);
+            color: var(--background-color);
+        }
+        .sort-options .sort-btn {
+            background-color: var(--card-background);
+            color: var(--text-color);
+            border: 1px solid var(--secondary-color);
+            padding: 4px 6px;
+            margin: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sort-options .sort-btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--background-color);
+        }
+
+        .sort-options .sort-btn.active {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+    </style>
 </body>
 </html>
+

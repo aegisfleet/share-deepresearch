@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>コストと価値の真実：GitHubホステッド vs セルフホステッド 完全比較</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { font-size: 1.3em; line-height: 1.5; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.8em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section data-transition="zoom" data-background-image="https://images.unsplash.com/photo-1593720213428-28a5b9e94613" data-background-opacity="0.2">
+    <h1 class="animated delay-1">GitHub Actions Runner</h1>
+    <p class="subtitle animated delay-2">コストと価値の真実：GitHubホステッド vs セルフホステッド 完全比較</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1 left-align">本日の探求テーマ</h2>
+    <div class="left-align">
+        <ul style="margin-top: 50px;">
+            <li class="animated delay-2">選択肢の基本：GitHubホステッド vs セルフホステッド</li>
+            <li class="animated delay-3">表面的なコスト：コンピュート料金の直接比較</li>
+            <li class="animated delay-4">隠された真実：総所有コスト（TCO）の罠</li>
+            <li class="animated delay-5">賢い選択：組織に合わせた最適戦略</li>
+        </ul>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">CI/CDの心臓部、"ランナー"の選択</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-cloud"></i>
+            <h3>GitHubホステッド</h3>
+            <p><strong>手軽さ</strong>と<strong>利便性</strong>を重視するGitHubのマネージドサービス。 </p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-server"></i>
+            <h3>セルフホステッド</h3>
+            <p><strong>コスト削減</strong>と<strong>自由なカスタマイズ</strong>を追求する自己管理インフラ。 </p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">GitHubホステッド：価格以上の価値</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h4>フルマネージド & セキュリティ</h4>
+            <p class="small-text">メンテ、パッチ、隔離環境をGitHubが全提供。 </p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-bolt"></i>
+            <h4>即時利用可能</h4>
+            <p class="small-text">セットアップ不要。すぐに開発へ集中できます。 </p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-dollar-sign"></i>
+            <h4>従量課金モデル</h4>
+            <p class="small-text">使った分だけの支払いで、アイドルコストはゼロ。 </p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="zoom">
+    <h2 class="animated delay-1">表面的なコスト比較 (Linux 2-core)</h2>
+    <div class="flex-container" style="margin-top: 50px; align-items: center;">
+        <div class="animated delay-2" style="text-align: center;">
+            <i class="fa-brands fa-github" style="font-size: 3em;"></i>
+            <h3 style="margin-top: 20px;">$0.48<span style="font-size: 0.5em;"> / 時間</span></h3>
+            <p class="small-text">GitHubホステッド </p>
+        </div>
+        <div class="animated delay-4" style="font-size: 4em; color: var(--accent-color);">VS</div>
+        <div class="animated delay-3" style="text-align: center;">
+            <i class="fa-brands fa-aws" style="font-size: 3em;"></i>
+            <h3 style="margin-top: 20px;">約$0.03<span style="font-size: 0.5em;"> / 時間</span></h3>
+            <p class="small-text">セルフホスト (AWS) </p>
+        </div>
+    </div>
+    <p class="animated delay-5" style="margin-top: 40px;">一見、セルフホストが<strong>圧倒的に安価</strong>に見えるが...</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1"><i class="fa-solid fa-triangle-exclamation" style="color: var(--accent-color);"></i> macOSセルフホストの落とし穴</h2>
+    <p class="animated delay-2">たった30分のビルドを実行しただけでも... </p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-brands fa-github"></i>
+            <h4>GitHubホステッド</h4>
+            <h3 style="color: var(--accent-color);">$2.40</h3>
+            <p class="small-text">($0.08/分 × 30分) </p>
+        </div>
+        <div class="animated delay-5" style="text-align: center;">
+            <i class="fa-solid fa-arrow-right-long" style="font-size: 4em;"></i>
+            <p style="font-weight: bold;">コスト<strong style="font-size:1.5em;">10倍</strong>以上 </p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-server"></i>
+            <h4>セルフホステッド (AWS)</h4>
+            <h3 style="color: #ff5555;">$25.99</h3>
+            <p class="small-text">Appleのライセンスによる<strong>24時間最低料金</strong>が適用 </p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">"安い"は本当？ 総所有コスト(TCO)という視点</h2>
+    <div style="position: relative; margin-top: 50px; text-align: center;">
+        <p class="animated delay-2"><strong><i class="fa-solid fa-server"></i> VMコンピュートコスト</strong> (氷山の一角)</p>
+        <div style="width: 100%; height: 2px; background: #55aaff; margin-top: 20px;" class="animated delay-2"></div>
+        <p style="margin-top: 100px;" class="animated delay-3"><i class="fa-solid fa-users-gear"></i> <strong>人件費</strong> (最大の隠れコスト) </p>
+        <p style="margin-top: 40px;" class="animated delay-4"><i class="fa-solid fa-network-wired"></i> <strong>ネットワーク料金</strong> (データ転送) </p>
+        <p style="margin-top: 40px;" class="animated delay-5"><i class="fa-solid fa-stopwatch"></i> <strong>ストレージ & アイドルコスト</strong> </p>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">最大のコスト：エンジニアリング時間</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-user-clock"></i>
+            <h4>もし週8時間の保守作業が発生したら？</h4>
+            <p class="small-text">20台規模のランナーフリートで、パッチ適用、監視、トラブル対応などが発生 </p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long animated delay-4" style="font-size: 4em;"></i>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-sack-dollar"></i>
+            <h4>年間 約<strong>$31,200</strong></h4>
+            <p class="small-text">製品開発に使えたはずの貴重なエンジニアリング時間がインフラ管理に... </p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">見落とされがちな追加費用</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <h4>ネットワークエグレス料金</h4>
+            <p class="small-text">1GBのDockerイメージを1日50回プッシュすると、月間<strong>約$135</strong>の追加コストに。GitHubホステッドではこの料金は<strong>かかりません</strong>。 </p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-stopwatch"></i>
+            <h4>アイドル & ストレージコスト</h4>
+            <p class="small-text">ジョブを待つ<strong>アイドル状態のVM</strong>や、OS・キャッシュ用の永続ストレージにも継続的にコストが発生します。 </p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">コストだけじゃない：定性的比較マトリクス</h2>
+    <table class="comparison-table animated delay-2">
+      <thead>
+        <tr>
+          <th>評価項目</th>
+          <th><i class="fa-brands fa-github"></i> GitHubホステッド</th>
+          <th><i class="fa-solid fa-server"></i> セルフホステッド</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>セットアップと保守の手間 </td>
+          <td>⭐️⭐️⭐️⭐️⭐️ (ゼロ)</td>
+          <td>⭐️ (継続的な負担)</td>
+        </tr>
+        <tr>
+          <td>セキュリティ責任 </td>
+          <td>⭐️⭐️⭐️⭐️⭐️ (GitHubが管理)</td>
+          <td>⭐️⭐️ (全て自己責任)</td>
+        </tr>
+         <tr>
+          <td>スケーラビリティ </td>
+          <td>⭐️⭐️⭐️⭐️ (自動スケール)</td>
+          <td>⭐️⭐️⭐️ (構築・維持に労力)</td>
+        </tr>
+        <tr>
+          <td>パフォーマンスとカスタマイズ </td>
+          <td>⭐️⭐️⭐️ (定義済み環境)</td>
+          <td>⭐️⭐️⭐️⭐️⭐️ (完全な制御)</td>
+        </tr>
+      </tbody>
+    </table>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">最適解は「ハイブリッド戦略」</h2>
+    <p class="animated delay-2">両方の長所を活かし、リスクを分散する </p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-brands fa-github-alt"></i>
+            <h4>GitHubホステッド向き</h4>
+            <p class="small-text"><strong>全てのmacOSビルド</strong>、標準的・断続的なジョブ </p>
+        </div>
+        <div class="animated delay-5" style="font-size: 4em; color: var(--accent-color);">+</div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-server"></i>
+            <h4>セルフホステッド向き</h4>
+            <p class="small-text"><strong>大量・長時間のジョブ</strong>、特殊HW(GPU)、厳格なセキュリティ要件 </p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">あなたの組織に最適な選択は？</h2>
+    <div class="flex-container" style="margin-top: 50px; align-items: stretch;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-rocket"></i>
+            <h4>スタートアップ<br>(&lt;15人)</h4>
+            <p class="small-text"><strong>GitHubホステッド一択</strong>。エンジニア時間を製品開発に集中させましょう。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-building-user"></i>
+            <h4>成長企業<br>(15-100人)</h4>
+            <p class="small-text"><strong>ハイブリッド戦略</strong>を検討。コストが閾値を超えたら、一部のワークロードからセルフホスト化を。 </p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-industry"></i>
+            <h4>大企業<br>(&gt;100人)</h4>
+            <p class="small-text"><strong>積極的なハイブリッド戦略</strong>。専任チームでセルフホストを管理し、コストを最適化。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="fade" data-background-image="https://images.unsplash.com/photo-1454496522488-7a8e488e8606" data-background-opacity="0.3">
+    <h2 class="animated delay-1">結論：選択は「投資先」の表明</h2>
+    <p class="subtitle animated delay-2">ランナーの選択は、<strong>開発速度</strong>を取るか、<strong>コスト管理</strong>を取るかという、<br>組織の戦略的優先順位を反映します。 </p>
+    <p class="animated delay-3" style="margin-top: 80px;">Thank you.</p>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

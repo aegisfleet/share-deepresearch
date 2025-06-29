@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steamサマーセール2025：究極のディール攻略ガイド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #111827;
+            color: #F3F4F6;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #F7B801, #F35B04);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-card {
+            background-color: #1F2937;
+            border: 1px solid #374151;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center py-12">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight mb-4">
+                Steamサマーセール2025<br><span class="gradient-text">究極のディール攻略ガイド</span>
+            </h1>
+            <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                年に一度のゲームの祭典が到来！膨大なセールの中から「高い割引率」と「圧倒的な高評価」を両立した、本当に価値あるゲームだけを厳選して可視化しました。
+            </p>
+            <div class="mt-6 text-xl font-bold text-teal-400" style="color: #00F5D4;">
+                <p>開催期間: 2025年6月27日 ~ 7月11日</p>
+            </div>
+        </header>
+
+        <section class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">AAA級タイトルの衝撃的ディール</h2>
+            <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">まずは、大作ゲームがどれだけお得になっているか見てみましょう。このチャートは、いくつかの注目タイトルの定価とセール価格を比較したものです。</p>
+            <div class="bg-gray-900 rounded-xl p-4 md:p-8 shadow-2xl">
+                <div class="chart-container h-96 md:h-[450px]">
+                    <canvas id="priceComparisonChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">割引率 vs. ユーザー評価</h2>
+            <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">最高の買い物とは、安くて評価の高いゲームを見つけること。この散布図は、各ゲームの「割引率」と「Steam好評率」の関係を示しています。右上に行けば行くほど「お買い得」な逸品です。</p>
+            <div class="bg-gray-900 rounded-xl p-4 md:p-8 shadow-2xl">
+                 <div class="chart-container h-96 md:h-[500px]">
+                    <canvas id="ratingVsDiscountChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">ジャンル別・品質スナップショット</h2>
+            <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">各ジャンルで推薦されているゲームのうち、どれだけが「非常に好評」以上の評価を得ているかを可視化しました。品質で選ぶなら、このデータが役立ちます。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="stat-card rounded-xl p-6 text-center shadow-lg">
+                    <h3 class="font-bold text-xl mb-4">アクション & ADV</h3>
+                    <div class="chart-container h-56 md:h-64">
+                        <canvas id="actionDonut"></canvas>
+                    </div>
+                     <p class="mt-4 text-gray-400 text-sm">Guardians of the Galaxyなど、物語性の高い名作が高評価。</p>
+                </div>
+                <div class="stat-card rounded-xl p-6 text-center shadow-lg">
+                    <h3 class="font-bold text-xl mb-4">RPG</h3>
+                    <div class="chart-container h-56 md:h-64">
+                         <canvas id="rpgDonut"></canvas>
+                    </div>
+                     <p class="mt-4 text-gray-400 text-sm">The Witcher 3やLies of Pといった重量級タイトルがシーンを牽引。</p>
+                </div>
+                <div class="stat-card rounded-xl p-6 text-center shadow-lg">
+                    <h3 class="font-bold text-xl mb-4">ストラテジー & SIM</h3>
+                    <div class="chart-container h-56 md:h-64">
+                        <canvas id="strategyDonut"></canvas>
+                    </div>
+                     <p class="mt-4 text-gray-400 text-sm">Civ VIやBesiegeなど、中毒性の高いゲームが揃う。</p>
+                </div>
+                <div class="stat-card rounded-xl p-6 text-center shadow-lg">
+                    <h3 class="font-bold text-xl mb-4">珠玉のインディー</h3>
+                    <div class="chart-container h-56 md:h-64">
+                        <canvas id="indieDonut"></canvas>
+                    </div>
+                    <p class="mt-4 text-gray-400 text-sm">Hollow KnightやInscryptionなど、革新的な体験が目白押し。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">ワンコイン(¥500)以下の至宝</h2>
+            <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">信じられないかもしれませんが、ランチ一食分以下の価格で、何十時間も楽しめる「圧倒的に好評」級のゲームが手に入ります。見逃し厳禁のリストです。</p>
+            <div class="overflow-x-auto bg-gray-900 rounded-xl shadow-2xl p-4">
+                <table class="w-full text-left">
+                    <thead class="border-b border-gray-700">
+                        <tr>
+                            <th class="p-4 text-sm font-bold">タイトル</th>
+                            <th class="p-4 text-sm font-bold hidden md:table-cell">ジャンル</th>
+                            <th class="p-4 text-sm font-bold">価格 (円)</th>
+                            <th class="p-4 text-sm font-bold">評価</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-800 hover:bg-gray-800/50">
+                            <td class="p-4 font-semibold">Borderlands 3</td>
+                            <td class="p-4 text-gray-400 hidden md:table-cell">シューターRPG</td>
+                            <td class="p-4 font-bold text-yellow-400">¥399</td>
+                            <td class="p-4 text-teal-400">非常に好評</td>
+                        </tr>
+                        <tr class="border-b border-gray-800 hover:bg-gray-800/50">
+                            <td class="p-4 font-semibold">タイタンフォール2</td>
+                            <td class="p-4 text-gray-400 hidden md:table-cell">FPS</td>
+                            <td class="p-4 font-bold text-yellow-400">¥450</td>
+                            <td class="p-4 text-teal-400">圧倒的に好評</td>
+                        </tr>
+                        <tr class="border-b border-gray-800 hover:bg-gray-800/50">
+                            <td class="p-4 font-semibold">STEINS;GATE</td>
+                            <td class="p-4 text-gray-400 hidden md:table-cell">ビジュアルノベル</td>
+                            <td class="p-4 font-bold text-yellow-400">¥298</td>
+                            <td class="p-4 text-teal-400">圧倒的に好評</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800/50">
+                            <td class="p-4 font-semibold">Besiege</td>
+                            <td class="p-4 text-gray-400 hidden md:table-cell">物理演算SIM</td>
+                            <td class="p-4 font-bold text-yellow-400">¥165</td>
+                            <td class="p-4 text-teal-400">圧倒的に好評</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">あるゲームの「贖罪の物語」</h2>
+            <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">発売当初、厳しい評価を受けた『Battlefield 2042』。しかし、度重なる改善アップデートを経て評価は回復。このチャートは、その復活の軌跡をイメージしたものです。</p>
+            <div class="bg-gray-900 rounded-xl p-4 md:p-8 shadow-2xl">
+                <div class="chart-container h-80 md:h-96">
+                    <canvas id="redemptionChart"></canvas>
+                </div>
+                 <p class="text-center text-xs text-gray-500 mt-4">このチャートは改善の軌跡を視覚化したイメージであり、実際の評価データを正確にプロットしたものではありません。</p>
+            </div>
+        </section>
+        
+        <footer class="text-center py-12 border-t border-gray-800 mt-16">
+            <h2 class="text-2xl font-bold mb-4">賢い選択で、最高のゲームライフを</h2>
+            <p class="text-gray-400 max-w-3xl mx-auto">
+                このインフォグラフィックが、あなたの素晴らしいゲーム探しの旅の一助となれば幸いです。セールは<span class="font-bold text-yellow-400">2025年7月11日</span>まで。お見逃しなく！
+            </p>
+        </footer>
+
+    </main>
+
+    <script>
+        const vibrantPalette = {
+            teal: '#00F5D4',
+            darkTeal: '#00B9AE',
+            yellow: '#F7B801',
+            orange: '#F18701',
+            darkOrange: '#F35B04',
+            lightGray: '#9CA3AF',
+            gridColor: '#374151'
+        };
+
+        const chartDefaultOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: vibrantPalette.lightGray,
+                        font: {
+                            family: "'Inter', sans-serif",
+                            size: 14,
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: vibrantPalette.lightGray,
+                        font: { family: "'Inter', sans-serif" }
+                    },
+                    grid: { color: vibrantPalette.gridColor }
+                },
+                y: {
+                    ticks: {
+                        color: vibrantPalette.lightGray,
+                        font: { family: "'Inter', sans-serif" }
+                    },
+                    grid: { color: vibrantPalette.gridColor }
+                }
+            }
+        };
+        
+        function wrapLabel(str, maxWidth = 16) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        }
+
+        function createPriceComparisonChart() {
+            const ctx = document.getElementById('priceComparisonChart').getContext('2d');
+            const data = {
+                labels: [
+                    wrapLabel("Marvel's Guardians of the Galaxy"),
+                    wrapLabel("RoboCop: Rogue City"),
+                    wrapLabel("Borderlands 3"),
+                    wrapLabel("DEATH STRANDING DIRECTOR'S CUT")
+                ],
+                datasets: [
+                    {
+                        label: '定価 (円)',
+                        data: [7700, 5800, 7980, 4980],
+                        backgroundColor: vibrantPalette.darkTeal,
+                        borderColor: vibrantPalette.darkTeal,
+                        borderWidth: 1,
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'セール価格 (円)',
+                        data: [770, 580, 399, 1992],
+                        backgroundColor: vibrantPalette.yellow,
+                        borderColor: vibrantPalette.yellow,
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }
+                ]
+            };
+            new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: { ...chartDefaultOptions }
+            });
+        }
+
+        function createRatingVsDiscountChart() {
+            const ctx = document.getElementById('ratingVsDiscountChart').getContext('2d');
+            const data = {
+                labels: [
+                    'Guardians of the Galaxy', 'Hollow Knight', 'Disco Elysium', 
+                    'Into the Breach', 'Besiege', 'The Witcher 3', 'Lies of P',
+                    'RoboCop: Rogue City', 'Borderlands 3', 'Pathfinder: WotR', 'Spiritfarer'
+                ],
+                datasets: [{
+                    label: 'ゲーム',
+                    data: [
+                        { x: 90, y: 94, r: 15 }, 
+                        { x: 50, y: 97, r: 20 }, 
+                        { x: 90, y: 95, r: 18 }, 
+                        { x: 65, y: 94, r: 12 }, 
+                        { x: 90, y: 95, r: 15 },
+                        { x: 75, y: 96, r: 22 },
+                        { x: 50, y: 91, r: 14 },
+                        { x: 90, y: 87, r: 13 },
+                        { x: 95, y: 81, r: 16 },
+                        { x: 65, y: 83, r: 10 },
+                        { x: 90, y: 95, r: 14 }
+                    ],
+                    backgroundColor: vibrantPalette.teal + 'BF',
+                    borderColor: vibrantPalette.teal,
+                }]
+            };
+            new Chart(ctx, {
+                type: 'bubble',
+                data: data,
+                options: {
+                    ...chartDefaultOptions,
+                    plugins: {
+                        ...chartDefaultOptions.plugins,
+                        tooltip: {
+                           callbacks: {
+                                label: function(context) {
+                                    const label = context.chart.data.labels[context.dataIndex] || '';
+                                    const y = context.parsed.y;
+                                    const x = context.parsed.x;
+                                    return `${label}: ${y}%好評 / ${x}%割引`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ...chartDefaultOptions.scales.x,
+                            title: { display: true, text: '割引率 (%)', color: vibrantPalette.lightGray }
+                        },
+                        y: {
+                            ...chartDefaultOptions.scales.y,
+                            title: { display: true, text: 'Steam好評率 (%)', color: vibrantPalette.lightGray },
+                            min: 75
+                        }
+                    }
+                }
+            });
+        }
+
+        function createDonutChart(elementId, label, data, colors) {
+             const ctx = document.getElementById(elementId).getContext('2d');
+             new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: [label, 'その他'],
+                    datasets: [{
+                        data: data,
+                        backgroundColor: colors,
+                        borderColor: '#1F2937',
+                        borderWidth: 4,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.raw}%`;
+                                }
+                            }
+                        },
+                         title: {
+                            display: true,
+                            text: `${data[0]}%`,
+                            position: 'bottom',
+                            align: 'center',
+                            color: colors[0],
+                            font: { size: 24, weight: 'bold', family: "'Inter', sans-serif" },
+                            padding: { top: -60 }
+                        }
+                    }
+                }
+             });
+        }
+        
+        function createRedemptionChart() {
+            const ctx = document.getElementById('redemptionChart').getContext('2d');
+            const data = {
+                labels: ['発売時', 'Y1アップデート', 'Y2アップデート', 'Y3アップデート', '現在'],
+                datasets: [{
+                    label: 'プレイヤーセンチメント(イメージ)',
+                    data: [20, 35, 60, 75, 85],
+                    fill: true,
+                    backgroundColor: vibrantPalette.teal + '40',
+                    borderColor: vibrantPalette.teal,
+                    tension: 0.4,
+                    pointBackgroundColor: vibrantPalette.yellow,
+                    pointBorderColor: vibrantPalette.yellow,
+                    pointRadius: 5
+                }]
+            };
+             new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: { ...chartDefaultOptions }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createPriceComparisonChart();
+            createRatingVsDiscountChart();
+            createDonutChart('actionDonut', '非常に好評以上', [100, 0], [vibrantPalette.teal, vibrantPalette.gridColor]);
+            createDonutChart('rpgDonut', '非常に好評以上', [100, 0], [vibrantPalette.yellow, vibrantPalette.gridColor]);
+            createDonutChart('strategyDonut', '非常に好評以上', [80, 20], [vibrantPalette.orange, vibrantPalette.gridColor]);
+            createDonutChart('indieDonut', '非常に好評以上', [100, 0], [vibrantPalette.darkOrange, vibrantPalette.gridColor]);
+            createRedemptionChart();
+        });
+    </script>
+</body>
+</html>

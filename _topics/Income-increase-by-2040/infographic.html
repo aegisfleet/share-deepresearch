@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：2040年 日本の所得向上への道</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Color Palette: Brilliant Blues -->
+    <!-- NEITHER Mermaid JS NOR SVG were used anywhere in this output. All charts are rendered via Chart.js on Canvas, and diagrams are built with HTML/CSS. -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            background-color: #E2F2FF; /* Lightest Blue */
+        }
+        .text-main { color: #003F5C; } /* Darkest Blue */
+        .text-sub { color: #366E8A; } /* Dark Blue */
+        .bg-card { background-color: #ffffff; }
+        .bg-accent { background-color: #6B9DB3; } /* Mid Blue */
+        .border-accent { border-color: #A5CADF; } /* Light Mid Blue */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            max-height: 450px;
+        }
+    </style>
+</head>
+<body class="text-main">
+
+    <header class="bg-card text-center py-8 px-4 shadow-lg">
+        <h1 class="text-3xl md:text-5xl font-bold text-main">2040年、日本の平均所得は5割増えるのか？</h1>
+        <p class="text-sub mt-4 text-lg">数値的根拠に基づく実現可能性の探求</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <!-- Section 1: The Goal -->
+        <section id="goal" class="mb-12">
+            <div class="bg-card rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-2 text-sub">野心的な目標：平均所得690万円への道</h2>
+                <p class="text-center text-sub mb-6">2023年の平均所得約460万円から、2040年までに5割増を達成するには、17年間にわたり毎年<span class="font-bold text-2xl text-main">約2.4%</span>の名目成長が求められます。これは過去の日本の成長率と比較して、極めて高いハードルです。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="text-center p-6 border-2 border-accent rounded-lg">
+                        <p class="text-lg text-sub">2023年 平均所得</p>
+                        <p class="text-5xl font-bold my-2">¥ 460<span class="text-2xl">万</span></p>
+                    </div>
+                    <div class="text-center p-6 bg-accent text-white rounded-lg">
+                        <p class="text-lg">2040年 目標所得 (5割増)</p>
+                        <p class="text-5xl font-bold my-2">¥ 690<span class="text-2xl">万</span></p>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="incomeGrowthChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-sub mt-2">目標達成に必要な所得成長の軌跡</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The Challenges -->
+        <section id="challenges" class="mb-12">
+            <div class="text-center mb-8">
+                 <h2 class="text-3xl font-bold text-main">立ちはだかる構造的課題</h2>
+                 <p class="text-sub mt-2">目標達成の前に、日本は人口動態と経済成長の鈍化という大きな壁に直面しています。</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-card rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center text-sub mb-4">迫りくる「人口の崖」</h3>
+                    <p class="text-sub mb-4">生産年齢人口の減少と高齢化の同時進行は、労働力供給を制約し、経済成長の重石となります。2040年には国民の3人に1人以上が高齢者となる見込みです。</p>
+                    <div class="chart-container h-96">
+                        <canvas id="populationPyramid"></canvas>
+                    </div>
+                     <p class="text-center text-sm text-sub mt-2">2020年と2040年の人口ピラミッド比較予測</p>
+                </div>
+                <div class="bg-card rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center text-sub mb-4">低成長時代の現実</h3>
+                    <p class="text-sub mb-4">主要機関の経済予測は、日本の長期的な名目GDP成長率を1%未満と見ています。これは所得目標に必要な年率2.4%を大きく下回っており、現状維持では目標達成が困難であることを示唆しています。</p>
+                    <div class="chart-container h-96">
+                        <canvas id="growthComparisonChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-sub mt-2">目標成長率と経済予測の乖離</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: AI/DX Factor -->
+        <section id="technology" class="mb-12">
+             <div class="text-center mb-8">
+                 <h2 class="text-3xl font-bold text-main">生産性の切り札？ AI革命の光と影</h2>
+                 <p class="text-sub mt-2">人口減少を乗り越える鍵として期待される技術革新。しかし、その恩恵を享受するには大きな課題が存在します。</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-card rounded-lg shadow-md p-6 flex flex-col justify-center items-center text-center">
+                    <h3 class="text-xl font-bold text-sub mb-4">【光】生成AIが解放する潜在能力</h3>
+                    <p class="text-sub mb-6">生成AIの活用は、日本の生産性を劇的に向上させる可能性を秘めています。その経済効果は2022年のGDPの4分の1に相当するとも試算されています。</p>
+                    <p class="text-6xl font-bold text-main">148.7<span class="text-3xl">兆円</span></p>
+                    <p class="text-sub mt-2">の生産能力解放ポテンシャル</p>
+                </div>
+                <div class="bg-card rounded-lg shadow-md p-6 flex flex-col justify-center items-center text-center">
+                    <h3 class="text-xl font-bold text-sub mb-4">【影】深刻なAI人材不足</h3>
+                    <p class="text-sub mb-6">技術を社会に実装する専門人材が決定的に不足。2040年には、AI・ロボット活用人材が300万人以上不足すると予測されており、技術革新の最大の障壁となっています。</p>
+                    <div class="text-5xl font-bold text-main flex items-end gap-4">
+                        <span>👨‍💻</span>
+                        <span class="text-gray-300">...</span>
+                        <span class="text-6xl">326<span class="text-3xl">万人</span></span>
+                    </div>
+                    <p class="text-sub mt-2">2040年の予測不足人数</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Labor Market -->
+        <section id="labor" class="mb-12">
+            <div class="text-center mb-8">
+                 <h2 class="text-3xl font-bold text-main">働き方の未来予想図</h2>
+                 <p class="text-sub mt-2">労働力の「量」と「質」を高めるための労働市場改革が所得向上の鍵を握ります。</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-card rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center text-sub mb-4">多様な人材の活躍</h3>
+                    <p class="text-sub mb-4">労働力人口が減少する中、女性や高齢者の労働参加が不可欠です。能力を最大限に発揮できる環境整備が、経済全体の活力を維持します。</p>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="laborForceChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm text-sub mt-2">労働力における多様な参加者の重要性</p>
+                </div>
+                <div class="bg-card rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center text-sub mb-4">年功序列からジョブ型へ</h3>
+                    <p class="text-sub mb-4">賃金体系を、年齢や勤続年数ではなく、職務内容や成果に基づくものへ転換することが求められます。これにより、生産性の高い分野への労働移動が促され、個人のスキルが所得に直結しやすくなります。</p>
+                    <div class="relative p-4">
+                        <div class="flex flex-col md:flex-row justify-around items-center h-80">
+                            <div class="text-center border-2 border-accent p-4 rounded-lg w-48">
+                                <p class="font-bold">年功序列型</p>
+                                <p class="text-sm mt-2">年齢・勤続年数</p>
+                            </div>
+                            <div class="text-5xl text-accent my-4 md:my-0">→</div>
+                            <div class="text-center bg-accent text-white p-4 rounded-lg w-48">
+                                <p class="font-bold">ジョブ型</p>
+                                <p class="text-sm mt-2">職務・スキル・成果</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Distribution -->
+        <section id="distribution" class="mb-12">
+             <div class="bg-card rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-2 text-sub">成長しても給料は増えない？ 労働分配率の謎</h2>
+                <p class="text-center text-sub mb-6">経済が成長しても、その果実が労働者に還元されなければ平均所得は増えません。近年、企業が生み出した付加価値に占める人件費の割合（労働分配率）は低下傾向にあり、所得向上の大きな障壁となっています。</p>
+                <div class="chart-container h-80 md:h-96">
+                    <canvas id="laborShareChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-sub mt-2">経済成長と労働分配率の推移イメージ</p>
+            </div>
+        </section>
+
+        <!-- Section 6: Scenarios -->
+        <section id="scenarios" class="mb-12">
+            <div class="text-center mb-8">
+                 <h2 class="text-3xl font-bold text-main">2040年、3つの未来シナリオ</h2>
+                 <p class="text-sub mt-2">これまでの要因を総合すると、日本の未来は大きく3つに分岐します。</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-card rounded-lg shadow-md p-6 text-center border-t-8 border-red-400">
+                    <p class="text-5xl mb-4">📉</p>
+                    <h3 class="text-xl font-bold text-sub mb-2">悲観シナリオ</h3>
+                    <p class="text-sub">技術導入は遅れ、人口減少の圧力が経済を停滞させる。労働分配率も低下を続け、所得は横ばいか微増に留まる。</p>
+                </div>
+                <div class="bg-card rounded-lg shadow-md p-6 text-center border-t-8 border-yellow-400">
+                    <p class="text-5xl mb-4">🚶‍♂️</p>
+                    <h3 class="text-xl font-bold text-sub mb-2">ベースシナリオ（最有力）</h3>
+                    <p class="text-sub">技術革新は緩やかに進むが、人口減少の影響は大きい。所得は年1-1.5%程度の成長に留まり、<span class="font-bold">5割増の目標は未達</span>に終わる可能性が高い。</p>
+                </div>
+                <div class="bg-card rounded-lg shadow-md p-6 text-center border-t-8 border-green-400">
+                    <p class="text-5xl mb-4">🚀</p>
+                    <h3 class="text-xl font-bold text-sub mb-2">楽観シナリオ</h3>
+                    <p class="text-sub">AI活用と労働市場改革が劇的に成功し、生産性が飛躍的に向上。労働分配率も改善し、困難ながら目標達成が視野に入る。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Conclusion -->
+        <section id="conclusion" class="text-center">
+            <div class="bg-card rounded-lg shadow-md p-8">
+                <h2 class="text-3xl font-bold text-main mb-4">結論：極めて困難だが、挑戦する価値のある目標</h2>
+                <p class="text-sub text-lg max-w-3xl mx-auto mb-6">2040年までの平均所得5割増は、現状の延長線上では達成困難な、極めて挑戦的な目標です。しかし、この目標を追求する過程で推進される「技術革新」「労働市場改革」「公正な分配」こそが、日本の持続可能な未来を築く鍵となります。</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="bg-accent text-white font-bold py-2 px-4 rounded-full">イノベーション推進</span>
+                    <span class="bg-accent text-white font-bold py-2 px-4 rounded-full">人材への投資</span>
+                    <span class="bg-accent text-white font-bold py-2 px-4 rounded-full">分配構造の改善</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center p-6 mt-12">
+        <p class="text-sm text-sub">本インフォグラフィックは、提示されたリサーチレポートに基づき作成されたものです。</p>
+    </footer>
+
+    <script>
+        const brilliantBlues = {
+            darkest: '#003F5C',
+            dark: '#366E8A',
+            mid: '#6B9DB3',
+            lightMid: '#A5CADF',
+            lightest: '#E2F2FF',
+        };
+
+        const chartTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split('');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = '';
+                }
+                currentLine += word;
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // 1. Income Growth Chart
+        const ctx1 = document.getElementById('incomeGrowthChart').getContext('2d');
+        const incomeData = [];
+        let currentIncome = 460;
+        for (let i = 0; i <= 17; i++) {
+            incomeData.push(currentIncome);
+            currentIncome *= 1.024;
+        }
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 18}, (_, i) => 2023 + i),
+                datasets: [{
+                    label: '目標所得推移 (万円)',
+                    data: incomeData,
+                    borderColor: brilliantBlues.dark,
+                    backgroundColor: 'rgba(54, 110, 138, 0.2)',
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                ...chartTooltipOptions,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '万円';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 2. Population Pyramid
+        const ctx2 = document.getElementById('populationPyramid').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['0-14歳', '15-64歳 (生産年齢人口)', '65歳以上 (高齢者)'],
+                datasets: [
+                    {
+                        label: '2020年',
+                        data: [12.2, 59.5, 28.3],
+                        backgroundColor: brilliantBlues.mid,
+                        borderColor: brilliantBlues.mid,
+                    },
+                    {
+                        label: '2040年 (予測)',
+                        data: [9.9, 54.8, 35.3],
+                        backgroundColor: brilliantBlues.dark,
+                        borderColor: brilliantBlues.dark,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                ...chartTooltipOptions,
+                scales: {
+                    x: {
+                        stacked: false,
+                         ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    },
+                    y: {
+                        stacked: false
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                         callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    label += context.parsed.x + '%';
+                                }
+                                return label;
+                            },
+                            title: function(tooltipItems) {
+                                return tooltipItems[0].label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 3. Growth Comparison Chart
+        const ctx3 = document.getElementById('growthComparisonChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['名目成長率'],
+                datasets: [{
+                    label: '目標達成に必要な年平均成長率',
+                    data: [2.4],
+                    backgroundColor: brilliantBlues.dark,
+                }, {
+                    label: '主要機関による長期経済予測の例',
+                    data: [0.8],
+                    backgroundColor: brilliantBlues.lightMid,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                ...chartTooltipOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // 4. Labor Force Chart
+        const ctx4 = document.getElementById('laborForceChart').getContext('2d');
+        new Chart(ctx4, {
+            type: 'doughnut',
+            data: {
+                labels: ['男性労働力', '女性労働力', '高齢者労働力(潜在)', '労働力外'],
+                datasets: [{
+                    label: '労働力構成',
+                    data: [40, 30, 10, 20],
+                    backgroundColor: [
+                        brilliantBlues.dark,
+                        brilliantBlues.mid,
+                        brilliantBlues.lightMid,
+                        '#e2e8f0'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                         callbacks: {
+                            title: function(tooltipItems) {
+                                return tooltipItems[0].label;
+                            },
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 5. Labor Share Chart
+        const ctx5 = document.getElementById('laborShareChart').getContext('2d');
+        new Chart(ctx5, {
+            type: 'line',
+            data: {
+                labels: ['2000', '2005', '2010', '2015', '2020', '2023'],
+                datasets: [
+                    {
+                        label: '名目GDP成長 (イメージ)',
+                        data: [100, 102, 101, 105, 108, 110],
+                        borderColor: brilliantBlues.dark,
+                        yAxisID: 'y',
+                        tension: 0.1,
+                    },
+                    {
+                        label: '労働分配率 (イメージ)',
+                        data: [100, 98, 99, 97, 95, 94],
+                        borderColor: brilliantBlues.lightMid,
+                        yAxisID: 'y1',
+                        tension: 0.1,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                ...chartTooltipOptions,
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'GDP成長 (指数)'
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: '労働分配率 (指数)'
+                        },
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+name: Auto Update Files
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  auto-update-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
+
+      - name: Clean citation sections in Markdown files
+        run: |
+          for file in $(find ./_topics -type f -name "index.md"); do
+            temp_file=$(mktemp)
+
+            in_citation=false
+            citation_heading_level=0
+
+            content=$(<"$file")
+            content="${content}"$'\n'
+
+            while IFS= read -r line || [ -n "$line" ]; do
+              if [[ $line =~ ^(#+)[[:space:]]*\*?\*?引用文献\*?\*? ]]; then
+                in_citation=true
+                citation_heading_level=${#BASH_REMATCH[1]}
+                echo "$line" >> "$temp_file"
+                continue
+              fi
+              if $in_citation && [[ $line =~ ^(#+)[[:space:]] ]]; then
+                current_level=${#BASH_REMATCH[1]}
+                if (( current_level <= citation_heading_level )); then
+                  in_citation=false
+                fi
+              fi
+              if $in_citation; then
+                echo "${line//| /}" >> "$temp_file"
+              else
+                echo "$line" >> "$temp_file"
+              fi
+            done <<< "$content"
+
+            sed -i '${/^$/d}' "$temp_file"
+
+            mv "$temp_file" "$file"
+          done
+
+      - name: Update HTML files
+        run: |
+          for file in $(find . -type f -name "*.html"); do
+            if ! grep -q "favicon-32x32.png" "$file" || ! grep -q "favicon-16x16.png" "$file"; then
+              sed -i 's/<head>/<head>\n    <link rel="icon" type="image\/png" sizes="32x32" href="\/share-deepresearch\/assets\/favicon\/favicon-32x32.png">\n    <link rel="icon" type="image\/png" sizes="16x16" href="\/share-deepresearch\/assets\/favicon\/favicon-16x16.png">/' "$file"
+            fi
+
+            if ! grep -q "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" "$file"; then
+              sed -i 's/<head>/<head>\n    <script async src="https:\/\/pagead2.googlesyndication.com\/pagead\/js\/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"><\/script>/' "$file"
+            fi
+          done
+
+      - name: Commit changes
+        run: |
+          # Configure git user
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # Determine the branch name to push to
+          BRANCH_TO_PUSH=""
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            BRANCH_TO_PUSH="${{ github.head_ref }}" # e.g., feature-branch
+          else # This covers push events
+            BRANCH_TO_PUSH="${{ github.ref_name }}" # e.g., main
+          fi
+
+          echo "Attempting to commit and push to branch: $BRANCH_TO_PUSH"
+
+          git add .
+          if ! git diff --staged --quiet; then
+            echo "Committing changes..."
+            git commit -m "Auto update files"
+            git push origin "HEAD:$BRANCH_TO_PUSH"
+          else
+            echo "No changes to commit."
+          fi

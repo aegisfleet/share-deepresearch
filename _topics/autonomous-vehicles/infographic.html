@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：データで見る自動運転の真実</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #F0F4F8;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 320px;
+            width: 100%;
+            max-width: 600px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-item {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        .flowchart-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 1.125rem;
+            top: 2.5rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background-color: #00A1E4;
+        }
+        .flowchart-number {
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            background-color: #00A1E4;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid #F0F4F8;
+        }
+    </style>
+</head>
+<body class="bg-[#0A2647] text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center py-12 text-white">
+            <h1 class="text-4xl md:text-6xl font-bold text-[#FFA500] mb-4">データで見る自動運転の真実</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-300">完全自動運転（レベル5）はまだ未来の話。しかし、現在主流のレベル4技術は、すでに多くの点で人間ドライバーの安全性を超えています。本インフォグラフィックは、その実態をデータに基づき解き明かします。</p>
+        </header>
+
+        <main>
+            <section id="global-race" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-10 text-white">世界で加速するレベル4開発競争</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold mb-4 text-[#005082]">🇺🇸 米国：イノベーション主導型</h3>
+                        <p class="mb-4">各州が独自に規制を進めるボトムアップ方式。Waymoなどが特定都市でサービスを深化させ、成功モデルを他都市へ展開しています。</p>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><span class="text-[#00A1E4] mr-2">💡</span><span>技術革新を促進する自由な環境</span></li>
+                            <li class="flex items-start"><span class="text-[#00A1E4] mr-2">🏙️</span><span>都市単位での高密度なサービス展開</span></li>
+                            <li class="flex items-start"><span class="text-[#00A1E4] mr-2"> patchwork</span><span>州ごとの規制の違いが全国展開の課題</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold mb-4 text-[#005082]">🇨🇳 中国：国家戦略主導型</h3>
+                        <p class="mb-4">政府主導のトップダウン方式。Baiduなどが国家プロジェクトとして複数都市で大規模フリートを同時展開し、一気に規模を拡大しています。</p>
+                         <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><span class="text-[#00A1E4] mr-2">🏛️</span><span>政府と企業が一体となった迅速な開発</span></li>
+                            <li class="flex items-start"><span class="text-[#00A1E4] mr-2">🌐</span><span>インフラ整備と連携した大規模実証</span></li>
+                            <li class="flex items-start"><span class="text-[#00A1E4] mr-2">📈</span><span>圧倒的なスピードでのスケール獲得</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold mb-4 text-[#005082]">🇪🇺 欧州：統一規制協調型</h3>
+                        <p class="mb-4">EU全体で統一された規制枠組みの構築を目指す協調方式。ドイツが法整備で先行し、国境を越えたサービス展開の土台を築いています。</p>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start"><span class="text-[#00A1E4] mr-2">🤝</span><span>加盟国間の規制調和を重視</span></li>
+                            <li class="flex items-start"><span class="text-[#00A1E4] mr-2">📜</span><span>世界に先駆けた法整備（ドイツ）</span></li>
+                            <li class="flex items-start"><span class="text-[#00A1E4] mr-2">⏳</span><span>2026年までの統一枠組み導入が目標</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="safety-comparison" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-4 text-white">数値で比較：自動運転車 vs 人間ドライバー</h2>
+                <p class="text-center text-gray-300 max-w-3xl mx-auto mb-10">単純な事故件数には「報告バイアス」が潜んでいます。軽微な事故も報告する自動運転車に対し、人間は報告しないケースが多数。そこで、より深刻な「負傷を伴う事故」で比較することが重要です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-white p-6 rounded-2xl shadow-2xl">
+                        <h3 class="text-xl font-bold text-center mb-4">負傷事故率の比較 (100万マイル走行あたり)</h3>
+                        <div class="chart-container">
+                            <canvas id="injuryAccidentChart"></canvas>
+                        </div>
+                         <p class="text-center mt-4 text-sm text-gray-600">Waymoのデータは、人間が運転する車と比較して、負傷を伴う事故の発生率が劇的に低いことを示しています。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-2xl">
+                        <h3 class="text-xl font-bold text-center mb-4">事故リスクの低減効果</h3>
+                         <div class="grid grid-cols-2 gap-4 text-center">
+                            <div class="bg-[#E6F6FF] p-4 rounded-lg">
+                                <p class="text-4xl font-bold text-[#0077C0]">85%</p>
+                                <p class="text-sm">負傷を伴う事故の<br>減少率</p>
+                            </div>
+                            <div class="bg-[#E6F6FF] p-4 rounded-lg">
+                                <p class="text-4xl font-bold text-[#0077C0]">57%</p>
+                                <p class="text-sm">警察への報告があった事故の減少率</p>
+                            </div>
+                             <div class="bg-[#E6F6FF] p-4 rounded-lg">
+                                <p class="text-4xl font-bold text-[#0077C0]">92%</p>
+                                <p class="text-sm">人身傷害賠償請求の<br>減少率</p>
+                            </div>
+                             <div class="bg-[#E6F6FF] p-4 rounded-lg">
+                                <p class="text-4xl font-bold text-[#0077C0]">88%</p>
+                                <p class="text-sm">物損害賠償請求の<br>減少率</p>
+                            </div>
+                        </div>
+                        <p class="text-center mt-4 text-sm text-gray-600">保険会社の客観的なデータも、Waymoの安全性の高さを裏付けています。社会全体の損失を大きく減らす可能性を秘めています。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="case-study" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-4 text-white">教訓となった事故：Cruise社の「エッジケース」</h2>
+                <p class="text-center text-gray-300 max-w-3xl mx-auto mb-10">2023年10月、Cruise社の車両が関わった事故は、技術的限界と企業倫理の重要性を業界に突きつけました。</p>
+                <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-3xl mx-auto">
+                    <h3 class="text-xl font-bold mb-6">事故の連鎖とシステムの致命的な誤判断</h3>
+                    <div class="space-y-6">
+                        <div class="flowchart-item">
+                            <div class="flowchart-number">1</div>
+                            <p class="font-bold">一次衝突</p>
+                            <p class="text-sm text-gray-600">人間が運転する車が、信号無視の歩行者に衝突。</p>
+                        </div>
+                        <div class="flowchart-item">
+                            <div class="flowchart-number">2</div>
+                            <p class="font-bold">進路上への投げ出し</p>
+                            <p class="text-sm text-gray-600">歩行者が弾き飛ばされ、隣を走行中のCruise車両の前に。</p>
+                        </div>
+                        <div class="flowchart-item">
+                            <div class="flowchart-number">3</div>
+                            <p class="font-bold">二次衝突</p>
+                            <p class="text-sm text-gray-600">Cruise車両はブレーキをかけるも間に合わず、歩行者と衝突。</p>
+                        </div>
+                        <div class="flowchart-item">
+                             <div class="flowchart-number bg-red-500 border-white">4</div>
+                            <p class="font-bold text-red-600">致命的な誤認識</p>
+                            <p class="text-sm text-gray-600">システムは、車両下に人がいることを検知できず、「側面衝突」と誤分類。</p>
+                        </div>
+                        <div class="flowchart-item">
+                             <div class="flowchart-number bg-red-500 border-white">5</div>
+                            <p class="font-bold text-red-600">引きずり事象</p>
+                            <p class="text-sm text-gray-600">安全プロトコルが作動し、歩行者を引きずったまま約6m移動。この事実の報告遅れが信頼を失墜させ、事業停止につながった。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="what-to-do" class="mb-16">
+                 <h2 class="text-3xl font-bold text-center mb-4 text-white">万が一の事故、搭乗者はどうすべきか？</h2>
+                 <p class="text-center text-gray-300 max-w-3xl mx-auto mb-10">レベル4車両の事故では、対応の主体は遠隔サポートセンターです。搭乗者は「当事者」から「被保護者」へ。パニックにならず、プロトコルに従うことが重要です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-2xl">
+                        <h3 class="text-2xl font-bold mb-6 text-green-600 flex items-center"><span class="text-3xl mr-3">✅</span>取るべき行動 (Do's)</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="font-bold text-green-600 text-xl mr-3">1.</span>
+                                <div><span class="font-bold">冷静に車内に留まる：</span>火災などの二次災害がない限り、車内が最も安全な場所です。</div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="font-bold text-green-600 text-xl mr-3">2.</span>
+                                <div><span class="font-bold">サポートと通信する：</span>車内スクリーンやアプリで積極的に連絡を取り、状況を伝え指示を仰ぎます。</div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="font-bold text-green-600 text-xl mr-3">3.</span>
+                                <div><span class="font-bold">緊急サービスの指示に従う：</span>警察や救急隊が到着したら、その指示が最優先です。</div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="font-bold text-green-600 text-xl mr-3">4.</span>
+                                <div><span class="font-bold">証拠を保全する：</span>安全確保後、可能であればスマホで現場や車両の写真を撮影します。</div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="font-bold text-green-600 text-xl mr-3">5.</span>
+                                <div><span class="font-bold">医療機関を受診する：</span>目に見える怪我がなくても、必ず専門医の診断を受けましょう。</div>
+                            </li>
+                        </ul>
+                    </div>
+                     <div class="bg-white p-8 rounded-2xl shadow-2xl">
+                        <h3 class="text-2xl font-bold mb-6 text-red-600 flex items-center"><span class="text-3xl mr-3">❌</span>避けるべき行動 (Don'ts)</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="font-bold text-red-600 text-xl mr-3">1.</span>
+                                <div><span class="font-bold">自分で車両を操作しない：</span>システムがロックされている可能性があり、予期せぬ動作は危険です。</div>
+                            </li>
+                             <li class="flex items-start">
+                                <span class="font-bold text-red-600 text-xl mr-3">2.</span>
+                                <div><span class="font-bold">現場で責任について言及しない：</span>責任の所在は複雑です。憶測での発言は避けましょう。</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-bold text-red-600 text-xl mr-3">3.</span>
+                                <div><span class="font-bold">不必要に車外へ出ない：</span>二次被害のリスクがあります。指示があるまで車内待機が原則です。</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-bold text-red-600 text-xl mr-3">4.</span>
+                                <div><span class="font-bold">SNSへ即時投稿しない：</span>不正確な情報は後のトラブルの原因になり得ます。</div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="font-bold text-red-600 text-xl mr-3">5.</span>
+                                <div><span class="font-bold">保険会社と安易に示談しない：</span>専門家に相談するまで、安易な同意は禁物です。</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center py-12 border-t border-gray-700">
+             <h2 class="text-2xl font-bold text-center mb-4 text-white">結論：楽観と警戒の共存</h2>
+            <p class="text-md text-gray-300 max-w-4xl mx-auto">
+                自動運転技術は、交通死亡事故の削減という大きな可能性を秘めています。データは、その安全性が人間を上回る未来を示唆しています。しかし、Cruiseの事例が示すように、技術はまだ完璧ではなく、予期せぬ「エッジケース」への対応と、事故発生時の徹底した透明性が、社会からの信頼を得るための不可欠な鍵となります。私たちは、この革新的な技術の便益を享受するために、現実的な期待値を持ち、開かれた議論を続ける必要があります。
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const commonTooltipCallback = {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            };
+
+            const commonChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#333333',
+                            font: {
+                                size: 14,
+                                family: "'Inter', 'Noto Sans JP', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: commonTooltipCallback,
+                        backgroundColor: '#005082',
+                        titleColor: '#FFFFFF',
+                        bodyColor: '#FFFFFF',
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 12 },
+                        padding: 10,
+                        cornerRadius: 4
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                           color: '#e0e0e0'
+                        },
+                        ticks: {
+                            color: '#333333',
+                             font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    x: {
+                         grid: {
+                           display: false
+                        },
+                        ticks: {
+                            color: '#333333',
+                             font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            };
+            
+            function wrapLabel(str, maxWidth) {
+                if (str.length <= maxWidth) {
+                    return str;
+                }
+                const words = str.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + word).length > maxWidth) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                }
+                lines.push(currentLine.trim());
+                return lines.filter(line => line);
+            }
+
+            const injuryAccidentCtx = document.getElementById('injuryAccidentChart');
+            if(injuryAccidentCtx) {
+                new Chart(injuryAccidentCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['人間ドライバー (ベンチマーク)', 'Waymo (自動運転車)'],
+                        datasets: [{
+                            label: '負傷事故発生数',
+                            data: [2.78, 0.41],
+                            backgroundColor: [
+                                'rgba(247, 181, 0, 0.7)',
+                                'rgba(0, 129, 192, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(247, 181, 0, 1)',
+                                'rgba(0, 129, 192, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...commonChartOptions,
+                        indexAxis: 'y',
+                         plugins: {
+                            ...commonChartOptions.plugins,
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ...commonChartOptions.scales.x,
+                                title: {
+                                    display: true,
+                                    text: '件数 / 100万マイル',
+                                    color: '#333333'
+                                }
+                            },
+                             y: {
+                                ...commonChartOptions.scales.y,
+                                grid: {
+                                    display: false
+                                },
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：AIによる大変革時代 - The Great Reallocation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Color Palette: Brilliant Blues -->
+    <!-- NEITHER Mermaid JS NOR SVG were used in this output. All charts are rendered on Canvas by Chart.js. Diagrams are built with structured HTML and Tailwind CSS. -->
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        .bg-primary { background-color: #004AAD; }
+        .text-primary { color: #004AAD; }
+        .bg-secondary { background-color: #0065D2; }
+        .text-secondary { color: #0065D2; }
+        .bg-accent { background-color: #0084FF; }
+        .text-accent { color: #0084FF; }
+        .bg-light-accent { background-color: #7FBEFF; }
+        .text-light-accent { color: #7FBEFF; }
+        .hero-bg {
+            background: linear-gradient(rgba(0, 74, 173, 0.8), rgba(0, 74, 173, 0.8)), url('https://placehold.co/1200x800/001f3f/ffffff?text=AI+%26+WORK') no-repeat center center;
+            background-size: cover;
+        }
+        .section-title {
+            font-weight: 900;
+            color: #004AAD;
+        }
+        .kpi-value {
+            font-weight: 900;
+            color: #0084FF;
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2.5rem;
+        }
+        .timeline-item:not(:last-child) {
+            border-left: 3px solid #7FBEFF;
+        }
+        .timeline-marker {
+            position: absolute;
+            left: -0.7rem;
+            top: 0;
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 9999px;
+            background-color: #0065D2;
+            border: 3px solid #f0f4f8;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="hero-bg text-white text-center py-20 px-4">
+        <h1 class="text-4xl md:text-6xl font-black mb-4">The Great Reallocation</h1>
+        <h2 class="text-2xl md:text-3xl font-bold mb-2">AIによる「大再配置」の時代</h2>
+        <p class="max-w-3xl mx-auto text-lg">これは単なる雇用の喪失ではない。求められるスキルと職務内容の前例のない規模での移行である。</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="overview" class="mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <p class="text-lg font-bold text-secondary mb-2">全世界の雇用への影響</p>
+                    <p class="text-5xl kpi-value">約40%</p>
+                    <p class="text-gray-500 mt-2">IMFによる試算</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <p class="text-lg font-bold text-secondary mb-2">自動化される可能性のある仕事</p>
+                    <p class="text-5xl kpi-value">3億人分</p>
+                    <p class="text-gray-500 mt-2">Goldman Sachsによる予測</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <p class="text-lg font-bold text-secondary mb-2">AIスキルを持つ人材の賃金</p>
+                    <p class="text-5xl kpi-value">+56%</p>
+                    <p class="text-gray-500 mt-2">持たない人材との比較 (PwC)</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="two-faces" class="mb-16">
+            <h2 class="text-3xl md:text-4xl section-title text-center mb-8">自動化 vs 能力拡張：AIがもたらす二つの未来</h2>
+             <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-xl border-l-4 border-accent">
+                    <h3 class="text-2xl font-bold text-primary mb-4 flex items-center"><span class="text-3xl mr-3">🤖</span> 自動化 (Automation)</h3>
+                    <p class="text-lg">定型的な認知業務（データ入力、簡単な顧客対応、レポート作成など）をAIが代替する。短期的にはコスト削減と効率化に繋がるが、特定の職種の需要を減少させる。</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-xl border-l-4 border-green-500">
+                    <h3 class="text-2xl font-bold text-primary mb-4 flex items-center"><span class="text-3xl mr-3">🧑‍🤝‍🧑</span> 能力拡張 (Augmentation)</h3>
+                    <p class="text-lg">AIをツールとして活用し、人間の能力を高める。AIによる分析結果を元に人間が戦略的意思決定を行うなど、より創造的で付加価値の高い業務へのシフトを促す。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="risk-jobs" class="mb-16 bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl md:text-4xl section-title text-center mb-2">AIによる自動化の最前線</h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-8">レポートによると、特に「定型的な認知業務」がAIによる自動化の影響を大きく受けています。以下の職種は、業務内容の一部がAIに代替されるリスクが高いと指摘されています。</p>
+            <div class="chart-container">
+                <canvas id="jobsAtRiskChart"></canvas>
+            </div>
+            <p class="text-sm text-gray-500 text-center mt-4">このグラフは、各職種のタスクがAIによって代替可能と予測される割合の大きさの概念を視覚化したものです。具体的なパーセンテージは各調査で異なりますが、相対的なリスクの高さを示しています。</p>
+        </section>
+
+        <section id="countries" class="mb-16">
+            <h2 class="text-3xl md:text-4xl section-title text-center mb-8">三者三様：国で見るAI導入のアプローチ</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col">
+                    <h3 class="text-2xl font-bold text-primary mb-4">🇺🇸 米国：市場主導型</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">柔軟な労働市場を背景に、テック企業がAI戦略への転換を迅速に進める。大規模な人員削減は、AI開発競争を勝ち抜くためのリソース再配分と位置づけられる。</p>
+                    <div class="mt-auto bg-blue-50 p-4 rounded-md">
+                        <p class="font-bold text-secondary">特徴：Move Fast and Retool</p>
+                        <p class="text-sm text-gray-700">・「at-will（任意）」雇用</p>
+                        <p class="text-sm text-gray-700">・民間AI投資額 世界1位</p>
+                    </div>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col">
+                    <h3 class="text-2xl font-bold text-primary mb-4">🇪🇺 欧州：規制主導型</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">EU AI法などの厳格な規制と、労使協議の伝統が急激な解雇を抑制。企業は人員削減よりも、従業員の再教育や配置転換を慎重に検討する傾向が強い。</p>
+                    <div class="mt-auto bg-blue-50 p-4 rounded-md">
+                        <p class="font-bold text-secondary">特徴：規制と協議</p>
+                        <p class="text-sm text-gray-700">・EU AI法（雇用AIはハイリスク）</p>
+                        <p class="text-sm text-gray-700">・事業所委員会との協議義務</p>
+                    </div>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col">
+                    <h3 class="text-2xl font-bold text-primary mb-4">🇯🇵 日本：再配置主導型</h3>
+                    <p class="text-gray-600 mb-4 flex-grow">厳しい解雇規制と構造的な人手不足から、AIは「労働力を補うツール」として活用される。大手企業は能力拡張と社内での再教育に注力する。</p>
+                    <div class="mt-auto bg-blue-50 p-4 rounded-md">
+                        <p class="font-bold text-secondary">特徴：削減よりも再配置</p>
+                        <p class="text-sm text-gray-700">・厳格な整理解雇法制</p>
+                        <p class="text-sm text-gray-700">・少子高齢化による人手不足</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="klarna" class="mb-16 bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl md:text-4xl section-title text-center mb-2">ケーススタディ：Klarnaの教訓</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-10">スウェーデンのフィンテック大手Klarnaの事例は、AIによる自動化の光と影、そして戦略転換の重要性を示す貴重な教訓です。</p>
+            <div class="max-w-3xl mx-auto">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <p class="text-sm font-bold text-accent">フェーズ1: AIファースト (2022-2024初頭)</p>
+                    <h4 class="text-xl font-bold text-primary mb-2">効率性の追求</h4>
+                    <p class="text-gray-700">AIチャットボットを導入し「700人分の業務を代替した」と発表。年間4,000万ドルのコスト削減を見込むなど、効率化を大々的にアピール。</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <p class="text-sm font-bold text-accent">フェーズ2: 意図せざる結果 (2024後半)</p>
+                    <h4 class="text-xl font-bold text-primary mb-2">顧客満足度の低下</h4>
+                    <p class="text-gray-700">「ロボットのようだ」という顧客からの不満が噴出。共感や複雑な問題解決が求められる場面でAIの限界が露呈し、CEO自ら「より低い品質」に繋がったと認める。</p>
+                </div>
+                <div class="timeline-item">
+                     <div class="timeline-marker"></div>
+                    <p class="text-sm font-bold text-accent">フェーズ3: 戦略転換 (2025-)</p>
+                    <h4 class="text-xl font-bold text-primary mb-2">ハイブリッドモデルへ</h4>
+                    <p class="text-gray-700">人間のエージェントを再雇用する方針へ転換。定型業務はAI、複雑な問題は人間が対応するハイブリッドモデルを目指す。<br><strong class="text-secondary">「AIはスピードを、人材は共感をもたらす」</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="japan-model" class="mb-16">
+            <h2 class="text-3xl md:text-4xl section-title text-center mb-8">日本の能力拡張モデル</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-primary mb-3">ファーストリテイリング</h3>
+                    <p class="text-gray-600">AIによる需要予測データを店舗スタッフに提供。データに基づき売場を判断する「経営者視点」を持つ人材へと役割を転換させ、従業員の能力を拡張する。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-primary mb-3">イオン</h3>
+                    <p class="text-gray-600">「イオンデジタルアカデミー」を設立し、グループ全体で大規模なリスキリングを推進。非IT人材も含め、全社的なAI対応能力の向上を目指す。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-primary mb-3">トヨタ自動車</h3>
+                    <p class="text-gray-600">「トヨタソフトウェアアカデミー」を設立。ハードウェア中心のエンジニアを、AI・ソフトウェアに精通した人材へと再教育し、内部人材の変革に注力する。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="future-proof" class="bg-primary text-white p-10 rounded-lg shadow-xl">
+             <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">AI時代のキャリア戦略</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold border-b-2 border-light-accent pb-2 mb-4">「T字型AIプロフェッショナル」を目指す</h3>
+                    <p>自身の専門分野（縦棒）と、AIを応用する幅広い能力（横棒）を兼ね備える。専門知識だけ、AIスキルだけでは不十分。両輪を駆動させることが市場価値を高める。</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold border-b-2 border-light-accent pb-2 mb-4">代替されにくいスキルを磨く</h3>
+                     <ul class="list-disc list-inside space-y-1">
+                        <li>創造性・独創性</li>
+                        <li>批判的思考・課題設定能力</li>
+                        <li>人間的なコミュニケーション能力</li>
+                    </ul>
+                </div>
+            </div>
+             <p class="text-center mt-8 text-xl font-bold bg-secondary py-3 px-5 rounded-lg max-w-3xl mx-auto">「AIがあなたの仕事を奪うのではない。<strong class="text-yellow-300">AIを使いこなす人間</strong>が、そうでない人間の仕事を奪うのだ」</p>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-6 bg-gray-800 text-gray-400">
+        <p>本インフォグラフィックはレポート「The Great Reallocation: AI駆動型人員削減の分析と未来志向のタレント戦略ガイド」に基づき作成されました。</p>
+        <p class="text-sm">&copy; 2025 Infographic. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const wrapLabel = (label, maxWidth = 16) => {
+            const words = label.split(/\s+/);
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    if (currentLine.length > 0) {
+                        currentLine += ' ' + word;
+                    } else {
+                        currentLine = word;
+                    }
+                }
+            });
+            lines.push(currentLine);
+            return lines;
+        };
+
+        const jobsAtRiskCtx = document.getElementById('jobsAtRiskChart').getContext('2d');
+        const rawLabels = [
+            'カスタマーサービス担当者',
+            'データ入力・一般事務職',
+            'コンテンツライター',
+            '金融・市場調査アナリスト',
+            '人事 (HR) 部門',
+            'ソフトウェアエンジニア'
+        ];
+        
+        const jobsAtRiskChart = new Chart(jobsAtRiskCtx, {
+            type: 'bar',
+            data: {
+                labels: rawLabels.map(label => wrapLabel(label)),
+                datasets: [{
+                    label: '自動化リスクの相対的な高さ',
+                    data: [90, 85, 75, 70, 60, 50],
+                    backgroundColor: '#0084FF',
+                    borderColor: '#0065D2',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                           display: false
+                        },
+                         grid: {
+                            display: false
+                        },
+                        border: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#004AAD',
+                            font: {
+                                weight: 'bold'
+                            }
+                        },
+                         grid: {
+                            display: false
+                        },
+                         border: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
