@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2040年 平均所得5割増の可能性</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Reveal.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* カスタムスタイル */
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        }
+        .reveal {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        }
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            font-weight: 900; /* 太めのフォント */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .reveal .slide-background-content {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .highlight {
+            color: #facc15; /* 黄色 */
+            font-weight: bold;
+        }
+        .accent-blue {
+            color: #38bdf8; /* 明るい青 */
+        }
+        .accent-red {
+            color: #fb7185; /* 赤色 */
+        }
+        .card {
+            background-color: rgba(30, 41, 59, 0.7);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Chart.jsのフォント色を白に */
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 80%;
+            width: 90%;
+        }
+    </style>
+</head>
+<body class="bg-slate-900">
+
+<div class="reveal">
+    <div class="slides">
+        <!-- スライド 1: タイトル -->
+        <section data-background-gradient="linear-gradient(135deg, #020617 0%, #1e3a8a 100%)">
+            <h1 class="text-5xl font-black text-white">2040年 日本の平均所得<br><span class="highlight">5割増</span>は実現可能か？</h1>
+            <p class="mt-8 text-xl text-slate-300">数値的根拠に基づく専門的分析</p>
+        </section>
+
+        <!-- スライド 2: 現状と目標 -->
+        <section>
+            <h2>現状と目標</h2>
+            <div class="flex items-center justify-around mt-8">
+                <div class="card text-center w-1/3">
+                    <p class="text-lg text-slate-300">2023年 平均年収</p>
+                    <p class="text-5xl font-bold accent-blue my-4">約460<span class="text-2xl">万円</span></p>
+                </div>
+                <div class="text-3xl text-white mx-4 font-black">&rarr;</div>
+                <div class="card text-center w-1/3">
+                    <p class="text-lg text-slate-300">2040年 目標年収</p>
+                    <p class="text-5xl font-bold highlight my-4">690<span class="text-2xl">万円</span></p>
+                </div>
+            </div>
+            <div class="card mt-8 w-3/4 mx-auto">
+                <p class="text-xl">目標達成には...<br>年平均 <span class="text-4xl highlight font-black">約2.40%</span> の持続的な名目成長が必要</p>
+            </div>
+        </section>
+
+        <!-- スライド 3: 平均給与の推移グラフ -->
+        <section>
+            <h2>平均給与の推移と2040年目標</h2>
+            <div class="chart-container" style="height:500px">
+                <canvas id="incomeChart"></canvas>
+            </div>
+        </section>
+
+        <!-- スライド 4: 過去の教訓 vs 現代の課題 -->
+        <section>
+            <h2>過去の教訓 vs 現代の課題</h2>
+            <div class="flex items-start justify-around mt-8">
+                <div class="card w-5/12 text-left">
+                    <h3 class="text-2xl accent-blue mb-4">1960年代 所得倍増計画</h3>
+                    <ul class="list-disc list-inside text-lg space-y-2">
+                        <li>年平均 <span class="highlight">10%</span> の高度経済成長</li>
+                        <li>豊富な若年労働力</li>
+                        <li>キャッチアップ型経済</li>
+                        <li>良好な世界経済</li>
+                    </ul>
+                </div>
+                <div class="card w-5/12 text-left">
+                     <h3 class="text-2xl accent-red mb-4">現代日本の課題</h3>
+                    <ul class="list-disc list-inside text-lg space-y-2">
+                        <li><span class="highlight">人口減少</span>と<span class="highlight">超高齢化</span></li>
+                        <li>成熟した技術先進国</li>
+                        <li>激化するグローバル競争</li>
+                        <li>硬直化した労働市場</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- スライド 5: 人口動態の壁 -->
+        <section>
+            <h2>避けられない「人口動態の壁」</h2>
+             <div class="chart-container" style="height:500px">
+                <canvas id="populationChart"></canvas>
+            </div>
+        </section>
+
+        <!-- スライド 6: 経済成長予測 -->
+        <section>
+            <h2>経済成長予測のギャップ</h2>
+            <p class="text-xl mt-4">目標達成には、標準的な予測を上回る成長が不可欠</p>
+            <div class="flex items-end justify-center mt-8 space-x-8" style="height: 350px;">
+                <div class="bg-sky-500 rounded-t-lg" style="width: 15%; height: 26.6%;">
+                    <p class="text-center font-bold text-black text-xl p-2">0.8%</p>
+                </div>
+                <div class="bg-yellow-400 rounded-t-lg" style="width: 15%; height: 80%;">
+                    <p class="text-center font-bold text-black text-xl p-2">2.4%</p>
+                </div>
+            </div>
+             <div class="flex items-end justify-center space-x-8">
+                <div style="width: 15%;"><p class="text-lg mt-2">主要機関の<br>名目GDP成長予測 (〜2040)</p></div>
+                <div style="width: 15%;"><p class="text-lg mt-2">所得5割増に<br>必要な成長率</p></div>
+            </div>
+        </section>
+
+        <!-- スライド 7: 所得向上の鍵 -->
+        <section>
+            <h2>所得向上の鍵となる3つの要素</h2>
+            <div class="flex items-stretch justify-around mt-8 space-x-4">
+                <div class="card w-1/3 text-center">
+                    <p class="text-5xl mb-4">🚀</p>
+                    <h3 class="text-xl accent-blue">労働生産性の向上</h3>
+                    <p class="mt-2 text-base text-slate-300">AI・DXの活用が必須<br>ただし<span class="accent-red">人材不足</span>が深刻な課題</p>
+                </div>
+                <div class="card w-1/3 text-center">
+                    <p class="text-5xl mb-4">💼</p>
+                    <h3 class="text-xl accent-blue">労働市場の変革</h3>
+                    <p class="mt-2 text-base text-slate-300">女性・高齢者の活躍<br>ジョブ型雇用への移行</p>
+                </div>
+                <div class="card w-1/3 text-center">
+                    <p class="text-5xl mb-4">⚖️</p>
+                    <h3 class="text-xl accent-blue">労働分配率の改善</h3>
+                    <p class="mt-2 text-base text-slate-300">成長の果実を賃金へ<br>近年は<span class="accent-red">低下傾向</span>にある</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- スライド 8: 労働分配率のグラフ -->
+        <section>
+            <h2>課題：低下する労働分配率</h2>
+            <p class="fragment text-xl">企業の儲けが、賃金に反映されにくくなっている</p>
+            <div class="chart-container fragment" style="height:500px">
+                <canvas id="laborShareChart"></canvas>
+            </div>
+        </section>
+
+        <!-- スライド 9: 実現可能性の評価 -->
+        <section>
+            <h2>結論：実現可能性の評価</h2>
+            <div class="mt-8">
+                 <div class="card w-4/5 mx-auto fragment">
+                    <p class="text-xl">理論上不可能ではないが、極めて挑戦的であり、<br>達成のハードルは<span class="text-4xl highlight font-black">非常に高い</span></p>
+                </div>
+                <div class="card w-4/5 mx-auto mt-6 fragment">
+                    <h3 class="text-xl accent-blue">最も可能性の高いシナリオ</h3>
+                    <p class="text-lg mt-2 text-slate-200">技術革新は進むが人口減の影響は大きく、目標の<span class="accent-red font-bold">5割増には届かない</span>可能性が高い。（年平均1〜1.5%成長）</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- スライド 10: 最後のメッセージ -->
+        <section data-background-gradient="linear-gradient(135deg, #0f172a 0%, #1e293b 100%)">
+             <h2 class="text-4xl font-black text-white">目標は野心的だが、<br>より高い成長を目指す<span class="highlight">努力そのものが重要</span></h2>
+             <p class="mt-8 text-xl text-slate-300">技術革新、労働市場改革、分配構造の改善など、<br>多岐にわたる分野での持続的な取り組みが不可欠。</p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script>
+    // Reveal.jsの初期化
+    Reveal.initialize({
+        hash: true,
+        plugins: [],
+        slideNumber: true,
+    });
+
+    // Chart.jsの共通設定
+    Chart.defaults.color = '#fff';
+    Chart.defaults.font.family = "'Inter', 'Noto Sans JP', sans-serif";
+    Chart.defaults.font.size = 14;
+    
+    // --- グラフ1: 平均給与の推移 ---
+    const incomeCtx = document.getElementById('incomeChart').getContext('2d');
+    new Chart(incomeCtx, {
+        type: 'bar',
+        data: {
+            labels: ['2014年', '2022年', '2023年', '2040年 (目標)'],
+            datasets: [{
+                label: '平均年収 (万円)',
+                data: [421, 458, 460, 690],
+                backgroundColor: [
+                    'rgba(59, 130, 246, 0.7)',
+                    'rgba(59, 130, 246, 0.7)',
+                    'rgba(96, 165, 250, 0.7)',
+                    'rgba(250, 204, 21, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(59, 130, 246, 1)',
+                    'rgba(59, 130, 246, 1)',
+                    'rgba(96, 165, 250, 1)',
+                    'rgba(250, 204, 21, 1)'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.parsed.y + '万円';
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: '平均年収 (万円)'
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.2)'
+                    }
+                },
+                x: {
+                     grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+
+    // --- グラフ2: 人口動態の推移 ---
+    const populationCtx = document.getElementById('populationChart').getContext('2d');
+    new Chart(populationCtx, {
+        type: 'line',
+        data: {
+            labels: ['2020年', '2025年', '2030年', '2040年', '2050年'],
+            datasets: [{
+                label: '生産年齢人口割合 (%)',
+                data: [59.5, 58.5, 57.7, 54.8, 51.8],
+                borderColor: 'rgba(59, 130, 246, 1)',
+                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                yAxisID: 'y',
+                tension: 0.1,
+                fill: true
+            }, {
+                label: '高齢化率 (%)',
+                data: [28.7, 30.3, 31.9, 34.9, 38.9],
+                borderColor: 'rgba(239, 68, 68, 1)',
+                backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                yAxisID: 'y',
+                tension: 0.1,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                     callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.parsed.y + '%';
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    title: {
+                        display: true,
+                        text: '人口割合 (%)'
+                    },
+                     grid: {
+                        color: 'rgba(255, 255, 255, 0.2)'
+                    }
+                },
+                x: {
+                     grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+    
+    // --- グラフ3: 労働分配率の推移 ---
+    const laborShareCtx = document.getElementById('laborShareChart').getContext('2d');
+    new Chart(laborShareCtx, {
+        type: 'line',
+        data: {
+            labels: ['1990年代', '2000年代', '2010年代', '近年'],
+            datasets: [{
+                label: '労働分配率',
+                data: [65, 63, 62, 60], // 架空のデータで低下傾向を示す
+                borderColor: 'rgba(239, 68, 68, 1)',
+                backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                tension: 0.2,
+                fill: true,
+                pointRadius: 5,
+                pointBackgroundColor: 'rgba(239, 68, 68, 1)',
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                     callbacks: {
+                        label: function(context) {
+                             return '労働分配率（イメージ）';
+                        }
+                    }
+                },
+                title: {
+                    display: true,
+                    text: '日本の労働分配率の推移（イメージ）'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    title: {
+                        display: true,
+                        text: '労働分配率'
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.2)'
+                    }
+                },
+                x: {
+                     grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

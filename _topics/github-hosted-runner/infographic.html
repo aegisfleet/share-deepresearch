@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Actionsランナー: ホステッド vs セルフホステッド コスト分析</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 
+    Chosen Color Palette: Brilliant Blues & Greens
+    Background: #F0F4F8
+    Dark Text/Primary: #070F2B
+    Primary Accent: #1B1A55
+    Secondary Accent: #535C91
+    Highlight/Chart Bar: #9290C3
+    Callout/Warning: #FF6B6B
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            background-color: #F0F4F8;
+            color: #070F2B;
+        }
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            font-weight: 700;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 40vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .decision-flow-box {
+            border: 2px solid #535C91;
+            background-color: #ffffff;
+            color: #070F2B;
+        }
+        .decision-flow-arrow {
+            color: #535C91;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Section -->
+    <header class="bg-[#1B1A55] text-white text-center py-12 px-4">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-2">GitHub Actions ランナーコストの真実</h1>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto text-[#9290C3]">ホステッドの利便性 vs セルフホステッドのコスト削減：どちらが最適か？</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <!-- Section 1: The Initial Hook -->
+        <section id="hook" class="mb-12 text-center">
+            <h2 class="text-3xl font-bold text-[#1B1A55] mb-4">一見すると、答えは明白に見える</h2>
+            <p class="max-w-2xl mx-auto text-lg mb-8 text-[#535C91]">標準的なLinuxランナーの純粋なコンピュート時間単価を比較すると、セルフホスティングが圧倒的に安価です。しかし、この数字には物語の全ては含まれていません。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="card text-center flex flex-col justify-center items-center bg-gradient-to-br from-[#1B1A55] to-[#535C91] text-white">
+                    <h3 class="text-2xl font-bold mb-2">GitHub ホステッド</h3>
+                    <p class="font-inter font-black text-6xl">$0.48</p>
+                    <p class="text-lg text-[#9290C3]">/ 時間 (2-core Linux)</p>
+                </div>
+                <div class="card text-center flex flex-col justify-center items-center">
+                    <h3 class="text-2xl font-bold mb-2 text-[#1B1A55]">セルフホステッド (AWS)</h3>
+                    <p class="font-inter font-black text-6xl text-[#1B1A55]">$0.086</p>
+                    <p class="text-lg text-[#535C91]">/ 時間 (同等のVM)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Direct Cost Comparison -->
+        <section id="cost-comparison" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#1B1A55] mb-4">直接コスト比較：VMスペック別</h2>
+            <p class="max-w-3xl mx-auto text-lg text-center mb-8 text-[#535C91]">GitHubが提供する様々なランナー仕様と、AWS上の同等スペックのVM（オンデマンド価格）の時間単価を比較します。LinuxとWindowsの両方でセルフホスティングが安価に見えます。</p>
+            <div class="card">
+                <div class="chart-container">
+                    <canvas id="runnerCostComparisonChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-4">このグラフは純粋なコンピュートコストのみを示しており、TCO（総所有コスト）は含まれていません。</p>
+            </div>
+        </section>
+
+        <!-- Section 3: The macOS Trap -->
+        <section id="macos-trap" class="mb-12 card bg-[#FF6B6B] text-white">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="text-center md:text-left">
+                    <span class="font-inter text-8xl font-black">⚠️</span>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold mb-3">macOSの罠：24時間の最低利用料金</h2>
+                    <p class="text-lg mb-4">
+                        クラウド上でmacOSをセルフホストする場合、Appleのライセンスにより物理マシンを最低24時間借りる必要があります。これにより、たとえ10分のビルドでも丸1日分の高額な料金が発生し、断続的なCIワークロードではGitHubホステッドより遥かに高コストになります。
+                    </p>
+                     <div class="bg-white/20 p-4 rounded-lg">
+                        <p class="text-xl font-bold">30分のビルドジョブのコスト比較 (M1ランナー):</p>
+                        <div class="flex items-baseline gap-4 mt-2">
+                            <p><span class="font-bold">GitHub:</span> <span class="text-3xl font-inter font-bold">$2.40</span></p>
+                            <p><span class="font-bold">セルフホスト:</span> <span class="text-3xl font-inter font-bold">$37.44</span> <span class="text-sm">(~15.6倍)</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: TCO Iceberg -->
+        <section id="tco" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#1B1A55] mb-4">氷山の一角：セルフホスティングの隠れたコスト</h2>
+            <p class="max-w-3xl mx-auto text-lg text-center mb-8 text-[#535C91]">セルフホスティングの真のコストは、VMの料金だけではありません。見えにくい運用コスト（TCO）が、全体の費用を大きく押し上げます。</p>
+            <div class="card p-0 overflow-hidden">
+                <div class="bg-[#9290C3] text-center p-6">
+                    <h3 class="text-2xl font-bold text-[#070F2B]">目に見えるコスト：VMインスタンス料金</h3>
+                </div>
+                <div class="bg-[#535C91] text-white p-8">
+                    <h3 class="text-2xl font-bold text-center mb-6">水面下の巨大なコスト：総所有コスト (TCO)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                        <div class="bg-white/10 p-4 rounded-lg">
+                            <p class="text-5xl mb-2">👤</p>
+                            <h4 class="font-bold text-lg">人的オーバーヘッド</h4>
+                            <p class="text-sm">セットアップ、保守、パッチ適用、監視、トラブルシューティング... これらは全てエンジニアの貴重な時間を消費します。</p>
+                            <p class="font-inter font-bold text-xl mt-2">$15,000+/年</p>
+                        </div>
+                        <div class="bg-white/10 p-4 rounded-lg">
+                            <p class="text-5xl mb-2">☁️</p>
+                            <h4 class="font-bold text-lg">ネットワーク料金</h4>
+                            <p class="text-sm">Dockerイメージ等のデータ転送にはエグレス料金が発生します。GitHubホステッドではこれは無料です。</p>
+                             <p class="font-inter font-bold text-xl mt-2">$100+/月</p>
+                        </div>
+                        <div class="bg-white/10 p-4 rounded-lg">
+                            <p class="text-5xl mb-2">💾</p>
+                            <h4 class="font-bold text-lg">その他コスト</h4>
+                            <p class="text-sm">永続ストレージ料金、ジョブがない時のアイドル時間コスト、スケーリング管理の複雑性も考慮必須です。</p>
+                            <p class="font-inter font-bold text-xl mt-2">変動的</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 5: Decision Matrix -->
+        <section id="decision-matrix" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#1B1A55] mb-4">定性的スコアカード：コストを超えた評価</h2>
+            <p class="max-w-3xl mx-auto text-lg text-center mb-8 text-[#535C91]">最適な選択は、コストだけでなく、開発速度、セキュリティ、保守の手間など、多角的な視点から判断する必要があります。</p>
+            <div class="card overflow-x-auto">
+                <table class="w-full min-w-[600px] text-left">
+                    <thead>
+                        <tr class="border-b-2 border-[#9290C3]">
+                            <th class="p-4 text-lg">評価項目</th>
+                            <th class="p-4 text-lg text-center">GitHubホステッド</th>
+                            <th class="p-4 text-lg text-center">セルフホステッド</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-4 font-semibold">コスト予測性</td>
+                            <td class="p-4 text-center text-2xl font-inter">⭐️⭐️⭐️⭐️</td>
+                            <td class="p-4 text-center text-2xl font-inter">⭐️⭐️</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="p-4 font-semibold">セットアップと保守の手間</td>
+                            <td class="p-4 text-center text-2xl font-inter">⭐️⭐️⭐️⭐️⭐️</td>
+                            <td class="p-4 text-center text-2xl font-inter">⭐️</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-4 font-semibold">セキュリティ責任</td>
+                            <td class="p-4 text-center text-2xl font-inter">⭐️⭐️⭐️⭐️⭐️</td>
+                            <td class="p-4 text-center text-2xl font-inter">⭐️⭐️</td>
+                        </tr>
+                         <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="p-4 font-semibold">パフォーマンスとカスタマイズ</td>
+                            <td class="p-4 text-center text-2xl font-inter">⭐️⭐️⭐️</td>
+                            <td class="p-4 text-center text-2xl font-inter">⭐️⭐️⭐️⭐️⭐️</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-semibold">スケーラビリティ</td>
+                            <td class="p-4 text-center text-2xl font-inter">⭐️⭐️⭐️⭐️</td>
+                            <td class="p-4 text-center text-2xl font-inter">⭐️⭐️⭐️</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- Section 6: Strategy Flowchart -->
+        <section id="strategy" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#1B1A55] mb-4">あなたの組織に最適な戦略は？</h2>
+            <p class="max-w-3xl mx-auto text-lg text-center mb-8 text-[#535C91]">組織の規模と成熟度に応じて、最適なアプローチは異なります。</p>
+            <div class="card">
+                <div class="space-y-8">
+                    <!-- Start Node -->
+                    <div class="decision-flow-box p-4 rounded-lg text-center max-w-md mx-auto">
+                        <p class="font-bold text-lg">あなたのチームのエンジニア数は？</p>
+                    </div>
+                    
+                    <div class="flex justify-center decision-flow-arrow text-4xl font-bold">↓</div>
+
+                    <!-- Decision Nodes -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                        <!-- Path 1 -->
+                        <div class="flex flex-col items-center">
+                            <div class="decision-flow-box p-4 rounded-lg w-full">
+                                <h3 class="font-bold text-xl">15人未満</h3>
+                                <p class="text-sm">スタートアップ / 小規模チーム</p>
+                            </div>
+                            <div class="decision-flow-arrow text-4xl font-bold my-4">↓</div>
+                             <div class="decision-flow-box p-6 rounded-lg w-full bg-[#1B1A55] text-white flex-grow">
+                                <h4 class="font-bold text-lg">推奨：GitHubホステッド</h4>
+                                <p class="mt-2 text-sm">TCOを考慮すると、セルフホストは割に合いません。エンジニアリング時間を製品開発に集中させるべきです。</p>
+                            </div>
+                        </div>
+                        <!-- Path 2 -->
+                        <div class="flex flex-col items-center">
+                            <div class="decision-flow-box p-4 rounded-lg w-full">
+                                <h3 class="font-bold text-xl">15～100人</h3>
+                                <p class="text-sm">成長中の組織</p>
+                            </div>
+                            <div class="decision-flow-arrow text-4xl font-bold my-4">↓</div>
+                             <div class="decision-flow-box p-6 rounded-lg w-full bg-[#535C91] text-white flex-grow">
+                                <h4 class="font-bold text-lg">推奨：ハイブリッド戦略</h4>
+                                <p class="mt-2 text-sm">まずGitHubホステッドから始め、コスト増に応じて最も利用量の多いジョブからセルフホストを検討。macOSはホステッドのままに。</p>
+                            </div>
+                        </div>
+                        <!-- Path 3 -->
+                        <div class="flex flex-col items-center">
+                            <div class="decision-flow-box p-4 rounded-lg w-full">
+                                <h3 class="font-bold text-xl">100人以上</h3>
+                                <p class="text-sm">大企業</p>
+                            </div>
+                            <div class="decision-flow-arrow text-4xl font-bold my-4">↓</div>
+                            <div class="decision-flow-box p-6 rounded-lg w-full bg-[#9290C3] text-[#070F2B] flex-grow">
+                                <h4 class="font-bold text-lg">推奨：積極的なハイブリッド戦略</h4>
+                                <p class="mt-2 text-sm">専任チームでセルフホストフリートを管理し、コストを最適化。macOSやバースト用にGitHubホステッドを活用します。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="text-center p-8 bg-[#070F2B] text-gray-400">
+        <p>このインフォグラフィックは、GitHub Actionsのランナー選択における戦略的評価を目的としています。</p>
+        <p class="text-sm mt-2">データは2024年時点の公開情報に基づいています。実際の価格は変動する可能性があります。</p>
+        <!-- Confirmation: NEITHER Mermaid JS NOR SVG were used in this output. All visualizations are created using Chart.js on Canvas or structured HTML/CSS with Tailwind. -->
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const wrapLabel = (label, maxWidth = 16) => {
+                if (label.length <= maxWidth) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine) {
+                    lines.push(currentLine.trim());
+                }
+                return lines;
+            };
+
+            // Chart 1: Runner Cost Comparison
+            const runnerCostCtx = document.getElementById('runnerCostComparisonChart').getContext('2d');
+            const originalLabels = [
+                'Linux Standard 2-core x64', 'Linux Larger 4-core x64', 'Linux Larger 8-core x64',
+                'Windows Standard 2-core x64', 'Windows Larger 4-core x64', 'Windows Larger 8-core x64'
+            ];
+            new Chart(runnerCostCtx, {
+                type: 'bar',
+                data: {
+                    labels: originalLabels.map(label => wrapLabel(label)),
+                    datasets: [
+                        {
+                            label: 'GitHubホステッド ($/時間)',
+                            data: [0.48, 0.96, 1.92, 0.96, 1.92, 3.84],
+                            backgroundColor: '#1B1A55',
+                            borderColor: '#1B1A55',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'セルフホステッド (AWS) ($/時間)',
+                            data: [0.086, 0.173, 0.346, 0.126, 0.252, 0.504],
+                            backgroundColor: '#9290C3',
+                            borderColor: '#9290C3',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '時間単価 (USD)',
+                                font: { size: 14 }
+                            }
+                        },
+                        y: {
+                           ticks: {
+                                font: { size: 12 }
+                           }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'GitHubホステッド vs セルフホステッドの時間単価',
+                            font: { size: 18, weight: 'bold' },
+                            padding: { top: 10, bottom: 20 }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

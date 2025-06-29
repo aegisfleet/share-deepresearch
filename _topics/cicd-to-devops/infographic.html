@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CDからDevOpsへ：変革のインフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            background-color: #F0F4F8; /* Light blue-gray background */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Default max-width */
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px; /* Default height */
+            max-height: 450px; /* Default max-height */
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 400px;
+            }
+        }
+        .section-title {
+            font-size: 2.25rem; /* 36px */
+            font-weight: 700;
+            margin-bottom: 1.5rem; /* 24px */
+            text-align: center;
+            color: #073B4C; /* Dark Teal/Navy from palette */
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem; /* 12px */
+            padding: 2rem; /* 32px */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem; /* 32px */
+        }
+        .icon-bg {
+            background-color: #E0F2FE; /* Light blue for icon backgrounds */
+            color: #118AB2; /* Strong Blue from palette */
+            border-radius: 50%;
+            width: 3rem; /* 48px */
+            height: 3rem; /* 48px */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem; /* 24px */
+            margin-bottom: 0.75rem; /* 12px */
+        }
+        .kpi-card {
+            background-color: #118AB2; /* Strong Blue */
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .kpi-label {
+            font-size: 0.875rem;
+        }
+        .flowchart-step {
+            border: 2px solid #118AB2; /* Strong Blue */
+            background-color: #ffffff;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            text-align: center;
+            color: #073B4C;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
+        }
+        .flowchart-arrow {
+            font-size: 1.5rem;
+            color: #118AB2; /* Strong Blue */
+            margin: 0 0.5rem;
+            align-self: center;
+        }
+
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .nav-link {
+            color: #073B4C;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 500;
+        }
+        .nav-link:hover, .nav-link.active {
+            background-color: #118AB2;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800">
+    <!-- 
+        Chosen Color Palette: Energetic & Playful
+        HEX Codes:
+        - #FF6B6B (Vibrant Red/Coral)
+        - #FFD166 (Bright Yellow)
+        - #06D6A0 (Bright Green/Teal)
+        - #118AB2 (Strong Blue)
+        - #073B4C (Dark Teal/Navy) - Primary Text / Dark Accents
+        - Background: #F0F4F8 (Light Blue-Gray) or white for cards
+    -->
+    <!-- 
+        Infographic Narrative Plan:
+        1.  Introduction: CI/CD から DevOps への進化。
+        2.  Section 1: CI/CD vs DevOps - 基本的な違いをレーダーチャートで可視化。
+        3.  Section 2: DevOps 変革の柱 - CALMS フレームワークをアイコンと説明で解説。
+        4.  Section 3: DevOps への移行ツールキット - 役割進化、新スキル、ツールチェーン、リーダーシップの重要性。
+        5.  Section 4: 今後の道筋 - 実践的ステップと継続的な進化のメッセージ。
+    -->
+    <!-- 
+        Visualization Choices Summary (Confirming NO SVG, NO MERMAID JS):
+        - CI/CD vs DevOps Profile: Radar Chart (Chart.js Canvas)
+        - CALMS Framework: HTML/CSS cards with Unicode icons.
+        - Role Evolution (Specialized vs T-shaped): HTML/CSS text representation.
+        - New Skills List: HTML/CSS list with Unicode icons.
+        - DevOps Toolchain: HTML/CSS based flow diagram with Unicode icons (boxes and arrows via borders/flexbox).
+        - Leadership Role: HTML/CSS callout box with Unicode icon.
+        - Practical Next Steps: HTML/CSS styled list.
+        - All other text/data: Styled HTML text blocks, lists, tables.
+    -->
+    <!-- 
+        Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. 
+        All charts are rendered to Canvas by Chart.js. Diagrams and icons are HTML/CSS or Unicode.
+    -->
+
+    <header class="bg-gradient-to-r from-[#118AB2] to-[#06D6A0] text-white py-12 sm:py-20 text-center">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl sm:text-5xl font-bold mb-4">CI/CDからDevOpsへ</h1>
+            <p class="text-xl sm:text-2xl font-light">変革を加速するインフォグラフィック</p>
+        </div>
+    </header>
+
+    <nav id="navbar" class="sticky-nav mb-8">
+        <div class="container mx-auto px-4 flex flex-wrap justify-center space-x-2 sm:space-x-4">
+            <a href="#intro" class="nav-link">イントロ</a>
+            <a href="#comparison" class="nav-link">CI/CD vs DevOps</a>
+            <a href="#calms" class="nav-link">CALMS原則</a>
+            <a href="#transition" class="nav-link">移行要素</a>
+            <a href="#roadmap" class="nav-link">ロードマップ</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+
+        <section id="intro" class="mb-16 scroll-mt-20">
+            <h2 class="section-title" style="color: #118AB2;">はじめに：CI/CDの基盤からDevOpsの展望へ</h2>
+            <div class="card max-w-3xl mx-auto">
+                <p class="text-lg leading-relaxed mb-4">多くの先進的な開発チームは、継続的インテグレーション（CI）と継続的デリバリー（CD）の実践において高い習熟度を示しています。これらは開発効率とリリースの信頼性を大幅に向上させ、DevOpsという次の段階へ進むための重要な出発点となります。</p>
+                <p class="text-lg leading-relaxed">DevOpsは、開発（Development）と運用（Operations）が密接に連携し、ソフトウェア開発ライフサイクル全体にわたる価値提供の最大化を目指す文化であり、運営モデルです。CI/CDの技術的自動化を基盤としつつも、それを超えた組織文化やプロセスの変革を伴います。</p>
+            </div>
+        </section>
+
+        <section id="comparison" class="mb-16 scroll-mt-20">
+            <h2 class="section-title" style="color: #118AB2;">CI/CD と DevOps：主要な焦点領域の比較</h2>
+            <div class="card">
+                <p class="text-center text-gray-700 mb-6">以下のレーダーチャートは、CI/CD中心チームとDevOpsチームが、ソフトウェアデリバリーにおける様々な側面に対して持つ典型的な焦点の度合いを示しています。DevOpsがより広範な責任と協調を重視するのに対し、CI/CDは自動化の側面に強く特化していることがわかります。</p>
+                <div class="chart-container">
+                    <canvas id="cicdVsDevopsRadarChart"></canvas>
+                </div>
+                <div class="mt-6 text-sm text-gray-600">
+                    <h4 class="font-semibold text-gray-700 mb-2">凡例：</h4>
+                    <div class="flex items-center mb-1">
+                        <span class="h-3 w-3 rounded-full mr-2" style="background-color: rgba(255, 107, 107, 0.7);"></span> CI/CD中心チーム (例)
+                    </div>
+                    <div class="flex items-center">
+                        <span class="h-3 w-3 rounded-full mr-2" style="background-color: rgba(6, 214, 160, 0.7);"></span> DevOpsチーム (例)
+                    </div>
+                    <p class="mt-2 italic">注：チャートのデータは、レポートの記述に基づいた典型的な傾向を示すためのものです。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="calms" class="mb-16 scroll-mt-20">
+            <h2 class="section-title" style="color: #06D6A0;">DevOpsトランスフォーメーション成功の柱：CALMSフレームワーク</h2>
+            <p class="text-xl text-center text-gray-700 mb-10 max-w-3xl mx-auto">DevOpsへの移行を成功させるには、文化、自動化、リーン、測定、共有というCALMSの5つの柱をバランス良く育成することが不可欠です。</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="card flex flex-col items-center text-center" style="border-top: 5px solid #FF6B6B;">
+                    <div class="icon-bg" style="background-color: #FFE0E0; color: #FF6B6B;">👥</div>
+                    <h3 class="text-2xl font-semibold mb-3" style="color: #FF6B6B;">C: 文化 (Culture)</h3>
+                    <p class="text-gray-600 leading-relaxed">部門間のサイロを解体し、協調、共有責任、心理的安全性を育む。失敗から学ぶことを奨励し、顧客中心の思考を組織全体で共有する。</p>
+                </div>
+
+                <div class="card flex flex-col items-center text-center" style="border-top: 5px solid #FFD166;">
+                    <div class="icon-bg" style="background-color: #FFF5DB; color: #FFD166;">⚙️</div>
+                    <h3 class="text-2xl font-semibold mb-3" style="color: #FFD166;">A: 自動化 (Automation)</h3>
+                    <p class="text-gray-600 leading-relaxed">CI/CDパイプラインに加え、Infrastructure as Code (IaC)、テスト、監視、セキュリティなど、ライフサイクル全体で可能な限り自動化を推進する。</p>
+                </div>
+
+                <div class="card flex flex-col items-center text-center" style="border-top: 5px solid #06D6A0;">
+                     <div class="icon-bg" style="background-color: #D6FFF4; color: #06D6A0;">💡</div>
+                    <h3 class="text-2xl font-semibold mb-3" style="color: #06D6A0;">L: リーン (Lean)</h3>
+                    <p class="text-gray-600 leading-relaxed">価値提供のフローを最適化し、無駄を徹底的に排除。小さなバッチでの作業、WIP制限、継続的改善（カイゼン）を実践する。</p>
+                </div>
+
+                <div class="card flex flex-col items-center text-center" style="border-top: 5px solid #118AB2;">
+                    <div class="icon-bg" style="background-color: #D4EEF9; color: #118AB2;">📊</div>
+                    <h3 class="text-2xl font-semibold mb-3" style="color: #118AB2;">M: 測定 (Measurement)</h3>
+                    <p class="text-gray-600 leading-relaxed">DORAメトリクスなどの主要指標を追跡し、データに基づいた意思決定を行う。フィードバックループを確立し、改善効果を可視化する。</p>
+                </div>
+                
+                <div class="card flex flex-col items-center text-center md:col-span-2 lg:col-span-1 lg:col-start-2" style="border-top: 5px solid #073B4C;">
+                    <div class="icon-bg" style="background-color: #DAE3E6; color: #073B4C;">🤝</div>
+                    <h3 class="text-2xl font-semibold mb-3" style="color: #073B4C;">S: 共有 (Sharing)</h3>
+                    <p class="text-gray-600 leading-relaxed">知識、経験、ツール、成功事例、失敗からの学びを組織全体でオープンに共有。透明性の高いコミュニケーションとドキュメンテーションを促進する。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="transition" class="mb-16 scroll-mt-20">
+            <h2 class="section-title" style="color: #FFD166;">DevOps移行に不可欠な要素</h2>
+            <p class="text-xl text-center text-gray-700 mb-10 max-w-3xl mx-auto">CI/CDの基盤の上に、役割の進化、新スキルの獲得、主要プラクティスの導入、適切なツールチェーン、そして強力なリーダーシップが組み合わさることで、DevOpsへの移行が現実のものとなります。</p>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-4 text-center" style="color: #073B4C;">役割の進化と新スキル</h3>
+                    <div class="text-center mb-4">
+                        <p class="text-lg"><span class="font-semibold text-red-500">専門的役割</span> ➔ <span class="font-semibold text-green-500">T字型/部門横断的貢献者</span></p>
+                        <p class="italic text-gray-600 mt-1">「作ったものが運用する (You build it, you run it)」文化の浸透</p>
+                    </div>
+                    <h4 class="font-semibold text-lg mb-3 mt-6" style="color: #118AB2;">習得すべき主要スキル：</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><span class="icon-bg text-xs mr-3 p-2 leading-none" style="background-color: #E0F2FE; color: #118AB2;">☁️</span> クラウドプラットフォーム (AWS, Azure, GCP)</li>
+                        <li class="flex items-center"><span class="icon-bg text-xs mr-3 p-2 leading-none" style="background-color: #E0F2FE; color: #118AB2;">📦</span> コンテナ技術 (Docker, Kubernetes)</li>
+                        <li class="flex items-center"><span class="icon-bg text-xs mr-3 p-2 leading-none" style="background-color: #E0F2FE; color: #118AB2;">🏗️</span> IaCツール (Terraform, Ansible)</li>
+                        <li class="flex items-center"><span class="icon-bg text-xs mr-3 p-2 leading-none" style="background-color: #E0F2FE; color: #118AB2;">📉</span> 監視・オブザーバビリティツール</li>
+                        <li class="flex items-center"><span class="icon-bg text-xs mr-3 p-2 leading-none" style="background-color: #E0F2FE; color: #118AB2;">🛡️</span> セキュリティプラクティスとツール</li>
+                        <li class="flex items-center"><span class="icon-bg text-xs mr-3 p-2 leading-none" style="background-color: #E0F2FE; color: #118AB2;">💬</span> コミュニケーション、コラボレーション等のソフトスキル</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-4 text-center" style="color: #073B4C;">リーダーシップの役割</h3>
+                     <div class="flex justify-center mb-4">
+                        <span class="icon-bg" style="background-color: #FFF5DB; color: #FFD166;">🌟</span>
+                    </div>
+                    <p class="text-gray-700 mb-4">DevOpsへの変革を成功させるためには、リーダーシップによる強力なコミットメントと支援が不可欠です。</p>
+                    <ul class="space-y-2 text-gray-600 list-disc list-inside pl-2">
+                        <li>明確なビジョンの提示</li>
+                        <li>必要なリソース（時間、予算、トレーニング）の配分</li>
+                        <li>チームへの権限委譲と心理的安全性の醸成</li>
+                        <li>組織的な障害の排除</li>
+                        <li>模範を示し、望ましい文化的変化の強化</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="text-2xl font-semibold mb-6 text-center" style="color: #073B4C;">DevOpsツールチェーンの概念</h3>
+                <p class="text-center text-gray-700 mb-6">DevOpsはツールが全てではありませんが、適切に統合されたツールチェーンは、自動化、コラボレーション、フィードバックを効果的に実現する上で不可欠です。目指すべきは、情報サイロを解体する統合されたツールチェーンです。</p>
+                <div class="flex flex-wrap items-center justify-center gap-y-4">
+                    <div class="flowchart-step">📝 計画・協調</div>
+                    <div class="flowchart-arrow">➔</div>
+                    <div class="flowchart-step">💻 SCM</div>
+                    <div class="flowchart-arrow">➔</div>
+                    <div class="flowchart-step">🚀 CI/CD</div>
+                    <div class="flowchart-arrow hidden sm:block">➔</div>
+                     <div class="w-full sm:hidden my-2"></div> <div class="flowchart-step">⚙️ IaC・構成管理</div>
+                    <div class="flowchart-arrow">➔</div>
+                    <div class="flowchart-step">📊 監視・ログ</div>
+                    <div class="flowchart-arrow">➔</div>
+                    <div class="flowchart-step">🛡️ セキュリティ</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="scroll-mt-20">
+            <h2 class="section-title" style="color: #FF6B6B;">DevOpsエクセレンスへの道筋</h2>
+            <div class="card max-w-3xl mx-auto mb-12">
+                <h3 class="text-2xl font-semibold mb-4" style="color: #073B4C;">CI/CDチームへの実践的提言</h3>
+                <ol class="list-decimal list-inside space-y-3 text-gray-700 text-lg">
+                    <li><span class="font-semibold text-[#FF6B6B]">パイロットプロジェクトの開始：</span>小規模でDevOpsプラクティスを実験導入。</li>
+                    <li><span class="font-semibold text-[#FF6B6B]">CALMS特定領域への初期集中：</span>当初は1～2領域に焦点を当てる。</li>
+                    <li><span class="font-semibold text-[#FF6B6B]">トレーニングへの投資：</span>技術スキルとソフトスキルの両方を強化。</li>
+                    <li><span class="font-semibold text-[#FF6B6B]">共通目標とメトリクスの設定：</span>チーム間で共有された目標と測定基準を確立。</li>
+                    <li><span class="font-semibold text-[#FF6B6B]">小規模からの部門横断的コラボレーション奨励：</span>実践的な協調の機会を創出。</li>
+                </ol>
+            </div>
+
+            <div class="card bg-[#073B4C] text-white text-center">
+                <div class="flex justify-center mb-4 text-4xl">🔄</div>
+                <h3 class="text-3xl font-bold mb-3">DevOpsは継続的な進化の旅</h3>
+                <p class="text-lg leading-relaxed">市場の要求、技術の進歩、チームの成長に合わせて、DevOpsの実践も常に進化し続ける必要があります。「常に新しいことを学ぶ」「プロセスを継続的に改善する」という姿勢が、DevOpsの精神そのものです。</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-8 mt-12 bg-gray-800 text-gray-300">
+        <p>&copy; <span id="currentYear"></span> DevOps移行インフォグラフィック. All rights reserved.</p>
+        <p class="text-sm">本インフォグラフィックは提供された「CI/CDからDevOpsへの移行」レポートに基づき作成されました。</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        function formatLabelForChartJs(label, maxCharsPerLine = 10) { // Adjusted for potentially better wrapping in Japanese on charts
+            if (typeof label !== 'string' || label.length <= maxCharsPerLine) {
+                return label; 
+            }
+            const lines = [];
+            let currentLine = "";
+            for (let i = 0; i < label.length; i++) {
+                currentLine += label[i];
+                if (i < label.length - 1 && currentLine.length >= maxCharsPerLine) {
+                    lines.push(currentLine);
+                    currentLine = "";
+                }
+            }
+            if (currentLine.length > 0) {
+                lines.push(currentLine);
+            }
+            return lines;
+        }
+        
+        const radarLabelsRaw = [
+            '自動化の焦点',
+            '運用責任の範囲',
+            '文化変革の重視度',
+            'ライフサイクル関与', // Shortened for better display
+            '部門横断的な協調'
+        ];
+
+        const processedRadarLabels = radarLabelsRaw.map(label => formatLabelForChartJs(label, 10)); // Apply wrapping
+
+        const cicdVsDevopsRadarCtx = document.getElementById('cicdVsDevopsRadarChart').getContext('2d');
+        new Chart(cicdVsDevopsRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: processedRadarLabels,
+                datasets: [{
+                    label: 'CI/CD中心チーム (特性例)',
+                    data: [5, 2, 1, 2, 2], // Illustrative: High on automation, lower on others
+                    backgroundColor: 'rgba(255, 107, 107, 0.2)', // Vibrant Red/Coral
+                    borderColor: 'rgba(255, 107, 107, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(255, 107, 107, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(255, 107, 107, 1)'
+                }, {
+                    label: 'DevOpsチーム (特性例)',
+                    data: [4, 5, 5, 5, 5], // Illustrative: More balanced, high on broader aspects
+                    backgroundColor: 'rgba(6, 214, 160, 0.2)', // Bright Green/Teal
+                    borderColor: 'rgba(6, 214, 160, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(6, 214, 160, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(6, 214, 160, 1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true,
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 5,
+                        ticks: {
+                            stepSize: 1,
+                            backdropColor: 'rgba(255, 255, 255, 0.75)', // Make ticks more readable
+                            font: {
+                                size: 10
+                            }
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 12, // Adjusted for Japanese
+                                weight: '500'
+                            },
+                            color: '#073B4C', // Dark Teal/Navy for point labels
+                             callback: function(label) { // Ensure point labels are also handled if they become arrays
+                                if (Array.isArray(label)) {
+                                    return label; // Chart.js handles array of strings for point labels
+                                }
+                                return label;
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 12
+                            },
+                            color: '#073B4C'
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: '#073B4C', // Dark Teal/Navy for tooltip background
+                        titleFont: {
+                            size: 14,
+                            weight: 'bold'
+                        },
+                        bodyFont: {
+                            size: 12
+                        },
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(''); // Join without space for Japanese
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Smooth scrolling for nav links and active state
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        function changeActiveLink() {
+            let index = sections.length;
+
+            while(--index && window.scrollY + 100 < sections[index].offsetTop) {} // 100px offset
+            
+            navLinks.forEach((link) => link.classList.remove('active'));
+            if (index >= 0 && navLinks[index]) { // Check if navLinks[index] exists
+                 navLinks[index].classList.add('active');
+            }
+        }
+
+        // Call on load and scroll
+        changeActiveLink();
+        window.addEventListener('scroll', changeActiveLink);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Calculate position considering sticky nav height
+                    const navbarHeight = document.getElementById('navbar').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - navbarHeight - 10; // 10px additional offset
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

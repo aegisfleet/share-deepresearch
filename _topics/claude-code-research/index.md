@@ -1,13 +1,22 @@
 ---
-layout: topic
-title: "Anthropic Claude Code 詳細調査報告：VSCode及びGitHub Actions連携の深掘り"
+audio: /share-deepresearch/assets/audio/claude-code-research.mp3
+category: ai
 date: 2025-05-25
-category: "ai"
-tags: [Anthropic,Claude Code,VSCode,GitHub Actions]
-audio: "/share-deepresearch/assets/audio/claude-code-research.mp3"
+ga4_metrics:
+  avgSessionDuration: 150.848024
+  pageViews: 1
+  users: 1
+layout: topic
+prompt: AnthropicのClaude Codeの使用例を詳細に調査したい。特にVScodeとの連携、GitHub Actionsとの連携についてはより深堀りして欲しい。
 supplementary_materials:
-  - title: "補足資料：Anthropic Claude Code 詳細調査報告 SPA"
-    url: "/share-deepresearch/topics/claude-code-research/dashboard.html"
+- title: 補足資料：Anthropic Claude Code 詳細調査報告 SPA
+  url: /share-deepresearch/topics/claude-code-research/dashboard.html
+tags:
+- VSCode
+- GitHub Actions
+- Claude Code
+- AI Agent
+title: Anthropic Claude Code 詳細調査報告：VSCode及びGitHub Actions連携の深掘り
 ---
 
 # **Anthropic Claude Code 詳細調査報告：VSCode及びGitHub Actions連携の深掘り**
@@ -196,22 +205,22 @@ Claude CodeをGitHub Actionsで利用するためのセットアップ方法は�
 
 以下は、issueコメントで@claudeがメンションされた際にPRを作成する基本的なワークフローの例です 11。
 
-YAML
-
+```yaml
 name: Claude PR Creation  
 on:  
-  issue\_comment:  
-    types: \[created\]  
+  issue_comment:  
+    types: [created]  
 jobs:  
   create-pr:  
     if: contains(github.event.comment.body, '@claude')  
     runs-on: ubuntu-latest  
     steps:  
-      \- uses: anthropics/claude-code-action@beta  
+      - uses: anthropics/claude-code-action@beta  
         with:  
           prompt: "${{ github.event.comment.body }}"  
-          anthropic\_api\_key: ${{ secrets.ANTHROPIC\_API\_KEY }}  
-          \# allowed\_tools: \# 必要に応じて許可するツールを指定
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}  
+          # allowed_tools: # 必要に応じて許可するツールを指定
+```
 
 #### **4.1.1. GitHub Actionsの2つの階層：claude-code-action vs. claude-code-base-action**
 
@@ -264,21 +273,21 @@ Claude Code GitHub Actionsは、開発ワークフローの様々な側面を自
 
 **テストケース生成の概念的な例:**
 
-YAML
-
-\#...  
-\# issueコメントまたはdirect\_prompt内:  
-\# "@claude このPRの変更点を分析し、モジュールXの新しい関数に対するユニットテストをCLAUDE.mdに記載されたテストのベストプラクティスに従って生成してください。"  
-\#...
+```yaml
+#...  
+# issueコメントまたはdirect_prompt内:  
+# "@claude このPRの変更点を分析し、モジュールXの新しい関数に対するユニットテストをCLAUDE.mdに記載されたテストのベストプラクティスに従って生成してください。"  
+#...
+```
 
 **デプロイ前チェックの概念的な例:**
 
-YAML
-
-\#...  
-\# direct\_prompt: "コミットされたコード変更のセキュリティレビューを実施してください。CLAUDE.mdのセキュリティガイドラインに従い、潜在的なXSS脆弱性と安全でないAPI呼び出しに焦点を当ててください。発見事項を報告してください。"  
-\# allowed\_tools: \# カスタムスキャナを許可  
-\#...
+```yaml
+#...  
+# direct_prompt: "コミットされたコード変更のセキュリティレビューを実施してください。CLAUDE.mdのセキュリティガイドラインに従い、潜在的なXSS脆弱性と安全でないAPI呼び出しに焦点を当ててください。発見事項を報告してください。"  
+# allowed_tools: # カスタムスキャナを許可  
+#...
+```
 
 #### **4.3.4. コスト最適化とセキュリティ**
 
@@ -406,9 +415,9 @@ Claude Code自体の開発（80%の自己コーディングの主張 56 を含�
 
 1. Claude Code overview \- Anthropic API, 5月 25, 2025にアクセス、 [https://docs.anthropic.com/en/docs/claude-code/overview](https://docs.anthropic.com/en/docs/claude-code/overview)  
 2. Meet Claude \- Anthropic, 5月 25, 2025にアクセス、 [https://www.anthropic.com/claude](https://www.anthropic.com/claude)  
-3. Write beautiful code, ship powerful products | Claude by Anthropic ..., 5月 25, 2025にアクセス、 [https://www.anthropic.com/solutions/coding](https://www.anthropic.com/solutions/coding)  
+3. Write beautiful code, ship powerful products Claude by Anthropic ..., 5月 25, 2025にアクセス、 [https://www.anthropic.com/solutions/coding](https://www.anthropic.com/solutions/coding)  
 4. Claude Code: Deep Coding at Terminal Velocity \\ Anthropic, 5月 25, 2025にアクセス、 [https://www.anthropic.com/claude-code](https://www.anthropic.com/claude-code)  
-5. Claude Code: A Guide With Practical Examples | DataCamp, 5月 25, 2025にアクセス、 [https://www.datacamp.com/tutorial/claude-code](https://www.datacamp.com/tutorial/claude-code)  
+5. Claude Code: A Guide With Practical Examples DataCamp, 5月 25, 2025にアクセス、 [https://www.datacamp.com/tutorial/claude-code](https://www.datacamp.com/tutorial/claude-code)  
 6. Claude Code overview \- Anthropic API, 5月 25, 2025にアクセス、 [https://docs.anthropic.com/en/docs/agents/claude-code/introduction](https://docs.anthropic.com/en/docs/agents/claude-code/introduction)  
 7. IDE integrations \- Anthropic, 5月 25, 2025にアクセス、 [https://docs.anthropic.com/en/docs/claude-code/ide-integrations](https://docs.anthropic.com/en/docs/claude-code/ide-integrations)  
 8. Setting Up Claude Code in VS Code \- Community.aws, 5月 25, 2025にアクセス、 [https://community.aws/content/2v5sof1SSJ89ke01CbCE6o4GZKz/setting-up-claude-code-in-vs-code](https://community.aws/content/2v5sof1SSJ89ke01CbCE6o4GZKz/setting-up-claude-code-in-vs-code)  
@@ -430,11 +439,11 @@ Claude Code自体の開発（80%の自己コーディングの主張 56 を含�
 24. rexdotsh/claudesync-vscode: VSCode Extension to sync your code with Claude.ai Projects. \- GitHub, 5月 25, 2025にアクセス、 [https://github.com/rexdotsh/claudesync-vscode](https://github.com/rexdotsh/claudesync-vscode)  
 25. AI language models in VS Code, 5月 25, 2025にアクセス、 [https://code.visualstudio.com/docs/copilot/language-models](https://code.visualstudio.com/docs/copilot/language-models)  
 26. Using Claude in Copilot Chat \- GitHub Docs, 5月 25, 2025にアクセス、 [https://docs.github.com/en/copilot/using-github-copilot/ai-models/using-claude-in-github-copilot](https://docs.github.com/en/copilot/using-github-copilot/ai-models/using-claude-in-github-copilot)  
-27. Claude Code Tutorial: How to Generate, Debug and Document Code with AI | Codecademy, 5月 25, 2025にアクセス、 [https://www.codecademy.com/article/claude-code-tutorial-how-to-generate-debug-and-document-code-with-ai](https://www.codecademy.com/article/claude-code-tutorial-how-to-generate-debug-and-document-code-with-ai)  
+27. Claude Code Tutorial: How to Generate, Debug and Document Code with AI Codecademy, 5月 25, 2025にアクセス、 [https://www.codecademy.com/article/claude-code-tutorial-how-to-generate-debug-and-document-code-with-ai](https://www.codecademy.com/article/claude-code-tutorial-how-to-generate-debug-and-document-code-with-ai)  
 28. Claude Code settings \- Anthropic API, 5月 25, 2025にアクセス、 [https://docs.anthropic.com/en/docs/claude-code/settings](https://docs.anthropic.com/en/docs/claude-code/settings)  
 29. Pricing \\ Anthropic, 5月 25, 2025にアクセス、 [https://www.anthropic.com/pricing](https://www.anthropic.com/pricing)  
 30. Pricing \- Anthropic API, 5月 25, 2025にアクセス、 [https://docs.anthropic.com/en/docs/about-claude/pricing](https://docs.anthropic.com/en/docs/about-claude/pricing)  
-31. Using Claude Code with your Max Plan | Anthropic Help Center, 5月 25, 2025にアクセス、 [https://support.anthropic.com/en/articles/11145838-using-claude-code-with-your-max-plan](https://support.anthropic.com/en/articles/11145838-using-claude-code-with-your-max-plan)  
+31. Using Claude Code with your Max Plan Anthropic Help Center, 5月 25, 2025にアクセス、 [https://support.anthropic.com/en/articles/11145838-using-claude-code-with-your-max-plan](https://support.anthropic.com/en/articles/11145838-using-claude-code-with-your-max-plan)  
 32. Claude Code Action Official \- GitHub Marketplace, 5月 25, 2025にアクセス、 [https://github.com/marketplace/actions/claude-code-action-official](https://github.com/marketplace/actions/claude-code-action-official)  
 33. anthropics/claude-code-action \- GitHub, 5月 25, 2025にアクセス、 [https://github.com/anthropics/claude-code-action](https://github.com/anthropics/claude-code-action)  
 34. anthropics/claude-code-base-action \- GitHub, 5月 25, 2025にアクセス、 [https://github.com/anthropics/claude-code-base-action](https://github.com/anthropics/claude-code-base-action)  
@@ -448,7 +457,7 @@ Claude Code自体の開発（80%の自己コーディングの主張 56 を含�
 42. Critical Bug: Claude Code CLI is making excessive background API calls, ignoring model configuration, and console reporting inconsistencies · Issue \#1224 \- GitHub, 5月 25, 2025にアクセス、 [https://github.com/anthropics/claude-code/issues/1224](https://github.com/anthropics/claude-code/issues/1224)  
 43. Claude Code Review : r/ChatGPTCoding \- Reddit, 5月 25, 2025にアクセス、 [https://www.reddit.com/r/ChatGPTCoding/comments/1j2lo98/claude\_code\_review/](https://www.reddit.com/r/ChatGPTCoding/comments/1j2lo98/claude_code_review/)  
 44. Solving GitHub Issues with Claude Code \- Coder, 5月 25, 2025にアクセス、 [https://coder.com/blog/coding-with-claude-code](https://coder.com/blog/coding-with-claude-code)  
-45. What are some things I can use Claude for? | Anthropic Help Center, 5月 25, 2025にアクセス、 [https://support.anthropic.com/en/articles/7996845-what-are-some-things-i-can-use-claude-for](https://support.anthropic.com/en/articles/7996845-what-are-some-things-i-can-use-claude-for)  
+45. What are some things I can use Claude for? Anthropic Help Center, 5月 25, 2025にアクセス、 [https://support.anthropic.com/en/articles/7996845-what-are-some-things-i-can-use-claude-for](https://support.anthropic.com/en/articles/7996845-what-are-some-things-i-can-use-claude-for)  
 46. Multilingual support \- Anthropic, 5月 25, 2025にアクセス、 [https://docs.anthropic.com/en/docs/build-with-claude/multilingual-support](https://docs.anthropic.com/en/docs/build-with-claude/multilingual-support)  
 47. Who Owns Claude's Outputs and How Can They Be Used? (May 2025 Update) – Terms.law, 5月 25, 2025にアクセス、 [https://terms.law/2024/08/24/who-owns-claudes-outputs-and-how-can-they-be-used/](https://terms.law/2024/08/24/who-owns-claudes-outputs-and-how-can-they-be-used/)  
 48. Shocking: Anthropic Claude Code Takedown Sparks Developer Backlash Over AI Licensing, 5月 25, 2025にアクセス、 [https://coinstats.app/news/0b178d126704a9044abdf46423b7502ff954aa5e728718a7b21bf94b182c7886\_Shocking-Anthropic-Claude-Code-Takedown-Sparks-Developer-Backlash-Over-AI-Licensing/](https://coinstats.app/news/0b178d126704a9044abdf46423b7502ff954aa5e728718a7b21bf94b182c7886_Shocking-Anthropic-Claude-Code-Takedown-Sparks-Developer-Backlash-Over-AI-Licensing/)  
@@ -461,5 +470,4 @@ Claude Code自体の開発（80%の自己コーディングの主張 56 を含�
 55. Claude AI: Breaking Down Barriers and Limitations \- AutoGPT, 5月 25, 2025にアクセス、 [https://autogpt.net/claude-ai-breaking-down-barriers-and-limitations/](https://autogpt.net/claude-ai-breaking-down-barriers-and-limitations/)  
 56. Can an AI Really Code Itself? — Inside Anthropic's “Claude Code” Phenomenon \- SmythOS, 5月 25, 2025にアクセス、 [https://smythos.com/ai-industry-solutions/process-automation/can-an-ai-code-itself-claude-code/](https://smythos.com/ai-industry-solutions/process-automation/can-an-ai-code-itself-claude-code/)  
 57. "Claude Code wrote 80% of its own code" \- anthropic dev : r/singularity \- Reddit, 5月 25, 2025にアクセス、 [https://www.reddit.com/r/singularity/comments/1khxwjh/claude\_code\_wrote\_80\_of\_its\_own\_code\_anthropic\_dev/](https://www.reddit.com/r/singularity/comments/1khxwjh/claude_code_wrote_80_of_its_own_code_anthropic_dev/)  
-58. VSCode \+ Claude 3.7 Is The FASTEST Coding AI EVER \- YouTube, 5月 25, 2025にアクセス、 [https://www.youtube.com/watch?v=WE0lUPt3xG4](https://www.youtube.com/watch?v=WE0lUPt3xG4)  
-59. Anyone working on a Claude Code extension for vscode? : r/ClaudeAI \- Reddit, 5月 25, 2025にアクセス、 [https://www.reddit.com/r/ClaudeAI/comments/1kcow0v/anyone\_working\_on\_a\_claude\_code\_extension\_for/](https://www.reddit.com/r/ClaudeAI/comments/1kcow0v/anyone_working_on_a_claude_code_extension_for/)
+58. VSCode \+ Claude 3.7 Is The FASTEST Coding AI EVER \- YouTube, 5月 25, 2025にアクセス、 [https://www.youtube.com/watch?v=WE0lUPt3xG4](https://www.youtube.com/watch?v=WE0lUPt3xG4)

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javaユニットテスト自動生成ツール比較：EvoSuite vs Randoop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-node {
+            border: 2px solid;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flowchart-arrow {
+            position: relative;
+            width: 100%;
+            height: 2px;
+            margin: 2rem 0;
+        }
+        .flowchart-arrow::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -2px;
+            width: 0;
+            height: 0;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-left: 10px solid;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Color Palette Chosen: Brilliant Blues -->
+    <!-- Mermaid JS and SVG were NOT used in this document. All diagrams are built with HTML/CSS or rendered on Canvas. -->
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#005082] mb-4">Javaユニットテスト自動生成：究極の対決</h1>
+            <p class="text-xl text-[#0077C0]">EvoSuite vs. Randoop 完全比較分析</p>
+        </header>
+
+        <section id="intro" class="mb-12 bg-white rounded-lg shadow-md p-8">
+            <h2 class="text-3xl font-bold text-[#005082] mb-4 text-center">なぜテスト自動生成が重要なのか？</h2>
+            <p class="text-lg text-gray-700 max-w-4xl mx-auto text-center">
+                現代の高速なソフトウェア開発サイクルにおいて、品質を維持しつつ開発速度を向上させることは至上命題です。手動でのユニットテスト作成は時間とコストがかかり、ヒューマンエラーのリスクも伴います。テスト自動生成ツールは、この課題を解決し、開発者がより創造的な作業に集中できるように支援します。本稿では、Javaにおける二大巨頭、EvoSuiteとRandoopを徹底的に比較・分析します。
+            </p>
+        </section>
+
+        <section id="philosophy" class="mb-12">
+            <h2 class="text-3xl font-bold text-[#005082] mb-6 text-center">2つの異なるアプローチ</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-[#0077C0] mb-3">EvoSuite: 探索的最適化のエンジニア</h3>
+                    <p class="text-gray-700">遺伝的アルゴリズムを用いて、コードカバレッジを最大化し、テストスイートのサイズを最小化するように「進化」させます。設計図の隅々までチェックする几帳面なエンジニアのように、構造的な網羅性を追求します。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-[#00A1E4] mb-3">Randoop: ランダム探求の冒険家</h3>
+                    <p class="text-gray-700">フィードバックに基づき、ランダムなメソッド呼び出しシーケンスを大量に生成します。未知の組み合わせを試す好奇心旺盛なユーザーのように、予期せぬバグや契約違反を発見することを得意とします。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="metrics" class="mb-12">
+            <h2 class="text-3xl font-bold text-[#005082] mb-6 text-center">直接対決：主要メトリクス比較</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center mb-4">テスト品質と欠陥検出</h3>
+                    <p class="text-center text-gray-600 mb-4">EvoSuiteはカバレッジとミューテーションスコアで優位に立ち、研究ではより多くの欠陥を検出する傾向にあります。</p>
+                    <div class="chart-container">
+                        <canvas id="qualityChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                     <h3 class="text-xl font-bold text-center mb-4">テスト生成パフォーマンス</h3>
+                    <p class="text-center text-gray-600 mb-4">一定時間内で、Randoopは圧倒的な量のテストを生成しますが、EvoSuiteはより少ないターゲットを絞ったテストを高速に生成します。</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-center font-semibold">実行時間 (分) ↓</p>
+                            <div class="chart-container h-48 max-h-48">
+                                <canvas id="timeChart"></canvas>
+                            </div>
+                        </div>
+                         <div>
+                            <p class="text-center font-semibold">生成テスト数 ↑</p>
+                            <div class="chart-container h-48 max-h-48">
+                                <canvas id="countChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="swot" class="mb-12">
+            <h2 class="text-3xl font-bold text-[#005082] mb-6 text-center">長所と短所</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-[#0077C0] mb-4 text-center">EvoSuite</h3>
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <h4 class="text-xl font-bold text-green-600 mb-3">👍 長所</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>高い構造的カバレッジ（分岐、行、ミューテーション）</li>
+                            <li>比較研究で示された効果的な欠陥検出能力</li>
+                            <li>Mavenとの強力な連携とIDEプラグイン</li>
+                            <li>テストの最小化機能による品質向上</li>
+                            <li>環境からのテスト分離による安定性</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h4 class="text-xl font-bold text-red-600 mb-3">👎 短所</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>セットアップと設定が複雑になる可能性</li>
+                            <li>大規模プロジェクトではテスト生成に時間がかかる</li>
+                            <li>最新Javaバージョンへのサポートが遅れる傾向</li>
+                            <li>外部カバレッジツールとの競合の可能性</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-[#00A1E4] mb-4 text-center">Randoop</h3>
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                        <h4 class="text-xl font-bold text-green-600 mb-3">👍 長所</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>契約違反やAPI誤用の発見に非常に効果的</li>
+                            <li>基本的なコマンドライン利用はセットアップが容易</li>
+                            <li>最新のJavaバージョンへの迅速な対応</li>
+                            <li>大量の多様なテストを高速に生成可能</li>
+                            <li>エラー検出テストとリグレッションテストを明確に分離</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h4 class="text-xl font-bold text-red-600 mb-3">👎 短所</h4>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>生成されたテストの可読性が低い場合がある</li>
+                            <li>構造的カバレッジは主要目標ではない</li>
+                            <li>ランダムな性質上、特定の複雑なバグを見逃す可能性</li>
+                            <li>テストの品質がばらつき、些細なテストも多い</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ecosystem" class="mb-12 bg-white rounded-lg shadow-md p-6 md:p-8">
+            <h2 class="text-3xl font-bold text-[#005082] mb-6 text-center">エコシステムと互換性</h2>
+            <p class="text-center text-gray-600 mb-6 max-w-3xl mx-auto">ツールの選択は、現在の開発環境との親和性にも大きく左右されます。Randoopは最新Javaへの追随が早く、EvoSuiteはMavenベースのCI/CD環境で強みを発揮します。</p>
+            <div class="overflow-x-auto">
+                <table class="w-full min-w-max text-left">
+                    <thead>
+                        <tr class="border-b-2 border-[#0077C0]">
+                            <th class="p-4 text-lg font-bold text-[#005082]">側面</th>
+                            <th class="p-4 text-lg font-bold text-[#005082]">EvoSuite</th>
+                            <th class="p-4 text-lg font-bold text-[#005082]">Randoop</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-4 font-semibold">最新Javaサポート</td>
+                            <td class="p-4">Java 9+ (旧リリース), 8/11 (Docker)</td>
+                            <td class="p-4">✅ Java 20+ (アクティブに更新)</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 bg-gray-50">
+                            <td class="p-4 font-semibold">主要なビルドツール</td>
+                            <td class="p-4">✅ Maven (強力な公式サポート)</td>
+                            <td class="p-4">Gradle (自身のビルド用)</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-4 font-semibold">公式IDEプラグイン</td>
+                            <td class="p-4">✅ IntelliJ, Eclipse</td>
+                            <td class="p-4">❌ (開発者向け設定のみ)</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="p-4 font-semibold">セットアップの容易さ</td>
+                            <td class="p-4">⚠️ 複雑になる可能性</td>
+                            <td class="p-4">✅ 基本的な使用は容易</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="verdict" class="mb-12 bg-white rounded-lg shadow-md p-6 md:p-8">
+            <h2 class="text-3xl font-bold text-[#005082] mb-6 text-center">結論：あなたのプロジェクトに最適なツールは？</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">絶対的な「最高のツール」は存在しません。プロジェクトの目標、チームのスキル、開発ワークフローに応じて最適な選択は異なります。以下のフローチャートを参考に、あなたのニーズに合ったツールを見つけてください。</p>
+            <div class="w-full max-w-4xl mx-auto">
+                <div class="flowchart-node bg-[#00A1E4] text-white border-[#0077C0]">あなたの主な目標は？</div>
+                <div class="flex justify-center">
+                    <div class="h-12 w-0.5 bg-[#0077C0]"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+                    <div class="text-center">
+                        <div class="flowchart-arrow bg-[#0077C0] mx-auto hidden md:block"></div>
+                        <div class="md:hidden h-6 w-0.5 bg-[#0077C0] mx-auto"></div>
+                        <div class="flowchart-node bg-gray-50 border-[#0077C0]">「構造的カバレッジを<br>最大化したい」</div>
+                        <div class="h-6 w-0.5 bg-[#0077C0] mx-auto"></div>
+                         <div class="flowchart-arrow bg-[#0077C0] mx-auto"><div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-white px-2 text-[#0077C0]">推奨</div></div>
+                        <div class="flowchart-node bg-[#0077C0] text-white border-[#005082] font-bold text-xl">EvoSuite</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="flowchart-arrow bg-[#00A1E4] mx-auto hidden md:block"></div>
+                         <div class="md:hidden h-6 w-0.5 bg-[#00A1E4] mx-auto"></div>
+                        <div class="flowchart-node bg-gray-50 border-[#00A1E4]">「APIのバグや契約違反を<br>素早く発見したい」</div>
+                        <div class="h-6 w-0.5 bg-[#00A1E4] mx-auto"></div>
+                        <div class="flowchart-arrow bg-[#00A1E4] mx-auto"><div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-white px-2 text-[#00A1E4]">推奨</div></div>
+                        <div class="flowchart-node bg-[#00A1E4] text-white border-[#0077C0] font-bold text-xl">Randoop</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="flowchart-arrow bg-[#0077C0] mx-auto hidden md:block"></div>
+                        <div class="md:hidden h-6 w-0.5 bg-[#0077C0] mx-auto"></div>
+                        <div class="flowchart-node bg-gray-50 border-[#0077C0]">「レガシーコードの<br>テストを整備したい」</div>
+                         <div class="h-6 w-0.5 bg-[#0077C0] mx-auto"></div>
+                        <div class="flowchart-arrow bg-[#0077C0] mx-auto"><div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-white px-2 text-[#0077C0]">推奨</div></div>
+                        <div class="flowchart-node bg-[#0077C0] text-white border-[#005082] font-bold text-xl">EvoSuite</div>
+                    </div>
+                     <div class="text-center">
+                        <div class="flowchart-arrow bg-[#00A1E4] mx-auto hidden md:block"></div>
+                         <div class="md:hidden h-6 w-0.5 bg-[#00A1E4] mx-auto"></div>
+                        <div class="flowchart-node bg-gray-50 border-[#00A1E4]">「最新Java/Gradle環境で<br>手軽に始めたい」</div>
+                         <div class="h-6 w-0.5 bg-[#00A1E4] mx-auto"></div>
+                        <div class="flowchart-arrow bg-[#00A1E4] mx-auto"><div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-white px-2 text-[#00A1E4]">推奨</div></div>
+                        <div class="flowchart-node bg-[#00A1E4] text-white border-[#0077C0] font-bold text-xl">Randoop</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const brilliantBlues = {
+            primary: '#0077C0',
+            secondary: '#00A1E4',
+            dark: '#005082',
+            light: '#F2F2F2',
+            text: '#333333'
+        };
+
+        function wrapLabel(label, maxLength = 16) {
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    if (currentLine) {
+                        lines.push(currentLine);
+                    }
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine);
+            }
+            return lines;
+        }
+        
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        const qualityChartCtx = document.getElementById('qualityChart').getContext('2d');
+        const qualityLabels = ['分岐カバレッジ (%)', 'ミューテーションスコア (%)', '欠陥検出率 (%)'];
+        new Chart(qualityChartCtx, {
+            type: 'bar',
+            data: {
+                labels: qualityLabels.map(l => wrapLabel(l)),
+                datasets: [
+                    {
+                        label: 'EvoSuite',
+                        data: [89, 67, 70],
+                        backgroundColor: brilliantBlues.primary,
+                        borderColor: brilliantBlues.dark,
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Randoop',
+                        data: [63, 50, 50],
+                        backgroundColor: brilliantBlues.secondary,
+                        borderColor: brilliantBlues.primary,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                           color: brilliantBlues.text
+                        }
+                    },
+                    x: {
+                       ticks: {
+                           color: brilliantBlues.text
+                        }
+                    }
+                },
+                 ...tooltipTitleCallback,
+                 plugins: {
+                    ...tooltipTitleCallback.plugins,
+                    legend: {
+                        labels: {
+                             color: brilliantBlues.text
+                        }
+                    }
+                 }
+            }
+        });
+
+        const timeChartCtx = document.getElementById('timeChart').getContext('2d');
+        new Chart(timeChartCtx, {
+            type: 'bar',
+            data: {
+                labels: ['EvoSuite', 'Randoop'],
+                datasets: [{
+                    label: '実行時間 (分)',
+                    data: [171, 335],
+                    backgroundColor: [brilliantBlues.primary, brilliantBlues.secondary]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                     x: { ticks: { color: brilliantBlues.text } },
+                     y: { ticks: { color: brilliantBlues.text } }
+                },
+                ...tooltipTitleCallback,
+                plugins: {
+                    ...tooltipTitleCallback.plugins,
+                    legend: { display: false }
+                }
+            }
+        });
+
+        const countChartCtx = document.getElementById('countChart').getContext('2d');
+        new Chart(countChartCtx, {
+            type: 'bar',
+            data: {
+                labels: ['EvoSuite', 'Randoop'],
+                datasets: [{
+                    label: '生成テスト数',
+                    data: [2049, 1561533],
+                    backgroundColor: [brilliantBlues.primary, brilliantBlues.secondary]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        type: 'logarithmic',
+                         ticks: {
+                            color: brilliantBlues.text,
+                            callback: function(value, index, values) {
+                                if (value === 1000000) return '1M';
+                                if (value === 100000) return '100k';
+                                if (value === 10000) return '10k';
+                                if (value === 1000) return '1k';
+                                if (value === 100) return '100';
+                                return null;
+                            }
+                        }
+                    },
+                    y: { ticks: { color: brilliantBlues.text } }
+                },
+                 ...tooltipTitleCallback,
+                 plugins: {
+                    ...tooltipTitleCallback.plugins,
+                    legend: { display: false },
+                     tooltip: {
+                         ...tooltipTitleCallback.plugins.tooltip,
+                         callbacks: {
+                             ...tooltipTitleCallback.plugins.tooltip.callbacks,
+                             label: function(context) {
+                                 let label = context.dataset.label || '';
+                                 if (label) {
+                                     label += ': ';
+                                 }
+                                 if (context.parsed.x !== null) {
+                                     label += new Intl.NumberFormat('ja-JP').format(context.parsed.x);
+                                 }
+                                 return label;
+                             }
+                         }
+                     }
+                 }
+            }
+        });
+
+    </script>
+</body>
+</html>

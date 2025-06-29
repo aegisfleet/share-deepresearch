@@ -1,17 +1,25 @@
 ---
-layout: topic
-title: "テキスト生成モデルの性能限界と拡散モデルの将来性：Gemini Diffusionを例に"
+audio: /share-deepresearch/assets/audio/ar-vs-diffusion.mp3
+category: ai
 date: 2025-05-22
-category: "ai"
-tags: [拡散モデル,自己回帰モデル,Gemini Diffusion]
-audio: "/share-deepresearch/assets/audio/ar-vs-diffusion.mp3"
+description: 本レポートは、自己回帰（AR）モデルとテキスト拡散モデルの技術的な詳細分析を提供し、特にGemini Diffusionのような拡散モデルの特性、比較性能、限界、そして将来の展望に焦点を当てて解説します。
+ga4_metrics:
+  avgSessionDuration: 162.573357
+  pageViews: 1
+  users: 1
+layout: topic
+prompt: Gemini Diffusionに代表されるテキスト拡散モデルの性能の限界を知りたい。自己回帰モデルや拡散モデルのようなモデルごとの特徴を調査し、拡散モデルの将来性についてまとめて欲しい。
 supplementary_materials:
-  - title: "補足資料：テキスト生成モデル市場トレンド インフォグラフィック"
-    url: "/share-deepresearch/topics/ar-vs-diffusion/infographic.html"
-  - title: "補足資料：インタラクティブSPA：テキスト拡散モデルの性能と将来性"
-    url: "/share-deepresearch/topics/ar-vs-diffusion/dashboard.html"
-  - title: "補足資料：AR vs 拡散モデル：インタラクティブ比較学習"
-    url: "/share-deepresearch/topics/ar-vs-diffusion/play.html"
+- title: 補足資料：テキスト生成モデル市場トレンド インフォグラフィック
+  url: /share-deepresearch/topics/ar-vs-diffusion/infographic.html
+- title: 補足資料：インタラクティブSPA：テキスト拡散モデルの性能と将来性
+  url: /share-deepresearch/topics/ar-vs-diffusion/dashboard.html
+- title: 補足資料：AR vs 拡散モデル：インタラクティブ比較学習
+  url: /share-deepresearch/topics/ar-vs-diffusion/play.html
+tags:
+- AIモデル
+- コーディング
+title: テキスト生成モデルの性能限界と拡散モデルの将来性：Gemini Diffusionを例に
 ---
 
 # **テキスト生成モデルの性能限界と拡散モデルの将来性：Gemini Diffusionを例に**
@@ -279,7 +287,7 @@ Gemini Diffusionの「実験的」な性質とアクセスへの待機リスト 
 
 拡散モデルの大きな魅力の一つである制御性と編集可能性をさらに向上させるための研究が進んでいます。より堅牢できめ細かい分類器ガイダンス、プロンプト誘導拡散、勾配ベースの手法の開発が活発です 8。ParaGuide 8 や Diffusion-LM 9 はこの分野の重要な例です。EdiText 39 のようなモデルは、SDEditベースの技術や自己条件付けを提案し、粗いレベルから細かいレベルまでのテキスト編集を可能にしています。DGLM 24 のようなフレームワークは、単純な分類器を訓練することで新たな属性制御を可能にし、拡散の柔軟性を活用することを目指しています。
 
-#### **3\. 可変長生成と長文脈モデリングへの対応**
+#### **3\. 可変長生成と長文脸モデリングへの対応**
 
 多くの拡散モデルが固定長出力に制約されているという限界を克服するため、可変長生成と長文脈の扱いに対応する研究が進められています。CtrlDiff 16 のようなモデルは、生成ブロックサイズを適応的に決定します。Block Diffusion 21 は、ARモデルと拡散モデルを補間し、ブロックレベルでは自己回帰的に動作し、ブロック内では拡散を使用します。SSD-LM 41 は半自己回帰的であり、反復的にテキストブロックを生成します。FMSeq 36 は、seq2seqタスクにおける高速サンプリングのために生成パスを直線化するフローマッチングを使用し、可変長に適応可能です。AR-DIFFUSION 12 は、位置情報を組み込んで拡散タイムステップを調整し、左側のトークンが早期に生成されて右側のトークンに影響を与えることを可能にし、ARの逐次的性質と拡散の並列性を組み合わせることを目指しています。
 
@@ -344,8 +352,8 @@ Google DeepMindのGemini Diffusionは、テキスト拡散における先進的�
 3. (PDF) Diffusion models in text generation: a survey \- ResearchGate, 5月 22, 2025にアクセス、 [https://www.researchgate.net/publication/378458031\_Diffusion\_models\_in\_text\_generation\_a\_survey](https://www.researchgate.net/publication/378458031_Diffusion_models_in_text_generation_a_survey)  
 4. Diffusion models in text generation: a survey \- PeerJ, 5月 22, 2025にアクセス、 [https://peerj.com/articles/cs-1905/](https://peerj.com/articles/cs-1905/)  
 5. Diffusion models in text generation: a survey \- PMC, 5月 22, 2025にアクセス、 [https://pmc.ncbi.nlm.nih.gov/articles/PMC10909201/](https://pmc.ncbi.nlm.nih.gov/articles/PMC10909201/)  
-6. CMC | Free Full-Text | A Critical Review of Methods and Challenges ..., 5月 22, 2025にアクセス、 [https://www.techscience.com/cmc/v82n2/59529/html](https://www.techscience.com/cmc/v82n2/59529/html)  
-7. Autoregressive Models in Vision: A Survey | OpenReview, 5月 22, 2025にアクセス、 [https://openreview.net/forum?id=1BqXkjNEGP](https://openreview.net/forum?id=1BqXkjNEGP)  
+6. CMC Free Full-Text A Critical Review of Methods and Challenges ..., 5月 22, 2025にアクセス、 [https://www.techscience.com/cmc/v82n2/59529/html](https://www.techscience.com/cmc/v82n2/59529/html)  
+7. Autoregressive Models in Vision: A Survey OpenReview, 5月 22, 2025にアクセス、 [https://openreview.net/forum?id=1BqXkjNEGP](https://openreview.net/forum?id=1BqXkjNEGP)  
 8. arxiv.org, 5月 22, 2025にアクセス、 [https://arxiv.org/pdf/2308.15459](https://arxiv.org/pdf/2308.15459)  
 9. Diffusion-LM Improves Controllable Text Generation \- OpenReview, 5月 22, 2025にアクセス、 [https://openreview.net/pdf?id=3s9IrEsjLyk](https://openreview.net/pdf?id=3s9IrEsjLyk)  
 10. arxiv.org, 5月 22, 2025にアクセス、 [https://arxiv.org/html/2303.18223v16](https://arxiv.org/html/2303.18223v16)  
@@ -388,14 +396,13 @@ Google DeepMindのGemini Diffusionは、テキスト拡散における先進的�
 47. 1月 1, 1970にアクセス、 [https://arxiv.org/html/2403.00025v3](https://arxiv.org/html/2403.00025v3)  
 48. Model Hemorrhage and the Robustness Limits of Large Language Models \- arXiv, 5月 22, 2025にアクセス、 [https://arxiv.org/html/2503.23924v1](https://arxiv.org/html/2503.23924v1)  
 49. \[2505.14455\] CtrlDiff: Boosting Large Diffusion Language Models with Dynamic Block Prediction and Controllable Generation \- arXiv, 5月 22, 2025にアクセス、 [https://arxiv.org/abs/2505.14455](https://arxiv.org/abs/2505.14455)  
-50. 1月 1, 1970にアクセス、 [https://www.researchgate.net/publication/389399018\_EdiText\_Controllable\_Coarse-to-Fine\_Text\_Editing\_with\_Diffusion\_Language\_Models/fulltext/67c12b638311ce680c76edac/EdiText-Controllable-Coarse-to-Fine\_Text\_Editing\_with\_Diffusion\_Language\_Models.pdf?origin=scientificContributions](https://www.researchgate.net/publication/389399018_EdiText_Controllable_Coarse-to-Fine_Text_Editing_with_Diffusion_Language_Models/fulltext/67c12b638311ce680c76edac/EdiText-Controllable-Coarse-to-Fine_Text_Editing_with_Diffusion_Language_Models.pdf?origin=scientificContributions)  
+50. 1月 1, 1970にアクセス、 [https://www.researchgate.net/publication/389399018\_EdiText\_Controllable\_Coarse-to-Fine\_Text\_Editing\_with\_Diffusion\_Language\_Models/fulltext/67c12b638311ce680c76edac/EdiText-Controllable-Coarse-to-Fine\_Text\_Editing\_with\_Diffusion\_Language\_Models.pdf?origin=scientificContributions](https://www.researchgate.net/publication/389399018_EdiText_Controllable_Coarse-to-Fine_Text_Editing_with_Diffusion_Language_Models/fulltext/67c12b638311ce680c76edac/EdiText-Controllable-Coarse-to-Fine-Text-Editing-with-Diffusion-Language-Models.pdf?origin=scientificContributions)  
 51. \[2503.09573\] Block Diffusion: Interpolating Between Autoregressive and Diffusion Language Models \- arXiv, 5月 22, 2025にアクセス、 [https://arxiv.org/abs/2503.09573](https://arxiv.org/abs/2503.09573)  
 52. \[2504.06416\] Unifying Autoregressive and Diffusion-Based Sequence Generation \- arXiv, 5月 22, 2025にアクセス、 [https://arxiv.org/abs/2504.06416](https://arxiv.org/abs/2504.06416)  
 53. Elevating NLP: LLM Enhances Diffusion Models \- MyScale, 5月 22, 2025にアクセス、 [https://myscale.com/blog/5-ways-llm-elevates-diffusion-models-nlp/](https://myscale.com/blog/5-ways-llm-elevates-diffusion-models-nlp/)  
-54. Emu Video | Meta, 5月 22, 2025にアクセス、 [https://emu-video.metademolab.com/](https://emu-video.metademolab.com/)  
-55. Zero-shot spatial layout conditioning for text-to-image diffusion models | Research \- Meta AI, 5月 22, 2025にアクセス、 [https://ai.meta.com/research/publications/zero-shot-spatial-layout-conditioning-for-text-to-image-diffusion-models/](https://ai.meta.com/research/publications/zero-shot-spatial-layout-conditioning-for-text-to-image-diffusion-models/)  
+54. Emu Video Meta, 5月 22, 2025にアクセス、 [https://emu-video.metademolab.com/](https://emu-video.metademolab.com/)  
+55. Zero-shot spatial layout conditioning for text-to-image diffusion models Research \- Meta AI, 5月 22, 2025にアクセス、 [https://ai.meta.com/research/publications/zero-shot-spatial-layout-conditioning-for-text-to-image-diffusion-models/](https://ai.meta.com/research/publications/zero-shot-spatial-layout-conditioning-for-text-to-image-diffusion-models/)  
 56. \[D\] Yann LeCun Auto-Regressive LLMs are Doomed : r/MachineLearning \- Reddit, 5月 22, 2025にアクセス、 [https://www.reddit.com/r/MachineLearning/comments/1jvrk68/d\_yann\_lecun\_autoregressive\_llms\_are\_doomed/](https://www.reddit.com/r/MachineLearning/comments/1jvrk68/d_yann_lecun_autoregressive_llms_are_doomed/)  
 57. Introducing GPT-4.1 in the API \- OpenAI, 5月 22, 2025にアクセス、 [https://openai.com/index/gpt-4-1/](https://openai.com/index/gpt-4-1/)  
 58. Introducing OpenAI o3 and o4-mini, 5月 22, 2025にアクセス、 [https://openai.com/index/introducing-o3-and-o4-mini/](https://openai.com/index/introducing-o3-and-o4-mini/)  
-59. Christopher Manning \- Stanford NLP Group, 5月 22, 2025にアクセス、 [https://nlp.stanford.edu/\~manning/](https://nlp.stanford.edu/~manning/)  
-60. Christopher Manning: Large Language Models in 2025 – How Much Understanding and Intelligence? \- YouTube, 5月 22, 2025にアクセス、 [https://www.youtube.com/watch?v=5Aer7MUSuSU](https://www.youtube.com/watch?v=5Aer7MUSuSU)
+59. Christopher Manning \- Stanford NLP Group, 5月 22, 2025にアクセス、 [https://nlp.stanford.edu/\~manning/](https://nlp.stanford.edu/~manning/)

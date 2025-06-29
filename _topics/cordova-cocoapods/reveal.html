@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>CI/CDのためのモダンiOSビルド戦略: 依存関係管理とコード署名の完全自動化ガイド</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { font-size: 1.3em; line-height: 1.5; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.8em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section
+  data-transition="zoom"
+  data-background-image="https://images.unsplash.com/photo-1555066931-4365d14bab8c"
+  data-background-opacity="0.2"
+>
+  <h1 class="animated delay-1">Cordova &amp; CocoaPods</h1>
+  <p class="subtitle animated delay-2">CI/CDのためのモダンiOSビルド戦略<br />依存関係管理とコード署名の完全自動化ガイド</p>
+</section>
+
+<section data-transition="slide" class="left-align">
+  <h2 class="animated delay-1">Agenda</h2>
+  <ol style="margin-top: 50px;">
+    <li class="animated delay-2"><strong>課題:</strong> なぜCordovaのビルドは複雑なのか？</li>
+    <li class="animated delay-3"><strong>解決策:</strong> CordovaとCocoaPodsの連携アーキテクチャ</li>
+    <li class="animated delay-4"><strong>実践:</strong> 依存関係管理とコード署名の完全自動化</li>
+    <li class="animated delay-5"><strong>結論:</strong> 目指すべき未来のビルドパイプライン</li>
+  </ol>
+</section>
+
+<section data-transition="convex">
+  <h2 class="animated delay-1">ハイブリッドアプリ開発の「見えざる壁」</h2>
+  <p class="animated delay-2">Web技術だけでは、ネイティブSDKの高度な利用や複雑なビルド設定が大きな障壁となります。</p>
+  <div class="flex-container" style="margin-top: 50px;">
+    <div class="flex-box animated delay-3">
+      <i class="fa-solid fa-code"></i>
+      <h3>Web技術</h3>
+      <p class="small-text">HTML, CSS, JS</p>
+    </div>
+    <div class="animated delay-4" style="text-align: center;">
+      <i class="fa-solid fa-arrow-right-long fa-3x"></i>
+      <p class="small-text" style="margin-top: 10px;"><strong>見えざる壁</strong><br>手動設定, 依存エラー<br>複雑な署名プロセス</p>
+    </div>
+    <div class="flex-box animated delay-5">
+      <i class="fa-brands fa-apple"></i>
+      <h3>ネイティブ機能</h3>
+      <p class="small-text">高度なSDK, パフォーマンス</p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">2つのコア技術</h2>
+  <div class="flex-container" style="margin-top: 50px; align-items: flex-start;">
+    <div class="flex-box animated delay-2 left-align">
+      <i class="fa-solid fa-bridge-water"></i>
+      <h3>Apache Cordova</h3>
+      <p>Web技術とネイティブ機能の<strong>架け橋</strong>となるフレームワーク。一度書けば、iOSやAndroidなど複数のプラットフォームで動作します。 </p>
+    </div>
+    <div class="flex-box animated delay-3 left-align">
+      <i class="fa-solid fa-cubes-stacked"></i>
+      <h3>CocoaPods</h3>
+      <p>iOSネイティブライブラリの<strong>依存関係を管理</strong>するデファクトスタンダード。膨大なライブラリ資産を活用可能にします。 </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">「橋の上の橋」- The Synergy</h2>
+  <p class="animated delay-2"><code>cordova-plugin-cocoapod-support</code> がCordovaとCocoaPodsを繋ぎ、ネイティブSDKの統合を自動化します。 </p>
+  <div class="flex-container" style="margin-top: 50px;">
+    <div class="flex-box animated delay-3">
+      <i class="fa-brands fa-html5"></i>
+      <p>Web App</p>
+    </div>
+    <div class="animated delay-4"><i class="fa-solid fa-arrow-right-long fa-2x"></i><p class="small-text">Cordova</p></div>
+    <div class="flex-box animated delay-5">
+      <i class="fa-brands fa-apple"></i>
+      <p>Native Container</p>
+    </div>
+    <div class="animated delay-6"><i class="fa-solid fa-arrow-right-long fa-2x"></i><p class="small-text">Plugin</p></div>
+    <div class="flex-box animated delay-7">
+      <i class="fa-solid fa-cubes"></i>
+      <p>CocoaPods Libs</p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">成功の土台：ツールチェーン</h2>
+    <p class="animated delay-2">開発を始める前に、これらのツールのバージョン互換性を確認することが不可欠です。 </p>
+    <div class="flex-container" style="margin-top: 60px; justify-content: space-evenly;">
+        <div class="animated delay-3" style="text-align: center;"><i class="fa-brands fa-node-js fa-4x"></i><p>Node.js</p></div>
+        <div class="animated delay-4" style="text-align: center;"><i class="fa-solid fa-gem fa-4x"></i><p>Ruby</p></div>
+        <div class="animated delay-5" style="text-align: center;"><i class="fa-brands fa-apple fa-4x"></i><p>Xcode</p></div>
+        <div class="animated delay-6" style="text-align: center;"><i class="fa-solid fa-cube fa-4x"></i><p>CocoaPods</p></div>
+        <div class="animated delay-7" style="text-align: center;"><i class="fa-solid fa-mobile-screen-button fa-4x"></i><p>ios-deploy</p></div>
+    </div>
+</section>
+
+<section data-transition="convex">
+  <h2 class="animated delay-1">How to Manage Dependencies?</h2>
+  <p class="animated delay-2"><strong>再利用</strong>するなら <code>plugin.xml</code> に、<strong>プロジェクト固有</strong>の依存は <code>config.xml</code> に記述します。 </p>
+  <div class="flex-container" style="margin-top: 30px; align-items: flex-start;">
+    <div class="flex-box animated delay-3 left-align">
+      <h3 style="text-align: center;">plugin.xml</h3>
+      <p class="small-text" style="text-align: center;">再利用可能なプラグイン用</p>
+      <pre style="font-size: 0.6em;"><code class="xml" data-line-numbers="5-7">&lt;plugin ...&gt;
+  ...
+  &lt;platform name="ios"&gt;
+    &lt;!-- このプラグインが依存するPodを宣言 --&gt;
+    &lt;pod name="AFNetworking" spec="~&gt; 3.0" /&gt;
+  &lt;/platform&gt;
+&lt;/plugin&gt;</code></pre>
+    </div>
+    <div class="flex-box animated delay-4 left-align">
+      <h3 style="text-align: center;">config.xml</h3>
+      <p class="small-text" style="text-align: center;">プロジェクト固有・バージョン固定用</p>
+      <pre style="font-size: 0.6em;"><code class="xml" data-line-numbers="5-7">&lt;widget ...&gt;
+  ...
+  &lt;platform name="ios"&gt;
+    &lt;!-- 競合解決やバージョン固定のために宣言 --&gt;
+    &lt;pod name="Alamofire" version="5.4.0" /&gt;
+  &lt;/platform&gt;
+&lt;/widget&gt;</code></pre>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">さよなら、Xcodeの手動署名</h2>
+  <p class="animated delay-2"><code>build.json</code> を使えば、コマンドラインからビルドする際に必要な署名情報をCLIに提供し、<strong>完全な自動化</strong>を実現します。</p>
+  <div class="flex-container" style="margin-top: 50px;">
+    <div class="flex-box animated delay-3">
+      <i class="fa-solid fa-person-digging"></i>
+      <h3>Before: 手動作業</h3>
+      <p>Xcodeを開き、証明書やプロファイルを手で設定。CI/CDの妨げとなり、エラーの温床に。 </p>
+    </div>
+    <div class="flex-box animated delay-4">
+      <i class="fa-solid fa-robot"></i>
+      <h3>After: 自動化</h3>
+      <p><code>cordova build --buildConfig</code> コマンド一発で完了。高速かつ誰が実行しても同じ結果に。</p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1"><code>build.json</code> の構成要素</h2>
+    <p class="animated delay-2">3つの重要な情報（<code>codeSignIdentity</code>, <code>developmentTeam</code>, <code>provisioningProfile</code>）を特定し、ファイルに記述します。 </p>
+    <table class="comparison-table animated delay-3">
+        <thead>
+            <tr>
+                <th>キー</th>
+                <th>説明</th>
+                <th>値の取得方法</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>codeSignIdentity</td>
+                <td>署名証明書の名前</td>
+                <td><code>security find-identity ...</code> コマンドで確認</td>
+            </tr>
+            <tr>
+                <td>developmentTeam</td>
+                <td>10桁のチームID</td>
+                <td>Apple Developerポータルで確認</td>
+            </tr>
+            <tr>
+                <td>provisioningProfile</td>
+                <td>プロファイルの36桁UUID</td>
+                <td><code>.mobileprovision</code> ファイルをテキストエディタで開いて確認</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">再現性のジレンマ: <code>platforms</code> をコミットすべきか？</h2>
+  <p class="animated delay-2">CocoaPodsを多用するプロジェクトでは、ビルドの<strong>再現性</strong>のためにコミットが強く推奨されます。</p>
+  <div class="flex-container" style="margin-top: 50px;">
+    <div class="flex-box animated delay-3">
+      <i class="fa-solid fa-file-circle-xmark"></i>
+      <h3>非推奨: Ignore <code>platforms/</code></h3>
+      <p><code>pod install</code>が環境毎に実行され、依存バージョンがズレる危険性。ビルド失敗の原因となります。 </p>
+    </div>
+    <div class="flex-box animated delay-4">
+      <i class="fa-solid fa-file-circle-check"></i>
+      <h3>推奨: Commit <code>platforms/</code></h3>
+      <p><code>Podfile.lock</code>がバージョン管理され、チーム全員でビルドの<strong>一貫性と再現性を保証</strong>します。</p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide" class="left-align">
+  <h2 class="animated delay-1">依存関係地獄の処方箋</h2>
+  <p class="animated delay-2">Podのバージョン競合が発生した際の、体系的な解決ステップ。</p>
+  <ul style="margin-top: 30px; list-style-type: none;">
+    <li class="animated delay-3"><i class="fa-solid fa-magnifying-glass fa-fw" style="color: var(--accent-color);"></i> <strong>1. エラー分析:</strong> まずはエラーメッセージを読み、競合原因を特定する。</li>
+    <li class="animated delay-4"><i class="fa-solid fa-wrench fa-fw" style="color: var(--accent-color);"></i> <strong>2. <code>config.xml</code>で上書き:</strong> プロジェクト全体でバージョンを明示的に固定する、最も効果的な解決策。 </li>
+    <li class="animated delay-5"><i class="fa-solid fa-screwdriver-wrench fa-fw" style="color: var(--accent-color);"></i> <strong>3. クリーン＆リビルド:</strong> <code>platforms</code>, <code>node_modules</code> 等を削除し、再構築する。</li>
+    <li class="animated delay-6"><i class="fa-solid fa-code-fork fa-fw" style="color: var(--accent-color);"></i> <strong>4. プラグインのFork:</strong> 問題のあるプラグインをフォークし、<code>plugin.xml</code>を直接修正する最終手段。</li>
+  </ul>
+</section>
+
+<section data-transition="zoom">
+  <h2 class="animated delay-1">The Goal: One-Command Build</h2>
+  <p class="animated delay-2">本戦略で、<strong>信頼性が高く、誰が実行しても同じ結果</strong>になるビルドパイプラインを構築できます。</p>
+  <div class="animated delay-3">
+    <pre style="margin-top: 60px; width: 80%; margin-left: auto; margin-right: auto;"><code class="bash">$ cordova build ios --release --device --buildConfig=build.json</code></pre>
+  </div>
+  <div class="flex-container animated delay-4" style="margin-top: 60px; font-size: 0.8em;">
+      <p><strong>宣言的</strong> (Declarative)</p>
+      <p><strong>再現性</strong> (Reproducible)</p>
+      <p><strong>自動化</strong> (Automated)</p>
+  </div>
+</section>
+
+<section
+  data-background-image="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+  data-background-opacity="0.2"
+>
+  <h1 class="animated delay-1">Thank You</h1>
+  <p class="subtitle animated delay-2">Build, Automate, and Innovate.</p>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

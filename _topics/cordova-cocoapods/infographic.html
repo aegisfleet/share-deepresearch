@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cordova iOS: 堅牢なビルド・署名パイプラインの構築</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!--
+    Narrative Plan:
+    1. The Challenge: Highlight the fragility and manual pain of traditional Cordova iOS builds.
+    2. The Foundation: Introduce config.xml as the single source of truth, managed by cordova-plugin-cocoapod-supportx.
+    3. Taming Code Signing: Showcase fastlane match as the centralized signing authority.
+    4. The Automated Pipeline: Visualize the entire automated workflow using a flowchart built with HTML/CSS.
+    5. Achieving Robustness: Explain advanced concepts like Cordova Hooks and version matrix management.
+    6. Troubleshooting Guide: Provide a quick reference for common errors.
+    7. The Result: Summarize the benefits of the automated, resilient pipeline.
+
+    Visualization Choices:
+    - Initial Problem: Big numbers and a styled diagram to show chaos. Goal: Inform. Method: HTML/CSS.
+    - Foundation (`config.xml`): Donut Chart. Goal: Compare composition. Library: Chart.js (Canvas).
+    - Code Signing (`fastlane match`): Bar Chart. Goal: Compare manual vs. automated. Library: Chart.js (Canvas).
+    - Automated Pipeline: Flowchart. Goal: Organize a process. Method: Structured HTML/CSS with Tailwind.
+    - Version Matrix: Bubble Chart. Goal: Show relationships/risk. Library: Chart.js (Canvas).
+    - Error Table: Table. Goal: Organize information. Method: HTML `<table>`.
+    - Final confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All visuals are HTML/CSS or Canvas-based via Chart.js.
+
+    Color Palette: Brilliant Blues (#004AAD, #0062D5, #418FF2, #89C0F9, #BCE0FE)
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 380px;
+            }
+        }
+        .flowchart-step {
+            border: 2px solid #418FF2;
+            background-color: #ffffff;
+            color: #004AAD;
+        }
+        .flowchart-arrow {
+            color: #418FF2;
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-[#004AAD] text-white p-8 text-center shadow-lg">
+        <h1 class="text-3xl md:text-5xl font-bold mb-2">Cordova iOSビルドの近代化</h1>
+        <p class="text-lg md:text-xl text-[#BCE0FE]">CocoaPodsとfastlaneによる堅牢なビルド・署名パイプラインの構築</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="challenge" class="mb-16">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 border-l-8 border-red-500">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-4">課題: 脆弱なビルドプロセス</h2>
+                <p class="text-lg mb-6">手動での証明書管理、一時的な `platforms` ディレクトリへの依存、そして「私のマシンでは動く」問題。これらは、従来のCordova iOS開発におけるCI/CDパイプラインの一般的な失敗要因です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-red-50 p-6 rounded-lg">
+                        <div class="text-5xl font-bold text-red-600">70%</div>
+                        <p class="mt-2 text-gray-700">CI/CDの失敗は署名関連の問題が原因（推定）</p>
+                    </div>
+                    <div class="bg-yellow-50 p-6 rounded-lg">
+                        <div class="text-5xl font-bold text-yellow-600">10+</div>
+                        <p class="mt-2 text-gray-700">手動でのセットアップ手順</p>
+                    </div>
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                         <div class="text-5xl font-bold text-blue-600">∞</div>
+                        <p class="mt-2 text-gray-700">構成の不一致によるデバッグ時間</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="foundation" class="mb-16">
+            <h2 class="text-3xl font-bold text-[#004AAD] mb-6 text-center">第1部: 宣言的なプロジェクトコアの確立</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-[#0062D5] mb-4">信頼できる唯一の情報源: `config.xml`</h3>
+                    <p class="mb-4">すべての設定は `config.xml` に集約します。アプリケーションID、バージョン、デプロイメントターゲット、そしてCocoaPodsの依存関係も、このファイルで宣言的に管理します。これにより、`cordova platform rm/add` を実行しても、プロジェクト構成は常に一貫性を保ちます。</p>
+                    <div class="bg-gray-800 text-white p-4 rounded-md text-sm font-mono overflow-x-auto">
+                        <pre><code>&lt;platform name="ios"&gt;
+  &lt;preference name="deployment-target" value="13.0" /&gt;
+  &lt;plugin name="cordova-plugin-cocoapod-supportx" /&gt;
+  &lt;pods-config ios-min-version="13.0" use-frameworks="true" /&gt;
+  &lt;pod name="Alamofire" version="~&gt; 5.0" /&gt;
+  &lt;pod name="Firebase/Analytics" spec="~&gt; 8.0" /&gt;
+&lt;/platform&gt;</code></pre>
+                    </div>
+                     <p class="mt-4">`cordova-plugin-cocoapod-supportx` プラグインが、この宣言を解釈し、`Podfile`を自動生成する鍵となります。</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-[#0062D5] mb-4 text-center">堅牢な構成の要素</h3>
+                    <div class="chart-container">
+                        <canvas id="foundationChart"></canvas>
+                    </div>
+                    <p class="text-center mt-4 text-gray-600">堅牢なパイプラインは、宣言的な設定、強力なプラグイン、そして自動化フックの組み合わせで実現されます。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="signing" class="mb-16">
+            <h2 class="text-3xl font-bold text-[#004AAD] mb-6 text-center">第2部: コード署名の自動化</h2>
+             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 order-2 lg:order-1">
+                    <h3 class="text-2xl font-bold text-[#0062D5] mb-4 text-center">手動署名 vs `fastlane match`</h3>
+                     <div class="chart-container">
+                        <canvas id="signingChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 order-1 lg:order-2">
+                    <h3 class="text-2xl font-bold text-[#0062D5] mb-4">中央集権的な署名機関: `fastlane match`</h3>
+                    <p class="mb-4">`fastlane match`は、証明書とプロビジョニングプロファイルを暗号化し、プライベートGitリポジトリで一元管理します。これにより、チーム内の誰でも、またCIサーバーでも、コマンド一つで安全かつ確実に署名設定を同期できます。</p>
+                    <ul class="space-y-3 list-disc list-inside">
+                        <li><span class="font-bold">`match init`</span>: プロジェクトを初期化。</li>
+                        <li><span class="font-bold">`match appstore`</span>: 証明書とプロファイルを生成・更新し、リポジトリに保存。</li>
+                        <li><span class="font-bold">`match appstore --readonly`</span>: CI/CD環境で安全に認証情報を取得。</li>
+                    </ul>
+                    <p class="mt-4 font-bold text-red-600">重要: プッシュ通知などのケーパビリティを変更した際は、`match appstore --force` でプロファイルを強制的に再生成する必要があります。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pipeline" class="mb-16">
+            <h2 class="text-3xl font-bold text-[#004AAD] mb-6 text-center">第3部: `Fastfile`による自動ビルドパイプライン</h2>
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 md:col-span-2">
+                 <p class="text-center text-lg mb-8 max-w-3xl mx-auto">これまでの要素を`Fastfile`に統合し、完全自動化されたビルドとデプロイのパイプラインを構築します。`fastlane-plugin-cordova` がCordovaビルドとfastlaneのエコシステムを繋ぐ重要な役割を果たします。</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0">
+                    <div class="flowchart-step p-4 rounded-lg text-center shadow-md w-full md:w-auto">
+                        <div class="text-xl font-bold mb-2">1. 署名同期</div>
+                        <code class="text-sm">match(type: "appstore")</code>
+                    </div>
+                    <div class="flowchart-arrow transform md:rotate-0 rotate-90">➡️</div>
+                    <div class="flowchart-step p-4 rounded-lg text-center shadow-md w-full md:w-auto">
+                        <div class="text-xl font-bold mb-2">2. Podsインストール</div>
+                        <code class="text-sm">cocoapods()</code>
+                    </div>
+                    <div class="flowchart-arrow transform md:rotate-0 rotate-90">➡️</div>
+                    <div class="flowchart-step p-4 rounded-lg text-center shadow-md w-full md:w-auto">
+                        <div class="text-xl font-bold mb-2">3. Cordovaビルド</div>
+                        <code class="text-sm">cordova(platform: 'ios')</code>
+                    </div>
+                     <div class="flowchart-arrow transform md:rotate-0 rotate-90">➡️</div>
+                    <div class="flowchart-step p-4 rounded-lg text-center shadow-md w-full md:w-auto">
+                        <div class="text-xl font-bold mb-2">4. TestFlightへ</div>
+                        <code class="text-sm">pilot()</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="robustness" class="mb-16">
+            <h2 class="text-3xl font-bold text-[#004AAD] mb-6 text-center">第4部: 真の堅牢性を求めて</h2>
+             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-[#0062D5] mb-4">プラットフォームの揮発性を克服: Cordovaフック</h3>
+                    <p class="mb-4">`platforms` ディレクトリ内の手動変更は、プラットフォームの再生成時に失われます。`GoogleService-Info.plist` のような構成ファイルのコピーは、`config.xml` で定義されたCordovaフック（例: `after_prepare`）を使ってプログラム的に行うのが唯一の堅牢な方法です。</p>
+                    <div class="bg-gray-800 text-white p-4 rounded-md text-sm font-mono overflow-x-auto">
+                        <pre><code>&lt;hook src="scripts/copy_ios_config.js"
+      type="after_prepare" /&gt;</code></pre>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-[#0062D5] mb-4">バージョンマトリックスの航行</h3>
+                    <p class="mb-4">パイプラインは多くのツールに依存します。`Gemfile` (Ruby/fastlane) と `package.json` (Node/Cordova) を用いてバージョンを固定することで、環境差による予期せぬエラーを防ぎます。</p>
+                    <div class="chart-container h-64 md:h-80">
+                         <canvas id="versionMatrixChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="troubleshooting">
+            <h2 class="text-3xl font-bold text-[#004AAD] mb-6 text-center">一般的なビルドエラーと解決策</h2>
+            <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-[#0062D5] text-white">
+                            <tr>
+                                <th class="p-4 font-bold">エラー/症状</th>
+                                <th class="p-4 font-bold">原因</th>
+                                <th class="p-4 font-bold">解決戦略</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold text-red-700">`The 'Pods-App' target overrides...`</td>
+                                <td class="p-4">ビルド設定の競合</td>
+                                <td class="p-4">ビルド設定に `$(inherited)` フラグを追加。Cordovaフックで修正。</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold text-red-700">`CocoaPods could not find compatible versions...`</td>
+                                <td class="p-4">Podの要求バージョン > プロジェクト設定</td>
+                                <td class="p-4">`config.xml` の `deployment-target` を引き上げる。</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold text-red-700">`No such module 'ModuleName'` (Swift Pod)</td>
+                                <td class="p-4">`use_frameworks!` が未設定</td>
+                                <td class="p-4">`config.xml` の `<pods-config>` で `use-frameworks="true"` を設定。</td>
+                            </tr>
+                             <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold text-red-700">`fastlane match` 失敗 / プロファイルが見つからない</td>
+                                <td class="p-4">App IDのケーパビリティ変更によるプロファイルの無効化</td>
+                                <td class="p-4">`produce enable_services` 後、`match --force` でプロファイルを再生成。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="text-center p-6 mt-12 bg-[#004AAD] text-[#BCE0FE]">
+        <p>このインフォグラフィックは、堅牢で再現可能なCI/CDパイプラインの構築を支援します。</p>
+    </footer>
+
+    <script>
+        const brilliantBlues = ['#004AAD', '#0062D5', '#418FF2', '#89C0F9', '#BCE0FE'];
+        const tooltipCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            return Array.isArray(label) ? label.join(' ') : label;
+                        }
+                    }
+                }
+            }
+        };
+
+        function wrapLabel(str, maxWidth = 16) {
+            if (str.length <= maxWidth) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) lines.push(currentLine.trim());
+            return lines;
+        }
+
+        new Chart(document.getElementById('foundationChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['宣言的な config.xml', 'CocoaPodsプラグイン', 'Cordovaフック'],
+                datasets: [{
+                    label: '構成要素',
+                    data: [50, 35, 15],
+                    backgroundColor: [brilliantBlues[1], brilliantBlues[2], brilliantBlues[3]],
+                    borderColor: '#ffffff',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    ...tooltipCallback.plugins,
+                    legend: {
+                        position: 'bottom',
+                    },
+                    title: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('signingChart'), {
+            type: 'bar',
+            data: {
+                labels: ['CI失敗率', '新人オンボーディング時間', 'セキュリティリスク'],
+                datasets: [{
+                    label: '手動署名管理',
+                    data: [8, 10, 7],
+                    backgroundColor: '#ef4444',
+                    borderColor: '#dc2626',
+                    borderWidth: 1
+                }, {
+                    label: 'fastlane match',
+                    data: [1, 2, 2],
+                    backgroundColor: brilliantBlues[2],
+                    borderColor: brilliantBlues[1],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                         ticks: {
+                             callback: function(value) {
+                                return value + ' (相対値)'
+                             }
+                         }
+                    }
+                },
+                 plugins: {
+                     ...tooltipCallback.plugins,
+                    legend: {
+                        position: 'bottom',
+                    },
+                 }
+            }
+        });
+
+        new Chart(document.getElementById('versionMatrixChart'), {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: 'fastlane/Ruby',
+                    data: [{x: 2, y: 7, r: 25}],
+                    backgroundColor: brilliantBlues[0] + 'b3'
+                }, {
+                    label: 'Cordova/Node.js',
+                    data: [{x: 4, y: 6, r: 30}],
+                     backgroundColor: brilliantBlues[1] + 'b3'
+                }, {
+                    label: 'CocoaPods',
+                    data: [{x: 6, y: 4, r: 22}],
+                    backgroundColor: brilliantBlues[2] + 'b3'
+                }, {
+                    label: 'Xcode',
+                    data: [{x: 8, y: 8, r: 18}],
+                    backgroundColor: brilliantBlues[3] + 'b3'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                     ...tooltipCallback.plugins,
+                    legend: {
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                         ...tooltipCallback.plugins.tooltip,
+                         callbacks: {
+                             ...tooltipCallback.plugins.tooltip.callbacks,
+                             label: function(context) {
+                                 return `${context.dataset.label}: (影響度: ${context.raw.r})`;
+                             }
+                         }
+                    }
+                },
+                scales: {
+                    x: { display: false },
+                    y: { display: false }
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>

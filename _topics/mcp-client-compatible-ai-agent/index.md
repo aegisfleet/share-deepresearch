@@ -1,13 +1,23 @@
 ---
-layout: topic
-title: "Model Context Protocol対応AIエージェントのGitHub Actionsにおける活用調査"
+audio: /share-deepresearch/assets/audio/mcp-client-compatible-ai-agent.mp3
+category: ai
 date: 2025-05-24
-category: "ai"
-tags: [Model Context Protocol,GitHub Actions]
-audio: "/share-deepresearch/assets/audio/mcp-client-compatible-ai-agent.mp3"
+ga4_metrics:
+  avgSessionDuration: 200.6998703
+  pageViews: 16
+  users: 5
+layout: topic
+prompt: Model Context Protocol (MCP)クライアントに対応したAIエージェントで、GitHub Actionsのランナー上で動作する、もしくはランナーから指示が出せるものを調査して欲しい。
 supplementary_materials:
-  - title: "補足資料：MCP対応AIエージェント調査レポート SPA"
-    url: "/share-deepresearch/topics/mcp-client-compatible-ai-agent/dashboard.html"
+- title: MCP対応AIエージェント調査レポート SPA
+  url: /share-deepresearch/topics/mcp-client-compatible-ai-agent/dashboard.html
+- title: AIエージェント技術動向SPAインフォグラフィック：GitHub Actions連携
+  url: /share-deepresearch/topics/mcp-client-compatible-ai-agent/infographic.html
+tags:
+- MCP
+- GitHub
+- GitHub Actions
+title: Model Context Protocol対応AIエージェントのGitHub Actionsにおける活用調査
 ---
 
 # **Model Context Protocol対応AIエージェントのGitHub Actionsにおける活用調査**
@@ -108,67 +118,70 @@ GitHub ActionsワークフローからBedrock Agentに指示を出す主な方�
    * **指示の伝達：** inputTextパラメータを使用して、エージェントへの自然言語プロンプトを渡します 25。このテキストが、エージェントがMCPツール（アクション グループとして定義）を使用するかどうかの判断材料となります。  
    * **sessionState：** セッションの様々な属性を指定します。特に、アクション グループが制御を返すように設定されている場合（RETURN\_CONTROL）、returnControlInvocationResultsフィールドを使用してアクション グループ呼び出しの結果をエージェントに返します 29。この場合、inputTextは無視されます 29。
 
-YAML  
-\# GitHub Actions workflow snippet  
+```yaml
+# GitHub Actions workflow snippet  
 jobs:  
   invoke-bedrock-agent:  
     runs-on: ubuntu-latest  
     steps:  
-      \- name: Checkout code  
+      - name: Checkout code  
         uses: actions/checkout@v4  
-      \- name: Configure AWS Credentials  
+      - name: Configure AWS Credentials  
         uses: aws-actions/configure-aws-credentials@v4  
         with:  
-          aws-access-key-id: ${{ secrets.AWS\_ACCESS\_KEY\_ID }}  
-          aws-secret-access-key: ${{ secrets.AWS\_SECRET\_ACCESS\_KEY }}  
-          aws-region: ${{ secrets.AWS\_REGION }}  
-      \- name: Set up Python  
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}  
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}  
+          aws-region: ${{ secrets.AWS_REGION }}  
+      - name: Set up Python  
         uses: actions/setup-python@v4  
         with:  
           python-version: '3.x'  
-      \- name: Install Boto3  
+      - name: Install Boto3  
         run: pip install boto3  
-      \- name: Invoke Bedrock Agent  
+      - name: Invoke Bedrock Agent  
         env:  
-          BEDROCK\_AGENT\_ID: ${{ secrets.BEDROCK\_AGENT\_ID }}  
-          BEDROCK\_AGENT\_ALIAS\_ID: ${{ secrets.BEDROCK\_AGENT\_ALIAS\_ID }}  
-          SESSION\_ID: ${{ github.run\_id }}-${{ github.run\_attempt }}  
-          PROMPT\_TEXT: "MCPツールXを使用してYを実行してください"  
-        run: python invoke\_bedrock\_agent.py  
-Python  
-\# invoke\_bedrock\_agent.py (Conceptual Boto3 script)  
+          BEDROCK_AGENT_ID: ${{ secrets.BEDROCK_AGENT_ID }}  
+          BEDROCK_AGENT_ALIAS_ID: ${{ secrets.BEDROCK_AGENT_ALIAS_ID }}  
+          SESSION_ID: ${{ github.run_id }}-${{ github.run_attempt }}  
+          PROMPT_TEXT: "MCPツールXを使用してYを実行してください"  
+        run: python invoke_bedrock_agent.py  
+```
+
+```python  
+# invoke_bedrock_agent.py (Conceptual Boto3 script)  
 import boto3  
 import os  
 import json
 
-client \= boto3.client('bedrock-agent-runtime', region\_name=os.environ)  
-agent\_id \= os.environ  
-agent\_alias\_id \= os.environ  
-session\_id \= os.environ  
-prompt\_text \= os.environ
+client = boto3.client('bedrock-agent-runtime', region_name=os.environ)  
+agent_id = os.environ  
+agent_alias_id = os.environ  
+session_id = os.environ  
+prompt_text = os.environ
 
-response \= client.invoke\_agent(  
-    agentId=agent\_id,  
-    agentAliasId=agent\_alias\_id,  
-    sessionId=session\_id,  
-    inputText=prompt\_text,  
-    enableTrace=True \# Optional: for debugging  
+response = client.invoke_agent(  
+    agentId=agent_id,  
+    agentAliasId=agent_alias_id,  
+    sessionId=session_id,  
+    inputText=prompt_text,  
+    enableTrace=True # Optional: for debugging  
 )
 
-completion \= ""  
+completion = ""  
 for event in response.get('completion'):  
-    chunk \= event.get('chunk', {})  
-    completion \+= chunk.get('bytes', b'').decode('utf-8')
+    chunk = event.get('chunk', {})  
+    completion += chunk.get('bytes', b'').decode('utf-8')
 
 print(f"Agent response: {completion}")
 
-\# If handling RETURN\_CONTROL:  
-\# 1\. Parse response\['completion'\] for 'returnControl' payload.  
-\#    This payload contains 'invocationId' and 'invocationInputs'.  
-\#    'invocationInputs' specifies the action group, API/function, and parameters.  
-\# 2\. Execute the tool/MCP call based on 'invocationInputs'.  
-\# 3\. Prepare 'returnControlInvocationResults' with the outcome.  
-\# 4\. Call invoke\_agent again with 'sessionState' containing 'invocationId' and 'returnControlInvocationResults'.
+# If handling RETURN_CONTROL:  
+# 1. Parse response['completion'] for 'returnControl' payload.  
+#    This payload contains 'invocationId' and 'invocationInputs'.  
+#    'invocationInputs' specifies the action group, API/function, and parameters.  
+# 2. Execute the tool/MCP call based on 'invocationInputs'.  
+# 3. Prepare 'returnControlInvocationResults' with the outcome.  
+# 4. Call invoke_agent again with 'sessionState' containing 'invocationId' and 'returnControlInvocationResults'.
+```
 
 3. **MCPツール呼び出し：** エージェントは、inputTextに基づいてどのツール（アクション グループ）が必要かを判断します。アクション グループがMCPクライアントである場合、対応するMCPクライアントを使用してMCPサーバーにツール実行を要求します 25。RETURN\_CONTROLが設定されている場合、ワークフロースクリプトはMCPツール呼び出しのパラメータを受け取り、実行後に結果をエージェントに返す必要があります 29。
 
@@ -191,30 +204,30 @@ wrangler-actionによるデプロイ：
 cloudflare/wrangler-action GitHub Actionは、Workersのデプロイに使用されます 39。これによりエージェントコード自体がデプロイされます。CLOUDFLARE\_API\_TOKENやCLOUDFLARE\_ACCOUNT\_IDのようなシークレットが必要です 39。  
 **GitHub ActionsにおけるPythonスクリプトによる対話パターンの概念実証：**
 
-Python
-
-\# GitHub Actions内の概念的なPythonスクリプト  
+```python
+# GitHub Actions内の概念的なPythonスクリプト  
 import os  
 import requests  
 import json
 
-worker\_url \= os.environ \# GitHub Secretsから設定  
-auth\_token \= os.environ   \# GitHub Secretsから設定  
-task\_payload \= {  
-    "mcp\_instruction": "GitHub MCPサーバーを使用してmy\_repo内のワークフローをリスト化してください",  
-    "parameters": {"owner": "user", "repo": "my\_repo"}  
+worker_url = os.environ # GitHub Secretsから設定  
+auth_token = os.environ   # GitHub Secretsから設定  
+task_payload = {  
+    "mcp_instruction": "GitHub MCPサーバーを使用してmy_repo内のワークフローをリスト化してください",  
+    "parameters": {"owner": "user", "repo": "my_repo"}  
 }  
-headers \= {  
-    "Authorization": f"Bearer {auth\_token}",  
+headers = {  
+    "Authorization": f"Bearer {auth_token}",  
     "Content-Type": "application/json"  
 }  
 try:  
-    response \= requests.post(worker\_url, headers=headers, json=task\_payload)  
-    response.raise\_for\_status() \# エラーがあれば例外を発生させる  
-    \# 応答を処理  
+    response = requests.post(worker_url, headers=headers, json=task_payload)  
+    response.raise_for_status() # エラーがあれば例外を発生させる  
+    # 応答を処理  
     print(f"Worker response: {response.json()}")  
 except requests.exceptions.RequestException as e:  
     print(f"Error calling worker: {e}")
+```
 
 このスクリプトは、GitHub Actionsのステップ内で実行され、環境変数を通じてWorkerのURLと認証トークンを受け取ります。その後、指定されたタスクペイロードをWorkerに送信します。
 
@@ -232,37 +245,37 @@ MCPサーバー設定とシークレットの管理：
 MCPサーバーはmcp\_agent.config.yamlを介して設定されます 47。このファイルはプロジェクトディレクトリまたは親ディレクトリに配置できます。シークレット（MCPサーバーまたはLLMのAPIキー）は、設定ファイル内（本番環境では非推奨）、別のmcp\_agent.secrets.yamlファイル、または環境変数（GitHub Secretsを使用するGitHub Actionsに最適）として管理できます 47。SDKは設定ファイルの自動検出、明示的なパス指定、またはプログラムによる設定をサポートしています 47。  
 **概念的な使用例：**
 
-Python
-
-\# OpenAI Agents SDK with MCPを使用した概念的なPythonスクリプト  
-from agents\_mcp import Agent, RunnerContext  
+```python
+# OpenAI Agents SDK with MCPを使用した概念的なPythonスクリプト  
+from agents_mcp import Agent, RunnerContext  
 import asyncio  
 import os
 
-\# mcp\_agent.config.yamlとシークレットが環境変数経由で設定されていると仮定  
-\# OPENAI\_API\_KEYも環境変数で設定されている必要がある
+# mcp_agent.config.yamlとシークレットが環境変数経由で設定されていると仮定  
+# OPENAI_API_KEYも環境変数で設定されている必要がある
 
 async def main():  
-    agent \= Agent(  
+    agent = Agent(  
         name="GitHub Actions MCP Agent",  
         instructions="あなたはGitHubランナー上のエージェントです。ツールを使用してください。",  
-        mcp\_servers=\["github\_actions\_tool\_server"\] \# mcp\_agent.config.yamlで定義  
+        mcp_servers=["github_actions_tool_server"] # mcp_agent.config.yamlで定義  
     )  
-    \# RunnerContextはMCP設定ファイルのパスなどを指定できる  
-    \# ここでは、自動検出または環境変数による設定を期待  
-    context \= RunnerContext()  
-    \# secrets.yamlや環境変数からAPIキーを読み込むようにmcp-agentが設定されている必要がある  
-    \# 例: os.environ\['OPENAI\_API\_KEY'\] が設定されていること
+    # RunnerContextはMCP設定ファイルのパスなどを指定できる  
+    # ここでは、自動検出または環境変数による設定を期待  
+    context = RunnerContext()  
+    # secrets.yamlや環境変数からAPIキーを読み込むようにmcp-agentが設定されている必要がある  
+    # 例: os.environ['OPENAI_API_KEY'] が設定されていること
 
-    result \= await Runner.run(agent, input\="ワークフロー 'deploy.yml' をトリガーしてください", context=context)  
+    result = await Runner.run(agent, input="ワークフロー 'deploy.yml' をトリガーしてください", context=context)  
     print(result.response.value)
 
-if \_\_name\_\_ \== "\_\_main\_\_":  
-    \# OPENAI\_API\_KEYなどの必要なAPIキーが環境変数に設定されていることを確認  
-    if "OPENAI\_API\_KEY" not in os.environ:  
-        print("エラー: OPENAI\_API\_KEY環境変数が設定されていません。")  
+if __name__ == "__main__":  
+    # OPENAI_API_KEYなどの必要なAPIキーが環境変数に設定されていることを確認  
+    if "OPENAI_API_KEY" not in os.environ:  
+        print("エラー: OPENAI_API_KEY環境変数が設定されていません。")  
     else:  
         asyncio.run(main())
+```
 
 このエージェントは、mcp\_agent.config.yamlファイルに依存するため 47、このファイルがGitHub Actionsランナーに存在する必要があります。リポジトリにチェックインするか、ワークフローのステップで動的に生成することができます。ファイル内の機密情報は、GitHub Secretsからテンプレート化して入力する必要があります。アーキテクチャには複数のライブラリ（OpenAI SDK \-\> MCP Extension \-\> mcp-agent）が関与しており 47、強力な抽象化を提供する一方で、管理する依存関係が増え、レイヤー間で問題が発生した場合のデバッグが複雑になる可能性があります。MCPサーバーとネイティブエージェントツールからのツールを単一のリストに自動集約する機能 47 は、エージェントのツール使用ロジックを簡素化し、エージェントは統一された機能セットを参照できます。
 
@@ -364,7 +377,7 @@ GitHub Actionsランナーは通常ステートレスですが、多くのAIエ�
 機密情報の管理は、GitHub ActionsでAIエージェントを運用する上で最も重要な側面の一つです。
 
 * **GitHub Secrets：** LLM APIキー、MCPサーバー認証トークン、AWS/Cloudflare認証情報など、すべての機密情報はGitHubの暗号化されたSecretsに保存します 7。  
-* **環境変数：** ワークフロー内でSecretsを環境変数としてアクセスします（例：env: OPENAI\_API\_KEY: ${{ secrets.OPENAI\_API\_KEY }}）。  
+* **環境変数：** ワークフロー内でSecretsを環境変数としてアクセスします（例：env: OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}）。  
 * **OpenID Connect (OIDC)：** AWSのようなクラウドプロバイダーに対しては、長期的なアクセスキーの代わりに、OIDCを使用して短期的なロールベースの認証情報を取得します 8。  
 * **最小権限の原則：** トークンと認証情報には、タスク実行に必要な最小限の権限のみを付与します。
 
@@ -488,8 +501,8 @@ AIが複雑なソフトウェア開発や運用タスクの自動化において
 22. Agent mode and MCP support for Copilot in JetBrains, Eclipse, and Xcode now in public preview \- The GitHub Blog, 5月 25, 2025にアクセス、 [https://github.blog/changelog/2025-05-19-agent-mode-and-mcp-support-for-copilot-in-jetbrains-eclipse-and-xcode-now-in-public-preview/](https://github.blog/changelog/2025-05-19-agent-mode-and-mcp-support-for-copilot-in-jetbrains-eclipse-and-xcode-now-in-public-preview/)  
 23. AI Agents with MCP: Practical Takeaways from n8n and GitHub Copilot \- Xebia, 5月 25, 2025にアクセス、 [https://xebia.com/blog/ai-agents-with-mcp/](https://xebia.com/blog/ai-agents-with-mcp/)  
 24. A Practioner's Guide to PydanticAI Agents \- Association of Data Scientists, 5月 25, 2025にアクセス、 [https://adasci.org/a-practioners-guide-to-pydanticai-agents/](https://adasci.org/a-practioners-guide-to-pydanticai-agents/)  
-25. Harness the power of MCP servers with Amazon Bedrock Agents | AWS Machine Learning Blog, 5月 25, 2025にアクセス、 [https://aws.amazon.com/blogs/machine-learning/harness-the-power-of-mcp-servers-with-amazon-bedrock-agents/](https://aws.amazon.com/blogs/machine-learning/harness-the-power-of-mcp-servers-with-amazon-bedrock-agents/)  
-26. Automate IT operations with Amazon Bedrock Agents | AWS Machine Learning Blog, 5月 25, 2025にアクセス、 [https://aws.amazon.com/blogs/machine-learning/automate-it-operations-with-amazon-bedrock-agents/](https://aws.amazon.com/blogs/machine-learning/automate-it-operations-with-amazon-bedrock-agents/)  
+25. Harness the power of MCP servers with Amazon Bedrock Agents AWS Machine Learning Blog, 5月 25, 2025にアクセス、 [https://aws.amazon.com/blogs/machine-learning/harness-the-power-of-mcp-servers-with-amazon-bedrock-agents/](https://aws.amazon.com/blogs/machine-learning/harness-the-power-of-mcp-servers-with-amazon-bedrock-agents/)  
+26. Automate IT operations with Amazon Bedrock Agents AWS Machine Learning Blog, 5月 25, 2025にアクセス、 [https://aws.amazon.com/blogs/machine-learning/automate-it-operations-with-amazon-bedrock-agents/](https://aws.amazon.com/blogs/machine-learning/automate-it-operations-with-amazon-bedrock-agents/)  
 27. Actions for Amazon Bedrock Agents using AWS SDKs, 5月 25, 2025にアクセス、 [https://docs.aws.amazon.com/bedrock/latest/userguide/service\_code\_examples\_bedrock-agent\_actions.html](https://docs.aws.amazon.com/bedrock/latest/userguide/service_code_examples_bedrock-agent_actions.html)  
 28. 1月 1, 1970にアクセス、 [https://docs.aws.amazon.com/bedrock/latest/userguide/agents-invoke.html](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-invoke.html)  
 29. InvokeAgent \- Amazon Bedrock, 5月 25, 2025にアクセス、 [https://docs.aws.amazon.com/bedrock/latest/APIReference/API\_agent-runtime\_InvokeAgent.html](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent-runtime_InvokeAgent.html)  
@@ -524,8 +537,7 @@ AIが複雑なソフトウェア開発や運用タスクの自動化において
 58. Docker AI Agent and Model Context Protocol (MCP) Server \- Working Together, 5月 25, 2025にアクセス、 [https://dev.to/docker/docker-ai-agent-and-model-context-protocol-mcp-server-working-together-4c4l](https://dev.to/docker/docker-ai-agent-and-model-context-protocol-mcp-server-working-together-4c4l)  
 59. ko1ynnky/github-actions-mcp-server, 5月 25, 2025にアクセス、 [https://github.com/ko1ynnky/github-actions-mcp-server](https://github.com/ko1ynnky/github-actions-mcp-server)  
 60. OpenAI API Compatibility Issue: Missing additionalProperties: false in Tool Parameter Schemas \#376 \- GitHub, 5月 25, 2025にアクセス、 [https://github.com/github/github-mcp-server/issues/376](https://github.com/github/github-mcp-server/issues/376)  
-61. MCP Server in Python — Everything I Wish I'd Known on Day One | DigitalOcean, 5月 25, 2025にアクセス、 [https://www.digitalocean.com/community/tutorials/mcp-server-python](https://www.digitalocean.com/community/tutorials/mcp-server-python)  
+61. MCP Server in Python — Everything I Wish I'd Known on Day One DigitalOcean, 5月 25, 2025にアクセス、 [https://www.digitalocean.com/community/tutorials/mcp-server-python](https://www.digitalocean.com/community/tutorials/mcp-server-python)  
 62. prayanks/mcp-sqlite-server: These are MCP server implementations for accessing a SQLite database in your MCP client. There is both a SDIO and a SSE implementation. \- GitHub, 5月 25, 2025にアクセス、 [https://github.com/prayanks/mcp-sqlite-server](https://github.com/prayanks/mcp-sqlite-server)  
 63. Use InvokeAgent with an AWS SDK \- Amazon Bedrock, 5月 25, 2025にアクセス、 [https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-agent-runtime\_example\_bedrock-agent-runtime\_InvokeAgent\_section.html](https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-agent-runtime_example_bedrock-agent-runtime_InvokeAgent_section.html)  
-64. Integration with Pydantic AI · langfuse · Discussion \#5036 \- GitHub, 5月 25, 2025にアクセス、 [https://github.com/orgs/langfuse/discussions/5036](https://github.com/orgs/langfuse/discussions/5036)  
-65. How to Use Model Context Protocol the Right Way | Boomi, 5月 25, 2025にアクセス、 [https://boomi.com/blog/model-context-protocol-how-to-use/](https://boomi.com/blog/model-context-protocol-how-to-use/)
+64. Integration with Pydantic AI · langfuse · Discussion \#5036 \- GitHub, 5月 25, 2025にアクセス、 [https://github.com/orgs/langfuse/discussions/5036](https://github.com/orgs/langfuse/discussions/5036)
