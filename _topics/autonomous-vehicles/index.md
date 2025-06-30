@@ -4,7 +4,7 @@ category: research
 date: 2025-06-29
 description: 完全自動運転技術の実態、事故率の比較分析、および事故発生時の搭乗者の行動についての調査報告書です。特に、米国と中国における商業サービスの現状を詳述し、事故事例を通じて安全性と技術的課題を探ります。
 ga4_metrics:
-  avgSessionDuration: 842.863607
+  avgSessionDuration: 118.4560045
   pageViews: 2
   users: 1
 layout: topic

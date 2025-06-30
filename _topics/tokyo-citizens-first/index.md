@@ -4,7 +4,7 @@ category: research
 date: 2025-06-23
 description: 本レポートは、2025年東京都議会議員選挙における都民ファーストの会の再興と、それが首都・東京の未来に与える影響を分析する。選挙結果、都ファの政策、都議会における新たな権力構造、そして主要な議員のプロファイルを通じて、2030年に向けた東京の針路を展望する。
 ga4_metrics:
-  avgSessionDuration: 36.892029
+  avgSessionDuration: 37.724639
   pageViews: 4
   users: 2
 layout: topic
