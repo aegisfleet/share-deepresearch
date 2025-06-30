@@ -4,7 +4,7 @@ category: ai
 date: 2025-06-19
 description: 今日のAIツール市場は、急速な技術革新と多様化により、かつてないほど複雑化しています。
 ga4_metrics:
-  avgSessionDuration: 139.96715912500002
+  avgSessionDuration: 138.144962875
   pageViews: 13
   users: 4
 layout: topic
