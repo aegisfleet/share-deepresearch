@@ -16,6 +16,14 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250"
     crossorigin="anonymous"></script>
 
+    <!-- テーマ設定を早期に行い、ちらつきを防止 -->
+    <script>
+        (function() {
+            var theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
     <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon/favicon-32x32.png' | relative_url }}">
@@ -171,16 +179,16 @@
         document.addEventListener('DOMContentLoaded', function() {
             const themeToggle = document.getElementById('theme-toggle');
             const currentTheme = localStorage.getItem('theme') || 'light';
-            document.body.setAttribute('data-theme', currentTheme);
+            document.documentElement.setAttribute('data-theme', currentTheme);
 
             themeToggle.addEventListener('click', () => {
-                let theme = document.body.getAttribute('data-theme');
+                let theme = document.documentElement.getAttribute('data-theme');
                 if (theme === 'dark') {
                     theme = 'light';
                 } else {
                     theme = 'dark';
                 }
-                document.body.setAttribute('data-theme', theme);
+                document.documentElement.setAttribute('data-theme', theme);
                 localStorage.setItem('theme', theme);
             });
 
