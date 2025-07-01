@@ -17,6 +17,7 @@ tags:
 - Devin
 - GitHub Copilot
 - OpenHands
+- Jules
 - 開発環境
 title: 自律型AIエージェントの現状と展望：Devinと主要競合の徹底比較
 ---

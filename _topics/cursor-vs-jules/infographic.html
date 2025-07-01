@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック: AIコーディングエージェント - Cursor vs. Jules</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #F1F1F1;
+            color: #003F5C;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #6B9DB3;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003F5C] mb-2">AIエージェント対決: Cursor vs. Jules</h1>
+            <p class="text-lg text-[#366E8A]">ブラウザベースのコーディングアシスタントのビジュアル分析</p>
+        </header>
+
+        <section id="paradigm-shift" class="mb-16">
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8 text-center">
+                <h2 class="text-3xl font-bold mb-4">パラダイムシフト: Co-Pilotからエージェントへ</h2>
+                <p class="max-w-3xl mx-auto text-base md:text-lg text-[#366E8A]">
+                    開発におけるAIの役割は進化しています。単純なコード補完から、複雑なタスクを処理する自律型エージェントへと移行しています。このインフォグラフィックでは、この新時代の2つの主要なプラットフォーム、CursorのWebエージェントとGoogleのJulesを、タスク委任用に設計されたブラウザベースのインターフェースに焦点を当てて比較します。
+                </p>
+            </div>
+        </section>
+
+        <section id="philosophy" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">コア思想: コンパニオン vs. デリゲート</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-center mb-4">Cursor: リモートコマンドセンター</h3>
+                    <p class="text-[#366E8A] mb-6 text-center">CursorのWebエージェントは、メインIDEの<strong class="text-[#003F5C]">コンパニオン</strong>として機能します。タスクをリモートで開始し、詳細なレビューや編集のためにシームレスに完全なデスクトップ体験に戻ります。</p>
+                    <div class="flex flex-col items-center space-y-4">
+                        <div class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">📱 Web/モバイルでタスクを開始</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">🤖 エージェントがバックグラウンドで作業</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">👀 Webで差分をレビュー</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="w-full bg-[#A5CADF] border border-[#6B9DB3] rounded-lg p-3 text-center font-bold">💻 完全なIDEで引き継ぐ</div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-center mb-4">Jules: 自律型デリゲート</h3>
+                     <p class="text-[#366E8A] mb-6 text-center">Julesは、ジュニア開発者のインターンのように、自律的な<strong class="text-[#003F5C]">デリゲート</strong>として動作します。タスクを割り当て、計画を承認し、完成したプルリクエストを待つ、そのすべてをWeb UI内で行います。</p>
+                     <div class="flex flex-col items-center space-y-4">
+                        <div class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">📝 Web UIでタスクを割り当て</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="w-full bg-[#A5CADF] border border-[#6B9DB3] rounded-lg p-3 text-center font-bold">🤔 計画をレビュー＆承認</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">🤖 VM上でエージェントが実行</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-center">✅ プルリクエストをレビュー</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="feature-showdown" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">機能対決</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6 md:col-span-2">
+                    <h3 class="text-2xl font-bold mb-4 text-center">コンテキストとコントロール</h3>
+                    <p class="text-center text-[#366E8A] mb-6">各エージェントがプロジェクトをどのように理解し、人間の監視を可能にするかは、その中心的な設計思想の違いを明らかにします。Julesは構造化された「計画してから実行」サイクルを強制する一方、Cursorは最終的なレビューを伴う継続的なフローを好みます。</p>
+                    <div class="chart-container">
+                        <canvas id="contextControlChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold mb-4 text-center">コラボレーションと統合</h3>
+                    <p class="text-center text-[#366E8A] mb-6">Cursorはチームのワークフローのための深いSlack統合に優れている一方、Julesはコラボレーションのために標準的で普遍的なGitHubプルリクエストの言語を活用します。</p>
+                    <div class="chart-container">
+                        <canvas id="collaborationChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold mb-4 text-center">アーキテクチャの基盤</h3>
+                    <p class="text-center text-[#366E8A] mb-6">彼らの基盤は根本的に異なります。Cursorは複数のAIモデルを使用する柔軟な「オーケストレーター」であるのに対し、JulesはGoogle独自のGeminiモデルに最適化された「垂直統合型」ソリューションです。</p>
+                     <div class="chart-container">
+                        <canvas id="architectureChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="browser-op" class="mb-16">
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-center mb-4">「ブラウザ操作」の真の意味とは？</h2>
+                <div class="max-w-3xl mx-auto text-center">
+                    <p class="text-lg text-[#366E8A] mb-4">明確にしておくべき重要な点：これらはウェブサイトを閲覧する一般的なWebオートメーションエージェントでは<strong class="text-[#003F5C]">ありません</strong>。</p>
+                    <p class="text-lg text-[#366E8A]">彼らの「ブラウザ操作」とは、サンドボックス化された環境内で<strong class="text-[#003F5C]">コードベースを管理・修正するためのWebベースのUI</strong>です。彼らはブラウザを自動化するコード（例：テスト）を書くことはできますが、オープンなインターネット上で自ら操作するわけではありません。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="pricing" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">インテリジェンスのコスト</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold mb-4 text-center">アクセシビリティ: 誰が使えるのか？</h3>
+                    <p class="text-center text-[#366E8A] mb-6">これらのWebエージェントへのアクセスは大きな差別化要因です。Julesは現在、無料のパブリックベータで誰でも利用できますが、Cursorのエージェント機能は有料顧客向けに提供されています。</p>
+                    <div class="chart-container">
+                        <canvas id="accessibilityChart"></canvas>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold mb-4 text-center">初期コスト: 無料 vs. 有料</h3>
+                    <p class="text-center text-[#366E8A] mb-6">初期の金銭的コミットメントは、彼らのビジネス戦略を反映しています。JulesはGoogleエコシステム内での広範な採用を目指している一方、Cursorはプレミアムな製品中心のツールです。</p>
+                     <div class="chart-container">
+                        <canvas id="costChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recommendations">
+            <h2 class="text-3xl font-bold text-center mb-8">あなたの味方となるエージェントは？</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-[#003F5C]">
+                    <h3 class="text-2xl font-bold mb-3">パワーユーザー</h3>
+                    <p class="text-[#366E8A] mb-4">IDE中心の生活を送り、主導権を奪われることなくワークフローを強化してくれるAIを求めている。タイトなフィードバックループと深いコントロールが必要。</p>
+                    <p class="text-xl font-bold text-[#003F5C]">あなたの選択: Cursor</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-[#366E8A]">
+                    <h3 class="text-2xl font-bold mb-3">バックログ管理者</h3>
+                    <p class="text-[#366E8A] mb-4">バグ修正や機能の足場作りなど、明確に定義された自己完結型のタスクを自動化し、シニア開発者の時間を解放する必要がある。</p>
+                    <p class="text-xl font-bold text-[#003F5C]">あなたの選択: Jules</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center border-t-4 border-[#6B9DB3]">
+                    <h3 class="text-2xl font-bold mb-3">コスト意識の高い開発者</h3>
+                    <p class="text-[#366E8A] mb-4">事前の金銭的コミットメントなしにAIエージェントの力を試してみたい。洗練さよりも無料アクセスを優先する。</p>
+                    <p class="text-xl font-bold text-[#003F5C]">あなたの選択: まずはJulesから</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const brilliantBlues = {
+            dark: '#003F5C',
+            mediumDark: '#366E8A',
+            medium: '#6B9DB3',
+            light: '#A5CADF',
+            background: '#F1F1F1'
+        };
+
+        const defaultChartOptions = {
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: brilliantBlues.dark,
+                        font: {
+                           size: 14,
+                           family: "'Inter', 'Noto Sans JP', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    titleFont: {
+                        family: "'Inter', 'Noto Sans JP', sans-serif"
+                    },
+                    bodyFont: {
+                         family: "'Inter', 'Noto Sans JP', sans-serif"
+                    },
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        function wrapLabel(str, max_width) {
+            if (str.length <= max_width) {
+                return str;
+            }
+            let sections = [];
+            let words = str.split(' ');
+            let temp = '';
+            words.forEach(function(item, index) {
+                if (temp.length > 0) {
+                    let concat = temp + ' ' + item;
+                    if (concat.length > max_width) {
+                        sections.push(temp);
+                        temp = '';
+                    }
+                }
+                if (temp.length > 0) {
+                    temp = temp + ' ' + item;
+                } else {
+                    temp = item;
+                }
+            });
+            sections.push(temp);
+            return sections;
+        }
+
+        new Chart(document.getElementById('contextControlChart'), {
+            type: 'bar',
+            data: {
+                labels: ['コンテキストの提供方法', '人間の監視', '主なアウトプット'],
+                datasets: [
+                    {
+                        label: 'Cursor',
+                        data: [7, 6, 8],
+                        backgroundColor: brilliantBlues.mediumDark,
+                        borderColor: brilliantBlues.dark,
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Jules',
+                        data: [8, 9, 9],
+                        backgroundColor: brilliantBlues.light,
+                        borderColor: brilliantBlues.medium,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                 ...defaultChartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: brilliantBlues.dark, font: {size: 12, family: "'Inter', 'Noto Sans JP', sans-serif"} },
+                        grid: { color: '#e0e0e0' }
+                    },
+                    x: {
+                        ticks: { color: brilliantBlues.dark, font: {size: 14, family: "'Inter', 'Noto Sans JP', sans-serif"} },
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    ...defaultChartOptions.plugins,
+                    tooltip: {
+                        ...defaultChartOptions.plugins.tooltip,
+                        callbacks: {
+                             ...defaultChartOptions.plugins.tooltip.callbacks,
+                             label: function(context) {
+                                let label = context.dataset.label || '';
+                                let valueText;
+                                if (context.label === 'コンテキストの提供方法') {
+                                    valueText = label === 'Cursor' ? 'IDEのコンテキスト + 画像' : 'AGENTS.mdファイル';
+                                } else if (context.label === '人間の監視') {
+                                    valueText = label === 'Cursor' ? '実行後の差分レビュー' : '実行前の計画承認';
+                                } else if (context.label === '主なアウトプット') {
+                                    valueText = label === 'Cursor' ? 'コード差分 / PR' : 'GitHubプルリクエスト';
+                                }
+                                return `${label}: ${valueText}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('collaborationChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Cursor: Slackとの深い連携', 'Jules: GitHubネイティブなワークフロー'],
+                datasets: [{
+                    label: 'コラボレーションの焦点',
+                    data: [55, 45],
+                    backgroundColor: [brilliantBlues.mediumDark, brilliantBlues.light],
+                    borderColor: [brilliantBlues.dark, brilliantBlues.medium],
+                    hoverOffset: 4
+                }]
+            },
+            options: { ...defaultChartOptions }
+        });
+
+        new Chart(document.getElementById('architectureChart'), {
+            type: 'radar',
+            data: {
+                labels: [wrapLabel('モデルの柔軟性', 10), wrapLabel('エコシステム統合', 10), wrapLabel('パフォーマンス最適化', 12), wrapLabel('ベンダーロックインのリスク', 14)],
+                datasets: [{
+                    label: 'Cursor (オーケストレーター)',
+                    data: [9, 7, 6, 4],
+                    fill: true,
+                    backgroundColor: 'rgba(54, 110, 138, 0.2)',
+                    borderColor: 'rgb(54, 110, 138)',
+                    pointBackgroundColor: 'rgb(54, 110, 138)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(54, 110, 138)'
+                }, {
+                    label: 'Jules (垂直統合型)',
+                    data: [3, 9, 9, 8],
+                    fill: true,
+                    backgroundColor: 'rgba(165, 202, 223, 0.2)',
+                    borderColor: 'rgb(165, 202, 223)',
+                    pointBackgroundColor: 'rgb(165, 202, 223)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(165, 202, 223)'
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    r: {
+                        angleLines: { color: '#d3d3d3' },
+                        grid: { color: '#e0e0e0' },
+                        pointLabels: {
+                            color: brilliantBlues.dark,
+                            font: {
+                                size: 13,
+                                family: "'Inter', 'Noto Sans JP', sans-serif"
+                            }
+                        },
+                        ticks: {
+                            color: brilliantBlues.medium,
+                            backdropColor: 'rgba(241, 241, 241, 0.75)'
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('accessibilityChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Cursor: 有料プランのみ', 'Jules: 無料パブリックベータ'],
+                datasets: [{
+                    label: 'アクセシビリティ',
+                    data: [30, 70],
+                    backgroundColor: [brilliantBlues.mediumDark, brilliantBlues.light],
+                     borderColor: [brilliantBlues.dark, brilliantBlues.medium],
+                    hoverOffset: 4
+                }]
+            },
+            options: { ...defaultChartOptions }
+        });
+        
+        new Chart(document.getElementById('costChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Cursor', 'Jules'],
+                datasets: [{
+                    label: '利用開始の最低コスト ($/月)',
+                    data: [20, 0],
+                    backgroundColor: [brilliantBlues.mediumDark, brilliantBlues.light],
+                    borderColor: [brilliantBlues.dark, brilliantBlues.medium],
+                    borderWidth: 1,
+                    barThickness: 60
+                }]
+            },
+            options: {
+                 ...defaultChartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { color: brilliantBlues.dark, font: {size: 14, family: "'Inter', 'Noto Sans JP', sans-serif"} },
+                        grid: { color: '#e0e0e0' }
+                    },
+                    x: {
+                        ticks: { color: brilliantBlues.dark, font: {size: 14, family: "'Inter', 'Noto Sans JP', sans-serif"} },
+                         grid: { display: false }
+                    }
+                },
+                plugins: {
+                    ...defaultChartOptions.plugins,
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
