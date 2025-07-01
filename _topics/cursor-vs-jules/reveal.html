@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>AI Coding Agents: Cursor vs. Jules</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { font-size: 1.3em; line-height: 1.5; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.8em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section
+  data-transition="zoom"
+  data-background-image="https://images.unsplash.com/photo-1555066931-4365d14bab8c"
+  data-background-opacity="0.2">
+  <h1 class="animated delay-1">AI Coding Agents: <strong>Cursor vs. Jules</strong></h1>
+  <p class="subtitle animated delay-2">
+    A Deep Dive into Browser-Based Development Paradigms
+  </p>
+  <p class="small-text animated delay-3" style="margin-top: 50px;">
+    An Analyst Report Summary
+  </p>
+</section>
+
+<section data-transition="slide" class="left-align">
+  <h2 class="animated delay-1">Today's Agenda</h2>
+  <ul style="list-style: none; padding-left: 0;">
+    <li class="animated delay-2" style="margin-bottom: 25px;"><i class="fa-solid fa-code-branch fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>1. 新たな開発パラダイム</strong>: Co-PilotからAgentへ</li>
+    <li class="animated delay-3" style="margin-bottom: 25px;"><i class="fa-solid fa-users-gear fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>2. 中核思想の対決</strong>: コンパニオン vs デリゲート</li>
+    <li class="animated delay-4" style="margin-bottom: 25px;"><i class="fa-solid fa-microchip fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>3. 機能とアーキテクチャ</strong>: 核心的な違い</li>
+    <li class="animated delay-5" style="margin-bottom: 25px;"><i class="fa-solid fa-bullseye fa-fw" style="color: var(--accent-color); margin-right: 15px;"></i><strong>4. あなたのチームに合うのは？</strong>: 最終提言</li>
+  </ul>
+</section>
+
+<section data-transition="convex">
+  <h2 class="animated delay-1">パラダイムシフト: <strong>Co-Pilot</strong>から<strong>Agent</strong>へ</h2>
+  <p class="animated delay-2">AIの役割は、コードを補完する「共同操縦士」から、タスクを自律的に遂行する「エージェント」へと進化しています。</p>
+  <div class="flex-container" style="margin-top: 50px;">
+    <div class="flex-box animated delay-3">
+      <i class="fa-solid fa-plane-up"></i>
+      <h3>Co-Pilot</h3>
+      <p class="small-text">開発者の入力に追随し、<br>一行ずつコードを提案</p>
+    </div>
+    <i class="fa-solid fa-arrow-right-long fa-3x animated delay-4" style="flex: 0;"></i>
+    <div class="flex-box animated delay-5">
+      <i class="fa-solid fa-robot"></i>
+      <h3>Agent</h3>
+      <p class="small-text">複雑で多段階のタスクを<br>独立して処理</p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">中核思想の対決</h2>
+    <p class="animated delay-2">両者の違いは、AI支援における開発者の役割に関する<strong>根本的な設計思想</strong>の違いにあります。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-handshake-angle"></i>
+            <h3>Cursor: <strong>コンパニオン</strong> (伴侶)</h3>
+            <p class="small-text">IDE中心のワークフローを拡張し、開発者が常に<strong>「ハンズオン」</strong>であり続けることを支援します。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-user-ninja"></i>
+            <h3>Jules: <strong>デリゲート</strong> (代理人)</h3>
+            <p class="small-text">ワークフローの一部を完全に抽象化し、<strong>「ジュニア開発者」</strong>のようにタスクを委任します。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1"><i class="fa-solid fa-satellite-dish" style="color: var(--accent-color);"></i> Cursor: IDEの<strong>リモート司令塔</strong></h2>
+    <div class="flex-container" style="margin-top: 40px; align-items: flex-start;">
+        <div class="flex-box animated delay-2" style="flex: 0.8; text-align: left;">
+            <p>本質的にメインのIDEに対する<strong>「コンパニオン」</strong>として設計されています。</p>
+            <p>意図されたワークフローは、リモートでタスクを開始・監視し、最終的には<strong>全機能を備えたIDEへ移行</strong>してレビューや編集を行うというものです。</p>
+        </div>
+        <div class="flex-box animated delay-3" style="background: none; display: flex; align-items: center; justify-content: center; gap: 20px;">
+            <i class="fa-solid fa-mobile-screen-button fa-4x animated delay-3"></i>
+            <i class="fa-solid fa-arrow-right-long fa-3x animated delay-4"></i>
+            <i class="fa-solid fa-cloud fa-4x animated delay-5"></i>
+            <i class="fa-solid fa-arrow-right-long fa-3x animated delay-6"></i>
+            <i class="fa-solid fa-desktop fa-4x animated delay-7"></i>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1"><i class="fa-solid fa-user-graduate" style="color: var(--accent-color);"></i> Jules: <strong>自律するジュニア開発者</strong></h2>
+    <div class="flex-container" style="margin-top: 40px; align-items: flex-start;">
+        <div class="flex-box animated delay-2" style="flex: 0.8; text-align: left;">
+            <p>タスクの割り当てからプルリクエスト作成まで、<strong>ワークフロー全体がウェブUI内で完結</strong>するように設計されています。</p>
+            <p>開発者の役割はマネージャーやレビュー担当者に近く、AIにタスクを割り当てて<strong>完成した結果を待つ</strong>だけです。</p>
+        </div>
+        <div class="flex-box animated delay-3" style="background: none; display: flex; align-items: center; justify-content: center; gap: 20px;">
+            <i class="fa-brands fa-github fa-4x animated delay-3"></i>
+            <i class="fa-solid fa-arrow-right-long fa-3x animated delay-4"></i>
+            <i class="fa-solid fa-robot fa-4x animated delay-5" style="color: var(--accent-color);"></i>
+            <i class="fa-solid fa-arrow-right-long fa-3x animated delay-6"></i>
+            <i class="fa-solid fa-code-pull-request fa-4x animated delay-7"></i>
+        </div>
+    </div>
+</section>
+
+<section data-transition="zoom">
+  <h2 class="animated delay-1">機能比較ハイライト</h2>
+  <table class="comparison-table animated delay-2">
+    <thead>
+      <tr>
+        <th>機能カテゴリ</th>
+        <th>Cursor Web & Mobile Agent</th>
+        <th>Google Jules</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>計画フェーズ</strong></td>
+        <td>内部で計画し、ユーザーは最終的な差分を確認。事前の承認ステップはなし。</td>
+        <td><strong>必須の計画レビュー</strong>。実行前にユーザーの承認が必要な多段階計画を生成。</td>
+      </tr>
+      <tr>
+        <td><strong>チーム連携</strong></td>
+        <td><strong>Slackとの深い統合</strong>が特徴。Slackからエージェントを起動可能。</td>
+        <td><strong>GitHubネイティブ</strong>。標準的なプルリクエストのレビュープロセスに依存。</td>
+      </tr>
+      <tr>
+        <td><strong>独自機能</strong></td>
+        <td>複数モデルでの比較実行が可能。PWAによるネイティブ風モバイル体験。</td>
+        <td><strong>AGENTS.md</strong>によるコンテキスト提供。変更内容の<strong>音声サマリー</strong>。</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">「ブラウザ操作」の真実</h2>
+    <p class="animated delay-2">両ツールは一般的なウェブサイトを自動化するのではなく、<strong>コードリポジトリを操作するためのWeb UI</strong>です。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h3>期待<br>(一般的なウェブ自動化)</h3>
+            <p class="small-text">フォーム入力やデータ収集など、任意のウェブサイトを操作する。</p>
+        </div>
+        <i class="fa-solid fa-xmark fa-3x animated delay-4" style="flex: 0; color: #cc5252;"></i>
+        <div class="flex-box animated delay-5">
+            <i class="fa-solid fa-file-code"></i>
+            <h3>現実<br>(コードベース操作)</h3>
+            <p class="small-text">リポジトリを操作し、バグ修正や機能追加のコードを生成する。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">アーキテクチャ: <strong>エコシステム</strong> vs <strong>モノリス</strong></h2>
+    <p class="animated delay-2">アーキテクチャの選択は、<strong>柔軟性のCursor</strong>と<strong>垂直統合のJules</strong>という古典的な戦略的二分法を体現しています。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-puzzle-piece"></i>
+            <h3>Cursor: <strong>AIオーケストレーター</strong></h3>
+            <p class="small-text">複数社のAIモデル(GPT, Claude等)を使い分ける<strong>水平的なプラットフォーム</strong>。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-tower-broadcast"></i>
+            <h3>Jules: <strong>垂直統合ソリューション</strong></h3>
+            <p class="small-text">Googleの<strong>Gemini 2.5 Pro</strong>とGoogle Cloudに特化した緊密な統合。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">価格モデルとビジネス戦略</h2>
+    <p class="animated delay-2">価格戦略は、それぞれの親会社のコアビジネスを直接反映しています。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-credit-card"></i>
+            <h3>Cursor: <strong>SaaSサブスクリプション</strong></h3>
+            <p class="small-text">Web Agentの利用には<strong>有料プランが必要</strong>。機能と利用量に応じた階層型価格。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-brands fa-google" style="margin-bottom: 5px;"></i><i class="fa-solid fa-cloud" style="margin-bottom: 20px;"></i>
+            <h3>Jules: <strong>戦略的フリーミアム</strong></h3>
+            <p class="small-text">現在は<strong>無料のパブリックベータ</strong>。将来はGoogle Cloudインフラを通じた収益化が目的。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">あなたのチームに合うのはどっち？</h2>
+    <div class="flex-container" style="margin-top: 50px; align-items: stretch;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-user-astronaut"></i>
+            <h3><strong>Cursor</strong>を選ぶべきチーム</h3>
+            <p class="small-text" style="text-align: left;">
+                ✓ <strong>パワーユーザー</strong>、反復型開発者<br>
+                ✓ 常にプロセスに<strong>関与し続けたい</strong><br>
+                ✓ <strong>Slack連携</strong>を重視する<br>
+                ✓ VS Code環境に慣れている
+            </p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-list-check"></i>
+            <h3><strong>Jules</strong>から始めるべきチーム</h3>
+            <p class="small-text" style="text-align: left;">
+                ✓ <strong>デリゲーター</strong>、バックログ管理者<br>
+                ✓ タスクを<strong>委任して完了を待ちたい</strong><br>
+                ✓ <strong>リスクなく</strong>エージェントを試したい<br>
+                ✓ バグ修正等の個別タスクを自動化したい
+            </p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="zoom">
+    <h2 class="animated delay-1">最終結論</h2>
+    <div style="position: relative; margin-top: 40px;" class="animated delay-2">
+        <i class="fa-solid fa-quote-left" style="position: absolute; top: -20px; left: -40px; font-size: 2em; opacity: 0.3;"></i>
+        <blockquote style="font-size: 1.5em; line-height: 1.6; border-left: 5px solid var(--accent-color); padding-left: 30px; background: var(--box-background-color); border-radius: 10px;">
+            どちらが「優れているか」ではなく、<br>どちらの<strong>運用哲学</strong>があなたの目標に<br>合致しているかが選択の基準となる。
+        </blockquote>
+        <i class="fa-solid fa-quote-right" style="position: absolute; bottom: -20px; right: -40px; font-size: 2em; opacity: 0.3;"></i>
+    </div>
+    <p class="animated delay-3" style="margin-top: 50px;">
+        AIに<strong>超強力なペアプログラマー</strong>でいてほしいなら<strong>Cursor</strong>を。<br>AIに<strong>チケットを割り当てられるジュニア開発者</strong>でいてほしいなら<strong>Jules</strong>を。
+    </p>
+</section>
+
+<section
+  data-transition="zoom-out"
+  data-background-image="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+  data-background-opacity="0.25">
+  <h1 class="animated delay-1">Thank You</h1>
+  <p class="subtitle animated delay-2">
+    Q & A
+  </p>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
