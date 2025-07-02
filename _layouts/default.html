@@ -286,29 +286,99 @@
             });
 
             // ソートボタンの制御
+
+            // Helper function to update button text with sort order arrow
+            function updateButtonText(button, order) {
+                const baseText = button.title.replace(/.*?順にソート/, '').replace(/↕️|⬆️|⬇️/, '').trim();
+                let arrow = '↕️'; // Default arrow
+                if (order === 'asc') {
+                    arrow = '⬆️';
+                } else if (order === 'desc') {
+                    arrow = '⬇️';
+                }
+                button.textContent = arrow + baseText;
+            }
+
+            // Initialize button texts
+            sortButtons.forEach(button => {
+                if (!button.classList.contains('reset-sort')) {
+                    const order = button.getAttribute('data-sort-order');
+                    updateButtonText(button, order);
+                } else {
+                    button.textContent = '🔄リセット'; // Reset button default text
+                }
+            });
+
             sortButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const isReset = this.classList.contains('reset-sort');
-                    
-                    sortButtons.forEach(btn => btn.classList.remove('active'));
-                    if (!isReset) {
-                        this.classList.add('active');
-                    }
-                    
+                    const currentSortBy = this.getAttribute('data-sort-by');
+                    let currentOrder = this.getAttribute('data-sort-order');
+
                     if (isReset) {
-                        // 日付順にリセット
-                        const topicList = document.querySelector('.topic-list');
-                        const topics = Array.from(topicList.querySelectorAll('li:not([style*="display: none"]'));
-                        
-                        topics.sort((a, b) => {
-                            const dateA = new Date(a.getAttribute('data-date'));
-                            const dateB = new Date(b.getAttribute('data-date'));
-                            return dateB - dateA;
+                        // Reset all buttons to desc and remove active class, then set date to desc
+                        sortButtons.forEach(btn => {
+                            btn.classList.remove('active');
+                            if (!btn.classList.contains('reset-sort')) {
+                                btn.setAttribute('data-sort-order', 'desc');
+                                updateButtonText(btn, 'desc');
+                            } else {
+                                btn.textContent = '🔄リセット';
+                            }
                         });
-                        
-                        topics.forEach(topic => topicList.appendChild(topic));
+                        // Set this reset button to active to reflect it was the last action (optional)
+                        // this.classList.add('active'); // Or don't make reset active
+
+                        // Perform the reset sort by date desc
+                        this.setAttribute('data-sort-order', 'desc'); // Ensure reset button itself has correct order for applySort
+                        applySort('date', 'desc'); // Sort by date descending
+                        // Optionally, make the date sort button active after reset
+                        const dateSortButton = document.querySelector('.sort-btn[data-sort-by="date"]:not(.reset-sort)');
+                        if (dateSortButton) {
+                            // dateSortButton.classList.add('active'); // This makes date button active
+                            // updateButtonText(dateSortButton, 'desc');
+                        }
+                         // After resetting, re-apply the default sort (date desc) and update UI
+                        const defaultSortButton = document.querySelector('.sort-btn[data-sort-by="date"]:not(.reset-sort)');
+                        sortButtons.forEach(btn => {
+                            btn.classList.remove('active');
+                            // Reset non-active buttons text to default (desc arrow)
+                            if (btn !== defaultSortButton && !btn.classList.contains('reset-sort')) {
+                                btn.setAttribute('data-sort-order', 'desc');
+                                updateButtonText(btn, 'desc'); // Reset text to desc arrow
+                            } else if (btn.classList.contains('reset-sort')) {
+                                btn.textContent = '🔄リセット';
+                            }
+                        });
+                        // Default sort is by date, descending.
+                        if (defaultSortButton) {
+                            defaultSortButton.setAttribute('data-sort-order', 'desc');
+                            // defaultSortButton.classList.add('active'); // Make date button active
+                            updateButtonText(defaultSortButton, 'desc');
+                        }
+                        applySort('date', 'desc');
+
+
                     } else {
-                        applySort(); // 通常のソートを実行
+                        if (this.classList.contains('active')) {
+                            // Already active, toggle order
+                            currentOrder = currentOrder === 'asc' ? 'desc' : 'asc';
+                        } else {
+                            // Not active, set to desc and make active
+                            sortButtons.forEach(btn => {
+                                btn.classList.remove('active');
+                                // Reset other buttons to desc and update their text
+                                if (btn !== this && !btn.classList.contains('reset-sort')) {
+                                    btn.setAttribute('data-sort-order', 'desc');
+                                    updateButtonText(btn, 'desc');
+                                }
+                            });
+                            this.classList.add('active');
+                            currentOrder = 'desc'; // Default to desc when a new sort button is activated
+                        }
+                        this.setAttribute('data-sort-order', currentOrder);
+                        updateButtonText(this, currentOrder);
+                        applySort(currentSortBy, currentOrder);
                     }
                 });
             });
@@ -337,18 +407,38 @@
             }
 
             // ソート適用関数
-            function applySort() {
-                const selectedSortButton = document.querySelector('.sort-options .sort-btn.active');
-                if (!selectedSortButton) return;
+            function applySort(sortBy, sortOrder) {
+                // If sortBy and sortOrder are not provided, try to get them from the active button
+                if (!sortBy) {
+                    const selectedSortButton = document.querySelector('.sort-options .sort-btn.active');
+                    if (!selectedSortButton) { // If no button is active, do nothing or default sort
+                        // Default to date sort if no button is active (e.g. on page load after reset)
+                        applySort('date', 'desc');
+                        return;
+                    }
+                    sortBy = selectedSortButton.getAttribute('data-sort-by');
+                    sortOrder = selectedSortButton.getAttribute('data-sort-order');
+                }
 
-                const sortBy = selectedSortButton.getAttribute('data-sort-by');
                 const topicList = document.querySelector('.topic-list');
                 const topics = Array.from(topicList.querySelectorAll('li:not([style*="display: none"]'));
 
                 topics.sort((a, b) => {
-                    const valueA = parseFloat(a.getAttribute(`data-${sortBy.toLowerCase()}`)) || 0;
-                    const valueB = parseFloat(b.getAttribute(`data-${sortBy.toLowerCase()}`)) || 0;
-                    return valueB - valueA; // 常に降順（大きい順）にソート
+                    let valueA, valueB;
+
+                    if (sortBy === 'date') {
+                        valueA = new Date(a.getAttribute('data-date'));
+                        valueB = new Date(b.getAttribute('data-date'));
+                    } else {
+                        valueA = parseFloat(a.getAttribute(`data-${sortBy}`)) || 0;
+                        valueB = parseFloat(b.getAttribute(`data-${sortBy}`)) || 0;
+                    }
+
+                    if (sortOrder === 'asc') {
+                        return valueA > valueB ? 1 : (valueA < valueB ? -1 : 0);
+                    } else { // desc
+                        return valueB > valueA ? 1 : (valueB < valueA ? -1 : 0);
+                    }
                 });
 
                 topics.forEach(topic => topicList.appendChild(topic));
@@ -357,7 +447,22 @@
             // フィルタとソートをまとめて適用する関数
             function applyFiltersAndSort() {
                 applyFilters();
-                applySort();
+                // Pass sortBy and sortOrder from the active button, or default to date/desc
+                const activeButton = document.querySelector('.sort-options .sort-btn.active');
+                let sortBy = 'date'; // default
+                let sortOrder = 'desc'; // default
+                if (activeButton) {
+                    sortBy = activeButton.getAttribute('data-sort-by');
+                    sortOrder = activeButton.getAttribute('data-sort-order');
+                } else {
+                    // If no button is active, ensure the date sort button reflects this default
+                    const dateSortButton = document.querySelector('.sort-btn[data-sort-by="date"]:not(.reset-sort)');
+                    if (dateSortButton) {
+                        // dateSortButton.classList.add('active'); // Optionally make it active
+                        updateButtonText(dateSortButton, 'desc');
+                    }
+                }
+                applySort(sortBy, sortOrder);
             }
 
             // タグが指定されている場合、該当するタグボタンをアクティブにする
