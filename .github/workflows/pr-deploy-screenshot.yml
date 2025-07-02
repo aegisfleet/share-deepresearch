@@ -49,7 +49,7 @@ jobs:
 
       - name: Capture screenshot
         run: |
-          npx playwright screenshot http://localhost:4000 screenshot.png
+          npx playwright screenshot --full-page http://localhost:4000 screenshot.png
 
       - name: Upload screenshot artifact
         uses: actions/upload-artifact@v4
