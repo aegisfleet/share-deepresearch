@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-      actions: read # Needed to construct artifact URL if we get sophisticated, for now GITHUB_SERVER_URL and GITHUB_REPOSITORY should be enough
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -25,8 +24,8 @@ jobs:
       - name: Setup Ruby and Jekyll
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1' # Specify a Ruby version compatible with the project's Gemfile
-          bundler-cache: true # Automatically runs bundle install and caches gems
+          ruby-version: '3.1'
+          bundler-cache: true
 
       - name: Build Jekyll site
         run: bundle exec jekyll build
@@ -40,14 +39,13 @@ jobs:
         run: sleep 5
 
       - name: Capture screenshot with Puppeteer
-        id: capture # Keep id in case it's useful later
         run: |
           node -e "
           const puppeteer = require('puppeteer');
           (async () => {
             const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
             const page = await browser.newPage();
-            await page.setViewport({ width: 1280, height: 800 });
+            await page.setViewport({ width: 1280, height: 800 }); // Standard viewport
             try {
               await page.goto('http://localhost:8080', { waitUntil: 'networkidle0' });
               await page.screenshot({ path: 'screenshot.png', fullPage: true });
@@ -61,24 +59,33 @@ jobs:
           })();
           "
 
-      - name: Upload screenshot artifact
+      - name: Upload screenshot to Imgur
+        id: upload_to_imgur
+        uses: marocchino/image-actions@v2 # Use the specific version
+        with:
+          path: 'screenshot.png'
+          upload_name: 'pr_screenshot.png' # Optional name for the file on Imgur
+          # Anonymous upload to Imgur by default, no token needed for that.
+          # For higher rate limits or account-based uploads, IMGUR_CLIENT_ID would be needed.
+
+      - name: Upload screenshot artifact (as fallback)
+        if: always() # Run this step even if Imgur upload fails
         uses: actions/upload-artifact@v4
         with:
-          name: screenshot # Artifact name
+          name: screenshot-artifact # Differentiate from potential Imgur link name
           path: screenshot.png
           retention-days: 7
 
-      - name: Comment on PR with Screenshot Artifact Link
+      - name: Comment on PR with Embedded Screenshot
         uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            A screenshot of the homepage has been captured for this PR.
+            Preview of the changes:
 
-            You can download and view the screenshot from the [workflow run artifacts for this commit](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
-            Look for an artifact named "screenshot".
+            ${{ steps.upload_to_imgur.outputs.image_url_markdown || 'Image upload to Imgur failed or no markdown returned.' }}
 
             ---
-            *Screenshot captured by GitHub Actions.*
+            *Screenshot captured by GitHub Actions. If the image above is not displayed, you can download it from the [workflow run artifacts for this commit](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) (look for "screenshot-artifact").*
           edit-mode: replace
