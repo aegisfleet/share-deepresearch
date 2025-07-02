@@ -8,7 +8,8 @@ jobs:
   capture_screenshot:
     runs-on: ubuntu-latest
     permissions:
-      pull-requests: write
+      pull-requests: write # For peter-evans/create-or-update-comment
+      # actions: read # Not strictly needed for basic artifact URL, but good for consistency
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -45,9 +46,12 @@ jobs:
           (async () => {
             const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
             const page = await browser.newPage();
-            await page.setViewport({ width: 1280, height: 800 }); // Standard viewport
+            await page.setViewport({ width: 1280, height: 800 });
             try {
+              // Try with networkidle0 first for CSS issue, if it fails, networkidle2 might be an option
               await page.goto('http://localhost:8080', { waitUntil: 'networkidle0' });
+              // Add a small extra delay in case networkidle0 is not enough for some async CSS
+              await new Promise(resolve => setTimeout(resolve, 1000)); // 1 second delay
               await page.screenshot({ path: 'screenshot.png', fullPage: true });
               console.log('Screenshot captured: screenshot.png');
             } catch (err) {
@@ -59,33 +63,24 @@ jobs:
           })();
           "
 
-      - name: Upload screenshot to Imgur
-        id: upload_to_imgur
-        uses: marocchino/image-actions@v2 # Use the specific version
-        with:
-          path: 'screenshot.png'
-          upload_name: 'pr_screenshot.png' # Optional name for the file on Imgur
-          # Anonymous upload to Imgur by default, no token needed for that.
-          # For higher rate limits or account-based uploads, IMGUR_CLIENT_ID would be needed.
-
-      - name: Upload screenshot artifact (as fallback)
-        if: always() # Run this step even if Imgur upload fails
+      - name: Upload screenshot artifact
         uses: actions/upload-artifact@v4
         with:
-          name: screenshot-artifact # Differentiate from potential Imgur link name
+          name: screenshot # Keep artifact name simple
           path: screenshot.png
           retention-days: 7
 
-      - name: Comment on PR with Embedded Screenshot
+      - name: Comment on PR with Screenshot Artifact Link
         uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            Preview of the changes:
+            A screenshot of the homepage has been captured for this PR.
 
-            ${{ steps.upload_to_imgur.outputs.image_url_markdown || 'Image upload to Imgur failed or no markdown returned.' }}
+            You can download and view the screenshot from the [workflow run artifacts for this commit](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+            Look for an artifact named "screenshot".
 
             ---
-            *Screenshot captured by GitHub Actions. If the image above is not displayed, you can download it from the [workflow run artifacts for this commit](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) (look for "screenshot-artifact").*
+            *Screenshot captured by GitHub Actions. If CSS appears missing, further investigation is needed.*
           edit-mode: replace
