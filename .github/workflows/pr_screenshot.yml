@@ -7,8 +7,9 @@ on:
 jobs:
   capture_screenshot:
     runs-on: ubuntu-latest
-    permissions: # Required for peter-evans/create-or-update-comment
+    permissions:
       pull-requests: write
+      actions: read # Needed to construct artifact URL if we get sophisticated, for now GITHUB_SERVER_URL and GITHUB_REPOSITORY should be enough
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,8 +25,8 @@ jobs:
       - name: Setup Ruby and Jekyll
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'
-          bundler-cache: true
+          ruby-version: '3.1' # Specify a Ruby version compatible with the project's Gemfile
+          bundler-cache: true # Automatically runs bundle install and caches gems
 
       - name: Build Jekyll site
         run: bundle exec jekyll build
@@ -39,7 +40,7 @@ jobs:
         run: sleep 5
 
       - name: Capture screenshot with Puppeteer
-        id: capture # Give this step an id to access its output
+        id: capture # Keep id in case it's useful later
         run: |
           node -e "
           const puppeteer = require('puppeteer');
@@ -51,8 +52,6 @@ jobs:
               await page.goto('http://localhost:8080', { waitUntil: 'networkidle0' });
               await page.screenshot({ path: 'screenshot.png', fullPage: true });
               console.log('Screenshot captured: screenshot.png');
-              // Output the path for the next step if needed, though it's a fixed name
-              console.log('::set-output name=screenshot_path::screenshot.png');
             } catch (err) {
               console.error('Error capturing screenshot:', err);
               process.exit(1);
@@ -62,34 +61,24 @@ jobs:
           })();
           "
 
-      - name: Upload screenshot to temporary hosting (transfer.sh)
-        id: upload_screenshot # Give this step an id to access its output
-        run: |
-          IMAGE_URL=$(curl -sfL --upload-file screenshot.png https://transfer.sh/screenshot.png)
-          if [ -z "$IMAGE_URL" ]; then
-            echo "Failed to upload screenshot or get URL."
-            # Fallback: Link to artifacts if upload fails
-            SHA=$(echo $GITHUB_SHA | cut -c1-7)
-            ARTIFACT_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-            echo "::set-output name=image_url::Screenshot failed to upload. View artifact at $ARTIFACT_URL (commit: $SHA)"
-            echo "::set-output name=upload_failed::true"
-          else
-            echo "Screenshot uploaded to: $IMAGE_URL"
-            echo "::set-output name=image_url::$IMAGE_URL"
-            echo "::set-output name=upload_failed::false"
-          fi
+      - name: Upload screenshot artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshot # Artifact name
+          path: screenshot.png
+          retention-days: 7
 
-      - name: Comment on PR with Screenshot
+      - name: Comment on PR with Screenshot Artifact Link
         uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            Preview of the changes:
+            A screenshot of the homepage has been captured for this PR.
 
-            ${{ steps.upload_screenshot.outputs.upload_failed == 'true' && steps.upload_screenshot.outputs.image_url || format('![Screenshot]({0})', steps.upload_screenshot.outputs.image_url) }}
+            You can download and view the screenshot from the [workflow run artifacts for this commit](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+            Look for an artifact named "screenshot".
 
             ---
-            *Screenshot captured by GitHub Actions. Direct link: ${{ steps.upload_screenshot.outputs.image_url }}*
-            *If the image doesn't load, it might be due to the temporary hosting. You can also check the workflow run artifacts.*
-          edit-mode: replace # Replace previous comment if any by this action
+            *Screenshot captured by GitHub Actions.*
+          edit-mode: replace
