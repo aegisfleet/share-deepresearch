@@ -1,0 +1,68 @@
+name: PR Deploy Screenshot
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  build-and-screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libffi-dev libyaml-dev zlib1g-dev libssl-dev libgmp-dev libxml2-dev libxslt1-dev ruby-dev git curl nodejs npm libvips libnss3 libatk-bridge2.0-0 libgtk-3-0 libxss1 libgbm-dev libxshmfence-dev
+          # Ubuntu 24.04以降のlibasound2はlibasound2t64にリネームされているため、存在すればそちらをインストール
+          if apt-cache show libasound2t64 > /dev/null 2>&1; then sudo apt-get install -y libasound2t64; fi
+          sudo npm install -g npm@latest
+          node -v
+          npm -v
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Build site (Jekyll)
+        run: |
+          bundle exec jekyll build --config _config_dev.yml
+
+      - name: Start local server
+        run: |
+          nohup bundle exec jekyll serve --config _config_dev.yml --host 0.0.0.0 --port 4000 &
+          sleep 10
+
+      - name: Install Playwright Browsers and dependencies
+        run: npx playwright install --with-deps
+
+      - name: Capture screenshot
+        run: |
+          npx playwright screenshot --full-page http://localhost:4000 screenshot.png
+
+      - name: Upload screenshot artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-screenshot
+          path: screenshot.png
+
+      - name: Post screenshot to PR
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            [PR Preview Screenshot（ダウンロード）](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            
+            この画像は自動生成されたプレビューです。アーティファクトページからダウンロードできます。
