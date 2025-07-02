@@ -1,0 +1,86 @@
+name: PR Screenshot
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  capture_screenshot:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write # For peter-evans/create-or-update-comment
+      # actions: read # Not strictly needed for basic artifact URL, but good for consistency
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Node.js dependencies (Puppeteer, http-server)
+        run: npm install puppeteer http-server
+
+      - name: Setup Ruby and Jekyll
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      - name: Start HTTP server
+        run: npx http-server _site --port 8080 &
+
+      - name: Wait for server to start
+        run: sleep 5
+
+      - name: Capture screenshot with Puppeteer
+        run: |
+          node -e "
+          const puppeteer = require('puppeteer');
+          (async () => {
+            const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+            const page = await browser.newPage();
+            await page.setViewport({ width: 1280, height: 800 });
+            try {
+              // Try with networkidle0 first for CSS issue, if it fails, networkidle2 might be an option
+              await page.goto('http://localhost:8080', { waitUntil: 'networkidle0' });
+              // Add a small extra delay in case networkidle0 is not enough for some async CSS
+              await new Promise(resolve => setTimeout(resolve, 1000)); // 1 second delay
+              await page.screenshot({ path: 'screenshot.png', fullPage: true });
+              console.log('Screenshot captured: screenshot.png');
+            } catch (err) {
+              console.error('Error capturing screenshot:', err);
+              process.exit(1);
+            } finally {
+              await browser.close();
+            }
+          })();
+          "
+
+      - name: Upload screenshot artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshot # Keep artifact name simple
+          path: screenshot.png
+          retention-days: 7
+
+      - name: Comment on PR with Screenshot Artifact Link
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            A screenshot of the homepage has been captured for this PR.
+
+            You can download and view the screenshot from the [workflow run artifacts for this commit](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+            Look for an artifact named "screenshot".
+
+            ---
+            *Screenshot captured by GitHub Actions. If CSS appears missing, further investigation is needed.*
+          edit-mode: replace
