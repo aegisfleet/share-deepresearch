@@ -44,15 +44,11 @@ jobs:
           nohup bundle exec jekyll serve --config _config_dev.yml --host 0.0.0.0 --port 4000 &
           sleep 10
 
-      - name: Take screenshot with Playwright
-        uses: microsoft/playwright-github-action@v1
-
-      - name: Install Playwright Browsers
+      - name: Install Playwright Browsers and dependencies
         run: npx playwright install --with-deps
 
       - name: Capture screenshot
         run: |
-          npx playwright install chromium
           npx playwright screenshot http://localhost:4000 screenshot.png
 
       - name: Upload screenshot artifact
@@ -67,6 +63,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ![PR Preview Screenshot](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/pr-screenshot/screenshot.png)
+            [PR Preview Screenshot（ダウンロード）](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
             
-            この画像は自動生成されたプレビューです。
+            この画像は自動生成されたプレビューです。アーティファクトページからダウンロードできます。
