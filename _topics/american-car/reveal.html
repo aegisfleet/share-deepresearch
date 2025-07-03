@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>2025年アメリカ車 燃費性能レポート: 電動化と効率化の最前線</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { font-size: 1.3em; line-height: 1.5; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.8em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section data-transition="zoom" data-background-image="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1920&auto=format&fit=crop" data-background-opacity="0.2">
+    <h1 class="animated delay-1">2025年アメリカ車 燃費性能レポート</h1>
+    <p class="subtitle animated delay-2">電動化と効率化の最前線</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">Agenda</h2>
+    <ul class="left-align" style="margin-left: 15%;">
+        <li class="animated delay-1"><i class="fa-solid fa-scale-balanced fa-fw" style="color: var(--accent-color);"></i>&nbsp; 市場のルール：<strong>燃費指標の新常識</strong></li>
+        <li class="animated delay-2"><i class="fa-solid fa-industry fa-fw" style="color: var(--accent-color);"></i>&nbsp; 主要3社の戦略：<strong>GM・フォード・ステランティス</strong></li>
+        <li class="animated delay-3"><i class="fa-solid fa-bolt fa-fw" style="color: var(--accent-color);"></i>&nbsp; EVのベンチマーク：<strong>テスラの優位性</strong></li>
+        <li class="animated delay-4"><i class="fa-solid fa-flag-checkered fa-fw" style="color: var(--accent-color);"></i>&nbsp; 結論：<strong>データ比較とあなたへの提言</strong></li>
+    </ul>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated">新常識：燃費指標を読み解く</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-gas-pump"></i>
+            <h3>MPG (ガソリン車)</h3>
+            <p><strong>1ガロンの燃料</strong>で<br>走行可能な距離 (マイル)</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long fa-3x animated delay-3"></i>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-charging-station"></i>
+            <h3>MPGe (EV / PHEV)</h3>
+            <p><strong>ガソリン1ガロン相当の電力</strong>で<br>走行可能な距離 (マイル)</p>
+        </div>
+    </div>
+    <p class="animated delay-5" style="margin-top: 30px;">異なるエネルギー源を<strong>公平に比較する</strong>ための共通の物差しです。</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">GMの戦略：二正面作戦</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-gears"></i>
+            <h3>内燃機関の最適化</h3>
+            <p><strong>小排気量ターボ</strong>と<strong>ディーゼル</strong>で、タホやシルバラードといった収益性の高い既存車の燃費を改善。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-car-battery"></i>
+            <h3>EVへの全面移行</h3>
+            <p><strong>Ultiumプラットフォーム</strong>を基盤に、エクイノックスEVやリリックなど、量販から高級までEVを積極展開。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">フォードの戦略：ブランド資産の電動化</h2>
+    <p class="animated delay-2">F-150やマスタングといった<strong>象徴的ブランド</strong>に、ハイブリッドやEVの選択肢を追加。<br>既存顧客をスムーズに電動化へ導きます。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-truck"></i>
+            <h4>F-150</h4>
+            <p><strong>PowerBoost (HV)</strong></p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-truck-pickup"></i>
+            <h4>Maverick</h4>
+            <p><strong>Hybrid (標準)</strong></p>
+        </div>
+        <div class="flex-box animated delay-5">
+            <i class="fa-solid fa-horse"></i>
+            <h4>Mustang</h4>
+            <p><strong>Mach-E (EV)</strong></p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">ステランティスの戦略：PHEVによる橋渡し</h2>
+    <p class="animated delay-2">ジープやダッジの高性能モデルに<strong>PHEV (4xe)</strong>を積極投入。<br>電動化への現実的な<strong>「橋渡し」</strong>を主導します。</p>
+    <div class="flex-container" style="align-items: center; margin-top: 50px;">
+        <i class="fa-solid fa-gas-pump fa-4x animated delay-3"></i>
+        <p class="animated delay-3">伝統的な<br>パフォーマンス</p>
+        <p class="animated delay-5">未来の<br>効率性</p>
+        <i class="fa-solid fa-charging-station fa-4x animated delay-5"></i>
+    </div>
+</section>
+
+<section data-transition="zoom">
+    <h2 class="animated">テスラの優位性：効率性の好循環</h2>
+    <p class="animated delay-2"><strong>EV専用設計</strong>が生む、他社にはない決定的なアドバンテージです。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-3">
+            <p>高効率 (MPGe)</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long fa-2x animated delay-4"></i>
+        <div class="flex-box animated delay-5">
+            <p>小型バッテリー</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long fa-2x animated delay-6"></i>
+        <div class="flex-box animated delay-7">
+            <p>軽量・低コスト</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long fa-2x animated delay-8" style="transform: rotate(180deg) translateX(50px) translateY(-100px);"></i>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">燃費性能マスターランキング TOP 5</h2>
+    <p class="animated delay-2">エネルギー効率は<strong>EVが圧勝</strong>。特にテスラが上位を独占しています。</p>
+    <table class="comparison-table animated delay-3" style="width: 80%; margin: 40px auto; font-size: 0.9em;">
+        <thead>
+            <tr>
+                <th style="width: 10%;">順位</th>
+                <th style="width: 45%;">モデル</th>
+                <th style="width: 20%;">パワートレイン</th>
+                <th style="width: 25%;">燃費 (km/L換算)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Tesla Model 3 (Long Range RWD)</td>
+                <td>EV</td>
+                <td><strong>58.25 km/L</strong></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Tesla Model S (Standard AWD)</td>
+                <td>EV</td>
+                <td><strong>51.66 km/L</strong></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Tesla Model Y (Long Range RWD)</td>
+                <td>EV</td>
+                <td><strong>51.44 km/L</strong></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Tesla Model 3 (Performance AWD)</td>
+                <td>EV</td>
+                <td><strong>46.34 km/L</strong></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Chevrolet Equinox EV (FWD)</td>
+                <td>EV</td>
+                <td><strong>45.92 km/L</strong></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">注目モデル：トラックの常識を覆す2台</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-truck-pickup"></i>
+            <h3>Ford Maverick Hybrid</h3>
+            <p>燃費は驚異の<strong>16.16 km/L</strong>。多くのセダンを凌駕する、トラック市場の革命児。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-oil-can"></i>
+            <h3>Chevrolet Silverado Diesel</h3>
+            <p>燃費<strong>11.05 km/L</strong>。巨大なV8に代わる、フルサイズトラックの現実的な高効率解。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">主要セグメント別 燃費対決</h2>
+    <div class="flex-container" style="align-items: flex-start; margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <h3><i class="fa-solid fa-car-side"></i> コンパクトSUV</h3>
+            <ol style="font-size: 1.1em; line-height: 1.8;">
+                <li><strong>Ford Escape</strong> (12.76 km/L)</li>
+                <li>Chevrolet Equinox (11.48 km/L)</li>
+                <li>Dodge Hornet (10.20 km/L)</li>
+            </ol>
+        </div>
+        <div class="flex-box animated delay-3">
+            <h3><i class="fa-solid fa-truck"></i> フルサイズトラック</h3>
+            <ol style="font-size: 1.1em; line-height: 1.8;">
+                <li><strong>Chevy Silverado (Diesel)</strong> (11.05 km/L)</li>
+                <li>Ford F-150 (Hybrid) (9.78 km/L)</li>
+                <li>Ram 1500 (Hurricane) (8.93 km/L)</li>
+            </ol>
+        </div>
+        <div class="flex-box animated delay-4">
+            <h3><i class="fa-solid fa-bolt"></i> EV SUV</h3>
+            <ol style="font-size: 1.1em; line-height: 1.8;">
+                <li><strong>Tesla Model Y</strong> (51.44 km/L)</li>
+                <li>Chevrolet Equinox EV (45.92 km/L)</li>
+                <li>Cadillac LYRIQ (39.11 km/L)</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+
+<section data-transition="convex">
+    <h2 class="animated">市場の3つのメガトレンド</h2>
+    <ul style="list-style-type: none; margin-top: 50px;">
+        <li class="animated delay-2" style="margin-bottom: 30px;"><i class="fa-solid fa-gauge-high fa-fw" style="color: var(--accent-color);"></i> <strong>ターボの標準化</strong>：小排気量ターボエンジンが、もはやICE車の燃費向上のための標準手法に。</li>
+        <li class="animated delay-3" style="margin-bottom: 30px;"><i class="fa-solid fa-road-bridge fa-fw" style="color: var(--accent-color);"></i> <strong>戦略の分岐点</strong>：PHEV、HV、EVへの直接移行。各社の将来に対する見通しの違いが顕著に。</li>
+        <li class="animated delay-4" style="margin-bottom: 30px;"><i class="fa-solid fa-arrows-up-down fa-fw" style="color: var(--accent-color);"></i> <strong>効率性の巨大格差</strong>：最も効率的なEVとガソリン車との間には、埋めがたいほどのエネルギー効率の差が存在。</li>
+    </ul>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">結論：あなたに最適な一台は？</h2>
+    <div class="flex-container" style="align-items: flex-start; margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-city"></i>
+            <h3>都市部中心なら</h3>
+            <p><strong>Tesla Model 3</strong> や <strong>Chrysler Pacifica Hybrid (PHEV)</strong> など、電力での走行を最大化できるモデルが最適。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-users"></i>
+            <h3>ファミリーユースなら</h3>
+            <p><strong>Chevrolet Equinox EV</strong> や <strong>Ford Escape (PHEV)</strong> が、実用性と効率性を高いレベルで両立。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-trailer"></i>
+            <h3>実用性・牽引重視なら</h3>
+            <p><strong>Ford Maverick Hybrid</strong> や <strong>Chevrolet Silverado (Diesel)</strong> は、用途と経済性を両立する革命的な選択肢。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="zoom" data-background-image="https://images.unsplash.com/photo-1473956393952-6a4b18c7a6f2?q=80&w=1920&auto=format&fit=crop" data-background-opacity="0.2">
+    <h1 class="animated">The Future is Your Choice.</h1>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
