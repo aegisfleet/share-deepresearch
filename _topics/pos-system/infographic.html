@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：なぜ日本のPOSシステム改修に1年かかるのか？</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-step {
+            border-color: #7A5195;
+            color: #003F5C;
+        }
+        .flowchart-arrow {
+            color: #7A5195;
+            align-self: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .big-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #EF5675;
+            line-height: 1.2;
+        }
+        .icon-style {
+            font-size: 3rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="text-[#003F5C]">
+
+    <header class="bg-[#003F5C] text-white p-6 md:p-10 text-center shadow-lg">
+        <h1 class="text-3xl md:text-5xl font-bold mb-2">1年の壁を解剖する</h1>
+        <p class="text-lg md:text-xl max-w-4xl mx-auto">消費税改革が日本のPOSシステムに与える影響の深層分析</p>
+    </header>
+
+    <main class="p-4 md:p-8">
+        <section class="max-w-7xl mx-auto mb-12">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#374C80] mb-2">「改修に1年」は本当か？</h2>
+                <p class="max-w-3xl mx-auto text-base">この言説は、事業者によって真実にもなれば、誤りにもなります。答えは、日本に二つ存在するPOS市場の構造に隠されています。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-[#FFA600]">
+                    <h3 class="text-2xl font-bold mb-4 text-[#BC5090]">確立された勢力：大手小売向けターミナル型POS</h3>
+                     <p class="mb-4">スーパーや百貨店が利用する、堅牢で高価なオンプレミス（自社設置型）システム。このセグメントこそが「1年問題」の震源地です。</p>
+                     <div class="chart-container">
+                        <canvas id="legacyPosMarketShare"></canvas>
+                    </div>
+                    <p class="text-center mt-2 font-semibold">国内ターミナルPOS市場シェア（概算）</p>
+                    <p class="mt-4 text-sm">これらのシステムは、会計、在庫、販売管理など企業全体の基幹システムと深く連携しており、税率変更は単なるPOS端末の設定変更では済みません。</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-[#7A5195]">
+                    <h3 class="text-2xl font-bold mb-4 text-[#BC5090]">挑戦者たち：中小企業向けタブレット型POS</h3>
+                    <p class="mb-4">個人経営の飲食店やブティックで普及する、安価で俊敏なクラウドベースのシステム。税率変更は数分で完了します。</p>
+                    <div class="flex flex-col items-center justify-center h-full pt-6">
+                        <div class="flex items-center space-x-6">
+                            <div class="text-center">
+                                <p class="icon-style">📱</p>
+                                <p class="font-bold text-lg">Airレジ</p>
+                                <p class="text-sm">87万アカウント超</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="icon-style">💻</p>
+                                <p class="font-bold text-lg">スマレジ</p>
+                                <p class="text-sm">4.7万店舗超</p>
+                            </div>
+                        </div>
+                        <p class="mt-8 text-sm text-center">これらのシステムはSaaS（Software as a Service）であり、複雑な処理はベンダー側が吸収します。ユーザーはWeb画面で簡単な設定を行うだけで、システム全体が更新されます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto mb-12 bg-white rounded-xl shadow-lg p-6 md:p-8">
+             <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-[#374C80] mb-2">氷山の一角：なぜPOS端末だけの問題ではないのか？</h2>
+                <p class="max-w-3xl mx-auto">大手小売業者のPOS端末は、巨大なITエコシステムの末端に過ぎません。税率の変更は、ドミノ倒しのように関連システム全体へ影響を及ぼします。</p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                <div class="text-center p-4 rounded-lg bg-gray-100">
+                    <p class="text-4xl">📦</p>
+                    <p class="font-bold">在庫管理</p>
+                </div>
+                <div class="text-2xl text-[#EF5675] font-bold hidden md:block">→</div>
+                 <div class="text-2xl text-[#EF5675] font-bold md:hidden">↓</div>
+                <div class="text-center p-4 rounded-lg bg-gray-100">
+                    <p class="text-4xl">📈</p>
+                    <p class="font-bold">販売管理</p>
+                </div>
+                 <div class="text-2xl text-[#EF5675] font-bold hidden md:block">→</div>
+                 <div class="text-2xl text-[#EF5675] font-bold md:hidden">↓</div>
+                <div class="text-center p-6 rounded-full bg-[#FFA600] text-white shadow-xl">
+                    <p class="text-5xl">🛒</p>
+                    <p class="font-bold text-lg">POS端末</p>
+                </div>
+                 <div class="text-2xl text-[#EF5675] font-bold hidden md:block">→</div>
+                 <div class="text-2xl text-[#EF5675] font-bold md:hidden">↓</div>
+                <div class="text-center p-4 rounded-lg bg-gray-100">
+                    <p class="text-4xl">🧾</p>
+                    <p class="font-bold">会計システム</p>
+                </div>
+                 <div class="text-2xl text-[#EF5675] font-bold hidden md:block">→</div>
+                 <div class="text-2xl text-[#EF5675] font-bold md:hidden">↓</div>
+                <div class="text-center p-4 rounded-lg bg-gray-100">
+                    <p class="text-4xl">🏢</p>
+                    <p class="font-bold">基幹システム (ERP)</p>
+                </div>
+            </div>
+             <p class="mt-8 text-center max-w-3xl mx-auto">新しい税率（例：5%）を追加すると、POSから送られるデータの構造が変わります。そのデータを受け取る全てのシステム（多くは独自開発されたレガシーシステム）を改修し、再接続し、テストする必要があるのです。</p>
+        </section>
+
+
+        <section class="max-w-7xl mx-auto mb-12">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#374C80] mb-2">「1年」の現実的な地図</h2>
+                <p class="max-w-3xl mx-auto">大手小売業における税制対応は、以下の4つのフェーズからなる巨大なエンタープライズITプロジェクトです。</p>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
+                <div class="w-full md:w-1/4 text-center p-4 bg-white rounded-lg shadow-md flowchart-step border-t-4">
+                    <h4 class="font-bold text-lg">フェーズ1: 分析・計画</h4>
+                    <p class="text-sm">影響分析、要件定義、ベンダー選定、数億円規模の予算確保</p>
+                    <p class="font-bold text-[#BC5090] mt-2">1〜3ヶ月目</p>
+                </div>
+                <div class="flowchart-arrow transform md:-rotate-0 rotate-90">›</div>
+                <div class="w-full md:w-1/4 text-center p-4 bg-white rounded-lg shadow-md flowchart-step border-t-4">
+                    <h4 class="font-bold text-lg">フェーズ2: 開発・改修</h4>
+                    <p class="text-sm">POS、ERP、会計、ECなど各システムの並行改修とインターフェース調整</p>
+                    <p class="font-bold text-[#BC5090] mt-2">3〜8ヶ月目</p>
+                </div>
+                <div class="flowchart-arrow transform md:-rotate-0 rotate-90">›</div>
+                <div class="w-full md:w-1/4 text-center p-4 bg-white rounded-lg shadow-md flowchart-step border-t-4">
+                    <h4 class="font-bold text-lg">フェーズ3: 結合テスト</h4>
+                    <p class="text-sm">全取引パターンの網羅的検証、バグ修正と手戻り。最も時間のかかる段階</p>
+                    <p class="font-bold text-[#BC5090] mt-2">8〜11ヶ月目</p>
+                </div>
+                 <div class="flowchart-arrow transform md:-rotate-0 rotate-90">›</div>
+                <div class="w-full md:w-1/4 text-center p-4 bg-white rounded-lg shadow-md flowchart-step border-t-4">
+                    <h4 class="font-bold text-lg">フェーズ4: 展開・稼働</h4>
+                    <p class="text-sm">数千店舗への展開、スタッフトレーニング、データ移行、本番稼働</p>
+                    <p class="font-bold text-[#BC5090] mt-2">11〜12ヶ月目</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="max-w-7xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#374C80] mb-2">見えざるコストとリスク</h2>
+                <p class="max-w-3xl mx-auto">改修の遅延や失敗は、単なる機会損失では済みません。金銭的、そして信用的にも甚大なダメージをもたらします。</p>
+            </div>
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-2 text-[#374C80]">直接コスト</h3>
+                    <p class="big-number">数千万〜<br>数億円</p>
+                    <p class="mt-2">エンジニア人件費、ライセンス料、ハードウェア更新費用など。</p>
+                </div>
+                 <div class="bg-white rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-2 text-[#374C80]">時限的減税の罠</h3>
+                    <p class="big-number">コスト x 2</p>
+                    <p class="mt-2">税率を下げ、その後元に戻す場合、この巨大プロジェクトを2回実施することになります。</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 md:col-span-2 lg:col-span-1">
+                    <h3 class="text-xl font-bold mb-2 text-[#374C80]">過去の失敗事例</h3>
+                     <ul class="text-left list-disc list-inside mt-4 space-y-1">
+                        <li><span class="font-bold">ミニストップ:</span> 設定ミスで過剰請求、謝罪と返金へ。</li>
+                        <li><span class="font-bold">スシロー:</span> 不具合で消費税が0%に。多額の損失が発生。</li>
+                        <li><span class="font-bold">大阪メトロ:</span> 券売機が新税率に切り替わらず、サービスに支障。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#003F5C] text-white mt-12 p-8">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-2xl font-bold mb-4">結論：「1年問題」はレガシーITの問題である</h2>
+            <p class="max-w-4xl mx-auto mb-4">消費税変更への対応期間は、POS端末の種類ではなく、その背後にある企業IT基盤の柔軟性によって決まります。大手小売業者が直面する「1年の壁」は、数十年にわたり独自にカスタマイズされ、複雑に絡み合ったレガシーシステムを近代化する必要性を示唆する、強力なシグナルなのです。</p>
+            <p class="text-xs opacity-70 mt-6">出典: 調査レポート「1年の壁を解剖する：消費税改革が日本のPOSシステムエコシステムに与える影響の深層分析」</p>
+        </div>
+    </footer>
+
+    <script>
+        
+        function wrapLabel(str, maxWidth) {
+            if (typeof str !== 'string' || str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const legacyPosMarketShareCtx = document.getElementById('legacyPosMarketShare').getContext('2d');
+            
+            const legacyLabels = [
+                '東芝テック (WILLPOS)',
+                'NECプラットフォームズ (TWINPOS)',
+                '富士通フロンテック (TeamPoS)',
+                'その他'
+            ];
+
+            const processedLegacyLabels = legacyLabels.map(label => wrapLabel(label, 16));
+
+            new Chart(legacyPosMarketShareCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: processedLegacyLabels,
+                    datasets: [{
+                        label: '市場シェア',
+                        data: [36, 28, 18, 18],
+                        backgroundColor: [
+                            '#003F5C', 
+                            '#7A5195',
+                            '#EF5675',
+                            '#DDDDDD'  
+                        ],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 15,
+                                font: {
+                                   size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        },
+                        title: {
+                            display: false,
+                            text: '国内ターミナルPOS 市場シェア（概算）'
+                        }
+                    }
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
