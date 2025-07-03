@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025年 米国自動車 燃費インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F8FAFC;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 450px;
+            }
+        }
+        .kpi-value {
+            font-weight: 900;
+            color: #118AB2;
+        }
+        .kpi-value-bad {
+            color: #FF6B6B;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #118AB2, #06D6A0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .flowchart-card {
+            border-left: 4px solid;
+            transition: all 0.3s ease-in-out;
+        }
+        .flowchart-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-black mb-4 gradient-text">2025年 米国自動車の燃費革命</h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">アメリカの自動車メーカーは今、歴史的な転換期にあります。電動化と高効率化の波が、伝統的な「マッスル」のイメージをどのように塗り替えているのか、データで探ります。</p>
+        </header>
+
+        <main class="space-y-16 md:space-y-24">
+
+            <section id="efficiency-gap" class="bg-white rounded-xl shadow-lg p-6 md:p-10 text-center">
+                <h2 class="text-3xl font-bold mb-2">驚異的な効率性の格差</h2>
+                <p class="text-slate-600 mb-8 max-w-2xl mx-auto">2025年モデルにおける、最も効率的なEVとガソリン車の燃費性能には、埋めがたいほどの差が存在します。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">⚡ EVトップ</h3>
+                        <p class="text-lg text-slate-500 mb-2">Tesla Model 3 (Long Range RWD)</p>
+                        <p class="text-6xl md:text-7xl kpi-value">58.25</p>
+                        <p class="text-xl text-slate-600">km/L (換算値)</p>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">⛽ ガソリン トップ</h3>
+                        <p class="text-lg text-slate-500 mb-2">Chevrolet Trax</p>
+                        <p class="text-6xl md:text-7xl kpi-value-bad">12.76</p>
+                        <p class="text-xl text-slate-600">km/L (換算値)</p>
+                    </div>
+                </div>
+                <div class="mt-8">
+                    <p class="text-2xl font-bold text-slate-700">EVは最も効率的なガソリン車と比較して<span class="gradient-text">約4.5倍</span>もエネルギー効率が高いことを示しています。</p>
+                </div>
+            </section>
+            
+            <section id="top-performers">
+                <h2 class="text-3xl font-bold text-center mb-2">2025年 燃費性能 TOP 10</h2>
+                <p class="text-slate-600 text-center mb-8 max-w-2xl mx-auto">ブランドやパワートレインの垣根を越えた、総合燃費ランキング。EVが上位を独占する結果となっています。</p>
+                <div class="bg-white rounded-xl shadow-lg p-4 md:p-8">
+                    <div class="chart-container">
+                        <canvas id="top10Chart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="powertrain-battle">
+                <h2 class="text-3xl font-bold text-center mb-2">パワートレイン別 効率頂上決戦</h2>
+                <p class="text-slate-600 text-center mb-8 max-w-2xl mx-auto">どの技術が最も効率的か？各パワートレインのチャンピオンモデルの燃費を比較します。</p>
+                <div class="bg-white rounded-xl shadow-lg p-4 md:p-8">
+                     <div class="chart-container">
+                        <canvas id="powertrainChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="segment-showdown">
+                <h2 class="text-3xl font-bold text-center mb-8">人気セグメント直接対決</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-center mb-4">激戦区：コンパクトSUV</h3>
+                        <p class="text-slate-600 text-center mb-6">ガソリンモデルがひしめく市場。燃費性能でリードするのはどのモデルか？</p>
+                        <div class="chart-container h-72 max-h-[40vh]">
+                            <canvas id="suvChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                        <h3 class="text-2xl font-bold text-center mb-4">アメリカの魂：フルサイズトラック</h3>
+                        <p class="text-slate-600 text-center mb-6">ディーゼルとハイブリッドが、伝統的なガソリンエンジンに挑戦します。</p>
+                        <div class="chart-container h-72 max-h-[40vh]">
+                            <canvas id="truckChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="strategy-flow">
+                <h2 class="text-3xl font-bold text-center mb-2">一目でわかるメーカー別戦略</h2>
+                <p class="text-slate-600 text-center mb-8 max-w-3xl mx-auto">各社は異なるアプローチで電動化時代に挑んでいます。その戦略を可視化しました。</p>
+                <div class="space-y-6">
+                    <div class="flowchart-card bg-white p-6 rounded-lg shadow-md border-l-[#FF6B6B]">
+                        <h3 class="text-2xl font-bold text-[#FF6B6B] mb-2">GM：二正面作戦</h3>
+                        <p class="text-slate-600">量販モデルは小型ターボエンジンで効率化し、並行してEV専用プラットフォーム「Ultium」を高級車と量販車の両方に展開。ICEからの収益を確保しつつ、EVへの移行を加速。</p>
+                    </div>
+                    <div class="flowchart-card bg-white p-6 rounded-lg shadow-md border-l-[#FFD166]">
+                        <h3 class="text-2xl font-bold text-[#FFD166] mb-2">Ford：ブランド資産の電動化</h3>
+                        <p class="text-slate-600">F-150やマスタングといった象徴的な既存ブランドに、ハイブリッドやEVの選択肢を追加。「知っている名前」で顧客をスムーズに電動化へ誘導する戦略。</p>
+                    </div>
+                    <div class="flowchart-card bg-white p-6 rounded-lg shadow-md border-l-[#06D6A0]">
+                        <h3 class="text-2xl font-bold text-[#06D6A0] mb-2">Stellantis：パフォーマンス志向の電動化</h3>
+                        <p class="text-slate-600">JeepやDodgeの高性能モデルにPHEV技術「4xe」を積極投入。電動化を「効率」だけでなく「新たなパフォーマンス」として定義し、既存ファンに訴求。</p>
+                    </div>
+                     <div class="flowchart-card bg-white p-6 rounded-lg shadow-md border-l-[#118AB2]">
+                        <h3 class="text-2xl font-bold text-[#118AB2] mb-2">Tesla：効率性の好循環</h3>
+                        <p class="text-slate-600">EV専用設計による高いエネルギー効率が、バッテリーの小型化・低コスト化を実現。これが更なる軽量化と効率向上に繋がるという、ビジネスモデルの根幹をなす正のループを構築。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="conclusion" class="text-center">
+                 <h2 class="text-3xl font-bold mb-2">結論：日本の消費者への提言</h2>
+                 <p class="text-slate-600 mb-8 max-w-3xl mx-auto">2025年のアメリカ車選びは、ライフスタイルと技術への理解が鍵となります。</p>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold mb-2">🥇 最大の効率性を求めるなら</h3>
+                        <p class="text-slate-600">都市部での利用が中心なら、テスラのようなEVが最適解。ランニングコストを劇的に削減できます。</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                         <h3 class="text-xl font-bold mb-2">👨‍👩‍👧‍👦 ファミリーユースなら</h3>
+                         <p class="text-slate-600">PHEVのミニバンやSUV（クライスラー パシフィカ、フォード エスケープ等）が実用性と経済性を両立させます。</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                         <h3 class="text-xl font-bold mb-2">💪 実用性とパワーなら</h3>
+                         <p class="text-slate-600">トラックが必要な場合、ディーゼルやハイブリッドモデルが大きな燃料費削減に貢献。特にフォード マーベリックは革命的な選択肢です。</p>
+                    </div>
+                 </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const vibrantPalette = {
+            red: '#FF6B6B',
+            yellow: '#FFD166',
+            green: '#06D6A0',
+            blue: '#118AB2',
+            darkBlue: '#073B4C',
+            lightGray: '#E5E7EB',
+            darkGray: '#4B5563'
+        };
+
+        const processLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        const defaultChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                           size: 12,
+                           family: "'Noto Sans JP', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                    mode: 'index',
+                    intersect: false,
+                    titleFont: { size: 16, family: "'Noto Sans JP', sans-serif" },
+                    bodyFont: { size: 14, family: "'Noto Sans JP', sans-serif" },
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleAlign: 'left',
+                    bodyAlign: 'left',
+                    padding: 10,
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        font: { size: 12, family: "'Noto Sans JP', sans-serif" },
+                        color: vibrantPalette.darkGray
+                    },
+                    grid: { display: false }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        font: { size: 12, family: "'Noto Sans JP', sans-serif" },
+                        color: vibrantPalette.darkGray
+                    },
+                    grid: { color: vibrantPalette.lightGray }
+                }
+            }
+        };
+
+        const top10Data = {
+            labels: [
+                'Tesla Model 3 (LR RWD)',
+                'Tesla Model S (Std AWD)',
+                'Tesla Model Y (LR RWD)',
+                'Chevrolet Equinox EV (FWD)',
+                'Tesla Model S (Plaid)',
+                'Ford Escape (PHEV FWD)',
+                'Tesla Model Y (Perf AWD)',
+                'Dodge Charger (R/T EV)',
+                'Tesla Model X (Std AWD)',
+                'Chevrolet Equinox EV (AWD)'
+            ].map(l => processLabel(l)),
+            datasets: [{
+                label: '複合燃費 (km/L換算)',
+                data: [58.25, 51.66, 51.44, 45.92, 45.49, 42.94, 42.73, 41.66, 41.88, 40.81],
+                backgroundColor: vibrantPalette.blue,
+                borderColor: vibrantPalette.darkBlue,
+                borderWidth: 2,
+                borderRadius: 5
+            }]
+        };
+        new Chart(document.getElementById('top10Chart'), {
+            type: 'bar',
+            data: top10Data,
+            options: { ...defaultChartOptions }
+        });
+
+        const powertrainData = {
+            labels: ['EV', 'PHEV (電力併用)', 'Hybrid', 'Gasoline/Diesel'],
+            datasets: [{
+                label: '各タイプの最高燃費 (km/L)',
+                data: [58.25, 42.94, 16.16, 12.76],
+                backgroundColor: [vibrantPalette.blue, vibrantPalette.green, vibrantPalette.yellow, vibrantPalette.red],
+                borderColor: [vibrantPalette.darkBlue, '#059669', '#D97706', '#DC2626'],
+                borderWidth: 2,
+                borderRadius: 5,
+            }]
+        };
+        new Chart(document.getElementById('powertrainChart'), {
+            type: 'bar',
+            data: powertrainData,
+            options: {
+                ...defaultChartOptions,
+                plugins: {
+                    ...defaultChartOptions.plugins,
+                    legend: { display: false }
+                }
+            }
+        });
+        
+        const suvData = {
+            labels: ['Ford Escape (1.5L FWD)', 'Chevrolet Equinox (FWD)', 'Dodge Hornet (GT)'],
+            datasets: [{
+                label: '複合燃費 (km/L)',
+                data: [12.76, 11.48, 10.20],
+                backgroundColor: [vibrantPalette.blue, vibrantPalette.green, vibrantPalette.red],
+                borderColor: [vibrantPalette.darkBlue, '#059669', '#DC2626'],
+                borderWidth: 2
+            }]
+        };
+        new Chart(document.getElementById('suvChart'), {
+            type: 'bar',
+            data: suvData,
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                plugins: {
+                    ...defaultChartOptions.plugins,
+                    legend: { display: false }
+                },
+                 scales: {
+                    x: { ...defaultChartOptions.scales.x, beginAtZero: true },
+                    y: { ...defaultChartOptions.scales.y, grid: { display: false } }
+                }
+            }
+        });
+
+        const truckData = {
+            labels: ['Chevrolet Silverado (Diesel)', 'Ford F-150 (Hybrid)', 'Ram 1500 (Gasoline)'],
+            datasets: [{
+                label: '複合燃費 (km/L)',
+                data: [11.05, 9.78, 8.93],
+                backgroundColor: [vibrantPalette.darkBlue, vibrantPalette.green, vibrantPalette.red],
+                borderColor: ['#082f49', '#059669', '#DC2626'],
+                borderWidth: 2
+            }]
+        };
+        new Chart(document.getElementById('truckChart'), {
+            type: 'bar',
+            data: truckData,
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                plugins: {
+                    ...defaultChartOptions.plugins,
+                    legend: { display: false }
+                },
+                scales: {
+                    x: { ...defaultChartOptions.scales.x, beginAtZero: true },
+                    y: { ...defaultChartOptions.scales.y, grid: { display: false } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
