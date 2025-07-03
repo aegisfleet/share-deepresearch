@@ -4,9 +4,9 @@ category: research
 date: 2025-07-03
 description: 消費税の減税に伴いPOSシステムの改修に1年掛かると言われているが、具体的にどこの会社のどのシステムなのか調査して欲しい。また、何故そこまで時間が掛かるのか、その理由も知りたい。
 ga4_metrics:
-  avgSessionDuration: 0.0
-  pageViews: 0
-  users: 0
+  avgSessionDuration: 32.194126
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: 消費税の減税に伴いPOSシステムの改修に1年掛かると言われているが、具体的にどこの会社のどのシステムなのか調査して欲しい。また、何故そこまで時間が掛かるのか、その理由も知りたい。
 supplementary_materials:
