@@ -54,7 +54,7 @@ title: 2025年参議院選挙 広島選挙区：包括的候補者分析
 被爆地の議員として、平和への取り組みも彼の活動の重要な柱である。核兵器禁止条約（TPNW）について、唯一の戦争被爆国である日本が署名・批准すべきだと一貫して主張し、国際会議にも参加するなど積極的に行動している 。  
 森本氏の選挙戦は、現職としての実績と安定感、そして労働組合という強固な組織基盤を強みとする。一方で、消費税廃止といった急進的な公約を掲げる他の候補者と比較すると、その主張は穏健で具体的数値に欠ける側面もある。有権者が、実績に裏打ちされた着実な政策運営を評価するのか、あるいはより抜本的な変革を求めるのかが、彼の当落を左右するだろう。
 
-### **2.4. 西田 英範 (にした ひでのり) 氏 – 自由民主党**
+### **2.4. 西田 英範 (にした ひでのり) 氘 – 自由民主党**
 
 43歳の西田英範氏は、自民党の新人候補として議席獲得を目指す 。広島市安佐北区出身で、早稲田大学法学部を卒業後、経済産業省に入省した元キャリア官僚である 。このエリートとしての経歴は、彼の政策がテクノクラート的で経済成長を重視するものであることを示唆している。  
 西田氏の国政挑戦は今回が2度目である。彼は、2019年の大規模買収事件を受けて行われた2021年の参院広島選挙区再選挙に自民党公認で立候補したが、「政治とカネ」の問題を巡る強烈な逆風の中で野党統一候補に敗れた 。この敗北の経験は、彼の今回の選挙戦に重くのしかかっている。党派閥の裏金問題など、自民党への不信が続く中、西田氏は再び「大逆風」の中での戦いを強いられており、自らも「国民感覚からズレた問題」と認め、政治改革の必要性を訴えざるを得ない状況にある 。  
@@ -179,4 +179,38 @@ NHK党は、元来「NHKのスクランブル放送化」という単一争点�
 
 #### **引用文献**
 
-1\. 参議院選挙公示 広島選挙区２議席に 現職・新人あわせて１０人が立候補 物価高対策などが争点 (2025/07/03 12:01) \- YouTube, https://www.youtube.com/watch?v=WetBkptE23Y 2\. 参議院選挙公示 現職と新人あわせて１０人が立候補 広島選挙区の第一声は… (2025/07/03 18:38) \- YouTube, https://www.youtube.com/watch?v=TPvfq7kS89I 3\. 参議院選挙 広島選挙区 改選２議席に対し９人が立候補予定 各候補の動き追う ７月２０日投開票 (2025/06/25 17:52) \- YouTube, https://www.youtube.com/watch?v=W3\_KMkYicgM 4\. 核禁条約 参加めざす/参院広島再選挙 宮口候補「国会で討論する」 \- 日本共産党, https://www.jcp.or.jp/akahata/aik21/2021-04-20/2021042004\_01\_1.html 5\. 原爆慰霊碑に候補者ら続々 核廃絶誓い選挙戦開始 中国新聞ヒロシマ平和メディアセンター, https://www.hiroshimapeacemedia.jp/?p=153300 6\. 【参院選2025】広島選挙区 候補者10人の第一声は \- YouTube, https://www.youtube.com/watch?v=ntDzOu1YN2c 7\. 参議院選挙 無所属新人の玉田憲勲氏と産原稔文氏が出馬会見 立候補 ..., https://www.tss-tv.co.jp/tssnews/000029278.html 8\. 産原 稔文：立候補者情報：選挙区：広島１区：第50回衆議院選挙 ..., https://www.jiji.com/jc/2024syu?d=21452 9\. 参院選公示 １７日間の選挙戦スタート 広島選挙区に過去最多の１０人が立候補 投開票は２０日, https://iraw.rcc.jp/topics/articles/28020 10\. 参院選公示１０人立候補 物価高対策など第一声 広島 ニュース ..., https://www.home-tv.co.jp/news/content/?news\_id=20250703309091 11\. 広島選挙区 候補者一覧 第27回参議院議員選挙 \[2025年7月20日投票\], https://sangiin.go2senkyo.com/2025/prefecture/34 12\. 高見あつみ \- 日本共産党, https://www.jcp.or.jp/web\_senkyo/2842/ 13\. 候補者氏名 党派名 得票数 備考 佐伯 知子 幸 福 実 現 党 825 玉田 憲勲 無 所, https://www.city.mihara.hiroshima.jp/uploaded/attachment/35360.pdf 14\. 共産新人 高見篤己氏が出馬表明 広島市長選 \- YouTube, https://www.youtube.com/watch?v=iAsF6Wz8KaU 15\. 岡田よしのり候補 \- 日本共産党広島県委員会, http://jcph.news.coocan.jp/cgi-bin/set/supp.cgi?set=1 16\. 国民の苦しみに寄り添い政治動かす 参院比例５予定候補ベストチーム勝利を \- 日本共産党, https://www.jcp.or.jp/akahata/aik24/2025-01-16/2025011601\_02\_0.html 17\. 【第一声】現職と新人5人が立候補 それぞれの訴えを比較【2025参議院選挙・青森】, http://mobile.rab.co.jp/news/news108q8t0ct5falfirylc.html 18\. 森本しんじ / 広島選挙区 参議院議員: 森本しんじ公式ホームページ ..., https://morimori.net/ 19\. 森本 真治 – Who's Who ～ＪＡＭ議員団会議, https://jam-union.net/00\_morimoto\_shinji/ 20\. JAMものづくり国会議員懇談会を開催 ふるさとを守る 森本しんじ / 広島選挙区 参議院議員, https://morimori.net/record/our-hometown/entry-345.html 21\. 第27回参議院議員通常選挙広島選挙区「森本しんじ」氏 ... \- 連合広島, https://www.rengo-hiroshima.jp/rengo\_news/7333/ 22\. 自由民主党広島県支部連合会（自民党広島県連）｜ホーム, https://www.hiroshima-jimin.jp/senkyozyouhou20250407.html 23\. 参院選が公示 改選２議席の広島選挙区に過去最多の１０人が立候補 IRAW by RCC, https://iraw.rcc.jp/topics/articles/28016 24\. 参院選広島選挙区 無所属連合・新人 谷本誠一 氏 立候補表明 「弱者 ..., https://www.youtube.com/watch?v=UB\_8PiFihTY 25\. 「世界には“裏の勢力”がいる」前呉市議会議員が現在の考えを持つに ..., https://journal.ridilover.jp/issues/2b1d6e439f92 26\. 【物議】"マスク拒否"の市議に約４５０件の苦情 呉市・谷本誠一議員 ..., https://www.youtube.com/watch?v=MgVcitn\_n1w 27\. 呉市議会 谷本誠一議員改めて「ノーマスク」訴え \- YouTube, https://www.youtube.com/watch?v=4F\_3jCNgTOo 28\. マスク着用拒否 元呉市議の訴え退ける判決 広島地裁 AIRDOは「適切に審理した結果」とコメント, https://www.youtube.com/watch?v=jTBUPY9Go2g 29\. 参院選広島選挙区 無所属・新人の２人が立候補へ 立候補予定者は計７人に IRAW by RCC, https://iraw.rcc.jp/topics/articles/27760 30\. 参議院選挙公示 現職と新人あわせて１０人が立候補 広島選挙区の第一声は… \- TSS, https://www.tss-tv.co.jp/tssnews/000029546.html 31\. 玉田 憲勲の詳細｜候補者アンケート｜zero選挙2022（参議院選挙 ..., https://www.ntv.co.jp/election2022/research/candidate/?id=340008 32\. 「ワクワクできるような広島に」参政党新人が立候補表明 参院選 ..., https://www.home-tv.co.jp/news/content/?news\_id=20250402298485 33\. 参院選広島選挙区 ＮＨＫ党の新人が立候補表明 来月３日公示へ ..., https://iraw.rcc.jp/topics/articles/27803 34\. はんどう大樹 / はんどう たいき【参院選2025 広島県選挙区 公認候補 ..., https://reiwa-shinsengumi.com/member/san2025\_taikihando/ 35\. 参議院議員選挙・広島選挙区 無所属の上子亨氏 立候補表明「消費税 ..., https://www.youtube.com/watch?v=uy-46lhQ6S0
+1. [参議院選挙公示 広島選挙区２議席に 現職・新人あわせて１０人が立候補 物価高対策などが争点 (2025/07/03 12:01) - YouTube](https://www.youtube.com/watch?v=WetBkptE23Y)
+2. [参議院選挙公示 現職と新人あわせて１０人が立候補 広島選挙区の第一声は… (2025/07/03 18:38) - YouTube](https://www.youtube.com/watch?v=TPvfq7kS89I)
+3. [参議院選挙 広島選挙区 改選２議席に対し９人が立候補予定 各候補の動き追う ７月２０日投開票 (2025/06/25 17:52) - YouTube](https://www.youtube.com/watch?v=W3_KMkYicgM)
+4. [核禁条約 参加めざす/参院広島再選挙 宮口候補「国会で討論する」 - 日本共産党](https://www.jcp.or.jp/akahata/aik21/2021-04-20/2021042004_01_1.html)
+5. [原爆慰霊碑に候補者ら続々 核廃絶誓い選挙戦開始 中国新聞ヒロシマ平和メディアセンター](https://www.hiroshimapeacemedia.jp/?p=153300)
+6. [【参院選2025】広島選挙区 候補者10人の第一声は - YouTube](https://www.youtube.com/watch?v=ntDzOu1YN2c)
+7. [参議院選挙 無所属新人の玉田憲勲氏と産原稔文氏が出馬会見 立候補 ...](https://www.tss-tv.co.jp/tssnews/000029278.html)
+8. [産原 稔文：立候補者情報：選挙区：広島１区：第50回衆議院選挙 ...](https://www.jiji.com/jc/2024syu?d=21452)
+9. [参院選公示 １７日間の選挙戦スタート 広島選挙区に過去最多の１０人が立候補 投開票は２０日](https://iraw.rcc.jp/topics/articles/28020)
+10. [参院選公示１０人立候補 物価高対策など第一声 広島 ニュース ...](https://www.home-tv.co.jp/news/content/?news_id=20250703309091)
+11. [広島選挙区 候補者一覧 第27回参議院議員選挙 [2025年7月20日投票]](https://sangiin.go2senkyo.com/2025/prefecture/34)
+12. [高見あつみ - 日本共産党](https://www.jcp.or.jp/web_senkyo/2842/)
+13. [候補者氏名 党派名 得票数 備考 佐伯 知子 幸 福 実 現 党 825 玉田 憲勲 無 所](https://www.city.mihara.hiroshima.jp/uploaded/attachment/35360.pdf)
+14. [共産新人 高見篤己氏が出馬表明 広島市長選 - YouTube](https://www.youtube.com/watch?v=iAsF6Wz8KaU)
+15. [岡田よしのり候補 - 日本共産党広島県委員会](http://jcph.news.coocan.jp/cgi-bin/set/supp.cgi?set=1)
+16. [国民の苦しみに寄り添い政治動かす 参院比例５予定候補ベストチーム勝利を - 日本共産党](https://www.jcp.or.jp/akahata/aik24/2025-01-16/2025011601_02_0.html)
+17. [【第一声】現職と新人5人が立候補 それぞれの訴えを比較【2025参議院選挙・青森】](http://mobile.rab.co.jp/news/news108q8t0ct5falfirylc.html)
+18. [森本しんじ / 広島選挙区 参議院議員: 森本しんじ公式ホームページ ...](https://morimori.net/)
+19. [森本 真治 – Who's Who ～ＪＡＭ議員団会議](https://jam-union.net/00_morimoto_shinji/)
+20. [JAMものづくり国会議員懇談会を開催 ふるさとを守る 森本しんじ / 広島選挙区 参議院議員](https://morimori.net/record/our-hometown/entry-345.html)
+21. [第27回参議院議員通常選挙広島選挙区「森本しんじ」氏 ... - 連合広島](https://www.rengo-hiroshima.jp/rengo_news/7333/)
+22. [自由民主党広島県支部連合会（自民党広島県連）｜ホーム](https://www.hiroshima-jimin.jp/senkyozyouhou20250407.html)
+23. [参院選が公示 改選２議席の広島選挙区に過去最多の１０人が立候補 IRAW by RCC](https://iraw.rcc.jp/topics/articles/28016)
+24. [参院選広島選挙区 無所属連合・新人 谷本誠一 氏 立候補表明 「弱者 ...](https://www.youtube.com/watch?v=UB_8PiFihTY)
+25. [「世界には“裏の勢力”がいる」前呉市議会議員が現在の考えを持つに ...](https://journal.ridilover.jp/issues/2b1d6e439f92)
+26. [【物議】"マスク拒否"の市議に約４５０件の苦情 呉市・谷本誠一議員 ...](https://www.youtube.com/watch?v=MgVcitn_n1w)
+27. [呉市議会 谷本誠一議員改めて「ノーマスク」訴え - YouTube](https://www.youtube.com/watch?v=4F_3jCNgTOo)
+28. [マスク着用拒否 元呉市議の訴え退ける判決 広島地裁 AIRDOは「適切に審理した結果」とコメント](https://www.youtube.com/watch?v=jTBUPY9Go2g)
+29. [参院選広島選挙区 無所属・新人の２人が立候補へ 立候補予定者は計７人に IRAW by RCC](https://iraw.rcc.jp/topics/articles/27760)
+30. [参議院選挙公示 現職と新人あわせて１０人が立候補 広島選挙区の第一声は… - TSS](https://www.tss-tv.co.jp/tssnews/000029546.html)
+31. [玉田 憲勲の詳細｜候補者アンケート｜zero選挙2022（参議院選挙 ...](https://www.ntv.co.jp/election2022/research/candidate/?id=340008)
+32. [「ワクワクできるような広島に」参政党新人が立候補表明 参院選 ...](https://www.home-tv.co.jp/news/content/?news_id=20250402298485)
+33. [参院選広島選挙区 ＮＨＫ党の新人が立候補表明 来月３日公示へ ...](https://iraw.rcc.jp/topics/articles/27803)
+34. [はんどう大樹 / はんどう たいき【参院選2025 広島県選挙区 公認候補 ...](https://reiwa-shinsengumi.com/member/san2025_taikihando/)
+35. [参議院議員選挙・広島選挙区 無所属の上子亨氏 立候補表明「消費税 ...](https://www.youtube.com/watch?v=uy-46lhQ6S0)
