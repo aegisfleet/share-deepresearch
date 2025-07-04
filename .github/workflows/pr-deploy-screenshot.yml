@@ -47,22 +47,42 @@ jobs:
       - name: Install Playwright Browsers and dependencies
         run: npx playwright install --with-deps
 
-      - name: Capture screenshot
+      - name: Capture screenshots
         run: |
-          npx playwright screenshot --full-page http://localhost:4000 screenshot.png
+          # ライトモードのトップページ
+          npx playwright screenshot --full-page http://localhost:4000 screenshot-light.png
 
-      - name: Upload screenshot artifact
+          # ダークモードのトップページ
+          npx playwright page-screenshot --viewport-size=1280,720 http://localhost:4000 screenshot-dark.png --js "localStorage.setItem('theme', 'dark'); document.documentElement.setAttribute('data-theme', 'dark');"
+
+          # 最初の記事ページ（存在する場合）
+          FIRST_ARTICLE_URL=$(curl -s http://localhost:4000 | grep -o '/topics/[^"']*' | head -n 1)
+          if [ ! -z "$FIRST_ARTICLE_URL" ]; then
+            # ライトモードの記事ページ
+            npx playwright screenshot --full-page "http://localhost:4000$FIRST_ARTICLE_URL" screenshot-article-light.png
+
+            # ダークモードの記事ページ
+            npx playwright page-screenshot --viewport-size=1280,720 "http://localhost:4000$FIRST_ARTICLE_URL" screenshot-article-dark.png --js "localStorage.setItem('theme', 'dark'); document.documentElement.setAttribute('data-theme', 'dark');"
+          fi
+
+      - name: Upload screenshot artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: pr-screenshot
-          path: screenshot.png
+          name: pr-screenshots
+          path: |
+            screenshot-light.png
+            screenshot-dark.png
+            screenshot-article-light.png
+            screenshot-article-dark.png
 
-      - name: Post screenshot to PR
+      - name: Post screenshots to PR
         uses: peter-evans/create-or-update-comment@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            [PR Preview Screenshot（ダウンロード）](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
-            
-            この画像は自動生成されたプレビューです。アーティファクトページからダウンロードできます。
+            ## PR Preview Screenshots（プレビュー）
+
+            [ダウンロード](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+
+            これらの画像は自動生成されたプレビューです。アーティファクトページからダウンロードできます。
