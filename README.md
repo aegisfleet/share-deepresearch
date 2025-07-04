@@ -132,7 +132,7 @@ DeepResearchの結果をドキュメント化する際の推奨手順は以下�
         - 内容を象徴するFont Awesome 6のアイコン（`<i class="...">`）を積極的に使用し、情報を視覚的に補強してください。
 - **テキスト**:
     - 各スライドのメッセージは、短い見出しと2〜3文の文章に要約してください。重要なキーワードは`<strong>`タグで強調してください。
-    - [cite_start]の記載は不要です。
+    - [cite_start]の記載は不要です。
 
 ### 作成手順
 1.  まず、添付のレポートを分析し、上記の構成案と仕様に基づいた各スライドのプランを提案してください。プランには、**PCでのレイアウト概要**と、**スマートフォンでどのように見えるか**の簡単な説明、**スライド遷移時に自動再生されるアニメーション効果**の具体的な提案、そして**タイトルと最終スライドに使用する背景画像のアイデア（テーマと具体的な画像URL案を含む）**を含めてください。
@@ -196,9 +196,9 @@ DeepResearchの結果をドキュメント化する際の推奨手順は以下�
         .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
 
         .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
-        .comparison-table th, .comparison-table td { border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th, .comparison-table td { font-size: 1.2em; border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
         .comparison-table th { background-color: var(--accent-color); color: #000; }
-        .comparison-table td:first-child { font-weight: bold; color: var(--accent-color); }
+        .comparison-table td:first-child { font-size: 1.2em; color: var(--accent-color); }
 
         @media (max-width: 768px) {
             .reveal {
