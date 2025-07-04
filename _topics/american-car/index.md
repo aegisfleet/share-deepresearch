@@ -4,8 +4,8 @@ category: research
 date: 2025-07-04
 description: 2025年に新車で購入可能なアメリカ製自動車の燃費性能を、20車種以上のデータを基に分析。MPGとMPGeの違い、換算方法、各メーカーの戦略を解説。
 ga4_metrics:
-  avgSessionDuration: 323.403444
-  pageViews: 2
+  avgSessionDuration: 293.1363896666667
+  pageViews: 4
   users: 2
 layout: topic
 prompt: アメリカの自動車メーカーが作る車の燃費性能を知りたい。日本で言うところの1リッターあたりの燃費を調査して欲しい。対象は2025年に新車で買えるものとして、20車種以上のデータが欲しい。
