@@ -53,7 +53,7 @@ jobs:
           npx playwright screenshot --full-page http://localhost:4000 screenshot-light.png
 
           # ダークモードのトップページ
-          npx playwright page-screenshot --viewport-size=1280,720 http://localhost:4000 screenshot-dark.png --js "localStorage.setItem('theme', 'dark'); document.documentElement.setAttribute('data-theme', 'dark');"
+          npx playwright screenshot --viewport-size=1280,720 http://localhost:4000 screenshot-dark.png --js "localStorage.setItem('theme', 'dark'); document.documentElement.setAttribute('data-theme', 'dark');"
 
           # 最初の記事ページ（存在する場合）
           FIRST_ARTICLE_URL=$(curl -s http://localhost:4000 | grep -o '/topics/[^"']*' | head -n 1)
@@ -62,7 +62,7 @@ jobs:
             npx playwright screenshot --full-page "http://localhost:4000$FIRST_ARTICLE_URL" screenshot-article-light.png
 
             # ダークモードの記事ページ
-            npx playwright page-screenshot --viewport-size=1280,720 "http://localhost:4000$FIRST_ARTICLE_URL" screenshot-article-dark.png --js "localStorage.setItem('theme', 'dark'); document.documentElement.setAttribute('data-theme', 'dark');"
+            npx playwright screenshot --viewport-size=1280,720 "http://localhost:4000$FIRST_ARTICLE_URL" screenshot-article-dark.png --js "localStorage.setItem('theme', 'dark'); document.documentElement.setAttribute('data-theme', 'dark');"
           fi
 
       - name: Upload screenshot artifacts
