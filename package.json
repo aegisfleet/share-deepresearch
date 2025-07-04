@@ -1,0 +1,12 @@
+{
+  "name": "share-deepresearch-screenshot",
+  "version": "1.0.0",
+  "description": "Screenshot automation for PR deploys using Playwright.",
+  "main": "scripts/screenshot.js",
+  "scripts": {
+    "screenshot": "node scripts/screenshot.js"
+  },
+  "dependencies": {
+    "playwright": "^1.44.0"
+  }
+}

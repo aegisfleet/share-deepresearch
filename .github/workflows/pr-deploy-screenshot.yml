@@ -34,6 +34,7 @@ jobs:
         run: |
           gem install bundler
           bundle install
+          npm install
 
       - name: Build site (Jekyll)
         run: |
@@ -47,15 +48,19 @@ jobs:
       - name: Install Playwright Browsers and dependencies
         run: npx playwright install --with-deps
 
-      - name: Capture screenshot
+      - name: Capture screenshots
         run: |
-          npx playwright screenshot --full-page http://localhost:4000 screenshot.png
+          node scripts/screenshot.js
 
-      - name: Upload screenshot artifact
+      - name: Upload screenshots artifact
         uses: actions/upload-artifact@v4
         with:
-          name: pr-screenshot
-          path: screenshot.png
+          name: pr-screenshots
+          path: |
+            screenshot-light.png
+            screenshot-dark.png
+            screenshot-article-light.png
+            screenshot-article-dark.png
 
       - name: Post screenshot to PR
         uses: peter-evans/create-or-update-comment@v4
@@ -63,6 +68,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            [PR Preview Screenshot（ダウンロード）](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            [PR Preview Screenshots（ダウンロード）](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
             
-            この画像は自動生成されたプレビューです。アーティファクトページからダウンロードできます。
+            アーティファクトページからダウンロードできます。
