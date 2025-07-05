@@ -15,11 +15,9 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential libffi-dev libyaml-dev zlib1g-dev libssl-dev libgmp-dev libxml2-dev libxslt1-dev ruby-dev git curl nodejs npm libvips libnss3 libatk-bridge2.0-0 libgtk-3-0 libxss1 libgbm-dev libxshmfence-dev
+          sudo apt-get install -y ruby-dev nodejs npm libvips libnss3 libgtk-3-0 libgbm-dev
           # Ubuntu 24.04以降のlibasound2はlibasound2t64にリネームされているため、存在すればそちらをインストール
           if apt-cache show libasound2t64 > /dev/null 2>&1; then sudo apt-get install -y libasound2t64; fi
-          sudo npm install -g npm@latest
-          node -v
           npm -v
 
       - name: Checkout code
@@ -45,8 +43,8 @@ jobs:
           nohup bundle exec jekyll serve --config _config_dev.yml --host 0.0.0.0 --port 4000 &
           sleep 10
 
-      - name: Install Playwright Browsers and dependencies
-        run: npx playwright install --with-deps
+      - name: Install Playwright Chromium only
+        run: npx playwright install chromium
 
       - name: Capture screenshots
         run: |
