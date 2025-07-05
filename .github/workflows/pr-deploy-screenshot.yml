@@ -12,12 +12,40 @@ jobs:
   build-and-screenshot:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup node_modules cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Setup bundle cache
+        uses: actions/cache@v4
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Setup Playwright browsers cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ruby-dev nodejs npm libvips libnss3 libgtk-3-0 libgbm-dev
+          sudo apt-get install -y ruby-dev nodejs npm libvips libnss3 libgtk-3-0 libgbm-dev \
+            fonts-noto-cjk fonts-noto-cjk-extra fontconfig libfontconfig1 libfreetype6 \
+            libxss1 libxshmfence-dev libatk-bridge2.0-0
           # Ubuntu 24.04以降のlibasound2はlibasound2t64にリネームされているため、存在すればそちらをインストール
           if apt-cache show libasound2t64 > /dev/null 2>&1; then sudo apt-get install -y libasound2t64; fi
+          # フォントキャッシュの更新
+          fc-cache -fv
           npm -v
 
       - name: Checkout code
@@ -31,20 +59,37 @@ jobs:
       - name: Install dependencies
         run: |
           gem install bundler
-          bundle install
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
           npm install
 
       - name: Build site (Jekyll)
         run: |
           bundle exec jekyll build --config _config_dev.yml
 
-      - name: Start local server
+      - name: Start local server and wait for it to be ready
         run: |
           nohup bundle exec jekyll serve --config _config_dev.yml --host 0.0.0.0 --port 4000 &
-          sleep 10
+          # サーバーが準備できるまで待機（最大30秒）
+          for i in {1..30}; do
+            if curl -s http://localhost:4000 > /dev/null; then
+              echo "Server is ready!"
+              break
+            fi
+            if [ $i -eq 30 ]; then
+              echo "Server failed to start within 30 seconds"
+              exit 1
+            fi
+            echo "Waiting for server to be ready... ($i/30)"
+            sleep 1
+          done
 
       - name: Install Playwright Chromium only
-        run: npx playwright install chromium
+        run: |
+          # キャッシュがない場合のみインストール
+          if [ ! -d ~/.cache/ms-playwright ]; then
+            npx playwright install chromium
+          fi
 
       - name: Capture screenshots
         run: |
