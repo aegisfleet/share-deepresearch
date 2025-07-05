@@ -4,9 +4,9 @@ category: research
 date: 2025-07-04
 description: 2025年に開催される参議院選挙の広島選挙区における立候補者について、それぞれの経歴、政策、政治的背景を詳細に分析したレポートです。
 ga4_metrics:
-  avgSessionDuration: 51.59891783333333
-  pageViews: 10
-  users: 5
+  avgSessionDuration: 44.22764385714286
+  pageViews: 11
+  users: 6
 layout: topic
 prompt: 2025年に開催される参議院選挙の広島選挙区における立候補者について、それぞれどのような人物か詳細に調査して欲しい。
 supplementary_materials:
