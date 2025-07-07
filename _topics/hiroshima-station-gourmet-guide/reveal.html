@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>広島駅 至高の生ビール探求ガイド</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css" integrity="sha512-1vDOkqtCXgcn0zgLIrxVjSIHvXOB/Ho2k33zwIDMqStDdHWvQyVU+BGG2fK4nnOgDbg0jEzVqzTYTL65orMyWw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" integrity="sha512-Nrw40ThKwvPSYyxg6x099eplkB9p5cs2DtorDFSdpapXZlBOJDKK1Hn/gAaYuDQuas6yZJAEG2p2pYQtH80N/w==" crossorigin="anonymous" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css" integrity="sha512-RLF8eOxhuwsRINc7r56dpl9a3VStqrXD+udWahutJrYdyh++2Ghnf+s4jFsOyryKZt/GNjPwbXVPH3MJpKrn2g==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { font-size: 1.3em; line-height: 1.5; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.8em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { font-size: 1.2em; border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-size: 1.2em; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section
+  data-background-image="https://images.unsplash.com/photo-1608270586620-248524c67de9"
+  data-background-opacity="0.2"
+  data-transition="zoom"
+>
+  <h1 class="animated delay-1">
+    広島駅<br />至高の<strong
+      >生ビール<i class="fa-solid fa-beer-mug-empty"></i></strong
+    >探求ガイド
+  </h1>
+  <p class="subtitle animated delay-2">
+    6名様の宴席を彩る、最高のダイニング体験レポート
+  </p>
+</section>
+
+<section data-transition="slide">
+  <h2 class="left-align animated delay-1">
+    <i class="fa-solid fa-list-check" style="color: #ff7733"></i> Agenda
+  </h2>
+  <p class="left-align animated delay-1">最高の夜への道筋</p>
+  <ul style="margin-top: 50px">
+    <li class="animated delay-2">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <strong>完璧な一杯</strong>を求めて (問題提起)
+    </li>
+    <li class="animated delay-3">
+      <i class="fa-solid fa-crown"></i> <strong>ビールの聖域</strong> (ビールが主役の店)
+    </li>
+    <li class="animated delay-4">
+      <i class="fa-solid fa-utensils"></i> <strong>美食との融合</strong> (料理が主役の店)
+    </li>
+    <li class="animated delay-5">
+      <i class="fa-solid fa-lightbulb"></i> <strong>賢い店の選び方</strong> (注意点)
+    </li>
+    <li class="animated delay-6">
+      <i class="fa-solid fa-gavel"></i> <strong>最終結論</strong> (あなたへの推薦)
+    </li>
+  </ul>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">
+    <i class="fa-solid fa-map-signs"></i> 完璧な一杯を求めて
+  </h2>
+  <div class="flex-container" style="margin-top: 40px">
+    <div class="flex-box animated delay-2">
+      <i class="fa-solid fa-city"></i>
+      <h3>選択肢の海</h3>
+      <p class="small-text">
+        広島駅周辺には飲食店が溢れているが、理想の店を見つけるのは難しい。
+      </p>
+    </div>
+    <div class="flex-box animated delay-3">
+      <i class="fa-solid fa-crosshairs"></i>
+      <h3>厳しい条件</h3>
+      <p class="small-text">
+        <strong>「本物の生ビール」</strong>飲み放題と、<strong>「6名が快適な空間」</strong
+        >の両立は至難の業。
+      </p>
+    </div>
+    <div class="flex-box animated delay-4">
+      <i class="fa-solid fa-star"></i>
+      <h3>我々の目的</h3>
+      <p class="small-text">
+        質の高い時間を求める皆様へ、失敗しない<strong>完璧な店選び</strong>をサポートします。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="zoom" data-background-color="#111111">
+  <h2 class="animated delay-2">Chapter 1</h2>
+  <i
+    class="fa-solid fa-beer-mug-empty fa-3x animated delay-1"
+    style="color: #ff7733"
+  ></i>
+  <p class="subtitle animated delay-3">ビールの聖域</p>
+  <p class="animated delay-4">ビール体験が主役となる場所</p>
+</section>
+
+<section data-transition="slide-in convex-out">
+  <h2 class="animated delay-1">
+    YEBISU BAR: プレミアムビールの殿堂
+  </h2>
+  <div class="flex-container" style="margin-top: 40px; align-items: flex-start">
+    <div class="flex-box animated delay-2 left-align">
+      <i class="fa-solid fa-landmark"></i>
+      <h3>店舗の特徴</h3>
+      <ul>
+        <li>ヱビスブランド専門の<strong>スタイリッシュ空間</strong></li>
+        <li>街の活気を感じる<strong>開放的なデザイン</strong></li>
+        <li>活気ある社交的なグループに最適</li>
+      </ul>
+    </div>
+    <div class="flex-box animated delay-3 left-align">
+      <i class="fa-solid fa-crown"></i>
+      <h3>ビールの魅力</h3>
+      <ul>
+        <li>
+          <strong>最大9種のヱビス生ビール</strong>が飲み放題
+        </li>
+        <li>限定醸造やビアカクテルも楽しめる</li>
+        <li>ビール好きには<strong>比類なき選択肢</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section data-transition="convex-in slide-out">
+  <h2 class="animated delay-1">
+    銀座ライオン: 伝統のビアホール文化
+  </h2>
+  <div class="flex-container" style="margin-top: 40px; align-items: flex-start">
+    <div class="flex-box animated delay-2 left-align">
+      <i class="fa-solid fa-gem"></i>
+      <h3>店舗の特徴</h3>
+      <ul>
+        <li>クラシックで<strong>陽気なビアホール</strong></li>
+        <li>誰でも受け入れる<strong>懐の深い雰囲気</strong></li>
+        <li>賑やかな「飲み会」を望むグループに</li>
+      </ul>
+    </div>
+    <div class="flex-box animated delay-3 left-align">
+      <i class="fa-solid fa-glass-water-droplet"></i>
+      <h3>ビールの魅力</h3>
+      <ul>
+        <li>伝統の「一度注ぎ」<strong>サッポロ黒ラベル</strong></li>
+        <li>アップグレードでヱビス等も追加可能</li>
+        <li><strong>品質と伝統</strong>に根差した一杯</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section data-transition="convex" data-background-color="#111111">
+  <h2 class="animated delay-2">Chapter 2</h2>
+  <i class="fa-solid fa-utensils fa-3x animated delay-1" style="color: #ff7733"></i>
+  <p class="subtitle animated delay-3">美食との融合</p>
+  <p class="animated delay-4">料理が主役、されどビールも最高品質</p>
+</section>
+
+<section data-transition="slide-in convex-out">
+  <h2 class="animated delay-1">
+    藁家88: 藁焼きと完全個室
+  </h2>
+  <div class="flex-container" style="margin-top: 40px; align-items: flex-start">
+    <div class="flex-box animated delay-2 left-align">
+      <i class="fa-solid fa-fire-flame-curved"></i>
+      <h3>料理の魅力</h3>
+      <ul>
+        <li>名物<strong>「鰹の藁焼き塩たたき」</strong>は絶品</li>
+        <li>四国と広島のユニークな地方料理</li>
+        <li>本格的な<strong>食の旅</strong>を楽しめる</li>
+      </ul>
+    </div>
+    <div class="flex-box animated delay-3 left-align">
+      <i class="fa-solid fa-door-closed"></i>
+      <h3>決定的な強み</h3>
+      <ul>
+        <li>
+          <strong>6名様用の完全個室</strong>を完備
+        </li>
+        <li>会話とプライバシーを最重視するなら最適</li>
+        <li>ビールは高品質な<strong>プレミアム・モルツ</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section data-transition="convex-in slide-out">
+  <h2 class="animated delay-1">
+    食辛房: 焼肉とプレミアムな一杯
+  </h2>
+  <div class="flex-container" style="margin-top: 40px; align-items: flex-start">
+    <div class="flex-box animated delay-2 left-align">
+      <i class="fa-solid fa-hot-tub-person"></i>
+      <h3>体験の魅力</h3>
+      <ul>
+        <li>皆で肉を焼く<strong>参加型の楽しさ</strong></li>
+        <li>食べ放題とは思えない<strong>高い肉質</strong></li>
+        <li>エネルギッシュな夜に最適</li>
+      </ul>
+    </div>
+    <div class="flex-box animated delay-3 left-align">
+      <i class="fa-solid fa-person-shelter"></i>
+      <h3>実用的な空間</h3>
+      <ul>
+        <li>
+          <strong>2〜10名様用の半個室</strong>が利用可能
+        </li>
+        <li>十分なプライベート感を確保</li>
+        <li>ビールは神泡認定の<strong>プレミアム・モルツ</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section data-transition="zoom" data-background-color="#111111">
+  <h2 class="animated delay-2">Chapter 3</h2>
+  <i class="fa-solid fa-lightbulb fa-3x animated delay-1" style="color: #ff7733"></i>
+  <p class="subtitle animated delay-3">賢い店の選び方</p>
+  <p class="animated delay-4">期待外れを避けるための必須知識</p>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">
+    <i class="fa-solid fa-triangle-exclamation"></i> 飲み放題の「裏事情」
+  </h2>
+  <p class="animated delay-2 small-text" style="margin-top: 20px">
+    多くの店では、<strong>本物の生ビール</strong>は追加料金のプランに含まれます。
+  </p>
+  <div
+    class="flex-container"
+    style="margin-top: 50px; align-items: center"
+  >
+    <div class="flex-box animated delay-3">
+      <h3>基本プラン</h3>
+      <p>発泡酒 (クリアアサヒ等)</p>
+    </div>
+    <i class="fa-solid fa-arrow-right-long fa-2x animated delay-4"></i>
+    <div class="flex-box animated delay-5" style="border: 2px solid #ff7733">
+      <h3>
+        <strong><i class="fa-solid fa-circle-plus"></i> 上位プラン</strong>
+      </h3>
+      <p><strong>生ビール！</strong> (スーパードライ等)</p>
+      <p class="subtitle" style="margin-top: 10px">+500円〜</p>
+    </div>
+  </div>
+  <p class="animated delay-6 small-text" style="margin-top: 30px">
+    予約時の<strong>プラン確認が最も重要</strong>です。
+  </p>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">主要決定マトリクス</h2>
+  <table class="comparison-table animated delay-2">
+    <thead>
+      <tr>
+        <th>店舗名</th>
+        <th>ビールの質と多様性</th>
+        <th>料理スタイル</th>
+        <th>プライバシー</th>
+        <th>最適なグループ像</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>YEBISU BAR</td>
+        <td><strong>卓越 (最大9種)</strong></td>
+        <td>モダンなバー料理</td>
+        <td>低 (オープン席)</td>
+        <td>ビール愛好家</td>
+      </tr>
+      <tr>
+        <td>銀座ライオン</td>
+        <td>優秀 (黒ラベル)</td>
+        <td>伝統的ビアホール</td>
+        <td>低 (オープン席)</td>
+        <td>伝統主義者</td>
+      </tr>
+      <tr>
+        <td>藁家88</td>
+        <td>優秀 (プレモル)</td>
+        <td>ユニークな和食</td>
+        <td><strong>高 (完全個室)</strong></td>
+        <td>バランス重視の食通</td>
+      </tr>
+      <tr>
+        <td>食辛房</td>
+        <td>優秀 (プレモル)</td>
+        <td>焼肉 (参加型)</td>
+        <td>中 (半個室)</td>
+        <td>お祭り好き</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">
+    <i class="fa-solid fa-gavel"></i> あなたに合わせた最終推薦
+  </h2>
+  <div class="flex-container" style="margin-top: 40px; align-items: stretch">
+    <div class="flex-box animated delay-2">
+      <i class="fa-solid fa-glasses"></i>
+      <h3>ビール愛好家なら</h3>
+      <p>
+        <strong>YEBISU BAR</strong><br /><span class="small-text"
+          >圧倒的な種類のヱビスビールを探求する体験を。</span
+        >
+      </p>
+    </div>
+    <div class="flex-box animated delay-3" style="border: 2px solid #ff7733">
+      <i class="fa-solid fa-handshake"></i>
+      <h3>バランス重視なら</h3>
+      <p>
+        <strong>藁家88</strong><br /><span class="small-text"
+          >最高の食事と<strong>完全個室</strong>での会話を両立。最も強く推薦。</span
+        >
+      </p>
+    </div>
+    <div class="flex-box animated delay-4">
+      <i class="fa-solid fa-users"></i>
+      <h3>賑やかさ重視なら</h3>
+      <p>
+        <strong>銀座ライオン</strong><br /><span class="small-text"
+          >クラシックなビアホールの活気と笑い声の中で乾杯。</span
+        >
+      </p>
+    </div>
+    <div class="flex-box animated delay-5">
+      <i class="fa-solid fa-champagne-glasses"></i>
+      <h3>参加型で楽しむなら</h3>
+      <p>
+        <strong>食辛房</strong><br /><span class="small-text"
+          >皆で焼肉を囲む、エネルギッシュなパーティー体験を。</span
+        >
+      </p>
+    </div>
+  </div>
+</section>
+
+<section
+  data-background-image="https://images.unsplash.com/photo-1517264010309-90c2a2503a45"
+  data-background-opacity="0.25"
+  data-transition="zoom"
+>
+  <h1 class="animated delay-1">
+    最高の夜を、<br /><strong>広島で。</strong>
+  </h1>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js" integrity="sha512-TC5IA+BA/5YPBb/MJyk97ypzvXYUIlAksfuxlUXlhD7cM7y/stM4JuytDeYJlsiKxmRDV5krDyuugOoMOHwyJg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js" integrity="sha512-MZ7Ehjbh2soaeCZJGaw6vBNAa7+eunl0SUmRPNESchLlboH73lHLEeUa6pZJ2Pcui4NcpDFatr6M+VlcmaH1QA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js" integrity="sha512-guKTp0XUnqVXjZtsa2+zQ8KVYoHjYM/MvoBlLiypVudmshBfMg0SeglTcPJGeRAqPyMp1Tcyu8+APV842XNB1Q==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js" integrity="sha512-RCedMo/DOyawQOh4zYtqEHTZAfgrrVQctN3LVCX5kELGsN52TOdwZ8inRY0l9Mo4vtyDFn6oOAgRUilWXgb+wA==" crossorigin="anonymous"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
