@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>XREAL製品購入完全ガイド：あなたに最適なARグラスを見つける</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css" integrity="sha512-1vDOkqtCXgcn0zgLIrxVjSIHvXOB/Ho2k33zwIDMqStDdHWvQyVU+BGG2fK4nnOgDbg0jEzVqzTYTL65orMyWw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" integrity="sha512-Nrw40ThKwvPSYyxg6x099eplkB9p5cs2DtorDFSdpapXZlBOJDKK1Hn/gAaYuDQuas6yZJAEG2p2pYQtH80N/w==" crossorigin="anonymous" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css" integrity="sha512-RLF8eOxhuwsRINc7r56dpl9a3VStqrXD+udWahutJrYdyh++2Ghnf+s4jFsOyryKZt/GNjPwbXVPH3MJpKrn2g==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { font-size: 1.3em; line-height: 1.5; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.8em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { font-size: 1.2em; border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-size: 1.2em; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section data-transition="zoom" data-background-image="https://images.unsplash.com/photo-1581091226825-a6a2a5a0a4da" data-background-opacity="0.2">
+    <h1 class="animated delay-1">XREAL製品購入完全ガイド</h1>
+    <p class="subtitle animated delay-2">あなたに最適なARグラスを見つける</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="left-align animated delay-1">本日の流れ</h2>
+    <ol style="margin-top: 50px;">
+        <li class="animated delay-2">はじめに：ARグラスの現在地</li>
+        <li class="animated delay-3">製品ラインナップ：役割と特徴</li>
+        <li class="animated delay-4">徹底比較：スペックとトレードオフ</li>
+        <li class="animated delay-5">結論：あなたに最適なモデルは？</li>
+    </ol>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">ARグラスの進化</h2>
+    <p class="subtitle animated delay-2">着るディスプレイから「空間コンピュータ」へ</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-glasses"></i>
+            <h3>着るディスプレイ</h3>
+            <p class="small-text">単に映像を投影するデバイス</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long animated delay-4" style="font-size: 4em; flex: 0.5;"></i>
+        <div class="flex-box animated delay-5">
+            <i class="fa-solid fa-cubes"></i>
+            <h3>空間コンピュータ</h3>
+            <p class="small-text">生活や仕事に深く関わる実用的なツール </p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">XREALエコシステムの全体像</h2>
+    <p class="animated delay-2" style="margin-bottom: 40px;">製品は、大きく2つの相互補完的なカテゴリで構成されます 。</p>
+    <div class="flex-container">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-eye"></i>
+            <h3>ARグラス (The Display)</h3>
+            <p class="small-text">視覚体験のコアデバイス <br><strong>(One, Air 2, Air 2 Pro)</strong></p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-brain"></i>
+            <h3>コンパニオンデバイス (The Brain)</h3>
+            <p class="small-text">能力を拡張する頭脳 <br><strong>(Beam Pro)</strong></p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">視界を拡張する「ディスプレイ」たち</h2>
+    <div class="flex-container" style="align-items: stretch; margin-top: 40px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-feather-pointed"></i>
+            <h3>XREAL Air 2</h3>
+            <p class="small-text"><strong>最軽量(72g)</strong>で快適な装着感 。初めての方や動画視聴がメインの方に最適な、高コストパフォーマンスモデル 。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-circle-half-stroke"></i>
+            <h3>XREAL Air 2 Pro</h3>
+            <p class="small-text"><strong>電子調光機能</strong>を搭載し、あらゆる環境で最高の没入感を実現 。多様なシーンで活用したいアクティブユーザー向け 。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-microchip"></i>
+            <h3>XREAL One</h3>
+            <p class="small-text"><strong>チップ内蔵</strong>でグラス単体で空間固定(3DoF)を実現 。PC作業の生産性を飛躍させるフラッグシップモデル 。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">AR体験を解き放つ「頭脳」</h2>
+    <p class="subtitle animated delay-2">XREAL Beam Pro</p>
+    <div class="flex-container" style="margin-top: 40px;">
+        <div style="flex: 1; text-align: center;">
+            <i class="fa-solid fa-mobile-screen-button animated delay-3" style="font-size: 10em;"></i>
+        </div>
+        <ul style="flex: 1.5; text-align: left; font-size: 1.1em;">
+            <li class="animated delay-4"><i class="fa-brands fa-google-play fa-fw" style="color: var(--accent-color);"></i> <strong>Androidアプリが動く</strong><br><span class="small-text">動画アプリ等を単体で利用可能 。</span></li>
+            <li class="animated delay-5"><i class="fa-solid fa-video fa-fw" style="color: var(--accent-color);"></i> <strong>空間ビデオを撮影</strong><br><span class="small-text">思い出を3Dで記録・追体験できる 。</span></li>
+            <li class="animated delay-6"><i class="fa-solid fa-cube fa-fw" style="color: var(--accent-color);"></i> <strong>安定した3DoFを提供</strong><br><span class="small-text">Air 2シリーズの映像体験を向上 。</span></li>
+            <li class="animated delay-7"><i class="fa-solid fa-battery-full fa-fw" style="color: var(--accent-color);"></i> <strong>充電しながら利用可能</strong><br><span class="small-text">バッテリーを気にせず長時間楽しめる 。</span></li>
+        </ul>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">2つの設計思想：あなたに合うのはどっち？</h2>
+    <p class="animated delay-2" style="margin-bottom: 40px;">XREALは、拡張性の「モジュラー型」と、シンプルさの「一体型」という明確な選択肢を提示しています 。</p>
+    <div class="flex-container">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-puzzle-piece"></i>
+            <h3>モジュラー型<br>(Modular)</h3>
+            <p class="small-text"><strong>Air 2/Pro + Beam Pro</strong><br>最高の映像体験に、後からスマート機能や空間撮影を追加できる拡張性の高さが魅力。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-box"></i>
+            <h3>一体型<br>(All-in-One)</h3>
+            <p class="small-text"><strong>XREAL One</strong><br>全ての機能をグラスに内蔵し、ケーブル1本でシンプルに使いたいミニマリスト向けの選択。</p>
+        </div>
+    </div>
+</section>
+
+
+<section data-transition="zoom">
+    <h2 class="animated delay-1">スペック徹底比較</h2>
+    <table class="comparison-table animated delay-2">
+        <thead>
+            <tr>
+                <th>項目</th>
+                <th>XREAL One</th>
+                <th>XREAL Air 2 Pro</th>
+                <th>XREAL Air 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>価格</td>
+                <td>¥69,980 </td>
+                <td>¥59,980 </td>
+                <td>¥49,980 </td>
+            </tr>
+            <tr>
+                <td>重量</td>
+                <td><strong>82g</strong> (機能内蔵のため重め) </td>
+                <td>75g (標準) </td>
+                <td><strong>72g</strong> (最軽量) </td>
+            </tr>
+            <tr>
+                <td>視野角</td>
+                <td><strong>50°</strong> (最も広い) </td>
+                <td>46° </td>
+                <td>46° </td>
+            </tr>
+            <tr>
+                <td>3DoF対応</td>
+                <td><strong style="color: #90ee90;">グラス単体で可能</strong> </td>
+                <td>追加デバイスが必要 </td>
+                <td>追加デバイスが必要 </td>
+            </tr>
+            <tr>
+                <td>調光機能</td>
+                <td><strong style="color: #90ee90;">電子調光 (3段階+自動)</strong> </td>
+                <td><strong style="color: #90ee90;">電子調光 (3段階)</strong> </td>
+                <td>なし (物理カバー) </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">比較のポイント：性能のトレードオフ</h2>
+    <p class="animated delay-2" style="margin-bottom: 40px;">スペックの差は、何を優先するかの違いに繋がります。</p>
+    <div class="flex-container">
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-rocket"></i>
+            <h3>XREAL One は「性能・機能」を優先</h3>
+            <p class="small-text">PC作業など生産性に関わる<strong>機能性やパフォーマンスを最大化</strong>。その分、重量は増加 。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-bed"></i>
+            <h3>Air 2 シリーズは「軽さ・快適性」を優先</h3>
+            <p class="small-text">映像鑑賞など長時間の利用を想定し、<strong>圧倒的な軽さと快適性を追求</strong>。高度な機能はBeam Proで拡張 。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">あなたの使い方は？ 最適モデル診断</h2>
+    <div class="flex-container animated delay-2" style="margin-bottom: 30px;">
+        <div class="flex-box">
+            <i class="fa-solid fa-film"></i>
+            <p><strong>映画・動画鑑賞</strong><br>→ Air 2 Pro + Beam Pro </p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-laptop-code"></i>
+            <p><strong>PC作業・生産性向上</strong><br>→ XREAL One </p>
+        </div>
+    </div>
+    <div class="flex-container">
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-camera-retro"></i>
+            <p><strong>空間ビデオ撮影</strong><br>→ Air 2/Pro + Beam Pro (256GB) </p>
+        </div>
+        <div class="flex-box animated delay-5">
+            <i class="fa-solid fa-wallet"></i>
+            <p><strong>コストパフォーマンス重視</strong><br>→ XREAL Air 2 </p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide-in fade-out">
+    <h2 class="animated delay-1">結論①：最高のプライベートシアター体験</h2>
+    <p class="subtitle animated delay-2">推奨： <strong>XREAL Air 2 Pro + XREAL Beam Pro</strong></p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div style="flex: 1; text-align: center;" class="animated delay-3">
+            <i class="fa-solid fa-glasses" style="font-size: 5em;"></i>
+            <i class="fa-solid fa-plus" style="font-size: 3em; margin: 0 20px; vertical-align: middle;"></i>
+            <i class="fa-solid fa-mobile-screen-button" style="font-size: 5em;"></i>
+        </div>
+        <ul style="flex: 1.5; text-align: left;">
+            <li class="animated delay-4"><i class="fa-solid fa-feather-pointed fa-fw"></i> <strong>圧倒的な軽さ(75g)</strong>で長時間の利用も快適 。</li>
+            <li class="animated delay-5"><i class="fa-solid fa-circle-half-stroke fa-fw"></i> <strong>電子調光</strong>であらゆる場所が最高の映画館に 。</li>
+            <li class="animated delay-6"><i class="fa-brands fa-google-play fa-fw"></i> <strong>Beam Pro</strong>でアプリを直接利用しコンテンツに没入 。</li>
+        </ul>
+    </div>
+</section>
+
+<section data-transition="slide-in fade-out">
+    <h2 class="animated delay-1">結論②：究極のモバイルオフィス体験</h2>
+    <p class="subtitle animated delay-2">推奨： <strong>XREAL One (単体)</strong></p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div style="flex: 1; text-align: center;" class="animated delay-3">
+            <i class="fa-solid fa-laptop-code" style="font-size: 8em;"></i>
+        </div>
+        <ul style="flex: 1.5; text-align: left;">
+            <li class="animated delay-4"><i class="fa-solid fa-plug-circle-bolt fa-fw"></i> <strong>ケーブル1本</strong>で完結する究極のシンプルさ 。</li>
+            <li class="animated delay-5"><i class="fa-solid fa-cube fa-fw"></i> <strong>高品質な単体3DoF</strong>で安定した仮想モニターを実現 。</li>
+            <li class="animated delay-6"><i class="fa-solid fa-maximize fa-fw"></i> <strong>広い視野角</strong>とウルトラワイド表示で生産性を最大化 。</li>
+        </ul>
+    </div>
+</section>
+
+<section data-transition="zoom" data-background-image="https://images.unsplash.com/photo-1518770660439-4636190af475" data-background-opacity="0.2">
+    <h1 class="animated delay-1">未来の視覚体験を、その手に。</h1>
+    <p class="subtitle animated delay-2">Find Your Perfect XREAL</p>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js" integrity="sha512-TC5IA+BA/5YPBb/MJyk97ypzvXYUIlAksfuxlUXlhD7cM7y/stM4JuytDeYJlsiKxmRDV5krDyuugOoMOHwyJg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js" integrity="sha512-MZ7Ehjbh2soaeCZJGaw6vBNAa7+eunl0SUmRPNESchLlboH73lHLEeUa6pZJ2Pcui4NcpDFatr6M+VlcmaH1QA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js" integrity="sha512-guKTp0XUnqVXjZtsa2+zQ8KVYoHjYM/MvoBlLiypVudmshBfMg0SeglTcPJGeRAqPyMp1Tcyu8+APV842XNB1Q==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js" integrity="sha512-RCedMo/DOyawQOh4zYtqEHTZAfgrrVQctN3LVCX5kELGsN52TOdwZ8inRY0l9Mo4vtyDFn6oOAgRUilWXgb+wA==" crossorigin="anonymous"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
