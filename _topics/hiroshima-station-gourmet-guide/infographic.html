@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>広島駅周辺 飲み会ガイド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 300px;
+            width: 100%;
+            max-width: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-width: 500px;
+            }
+        }
+        .decision-flow-line {
+            position: relative;
+            width: 2px;
+            background-color: #118AB2;
+            margin: 0 auto;
+        }
+        .decision-flow-line::before, .decision-flow-line::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        .decision-flow-line::after {
+            bottom: -10px;
+            border-width: 10px 8px 0 8px;
+            border-color: #118AB2 transparent transparent transparent;
+        }
+    </style>
+</head>
+<body class="text-[#073B4C]">
+
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <h1 class="text-2xl md:text-4xl font-black text-[#073B4C]">広島駅周辺 飲み会ガイド</h1>
+            <p class="text-sm md:text-lg text-[#118AB2] font-bold mt-1">6名様・生ビール飲み放題付き店のベストチョイス</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="intro" class="text-center mb-12">
+            <div class="bg-white rounded-xl shadow-2xl p-8 max-w-3xl mx-auto">
+                <h2 class="text-5xl md:text-7xl font-black text-[#FF6B6B] tracking-tighter">発泡酒は、もう終わり。</h2>
+                <p class="mt-4 text-lg md:text-xl font-bold">本当に美味しい生ビールが飲み放題の店だけを厳選。</p>
+                <p class="mt-2 text-gray-600">6名様のグループが最高に楽しめる、広島駅周辺の優良店をデータで徹底比較します。</p>
+            </div>
+        </section>
+
+        <section id="decision-flow" class="text-center mb-12">
+             <div class="p-6 bg-sky-100 rounded-lg shadow-inner">
+                <h3 class="text-2xl font-bold mb-4">最高の飲み会を計画しよう！</h3>
+                <p class="text-xl font-extrabold text-[#118AB2] mb-6">今夜、一番大切なのは？</p>
+                <div class="flex flex-col md:flex-row justify-center items-stretch gap-8">
+                    <div class="w-full md:w-2/5 flex flex-col items-center">
+                        <div class="text-4xl">🍻</div>
+                        <h4 class="text-xl font-bold mt-2">ビールそのもの！</h4>
+                        <p class="text-sm text-gray-600 mb-4">ビールの種類と質を最優先</p>
+                        <div class="decision-flow-line h-16"></div>
+                        <div class="font-bold text-white bg-[#118AB2] py-2 px-4 rounded-full shadow-lg">ビールが主役の店へ</div>
+                    </div>
+                    <div class="w-full md:w-2/5 flex flex-col items-center">
+                        <div class="text-4xl">🍽️</div>
+                        <h4 class="text-xl font-bold mt-2">最高の料理！</h4>
+                        <p class="text-sm text-gray-600 mb-4">料理の質と店の雰囲気を重視</p>
+                        <div class="decision-flow-line h-16"></div>
+                        <div class="font-bold text-white bg-[#06D6A0] py-2 px-4 rounded-full shadow-lg">料理が主役の店へ</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="venues" class="space-y-12">
+            <div>
+                <h3 class="text-3xl font-bold text-center mb-8 border-b-4 border-[#118AB2] pb-2">ビールが主役の店</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                        <h4 class="text-2xl font-bold">YEBISU BAR</h4>
+                        <p class="text-amber-600 font-semibold mb-4">エキシティ広島店</p>
+                        <p class="mb-4 flex-grow">最大9種のヱビスが楽しめるビールの聖地。スタイリッシュで都会的な雰囲気は、ビール好きの集いに最適です。</p>
+                        <div class="chart-container mx-auto"><canvas id="yebisuChart"></canvas></div>
+                         <div class="mt-4 text-center">
+                            <span class="inline-block bg-red-100 text-red-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded-full">プライバシー: 低 (オープン席)</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-sm font-semibold px-2.5 py-0.5 rounded-full">予算: 4,800円〜</span>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                        <h4 class="text-2xl font-bold">銀座ライオン</h4>
+                        <p class="text-amber-600 font-semibold mb-4">ekie広島店</p>
+                        <p class="mb-4 flex-grow">伝統の「一度注ぎ」黒ラベルが自慢。活気あるクラシックなビアホールで、賑やかな夜を過ごしたいグループ向け。</p>
+                        <div class="chart-container mx-auto"><canvas id="lionChart"></canvas></div>
+                        <div class="mt-4 text-center">
+                            <span class="inline-block bg-red-100 text-red-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded-full">プライバシー: 低 (オープン席)</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-sm font-semibold px-2.5 py-0.5 rounded-full">予算: 4,500円〜</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-3xl font-bold text-center mb-8 border-b-4 border-[#06D6A0] pb-2">料理が主役の店</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                        <h4 class="text-2xl font-bold">藁家88</h4>
+                        <p class="text-indigo-600 font-semibold mb-4">広島駅前店</p>
+                        <p class="mb-4 flex-grow">香ばしい藁焼き料理とプレミアムモルツを、完全個室で。会話と食事をゆっくり楽しみたいグループの鉄板選択肢。</p>
+                        <div class="text-center my-8">
+                            <span class="text-6xl mx-2">🔥</span>
+                            <span class="text-6xl mx-2">🚪</span>
+                        </div>
+                        <p class="text-center font-bold text-lg">名物「鰹の藁焼き」と最高品質の「ザ・プレミアム・モルツ」が標準プランに含まれます。</p>
+                         <div class="mt-4 text-center flex-grow flex items-end justify-center">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded-full">プライバシー: 高 (完全個室)</span>
+                            <span class="inline-block bg-green-100 text-green-800 text-sm font-semibold px-2.5 py-0.5 rounded-full">予算: 4,000円〜</span>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                        <h4 class="text-2xl font-bold">食辛房</h4>
+                        <p class="text-indigo-600 font-semibold mb-4">広島駅前店</p>
+                        <p class="mb-4 flex-grow">上質な焼肉食べ放題で盛り上がる！参加型でエネルギッシュな飲み会に最適。半個室でプライベート感も確保。</p>
+                        <div class="text-center my-8">
+                            <span class="text-6xl mx-2">🍖</span>
+                            <span class="text-6xl mx-2">🍻</span>
+                        </div>
+                        <p class="text-center font-bold text-lg">神泡認定の「ザ・プレミアム・モルツ」と質の高い焼肉が食べ飲み放題。</p>
+                        <div class="mt-4 text-center flex-grow flex items-end justify-center">
+                           <span class="inline-block bg-yellow-100 text-yellow-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded-full">プライバシー: 中 (半個室)</span>
+                           <span class="inline-block bg-green-100 text-green-800 text-sm font-semibold px-2.5 py-0.5 rounded-full">予算: 5,000円〜</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="my-16">
+            <h3 class="text-3xl font-bold text-center mb-2">主要4店舗データ比較</h3>
+            <p class="text-center text-gray-600 mb-8">あなたにぴったりの店はどこ？レーダーチャートで一目瞭然！</p>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="chart-container !h-[400px] md:!h-[500px] !max-w-2xl mx-auto"><canvas id="comparisonRadar"></canvas></div>
+            </div>
+        </section>
+
+        <section id="verdict" class="my-16">
+            <h3 class="text-3xl font-bold text-center mb-8">最終評決：あなたに合わせた推薦リスト</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="border-2 border-[#FF6B6B] rounded-lg p-6 text-center bg-white shadow-lg">
+                    <h4 class="font-extrabold text-[#FF6B6B]">ビール愛好家へ</h4>
+                    <p class="text-2xl font-black my-2">YEBISU BAR</p>
+                    <p class="text-sm">ビールの多様性を探求する、最高にスタイリッシュな夜。</p>
+                </div>
+                <div class="border-4 border-[#06D6A0] rounded-lg p-6 text-center bg-white shadow-2xl relative">
+                     <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#06D6A0] text-white font-bold px-3 py-1 rounded-full text-sm">🏆 最優秀</div>
+                    <h4 class="font-extrabold text-[#06D6A0]">バランス重視派へ</h4>
+                    <p class="text-2xl font-black my-2">藁家88</p>
+                    <p class="text-sm">ユニークな食体験と完全個室。会話も食事も妥協しない選択。</p>
+                </div>
+                <div class="border-2 border-[#FFD166] rounded-lg p-6 text-center bg-white shadow-lg">
+                    <h4 class="font-extrabold text-[#FFD166]">伝統主義者へ</h4>
+                    <p class="text-2xl font-black my-2">銀座ライオン</p>
+                    <p class="text-sm">これぞ王道！活気あるビアホールで賑やかに乾杯。</p>
+                </div>
+                 <div class="border-2 border-[#118AB2] rounded-lg p-6 text-center bg-white shadow-lg">
+                    <h4 class="font-extrabold text-[#118AB2]">お祭り好きへ</h4>
+                    <p class="text-2xl font-black my-2">食辛房</p>
+                    <p class="text-sm">皆で焼いて盛り上がる！参加型でコスパも抜群の夜。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="fine-print" class="mt-16 text-center">
+            <div class="max-w-2xl mx-auto p-6 bg-yellow-50 border border-yellow-300 rounded-lg">
+                <h4 class="text-xl font-bold text-yellow-800">⚠️ 飲み放題の「裏事情」に注意</h4>
+                <p class="mt-2 text-yellow-700">広島駅周辺の多くの店では、基本プランは発泡酒で、本物の生ビールは<strong class="font-black">追加料金が必要なアップグレード</strong>となる傾向があります。予約前に必ずプラン内容を確認しましょう。</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-12 py-6 text-center text-sm">
+        <p>このインフォグラフィックは提供された「広島駅美食家ガイド」レポートに基づき作成されました。</p>
+        <p class="mt-1">© 2025 Hiroshima Dining Guide Visualizer</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const wrapLabel = (label) => {
+                if (label.length <= 16) return label;
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).length > 16) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine ? currentLine + ' ' : '') + word;
+                    }
+                }
+                lines.push(currentLine);
+                return lines;
+            };
+
+            const commonTooltipCallback = {
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            
+            const palette = {
+                red: '#FF6B6B',
+                yellow: '#FFD166',
+                green: '#06D6A0',
+                blue: '#118AB2',
+                darkBlue: '#073B4C'
+            };
+
+            const yebisuCtx = document.getElementById('yebisuChart');
+            if(yebisuCtx) {
+                new Chart(yebisuCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['スタンダード (ヱビス3種)', 'アップグレード (全9種)'],
+                        datasets: [{
+                            label: 'ビールの種類',
+                            data: [3, 6],
+                            backgroundColor: [palette.blue, palette.yellow],
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            ...commonTooltipCallback.plugins,
+                            title: {
+                                display: true,
+                                text: 'YEBISU BAR ビールプラン比較',
+                                font: { size: 14 }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const lionCtx = document.getElementById('lionChart');
+            if(lionCtx) {
+                new Chart(lionCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['プラン内容'],
+                        datasets: [{
+                            label: 'サッポロ黒ラベル',
+                            data: [1],
+                            backgroundColor: palette.darkBlue,
+                        }, {
+                            label: 'プレミアム (ヱビス等)',
+                            data: [1],
+                            backgroundColor: palette.yellow,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                stacked: true,
+                                display: false
+                            },
+                            y: {
+                                stacked: true,
+                                display: false
+                            }
+                        },
+                        plugins: {
+                            ...commonTooltipCallback.plugins,
+                            title: {
+                                display: true,
+                                text: '銀座ライオン 飲み放題 (+500円でプレミアム)',
+                                font: { size: 14 }
+                            },
+                             tooltip: {
+                                callbacks: {
+                                    title: () => '飲み放題プラン',
+                                    label: (context) => context.dataset.label
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const radarCtx = document.getElementById('comparisonRadar');
+            if(radarCtx) {
+                new Chart(radarCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['ビールの質', '料理のユニークさ', 'プライバシー', 'コスパ', '店の活気'],
+                        datasets: [{
+                            label: 'YEBISU BAR',
+                            data: [5, 3, 1, 3, 4],
+                            fill: true,
+                            backgroundColor: 'rgba(255, 107, 107, 0.2)',
+                            borderColor: palette.red,
+                            pointBackgroundColor: palette.red,
+                        }, {
+                            label: '銀座ライオン',
+                            data: [4, 2, 1, 4, 5],
+                            fill: true,
+                            backgroundColor: 'rgba(255, 209, 102, 0.2)',
+                            borderColor: palette.yellow,
+                            pointBackgroundColor: palette.yellow,
+                        }, {
+                            label: '藁家88',
+                            data: [4, 5, 5, 4, 2],
+                            fill: true,
+                            backgroundColor: 'rgba(6, 214, 160, 0.2)',
+                            borderColor: palette.green,
+                            pointBackgroundColor: palette.green,
+                        }, {
+                            label: '食辛房',
+                            data: [4, 4, 3, 5, 4],
+                            fill: true,
+                            backgroundColor: 'rgba(17, 138, 178, 0.2)',
+                            borderColor: palette.blue,
+                            pointBackgroundColor: palette.blue,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                max: 5,
+                                pointLabels: {
+                                    font: {
+                                        size: 14
+                                    }
+                                },
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        },
+                        plugins: {
+                           ...commonTooltipCallback.plugins
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
