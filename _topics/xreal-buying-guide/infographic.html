@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XREAL製品購入ガイド インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #FFD166;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #FFD166, #06D6A0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-[#073B4C]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-8 md:my-16">
+            <h1 class="text-4xl md:text-6xl font-black text-white leading-tight">XREAL購入完全ガイド</h1>
+            <p class="text-lg md:text-xl text-gray-300 mt-4 max-w-3xl mx-auto">あなたのための最高のARグラスはどれ？スペックとレビューから最適解を導き出す。</p>
+        </header>
+
+        <main class="space-y-8 md:space-y-12">
+
+            <section class="bg-gray-800/50 backdrop-blur-sm rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">最初の選択：AR体験のアーキテクチャ</h2>
+                <p class="text-gray-300 mb-6">XREALの製品選びは、まず2つのアプローチから考えるのが重要です。「グラス単体で完結する一体型」か、それとも「グラスと頭脳を組み合わせるモジュラー型」か。あなたの使い方によって最適な道筋は異なります。</p>
+                
+                <div class="flex flex-col md:flex-row items-center justify-around space-y-8 md:space-y-0 md:space-x-8 text-center mt-8">
+                    
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-xl font-bold gradient-text mb-2">一体型 (All-in-One)</h3>
+                        <div class="p-6 border-2 border-[#118AB2] rounded-lg bg-gray-900/50 w-64 h-48 flex flex-col justify-center">
+                            <p class="text-3xl font-black text-white">XREAL One</p>
+                            <p class="text-gray-400 mt-2">シンプルさと高性能を両立した究極のPC作業ツール</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center flow-arrow transform md:rotate-0 rotate-90">⬇️</div>
+
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-xl font-bold gradient-text mb-2">モジュラー型 (Modular)</h3>
+                        <div class="p-6 border-2 border-dashed border-[#06D6A0] rounded-lg bg-gray-900/50 w-64 h-48 flex flex-col justify-center items-center">
+                            <div class="bg-gray-800/70 p-2 rounded w-full">
+                                <p class="text-2xl font-bold text-white">Air 2 / Pro</p>
+                                <p class="text-sm text-gray-400">(ディスプレイ)</p>
+                            </div>
+                            <span class="text-2xl font-bold text-white my-2">+</span>
+                             <div class="bg-gray-800/70 p-2 rounded w-full">
+                                <p class="text-2xl font-bold text-white">Beam Pro</p>
+                                <p class="text-sm text-gray-400">(頭脳)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <div class="bg-gray-800/50 backdrop-blur-sm rounded-lg shadow-xl p-6 md:p-8 md:col-span-2">
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">ARグラス徹底比較：視覚体験のコア</h2>
+                    <p class="text-gray-300 mb-6">3つの主要ARグラスモデルは、それぞれ異なる強みを持っています。ここでは、体験の質を左右する重要なスペックを視覚的に比較します。</p>
+                    <div class="chart-container mx-auto">
+                        <canvas id="specComparisonChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-400 mt-4">重量は軽さ、視野角と輝度は没入感と視認性に直結します。`XREAL One`は性能でリードしますが、`Air 2`シリーズの軽さは長時間の快適性で圧倒的なアドバンテージとなります。</p>
+                </div>
+
+                <div class="bg-gray-800/50 backdrop-blur-sm rounded-lg shadow-xl p-6 md:p-8">
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">装着感：軽さが正義</h2>
+                     <p class="text-gray-300 mb-6">長時間の映画鑑賞やゲームプレイでは、わずかな重量差が快適性を大きく左右します。`XREAL Air 2`はその軽さで他のモデルを圧倒します。</p>
+                    <div class="chart-container">
+                        <canvas id="weightChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800/50 backdrop-blur-sm rounded-lg shadow-xl p-6 md:p-8">
+                     <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">価格比較：投資価値を見極める</h2>
+                     <p class="text-gray-300 mb-6">単体価格だけでなく、推奨されるシステム構成でのトータルコストを比較することで、あなたの予算に最適な選択肢が見えてきます。</p>
+                    <div class="chart-container">
+                        <canvas id="priceChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-gray-800/50 backdrop-blur-sm rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">機能チェックリスト</h2>
+                <p class="text-gray-300 mb-6">どのモデルがあなたの求める機能を備えているか、一目でわかる比較表です。特に「単体での空間固定」と「電子調光」が大きな差別化ポイントです。</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-gray-300">
+                        <thead class="text-sm text-white uppercase bg-gray-700/50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 rounded-l-lg">機能</th>
+                                <th scope="col" class="px-6 py-3 text-center">XREAL One</th>
+                                <th scope="col" class="px-6 py-3 text-center">Air 2 Pro</th>
+                                <th scope="col" class="px-6 py-3 text-center rounded-r-lg">Air 2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-gray-800/50 border-b border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">単体での空間固定 (3DoF)</th>
+                                <td class="px-6 py-4 text-center text-3xl text-[#06D6A0]">✔️</td>
+                                <td class="px-6 py-4 text-center text-3xl text-[#FF6B6B]">❌</td>
+                                <td class="px-6 py-4 text-center text-3xl text-[#FF6B6B]">❌</td>
+                            </tr>
+                            <tr class="bg-gray-800/50 border-b border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">電子調光機能</th>
+                                <td class="px-6 py-4 text-center text-3xl text-[#06D6A0]">✔️</td>
+                                <td class="px-6 py-4 text-center text-3xl text-[#06D6A0]">✔️</td>
+                                <td class="px-6 py-4 text-center text-3xl text-[#FF6B6B]">❌</td>
+                            </tr>
+                             <tr class="bg-gray-800/50 border-b border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">ウルトラワイド表示 (単体)</th>
+                                <td class="px-6 py-4 text-center text-3xl text-[#06D6A0]">✔️</td>
+                                <td class="px-6 py-4 text-center text-3xl text-[#FF6B6B]">❌</td>
+                                <td class="px-6 py-4 text-center text-3xl text-[#FF6B6B]">❌</td>
+                            </tr>
+                            <tr class="bg-gray-800/50">
+                                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">Boseチューニング音響</th>
+                                <td class="px-6 py-4 text-center text-3xl text-[#06D6A0]">✔️</td>
+                                <td class="px-6 py-4 text-center text-3xl text-[#FF6B6B]">❌</td>
+                                <td class="px-6 py-4 text-center text-3xl text-[#FF6B6B]">❌</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                     <p class="text-center text-gray-400 mt-4">❌の機能も、`XREAL Beam Pro`を追加することで利用可能になる場合があります。</p>
+                </div>
+            </section>
+            
+            <section class="bg-gray-800/50 backdrop-blur-sm rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">ユースケース別・最適モデル診断</h2>
+                <p class="text-gray-300 mb-6">あなたの目的はなんですか？利用シーンに合わせて、最高の体験を提供するモデルの組み合わせを提案します。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+                    <div class="bg-gray-900/50 rounded-lg p-6 border-l-4 border-[#FF6B6B]">
+                        <h3 class="text-xl font-bold text-white">最高のプライベートシアター</h3>
+                        <p class="text-gray-400 mt-2">映画・動画鑑賞がメイン。最高の没入感と快適性を求める。</p>
+                        <p class="text-lg font-bold text-[#FF6B6B] mt-4">推奨モデル:</p>
+                        <p class="text-white font-semibold">Air 2 Pro + Beam Pro</p>
+                    </div>
+                     <div class="bg-gray-900/50 rounded-lg p-6 border-l-4 border-[#FFD166]">
+                        <h3 class="text-xl font-bold text-white">外出先でのPC作業効率化</h3>
+                        <p class="text-gray-400 mt-2">カフェや移動中でもデュアルモニター環境で仕事がしたい。</p>
+                        <p class="text-lg font-bold text-[#FFD166] mt-4">推奨モデル:</p>
+                        <p class="text-white font-semibold">XREAL One (単体)</p>
+                    </div>
+                     <div class="bg-gray-900/50 rounded-lg p-6 border-l-4 border-[#06D6A0]">
+                        <h3 class="text-xl font-bold text-white">最新技術と空間ビデオ撮影</h3>
+                        <p class="text-gray-400 mt-2">3Dの思い出を記録・再生する、新しい体験を楽しみたい。</p>
+                        <p class="text-lg font-bold text-[#06D6A0] mt-4">推奨モデル:</p>
+                        <p class="text-white font-semibold">Air 2 (or Pro) + Beam Pro (256GB)</p>
+                    </div>
+                    <div class="bg-gray-900/50 rounded-lg p-6 border-l-4 border-[#118AB2]">
+                        <h3 class="text-xl font-bold text-white">ゲームをとことん楽しむ</h3>
+                        <p class="text-gray-400 mt-2">SwitchやPS5を大画面で。迫力と集中力を求める。</p>
+                        <p class="text-lg font-bold text-[#118AB2] mt-4">推奨モデル:</p>
+                        <p class="text-white font-semibold">Air 2 Pro + Beam Pro</p>
+                    </div>
+                     <div class="bg-gray-900/50 rounded-lg p-6 border-l-4 border-gray-500">
+                        <h3 class="text-xl font-bold text-white">コストパフォーマンス最優先</h3>
+                        <p class="text-gray-400 mt-2">まずはARグラスを体験。将来の拡張性も確保したい。</p>
+                        <p class="text-lg font-bold text-gray-400 mt-4">推奨モデル:</p>
+                        <p class="text-white font-semibold">XREAL Air 2 (単体)</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-12 py-8 border-t border-gray-700">
+            <p class="text-gray-400">このインフォグラフィックは提供されたデータを基に作成されました。最終的な購入判断は、公式サイトの情報をご確認の上、ご自身の責任で行ってください。</p>
+        </footer>
+
+    </div>
+
+<script>
+    const vibrantColors = {
+        red: '#FF6B6B',
+        yellow: '#FFD166',
+        green: '#06D6A0',
+        blue: '#118AB2',
+        darkBlue: '#073B4C',
+        white: 'rgba(255, 255, 255, 0.8)',
+        gridColor: 'rgba(255, 255, 255, 0.1)'
+    };
+
+    function wrapLabel(str, maxWidth) {
+        if (str.length <= maxWidth) {
+            return str;
+        }
+        const words = str.split(' ');
+        const lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + word).length > maxWidth) {
+                lines.push(currentLine.trim());
+                currentLine = '';
+            }
+            currentLine += word + ' ';
+        });
+        lines.push(currentLine.trim());
+        return lines;
+    }
+
+    const customTooltip = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) {
+                            return label.join(' ');
+                        }
+                        return label;
+                    }
+                }
+            }
+        }
+    };
+    
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                grid: { color: vibrantColors.gridColor },
+                ticks: { color: vibrantColors.white }
+            },
+            x: {
+                grid: { display: false },
+                ticks: { color: vibrantColors.white }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: vibrantColors.white
+                }
+            },
+            tooltip: customTooltip.plugins.tooltip
+        }
+    };
+
+    const specCtx = document.getElementById('specComparisonChart').getContext('2d');
+    new Chart(specCtx, {
+        type: 'bar',
+        data: {
+            labels: ['XREAL One', 'XREAL Air 2 Pro', 'XREAL Air 2'],
+            datasets: [{
+                label: '重量 (g)',
+                data: [82, 75, 72],
+                backgroundColor: vibrantColors.red,
+                yAxisID: 'y',
+            }, {
+                label: '視野角 (°)',
+                data: [50, 46, 46],
+                backgroundColor: vibrantColors.green,
+                yAxisID: 'y1',
+            }, {
+                label: '輝度 (nits)',
+                data: [600, 500, 500],
+                backgroundColor: vibrantColors.yellow,
+                yAxisID: 'y2',
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            scales: {
+                x: {
+                    grid: { display: false },
+                    ticks: { color: vibrantColors.white, font: { size: 14 } }
+                },
+                y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    title: { display: true, text: '重量(g) / 視野角(°)', color: vibrantColors.white },
+                    grid: { color: vibrantColors.gridColor },
+                    ticks: { color: vibrantColors.white }
+                },
+                y1: { type: 'linear', display: false, },
+                y2: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    title: { display: true, text: '輝度(nits)', color: vibrantColors.white },
+                    grid: { drawOnChartArea: false, },
+                    ticks: { color: vibrantColors.white }
+                },
+            },
+             plugins: {
+                legend: { labels: { color: vibrantColors.white } },
+                tooltip: customTooltip.plugins.tooltip
+            }
+        }
+    });
+
+    const weightCtx = document.getElementById('weightChart').getContext('2d');
+    new Chart(weightCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['XREAL Air 2 (72g)', 'XREAL Air 2 Pro (75g)', 'XREAL One (82g)'],
+            datasets: [{
+                label: '重量 (g)',
+                data: [72, 75, 82],
+                backgroundColor: [vibrantColors.green, vibrantColors.blue, vibrantColors.red],
+                borderColor: vibrantColors.darkBlue,
+                borderWidth: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'top', labels: { color: vibrantColors.white, font: { size: 14 } } },
+                tooltip: customTooltip.plugins.tooltip,
+                title: {
+                    display: true,
+                    text: 'ARグラス本体の重量 (g)',
+                    color: vibrantColors.white,
+                    font: { size: 16 }
+                }
+            }
+        }
+    });
+
+    const priceCtx = document.getElementById('priceChart').getContext('2d');
+    const priceLabels = [
+        wrapLabel('Air 2 (単体)', 16),
+        wrapLabel('Air 2 Pro (単体)', 16),
+        wrapLabel('One (単体)', 16),
+        wrapLabel('Air 2 Pro + Beam Pro', 16)
+    ];
+    new Chart(priceCtx, {
+        type: 'bar',
+        data: {
+            labels: priceLabels,
+            datasets: [{
+                label: '価格 (円)',
+                data: [49980, 59980, 69980, 92960],
+                backgroundColor: [vibrantColors.green, vibrantColors.blue, vibrantColors.red, vibrantColors.yellow],
+                borderColor: vibrantColors.darkBlue,
+                borderWidth: 2,
+                borderRadius: 5,
+            }]
+        },
+        options: {
+            ...chartOptions,
+            indexAxis: 'y',
+             scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { display: false },
+                    ticks: { color: vibrantColors.white, font: {size: 11} }
+                },
+                x: {
+                    grid: { color: vibrantColors.gridColor },
+                    ticks: { color: vibrantColors.white, callback: function(value) { return value / 1000 + 'k'; } }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    ...customTooltip.plugins.tooltip,
+                    callbacks: {
+                         ...customTooltip.plugins.tooltip.callbacks,
+                        label: function(context) {
+                            return ` ${context.raw.toLocaleString()} 円`;
+                        }
+                    }
+                },
+                 title: {
+                    display: true,
+                    text: '製品・システム構成別 価格',
+                    color: vibrantColors.white,
+                    font: { size: 16 }
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
