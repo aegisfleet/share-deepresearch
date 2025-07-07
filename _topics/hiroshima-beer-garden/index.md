@@ -264,7 +264,7 @@ ANAクラウンプラザホテルが提供するのは、量よりも質、賑�
 18. 広島三越ライオンビヤガーデン コース詳細 \- 銀座ライオン, 7月 7, 2025にアクセス、 [https://www.ginzalion.jp/course/2025/06/-20250627.html?course\_id=3\&tel=050-1721-3495\&bland=lion\&base=beergarden08\&shop\_name=%E5%BA%83%E5%B3%B6%E4%B8%89%E8%B6%8A%E3%83%A9%E3%82%A4%E3%82%AA%E3%83%B3%E3%83%93%E3%83%A4%E3%82%AC%E3%83%BC%E3%83%87%E3%83%B3](https://www.ginzalion.jp/course/2025/06/-20250627.html?course_id=3&tel=050-1721-3495&bland=lion&base=beergarden08&shop_name=%E5%BA%83%E5%B3%B6%E4%B8%89%E8%B6%8A%E3%83%A9%E3%82%A4%E3%82%AA%E3%83%B3%E3%83%93%E3%83%A4%E3%82%AC%E3%83%BC%E3%83%87%E3%83%B3)  
 19. 広島三越ライオンビヤガーデン \- 広島三越 ビアガーデン, 7月 7, 2025にアクセス、 [https://y002901.gorp.jp/](https://y002901.gorp.jp/)  
 20. 広島三越ライオンビヤガーデン(広島市中区/焼肉・ホルモン)＜ネット予約可＞ ホットペッパーグルメ, 7月 7, 2025にアクセス、 [https://www.hotpepper.jp/strJ001270280/](https://www.hotpepper.jp/strJ001270280/)  
-21. そごう屋上ビアガーデン 海の恵屋 |そごう広島店, 7月 7, 2025にアクセス、 [https://www.sogo-seibu.jp/hiroshima/topics/page/2025-beergarden.html](https://www.sogo-seibu.jp/hiroshima/topics/page/2025-beergarden.html)  
+21. そごう屋上ビアガーデン 海の恵屋 そごう広島店, 7月 7, 2025にアクセス、 [https://www.sogo-seibu.jp/hiroshima/topics/page/2025-beergarden.html](https://www.sogo-seibu.jp/hiroshima/topics/page/2025-beergarden.html)  
 22. そごう屋上ビアガーデン 海の恵屋 \- 県庁前/ビアガーデン \- 食べログ, 7月 7, 2025にアクセス、 [https://tabelog.com/hiroshima/A3401/A340111/34030981/](https://tabelog.com/hiroshima/A3401/A340111/34030981/)  
 23. 【5/9～】おいしいビール×新鮮な海の幸！そごう広島店の屋上に「そごう屋上ビアガーデン 海の恵屋」がオープン \- ひろしまリード, 7月 7, 2025にアクセス、 [https://hread.home-tv.co.jp/post-503063/](https://hread.home-tv.co.jp/post-503063/)  
 24. ルーフトップ・ビアガーデン(中町/ダイニングバー・バル)＜ネット予約可＞ ホットペッパーグルメ, 7月 7, 2025にアクセス、 [https://www.hotpepper.jp/strJ001194106/](https://www.hotpepper.jp/strJ001194106/)  
