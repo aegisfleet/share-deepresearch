@@ -31,21 +31,21 @@
 
 ```yaml
 ---
-audio: "/share-deepresearch/assets/audio/your-topic.mp3"
-category: "ai"  # "ai", "research", "code", "tutorial" のいずれかを指定
+audio: /share-deepresearch/assets/audio/your-topic.mp3
+category: ai  # ai, research, code, tutorial のいずれかを指定
 date: YYYY-MM-DD
-description: "トピックの簡単な説明（150文字程度）"
+description: トピックの簡単な説明（150文字程度）
 layout: topic
-prompt: XREALの製品の購入を検討しているが、どれを買うのが良いか迷っている。それぞれの製品の機能や重量などのスペックを比較して、購入者レビューを基に最適な製品を提案して欲しい。
+prompt: トピックのプロンプト内容をここに記述します
 supplementary_materials:
-  - title: "インフォグラフィック"
-    url: "/share-deepresearch/topics/your-topic/infographic.html"
-  - title: "プレゼンテーション"
-    url: "/share-deepresearch/topics/your-topic/reveal.html"
+  - title: インフォグラフィック
+    url: /share-deepresearch/topics/your-topic/infographic.html
+  - title: プレゼンテーション
+    url: /share-deepresearch/topics/your-topic/reveal.html
 tags: 
 - タグ1
 - タグ2
-title: "トピックのタイトル"
+title: トピックのタイトル
 ---
 ```
 
