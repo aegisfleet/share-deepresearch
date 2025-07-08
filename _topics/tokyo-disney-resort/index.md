@@ -4,7 +4,7 @@ category: research
 date: 2025-06-23
 description: 本レポートは、東京ディズニーリゾート（TDR）の運営を担う株式会社オリエンタルランド（OLC）とその関連グループの雇用エコシステムを解剖し、正社員、準社員（キャスト）、出演者（エンターテイナー）という三つの主要な雇用形態における職種別の具体的な仕事内容、報酬水準、そして採用に至るまでの道のりを詳細に分析する。
 ga4_metrics:
-  avgSessionDuration: 43.4553308
+  avgSessionDuration: 53.744162200000005
   pageViews: 5
   users: 3
 layout: topic
