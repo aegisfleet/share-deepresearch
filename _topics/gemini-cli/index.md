@@ -5,7 +5,7 @@ date: 2025-06-26
 description: Gemini CLIは、開発者の最も重要な作業環境であるターミナル内に、強力なAIエージェントを直接統合するという、Googleの野心的なビジョンを体現しています。
 ga4_metrics:
   avgSessionDuration: 253.49386966666665
-  pageViews: 19
+  pageViews: 20
   users: 11
 layout: topic
 prompt: Gemini CLIの活用例をカテゴリ毎に分解して解説して欲しい。特に画像や動画の生成など、Claude Codeではできない部分に触れて欲しい。
