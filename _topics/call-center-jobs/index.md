@@ -3,14 +3,18 @@ audio: /share-deepresearch/assets/audio/call-center-jobs.mp3
 category: research
 date: 2025-07-09
 description: 広島市内のテレアポ・コールセンター求人情報を詳細に調査し、職務内容や給与、待遇を比較分析した専門的なレポートです。求職者が最適なキャリア選択を行うための指針となることを目的としています。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 広島市内でテレアポの求人情報を調査したい。仕事の内容と給与や待遇を比較して表にまとめて欲しい。
 supplementary_materials:
-  - title: 広島市テレアポ求人市場インフォグラフィック
-    url: /share-deepresearch/topics/call-center-jobs/infographic.html
-  - title: 広島コールセンター求人 解体新書
-    url: /share-deepresearch/topics/call-center-jobs/reveal.html
-tags: 
+- title: 広島市テレアポ求人市場インフォグラフィック
+  url: /share-deepresearch/topics/call-center-jobs/infographic.html
+- title: 広島コールセンター求人 解体新書
+  url: /share-deepresearch/topics/call-center-jobs/reveal.html
+tags:
 - 企業調査
 title: 広島市におけるテレアポ・コールセンター求人の専門的分析レポート
 ---
