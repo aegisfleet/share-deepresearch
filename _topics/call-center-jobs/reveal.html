@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>広島コールセンター求人 解体新書</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css" integrity="sha512-1vDOkqtCXgcn0zgLIrxVjSIHvXOB/Ho2k33zwIDMqStDdHWvQyVU+BGG2fK4nnOgDbg0jEzVqzTYTL65orMyWw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" integrity="sha512-Nrw40ThKwvPSYyxg6x099eplkB9p5cs2DtorDFSdpapXZlBOJDKK1Hn/gAaYuDQuas6yZJAEG2p2pYQtH80N/w==" crossorigin="anonymous" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css" integrity="sha512-RLF8eOxhuwsRINc7r56dpl9a3VStqrXD+udWahutJrYdyh++2Ghnf+s4jFsOyryKZt/GNjPwbXVPH3MJpKrn2g==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { font-size: 1.3em; line-height: 1.5; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.8em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { font-size: 1.2em; border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-size: 1.2em; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section 
+    data-background-image="https://images.unsplash.com/photo-1587560699334-cc4262401afe?q=80&w=1920&auto=format&fit=crop"
+    data-background-opacity="0.3"
+    data-transition="zoom">
+    <h1 class="animated delay-1">広島コールセンター求人<br>解体新書</h1>
+    <p class="subtitle animated delay-2">データと洞察で解き明かす、あなたに最適なキャリア</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="left-align animated delay-1">本日の流れ</h2>
+    <ul class="left-align">
+        <li class="animated delay-2"><strong>【起】</strong>市場を知る： 広島コールセンター市場の全体像</li>
+        <li class="animated delay-3"><strong>【承】</strong>企業を比べる： 主要プレイヤーの特徴と実態</li>
+        <li class="animated delay-4"><strong>【転】</strong>未来を考える： 働き方とキャリアの進化</li>
+        <li class="animated delay-5"><strong>【結】</strong>あなたに合う仕事を見つける： タイプ別・推奨アクション</li>
+    </ul>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">なぜ今、広島のコールセンターが熱いのか？</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-users"></i>
+            <h3>多様な働き方の選択肢</h3>
+            <p class="small-text"><strong>週3日勤務</strong>、<strong>在宅OK</strong>、<strong>髪色・ネイル自由</strong>など、ライフスタイルに合わせた働き方が可能。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-building-user"></i>
+            <h3>多数の企業が進出</h3>
+            <p class="small-text">大手BPOから専門特化の代理店までが競い合い、<strong>好条件の求人</strong>が豊富に存在する。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">「テレアポ」は2種類ある。あなたはどっち？</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-phone-volume"></i>
+            <h3>インバウンド (受信)</h3>
+            <p class="small-text">顧客からの問合せ対応が中心。<strong>丁寧さ</strong>と<strong>問題解決能力</strong>が求められる。(例: カスタマーサポート)</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long fa-3x animated delay-3"></i>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-headset"></i>
+            <h3>アウトバウンド (発信)</h3>
+            <p class="small-text">新規顧客へアプローチ。<strong>成果</strong>と<strong>精神的な強さ</strong>が求められる。(例: 営業アポ)</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">給与体系も2種類。安定か、挑戦か。</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-piggy-bank"></i>
+            <h3>安定時給型</h3>
+            <p class="small-text">主にインバウンド業務。平均時給は<strong>1,300円〜1,450円</strong>。予測可能な安定収入が魅力。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-rocket"></i>
+            <h3>高インセンティブ型</h3>
+            <p class="small-text">主にアウトバウンド業務。成果次第で<strong>時給2,000円以上</strong>も可能。高収入を目指せる。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">３つの企業タイプ、あなたに合うのは？</h2>
+    <div class="flex-container" style="margin-top: 50px; align-items: stretch;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3>大手社内センター</h3>
+            <p class="small-text">JR西日本など。<strong>安定性・研修・福利厚生</strong>が抜群。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-sitemap"></i>
+            <h3>BPO専門企業</h3>
+            <p class="small-text">アルティウスリンクなど。<strong>多様な案件</strong>と<strong>柔軟な働き方</strong>が特徴。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-bullseye"></i>
+            <h3>営業特化エージェント</h3>
+            <p class="small-text">NEXSTARなど。<strong>成果主義</strong>で高収入を狙う環境。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">徹底比較：安定の社内センター vs 挑戦の営業特化</h2>
+    <table class="comparison-table animated delay-2">
+        <thead>
+            <tr>
+                <th>特徴</th>
+                <th>大手社内センター (例: JR西日本)</th>
+                <th>営業特化 (例: NEXSTAR)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>目的</td>
+                <td>ブランド価値向上・高品質なサービス提供</td>
+                <td>売上創出・利益最大化</td>
+            </tr>
+            <tr>
+                <td>給与</td>
+                <td><strong>安定時給</strong>・高水準</td>
+                <td>基本給＋<strong>高歩合給</strong></td>
+            </tr>
+            <tr>
+                <td>文化</td>
+                <td>プロセス重視・丁寧・法令順守</td>
+                <td><strong>実力主義</strong>・スピード・活気</td>
+            </tr>
+            <tr>
+                <td>魅力</td>
+                <td>手厚い研修・充実した福利厚生</td>
+                <td><strong>高収入の可能性</strong></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section data-transition="zoom">
+    <h2 class="animated delay-1">求人票の裏側：「ノルマなし」の本当の意味</h2>
+    <p class="animated delay-2">「ノルマなし」は「評価なし」ではありません。成果を測る<strong>KPI (重要業績評価指標)</strong>が必ず存在します。</p>
+    <div class="flex-container" style="margin-top: 30px;">
+        <div class="flex-box animated delay-3">
+            <i class="fa-regular fa-circle-check"></i>
+            <h3>インバウンドの「評価」</h3>
+            <p class="small-text"><strong>顧客満足度 (CSAT)</strong>や<strong>平均処理時間 (AHT)</strong>など、品質と効率性が評価指標。</p>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-arrow-up-right-dots"></i>
+            <h3>アウトバウンドの「評価」</h3>
+            <p class="small-text"><strong>アポイント獲得数</strong>や<strong>成約数</strong>が評価され、インセンティブ (給与) に直結。</p>
+        </div>
+    </div>
+    <p class="small-text animated delay-5" style="margin-top: 30px;"><i class="fa-solid fa-magnifying-glass"></i> <strong>面接での質問例:</strong> 「パフォーマンスはどのような指標で評価されますか？」</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="left-align animated delay-1">在宅勤務を成功させるための必須チェックリスト</h2>
+    <ul class="left-align" style="margin-top: 30px; list-style-type: none;">
+        <li class="animated delay-2"><i class="fa-solid fa-desktop" style="color: var(--accent-color); width: 40px;"></i> <strong>機材提供：</strong> PCやヘッドセットは貸与されるか？</li>
+        <li class="animated delay-3"><i class="fa-solid fa-wifi" style="color: var(--accent-color); width: 40px;"></i> <strong>通信環境：</strong> 自宅のネット回線に要件 (例: 光回線) はあるか？</li>
+        <li class="animated delay-4"><i class="fa-solid fa-headset" style="color: var(--accent-color); width: 40px;"></i> <strong>サポート体制：</strong> トラブル時にすぐSV (上司) に相談できるか？</li>
+        <li class="animated delay-5"><i class="fa-solid fa-lock" style="color: var(--accent-color); width: 40px;"></i> <strong>セキュリティ：</strong> 顧客情報の取扱いルールは明確か？</li>
+    </ul>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated delay-1">AI時代に輝く「顧客体験(CX)のプロ」へ</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-robot"></i>
+            <h3>AIの役割</h3>
+            <p class="small-text">単純な問合せを自動化し、オペレーターを<strong>支援する</strong>パートナーになる。</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long fa-3x animated delay-3"></i>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-user-tie"></i>
+            <h3>人間の役割</h3>
+            <p class="small-text"><strong>共感力</strong>や<strong>複雑な問題解決</strong>など、AIにはできない高度な対応に集中する。</p>
+        </div>
+    </div>
+    <p class="animated delay-5" style="margin-top: 40px;">コールセンターは、市場価値の高い<strong>ポータブルスキル</strong>を習得する「スキル養成所」に進化しています。</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">まとめ：4つの軸で最適な仕事を見つけよう</h2>
+    <div class="flex-container" style="margin-top: 50px; flex-wrap: wrap; gap: 40px;">
+        <div class="flex-box animated delay-2" style="flex-basis: 40%;">
+            <i class="fa-solid fa-briefcase"></i>
+            <h3>1. 仕事内容</h3>
+            <p class="small-text">インバウンド vs アウトバウンド</p>
+        </div>
+        <div class="flex-box animated delay-3" style="flex-basis: 40%;">
+            <i class="fa-solid fa-yen-sign"></i>
+            <h3>2. 給与体系</h3>
+            <p class="small-text">安定時給 vs 高インセンティブ</p>
+        </div>
+        <div class="flex-box animated delay-4" style="flex-basis: 40%;">
+            <i class="fa-regular fa-building"></i>
+            <h3>3. 企業タイプ</h3>
+            <p class="small-text">社内センター vs BPO vs 営業特化</p>
+        </div>
+        <div class="flex-box animated delay-5" style="flex-basis: 40%;">
+            <i class="fa-solid fa-house-laptop"></i>
+            <h3>4. 勤務形態</h3>
+            <p class="small-text">オフィス vs 在宅</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated delay-1">あなたのタイプ別 おすすめアクション</h2>
+    <div class="flex-container" style="margin-top: 50px; align-items: stretch;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-chess-knight"></i>
+            <h3>高収入を狙う挑戦者</h3>
+            <p class="small-text"><strong>営業特化企業</strong>で実力を試す。面接ではインセンティブの詳細を必ず確認！</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-house-user"></i>
+            <h3>安定とキャリアを求める<br>長期志向者</h3>
+            <p class="small-text"><strong>大手社内センター</strong>で研修と福利厚生を活用。正社員登用も視野に。</p>
+        </div>
+    </div>
+    <p class="small-text animated delay-4" style="margin-top: 30px;">※柔軟性を求めるなら<strong>BPO企業</strong>、電話が苦手なら<strong>チャット専門職</strong>も有力な選択肢です。</p>
+</section>
+
+<section
+    data-background-image="https://images.unsplash.com/photo-1568163889045-31a8b1a8d549?q=80&w=1920&auto=format&fit=crop"
+    data-background-opacity="0.3"
+    data-transition="zoom">
+    <h1 class="animated delay-1">Your Next Career Starts Here.</h1>
+    <p class="subtitle animated delay-2">広島で、あなたらしい働き方を見つけよう。</p>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js" integrity="sha512-TC5IA+BA/5YPBb/MJyk97ypzvXYUIlAksfuxlUXlhD7cM7y/stM4JuytDeYJlsiKxmRDV5krDyuugOoMOHwyJg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js" integrity="sha512-MZ7Ehjbh2soaeCZJGaw6vBNAa7+eunl0SUmRPNESchLlboH73lHLEeUa6pZJ2Pcui4NcpDFatr6M+VlcmaH1QA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js" integrity="sha512-guKTp0XUnqVXjZtsa2+zQ8KVYoHjYM/MvoBlLiypVudmshBfMg0SeglTcPJGeRAqPyMp1Tcyu8+APV842XNB1Q==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js" integrity="sha512-RCedMo/DOyawQOh4zYtqEHTZAfgrrVQctN3LVCX5kELGsN52TOdwZ8inRY0l9Mo4vtyDFn6oOAgRUilWXgb+wA==" crossorigin="anonymous"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>広島市テレアポ求人市場インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 45vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-connector {
+            position: relative;
+            text-align: center;
+        }
+        .flowchart-connector::after {
+            content: '▼';
+            font-size: 1.5rem;
+            color: #58508d;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .kpi-card {
+            background-color: #f0f3f8;
+            border-left: 5px solid;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003f5c] mb-2">広島コールセンター求人市場を完全解剖</h1>
+            <p class="text-lg text-gray-600">あなたのキャリアに最適な仕事を見つけるためのデータインサイト</p>
+        </header>
+
+        <main class="space-y-16">
+
+            <section id="job-types">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#003f5c]">最初の分かれ道：受信か、発信か？</h2>
+                    <p class="mt-2 text-gray-600">コールセンターの仕事は、主に「インバウンド（受信）」と「アウトバウンド（発信）」に大別されます。これはあなたの働き方と収入を決定する最も重要な選択です。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-[#ff6361]">
+                        <h3 class="text-2xl font-bold text-[#ff6361] mb-4">インバウンド (受信業務)</h3>
+                        <p class="mb-4">顧客からの電話を受ける「守り」の仕事。丁寧な対応と問題解決能力が求められます。</p>
+                        <ul class="space-y-2 list-inside">
+                            <li><span class="font-bold text-lg text-[#ff6361]">🤝 役割:</span> カスタマーサポート、テクニカルサポート</li>
+                            <li><span class="font-bold text-lg text-[#ff6361]">🎯 目的:</span> 顧客満足度の向上、問題解決</li>
+                            <li><span class="font-bold text-lg text-[#ff6361]">💆‍♀️ 特徴:</span> 精神的負担が比較的低い、安定した環境</li>
+                            <li><span class="font-bold text-lg text-[#ff6361]">💰 給与:</span> 安定した時給制が中心</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-[#58508d]">
+                        <h3 class="text-2xl font-bold text-[#58508d] mb-4">アウトバウンド (発信業務)</h3>
+                        <p class="mb-4">企業側から電話をかける「攻め」の仕事。成果が直接報酬に結びつきます。</p>
+                        <ul class="space-y-2 list-inside">
+                            <li><span class="font-bold text-lg text-[#58508d]">📞 役割:</span> テレアポ、テレマーケティング</li>
+                            <li><span class="font-bold text-lg text-[#58508d]">🎯 目的:</span> アポイント獲得、商品販売</li>
+                            <li><span class="font-bold text-lg text-[#58508d]">💪 特徴:</span> 高い成果主義、精神的な強さが求められる</li>
+                            <li><span class="font-bold text-lg text-[#58508d]">💰 給与:</span> 高いインセンティブ（歩合給）が魅力</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="salary">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#003f5c]">給与の真実：安定か、挑戦か？</h2>
+                    <p class="mt-2 text-gray-600">広島市のコールセンターの給与体系は二極化しています。安定した収入を選ぶか、成果次第で高収入を狙うか、データで比較しましょう。</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-center mb-4">主要企業の時給比較 (安定時給型)</h3>
+                        <p class="text-sm text-center text-gray-600 mb-4">インバウンド業務が中心の大手企業は、手厚い研修と安定した時給が魅力です。</p>
+                        <div class="chart-container">
+                            <canvas id="hourlyWageChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-center mb-4">給与レンジ比較 (高インセンティブ型)</h3>
+                        <p class="text-sm text-center text-gray-600 mb-4">アウトバウンド業務では、基本給に加えて成果に応じたインセンティブが支給され、上限はあなたの実力次第です。</p>
+                         <div class="chart-container">
+                            <canvas id="incentiveChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="kpi-reality">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#003f5c]">「ノルマなし」の裏側：評価指標の現実</h2>
+                    <p class="mt-2 text-gray-600">「ノルマなし」でも評価は存在します。業務の質と効率を測るためのKPI（重要業績評価指標）を理解することが重要です。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="kpi-card p-6 rounded-lg" style="border-color: #ff6361;">
+                        <h3 class="text-xl font-bold text-[#ff6361] mb-3">インバウンドの主なKPI</h3>
+                        <ul class="space-y-2">
+                            <li><strong class="text-gray-700">AHT (平均処理時間):</strong> いかに効率よく対応できたか</li>
+                            <li><strong class="text-gray-700">FCR (一次解決率):</strong> 一本の電話で問題を解決できたか</li>
+                            <li><strong class="text-gray-700">CSAT (顧客満足度):</strong> 顧客がどれだけ満足してくれたか</li>
+                        </ul>
+                    </div>
+                    <div class="kpi-card p-6 rounded-lg" style="border-color: #58508d;">
+                        <h3 class="text-xl font-bold text-[#58508d] mb-3">アウトバウンドの主なKPI</h3>
+                         <ul class="space-y-2">
+                            <li><strong class="text-gray-700">架電数:</strong> どれだけ多くアプローチしたか</li>
+                            <li><strong class="text-gray-700">アポイント獲得数:</strong> どれだけ商談の機会を作れたか</li>
+                            <li><strong class="text-gray-700">成約数:</strong> どれだけ売上に貢献できたか</li>
+                        </ul>
+                    </div>
+                </div>
+                 <p class="text-center mt-6 text-gray-600 bg-blue-50 p-4 rounded-lg"><strong>面接での質問ポイント:</strong> 「個人のパフォーマンスはどのような指標で評価されますか？」と尋ねることで、職場のカルチャーが見えてきます。</p>
+            </section>
+
+            <section id="companies">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#003f5c]">どの会社で働く？主要企業タイプ別分析</h2>
+                    <p class="mt-2 text-gray-600">企業のタイプによって、文化やキャリアパスは大きく異なります。あなたに合うのはどのタイプ？</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col">
+                        <h3 class="text-2xl font-bold text-[#bc5090] mb-4">👑 大手社内センター</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">親会社のサービスに特化。安定性、手厚い研修、充実した福利厚生が特徴。長期的なキャリア形成に最適。</p>
+                        <div class="mt-auto">
+                            <p class="font-bold">代表企業:</p>
+                            <p>JR西日本、タイムズコミュニケーション</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col">
+                        <h3 class="text-2xl font-bold text-[#ffa600] mb-4">🏢 BPOの巨人</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">様々な企業の業務を請け負う専門家集団。多様なプロジェクトと柔軟な働き方が魅力。未経験者のスキルアップにも。</p>
+                        <div class="mt-auto">
+                            <p class="font-bold">代表企業:</p>
+                            <p>アルティウスリンク、ベルシステム24</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col md:col-span-2 lg:col-span-1">
+                        <h3 class="text-2xl font-bold text-[#003f5c] mb-4">🚀 営業特化企業</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">アウトバウンド営業の成果を追求する実力主義の環境。高いインセンティブで高収入を狙える挑戦者向け。</p>
+                        <div class="mt-auto">
+                            <p class="font-bold">代表企業:</p>
+                            <p>NEXSTAR、アイドットコム</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="career-path">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[#003f5c]">未来へのキャリアパス</h2>
+                    <p class="mt-2 text-gray-600">コールセンターの経験は、価値の高いポータブルスキルを習得する絶好の機会です。AI時代に求められる人材へと成長できます。</p>
+                </div>
+                <div class="max-w-md mx-auto text-center">
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <p class="text-xl font-bold text-[#58508d]">オペレーター</p>
+                        <p class="text-sm text-gray-500">顧客対応の最前線</p>
+                    </div>
+                    <div class="flowchart-connector"></div>
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <p class="text-xl font-bold text-[#58508d]">チームリーダー</p>
+                        <p class="text-sm text-gray-500">メンバーのサポート役</p>
+                    </div>
+                    <div class="flowchart-connector"></div>
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <p class="text-xl font-bold text-[#58508d]">スーパーバイザー (SV)</p>
+                        <p class="text-sm text-gray-500">チームの管理・運営</p>
+                    </div>
+                    <div class="flowchart-connector"></div>
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <p class="text-xl font-bold text-[#58508d]">マネージャー</p>
+                        <p class="text-sm text-gray-500">センター全体の統括</p>
+                    </div>
+                </div>
+                <p class="text-center mt-8 text-gray-700 bg-green-50 p-4 rounded-lg max-w-3xl mx-auto">AIが単純作業を代替する未来、人間に求められるのは<strong class="text-green-800">共感力</strong>、<strong class="text-green-800">複雑な問題解決能力</strong>、そして<strong class="text-green-800">創造性</strong>です。これらはまさにコールセンターで磨かれるスキルです。</p>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t">
+            <p class="text-gray-500">本インフォグラフィックは提供された調査レポートに基づき作成されました。</p>
+        </footer>
+    </div>
+
+    <script>
+        const brilliantBlues = ['#003f5c', '#58508d', '#bc5090', '#ff6361', '#ffa600'];
+
+        function wrapLabel(label, maxLength = 16) {
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split('');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if (currentLine.length + word.length > maxLength) {
+                    lines.push(currentLine);
+                    currentLine = '';
+                }
+                currentLine += word;
+            });
+            lines.push(currentLine);
+            return lines;
+        }
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join('');
+            }
+            return label;
+        };
+
+        const commonChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#374151',
+                        font: {
+                            family: "'Noto Sans JP', sans-serif",
+                        }
+                    },
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#374151',
+                        font: {
+                           family: "'Noto Sans JP', sans-serif",
+                        }
+                    },
+                }
+            }
+        };
+
+        const hourlyWageCtx = document.getElementById('hourlyWageChart');
+        if (hourlyWageCtx) {
+            const hourlyWageData = {
+                labels: [
+                    wrapLabel('JR西日本カスタマーリレーションズ'), 
+                    wrapLabel('タイムズコミュニケーション'), 
+                    wrapLabel('アルティウスリンク'),
+                    wrapLabel('ベルシステム24'), 
+                    wrapLabel('ランスタッド(派遣)')
+                ],
+                datasets: [{
+                    label: '最低時給 (円)',
+                    data: [1510, 1430, 1420, 1300, 1400],
+                    backgroundColor: [brilliantBlues[4], brilliantBlues[3], brilliantBlues[2], brilliantBlues[1], brilliantBlues[0]],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            };
+            new Chart(hourlyWageCtx, {
+                type: 'bar',
+                data: hourlyWageData,
+                options: { ...commonChartOptions, 
+                   scales: {
+                        ...commonChartOptions.scales,
+                        y: {
+                           ...commonChartOptions.scales.y,
+                            beginAtZero: false,
+                             title: {
+                                display: true,
+                                text: '時給 (円)'
+                            }
+                        }
+                   }
+                }
+            });
+        }
+
+        const incentiveCtx = document.getElementById('incentiveChart');
+        if (incentiveCtx) {
+            const incentiveData = {
+                labels: ['アイドットコム', 'OUT OF STEP', 'NEXSTAR'],
+                datasets: [{
+                    label: '時給範囲 (円)',
+                    data: [
+                        [2000, 2000], 
+                        [1300, 2500],
+                        [1300, 2000]
+                    ],
+                    backgroundColor: [brilliantBlues[0], brilliantBlues[1], brilliantBlues[2]],
+                    borderColor: '#ffffff',
+                    borderWidth: 2,
+                    barPercentage: 0.6,
+                    categoryPercentage: 0.7
+                }]
+            };
+            new Chart(incentiveCtx, {
+                type: 'bar',
+                data: incentiveData,
+                options: {
+                    ...commonChartOptions,
+                    indexAxis: 'y',
+                    scales: {
+                        ...commonChartOptions.scales,
+                        x: {
+                            ...commonChartOptions.scales.x,
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: '時給 (円)'
+                            }
+                        },
+                        y: {
+                           ...commonChartOptions.scales.y,
+                        }
+                    },
+                    plugins: {
+                        ...commonChartOptions.plugins,
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: function(context) {
+                                    const raw = context.raw;
+                                    if (raw[0] === raw[1]) {
+                                        return `時給 ${raw[0]}円～`;
+                                    }
+                                    return `時給 ${raw[0]}円 ～ ${raw[1]}円`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
