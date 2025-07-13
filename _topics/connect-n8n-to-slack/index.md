@@ -4,7 +4,7 @@ category: engineering
 date: 2025-06-03
 description: 本レポートの目的は、AWS上にセルフホストされたn8nを利用し、特定のSlackメッセージリアクションに応じてGitHubのIssueを自動的に作成する、堅牢な自動化パイプラインを構築することです。この自動化は、共同作業環境から直接バグ報告、タスク作成、またはフィードバック収集を効率化するという一般的なニーズに対応します。
 ga4_metrics:
-  avgSessionDuration: 21.545797375
+  avgSessionDuration: 22.25538125
   pageViews: 6
   users: 5
 layout: topic
