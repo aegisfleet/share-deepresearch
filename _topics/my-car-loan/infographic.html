@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>広島県 低金利マイカーローン インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-step {
+            position: relative;
+            padding-left: 2.5rem;
+            padding-bottom: 2rem;
+            border-left: 2px solid #00B4D8;
+        }
+        .flowchart-step:last-child {
+            border-left: 2px solid transparent;
+        }
+        .flowchart-dot {
+            position: absolute;
+            left: -0.7rem;
+            top: 0;
+            height: 1.25rem;
+            width: 1.25rem;
+            border-radius: 9999px;
+            background-color: #0077B6;
+            border: 2px solid #CAF0F8;
+        }
+    </style>
+</head>
+<body class="text-[#03045E]">
+
+    <header class="bg-[#03045E] text-white p-8 text-center shadow-lg">
+        <h1 class="text-4xl md:text-5xl font-black mb-2">広島県マイカーローン完全ガイド</h1>
+        <p class="text-lg text-[#ADE8F4]">最適なローン選びを、データで徹底サポート</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="introduction" class="mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8 text-center">
+                <h2 class="text-3xl font-bold mb-4 text-[#0077B6]">金利だけじゃない、賢いローン選びの新常識</h2>
+                <p class="text-base md:text-lg mb-6 max-w-3xl mx-auto">マイカーローン選びは、表面的な金利の低さだけで判断すると、思わぬコスト増につながることがあります。「保証料」の有無や「金利タイプ」の違いが総返済額に大きく影響します。このインフォグラフィックでは、広島県で利用可能な主要ローンを多角的に分析し、あなたにとって本当に有利な選択肢を可視化します。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <div class="bg-[#CAF0F8] p-6 rounded-lg">
+                        <h3 class="text-xl font-bold mb-2">変動金利 vs 固定金利</h3>
+                        <p class="text-sm">変動金利は当初低めですが金利上昇リスクがあり、固定金利は返済額が一定で安心です。あなたのリスク許容度に合わせて選びましょう。</p>
+                    </div>
+                    <div class="bg-[#ADE8F4] p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-red-700">⚠️ 保証料の罠に注意！</h3>
+                        <p class="text-sm">表示金利が低くても、別途保証料が必要な場合があります。必ず「実質年率」で比較することが重要です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rate-comparison" class="mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-2 text-center text-[#0077B6]">金利ランキング：広島の低金利ローンはこれだ！</h2>
+                <p class="text-base text-center mb-6">各金融機関が提供する最も有利な条件（WEB申込、給与振込など）を適用した場合の実質的な最低金利を比較しました。保証料が必要なJAバンクは、最低保証料率を加算して算出しています。</p>
+                <div class="chart-container">
+                    <canvas id="rateBarChart"></canvas>
+                </div>
+                <p class="text-xs text-center mt-4 text-gray-500">※金利は審査により変動します。上記は2025年7月時点の調査に基づく参考値です。</p>
+            </div>
+        </section>
+
+        <section id="spec-comparison" class="mb-12">
+             <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-2 text-center text-[#0077B6]">スペックで比較：あなたのニーズに合うのは？</h2>
+                <p class="text-base text-center mb-6">金利だけでなく、返済期間の長さや繰上返済のしやすさも重要な選択基準です。各ローンの特徴をレーダーチャートで比較し、総合力を評価しました。</p>
+                <div class="chart-container h-80 md:h-[500px] max-w-2xl">
+                    <canvas id="specRadarChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="user-type" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-center text-[#0077B6]">タイプ別診断：あなたにピッタリのローンは？</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-[#FFD60A]">
+                    <h3 class="text-xl font-bold mb-3">💰 金利最優先タイプ</h3>
+                    <p class="text-sm mb-4">とにかく支払総額を抑えたいあなたへ。WEB手続きやろうきん会員資格の確認を厭わないなら、圧倒的な低金利が狙えます。</p>
+                    <ul class="text-sm space-y-2">
+                        <li class="font-bold">🥇 広島信用金庫 (WEB)</li>
+                        <li class="font-bold">🥈 損害保険ジャパン</li>
+                        <li class="font-bold">🥉 広島銀行</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-[#00B4D8]">
+                    <h3 class="text-xl font-bold mb-3">🏦 メインバンク優先タイプ</h3>
+                    <p class="text-sm mb-4">手続きの手間を省きたいあなたへ。給与振込や住宅ローンで利用中の銀行なら、話が早く、優遇金利も期待できます。</p>
+                    <ul class="text-sm space-y-2">
+                        <li class="font-bold">🥇 広島銀行</li>
+                        <li class="font-bold">🥈 もみじ銀行</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-[#0077B6]">
+                    <h3 class="text-xl font-bold mb-3">🛡️ 安定志向タイプ</h3>
+                    <p class="text-sm mb-4">将来の金利上昇リスクを避けたいあなたへ。返済計画を確定できる固定金利がベストな選択です。</p>
+                    <ul class="text-sm space-y-2">
+                         <li class="font-bold">🥇 損害保険ジャパン</li>
+                         <li class="font-bold">🥈 中国労働金庫 (10年固定)</li>
+                    </ul>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-6 border-t-4 border-[#00B4D8]">
+                    <h3 class="text-xl font-bold mb-3">🧑‍💻 柔軟性重視タイプ</h3>
+                    <p class="text-sm mb-4">パート・アルバイトの方や、繰上返済を積極的に考えているあなたへ。申込条件が広く、手数料無料のローンがおすすめです。</p>
+                    <ul class="text-sm space-y-2">
+                        <li class="font-bold">🥇 広島銀行 (申込条件)</li>
+                        <li class="font-bold">🥈 住信SBIネット銀行 (繰上返済)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="flowchart" class="mb-12">
+             <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold mb-6 text-center text-[#0077B6]">最終決定までの5ステップ</h2>
+                <div class="max-w-2xl mx-auto">
+                    <div class="flowchart-step">
+                        <div class="flowchart-dot"></div>
+                        <h3 class="font-bold text-lg">Step 1: 自己評価</h3>
+                        <p class="text-sm">年収・勤続年数、メインバンク、ろうきん会員資格などを確認し、自分の状況を正確に把握します。</p>
+                    </div>
+                    <div class="flowchart-step">
+                        <div class="flowchart-dot"></div>
+                        <h3 class="font-bold text-lg">Step 2: 候補の絞り込み</h3>
+                        <p class="text-sm">このページの情報を基に、自分のタイプに合った金融機関を3社程度に絞り込みます。</p>
+                    </div>
+                    <div class="flowchart-step">
+                        <div class="flowchart-dot"></div>
+                        <h3 class="font-bold text-lg">Step 3: 仮審査の申込</h3>
+                        <p class="text-sm">絞り込んだ金融機関の公式サイトから一斉に仮審査を申し込み、実際に適用される金利と融資額を確認します。</p>
+                    </div>
+                    <div class="flowchart-step">
+                        <div class="flowchart-dot"></div>
+                        <h3 class="font-bold text-lg">Step 4: 総支払額の比較</h3>
+                        <p class="text-sm">仮審査の結果を基に、ローンシミュレーターで総支払額を計算。保証料も忘れずに加味して比較します。</p>
+                    </div>
+                    <div class="flowchart-step">
+                         <div class="flowchart-dot"></div>
+                        <h3 class="font-bold text-lg">Step 5: 本申込</h3>
+                        <p class="text-sm">最も条件の良い1社を選び、必要書類を準備して本申し込みに進みます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-6 bg-[#03045E] text-white text-sm">
+        <p>このインフォグラフィックは提供された公開情報に基づき作成されたものであり、情報の正確性・完全性を保証するものではありません。</p>
+        <p>最終的な契約にあたっては、必ず各金融機関の公式サイトで最新の情報を確認してください。</p>
+    </footer>
+
+    <script>
+        const wrapLabel = (label, maxLength = 10) => {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.replace(/「|」/g, ' ').split(/\s+/).filter(w => w);
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    if (currentLine) lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine += (currentLine ? ' ' : '') + word;
+                }
+            }
+            if (currentLine) lines.push(currentLine);
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            return Array.isArray(label) ? label.join(' ') : label;
+        };
+
+        const commonChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: {
+                            family: "'Noto Sans JP', sans-serif",
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    bodyFont: {
+                        family: "'Noto Sans JP', sans-serif",
+                    },
+                    titleFont: {
+                         family: "'Noto Sans JP', sans-serif",
+                    }
+                }
+            }
+        };
+        
+        const barChartData = {
+            labels: [
+                '広島銀行', 
+                '損害保険ジャパン', 
+                'もみじ銀行',
+                '三菱UFJ銀行',
+                '広島信用金庫 (WEB)', 
+                'JAバンク広島 (実質)', 
+                '中国労働金庫 (会員)',
+                '住信SBIネット銀行',
+            ].map(l => wrapLabel(l)),
+            datasets: [{
+                label: '最低実質年率 (%)',
+                data: [1.50, 1.55, 1.60, 1.65, 1.70, 1.80, 2.025, 2.275],
+                backgroundColor: [
+                    '#FFD60A', '#FFD60A', '#FFD60A', '#FFD60A',
+                    '#00B4D8', '#00B4D8', '#00B4D8', '#00B4D8' 
+                ],
+                borderColor: '#03045E',
+                borderWidth: 1
+            }]
+        };
+
+        const rateBarCtx = document.getElementById('rateBarChart').getContext('2d');
+        new Chart(rateBarCtx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                ...commonChartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: '実質年率 (%)' }
+                    }
+                },
+                indexAxis: 'y',
+            }
+        });
+
+        const radarChartData = {
+            labels: ['返済期間の長さ', '手数料の安さ', '申込条件の広さ', '金利の低さ', 'WEB完結度'],
+            datasets: [
+                {
+                    label: '広島銀行',
+                    data: [5, 3, 5, 4, 4],
+                    borderColor: '#F94144',
+                    backgroundColor: 'rgba(249, 65, 68, 0.2)',
+                },
+                {
+                    label: '広島信用金庫',
+                    data: [5, 3, 4, 5, 5],
+                    borderColor: '#F9C74F',
+                    backgroundColor: 'rgba(249, 199, 79, 0.2)',
+                },
+                {
+                    label: '損害保険ジャパン',
+                    data: [3, 1, 3, 5, 5],
+                    borderColor: '#43AA8B',
+                    backgroundColor: 'rgba(67, 170, 139, 0.2)',
+                },
+                 {
+                    label: '住信SBIネット銀行',
+                    data: [3, 5, 4, 2, 5],
+                    borderColor: '#577590',
+                    backgroundColor: 'rgba(87, 117, 144, 0.2)',
+                }
+            ]
+        };
+
+        const specRadarCtx = document.getElementById('specRadarChart').getContext('2d');
+        new Chart(specRadarCtx, {
+            type: 'radar',
+            data: radarChartData,
+            options: {
+                ...commonChartOptions,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                        grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                        pointLabels: { font: { size: 12 } },
+                        suggestedMin: 0,
+                        suggestedMax: 5
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

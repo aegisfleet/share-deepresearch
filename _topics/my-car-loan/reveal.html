@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>広島で選ぶ、最高のマイカーローン</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css" integrity="sha512-1vDOkqtCXgcn0zgLIrxVjSIHvXOB/Ho2k33zwIDMqStDdHWvQyVU+BGG2fK4nnOgDbg0jEzVqzTYTL65orMyWw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" integrity="sha512-Nrw40ThKwvPSYyxg6x099eplkB9p5cs2DtorDFSdpapXZlBOJDKK1Hn/gAaYuDQuas6yZJAEG2p2pYQtH80N/w==" crossorigin="anonymous" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css" integrity="sha512-RLF8eOxhuwsRINc7r56dpl9a3VStqrXD+udWahutJrYdyh++2Ghnf+s4jFsOyryKZt/GNjPwbXVPH3MJpKrn2g==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { font-size: 1.3em; line-height: 1.5; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.8em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { font-size: 1.2em; border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-size: 1.2em; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section
+  data-transition="zoom"
+  data-background-image="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf"
+  data-background-opacity="0.2"
+>
+  <h1 class="animated delay-1">
+    広島で選ぶ、<strong>最高のマイカーローン</strong>
+  </h1>
+  <p class="subtitle animated delay-2">後悔しないための戦略的ガイド</p>
+</section>
+
+<section data-transition="slide">
+  <h2 class="left-align animated delay-1">Agenda</h2>
+  <ul class="left-align">
+    <li class="animated delay-2">
+      <i class="fa-solid fa-flag-checkered" style="color: #ff7733"></i>
+      なぜローン選びは重要か？
+    </li>
+    <li class="animated delay-3">
+      <i class="fa-solid fa-search-dollar" style="color: #ff7733"></i>
+      比較の罠と基本知識
+    </li>
+    <li class="animated delay-4">
+      <i class="fa-solid fa-building-columns" style="color: #ff7733"></i>
+      主要金融機関の徹底分析
+    </li>
+    <li class="animated delay-5">
+      <i class="fa-solid fa-user-check" style="color: #ff7733"></i>
+      あなたに合うローンの見つけ方
+    </li>
+    <li class="animated delay-6">
+      <i class="fa-solid fa-list-check" style="color: #ff7733"></i>
+      最終決定へのロードマップ
+    </li>
+  </ul>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">なぜ銀行ローン？ vs <strong>ディーラーローン</strong></h2>
+  <div class="flex-container" style="margin-top: 50px">
+    <div class="flex-box animated delay-2">
+      <i class="fa-solid fa-building-columns"></i>
+      <h3>銀行ローン</h3>
+      <p>
+        金利は<strong>年1～3%台</strong>が中心。車の所有権も<strong>初めから本人名義</strong>に。
+      </p>
+    </div>
+    <i
+      class="fa-solid fa-arrow-right-long animated delay-3"
+      style="font-size: 4em"
+    ></i>
+    <div class="flex-box animated delay-4">
+      <i class="fa-solid fa-car"></i>
+      <h3>ディーラーローン</h3>
+      <p>
+        金利は<strong>年5%以上</strong>が一般的。完済まで所有権は信販会社等に留保される。
+      </p>
+    </div>
+  </div>
+  <p class="animated delay-5" style="margin-top: 30px">
+    手間を惜しまなければ、<strong>銀行ローンの方が経済的合理性は高い</strong>です。
+  </p>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">金利の基本：<strong>変動金利</strong> vs <strong>固定金利</strong></h2>
+  <div class="flex-container" style="align-items: flex-start; margin-top: 50px">
+    <div class="flex-box animated delay-2">
+      <i class="fa-solid fa-arrow-trend-up"></i>
+      <h3>変動金利</h3>
+      <p style="text-align: left">
+        <i class="fa-solid fa-circle-check" style="color: #ff7733"></i>
+        当初の金利が低い傾向<br />
+        <i class="fa-solid fa-circle-xmark" style="color: #e0e0e0"></i>
+        将来、金利が上昇するリスク
+      </p>
+    </div>
+    <div class="flex-box animated delay-3">
+      <i class="fa-solid fa-lock"></i>
+      <h3>固定金利</h3>
+      <p style="text-align: left">
+        <i class="fa-solid fa-circle-check" style="color: #ff7733"></i>
+        返済額が最後まで一定で安心<br />
+        <i class="fa-solid fa-circle-xmark" style="color: #e0e0e0"></i>
+        当初の金利は高めの設定
+      </p>
+    </div>
+  </div>
+  <p class="animated delay-4" style="margin-top: 30px">
+    <strong>安定性</strong>なら固定、<strong>当初の返済額</strong>を抑えたいなら変動が選択肢になります。
+  </p>
+</section>
+
+<section data-transition="convex">
+  <h2 class="animated delay-1">見落としがちな罠：<strong>「実質年率」</strong>の重要性</h2>
+  <div class="flex-container" style="margin-top: 50px">
+    <div style="flex: 1.2" class="left-align animated delay-2">
+      <p>
+        一部の金融機関では、表示金利とは<strong>別に「保証料」</strong>が必要な場合があります。
+      </p>
+      <p>
+        例えばJAバンクでは、表示金利に<strong>年0.5%〜0.79%</strong>程度上乗せされるケースがあり、必ず保証料込みの<strong>「実質年率」</strong>で比較することが不可欠です。
+      </p>
+    </div>
+    <div class="flex-box animated delay-3" style="flex: 0.8">
+      <p style="font-size: 1.3em; margin: 0">
+        <span class="animated delay-4">表示金利 1.5%</span><br />
+        <span class="animated delay-5" style="font-size: 1.5em">+</span><br />
+        <span class="animated delay-6">保証料 0.7%</span><br />
+        <span class="animated delay-7" style="font-size: 1.5em">=</span><br />
+        <strong class="animated delay-8" style="font-size: 1.8em"
+          >実質負担 2.2%</strong
+        >
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">広島の金融機関①：<strong>地域密着型</strong>の強み</h2>
+  <div class="flex-container" style="margin-top: 50px; align-items: stretch">
+    <div class="flex-box animated delay-2">
+      <i class="fa-solid fa-building-columns"></i>
+      <h3>広島銀行</h3>
+      <p><strong>最長15年</strong>の長期返済が可能。給与振込や住宅ローンで金利優遇。</p>
+    </div>
+    <div class="flex-box animated delay-3">
+      <i class="fa-solid fa-leaf"></i>
+      <h3>もみじ銀行</h3>
+      <p><strong>エコカー割引</strong>が特徴。住宅ローンや複数取引で金利優遇。</p>
+    </div>
+    <div class="flex-box animated delay-4">
+      <i class="fa-solid fa-laptop-code"></i>
+      <h3>広島信用金庫</h3>
+      <p><strong>WEB完結なら年1.70%</strong>と圧倒的低金利。デジタル手続きに強い方に。</p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">広島の金融機関②：<strong>ユニークな選択肢</strong></h2>
+  <div
+    class="flex-container"
+    style="margin-top: 50px; align-items: stretch; gap: 40px"
+  >
+    <div class="flex-box animated delay-2">
+      <i class="fa-solid fa-handshake-angle"></i>
+      <h3>JAバンク広島</h3>
+      <p>
+        低く見える固定金利だが、<strong>別途保証料</strong>の理解が必須。実質年率での比較が重要。
+      </p>
+    </div>
+    <div class="flex-box animated delay-3">
+      <i class="fa-solid fa-users"></i>
+      <h3>中国労働金庫</h3>
+      <p>
+        <strong>ろうきん会員なら年2%台</strong>の超低金利。該当するか勤務先に確認する価値大。
+      p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">全国の金融機関：<strong>ネット完結型</strong>の選択肢</h2>
+  <div class="flex-container" style="margin-top: 50px; align-items: stretch">
+    <div class="flex-box animated delay-2">
+      <i class="fa-solid fa-landmark"></i>
+      <h3>三菱UFJ銀行</h3>
+      <p>
+        メガバンクの安心感。<strong>年収200万円以上</strong>など明確な申込基準あり。
+      </p>
+    </div>
+    <div class="flex-box animated delay-3">
+      <i class="fa-solid fa-shield-halved"></i>
+      <h3>損害保険ジャパン</h3>
+      <p>
+        希少な<strong>全期間固定金利</strong>。金利変動リスクを避けたい安定志向の方に。
+      </p>
+    </div>
+    <div class="flex-box animated delay-4">
+      <i class="fa-solid fa-infinity"></i>
+      <h3>住信SBIネット銀行</h3>
+      <p>
+        <strong>繰上返済が手数料無料</strong>で何度でも可能。柔軟な返済をしたい方に最適。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="convex">
+  <h2 class="animated delay-1">総合比較：あなたに最適なのは？</h2>
+  <table class="comparison-table animated delay-2">
+    <thead>
+      <tr>
+        <th>金融機関名</th>
+        <th>金利タイプ</th>
+        <th>実質年率 (目安)</th>
+        <th>最長期間</th>
+        <th>WEB完結</th>
+        <th>特徴</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>広島銀行</td>
+        <td>変動</td>
+        <td>1.50%～</td>
+        <td>15年</td>
+        <td>◯</td>
+        <td>取引優遇、長期返済</td>
+      </tr>
+      <tr>
+        <td>広島信用金庫</td>
+        <td>変動</td>
+        <td><strong>1.70%</strong></td>
+        <td>15年</td>
+        <td>◎</td>
+        <td><strong>WEB完結が絶対条件</strong></td>
+      </tr>
+      <tr>
+        <td>中国ろうきん</td>
+        <td>変動/固定</td>
+        <td>2.025%～</td>
+        <td>10年</td>
+        <td>◯</td>
+        <td><strong>ろうきん会員なら超低金利</strong></td>
+      </tr>
+      <tr>
+        <td>損害保険ジャパン</td>
+        <td><strong>固定</strong></td>
+        <td><strong>1.55%～</strong></td>
+        <td>10年</td>
+        <td>◎</td>
+        <td>安定の固定金利</td>
+      </tr>
+      <tr>
+        <td>住信SBIネット銀行</td>
+        <td>変動</td>
+        <td>2.275%～</td>
+        <td>10年</td>
+        <td>◎</td>
+        <td>繰上返済が完全無料</td>
+      </tr>
+       <tr>
+        <td>JAバンク広島</td>
+        <td>固定</td>
+        <td>1.3%～+保証料</td>
+        <td>15年</td>
+        <td>◯</td>
+        <td>別途保証料の確認が必須</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="small-text animated delay-3" style="text-align: right; margin-top: 10px;">※金利は優遇条件により変動します。</p>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">あなたに合うローンは？ <strong>タイプ別おすすめ①</strong></h2>
+  <div class="flex-container" style="margin-top: 50px; align-items: stretch;">
+    <div class="flex-box animated delay-2">
+      <i class="fa-solid fa-percent"></i>
+      <h3>金利最優先タイプ</h3>
+      <p>
+        <strong>①中国ろうきん</strong>(会員か確認) → <strong>②広島信用金庫</strong>(WEB完結) → <strong>③住信SBI</strong>(住宅ローン利用者)の順で検討。
+      </p>
+    </div>
+    <div class="flex-box animated delay-3">
+      <i class="fa-solid fa-chart-line"></i>
+      <h3>安定志向タイプ</h3>
+      <p>
+        将来の金利上昇を避けたいなら<strong>損害保険ジャパン</strong>の固定金利が唯一無二の選択肢。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="slide">
+  <h2 class="animated delay-1">あなたに合うローンは？ <strong>タイプ別おすすめ②</strong></h2>
+  <div class="flex-container" style="margin-top: 50px; align-items: stretch;">
+    <div class="flex-box animated delay-2">
+      <i class="fa-solid fa-house-user"></i>
+      <h3>メインバンク優先タイプ</h3>
+      <p>
+        給与振込や住宅ローンで<strong>広島銀行</strong>や<strong>もみじ銀行</strong>を使っているなら、手続きの早さと金利優遇で有力候補に。
+      </p>
+    </div>
+    <div class="flex-box animated delay-3">
+      <i class="fa-solid fa-hand-holding-heart"></i>
+      <h3>柔軟性重視タイプ</h3>
+      <p>
+        パート・年金受給者の方などは、<strong>広島銀行</strong>や<strong>JAバンク</strong>といった地域の金融機関が柔軟な審査が期待できる。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="convex">
+  <h2 class="animated delay-1">最終決定までの<strong>5ステップ</strong></h2>
+  <div class="flex-container" style="margin-top: 50px; align-items: center; gap: 10px;">
+    <div class="animated delay-2" style="text-align: center;">
+      <i class="fa-solid fa-user-check" style="font-size: 3em; color: #ff7733;"></i>
+      <p>Step 1<br>自己評価</p>
+    </div>
+    <i class="fa-solid fa-arrow-right-long animated delay-3"></i>
+    <div class="animated delay-4" style="text-align: center;">
+      <i class="fa-solid fa-filter" style="font-size: 3em; color: #ff7733;"></i>
+      <p>Step 2<br>候補選定</p>
+    </div>
+    <i class="fa-solid fa-arrow-right-long animated delay-5"></i>
+    <div class="animated delay-6" style="text-align: center;">
+      <i class="fa-solid fa-file-signature" style="font-size: 3em; color: #ff7733;"></i>
+      <p>Step 3<br>仮審査</p>
+    </div>
+    <i class="fa-solid fa-arrow-right-long animated delay-7"></i>
+    <div class="animated delay-8" style="text-align: center;">
+      <i class="fa-solid fa-calculator" style="font-size: 3em; color: #ff7733;"></i>
+      <p>Step 4<br>総額試算</p>
+    </div>
+    <i class="fa-solid fa-arrow-right-long animated delay-9"></i>
+    <div class="animated delay-10" style="text-align: center;">
+      <i class="fa-solid fa-paper-plane" style="font-size: 3em; color: #ff7733;"></i>
+      <p>Step 5<br>本申込</p>
+    </div>
+  </div>
+</section>
+
+<section data-transition="zoom">
+    <h2 class="animated delay-1">【重要】注意すべきローン</h2>
+    <i class="fa-solid fa-triangle-exclamation animated delay-2" style="font-size: 5em; color: #ff7733; margin-top: 40px;"></i>
+    <p class="animated delay-3" style="margin-top: 40px;">
+        「auじぶん銀行」で直接申し込めるのは、現状<strong>高金利な「カードローン」</strong>の可能性が極めて高いです。
+    </p>
+    <p class="animated delay-4">
+        低金利な<strong>「マイカーローン」とは全くの別物</strong>なので、選択肢から除外するのが賢明です。
+    </p>
+</section>
+
+<section
+  data-transition="zoom"
+  data-background-image="https://images.unsplash.com/photo-1552519507-da3b142c6e3d"
+  data-background-opacity="0.2"
+>
+  <h1 class="animated delay-1">最適な選択で、<br><strong>素晴らしいカーライフを。</strong></h1>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js" integrity="sha512-TC5IA+BA/5YPBb/MJyk97ypzvXYUIlAksfuxlUXlhD7cM7y/stM4JuytDeYJlsiKxmRDV5krDyuugOoMOHwyJg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js" integrity="sha512-MZ7Ehjbh2soaeCZJGaw6vBNAa7+eunl0SUmRPNESchLlboH73lHLEeUa6pZJ2Pcui4NcpDFatr6M+VlcmaH1QA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js" integrity="sha512-guKTp0XUnqVXjZtsa2+zQ8KVYoHjYM/MvoBlLiypVudmshBfMg0SeglTcPJGeRAqPyMp1Tcyu8+APV842XNB1Q==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js" integrity="sha512-RCedMo/DOyawQOh4zYtqEHTZAfgrrVQctN3LVCX5kELGsN52TOdwZ8inRY0l9Mo4vtyDFn6oOAgRUilWXgb+wA==" crossorigin="anonymous"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
