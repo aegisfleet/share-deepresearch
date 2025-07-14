@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/maintaining-power.mp3
 category: research
 date: 2025-05-31
 ga4_metrics:
-  avgSessionDuration: 3.4812755
-  pageViews: 2
-  users: 2
+  avgSessionDuration: 2.3208503333333335
+  pageViews: 3
+  users: 3
 layout: topic
 prompt: なぜ日本人は自民党に不満がありつつも、自民党政権が続いているのか、その本質的な理由を知りたい。恐らく他に良い党が無いのが一番だと思うが、本当にそれだけだろうか。
 supplementary_materials:
