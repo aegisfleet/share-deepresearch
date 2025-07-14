@@ -4,8 +4,8 @@ category: research
 date: 2025-07-09
 description: 広島市内のテレアポ・コールセンター求人情報を詳細に調査し、職務内容や給与、待遇を比較分析した専門的なレポートです。求職者が最適なキャリア選択を行うための指針となることを目的としています。
 ga4_metrics:
-  avgSessionDuration: 144.61040733333334
-  pageViews: 3
+  avgSessionDuration: 66.606544
+  pageViews: 4
   users: 2
 layout: topic
 prompt: 広島市内でテレアポの求人情報を調査したい。仕事の内容と給与や待遇を比較して表にまとめて欲しい。
