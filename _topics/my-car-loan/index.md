@@ -4,8 +4,8 @@ category: research
 date: 2025-07-12
 description: 広島在住者向けに、マイカーローンの金利や条件を徹底分析し、最適な選択肢を提案するレポートです。地域金融機関の特性や全国展開型ネット銀行の利点を比較し、利用者のニーズに応じた最良のマイカーローンを見つけるための情報を提供します。
 ga4_metrics:
-  avgSessionDuration: 2001.554148
-  pageViews: 9
+  avgSessionDuration: 279.247429
+  pageViews: 11
   users: 3
 layout: topic
 prompt: マイカーローンで金利が安い金融機関を調べたい。広島在住を念頭に探して欲しい。
