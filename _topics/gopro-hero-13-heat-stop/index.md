@@ -3,14 +3,18 @@ audio: /share-deepresearch/assets/audio/gopro-hero-13-heat-stop.mp3
 category: research
 date: 2025-07-15
 description: GoPro HERO 13 BLACKの熱停止問題を解決するための包括的なテクニカルガイド。熱収支の理解から、最適なビデオ設定、環境エンジニアリングまで、科学的根拠に基づいた対策を提供します。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: GoPro HERO 13 BLACKの熱停止の問題を解決したい。バッテリーを外してUSB給電にしても熱停止が発生しております、どうすれば熱停止しないのか、最適な設定を教えて欲しい。
 supplementary_materials:
-  - title: インフォグラフィック：GoPro HERO 13 熱停止完全対策ガイド
-    url: /share-deepresearch/topics/gopro-hero-13-heat-stop/infographic.html
-  - title: GoPro HERO 13 熱停止対策 安定した長時間録画を実現するテクニカルガイド
-    url: /share-deepresearch/topics/gopro-hero-13-heat-stop/reveal.html
-tags: 
+- title: インフォグラフィック：GoPro HERO 13 熱停止完全対策ガイド
+  url: /share-deepresearch/topics/gopro-hero-13-heat-stop/infographic.html
+- title: GoPro HERO 13 熱停止対策 安定した長時間録画を実現するテクニカルガイド
+  url: /share-deepresearch/topics/gopro-hero-13-heat-stop/reveal.html
+tags:
 - ガジェット
 title: GoPro HERO 13 BLACKの熱停止問題を解決するための包括的テクニカルガイド
 ---

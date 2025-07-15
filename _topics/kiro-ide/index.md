@@ -3,14 +3,18 @@ audio: /share-deepresearch/assets/audio/kiro-ide.mp3
 category: ai
 date: 2025-07-15
 description: Kiro IDEは、AIを活用したスペック駆動開発の新しいアプローチを提供し、他のAIエディターと比較してどのような違いがあるのかを分析します。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: KiroというIDEについて詳しく調査を行い、他のAIエディターと比較してどのような違いがあるのかまとめて欲しい。
 supplementary_materials:
-  - title: Kiro IDE：AIコーディング革命
-    url: /share-deepresearch/topics/kiro-ide/infographic.html
-  - title: Kiro IDE スペック駆動開発が変えるAIコーディングの未来
-    url: /share-deepresearch/topics/kiro-ide/reveal.html
-tags: 
+- title: Kiro IDE：AIコーディング革命
+  url: /share-deepresearch/topics/kiro-ide/infographic.html
+- title: Kiro IDE スペック駆動開発が変えるAIコーディングの未来
+  url: /share-deepresearch/topics/kiro-ide/reveal.html
+tags:
 - AIツール
 title: Kiro IDE：スペック駆動開発の徹底分析とAIエディター市場の比較研究
 ---

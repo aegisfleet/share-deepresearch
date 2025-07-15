@@ -3,14 +3,18 @@ audio: /share-deepresearch/assets/audio/gopro-hero-13-night-shot.mp3
 category: research
 date: 2025-07-15
 description: GoPro HERO 13を夜間撮影で使う際の最適なセッティングを調べ、手持ちで歩きながら撮影するためのガイド。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: GoPro HERO 13を夜間撮影で使う際の最適なセッティングを調べて欲しい。手持ちで歩きながら撮影する想定となる。
 supplementary_materials:
-  - title: GoPro夜間撮影ガイド インフォグラフィック
-    url: /share-deepresearch/topics/gopro-hero-13-night-shot/infographic.html
-  - title: GoPro HERO 13/12 夜間手持ち撮影 完全攻略ガイド
-    url: /share-deepresearch/topics/gopro-hero-13-night-shot/reveal.html
-tags: 
+- title: GoPro夜間撮影ガイド インフォグラフィック
+  url: /share-deepresearch/topics/gopro-hero-13-night-shot/infographic.html
+- title: GoPro HERO 13/12 夜間手持ち撮影 完全攻略ガイド
+  url: /share-deepresearch/topics/gopro-hero-13-night-shot/reveal.html
+tags:
 - ガジェット
 title: GoPro HERO12/13 完全ガイド：手持ち夜間歩行撮影の最適化
 ---
