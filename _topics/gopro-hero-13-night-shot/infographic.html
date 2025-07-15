@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoPro夜間撮影ガイド インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #F0F4F8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .flow-arrow {
+            font-size: 2.5rem;
+            line-height: 1;
+            color: #4AB5D8;
+        }
+        .tier-card {
+            border-left-width: 4px;
+            transition: all 0.3s ease-in-out;
+        }
+        .tier-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-[#0A2540] text-gray-200">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-2">GoPro 夜間撮影</h1>
+            <h2 class="text-xl md:text-2xl font-bold text-[#AEE3F0]">完璧な手持ち歩き撮りのためのビジュアルガイド</h2>
+        </header>
+
+        <section id="problem" class="mb-16">
+            <div class="bg-[#004AAD] rounded-xl shadow-2xl p-6 md:p-8">
+                <h3 class="text-2xl md:text-3xl font-bold text-white text-center mb-6">核心的な課題：光 vs. 安定性</h3>
+                <p class="text-center max-w-3xl mx-auto mb-8 text-[#AEE3F0]">
+                    夜間の歩行撮影はGoProにとって究極の試練です。カメラは十分な光を取り込むためにシャッターを遅くする必要がありますが、あなたの動きはHyperSmooth（手ブレ補正）が機能するために速いシャッターを必要とします。これらの要求が衝突すると、使い物にならないブレた映像になってしまいます。このガイドでは、この矛盾を解決する方法を解説します。
+                </p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                    <div class="bg-[#0A2540] p-4 rounded-lg shadow-lg">
+                        <span class="text-4xl">🌃</span>
+                        <p class="font-bold mt-2">暗い場所</p>
+                    </div>
+                    <div class="flow-arrow transform md:rotate-0">➔</div>
+                    <div class="bg-[#0A2540] p-4 rounded-lg shadow-lg">
+                        <span class="text-4xl">🐢</span>
+                        <p class="font-bold mt-2">低速シャッター</p>
+                    </div>
+                    <div class="flow-arrow transform md:rotate-0">➔</div>
+                    <div class="bg-[#0A2540] p-4 rounded-lg shadow-lg">
+                        <span class="text-4xl">🌫️</span>
+                        <p class="font-bold mt-2">モーションブラー</p>
+                    </div>
+                    <div class="flow-arrow transform md:rotate-0">➔</div>
+                    <div class="bg-[#0A2540] p-4 rounded-lg shadow-lg text-red-400">
+                        <span class="text-4xl">🤮</span>
+                        <p class="font-bold mt-2">ブレた映像</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="protune" class="mb-16">
+            <h3 class="text-3xl font-bold text-white text-center mb-8">ProTuneをマスターする：最初の防衛線</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-[#004AAD] rounded-xl shadow-2xl p-6">
+                    <h4 class="font-bold text-xl mb-3 text-white">ISO：ノイズを制御する</h4>
+                    <div class="chart-container" style="height: 250px; max-height: 250px;">
+                        <canvas id="isoChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-[#AEE3F0]">
+                        ISOはデジタルで明るさを増幅しますが、ノイズを発生させます。手動で上限を設定し、映像をクリーンに保ちましょう。**ISO最大800**が品質のスイートスポットで、1600は映像が使えなくなる前の絶対的な限界です。
+                    </p>
+                </div>
+
+                <div class="bg-[#004AAD] rounded-xl shadow-2xl p-6">
+                    <h4 class="font-bold text-xl mb-3 text-white">シャッタースピード：バランス調整</h4>
+                    <div class="text-center py-12">
+                        <span class="text-7xl font-black text-white">自動</span>
+                        <p class="text-lg text-[#AEE3F0] mt-4">今はカメラに任せる</p>
+                    </div>
+                    <p class="mt-4 text-[#AEE3F0]">
+                        基本的な設定では、シャッターは自動のままにします。カメラが十分な光を得ようと試みます。その代償は、モーションブラーの可能性です。高度なセクションでこれを上書きする方法を紹介します。
+                    </p>
+                </div>
+                
+                <div class="bg-[#004AAD] rounded-xl shadow-2xl p-6">
+                    <h4 class="font-bold text-xl mb-3 text-white">フレームレート：遅いほど明るい</h4>
+                     <div class="text-center py-12">
+                        <span class="text-7xl font-black text-white">30</span>
+                        <p class="text-lg text-[#AEE3F0] mt-4">フレーム/秒</p>
+                    </div>
+                    <p class="mt-4 text-[#AEE3F0]">
+                        **24fpsか30fps**を使用します。低いフレームレートは、各フレームでシャッターをより長く開けておくことができ、自然により多くの光を取り込み、暗所性能を大幅に向上させます。
+                    </p>
+                </div>
+
+                <div class="bg-[#004AAD] rounded-xl shadow-2xl p-6">
+                    <h4 class="font-bold text-xl mb-3 text-white">シャープネス：低いほど良い</h4>
+                    <div class="text-center py-12">
+                        <span class="text-7xl font-black text-white">低</span>
+                        <p class="text-lg text-[#AEE3F0] mt-4">デジタルな加工感を避ける</p>
+                    </div>
+                    <p class="mt-4 text-[#AEE3F0]">
+                        カメラ内シャープネスは、暗い場所では不自然で汚く見えます。**低**に設定しましょう。編集で後からシャープネスを追加する方が、はるかにクリーンでプロフェッショナルな結果になります。
+                    </p>
+                </div>
+
+                <div class="bg-[#004AAD] rounded-xl shadow-2xl p-6">
+                    <h4 class="font-bold text-xl mb-3 text-white">EV補正：ハイライトを救う</h4>
+                     <div class="text-center py-12">
+                        <span class="text-7xl font-black text-white">-0.5</span>
+                        <p class="text-lg text-[#AEE3F0] mt-4">露出値</p>
+                    </div>
+                    <p class="mt-4 text-[#AEE3F0]">
+                        EV補正を**-0.5**に設定すると、画像がわずかに暗くなります。これにより、明るい街灯や看板が白飛びするのを防ぎ、ショットの重要なディテールを保持します。
+                    </p>
+                </div>
+
+                <div class="bg-[#004AAD] rounded-xl shadow-2xl p-6">
+                    <h4 class="font-bold text-xl mb-3 text-white">カラー：ノイズを隠すか、データを残すか</h4>
+                    <div class="text-center py-12">
+                         <span class="text-7xl font-black text-white">🎨</span>
+                        <p class="text-lg text-[#AEE3F0] mt-4">ナチュラル vs. フラット</p>
+                    </div>
+                    <p class="mt-4 text-[#AEE3F0]">
+                        **ナチュラル**カラーは黒を潰してノイズを隠し、カメラから直接クリーンな見た目を提供します。**フラット/Log**は、プロレベルの編集のために全てのデータ（とノイズ）を保持しますが、使いこなすには技術が必要です。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="strategies" class="mb-16">
+            <h3 class="text-3xl font-bold text-white text-center mb-8">高度な戦略：究極の解決策</h3>
+             <p class="text-center max-w-3xl mx-auto mb-8 text-[#AEE3F0]">
+                標準設定で不十分な場合、根本的にゲームを変える必要があります。これらの戦略は、ソフトウェアでカメラの動作を強制するか、ハードウェアで問題を解決することにより、優れた結果を提供します。
+            </p>
+            <div class="bg-[#004AAD] rounded-xl shadow-2xl p-6 md:p-8">
+                <div class="chart-container" style="height: 400px; max-height: 500px; max-width: 1000px;">
+                    <canvas id="strategyChart"></canvas>
+                </div>
+                 <p class="mt-8 text-center text-[#AEE3F0]">
+                    このチャートは安定化戦略を比較しています。**物理ジンバル**は品質では無敵ですが、最も手間がかかります。**GoPro Labs**は、少しのセットアップ時間で、標準のHyperSmoothを大幅に上回る品質向上をもたらします。
+                </p>
+            </div>
+        </section>
+
+        <section id="recommendations">
+            <h3 class="text-3xl font-bold text-white text-center mb-8">あなたの完璧な設定を見つける：段階的推奨</h3>
+            <p class="text-center max-w-3xl mx-auto mb-8 text-[#AEE3F0]">
+                唯一の「最高」設定はありません。あなたにとって最高のセッティングがあるだけです。どれだけの手間をかけるかと、求める品質に応じて、あなたの道を選んでください。
+            </p>
+            <div class="space-y-8">
+                <div class="bg-[#004AAD] rounded-xl shadow-2xl p-6 md:p-8 tier-card border-l-[#4AB5D8]">
+                    <h4 class="text-2xl font-bold text-white mb-2">Tier 1：エンスージアスト向け（簡単＆きれい）</h4>
+                    <p class="text-[#AEE3F0] mb-4">最小限の手間で素晴らしい結果を得たい方向け。街歩きを素早く撮影するのに最適です。</p>
+                    <p class="text-white"><strong class="text-[#AEE3F0]">戦略：</strong> 基本的な推奨設定を使用します。明るい都市部での撮影に徹しましょう。</p>
+                    <p class="text-white font-mono bg-[#0A2540] p-3 rounded-md mt-2 text-sm md:text-base">4K30 | 16:9 | HyperSmooth オン | EV -0.5 | ISO最大 800 | シャープネス 低 | カラー ナチュラル</p>
+                </div>
+
+                <div class="bg-[#004AAD] rounded-xl shadow-2xl p-6 md:p-8 tier-card border-l-[#0079C1]">
+                    <h4 class="text-2xl font-bold text-white mb-2">Tier 2：プロシューマー向け（優れた制御）</h4>
+                    <p class="text-[#AEE3F0] mb-4">追加の機材なしで、大幅に優れた安定性を求める人向け。品質と利便性の最高のバランスです。</p>
+                    <p class="text-white"><strong class="text-[#AEE3F0]">戦略：</strong> GoPro Labsファームウェアをインストールします。シャッタースピードを固定して、滑らかな映像を保証します。</p>
+                    <p class="text-white font-mono bg-[#0A2540] p-3 rounded-md mt-2 text-sm md:text-base">QRコードで <code class="bg-gray-700 px-1 rounded">!MEXPX=120</code> を設定（シャッターを1/120秒以上に強制）。</p>
+                </div>
+                
+                <div class="bg-[#004AAD] rounded-xl shadow-2xl p-6 md:p-8 tier-card border-l-white">
+                    <h4 class="text-2xl font-bold text-white mb-2">Tier 3：完璧主義者向け（究極の品質）</h4>
+                    <p class="text-[#AEE3F0] mb-4">プロフェッショナルで映画のような結果を得るための、妥協のないアプローチです。</p>
+                    <p class="text-white"><strong class="text-[#AEE3F0]">戦略：</strong> ハードウェアを使用します。**物理ジンバル**はモーションブラーを根源から排除します。**外部ライト**を追加して光の問題を解決します。GP-Logで撮影し、すべてを後処理（例：Gyroflow, DaVinci Resolve）で行います。</p>
+                    <p class="text-white font-mono bg-[#0A2540] p-3 rounded-md mt-2 text-sm md:text-base">ジンバル + ライト + 後処理 = 完璧な映像</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const FONT_COLOR = '#AEE3F0';
+            const GRID_COLOR = 'rgba(174, 227, 240, 0.2)';
+
+            function wrapLabels(label) {
+                const max = 16;
+                if (typeof label !== 'string' || label.length <= max) {
+                    return label;
+                }
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > max) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine.trim());
+                }
+                return lines;
+            }
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+            
+            const sharedTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        titleFont: { size: 16 },
+                        bodyFont: { size: 14 },
+                        padding: 12,
+                        boxPadding: 4,
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    },
+                    legend: {
+                        labels: {
+                            color: FONT_COLOR,
+                            font: {
+                                size: 14,
+                                family: "'Noto Sans JP', sans-serif"
+                            }
+                        }
+                    }
+                }
+            };
+
+            const isoCtx = document.getElementById('isoChart').getContext('2d');
+            new Chart(isoCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['最適 (100-800)', '注意 (801-1600)', '回避 (1600+)'],
+                    datasets: [{
+                        label: 'ISO感度の使いやすさ',
+                        data: [60, 30, 10],
+                        backgroundColor: [
+                            '#0079C1',
+                            '#F9A825',
+                            '#D32F2F'
+                        ],
+                        borderColor: '#004AAD',
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: FONT_COLOR,
+                                font: { size: 12, family: "'Noto Sans JP', sans-serif" }
+                            }
+                        },
+                        tooltip: sharedTooltipOptions.plugins.tooltip
+                    },
+                    cutout: '60%'
+                }
+            });
+
+            const strategyCtx = document.getElementById('strategyChart').getContext('2d');
+            new Chart(strategyCtx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        '標準HyperSmooth', 
+                        'HyperSmooth + GoPro Labs', 
+                        'Gyroflow (後処理)', 
+                        '物理ジンバル'
+                    ],
+                    datasets: [
+                        {
+                            label: '安定化の質',
+                            data: [4, 7.5, 8.5, 10],
+                            backgroundColor: '#0079C1',
+                            borderColor: '#AEE3F0',
+                            borderWidth: 1,
+                        },
+                        {
+                            label: '結果の明るさ',
+                            data: [7, 5, 8, 9],
+                            backgroundColor: '#4AB5D8',
+                            borderColor: '#AEE3F0',
+                            borderWidth: 1
+                        },
+                         {
+                            label: '必要な労力',
+                            data: [1, 3, 7, 9],
+                            backgroundColor: '#FFA726',
+                            borderColor: '#AEE3F0',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    ...sharedTooltipOptions,
+                    scales: {
+                        y: {
+                            ticks: { color: FONT_COLOR, font: { size: 14, family: "'Noto Sans JP', sans-serif" } },
+                            grid: { color: GRID_COLOR }
+                        },
+                        x: {
+                            ticks: { color: FONT_COLOR, font: { size: 12, family: "'Noto Sans JP', sans-serif" } },
+                            grid: { color: GRID_COLOR },
+                            min: 0,
+                            max: 10,
+                            title: {
+                                display: true,
+                                text: 'スコア (10点満点)',
+                                color: FONT_COLOR,
+                                font: { size: 14, family: "'Noto Sans JP', sans-serif" }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
