@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：GoPro HERO 13 熱停止完全対策ガイド</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F8FAFC;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #3282B8, #2CA58D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .step-number {
+            background-color: #3282B8;
+            color: white;
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            border: 4px solid #F8FAFC;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <main class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black mb-2 gradient-text">GoPro HERO 13 熱停止</h1>
+            <p class="text-2xl md:text-3xl font-bold text-gray-700">完全対策インフォグラフィック</p>
+            <p class="mt-4 text-gray-600 max-w-3xl mx-auto">静止・長時間撮影でも安定したパフォーマンスを引き出すための、データに基づいたテクニカルガイドです。</p>
+        </header>
+
+        <section class="mb-16">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-center mb-6 text-[#0A2342]">1. なぜ熱くなるのか？ アクションカメラの設計思想</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="text-gray-600 space-y-4">
+                        <p>GoProはサイクリングやスキーなど、常に<strong class="text-[#2CA58D]">「空気の流れ」</strong>がある環境での使用を前提に設計されています。この空気が天然の冷却ファンとして機能します。</p>
+                        <p>しかし、三脚での固定撮影や車載など、<strong class="text-[#D9534F]">空気の流れがない静止状態</strong>では、発生した熱が筐体内にこもり、パフォーマンスが低下。最終的に熱停止に至ります。</p>
+                        <p class="font-bold text-[#0A2342]">問題は「不具合」ではなく、カメラの設計思想と使用環境のミスマッチにあります。</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <span class="text-4xl">⚙️</span>
+                            <h4 class="font-bold mt-2">GP2プロセッサー</h4>
+                            <p class="text-sm">高負荷処理で発熱</p>
+                        </div>
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <span class="text-4xl">👁️</span>
+                            <h4 class="font-bold mt-2">イメージセンサー</h4>
+                            <p class="text-sm">常時作動で発熱</p>
+                        </div>
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <span class="text-4xl">🔋</span>
+                            <h4 class="font-bold mt-2">内蔵バッテリー</h4>
+                            <p class="text-sm">充放電時に発熱</p>
+                        </div>
+                        <div class="bg-blue-50 rounded-lg p-4">
+                           <span class="text-4xl">💾</span>
+                            <h4 class="font-bold mt-2">SDカード</h4>
+                            <p class="text-sm">低速カードで負荷増</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-center mb-6 text-[#0A2342]">2. 熱リスクを比較する：ビデオモードの選択</h2>
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <p class="text-center text-gray-600 mb-6">ビデオ設定は熱発生の最大の要因です。以下のグラフは、静止・無風状態での各モードの熱リスクレベルを示します。設定を選ぶ際の参考にしてください。</p>
+                <div class="chart-container">
+                    <canvas id="thermalRiskChart"></canvas>
+                </div>
+                 <p class="text-center text-gray-500 text-sm mt-4">長時間録画には<strong class="text-[#2CA58D]">「4K/30fps 8bit」</strong>が画質と安定性の良い妥協点です。最大限の安定性を求めるなら<strong class="text-[#3282B8]">「1080p/30fps 8bit」</strong>が最適です。</p>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-center mb-6 text-[#0A2342]">3. 解決への4ステップ・フローチャート</h2>
+            <div class="relative">
+                <div class="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 bg-blue-200 rounded-full hidden md:block"></div>
+                
+                <div class="relative mb-12 flex items-start gap-4 md:gap-8">
+                    <div class="step-number z-10">1</div>
+                    <div class="bg-white rounded-2xl shadow-lg p-6 flex-1">
+                        <h3 class="text-xl font-bold text-[#0A2342] mb-3">基礎を固める (The Foundation)</h3>
+                        <ul class="space-y-3 list-inside list-disc text-gray-600">
+                            <li><strong class="text-[#0A2342]">外部電源を利用し、バッテリーを外す：</strong> これが最も効果的。5V/2A以上の電源を使用してください。</li>
+                            <li><strong class="text-[#0A2342]">推奨SDカードを使用する：</strong> 高速カードでプロセッサーの負荷を軽減します。</li>
+                            <li><strong class="text-[#0A2342]">ファームウェアを最新に保つ：</strong> 熱管理アルゴリズムが改善されている可能性があります。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="relative mb-12 flex items-start gap-4 md:gap-8">
+                    <div class="step-number z-10">2</div>
+                    <div class="bg-white rounded-2xl shadow-lg p-6 flex-1">
+                        <h3 class="text-xl font-bold text-[#0A2342] mb-3">設定を最適化する (Optimize Settings)</h3>
+                        <p class="mb-4 text-gray-600">プロセッサー負荷の高い「隠れた熱源」を無効化します。</p>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
+                            <div class="bg-red-50 text-red-700 p-3 rounded-lg"><strong class="block">HyperSmooth</strong>オフ</div>
+                            <div class="bg-red-50 text-red-700 p-3 rounded-lg"><strong class="block">水平維持</strong>オフ</div>
+                            <div class="bg-red-50 text-red-700 p-3 rounded-lg"><strong class="block">GPS</strong>オフ</div>
+                            <div class="bg-red-50 text-red-700 p-3 rounded-lg"><strong class="block">音声コントロール</strong>オフ</div>
+                            <div class="bg-red-50 text-red-700 p-3 rounded-lg"><strong class="block">Wi-Fi / BT</strong>オフ</div>
+                            <div class="bg-red-50 text-red-700 p-3 rounded-lg"><strong class="block">フロントスクリーン</strong>オフ</div>
+                        </div>
+                         <p class="mt-4 text-gray-600">さらに、色深度を<strong class="text-[#0A2342]">8bit</strong>に、ビットレートを<strong class="text-[#0A2342]">標準</strong>に設定することも非常に効果的です。</p>
+                    </div>
+                </div>
+
+                <div class="relative mb-12 flex items-start gap-4 md:gap-8">
+                     <div class="step-number z-10">3</div>
+                     <div class="bg-white rounded-2xl shadow-lg p-6 flex-1">
+                        <h3 class="text-xl font-bold text-[#0A2342] mb-3">環境を改善する (Improve Environment)</h3>
+                        <div class="flex items-center gap-4">
+                             <span class="text-6xl">💨</span>
+                            <div>
+                                <p class="text-gray-600">最も簡単で効果的なのは<strong class="text-[#2CA58D]">空気の流れを作ること</strong>です。</p>
+                                <p class="text-gray-600">小型のUSB扇風機をカメラに向けるだけで、冷却効果は劇的に向上します。</p>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+                
+                <div class="relative mb-12 flex items-start gap-4 md:gap-8">
+                    <div class="step-number z-10">4</div>
+                    <div class="bg-white rounded-2xl shadow-lg p-6 flex-1">
+                        <h3 class="text-xl font-bold text-[#0A2342] mb-3">最終手段：専用ハードウェア (Final Resort)</h3>
+                         <div class="flex items-center gap-4">
+                             <span class="text-6xl">❄️</span>
+                             <div>
+                                <p class="text-gray-600">設定の妥協が不可能な場合は、専用の冷却ソリューションを検討します。</p>
+                                <ul class="list-disc list-inside text-gray-600">
+                                    <li><strong class="text-[#0A2342]">アクティブ冷却：</strong> ファン内蔵の冷却ケース (例: CAMCooLER)</li>
+                                    <li><strong class="text-[#0A2342]">パッシブ冷却：</strong> ヒートシンク機能を持つ金属製ケース</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-bold text-center mb-8 text-[#0A2342]">4. 用途別：最適化設定プロファイル</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-2xl shadow-lg p-6 border-t-8 border-[#3282B8]">
+                    <h3 class="text-xl font-black text-center text-[#3282B8]">最大限の安定性</h3>
+                    <p class="text-center text-sm text-gray-500 mb-4">数時間にわたる連続録画向け</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><span class="font-bold">解像度:</span> 1080p</li>
+                        <li><span class="font-bold">フレームレート:</span> 30fps</li>
+                        <li><span class="font-bold">色深度:</span> 8bit</li>
+                        <li><span class="font-bold">ビットレート:</span> 標準</li>
+                        <li><span class="font-bold">各種処理:</span> すべてオフ</li>
+                        <li class="mt-2 pt-2 border-t"><span class="font-bold text-red-600">冷却:</span> 最小限の空冷を推奨</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-lg p-6 border-t-8 border-[#2CA58D]">
+                    <h3 class="text-xl font-black text-center text-[#2CA58D]">高品質スタジオ</h3>
+                    <p class="text-center text-sm text-gray-500 mb-4">制御された環境での高画質録画</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><span class="font-bold">解像度:</span> 4K</li>
+                        <li><span class="font-bold">フレームレート:</span> 30fps</li>
+                        <li><span class="font-bold">色深度:</span> 8bit</li>
+                        <li><span class="font-bold">ビットレート:</span> 標準</li>
+                        <li><span class="font-bold">各種処理:</span> すべてオフ</li>
+                        <li class="mt-2 pt-2 border-t"><span class="font-bold text-red-600">冷却:</span> アクティブファン冷却が必須</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-lg p-6 border-t-8 border-[#84BC9C]">
+                    <h3 class="text-xl font-black text-center text-[#84BC9C]">シネマティック優先</h3>
+                    <p class="text-center text-sm text-gray-500 mb-4">ポストプロダクション向け最高画質</p>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><span class="font-bold">解像度:</span> 4K or 5.3K</li>
+                        <li><span class="font-bold">フレームレート:</span> 24fps</li>
+                        <li><span class="font-bold">色深度:</span> 10bit</li>
+                        <li><span class="font-bold">ビットレート:</span> 高</li>
+                        <li><span class="font-bold">各種処理:</span> すべてオフ</li>
+                        <li class="mt-2 pt-2 border-t"><span class="font-bold text-red-600">冷却:</span> アクティブファン冷却が絶対条件</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-16 py-8 border-t border-gray-200">
+            <p class="font-bold text-xl text-gray-700">熱を理解し、管理することで、HERO 13の真のポテンシャルを引き出せます。</p>
+            <p class="text-sm text-gray-500 mt-2">このインフォグラフィックは提供されたテクニカルレポートに基づき作成されました。</p>
+        </footer>
+
+    </main>
+
+    <script>
+        const ctx = document.getElementById('thermalRiskChart').getContext('2d');
+        const thermalRiskChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['1080p/30fps 8bit', '4K/30fps 8bit', '4K/60fps 8bit', ['5.3K/30fps', '10bit'], ['5.3K/60fps', '10bit']],
+                datasets: [{
+                    label: '熱リスクレベル (1:低 - 5:最高)',
+                    data: [1, 2.5, 4, 4.5, 5],
+                    backgroundColor: [
+                        '#3282B8', 
+                        '#50A2A7', 
+                        '#F9A825', 
+                        '#F57C00',
+                        '#D32F2F'  
+                    ],
+                    borderColor: [
+                        '#1B4F72',
+                        '#2C7A7B',
+                        '#C79100',
+                        '#BF360C',
+                        '#B71C1C'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 5,
+                        ticks: {
+                            stepSize: 1,
+                            callback: function(value, index, values) {
+                                const labels = ['低', '', '中', '', '高', '最高'];
+                                return labels[value] || '';
+                            }
+                        },
+                        grid: {
+                          color: '#E5E7EB',
+                        },
+                    },
+                    y: {
+                       grid: {
+                          display: false
+                       }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'ビデオモード別 熱リスクプロファイル',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        padding: {
+                            bottom: 20
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
