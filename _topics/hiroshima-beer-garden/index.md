@@ -4,7 +4,7 @@ category: research
 date: 2025-07-07
 description: 広島駅周辺、並びに紙屋町〜八丁堀周辺で行われているビアガーデンの価格帯と提供されている食べ物、飲み物について比較した2025年の徹底レポートです。
 ga4_metrics:
-  avgSessionDuration: 225.843106
+  avgSessionDuration: 225.843229
   pageViews: 9
   users: 6
 layout: topic
