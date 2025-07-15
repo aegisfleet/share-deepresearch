@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>GoPro HERO 13/12 夜間手持ち撮影 完全攻略ガイド</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css" integrity="sha512-1vDOkqtCXgcn0zgLIrxVjSIHvXOB/Ho2k33zwIDMqStDdHWvQyVU+BGG2fK4nnOgDbg0jEzVqzTYTL65orMyWw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" integrity="sha512-Nrw40ThKwvPSYyxg6x099eplkB9p5cs2DtorDFSdpapXZlBOJDKK1Hn/gAaYuDQuas6yZJAEG2p2pYQtH80N/w==" crossorigin="anonymous" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css" integrity="sha512-RLF8eOxhuwsRINc7r56dpl9a3VStqrXD+udWahutJrYdyh++2Ghnf+s4jFsOyryKZt/GNjPwbXVPH3MJpKrn2g==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { font-size: 1.3em; line-height: 1.5; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.8em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { font-size: 1.2em; border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-size: 1.2em; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section data-transition="zoom-in fade-out" data-background-image="https://images.unsplash.com/photo-1532223916483-c7e4922a4f3b" data-background-opacity="0.2">
+    <h1 class="animated delay-1">GoPro HERO 13/12<br>夜間手持ち撮影 完全攻略ガイド</h1>
+    <p class="subtitle animated delay-2">光と安定性を制覇する戦略的アプローチ</p>
+</section>
+
+<section data-transition="zoom">
+    <h2 class="animated">本日のロードマップ</h2>
+    <ul style="list-style: none; margin-top: 50px;">
+        <li class="animated delay-1" style="margin-bottom: 25px;"><i class="fa-solid fa-ghost" style="color: var(--accent-color); width: 60px;"></i> <strong>起</strong>: なぜ夜間撮影は難しいのか？</li>
+        <li class="animated delay-2" style="margin-bottom: 25px;"><i class="fa-solid fa-sliders" style="color: var(--accent-color); width: 60px;"></i> <strong>承</strong>: ProTuneによる基本戦略</li>
+        <li class="animated delay-3" style="margin-bottom: 25px;"><i class="fa-solid fa-rocket" style="color: var(--accent-color); width: 60px;"></i> <strong>転</strong>: 高度な解決策</li>
+        <li class="animated delay-4" style="margin-bottom: 25px;"><i class="fa-solid fa-trophy" style="color: var(--accent-color); width: 60px;"></i> <strong>結</strong>: 究極の品質を求める道</li>
+    </ul>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">光 vs 安定性：夜間撮影のジレンマ</h2>
+    <p class="animated delay-1">夜の歩行撮影は、根本的に相反する2つの要求を満たす必要があります。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-sun"></i>
+            <h3>十分な光</h3>
+            <p>暗いシーンを捉えるには、シャッターを長く開ける<strong>「低速シャッター」</strong>が必要です。</p>
+        </div>
+        <div class="animated delay-3">
+            <i class="fa-solid fa-arrow-right-long fa-3x" style="color: var(--accent-color);"></i>
+        </div>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-person-running"></i>
+            <h3>手ブレ補正</h3>
+            <p>歩行の揺れを抑えるには、動きを止める<strong>「高速シャッター」</strong>が必要です。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">HyperSmoothが破綻する理由</h2>
+    <p class="animated delay-1">この「問題の物理学」が、GoProにとって夜間歩行が最悪の環境と言われる原因です。</p>
+    <div class="flex-container" style="align-items: center; margin-top: 50px;">
+        <div class="animated delay-2" style="text-align: center;">
+            <i class="fa-solid fa-camera fa-3x"></i>
+            <p>固定絞り</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long fa-2x animated delay-3" style="color: var(--accent-color);"></i>
+        <div class="animated delay-4" style="text-align: center;">
+            <i class="fa-solid fa-clock-rotate-left fa-3x"></i>
+            <p>低速シャッター</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long fa-2x animated delay-5" style="color: var(--accent-color);"></i>
+        <div class="animated delay-6" style="text-align: center;">
+            <i class="fa-solid fa-wind fa-3x"></i>
+            <p>モーションブラー</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long fa-2x animated delay-7" style="color: var(--accent-color);"></i>
+        <div class="animated delay-8" style="text-align: center;">
+            <i class="fa-solid fa-face-frown-open fa-3x"></i>
+            <p>ジッター発生</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">第一の防衛線: あなたに合ったProTune戦略</h2>
+    <p class="animated delay-1">単一の最適設定はありません。求める成果に応じた2つのアプローチが存在します。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-person-circle-check"></i>
+            <h3>現実主義者のプリセット</h3>
+            <p><strong>手軽さ重視</strong>。カメラ内でノイズを処理し、編集の手間を最小限に抑えます。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h3>映像作家のプリセット</h3>
+            <p><strong>品質重視</strong>。全てのデータを保持し、ポストプロダクションで画質を最大限に引き出します。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated"><i class="fa-solid fa-person-circle-check"></i> 推奨設定：現実主義者向け</h2>
+    <p class="animated delay-1">カメラから出してすぐに使える、クリーンな映像を目指す設定です。</p>
+    <table class="comparison-table" style="margin-top: 40px;">
+        <tr class="animated delay-2">
+            <td>カラープロファイル</td>
+            <td><strong>Natural</strong> (ナチュラル) - カメラ内でノイズを効果的に隠します。</td>
+        </tr>
+        <tr class="animated delay-3">
+            <td>アスペクト比</td>
+            <td><strong>16:9</strong> - HyperSmoothの安定性を最大化します。</td>
+        </tr>
+        <tr class="animated delay-4">
+            <td>ISO Max</td>
+            <td><strong>800</strong> - 許容範囲のノイズで画質を保ちます。</td>
+        </tr>
+        <tr class="animated delay-5">
+            <td>シャープネス</td>
+            <td><strong>Low</strong> (低) - ポスト処理での画質劣化を防ぎます。</td>
+        </tr>
+    </table>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated"><i class="fa-solid fa-wand-magic-sparkles"></i> 推奨設定：映像作家向け</h2>
+    <p class="animated delay-1">ポストプロダクションでの最大限のコントロールを前提とした設定です。</p>
+     <table class="comparison-table" style="margin-top: 40px;">
+        <tr class="animated delay-2">
+            <td>カラープロファイル</td>
+            <td><strong>Flat / GP-Log</strong> - 最大のダイナミックレンジを保持しますが、ノイズも全て記録します。</td>
+        </tr>
+        <tr class="animated delay-3">
+            <td>アスペクト比</td>
+            <td><strong>8:7</strong> - リフレームの自由度を最大化します。</td>
+        </tr>
+        <tr class="animated delay-4">
+            <td>ISO Max</td>
+            <td><strong>1600</strong> - 高度なノイズ除去ツールが必須です。</td>
+        </tr>
+    </table>
+    <div class="flex-box animated delay-5" style="margin-top: 30px; background: #582c2c;">
+        <p style="margin: 0;"><i class="fa-solid fa-triangle-exclamation"></i> <strong>警告:</strong> 低照度のLog映像は非常にノイジーで、カラーグレーディングで破綻しやすいハイリスクな選択です。</p>
+    </div>
+</section>
+
+<section data-transition="convex-in fade-out">
+    <h2 class="animated">ProTuneを超える解決策: GoPro Labs</h2>
+    <p class="animated delay-1">無料のファームウェアで、モーションブラーを根本から防ぎます。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2" style="flex: 0.5;">
+            <i class="fa-solid fa-qrcode"></i>
+            <h3>シャッタースピード固定</h3>
+        </div>
+        <div class="animated delay-3 left-align" style="flex: 1;">
+            <p>QRコードを使い、シャッタースピードの上限 (例: 1/120秒) を設定します。コマンド: <code>!MEXPX=120</code></p>
+            <p>これにより、<strong>映像は暗くなりますが、HyperSmoothが完璧に機能する</strong>ためのシャープなフレームを強制的に確保します。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated">究極の物理的解決策</h2>
+    <p class="animated delay-1">ソフトウェアのトレードオフをなくし、問題の根源を物理的に排除する方法です。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-hand-holding-droplet"></i>
+            <h3>物理ジンバル</h3>
+            <p>カメラの揺れ自体をなくし、<strong>モーションブラーの発生を防ぎます</strong>。これにより低速シャッターを自由に使い、明るく滑らかな映像が得られます。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-lightbulb"></i>
+            <h3>外部ライト</h3>
+            <p>シーン自体を明るくすることで、カメラが<strong>自然と高速シャッターを使える</strong>ようになり、ノイズとブラーの両方を低減します。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated"><i class="fa-solid fa-film"></i> プロのワークフロー①: Gyroflow</h2>
+    <p class="animated delay-1">HyperSmoothをOFFにして撮影し、PCで手ブレ補正を適用する究極の制御方法です。</p>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-2">
+            <h3>HyperSmooth (カメラ内)</h3>
+            <p>手軽で強力ですが、補正の強さや「ルック」は調整できません。</p>
+        </div>
+        <div class="flex-box animated delay-3" style="background-color: var(--accent-color); color: var(--main-background-color);">
+            <h3>Gyroflow (PC)</h3>
+            <p><strong>より滑らかで自然な補正</strong>が可能。補正の強さやFOVを完全に制御できます。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated"><i class="fa-solid fa-palette"></i> プロのワークフロー②: カラーグレーディング</h2>
+    <p class="animated delay-1">低照度のLog/Flat映像を正しく現像し、命を吹き込みます。</p>
+    <div class="flex-container" style="margin-top: 50px; align-items: flex-start;">
+        <div class="animated delay-2" style="flex: 1; text-align: center;">
+            <i class="fa-solid fa-cubes-stacked fa-5x"></i>
+        </div>
+        <ul class="animated delay-3" style="flex: 2; text-align: left;">
+            <li class="animated delay-3"><strong>CST (カラースペース変換)</strong> を使用する。LUTより正確で柔軟なグレーディングが可能です。</li>
+            <li class="animated delay-4"><strong>ノイズリダクション</strong>は、色やコントラストを調整する「前」に行うのが鉄則です。</li>
+            <li class="animated delay-5">高品質なノイズ除去（DaVinci Resolve Studio等）が、低照度Log映像の品質を左右します。</li>
+        </ul>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">まとめ: あなたに合った解決策は？</h2>
+    <table class="comparison-table animated delay-1">
+        <thead>
+            <tr>
+                <th>ティア</th>
+                <th>戦略</th>
+                <th>主な利点</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="animated delay-2">
+                <td><strong>1. 手軽さ重視</strong><br><small>Enthusiast</small></td>
+                <td>「現実主義者」設定で撮影。明るい都市部で使う。</td>
+                <td>カメラから出してすぐ使える良好な画質。</td>
+            </tr>
+            <tr class="animated delay-3">
+                <td><strong>2. バランス重視</strong><br><small>Prosumer</small></td>
+                <td>GoPro Labsでシャッター速度を固定 (<code>!MEXPX=120</code>)。</td>
+                <td>ハードウェア不要で、最も優れた手ブレ補正品質と利便性のバランスを実現。</td>
+            </tr>
+            <tr class="animated delay-4">
+                <td><strong>3. 品質最優先</strong><br><small>Perfectionist</small></td>
+                <td><strong>物理ジンバル</strong>を使い、GyroflowとCSTワークフローで後処理。</td>
+                <td>妥協のない、最もクリーンで高ディテールなプロ品質の映像。</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section data-transition="zoom-in fade-out" data-background-image="https://images.unsplash.com/photo-1506521781263-d3f36b4f5704" data-background-opacity="0.25">
+    <h1 class="animated delay-1">光を制し、夜を歩け。</h1>
+    <p class="subtitle animated delay-2">Thank You</p>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js" integrity="sha512-TC5IA+BA/5YPBb/MJyk97ypzvXYUIlAksfuxlUXlhD7cM7y/stM4JuytDeYJlsiKxmRDV5krDyuugOoMOHwyJg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js" integrity="sha512-MZ7Ehjbh2soaeCZJGaw6vBNAa7+eunl0SUmRPNESchLlboH73lHLEeUa6pZJ2Pcui4NcpDFatr6M+VlcmaH1QA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js" integrity="sha512-guKTp0XUnqVXjZtsa2+zQ8KVYoHjYM/MvoBlLiypVudmshBfMg0SeglTcPJGeRAqPyMp1Tcyu8+APV842XNB1Q==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js" integrity="sha512-RCedMo/DOyawQOh4zYtqEHTZAfgrrVQctN3LVCX5kELGsN52TOdwZ8inRY0l9Mo4vtyDFn6oOAgRUilWXgb+wA==" crossorigin="anonymous"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
