@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiro IDE: AIコーディング革命</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            background-color: #F0F4F8;
+            color: #102A43;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-node {
+            border: 2px solid #4A90E2;
+            background-color: #FFFFFF;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 700;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            color: #102A43;
+            width: 100%;
+            max-width: 250px;
+        }
+        .flowchart-arrow {
+            font-size: 2.5rem;
+            color: #4A90E2;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0.5rem 0;
+        }
+        .kpi-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            border-left: 5px solid #0A58A7;
+        }
+        .kpi-value {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #0A58A7;
+            line-height: 1;
+        }
+        .kpi-label {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #4A90E2;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-slate-800 mb-4" style="color: #0A58A7;">AIコーディング革命</h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto" style="color: #102A43;">新世代のAI搭載IDEがソフトウェア開発を再構築しています。本稿では、AWSの画期的な新規参入者であるKiroとその「スペック駆動」哲学に焦点を当て、市場を分析します。</p>
+        </header>
+
+        <main class="space-y-16">
+            <section id="philosophy">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold" style="color: #0A58A7;">二つの開発哲学の物語</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg" style="color: #102A43;">AIエディター市場は二極化しています。多くのツールが既存のワークフローを拡張する一方、Kiroは構造化された計画第一のアプローチを強制し、本番品質を初期段階から確保します。</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-2xl font-bold text-center mb-6" style="color: #102A43;">Kiro：スペック駆動開発</h3>
+                        <div class="flex flex-col items-center">
+                            <div class="flowchart-node">1. 要件定義 (.md)</div>
+                            <div class="flowchart-arrow">&#11107;</div>
+                            <div class="flowchart-node">2. 設計 (.md)</div>
+                            <div class="flowchart-arrow">&#11107;</div>
+                            <div class="flowchart-node">3. タスク (.md)</div>
+                             <div class="flowchart-arrow">&#11107;</div>
+                            <div class="flowchart-node">4. コード実装</div>
+                        </div>
+                        <p class="mt-6 text-center text-sm" style="color: #4A90E2;">計画と文書化を優先する規範的で連続的なプロセス。組織的知識をコードベース内に直接構築します。</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-2xl font-bold text-center mb-6" style="color: #102A43;">市場の主流：「感覚的」コーディング</h3>
+                        <div class="flex flex-col items-center justify-center h-full min-h-[350px]">
+                           <div class="relative">
+                                <div class="text-6xl text-center">💡</div>
+                                <p class="text-xl font-semibold mt-4">プロンプト &amp; 改善</p>
+                                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                     <svg class="animate-spin h-48 w-48 opacity-10" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="45" stroke="#A2D2FF" stroke-width="5" fill="none" stroke-dasharray="282.7" stroke-dashoffset="141.3"/>
+                                     </svg>
+                                </div>
+                           </div>
+                           <p class="mt-6 text-center text-sm" style="color: #4A90E2;">チャットプロンプトによる迅速な反復を中心とした、拡張的で柔軟なアプローチ。実験には強力ですが、本番環境で求められる構造性に欠ける場合があります。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="kiro-pillars">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold" style="color: #0A58A7;">Kiroの解体：エージェントファーストアーキテクチャ</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg" style="color: #102A43;">Kiro独自のワークフローは、AIエージェントを導き、自動化し、コンテキストを提供するために設計された4つの明確なアーキテクチャの柱の上に構築されています。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="kpi-card">
+                        <div class="kpi-value">⚙️</div>
+                        <div class="kpi-label">スペック</div>
+                        <p class="text-sm mt-2">バージョン管理されたMarkdownファイル（`reqs`, `design`, `tasks`）が、監査可能で生きた開発プロセスの文書を形成します。</p>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">🪝</div>
+                        <div class="kpi-label">エージェントフック</div>
+                        <p class="text-sm mt-2">IDE内でのイベント駆動型自動化。AIアクションがファイル保存時にトリガーされ、自己保守型の開発環境を構築します。</p>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">🧭</div>
+                        <div class="kpi-label">エージェントステアリング</div>
+                        <p class="text-sm mt-2">AIにアーキテクチャパターン、技術スタック、製品目標の長期記憶を与える永続的なプロジェクトコンテキストファイルです。</p>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value">🔗</div>
+                        <div class="kpi-label">MCP統合</div>
+                        <p class="text-sm mt-2">コードを公開することなく、Kiroを外部の知識ベース（AWSドキュメントなど）やプライベートな企業データに安全に接続するためのプロトコルです。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="competitors">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold" style="color: #0A58A7;">AI IDE市場の対決</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg" style="color: #102A43;">Kiroの構造化アプローチは、既存の主要プレイヤーとどう比較されるのでしょうか？主要な機能と価格を横断的に分析します。</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-center mb-4" style="color: #102A43;">機能比較</h3>
+                        <div class="chart-container">
+                            <canvas id="featureRadarChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-center text-sm" style="color: #4A90E2;">Kiroはワークフロー構造と自動化でリードし、Cursorはコンテキスト認識に優れています。Tabnineはセキュリティが最も強く、Copilotはバランスの取れたエコシステム統合体験を提供します。</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-center mb-4" style="color: #102A43;">価格：Pro/個人プランの月額費用</h3>
+                        <div class="chart-container">
+                            <canvas id="priceBarChart"></canvas>
+                        </div>
+                        <p class="mt-4 text-center text-sm" style="color: #4A90E2;">価格競争は激しく、GitHub Copilotが最も手頃なエントリーポイントです。KiroとCursorは同様の価格設定で、高度な機能セットを持つプロユーザーをターゲットにしています。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="archetypes">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold" style="color: #0A58A7;">あなたに最適なAI共同プログラマーを見つけよう</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg" style="color: #102A43;">最適なツールは、チームの優先順位、プロジェクトの種類、環境によって異なります。開発者のタイプ別に理想的なAIアシスタントをマッチングします。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                        <h4 class="font-bold text-lg mb-2" style="color: #0A58A7;">エンタープライズアーキテクト</h4>
+                        <p class="text-sm flex-grow mb-4">セキュリティ、コンプライアンス、標準化を何よりも優先します。</p>
+                        <div class="mt-auto">
+                            <p class="font-semibold">最有力候補: <span class="bg-blue-100 text-blue-800 py-1 px-2 rounded">Tabnine</span></p>
+                            <p class="text-xs mt-1">理由: オンプレミス展開とプライベートモデルのトレーニングが不可欠。</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                        <h4 class="font-bold text-lg mb-2" style="color: #0A58A7;">グリーンフィールドプロジェクトのリーダー</h4>
+                        <p class="text-sm flex-grow mb-4">長期的な保守性とチームの一貫性を初日から重視します。</p>
+                        <div class="mt-auto">
+                            <p class="font-semibold">最有力候補: <span class="bg-green-100 text-green-800 py-1 px-2 rounded">Kiro</span></p>
+                            <p class="text-xs mt-1">理由: 「計画第一」の方法論が最初からベストプラクティスを強制。</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                        <h4 class="font-bold text-lg mb-2" style="color: #0A58A7;">アジャイルなスタートアップ開発者</h4>
+                        <p class="text-sm flex-grow mb-4">迅速に行動し、実験し、複雑な既存のコードベースをリファクタリングする必要があります。</p>
+                        <div class="mt-auto">
+                            <p class="font-semibold">最有力候補: <span class="bg-purple-100 text-purple-800 py-1 px-2 rounded">Cursor</span></p>
+                            <p class="text-xs mt-1">理由: 迅速な複数ファイル編集のための比類なきコードベース理解力。</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 flex flex-col">
+                        <h4 class="font-bold text-lg mb-2" style="color: #0A58A7;">エコシステム忠誠者</h4>
+                        <p class="text-sm flex-grow mb-4">特定のエコシステム（例: GitHubやAWS）内で集中的に作業します。</p>
+                        <div class="mt-auto">
+                            <p class="font-semibold">最有力候補: <span class="bg-orange-100 text-orange-800 py-1 px-2 rounded">Copilot / Amazon Q</span></p>
+                            <p class="text-xs mt-1">理由: 深い統合が最も抵抗の少ない道と専門ツールを提供。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 border-t border-slate-300 pt-8">
+            <p class="font-bold text-xl mb-2" style="color: #0A58A7;">未来は「監督」される</p>
+            <p class="text-slate-600 max-w-2xl mx-auto" style="color: #102A43;">開発者の役割は、コードの書き手からAIエージェントの監督者へと進化しています。成功は、要件を明確に定義し、堅牢なシステムを設計し、実装に向けてAIを効果的に導く能力によって定義されるでしょう。Kiroのようなツールは、この新しい現実のために作られています。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const processLabel = (label, maxLength = 16) => {
+                if (typeof label !== 'string' || label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxLength) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine.trim());
+                }
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const sharedChartOptions = {
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#102A43',
+                            font: {
+                                weight: '600',
+                                family: "'Noto Sans JP', 'Inter', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        bodyFont: {
+                            family: "'Noto Sans JP', 'Inter', sans-serif"
+                        },
+                        titleFont: {
+                            family: "'Noto Sans JP', 'Inter', sans-serif"
+                        }
+                    }
+                }
+            };
+            
+            const radarCtx = document.getElementById('featureRadarChart');
+            if(radarCtx) {
+                new Chart(radarCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['ワークフロー構造', 'コンテキスト認識', '自動化', 'セキュリティ', 'カスタマイズ性'],
+                        datasets: [
+                            {
+                                label: 'Kiro',
+                                data: [5, 4, 5, 3, 4],
+                                backgroundColor: 'rgba(51, 102, 204, 0.2)',
+                                borderColor: 'rgba(51, 102, 204, 1)',
+                                borderWidth: 2,
+                                pointBackgroundColor: 'rgba(51, 102, 204, 1)'
+                            },
+                            {
+                                label: 'GitHub Copilot',
+                                data: [2, 3, 4, 4, 2],
+                                backgroundColor: 'rgba(74, 144, 226, 0.2)',
+                                borderColor: 'rgba(74, 144, 226, 1)',
+                                borderWidth: 2,
+                                pointBackgroundColor: 'rgba(74, 144, 226, 1)'
+                            },
+                             {
+                                label: 'Cursor',
+                                data: [2, 5, 3, 3, 5],
+                                backgroundColor: 'rgba(123, 179, 255, 0.2)',
+                                borderColor: 'rgba(123, 179, 255, 1)',
+                                borderWidth: 2,
+                                pointBackgroundColor: 'rgba(123, 179, 255, 1)'
+                            },
+                            {
+                                label: 'Tabnine',
+                                data: [2, 4, 3, 5, 4],
+                                backgroundColor: 'rgba(162, 210, 255, 0.2)',
+                                borderColor: 'rgba(162, 210, 255, 1)',
+                                borderWidth: 2,
+                                pointBackgroundColor: 'rgba(162, 210, 255, 1)'
+                            }
+                        ]
+                    },
+                    options: {
+                        ...sharedChartOptions,
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                max: 5,
+                                pointLabels: {
+                                    color: '#102A43',
+                                    font: {
+                                        size: 12,
+                                        weight: 'bold',
+                                        family: "'Noto Sans JP', 'Inter', sans-serif"
+                                    }
+                                },
+                                grid: {
+                                    color: '#D1D5DB'
+                                },
+                                angleLines: {
+                                    color: '#D1D5DB'
+                                },
+                                ticks: {
+                                     backdropColor: '#F0F4F8',
+                                     color: '#4A90E2',
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const barCtx = document.getElementById('priceBarChart');
+            if(barCtx) {
+                const originalLabels = ['GitHub Copilot Pro', 'Tabnine Dev', 'Kiro Pro', 'Cursor Pro'];
+                const processedLabels = originalLabels.map(label => processLabel(label));
+
+                new Chart(barCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: processedLabels,
+                        datasets: [{
+                            label: '月額料金 ($USD)',
+                            data: [10, 12, 19, 20],
+                            backgroundColor: [
+                                '#3366CC',
+                                '#4A90E2',
+                                '#7BB3FF',
+                                '#A2D2FF'
+                            ],
+                            borderColor: [
+                                '#0A58A7',
+                                '#0A58A7',
+                                '#0A58A7',
+                                '#0A58A7'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...sharedChartOptions,
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                grid: {
+                                  display: false
+                                },
+                                ticks: {
+                                    color: '#102A43',
+                                    callback: function(value) {
+                                        return '$' + value;
+                                    }
+                                }
+                            },
+                            y: {
+                                grid: {
+                                  display: false
+                                },
+                                ticks: {
+                                    color: '#102A43',
+                                    font: {
+                                        family: "'Noto Sans JP', 'Inter', sans-serif"
+                                    }
+                                }
+                            }
+                        },
+                         plugins: {
+                            legend: {
+                                display: false
+                            },
+                             tooltip: {
+                                callbacks: {
+                                    title: tooltipTitleCallback
+                                }
+                             }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
