@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3122674942116250" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="/share-deepresearch/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/share-deepresearch/assets/favicon/favicon-16x16.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Kiro IDE スペック駆動開発が変えるAIコーディングの未来</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css" integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css" integrity="sha512-1vDOkqtCXgcn0zgLIrxVjSIHvXOB/Ho2k33zwIDMqStDdHWvQyVU+BGG2fK4nnOgDbg0jEzVqzTYTL65orMyWw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css" integrity="sha512-Nrw40ThKwvPSYyxg6x099eplkB9p5cs2DtorDFSdpapXZlBOJDKK1Hn/gAaYuDQuas6yZJAEG2p2pYQtH80N/w==" crossorigin="anonymous" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai.min.css" integrity="sha512-RLF8eOxhuwsRINc7r56dpl9a3VStqrXD+udWahutJrYdyh++2Ghnf+s4jFsOyryKZt/GNjPwbXVPH3MJpKrn2g==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-background-color: #1a1a1a;
+            --box-background-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --accent-color: #ff7733;
+            --accent-color-hover: #ff9966;
+
+            --r-background-color: var(--main-background-color);
+            --r-main-font: 'Roboto', sans-serif;
+            --r-code-font: 'Fira Code', monospace;
+            --r-heading-font: 'Roboto', sans-serif;
+            --r-heading-text-transform: none;
+            --r-heading-font-weight: 700;
+            --r-main-color: var(--text-color);
+            --r-heading-color: var(--heading-color);
+            --r-link-color: var(--accent-color);
+            --r-link-color-hover: var(--accent-color-hover);
+        }
+
+        .reveal { font-size: 32px; }
+        .reveal h1 { font-size: 2.8em; }
+        .reveal h2 { font-size: 2.0em; }
+        .reveal h3 { font-size: 1.4em; }
+        .reveal p { font-size: 0.9em; line-height: 1.7; }
+        .reveal ul, .reveal ol { margin-top: 20px; }
+        .reveal li { font-size: 1.3em; line-height: 1.5; }
+
+        .reveal .subtitle { font-size: 1.2em; font-weight: 300; color: var(--accent-color); margin-top: 20px; }
+        .reveal .left-align { text-align: left; }
+        .reveal .small-text { font-size: 0.8em; }
+        .reveal strong { color: var(--accent-color); font-weight: 700; }
+
+        .flex-container { display: flex; justify-content: space-around; align-items: center; gap: 20px; }
+        .flex-box { flex: 1; background: var(--box-background-color); padding: 25px; border-radius: 10px; text-align: center; }
+        .flex-box i { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 30px; font-size: 0.8em; }
+        .comparison-table th, .comparison-table td { font-size: 1.2em; border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px; text-align: left; }
+        .comparison-table th { background-color: var(--accent-color); color: #000; }
+        .comparison-table td:first-child { font-size: 1.2em; color: var(--accent-color); }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 40px;
+            }
+            .reveal h1 { font-size: 2.2em; }
+            .reveal h2 { font-size: 1.7em; }
+            .reveal h3 { font-size: 1.3em; }
+            .reveal p { font-size: 1.3em; line-height: 1.65; }
+            .reveal li { font-size: 1.3em; line-height: 1.65; }
+
+            .flex-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .flex-box i {
+                font-size: 2.5em;
+                margin-bottom: 15px;
+            }
+
+            .comparison-table { font-size: 1.2em; }
+
+            .flex-container i.fa-arrow-right-long {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .animated {
+            opacity: 0;
+        }
+
+        .reveal .slides section.present .animated {
+            opacity: 1;
+            animation-fill-mode: both;
+            animation-name: fadeInUp;
+            animation-duration: 1.0s;
+        }
+
+        .reveal .slides section.present .animated.delay-1 { animation-delay: 0.2s; }
+        .reveal .slides section.present .animated.delay-2 { animation-delay: 0.4s; }
+        .reveal .slides section.present .animated.delay-3 { animation-delay: 0.6s; }
+        .reveal .slides section.present .animated.delay-4 { animation-delay: 0.8s; }
+        .reveal .slides section.present .animated.delay-5 { animation-delay: 1.0s; }
+
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section
+    data-transition="zoom"
+    data-background-image="https://images.unsplash.com/photo-1550751827-4bd374c3f58b"
+    data-background-opacity="0.2">
+    <h1 class="animated delay-1"><strong>Kiro IDE</strong></h1>
+    <p class="subtitle animated delay-2">スペック駆動開発が変えるAIコーディングの未来</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="left-align animated delay-1">Agenda</h2>
+    <ol class="left-align" style="margin-top: 40px;">
+        <li class="animated delay-2"><span style="color: var(--accent-color);">01.</span> "Vibeコーディング"の限界とKiroの哲学</li>
+        <li class="animated delay-3"><span style="color: var(--accent-color);">02.</span> Kiroの核心機能と3段階ワークフロー</li>
+        <li class="animated delay-4"><span style="color: var(--accent-color);">03.</span> 競合比較とAWSの戦略</li>
+        <li class="animated delay-5"><span style="color: var(--accent-color);">04.</span> 開発の未来と最適なツール選択</li>
+    </ol>
+</section>
+
+<section data-transition="slide" data-transition-speed="fast">
+    <h2 class="animated">【起】"Vibeコーディング"の限界</h2>
+    <div class="flex-container" style="margin-top: 50px; align-items: center;">
+        <div class="flex-box animated delay-1">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h3>魅惑的なプロトタイプ</h3>
+            <p class="small-text">AIによるコード生成は迅速で実験的だが、その品質は不安定になりがち。</p>
+        </div>
+        <i class="fa-solid fa-right-long fa-3x animated delay-2"></i>
+        <div class="flex-box animated delay-3">
+            <i class="fa-solid fa-server"></i>
+            <h3>堅牢な本番コード</h3>
+            <p class="small-text">本番環境で求められる構造性や保守性を担保するには、大規模な手直しが必要になることが多い。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated">【承①】Kiroの哲学：スペック駆動開発</h2>
+    <p class="animated delay-1" style="margin-top: 20px;">Kiroは、コード生成の「<strong>前</strong>」に仕様を固めることで、このギャップを埋める。</p>
+    <div class="flex-container" style="margin-top: 40px;">
+        <div class="flex-box animated delay-2" style="border: 1px solid #555;">
+            <i class="fa-solid fa-brain"></i>
+            <h3>Vibeコーディング</h3>
+            <p class="small-text">プロンプトで即座にコードを生成。<br><strong>自由</strong>だが<strong>場当たり的</strong>。</p>
+        </div>
+        <div class="flex-box animated delay-3" style="border: 2px solid var(--accent-color);">
+            <i class="fa-solid fa-sitemap"></i>
+            <h3>スペック駆動開発</h3>
+            <p class="small-text">要件定義から実装までを構造化。<br><strong>計画的</strong>で<strong>一貫性</strong>がある。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">3段階の強制的ワークフロー</h2>
+    <p class="animated delay-1" style="margin-top: 20px;">Kiroは、開発者に構造化されたプロセスを課すことで品質を担保する。</p>
+    <div class="flex-container" style="margin-top: 50px; align-items: center;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-file-lines"></i>
+            <h3>1. 要件定義</h3>
+            <p class="small-text">プロンプトから詳細な要件定義書 (`requirements.md`) を生成。</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long fa-2x animated delay-3"></i>
+        <div class="flex-box animated delay-4">
+            <i class="fa-solid fa-drafting-compass"></i>
+            <h3>2. 設計</h3>
+            <p class="small-text">要件を基に技術仕様書 (`design.md`) を作成。実装前に計画をレビュー。</p>
+        </div>
+        <i class="fa-solid fa-arrow-right-long fa-2x animated delay-5"></i>
+        <div class="flex-box animated delay-6">
+            <i class="fa-solid fa-code"></i>
+            <h3>3. 実装</h3>
+            <p class="small-text">設計をタスクリストに分解し、開発者は差分を確認しながら一つずつ実行。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">【承②】Kiroの心臓部：アーキテクチャの四本柱</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-1">
+            <i class="fa-solid fa-file-invoice"></i>
+            <h3>スペック</h3>
+            <p>開発の「なぜ」と「どうやって」を記録するMarkdown成果物。<strong>組織的知識</strong>として蓄積され、プロジェクトの透明性を高める。</p>
+        </div>
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-robot"></i>
+            <h3>エージェントフック</h3>
+            <p>ファイル保存などのIDE内イベントをトリガーにAIが自動でタスク（例: README更新）を実行。CI/CDを「<strong>シフトレフト</strong>」する。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">【承②】Kiroの心臓部：アーキテクチャの四本柱</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-1">
+            <i class="fa-solid fa-book-open"></i>
+            <h3>エージェントステアリング</h3>
+            <p>技術スタックや設計思想などをファイルで定義し、AIに永続的なプロジェクトコンテキストを提供。AIの「<strong>長期記憶</strong>」を実現。</p>
+        </div>
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3>MCP統合</h3>
+            <p>社内ドキュメントなど、外部の知識を<strong>安全に</strong>Kiroへ接続するプロトコル。機密情報を守りながらAIの知識を拡張できる。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated">【転①】哲学的な分岐点</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-1">
+            <i class="fa-solid fa-ruler-combined"></i>
+            <h3>規範的ワークフロー (Kiro)</h3>
+            <p>標準化されたプロセスを「<strong>強制</strong>」することで、本番品質と一貫性を保証する。計画をコードより優先する。</p>
+        </div>
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-rocket"></i>
+            <h3>拡張的支援 (Copilot etc.)</h3>
+            <p>既存のワークフローを「<strong>強化</strong>」し、開発者の生産性を加速させる。柔軟性とコントロールを開発者に委ねる。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">【転②】主要AIエディター比較</h2>
+    <table class="comparison-table animated delay-1">
+        <thead>
+            <tr>
+                <th style="width: 25%;">機能カテゴリ</th>
+                <th style="width: 18%;">Kiro</th>
+                <th style="width: 18%;">GitHub Copilot</th>
+                <th style="width: 18%;">Cursor</th>
+                <th style="width: 21%;">Tabnine</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>中核哲学</strong></td>
+                <td>規範的・構造化</td>
+                <td>拡張的・加速</td>
+                <td>拡張的・AI First</td>
+                <td>拡張的・保護的</td>
+            </tr>
+            <tr>
+                <td><strong>自動化能力</strong></td>
+                <td>IDE内イベント駆動</td>
+                <td>GitHub Actions連携</td>
+                <td>大規模リファクタリング</td>
+                <td>専門エージェント</td>
+            </tr>
+            <tr>
+                <td><strong>セキュリティ</strong></td>
+                <td>Pro版はデータ非学習</td>
+                <td>Enterprise版で制御</td>
+                <td>プライバシーモード</td>
+                <td><strong>オンプレミス可能</strong></td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="small-text animated delay-2" style="margin-top: 20px;">※レポートの表を基に要約</p>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">【転③】AWSの二正面戦略</h2>
+    <p class="animated delay-1">AWSは、異なる哲学を持つ2つの製品でAI開発市場に両賭けしている。</p>
+    <div class="flex-container" style="align-items: flex-start; margin-top: 40px;">
+        <div class="flex-box animated delay-3" style="flex: 2;">
+            <i class="fa-brands fa-aws"></i>
+            <h3>Amazon Q Developer</h3>
+            <p class="small-text"><strong>拡張的アシスタント</strong>。既存IDEの利用者を対象に、AWSの専門知識で支援。</p>
+        </div>
+        <div class="animated delay-2" style="text-align: center; flex: 1; padding-top: 30px;">
+            <i class="fa-solid fa-code-branch fa-3x" style="color: #555;"></i>
+            <p style="color: var(--accent-color);">VS</p>
+        </div>
+        <div class="flex-box animated delay-4" style="flex: 2;">
+            <i class="fa-solid fa-box"></i>
+            <h3>Kiro</h3>
+            <p class="small-text"><strong>構造化IDE</strong>。新しいワークフローの採用を厭わないチームを対象に、本番品質を約束。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="convex">
+    <h2 class="animated">【結①】あなたのチームに最適なツールは？</h2>
+    <div class="flex-container" style="margin-top: 50px;">
+        <div class="flex-box animated delay-1">
+            <i class="fa-solid fa-building-shield"></i>
+            <h3>規制産業・エンタープライズ</h3>
+            <p><strong>Tabnine</strong>: オンプレミス可能でセキュリティ最優先。<br><strong>Kiro</strong>: 監査可能な開発記録がコンプライアンスに貢献。</p>
+        </div>
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-lightbulb"></i>
+            <h3>アジャイルなスタートアップ</h3>
+            <p><strong>Cursor</strong>: 複雑なコードベースの迅速なリファクタリングに最強。<br><strong>Copilot</strong>: 既存環境で優れたバランスを提供。</p>
+        </div>
+        <div class="flex-box animated delay-3">
+            <i class="fa-brands fa-aws"></i>
+            <h3>グリーンフィールド・本番志向</h3>
+            <p><strong>Kiro</strong>: 長期的な保守性とチームの一貫性を確立するのに理想的。<br><strong>Amazon Q</strong>: AWS特化開発なら比類なし。</p>
+        </div>
+    </div>
+</section>
+
+<section data-transition="slide">
+    <h2 class="animated">【結②】開発の未来：アシスタントからエージェントへ</h2>
+    <p class="animated delay-1" style="margin-top: 20px;">開発者の役割は、コードを書くことから、AIを監督することへとシフトしている。</p>
+    <div class="flex-container" style="margin-top: 50px; align-items: center;">
+        <div class="flex-box animated delay-2">
+            <i class="fa-solid fa-keyboard"></i>
+            <h3>コードの書き手</h3>
+            <p class="small-text">実装の詳細に集中する</p>
+        </div>
+        <i class="fa-solid fa-right-long fa-3x animated delay-3"></i>
+        <div class="flex-box animated delay-4" style="border: 2px solid var(--accent-color);">
+            <i class="fa-solid fa-user-gear"></i>
+            <h3>エージェントの監督者</h3>
+            <p class="small-text">要件を定義し、システムを設計し、<br>AIエージェントを導く</p>
+        </div>
+    </div>
+    <p class="animated delay-5" style="margin-top: 40px;">Kiroのようなツールは、この<strong>新しい役割</strong>のために設計されている。</p>
+</section>
+
+<section
+    data-transition="zoom"
+    data-background-image="https://images.unsplash.com/photo-1518770660439-4636190af475"
+    data-background-opacity="0.2">
+    <h2 class="animated delay-1">構造が、創造性を加速させる。</h2>
+    <p class="subtitle animated delay-2" style="margin-top: 80px; font-size: 1.5em;">Thank You</p>
+</section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js" integrity="sha512-TC5IA+BA/5YPBb/MJyk97ypzvXYUIlAksfuxlUXlhD7cM7y/stM4JuytDeYJlsiKxmRDV5krDyuugOoMOHwyJg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/notes/notes.min.js" integrity="sha512-MZ7Ehjbh2soaeCZJGaw6vBNAa7+eunl0SUmRPNESchLlboH73lHLEeUa6pZJ2Pcui4NcpDFatr6M+VlcmaH1QA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/markdown/markdown.min.js" integrity="sha512-guKTp0XUnqVXjZtsa2+zQ8KVYoHjYM/MvoBlLiypVudmshBfMg0SeglTcPJGeRAqPyMp1Tcyu8+APV842XNB1Q==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/plugin/highlight/highlight.min.js" integrity="sha512-RCedMo/DOyawQOh4zYtqEHTZAfgrrVQctN3LVCX5kELGsN52TOdwZ8inRY0l9Mo4vtyDFn6oOAgRUilWXgb+wA==" crossorigin="anonymous"></script>
+    <script>
+        Reveal.initialize({
+            hash: false, 
+            hash: true,
+            width: 1920,
+            height: 1080,
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
