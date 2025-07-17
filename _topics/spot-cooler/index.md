@@ -6,7 +6,7 @@ description: スポットクーラーの購入を検討している女性向け�
 ga4_metrics:
   avgSessionDuration: 0.0
   pageViews: 0
-  users: 0
+  users: 1
 layout: topic
 prompt: スポットクーラーの購入を検討している。候補となる製品を調査し、性能を比較してまとめて欲しい。
 supplementary_materials:
