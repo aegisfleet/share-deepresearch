@@ -5,7 +5,7 @@ date: 2025-06-17
 description: 本レポートは、Cognition AI社が提供するAIソフトウェアエンジニア「Devin」の主要機能であるDevin SearchおよびDevin
   Wikiを、企業の非公開（プライベート）GitHubリポジトリ環境に導入するための詳細な技術ガイドである。本レポートの目的は、技術責任者、シニアエンジニア、DevOpsスペシャリスト、およびセキュリティアーキテクトが、導入の評価、計画、実行に必要な情報を網羅的に提供することにある。
 ga4_metrics:
-  avgSessionDuration: 193.417825
+  avgSessionDuration: 201.122990125
   pageViews: 11
   users: 5
 layout: topic
