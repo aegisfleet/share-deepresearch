@@ -3,12 +3,16 @@ audio: /share-deepresearch/assets/audio/spot-cooler.mp3
 category: research
 date: 2025-07-17
 description: スポットクーラーの購入を検討している女性向けに、静音性と取り回しやすさを重視した製品を比較し、最適な選択肢を提案します。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: スポットクーラーの購入を検討している。候補となる製品を調査し、性能を比較してまとめて欲しい。
 supplementary_materials:
-  - title: スポットクーラー購入ガイド インフォグラフィック
-    url: /share-deepresearch/topics/spot-cooler/infographic.html
-tags: 
+- title: スポットクーラー購入ガイド インフォグラフィック
+  url: /share-deepresearch/topics/spot-cooler/infographic.html
+tags:
 - 市場調査
 title: スポットクーラー購入完全ガイド：寝室で快適に使える一台を見つけるために
 ---
