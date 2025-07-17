@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スポットクーラー購入ガイド インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F0F8FF;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        h1, h2, h3 {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+        }
+        .stat-value {
+             font-family: 'Roboto', sans-serif;
+             font-weight: 700;
+        }
+    </style>
+</head>
+<body class="text-[#0A2342]">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-5xl font-bold text-[#0A2342] mb-2">寝室に最適な一台を見つける</h1>
+            <h2 class="text-xl md:text-2xl text-[#2CA58D]">スポットクーラー購入完全ガイド</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-base">60代女性がお一人でも安心して設置でき、静かな寝室で使える4万円以下のモデルを徹底分析します。</p>
+        </header>
+
+        <section id="criterias" class="mb-16">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="text-4xl mb-2">⚖️</div>
+                    <h3 class="font-bold text-lg">ひとりで設置</h3>
+                    <p class="text-sm">持ち運べる重さか、組み立ては簡単か。</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="text-4xl mb-2">🤫</div>
+                    <h3 class="font-bold text-lg">高い静音性</h3>
+                    <p class="text-sm">睡眠を妨げない、不快な音が出ないか。</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="text-4xl mb-2">💰</div>
+                    <h3 class="font-bold text-lg">4万円以下</h3>
+                    <p class="text-sm">予算内で最高の性能を見つける。</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <div class="text-4xl mb-2">⭐</div>
+                    <h3 class="font-bold text-lg">高評価</h3>
+                    <p class="text-sm">実際の利用者の声や評価を重視。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="realities" class="mb-16">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6">購入前に知るべき3つの「現実」</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">🎯</div>
+                        <h3 class="font-bold text-xl mb-2">1.「スポット」を冷やす道具</h3>
+                        <p>部屋全体ではなく、ベッド周りなど特定の場所を冷やすのが得意です。壁掛けエアコンとは役割が異なります。</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">🔥</div>
+                        <h3 class="font-bold text-xl mb-2">2. 最重要課題は「排熱」</h3>
+                        <p>背面から出る熱い空気を、ダクトでしっかり室外へ逃がすことが性能を最大限に引き出す鍵となります。</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-5xl mb-3">💧</div>
+                        <h3 class="font-bold text-xl mb-2">3. 手間ゼロではない「排水」</h3>
+                        <p>発生した水を捨てる「タンク式」と、その手間がない「ノンドレン式」があります。使い勝手を大きく左右します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="noise-comparison" class="mb-16">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-2">運転音の「量」と「質」の真実</h2>
+                <p class="text-center max-w-2xl mx-auto mb-6">カタログの数値(dB)が低くても、不快な機械音で「うるさい」と感じることがあります。実際の使用感を重視することが重要です。</p>
+                <div class="chart-container">
+                    <canvas id="noiseChart"></canvas>
+                </div>
+                 <p class="text-center text-xs text-gray-500 mt-2">※「体感的な不快度」はレポート内のレビューを元にした概念的な指標です。</p>
+            </div>
+        </section>
+
+        <section id="spec-comparison" class="mb-16">
+             <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">有力候補4モデル スペック徹底比較</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-center mb-4">⚖️ 取り回しの鍵「本体重量」</h3>
+                     <p class="text-center text-sm mb-4">軽いほど移動は楽ですが、性能とのトレードオフがあります。</p>
+                    <div class="chart-container h-64 md:h-80">
+                         <canvas id="weightChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-center mb-4">❄️ 涼しさの源「冷房能力」</h3>
+                     <p class="text-center text-sm mb-4">数値が高いほどパワフル。寝室での快適性を左右します。</p>
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="powerChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="flowchart" class="mb-16">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">あなたに合うのはどっち？簡単診断フロー</h2>
+                <div class="flex flex-col items-center">
+                    <div class="bg-[#2CA58D] text-white p-4 rounded-lg shadow-md text-center">
+                        <h3 class="font-bold">何を一番重視しますか？</h3>
+                    </div>
+                    <div class="h-8 w-px bg-gray-300"></div>
+                    <div class="flex flex-col md:flex-row w-full max-w-4xl justify-around">
+                        <div class="flex flex-col items-center w-full md:w-1/2 p-2">
+                            <div class="w-full h-px bg-gray-300 md:w-auto md:flex-1 md:h-px"></div>
+                            <div class="h-8 w-px bg-gray-300 md:hidden"></div>
+                             <div class="border-2 border-[#2CA58D] border-dashed p-4 rounded-lg text-center bg-blue-50">
+                                <h4 class="font-bold text-lg mb-2">持ち運べる「軽さ」</h4>
+                                <p class="text-sm">階段の移動や、頻繁に場所を変えたい</p>
+                            </div>
+                            <div class="h-8 w-px bg-gray-300"></div>
+                             <div class="text-3xl">👇</div>
+                            <div class="h-8 w-px bg-gray-300"></div>
+                             <div class="bg-white p-4 rounded-lg shadow-md text-center border-t-4 border-[#F4A261]">
+                                <h4 class="font-bold">ナカトミ MAC-10CG</h4>
+                                <p class="text-sm mt-1">冷却力は低いが扱いやすい。ただし「冷たい風が出る扇風機」と割り切る必要あり。</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center w-full md:w-1/2 p-2 mt-8 md:mt-0">
+                             <div class="w-full h-px bg-gray-300 md:w-auto md:flex-1 md:h-px"></div>
+                             <div class="h-8 w-px bg-gray-300 md:hidden"></div>
+                             <div class="border-2 border-[#2CA58D] border-dashed p-4 rounded-lg text-center bg-blue-50">
+                                <h4 class="font-bold text-lg mb-2">確実な「涼しさと静かさ」</h4>
+                                <p class="text-sm">就寝時にしっかり涼しく、快適に眠りたい</p>
+                            </div>
+                            <div class="h-8 w-px bg-gray-300"></div>
+                            <div class="text-3xl">👇</div>
+                            <div class="h-8 w-px bg-gray-300"></div>
+                            <div class="bg-white p-4 rounded-lg shadow-md text-center border-t-4 border-[#2CA58D]">
+                                <h4 class="font-bold">ハイセンス HPAC-22G</h4>
+                                <p class="text-sm mt-1">最もバランスの取れた最有力候補。重さはあるが、性能と使い勝手で選ぶならこれ。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="recommendation" class="mb-8">
+             <div class="bg-gradient-to-br from-[#0A2342] to-[#2CA58D] text-white rounded-xl shadow-2xl p-6 md:p-10">
+                <h2 class="text-2xl md:text-4xl font-bold text-center mb-2">総合的な最優秀推奨モデル</h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-center text-yellow-300 mb-8">ハイセンス HPAC-22G</h3>
+                <p class="text-center max-w-2xl mx-auto mb-10">重量という一点を除けば、パワー、静音性のバランス、使い勝手の良さにおいて最も完成度が高く、購入後の満足度が最も高いと期待できる一台です。</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="bg-white/20 p-4 rounded-lg">
+                        <div class="text-4xl mb-2">❄️</div>
+                        <h4 class="font-bold">パワフル冷却</h4>
+                        <p class="stat-value text-2xl">2.2<span class="text-base font-normal">kW</span></p>
+                    </div>
+                     <div class="bg-white/20 p-4 rounded-lg">
+                        <div class="text-4xl mb-2">🤫</div>
+                        <h4 class="font-bold">安定した音質</h4>
+                        <p class="stat-value text-2xl">49<span class="text-base font-normal">dB</span></p>
+                    </div>
+                     <div class="bg-white/20 p-4 rounded-lg">
+                        <div class="text-4xl mb-2">💧</div>
+                        <h4 class="font-bold">排水不要</h4>
+                        <p class="stat-value text-xl">ノンドレン</p>
+                    </div>
+                     <div class="bg-white/20 p-4 rounded-lg">
+                        <div class="text-4xl mb-2">⚙️</div>
+                        <h4 class="font-bold">簡単設置</h4>
+                        <p class="stat-value text-xl">工具不要</p>
+                    </div>
+                </div>
+                <div class="mt-8 text-center bg-yellow-300/20 p-3 rounded-lg max-w-md mx-auto">
+                    <p class="font-bold text-yellow-200">⚠️唯一の注意点：重量は約<span class="stat-value text-2xl">21.5</span>kg。持ち上げるのではなく、キャスターで転がして設置しましょう。</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const brilliantBluesPalette = {
+            darkBlue: '#0A2342',
+            teal: '#2CA58D',
+            lightGreen: '#84BC9C',
+            orange: '#F4A261',
+            red: '#E76F51',
+            background: '#F0F8FF'
+        };
+
+        function wrapText(str) {
+            const maxLength = 16;
+            if (typeof str !== 'string' || str.length <= maxLength) {
+                return str;
+            }
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines.filter(line => line.length > 0);
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+        
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: brilliantBluesPalette.darkBlue,
+                        font: {
+                            family: "'Noto Sans JP', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    titleFont: {
+                        family: "'Noto Sans JP', sans-serif"
+                    },
+                     bodyFont: {
+                        family: "'Noto Sans JP', sans-serif"
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                         color: brilliantBluesPalette.darkBlue,
+                         font: {
+                            family: "'Noto Sans JP', sans-serif"
+                        }
+                    },
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    ticks: {
+                         color: brilliantBluesPalette.darkBlue,
+                          font: {
+                            family: "'Noto Sans JP', sans-serif"
+                        }
+                    },
+                    grid: {
+                        color: '#e0e0e0'
+                    }
+                }
+            }
+        };
+
+        const noiseCtx = document.getElementById('noiseChart').getContext('2d');
+        new Chart(noiseCtx, {
+            type: 'bar',
+            data: {
+                labels: ['アイリスオーヤマ', 'シロカ', 'ナカトミ', 'ハイセンス'],
+                datasets: [
+                    {
+                        label: 'カタログ値 (dB)',
+                        data: [47, 54, 57, 49],
+                        backgroundColor: brilliantBluesPalette.lightGreen,
+                        borderColor: brilliantBluesPalette.teal,
+                        borderWidth: 1
+                    },
+                    {
+                        label: '体感的な不快度 (概念値)',
+                        data: [9, 8, 6, 4],
+                        backgroundColor: brilliantBluesPalette.orange,
+                        borderColor: brilliantBluesPalette.red,
+                        borderWidth: 1,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: { ...defaultChartOptions,
+                scales: {
+                     x: { ...defaultChartOptions.scales.x },
+                     y: { ...defaultChartOptions.scales.y, beginAtZero: true, title: { display: true, text: 'デシベル(dB)'} },
+                     y1: { type: 'linear', position: 'right', beginAtZero: true, max: 10, title: { display: true, text: '不快度 (高→低)'}, grid: { drawOnChartArea: false } }
+                }
+            }
+        });
+
+        const weightCtx = document.getElementById('weightChart').getContext('2d');
+        new Chart(weightCtx, {
+            type: 'bar',
+            data: {
+                labels: ['シロカ', 'ナカトミ', 'ハイセンス', 'アイリスオーヤマ'],
+                datasets: [{
+                    label: '本体重量 (kg)',
+                    data: [6.5, 13, 21.5, 22],
+                    backgroundColor: [brilliantBluesPalette.lightGreen, brilliantBluesPalette.teal, brilliantBluesPalette.orange, brilliantBluesPalette.red],
+                    borderColor: brilliantBluesPalette.darkBlue,
+                    borderWidth: 1
+                }]
+            },
+            options: { ...defaultChartOptions, indexAxis: 'y', plugins: {...defaultChartOptions.plugins, legend: {display: false}} }
+        });
+
+        const powerCtx = document.getElementById('powerChart').getContext('2d');
+        new Chart(powerCtx, {
+            type: 'bar',
+            data: {
+                labels: ['ハイセンス', 'アイリスオーヤマ', 'ナカトミ', 'シロカ'],
+                datasets: [{
+                    label: '冷房能力 (kW)',
+                    data: [2.2, 2.2, 0.43, 0],
+                    backgroundColor: [brilliantBluesPalette.teal, brilliantBluesPalette.lightGreen, brilliantBluesPalette.orange, '#cccccc'],
+                    borderColor: brilliantBluesPalette.darkBlue,
+                    borderWidth: 1
+                }]
+            },
+            options: { ...defaultChartOptions, indexAxis: 'y', plugins: {...defaultChartOptions.plugins, legend: {display: false}}, 
+                scales: {
+                    ...defaultChartOptions.scales,
+                    x: {...defaultChartOptions.scales.x,
+                        ticks: {
+                            ...defaultChartOptions.scales.x.ticks,
+                            callback: function(value, index, values) {
+                                if (this.getLabelForValue(value) === 'シロカ') {
+                                    return '非公表';
+                                }
+                                return value;
+                            }
+                        }
+                    }
+                },
+                 plugins: {
+                    ...defaultChartOptions.plugins,
+                    legend: {display: false},
+                    tooltip: {
+                        ...defaultChartOptions.plugins.tooltip,
+                        callbacks: {
+                            ...defaultChartOptions.plugins.tooltip.callbacks,
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (context.label === 'シロカ') {
+                                    return label + ': 非公表';
+                                }
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    label += context.parsed.x + ' kW';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
