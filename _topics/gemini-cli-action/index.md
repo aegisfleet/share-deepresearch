@@ -43,7 +43,7 @@ gemini-cliの主な特徴は以下の通りです。
 
 * **対話型インターフェース:** ターミナル上でgeminiコマンドを実行すると、対話型のチャットセッションが開始され、自然言語で指示を与えることができます 1。  
 * **ローカルファイルへのアクセス:** @プレフィックスを使うことで、ローカルのファイルやディレクトリをAIのコンテキストとして直接読み込ませることが可能です 1。これにより、コードベース全体を理解させた上での作業が可能になります。  
-* **シェルコマンドの実行:** \!プレフィックスを使うことで、ls \-alやnpm testといったシェルコマンドをAIエージェントに直接実行させることができます 1。  
+* **シェルコマンドの実行:** \!プレフィックスを使うことで、ls -alやnpm testといったシェルコマンドをAIエージェントに直接実行させることができます 1。  
 * **巨大なコンテキストウィンドウ:** Gemini 2.5 Proモデルを利用することで、最大100万トークンという広大なコンテキストウィンドウを活用できます 3。これにより、大規模なコードベースや複数のドキュメントを一度に分析することが可能です。
 
 gemini-cliは、それ自体が非常に強力なスタンドアロンツールであり、gemini-cli-actionはこのエンジンをGitHubのワークフロー内で利用可能にするためのラッパーであると理解することが重要です。
@@ -88,19 +88,19 @@ gemini-cli-actionの基盤となるgemini-cliは、Node.js v18以上を要求し
 
 gemini-cli-actionをGitHub Actionsのワークフローで使用するだけであれば、開発者のローカルマシンにgemini-cliをインストールする必要はありません。アクションは、GitHubが管理するランナー上で実行されます。
 
-しかし、ローカル環境でnpm install \-g @google/gemini-cliを実行してgemini-cliをインストールしておくことは、プロンプトの開発や動作テストを行う上で非常に有用です 1。
+しかし、ローカル環境でnpm install -g @google/gemini-cliを実行してgemini-cliをインストールしておくことは、プロンプトの開発や動作テストを行う上で非常に有用です 1。
 
 ### **2.2 認証の詳細**
 
 gemini-cli-actionを動作させるには、2種類の認証が必要です。
 
 ステップ1：Gemini APIキー  
-まず、Google AI StudioからGemini APIキーを取得する必要があります。このキーは、アクションがGoogleのAIモデルにアクセスするために不可欠です。取得したキーは、リポジトリの Settings \> Secrets and variables \> Actions にて、GEMINI\_API\_KEYという名前のシークレットとして保存してください 6。  
+まず、Google AI StudioからGemini APIキーを取得する必要があります。このキーは、アクションがGoogleのAIモデルにアクセスするために不可欠です。取得したキーは、リポジトリの Settings \> Secrets and variables \> Actions にて、GEMINI_API_KEYという名前のシークレットとして保存してください 6。  
 ステップ2：GitHub APIアクセス  
 次に、アクションがリポジトリに対してコメントの投稿やラベルの追加といった操作を行うために、GitHubトークンが必要です 6。これには2つの方法があります。
 
-* 方法A：デフォルトのGITHUB\_TOKEN  
-  単純な読み取り専用のユースケースや、同一リポジトリ内での操作には、ワークフローに自動的に提供されるGITHUB\_TOKENで十分です 6。  
+* 方法A：デフォルトのGITHUB_TOKEN  
+  単純な読み取り専用のユースケースや、同一リポジトリ内での操作には、ワークフローに自動的に提供されるGITHUB_TOKENで十分です 6。  
 * 方法B：カスタムGitHub App（推奨）  
   よりセキュアで柔軟な認証方法として、カスタムGitHub Appの作成が強く推奨されます 6。これにより、より細かい権限管理が可能になり、特定のユーザーアカウントに依存することもなくなります。  
   gemini-cliリポジトリのワークフローログでも、actions/create-github-app-tokenアクションが使用されており、これがベストプラクティスであることが確認できます 9。
@@ -129,37 +129,37 @@ gemini-cliは、このコンテキストを階層的に読み込みます。具�
 
 開発者は、ローカルのgemini-cliで/memory showや/memory refreshといったコマンドを使うことで、現在AIがどのコンテキストを認識しているかを確認・デバッグできます 1。
 
-### **2.5 高度な設定：settings\_jsonとMCPサーバー**
+### **2.5 高度な設定：settings.jsonとMCPサーバー**
 
-gemini-cli-actionは、settings\_jsonという入力パラメータを通じて、基盤となるgemini-cliに対してより複雑な設定を渡すことができます 6。
+gemini-cli-actionは、settings.jsonという入力パラメータを通じて、基盤となるgemini-cliに対してより複雑な設定を渡すことができます 6。
 
 これにより、**Model Context Protocol (MCP) サーバー**を設定することが可能になります。MCPは、Geminiに新しいカスタムツールを追加するためのオープンな標準規格です 2。例えば、
 
 .gemini/settings.jsonファイルに以下のような設定を記述することで、GeminiにGitHubを操作するためのツール群（Issueの一覧取得など）を提供できます 4。
 
-JSON
-
-{  
-  "mcpServers": {  
-    "github": {  
-      "command": "npx",  
-      "args": \["-y", "@modelcontextprotocol/server-github"\],  
-      "env": {  
-        "GITHUB\_PERSONAL\_ACCESS\_TOKEN": ""  
-      }  
-    }  
-  }  
+```JSON
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
+      }
+    }
+  }
 }
+```
 
 ### **gemini-cli-actionの主要なワークフロー入力**
 
 | 入力名 | 説明 | 必須 | デフォルト値 |
 | :---- | :---- | :---- | :---- |
-| prompt | Geminiに与える指示（プロンプト）。 | はい | \- |
-| github\_token | GitHub APIとの認証に使用するトークン。 | いいえ | ${{ github.token }} |
-| issue\_number | 操作対象のIssue番号。 | いいえ | イベントから抽出 |
+| prompt | Geminiに与える指示（プロンプト）。 | はい | - |
+| github_token | GitHub APIとの認証に使用するトークン。 | いいえ | ${{ github.token }} |
+| issue_number | 操作対象のIssue番号。 | いいえ | イベントから抽出 |
 | repo | 操作対象のリポジトリ。 | いいえ | ${{ github.repository }} |
-| settings\_json | gemini-cliに渡すJSON形式の詳細設定。 | いいえ | \- |
+| settings.json | gemini-cliに渡すJSON形式の詳細設定。 | いいえ | - |
 | version | 実行するgemini-cliのバージョン（npm, ブランチ, コミットハッシュ）。 | いいえ | 最新のnpmバージョン |
 
 ---
@@ -175,7 +175,7 @@ gemini-cli-actionの最も強力かつ一般的な活用事例は、日々の開
 **トリガー:**
 
 * **Issue作成・再オープン時:** on: issues: types: \[opened, reopened\] 9  
-* **定期的実行（バックログ整理）:** on: schedule: \- cron: '0 0 \* \* \*' 6
+* **定期的実行（バックログ整理）:** on: schedule: - cron: '0 0 \* \* \*' 6
 
 トリアージ用プロンプトの作成:  
 この自動化の心臓部は、Geminiに与えるプロンプトです。gemini-cliリポジトリ自身のワークフローログを分析すると、成功するプロンプトには以下のステップが含まれていることがわかります 9。
@@ -183,59 +183,59 @@ gemini-cli-actionの最も強力かつ一般的な活用事例は、日々の開
 1. gh label listコマンドで利用可能なラベル一覧を取得する。  
 2. Issueのタイトルと本文を分析する。  
 3. 最も関連性の高いラベルを選択する。  
-4. gh issue edit... \--add-label "..."コマンドでラベルを付与する。  
+4. gh issue edit... --add-label "..."コマンドでラベルを付与する。  
 5. 必要に応じて、status/need-triageのような一時的なラベルを削除する。
 
 ワークフローYAMLの例（再構築）:  
 以下は、Issue作成時に自動トリアージを実行するための、コメント付きの完全なワークフローYAMLです。
 
-YAML
-
+```YAML
 name: Gemini Automated Issue Triage
 
 on:  
   issues:  
-    types: \[opened, reopened\]
+    types: [opened, reopened]
 
 permissions:  
-  issues: write      \# Issueにラベルを書き込む権限  
-  contents: read     \# リポジトリのコンテンツ（GEMINI.mdなど）を読み取る権限  
-  id-token: write    \# GitHub Appでの認証に必要
+  issues: write      # Issueにラベルを書き込む権限  
+  contents: read     # リポジトリのコンテンツ（GEMINI.mdなど）を読み取る権限  
+  id-token: write    # GitHub Appでの認証に必要
 
 jobs:  
   triage-issue:  
     runs-on: ubuntu-latest  
-    \# 同一Issueに対するワークフローの重複実行を防ぐ  
+    # 同一Issueに対するワークフローの重複実行を防ぐ  
     concurrency:  
       group: ${{ github.workflow }}-${{ github.event.issue.number }}  
       cancel-in-progress: true  
     steps:  
-      \# （推奨）GitHub Appを使用して一時的なトークンを生成  
-      \- name: Generate GitHub App Token  
-        id: generate\_token  
+      # （推奨）GitHub Appを使用して一時的なトークンを生成  
+      - name: Generate GitHub App Token  
+        id: generate_token  
         uses: actions/create-github-app-token@v1  
         with:  
-          app-id: ${{ secrets.APP\_ID }}  
-          private-key: ${{ secrets.PRIVATE\_KEY }}
+          app-id: ${{ secrets.APP_ID }}  
+          private-key: ${{ secrets.PRIVATE_KEY }}
 
-      \# Gemini CLI Actionの実行  
-      \- name: Run Gemini Issue Triage  
-        uses: google-gemini/gemini-cli-action@main \# 安定運用のためにコミットハッシュを推奨  
+      # Gemini CLI Actionの実行  
+      - name: Run Gemini Issue Triage  
+        uses: google-gemini/gemini-cli-action@main # 安定運用のためにコミットハッシュを推奨  
         with:  
-          github\_token: ${{ steps.generate\_token.outputs.token }}  
+          github_token: ${{ steps.generate_token.outputs.token }}  
           prompt: |  
             You are an expert issue triage assistant. Your task is to analyze the current GitHub issue and apply the most appropriate existing labels.
 
-            \*\*Instructions:\*\*  
-            1.  First, get a list of all available labels by running: \`gh label list \--repo ${{ github.repository }} \--limit 100\`  
+            **Instructions:**  
+            1.  First, get a list of all available labels by running: `gh label list --repo ${{ github.repository }} --limit 100`  
             2.  Carefully review the issue's title and body.  
-            3.  Based on your analysis, select the most relevant labels. Focus on labels prefixed with \`kind/\`, \`area/\`, and \`priority/\`.  
-            4\.  Apply these labels to the issue using a single command: \`gh issue edit ${{ github.event.issue.number }} \--repo ${{ github.repository }} \--add-label "label1,label2"\`  
+            3.  Based on your analysis, select the most relevant labels. Focus on labels prefixed with `kind/`, `area/`, and `priority/`.  
+            4.  Apply these labels to the issue using a single command: `gh issue edit ${{ github.event.issue.number }} --repo ${{ github.repository }} --add-label "label1,label2"`  
             5.  After applying the labels, if a "status/need-triage" label exists, remove it.
 
-            \*\*Guidelines:\*\*  
-            \- Only use labels that already exist in the repository. Do not create new ones.  
-            \- Do not add any comments or modify the issue's content.
+            **Guidelines:**  
+            - Only use labels that already exist in the repository. Do not create new ones.  
+            - Do not add any comments or modify the issue's content.
+```
 
 ### **3.2 活用事例2：インテリジェントなプルリクエストレビュー**
 
@@ -243,7 +243,7 @@ jobs:
 オープンされたPRのコード変更をAIが自動的にレビューし、コードの品質、潜在的なバグ、スタイルガイドへの準拠、ベストプラクティスに関するフィードバックをコメントとして投稿します 6。  
 **トリガー:**
 
-* **PRイベント発生時:** on: pull\_request: types: \[opened, synchronized, reopened\] 6  
+* **PRイベント発生時:** on: pull_request: types: \[opened, synchronized, reopened\] 6  
 * **コメントによるオンデマンド実行:** OWNERやMEMBERなどの権限を持つユーザーが、PRに@gemini-cli /reviewとコメントすることで、いつでもレビューを再実行させることができます 6。これは、修正後の再レビューを依頼する際に非常に便利です。
 
 レビュー基準のカスタマイズ:  
@@ -256,52 +256,50 @@ jobs:
 ワークフローYAMLの例（推定）:  
 PRレビューに関する直接的なワークフローログは見つかりませんでしたが、Issueトリアージの例と機能説明に基づき、以下のようなワークフローが構成されると推定できます。
 
-YAML
-
+```YAML
 name: Gemini Automated PR Review
 
 on:  
-  pull\_request:  
-    types: \[opened, synchronized\]  
-  issue\_comment:  
-    types: \[created\]
+  pull_request:  
+    types: [opened, synchronized]  
+  issue_comment:  
+    types: [created]
 
 permissions:  
-  pull-requests: write \# PRにコメントを書き込む権限  
-  contents: read       \# リポジトリのコンテンツ（GEMINI.mdなど）を読み取る権限  
-  id-token: write      \# GitHub Appでの認証に必要
+  pull-requests: write # PRにコメントを書き込む権限  
+  contents: read       # リポジトリのコンテンツ（GEMINI.mdなど）を読み取る権限  
+  id-token: write      # GitHub Appでの認証に必要
 
 jobs:  
   review-pr:  
-    \# コメントが "@gemini-cli /review" の場合、またはPRイベントの場合にのみ実行  
+    # コメントが "@gemini-cli /review" の場合、またはPRイベントの場合にのみ実行  
     if: |  
-      github.event\_name \== 'pull\_request' ||  
-      (github.event\_name \== 'issue\_comment' && startsWith(github.event.comment.body, '@gemini-cli /review'))  
+      github.event_name == 'pull_request' ||  
+      (github.event_name == 'issue_comment' && startsWith(github.event.comment.body, '@gemini-cli /review'))  
     runs-on: ubuntu-latest  
     steps:  
-      \- name: Generate GitHub App Token  
-        id: generate\_token  
+      - name: Generate GitHub App Token  
+        id: generate_token  
         uses: actions/create-github-app-token@v1  
         with:  
-          app-id: ${{ secrets.APP\_ID }}  
-          private-key: ${{ secrets.PRIVATE\_KEY }}
+          app-id: ${{ secrets.APP_ID }}  
+          private-key: ${{ secrets.PRIVATE_KEY }}
 
-      \- name: Run Gemini PR Review  
+      - name: Run Gemini PR Review  
         uses: google-gemini/gemini-cli-action@main  
         with:  
-          github\_token: ${{ steps.generate\_token.outputs.token }}  
-          \# PRイベントの場合はPR番号を、コメントイベントの場合はIssue番号（PRもIssueの一種）を使用  
-          issue\_number: ${{ github.event.pull\_request.number |
-
-| github.event.issue.number }}  
+          github_token: ${{ steps.generate_token.outputs.token }}  
+          # PRイベントの場合はPR番号を、コメントイベントの場合はIssue番号（PRもIssueの一種）を使用  
+          issue_number: ${{ github.event.pull_request.number || github.event.issue.number }}  
           prompt: |  
             You are an expert code reviewer. Please review the changes in this pull request.
 
-            \*\*Instructions:\*\*  
+            **Instructions:**  
             1.  Analyze the code changes (diff).  
             2.  Check for potential bugs, performance issues, security vulnerabilities, and unclear code.  
-            3.  Verify that the changes adhere to our project's coding standards, which are defined in the \`GEMINI.md\` file.  
+            3.  Verify that the changes adhere to our project's coding standards, which are defined in the `GEMINI.md` file.  
             4.  Post your feedback as a single, constructive review comment on the pull request. If there are no major issues, state that the PR looks good to approve.
+```
 
 これらの事例は、gemini-cli-actionが単なるCIジョブではなく、**プログラマブルなリポジトリボット**として機能することを示しています。人間のコメントをトリガーとし 6、自然言語のプロンプトに基づいて外部ツール（
 
@@ -462,38 +460,38 @@ gemini-cliのGitHubリポジトリでは、「Public Roadmap for Gemini CLI v1�
 
 #### **引用文献**
 
-1. Gemini CLI の簡単チュートリアル \- Zenn, 7月 20, 2025にアクセス、 [https://zenn.dev/schroneko/articles/gemini-cli-tutorial](https://zenn.dev/schroneko/articles/gemini-cli-tutorial)  
+1. Gemini CLI の簡単チュートリアル - Zenn, 7月 20, 2025にアクセス、 [https://zenn.dev/schroneko/articles/gemini-cli-tutorial](https://zenn.dev/schroneko/articles/gemini-cli-tutorial)  
 2. Gemini CLI Gemini for Google Cloud, 7月 20, 2025にアクセス、 [https://cloud.google.com/gemini/docs/codeassist/gemini-cli](https://cloud.google.com/gemini/docs/codeassist/gemini-cli)  
 3. Google announces Gemini CLI: your open-source AI agent, 7月 20, 2025にアクセス、 [https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/](https://blog.google/technology/developers/introducing-gemini-cli-open-source-ai-agent/)  
-4. Gemini CLI Full Tutorial \- DEV Community, 7月 20, 2025にアクセス、 [https://dev.to/proflead/gemini-cli-full-tutorial-2ab5](https://dev.to/proflead/gemini-cli-full-tutorial-2ab5)  
-5. Everything You Need to Know About Google Gemini CLI: Features, News, and Expert Insights \- TS2 Space, 7月 20, 2025にアクセス、 [https://ts2.tech/en/everything-you-need-to-know-about-google-gemini-cli-features-news-and-expert-insights/](https://ts2.tech/en/everything-you-need-to-know-about-google-gemini-cli-features-news-and-expert-insights/)  
-6. google-gemini/gemini-cli-action \- GitHub, 7月 20, 2025にアクセス、 [https://github.com/google-gemini/gemini-cli-action](https://github.com/google-gemini/gemini-cli-action)  
-7. Review GitHub code using Gemini Code Assist \- Google for Developers, 7月 20, 2025にアクセス、 [https://developers.google.com/gemini-code-assist/docs/review-github-code](https://developers.google.com/gemini-code-assist/docs/review-github-code)  
+4. Gemini CLI Full Tutorial - DEV Community, 7月 20, 2025にアクセス、 [https://dev.to/proflead/gemini-cli-full-tutorial-2ab5](https://dev.to/proflead/gemini-cli-full-tutorial-2ab5)  
+5. Everything You Need to Know About Google Gemini CLI: Features, News, and Expert Insights - TS2 Space, 7月 20, 2025にアクセス、 [https://ts2.tech/en/everything-you-need-to-know-about-google-gemini-cli-features-news-and-expert-insights/](https://ts2.tech/en/everything-you-need-to-know-about-google-gemini-cli-features-news-and-expert-insights/)  
+6. google-gemini/gemini-cli-action - GitHub, 7月 20, 2025にアクセス、 [https://github.com/google-gemini/gemini-cli-action](https://github.com/google-gemini/gemini-cli-action)  
+7. Review GitHub code using Gemini Code Assist - Google for Developers, 7月 20, 2025にアクセス、 [https://developers.google.com/gemini-code-assist/docs/review-github-code](https://developers.google.com/gemini-code-assist/docs/review-github-code)  
 8. Gemini Code Assist AI coding assistant, 7月 20, 2025にアクセス、 [https://codeassist.google/](https://codeassist.google/)  
-9. Workflow file \- Gemini Automated Issue Triage \- GitHub, 7月 20, 2025にアクセス、 [https://github.com/google-gemini/gemini-cli/actions/runs/16094755527/workflow](https://github.com/google-gemini/gemini-cli/actions/runs/16094755527/workflow)  
-10. Practical Tips for Using Gemini CLI in Real Projects \- Momen, 7月 20, 2025にアクセス、 [https://momen.app/blogs/practical-tips-for-using-gemini-cli-in-real-projects/](https://momen.app/blogs/practical-tips-for-using-gemini-cli-in-real-projects/)  
-11. Gemini CLI Tutorial Series — Part 2 : Gemini CLI Command line parameters by Romin Irani Google Cloud \- Medium, 7月 20, 2025にアクセス、 [https://medium.com/google-cloud/gemini-cli-tutorial-series-part-2-gemini-cli-command-line-parameters-e64e21b157be](https://medium.com/google-cloud/gemini-cli-tutorial-series-part-2-gemini-cli-command-line-parameters-e64e21b157be)  
-12. Use agentic chat as a pair programmer Gemini Code Assist \- Google for Developers, 7月 20, 2025にアクセス、 [https://developers.google.com/gemini-code-assist/docs/use-agentic-chat-pair-programmer](https://developers.google.com/gemini-code-assist/docs/use-agentic-chat-pair-programmer)  
-13. A Practical Guide to Gemini CLI \- DEV Community, 7月 20, 2025にアクセス、 [https://dev.to/shahidkhans/a-practical-guide-to-gemini-cli-941](https://dev.to/shahidkhans/a-practical-guide-to-gemini-cli-941)  
-14. Workflow file \- Gemini Scheduled Issue Triage \#132 \- GitHub, 7月 20, 2025にアクセス、 [https://github.com/google-gemini/gemini-cli/actions/runs/16083670818/workflow](https://github.com/google-gemini/gemini-cli/actions/runs/16083670818/workflow)  
-15. Doc: update gemini-cli README.md to require Node.js version 20+ (\#3247) \- GitHub, 7月 20, 2025にアクセス、 [https://github.com/google-gemini/gemini-cli/actions/runs/16087469128/workflow](https://github.com/google-gemini/gemini-cli/actions/runs/16087469128/workflow)  
-16. Simplify your Agent "vibe building" flow with ADK and Gemini CLI \- Google Developers Blog, 7月 20, 2025にアクセス、 [https://developers.googleblog.com/en/simplify-agent-building-adk-gemini-cli/](https://developers.googleblog.com/en/simplify-agent-building-adk-gemini-cli/)  
-17. Google Gemini CLI In-depth Analysis: The AI Agent Ecosystem War for the Developer Terminal \- iKala, 7月 20, 2025にアクセス、 [https://ikala.ai/blog/ai-trends/google-gemini-cli-in-depth-analysis-the-ai-agent-ecosystem-war-for-the-developer-terminal/](https://ikala.ai/blog/ai-trends/google-gemini-cli-in-depth-analysis-the-ai-agent-ecosystem-war-for-the-developer-terminal/)  
-18. Exploring the Gemini CLI \- Wietse Venema's Weblog, 7月 20, 2025にアクセス、 [https://wietsevenema.eu/blog/2025/exploring-gemini-cli/](https://wietsevenema.eu/blog/2025/exploring-gemini-cli/)  
-19. Gemini-CLI disappointing : r/Bard \- Reddit, 7月 20, 2025にアクセス、 [https://www.reddit.com/r/Bard/comments/1lp13mx/geminicli\_disappointing/](https://www.reddit.com/r/Bard/comments/1lp13mx/geminicli_disappointing/)  
-20. Gemini will not finish a prompt for a whole 24 hours now. Insinuates my internet despite no issues. \- Google Help, 7月 20, 2025にアクセス、 [https://support.google.com/gemini/thread/352230535/gemini-will-not-finish-a-prompt-for-a-whole-24-hours-now-insinuates-my-internet-despite-no-issues?hl=en](https://support.google.com/gemini/thread/352230535/gemini-will-not-finish-a-prompt-for-a-whole-24-hours-now-insinuates-my-internet-despite-no-issues?hl=en)  
+9. Workflow file - Gemini Automated Issue Triage - GitHub, 7月 20, 2025にアクセス、 [https://github.com/google-gemini/gemini-cli/actions/runs/16094755527/workflow](https://github.com/google-gemini/gemini-cli/actions/runs/16094755527/workflow)  
+10. Practical Tips for Using Gemini CLI in Real Projects - Momen, 7月 20, 2025にアクセス、 [https://momen.app/blogs/practical-tips-for-using-gemini-cli-in-real-projects/](https://momen.app/blogs/practical-tips-for-using-gemini-cli-in-real-projects/)  
+11. Gemini CLI Tutorial Series — Part 2 : Gemini CLI Command line parameters by Romin Irani Google Cloud - Medium, 7月 20, 2025にアクセス、 [https://medium.com/google-cloud/gemini-cli-tutorial-series-part-2-gemini-cli-command-line-parameters-e64e21b157be](https://medium.com/google-cloud/gemini-cli-tutorial-series-part-2-gemini-cli-command-line-parameters-e64e21b157be)  
+12. Use agentic chat as a pair programmer Gemini Code Assist - Google for Developers, 7月 20, 2025にアクセス、 [https://developers.google.com/gemini-code-assist/docs/use-agentic-chat-pair-programmer](https://developers.google.com/gemini-code-assist/docs/use-agentic-chat-pair-programmer)  
+13. A Practical Guide to Gemini CLI - DEV Community, 7月 20, 2025にアクセス、 [https://dev.to/shahidkhans/a-practical-guide-to-gemini-cli-941](https://dev.to/shahidkhans/a-practical-guide-to-gemini-cli-941)  
+14. Workflow file - Gemini Scheduled Issue Triage \#132 - GitHub, 7月 20, 2025にアクセス、 [https://github.com/google-gemini/gemini-cli/actions/runs/16083670818/workflow](https://github.com/google-gemini/gemini-cli/actions/runs/16083670818/workflow)  
+15. Doc: update gemini-cli README.md to require Node.js version 20+ (\#3247) - GitHub, 7月 20, 2025にアクセス、 [https://github.com/google-gemini/gemini-cli/actions/runs/16087469128/workflow](https://github.com/google-gemini/gemini-cli/actions/runs/16087469128/workflow)  
+16. Simplify your Agent "vibe building" flow with ADK and Gemini CLI - Google Developers Blog, 7月 20, 2025にアクセス、 [https://developers.googleblog.com/en/simplify-agent-building-adk-gemini-cli/](https://developers.googleblog.com/en/simplify-agent-building-adk-gemini-cli/)  
+17. Google Gemini CLI In-depth Analysis: The AI Agent Ecosystem War for the Developer Terminal - iKala, 7月 20, 2025にアクセス、 [https://ikala.ai/blog/ai-trends/google-gemini-cli-in-depth-analysis-the-ai-agent-ecosystem-war-for-the-developer-terminal/](https://ikala.ai/blog/ai-trends/google-gemini-cli-in-depth-analysis-the-ai-agent-ecosystem-war-for-the-developer-terminal/)  
+18. Exploring the Gemini CLI - Wietse Venema's Weblog, 7月 20, 2025にアクセス、 [https://wietsevenema.eu/blog/2025/exploring-gemini-cli/](https://wietsevenema.eu/blog/2025/exploring-gemini-cli/)  
+19. Gemini-CLI disappointing : r/Bard - Reddit, 7月 20, 2025にアクセス、 [https://www.reddit.com/r/Bard/comments/1lp13mx/geminicli_disappointing/](https://www.reddit.com/r/Bard/comments/1lp13mx/geminicli_disappointing/)  
+20. Gemini will not finish a prompt for a whole 24 hours now. Insinuates my internet despite no issues. - Google Help, 7月 20, 2025にアクセス、 [https://support.google.com/gemini/thread/352230535/gemini-will-not-finish-a-prompt-for-a-whole-24-hours-now-insinuates-my-internet-despite-no-issues?hl=en](https://support.google.com/gemini/thread/352230535/gemini-will-not-finish-a-prompt-for-a-whole-24-hours-now-insinuates-my-internet-despite-no-issues?hl=en)  
 21. Gemini CLI Hacker News, 7月 20, 2025にアクセス、 [https://news.ycombinator.com/item?id=44376919](https://news.ycombinator.com/item?id=44376919)  
 22. Aider Documentation aider, 7月 20, 2025にアクセス、 [https://aider.chat/docs/](https://aider.chat/docs/)  
 23. Usage aider, 7月 20, 2025にアクセス、 [https://aider.chat/docs/usage.html](https://aider.chat/docs/usage.html)  
 24. OpenAI Code review Github Action · Actions · GitHub Marketplace ..., 7月 20, 2025にアクセス、 [https://github.com/marketplace/actions/openai-code-review-github-action](https://github.com/marketplace/actions/openai-code-review-github-action)  
 25. How to Integrate OpenAI with GitHub – Omi AI, 7月 20, 2025にアクセス、 [https://www.omi.me/blogs/ai-integrations/how-to-integrate-openai-with-github](https://www.omi.me/blogs/ai-integrations/how-to-integrate-openai-with-github)  
-26. Open AI Future Features with Github Action \- IT-Journey, 7月 20, 2025にアクセス、 [https://it-journey.dev/posts/2025/03/19/open-ai-future-features-with-github-action/](https://it-journey.dev/posts/2025/03/19/open-ai-future-features-with-github-action/)  
+26. Open AI Future Features with Github Action - IT-Journey, 7月 20, 2025にアクセス、 [https://it-journey.dev/posts/2025/03/19/open-ai-future-features-with-github-action/](https://it-journey.dev/posts/2025/03/19/open-ai-future-features-with-github-action/)  
 27. GitHub Copilot · Your AI pair programmer · GitHub, 7月 20, 2025にアクセス、 [https://github.com/features/copilot/plans](https://github.com/features/copilot/plans)  
-28. GitHub Copilot Pricing Plans and How to Get Copilot for Free \- Swimm, 7月 20, 2025にアクセス、 [https://swimm.io/learn/github-copilot/github-copilot-pricing-plans-and-how-to-get-copilot-for-free](https://swimm.io/learn/github-copilot/github-copilot-pricing-plans-and-how-to-get-copilot-for-free)  
-29. GitHub Copilot \- Microsoft Azure, 7月 20, 2025にアクセス、 [https://azure.microsoft.com/en-us/products/github/copilot](https://azure.microsoft.com/en-us/products/github/copilot)  
-30. About individual Copilot plans and benefits \- GitHub Docs, 7月 20, 2025にアクセス、 [https://docs.github.com/en/copilot/concepts/copilot-billing/about-individual-copilot-plans-and-benefits](https://docs.github.com/en/copilot/concepts/copilot-billing/about-individual-copilot-plans-and-benefits)  
+28. GitHub Copilot Pricing Plans and How to Get Copilot for Free - Swimm, 7月 20, 2025にアクセス、 [https://swimm.io/learn/github-copilot/github-copilot-pricing-plans-and-how-to-get-copilot-for-free](https://swimm.io/learn/github-copilot/github-copilot-pricing-plans-and-how-to-get-copilot-for-free)  
+29. GitHub Copilot - Microsoft Azure, 7月 20, 2025にアクセス、 [https://azure.microsoft.com/en-us/products/github/copilot](https://azure.microsoft.com/en-us/products/github/copilot)  
+30. About individual Copilot plans and benefits - GitHub Docs, 7月 20, 2025にアクセス、 [https://docs.github.com/en/copilot/concepts/copilot-billing/about-individual-copilot-plans-and-benefits](https://docs.github.com/en/copilot/concepts/copilot-billing/about-individual-copilot-plans-and-benefits)  
 31. Gemini in Android Studio Android Developers, 7月 20, 2025にアクセス、 [https://developer.android.com/studio/preview/gemini](https://developer.android.com/studio/preview/gemini)  
-32. Issues · google-gemini/gemini-cli-action \- GitHub, 7月 20, 2025にアクセス、 [https://github.com/google-gemini/gemini-cli-action/issues](https://github.com/google-gemini/gemini-cli-action/issues)  
-33. google-gemini gemini-cli Announcements · Discussions \- GitHub, 7月 20, 2025にアクセス、 [https://github.com/google-gemini/gemini-cli/discussions/categories/announcements](https://github.com/google-gemini/gemini-cli/discussions/categories/announcements)  
-34. google-gemini gemini-cli · Discussions \- GitHub, 7月 20, 2025にアクセス、 [https://github.com/google-gemini/gemini-cli/discussions](https://github.com/google-gemini/gemini-cli/discussions)  
+32. Issues · google-gemini/gemini-cli-action - GitHub, 7月 20, 2025にアクセス、 [https://github.com/google-gemini/gemini-cli-action/issues](https://github.com/google-gemini/gemini-cli-action/issues)  
+33. google-gemini gemini-cli Announcements · Discussions - GitHub, 7月 20, 2025にアクセス、 [https://github.com/google-gemini/gemini-cli/discussions/categories/announcements](https://github.com/google-gemini/gemini-cli/discussions/categories/announcements)  
+34. google-gemini gemini-cli · Discussions - GitHub, 7月 20, 2025にアクセス、 [https://github.com/google-gemini/gemini-cli/discussions](https://github.com/google-gemini/gemini-cli/discussions)  
 35. 1月 1, 1970にアクセス、 [https://github.com/google-gemini/gemini-cli/discussions/89](https://github.com/google-gemini/gemini-cli/discussions/89)
