@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini CLI Action: Supercharge Your CI/CD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            min-height: 80px;
+        }
+        .flowchart-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #7D3CF8;
+            margin: 0.5rem 0;
+            transform: rotate(90deg);
+        }
+        @media (min-width: 768px) {
+            .flowchart-arrow {
+                transform: rotate(0deg);
+                margin: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight text-[#00A6ED]">Gemini CLI Action</h1>
+            <p class="mt-4 text-xl md:text-2xl font-semibold text-gray-700">生成AIでGitHubワークフローを自動化・高度化する</p>
+        </header>
+
+        <section id="introduction" class="mb-20">
+            <div class="bg-white rounded-lg shadow-xl p-8">
+                <h2 class="text-3xl font-bold text-center mb-2 text-[#7D3CF8]">これは何？</h2>
+                <p class="text-center text-lg max-w-4xl mx-auto mb-8">
+                    `google-gemini/gemini-cli-action` は、Googleの強力な生成AIモデル「Gemini」を、GitHub Actionsのワークフロー内に直接組み込むためのツールです。これにより、コードレビュー、ドキュメント生成、リリースノート作成といった様々な開発タスクを自動化し、生産性を飛躍的に向上させることができます。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4 text-gray-700">
+                    <div class="flowchart-step bg-yellow-100 border-2 border-yellow-300">GitHubイベント<br>(Push, PR)</div>
+                    <div class="flowchart-arrow">→</div>
+                    <div class="flowchart-step bg-blue-100 border-2 border-blue-300">ワークフロー<br>トリガー</div>
+                    <div class="flowchart-arrow">→</div>
+                    <div class="flowchart-step bg-purple-200 border-2 border-purple-400"><strong>Gemini Action</strong><br>プロンプト実行</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="use-cases" class="mb-20">
+            <h2 class="text-4xl font-extrabold text-center mb-12">活用事例</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold mb-4 text-[#E8416E]">🤖 コードレビューの自動化</h3>
+                    <p class="mb-4 flex-grow">Pull Requestの差分をGeminiに送信し、バグの可能性、パフォーマンスの懸念、コーディング規約の遵守状況を自動的にチェックさせます。レビュー担当者の負担を軽減し、品質を均一化します。</p>
+                    <div class="chart-container h-80">
+                        <canvas id="codeReviewChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold mb-4 text-[#00A6ED]">📄 ドキュメント生成</h3>
+                    <p class="mb-4 flex-grow">ソースコードから関数の説明、パラメータ、返り値などを抽出し、Markdown形式のドキュメントやコードコメントを自動生成します。ドキュメントの鮮度を常に最新に保つことが可能です。</p>
+                    <div class="chart-container h-80">
+                        <canvas id="docCoverageChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold mb-4 text-[#7D3CF8]">📝 コミットメッセージの生成</h3>
+                    <p class="mb-4 flex-grow">コードの変更内容を解析し、「Conventional Commits」のような規約に準拠した、分かりやすいコミットメッセージを自動で提案します。コミットログの可読性が向上します。</p>
+                    <div class="p-4 border-l-4 border-purple-300 bg-purple-50 rounded-r-lg">
+                        <p class="font-mono text-sm"><strong>生成前:</strong> `update files`</p>
+                        <hr class="my-2 border-purple-200">
+                        <p class="font-mono text-sm"><strong>生成後:</strong> `feat(api): add user authentication endpoint`</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold mb-4 text-[#FFD75C]">🏷️ Issueの自動トリアージ</h3>
+                    <p class="mb-4 flex-grow text-gray-800">新規作成されたIssueのタイトルと本文をGeminiが分析し、`bug`、`feature`、`documentation` といった適切なラベルを自動で提案または付与します。Issue管理の効率化に繋がります。</p>
+                     <div class="chart-container h-80">
+                        <canvas id="issueTriageChart"></canvas>
+                    </div>
+                </div>
+
+                 <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col md:col-span-2">
+                    <h3 class="text-2xl font-bold mb-4 text-green-600">🧪 テストケースの生成</h3>
+                    <p class="mb-4 flex-grow">特定の関数やコンポーネントのコードを基に、正常系・異常系のテストケースを自動で生成します。テストカバレッジの向上を容易にし、開発の初期段階でバグを発見するのに役立ちます。</p>
+                    <div class="chart-container h-96">
+                        <canvas id="testGenerationChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <section id="setup" class="mb-20">
+            <h2 class="text-4xl font-extrabold text-center mb-12">🚀 簡単セットアップ</h2>
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl p-8">
+                 <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4 text-[#00A6ED]">ステップガイド</h3>
+                        <ol class="list-decimal list-inside space-y-4 text-lg">
+                            <li>Google AI Studioで<span class="font-bold text-[#7D3CF8]">Gemini APIキー</span>を取得します。</li>
+                            <li>GitHubリポジトリの `Settings` > `Secrets and variables` > `Actions` に、`GEMINI_API_KEY` という名前でAPIキーを登録します。</li>
+                            <li>リポジトリの `.github/workflows/` ディレクトリにYAMLファイルを作成します（例: `gemini.yml`）。</li>
+                            <li>以下のサンプルコードを参考に、ワークフローを記述します。</li>
+                            <li>プロンプトを自由にカスタマイズして、特定タスクを実行させます。</li>
+                        </ol>
+                    </div>
+                    <div class="bg-gray-800 text-white p-4 rounded-lg font-mono text-sm overflow-x-auto">
+<pre><code>name: Gemini Code Review
+
+on: [pull_request]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get PR diff
+        id: pr_diff
+        run: |
+          diff_content=$(git diff origin/main)
+          echo "diff<<EOF" >> $GITHUB_OUTPUT
+          echo "$diff_content" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Gemini CLI Action
+        id: gemini_review
+        uses: google-gemini/gemini-cli-action@v1
+        with:
+          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          prompt: |
+            Please review the following code changes
+            and provide feedback on potential bugs,
+            style issues, or improvements.
+            ---
+            ${{ steps.pr_diff.outputs.diff }}
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '${{ steps.gemini_review.outputs.gemini-response }}'
+            })
+</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <section id="advanced" class="mb-16">
+            <h2 class="text-4xl font-extrabold text-center mb-12">🧠 高度な活用：プロンプトの質</h2>
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <p class="text-center text-lg max-w-4xl mx-auto mb-6">
+                    Gemini Actionの性能はプロンプトの質に大きく依存します。具体的で、文脈を十分に提供し、明確な役割を与えることで、返答の精度は劇的に向上します。このグラフは、プロンプトの具体性と応答品質の間の正の相関関係を示しています。
+                </p>
+                <div class="chart-container h-96">
+                    <canvas id="promptQualityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="text-center py-8">
+        <p class="text-gray-500">Infographic created by Canvas Infographics.</p>
+    </footer>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).length > maxLength) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine += (currentLine ? ' ' : '') + word;
+                }
+            });
+            lines.push(currentLine);
+            return lines;
+        };
+        
+        const palette = {
+            blue: '#00A6ED',
+            purple: '#7D3CF8',
+            pink: '#E8416E',
+            yellow: '#FFD75C',
+            green: '#28a745',
+            gray: '#6c757d'
+        };
+
+        new Chart(document.getElementById('codeReviewChart'), {
+            type: 'bar',
+            data: {
+                labels: ['手動レビュー時間', 'AI支援レビュー時間'],
+                datasets: [{
+                    label: 'レビュー時間 (分)',
+                    data: [45, 10],
+                    backgroundColor: [palette.pink, palette.blue],
+                    borderColor: [palette.pink, palette.blue],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '時間 (分)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'AI導入によるレビュー時間比較',
+                        font: { size: 16 }
+                    },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('docCoverageChart'), {
+            type: 'line',
+            data: {
+                labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                datasets: [{
+                    label: 'ドキュメントカバレッジ (%)',
+                    data: [25, 45, 70, 95],
+                    fill: true,
+                    backgroundColor: 'rgba(0, 166, 237, 0.2)',
+                    borderColor: palette.blue,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'カバレッジ (%)'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '自動化によるドキュメントカバレッジ推移',
+                        font: { size: 16 }
+                    },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('issueTriageChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['バグ', '機能リクエスト', 'ドキュメント', '質問'],
+                datasets: [{
+                    label: 'Issueタイプ',
+                    data: [45, 30, 15, 10],
+                    backgroundColor: [palette.pink, palette.purple, palette.yellow, palette.gray],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    title: {
+                        display: true,
+                        text: '自動提案されたIssueラベルの分布',
+                        font: { size: 16 }
+                    },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        const testGenLabels = ['低複雑度コンポーネント', '中複雑度モジュール', '高複雑度なビジネスロジック', 'レガシーコードリファクタリング'];
+        new Chart(document.getElementById('testGenerationChart'), {
+            type: 'bubble',
+            data: {
+                labels: testGenLabels.map(wrapLabel),
+                datasets: [{
+                    label: '低品質プロンプト',
+                    data: [
+                        {x: 20, y: 15, r: 8}, 
+                        {x: 50, y: 30, r: 12}, 
+                        {x: 85, y: 25, r: 20},
+                        {x: 70, y: 10, r: 25}
+                    ],
+                    backgroundColor: 'rgba(232, 65, 110, 0.6)',
+                    borderColor: palette.pink
+                },{
+                    label: '高品質プロンプト',
+                    data: [
+                        {x: 25, y: 40, r: 10}, 
+                        {x: 55, y: 80, r: 15}, 
+                        {x: 90, y: 75, r: 22},
+                        {x: 75, y: 55, r: 28}
+                    ],
+                    backgroundColor: 'rgba(0, 166, 237, 0.6)',
+                    borderColor: palette.blue
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'コードの複雑度 (相対値)' },
+                        min: 0,
+                        max: 100
+                    },
+                    y: {
+                        title: { display: true, text: '生成されたテストケース数' },
+                        min: 0
+                    }
+                },
+                plugins: {
+                     title: {
+                        display: true,
+                        text: 'コード複雑度と生成テスト数の関係 (プロンプト品質別)',
+                        font: { size: 16 }
+                    },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('promptQualityChart'), {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: '応答品質',
+                    data: [
+                        {x: 1, y: 2}, {x: 1.5, y: 2.5}, {x: 2, y: 3}, {x: 2.5, y: 2.8},
+                        {x: 3, y: 4}, {x: 3.5, y: 4.5}, {x: 4, y: 5}, {x: 4.5, y: 4.8},
+                        {x: 5, y: 6.5}, {x: 5.5, y: 6}, {x: 6, y: 7}, {x: 6.5, y: 7.2},
+                        {x: 7, y: 8.5}, {x: 7.5, y: 8}, {x: 8, y: 9}, {x: 8.5, y: 8.8},
+                        {x: 9, y: 9.5}, {x: 9.5, y: 9.3}, {x: 10, y: 9.8}
+                    ],
+                    backgroundColor: palette.purple,
+                    borderColor: palette.purple,
+                    pointRadius: 6,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'プロンプトの具体性・品質 (1 → 10)' },
+                        min: 0,
+                        max: 11
+                    },
+                    y: {
+                        title: { display: true, text: 'Geminiの応答品質 (1 → 10)' },
+                        min: 0,
+                        max: 11
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'プロンプトの品質と応答精度の相関',
+                        font: { size: 16 }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ` (具体性: ${context.parsed.x}, 品質: ${context.parsed.y})`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
