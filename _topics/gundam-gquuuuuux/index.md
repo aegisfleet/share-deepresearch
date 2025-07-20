@@ -4,7 +4,7 @@ category: research
 date: 2025-06-25
 description: 『機動戦士Gundam GQuuuuuuX』は、一年戦争でジオン公国が勝利していたら、という大胆な「What If?」の問いから始まる、宇宙世紀の根本的な再創造である。本レポートでは、公式設定資料と制作陣のインタビューに基づき、この分岐した世界の基盤と物語の深層を詳細に解説する。
 ga4_metrics:
-  avgSessionDuration: 511.3891535000001
+  avgSessionDuration: 511.38915349999996
   pageViews: 11
   users: 8
 layout: topic

@@ -4,7 +4,7 @@ category: research
 date: 2025-07-17
 description: スポットクーラーの購入を検討している女性向けに、静音性と取り回しやすさを重視した製品を比較し、最適な選択肢を提案します。
 ga4_metrics:
-  avgSessionDuration: 227.439406
+  avgSessionDuration: 104.7262015
   pageViews: 4
   users: 2
 layout: topic
