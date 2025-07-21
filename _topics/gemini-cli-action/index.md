@@ -4,7 +4,7 @@ category: ai
 date: 2025-07-20
 description: Gemini CLI Actionの使い方と活用事例を徹底解説。IssueトリアージやPRレビューの自動化から、機能自動生成、ドキュメント作成まで、現代的なソフトウェア開発ライフサイクルを支援する方法を紹介します。
 ga4_metrics:
-  avgSessionDuration: 138.45701466666665
+  avgSessionDuration: 103.842761
   pageViews: 2
   users: 2
 layout: topic
