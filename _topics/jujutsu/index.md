@@ -3,12 +3,16 @@ audio: /share-deepresearch/assets/audio/jujutsu.mp3
 category: engineering
 date: 2025-07-22
 description: Jujutsuは、Gitの複雑さを解消し、開発者の生産性を向上させるために設計された次世代のバージョン管理システムです。
+ga4_metrics:
+  avgSessionDuration: 79.2594035
+  pageViews: 2
+  users: 2
 layout: topic
 prompt: Jujutsuというツールについて調査を行って欲しい。
 supplementary_materials:
-  - title: Jujutsu (jj)：Git互換VCSへのビジュアルガイド
-    url: /share-deepresearch/topics/jujutsu/infographic.html
-tags: 
+- title: Jujutsu (jj)：Git互換VCSへのビジュアルガイド
+  url: /share-deepresearch/topics/jujutsu/infographic.html
+tags:
 - 開発環境
 title: Jujutsuの詳細分析：バージョン管理の新たなパラダイム
 ---
