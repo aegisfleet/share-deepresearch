@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/pension-system-reform.mp3
 category: research
 date: 2025-06-01
 ga4_metrics:
-  avgSessionDuration: 197.83688883333332
-  pageViews: 9
-  users: 6
+  avgSessionDuration: 169.57447614285712
+  pageViews: 10
+  users: 7
 layout: topic
 prompt: 年金制度改革の関連法案において、最新の内容では具体的に何が変わるのか詳しく解説して欲しい。
 supplementary_materials:
