@@ -129,15 +129,15 @@ CM30は、**携帯性と常時接続性が他のすべての考慮事項を凌�
 
 #### **引用文献**
 
-1. Acer Chromebook Plus 514（CB514-4H/CB514-4HT） \- CB514-4HT-N38Q 技術仕様 | Chromebook | Acer 日本, 7月 26, 2025にアクセス、 [https://www.acer.com/jp-ja/chromebooks/acer-chromebook-plus-514-cb514-4h-cb514-4ht/pdp/NX.KV0SJ.001](https://www.acer.com/jp-ja/chromebooks/acer-chromebook-plus-514-cb514-4h-cb514-4ht/pdp/NX.KV0SJ.001)  
+1. Acer Chromebook Plus 514（CB514-4H/CB514-4HT） \- CB514-4HT-N38Q 技術仕様 Chromebook Acer 日本, 7月 26, 2025にアクセス、 [https://www.acer.com/jp-ja/chromebooks/acer-chromebook-plus-514-cb514-4h-cb514-4ht/pdp/NX.KV0SJ.001](https://www.acer.com/jp-ja/chromebooks/acer-chromebook-plus-514-cb514-4h-cb514-4ht/pdp/NX.KV0SJ.001)  
 2. エイサー、「Core i3-N305」を搭載した初の「Chromebook Plus」2機種 \- 価格.com, 7月 26, 2025にアクセス、 [https://news.kakaku.com/prdnews/cd=pc/ctcd=0020/id=141523/](https://news.kakaku.com/prdnews/cd=pc/ctcd=0020/id=141523/)  
 3. 重量:～1.5kg Chromebook(クロームブック)のモバイルノート 人気売れ筋ランキング \- 価格.com, 7月 26, 2025にアクセス、 [https://kakaku.com/pc/mobile-note/itemlist.aspx?pdf\_se=38\&pdf\_Spec303=-1.5](https://kakaku.com/pc/mobile-note/itemlist.aspx?pdf_se=38&pdf_Spec303=-1.5)  
 4. カタログ｜Lenovo IdeaPad Slim 3i Chromebook Plus Gen 8 ｜LenovoのAI対応モデル, 7月 26, 2025にアクセス、 [https://chromebookguide.net/Chromebook-review/IdeaPad\_Slim\_3i\_Chromebook\_Plus\_Gen8.html](https://chromebookguide.net/Chromebook-review/IdeaPad_Slim_3i_Chromebook_Plus_Gen8.html)  
 5. ノートパソコン Chromebook Plus 83EK000XJP \[14.0型 /Chrome OS /intel Core i3 /メモリ：8GB /SSD：256GB /2024年8月モデル\] 【在庫限り】 LENOVO \- ビックカメラ, 7月 26, 2025にアクセス、 [https://www.biccamera.com/bc/item/13201963/](https://www.biccamera.com/bc/item/13201963/)  
 6. グーグル、Chromebook PlusでGemini強化 レノボは新型 \- Impress Watch, 7月 26, 2025にアクセス、 [https://www.watch.impress.co.jp/docs/news/2028053.html](https://www.watch.impress.co.jp/docs/news/2028053.html)  
-7. Chromebook通信（2024年6月）| 新機種がAcer、Lenovoから発売, 7月 26, 2025にアクセス、 [https://chromebookguide.net/news/report\_202406.html](https://chromebookguide.net/news/report_202406.html)  
+7. Chromebook通信（2024年6月）新機種がAcer、Lenovoから発売, 7月 26, 2025にアクセス、 [https://chromebookguide.net/news/report\_202406.html](https://chromebookguide.net/news/report_202406.html)  
 8. ASUS、フリップタイプの11.6型Chromebook「Flip CX1（CX1102）」 \- 価格.com, 7月 26, 2025にアクセス、 [https://news.kakaku.com/prdnews/cd=pc/ctcd=0020/id=125879/](https://news.kakaku.com/prdnews/cd=pc/ctcd=0020/id=125879/)  
-9. Made in Japan の Chromebook™ をご提供 | 富士通クライアントコンピューティング株式会社のプレスリリース \- PR TIMES, 7月 26, 2025にアクセス、 [https://prtimes.jp/main/html/rd/p/000000064.000041345.html](https://prtimes.jp/main/html/rd/p/000000064.000041345.html)  
+9. Made in Japan の Chromebook™ をご提供 富士通クライアントコンピューティング株式会社のプレスリリース \- PR TIMES, 7月 26, 2025にアクセス、 [https://prtimes.jp/main/html/rd/p/000000064.000041345.html](https://prtimes.jp/main/html/rd/p/000000064.000041345.html)  
 10. 新しい Chromebook Plus が登場： AI 機能でさらに便利に, 7月 26, 2025にアクセス、 [https://blog.google/intl/ja-jp/products/android-chrome-play/chromebook-plus-lenovo-plusgen10/](https://blog.google/intl/ja-jp/products/android-chrome-play/chromebook-plus-lenovo-plusgen10/)  
 11. ASUS Chromebook Plus \- そこは AI 。できること、もっとプラス。, 7月 26, 2025にアクセス、 [https://www.asus.com/jp/content/chromebook/](https://www.asus.com/jp/content/chromebook/)  
 12. Chromebook Plus で AI の力を \- Google, 7月 26, 2025にアクセス、 [https://www.google.com/intl/ja\_jp/chromebook/chromebookplus/](https://www.google.com/intl/ja_jp/chromebook/chromebookplus/)  
@@ -147,7 +147,7 @@ CM30は、**携帯性と常時接続性が他のすべての考慮事項を凌�
 16. ASUS Chromebook CM30 Detachable レビュー まずはここから入門, 7月 26, 2025にアクセス、 [https://asus.blog.jp/archives/1082075377.html](https://asus.blog.jp/archives/1082075377.html)  
 17. さらにサクサク\!? ASUSの最新Chromebook Plusを試す \- 価格.com ..., 7月 26, 2025にアクセス、 [https://kakakumag.com/pc-smartphone/?id=20505](https://kakakumag.com/pc-smartphone/?id=20505)  
 18. 【ASUS Chromebook CM30 Detachableレビュー】10万円未満のPC買うならおすすめの10.5インチタブレットPC, 7月 26, 2025にアクセス、 [https://monovice.blog/chromebook-cm30-detachable/](https://monovice.blog/chromebook-cm30-detachable/)  
-19. 実機レビュー | ASUS Chromebook CM30 Detachable, 7月 26, 2025にアクセス、 [https://chromebookguide.net/Chromebook-review/asus-cm30.html](https://chromebookguide.net/Chromebook-review/asus-cm30.html)  
+19. 実機レビュー ASUS Chromebook CM30 Detachable, 7月 26, 2025にアクセス、 [https://chromebookguide.net/Chromebook-review/asus-cm30.html](https://chromebookguide.net/Chromebook-review/asus-cm30.html)  
 20. ASUS Chromebook CM30 Detachable (CM3001)｜Laptops For Home, 7月 26, 2025にアクセス、 [https://www.asus.com/us/laptops/for-home/chromebook/asus-chromebook-cm30-detachable-cm3001/](https://www.asus.com/us/laptops/for-home/chromebook/asus-chromebook-cm30-detachable-cm3001/)  
 21. Asus Chromebook CM30 review: Drawing tablet that needs a delicate touch \- Android Police, 7月 26, 2025にアクセス、 [https://www.androidpolice.com/asus-chromebook-cm30-detachable-review/](https://www.androidpolice.com/asus-chromebook-cm30-detachable-review/)  
 22. 【タブレットにも】気軽に使える脱着式クロームブック「ASUS Chromebook CM30 Detachable」をレビュー！ 気になるのは価格ですね \- YouTube, 7月 26, 2025にアクセス、 [https://www.youtube.com/watch?v=\_NOAyACprIM](https://www.youtube.com/watch?v=_NOAyACprIM)  
