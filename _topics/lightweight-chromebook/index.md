@@ -3,12 +3,16 @@ audio: /share-deepresearch/assets/audio/your-topic.mp3
 category: research
 date: 2025-07-26
 description: 2024年以降に発売されたChromebookで1kgを切るモデルの調査結果をまとめたレポートです。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 2024年以降に発売されているChromebookで1kgを切るものを探して欲しい。
 supplementary_materials:
-  - title: インフォグラフィック：2024年 1kg未満Chromebookの真実
-    url: /share-deepresearch/topics/your-topic/infographic.html
-tags: 
+- title: インフォグラフィック：2024年 1kg未満Chromebookの真実
+  url: /share-deepresearch/topics/your-topic/infographic.html
+tags:
 - 市場調査
 - ガジェット
 title: 1kgの壁という幻想：2024年発売Chromebookで唯一キログラムの壁を破ったモデルに関する決定版レポート
