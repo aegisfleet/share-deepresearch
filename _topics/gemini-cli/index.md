@@ -4,7 +4,7 @@ category: ai
 date: 2025-06-26
 description: Gemini CLIは、開発者の最も重要な作業環境であるターミナル内に、強力なAIエージェントを直接統合するという、Googleの野心的なビジョンを体現しています。
 ga4_metrics:
-  avgSessionDuration: 244.44437322727273
+  avgSessionDuration: 242.91167040909093
   pageViews: 21
   users: 12
 layout: topic
