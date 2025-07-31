@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>楽天AI：エコシステムがもたらす優位性 インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #003F5C;
+            color: #ffffff;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .card {
+            background-color: #2F4B7C;
+            border: 1px solid #665191;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #FFA600;
+            margin: 0 1rem;
+        }
+        .venn-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-2">楽天AI</h1>
+            <p class="text-xl md:text-2xl font-bold text-[#FFA600]">ChatGPTの模倣ではない：エコシステムがもたらす優位性の深掘り</p>
+        </header>
+
+        <main>
+            
+            <section id="strategy" class="mb-16">
+                <div class="card rounded-xl shadow-2xl p-6 md:p-8">
+                    <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#FFA600]">製品ではなく、ポートフォリオ</h2>
+                    <p class="text-center text-lg mb-8 max-w-3xl mx-auto">楽天AIは単一のツールではありません。楽天エコシステムの各領域に特化して設計された、専門的なAIソリューション群です。この「垂直統合」戦略は、汎用的なアプローチをとる世界の競合他社とは根本的に異なります。</p>
+                    <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
+                        <div class="text-center p-4 rounded-lg bg-[#003F5C] w-full md:w-1/3">
+                            <div class="text-4xl mb-2">👤</div>
+                            <h3 class="font-bold text-xl">消費者向け</h3>
+                            <p>Rakuten LinkとWebアプリ内のパーソナルアシスタント</p>
+                        </div>
+                        <div class="hidden md:block flow-arrow">&rarr;</div>
+                        <div class="block md:hidden text-2xl">&darr;</div>
+                        <div class="text-center p-4 rounded-lg bg-[#003F5C] w-full md:w-1/3">
+                            <div class="text-4xl mb-2">🏢</div>
+                            <h3 class="font-bold text-xl">法人向け</h3>
+                            <p>安全で低コストなエンタープライズ向けAIツールキット</p>
+                        </div>
+                        <div class="hidden md:block flow-arrow">&rarr;</div>
+                        <div class="block md:hidden text-2xl">&darr;</div>
+                        <div class="text-center p-4 rounded-lg bg-[#003F5C] w-full md:w-1/3">
+                            <div class="text-4xl mb-2">🛍️</div>
+                            <h3 class="font-bold text-xl">出店者向け</h3>
+                            <p>RMSに統合されたEコマース業務支援</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="advantage" class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#FFA600]">圧倒的優位性：エコシステムの「AI化」</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card rounded-xl shadow-2xl p-6 md:p-8 flex flex-col justify-center items-center">
+                        <p class="text-2xl font-bold mb-2">2024年のAIによる利益創出</p>
+                        <p class="text-7xl font-black text-[#FFA600]">105億円</p>
+                        <p class="mt-4 text-center">マーケティング、オペレーション、顧客サービスの効率を20%向上させる「トリプル20」施策が牽引。</p>
+                    </div>
+                    <div class="card rounded-xl shadow-2xl p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-center mb-4">データの「金脈」</h3>
+                        <p class="text-center mb-6">70以上のサービスが一つの楽天IDに紐づき、グローバルなAIがアクセス不可能な独自のファーストパーティデータを形成。これが高度なパーソナライズを実現します。</p>
+                        <div class="flex justify-around items-center flex-wrap gap-4">
+                            <span class="text-4xl p-2 bg-[#003F5C] rounded-full">🛒</span>
+                            <span class="flow-arrow text-2xl">&rarr;</span>
+                            <span class="text-4xl p-2 bg-[#003F5C] rounded-full">✈️</span>
+                            <span class="flow-arrow text-2xl">&rarr;</span>
+                            <div class="text-center">
+                                <div class="text-5xl">🧠</div>
+                                <div class="font-bold">楽天AI</div>
+                            </div>
+                            <span class="flow-arrow text-2xl">&larr;</span>
+                            <span class="text-4xl p-2 bg-[#003F5C] rounded-full">💳</span>
+                             <span class="flow-arrow text-2xl">&larr;</span>
+                            <span class="text-4xl p-2 bg-[#003F5C] rounded-full">📱</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="comparison" class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#FFA600]">直接対決：二つの戦略物語</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="card rounded-xl shadow-2xl p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-center mb-4">ニッチでの強み：日本語性能</h3>
+                        <p class="text-center text-sm mb-4">日本語に特化したLM-Harnessベンチマークにおいて、楽天のモデルは他の大規模な日本語オープンソースモデルと互角、あるいは一部で上回る性能を示しています。</p>
+                        <div class="chart-container">
+                            <canvas id="japaneseBenchmarkChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card rounded-xl shadow-2xl p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-center mb-4">機能の分岐：汎用型 vs 特化型</h3>
+                        <p class="text-center text-sm mb-4">楽天AIは全てをこなすために作られていません。楽天の「中で」全てをこなすために作られています。</p>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="border-b-2 border-[#665191]">
+                                    <tr>
+                                        <th class="p-2">機能</th>
+                                        <th class="p-2 text-center">楽天AI</th>
+                                        <th class="p-2 text-center">ChatGPT / Gemini</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-[#665191]">
+                                        <td class="p-2 font-bold">一般的なウェブ検索</td>
+                                        <td class="p-2 text-center text-2xl text-[#F95D6A]">❌</td>
+                                        <td class="p-2 text-center text-2xl text-[#8BC34A]">✅</td>
+                                    </tr>
+                                    <tr class="border-b border-[#665191]">
+                                        <td class="p-2 font-bold">高度なデータ分析</td>
+                                        <td class="p-2 text-center text-2xl text-[#F95D6A]">❌</td>
+                                        <td class="p-2 text-center text-2xl text-[#8BC34A]">✅</td>
+                                    </tr>
+                                    <tr class="border-b border-[#665191]">
+                                        <td class="p-2 font-bold text-[#FFA600]">エコシステム内検索・実行 (購入/予約)</td>
+                                        <td class="p-2 text-center text-2xl text-[#8BC34A]">✅</td>
+                                        <td class="p-2 text-center text-2xl text-[#F95D6A]">❌</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 font-bold text-[#FFA600]">購入履歴によるパーソナライズ</td>
+                                        <td class="p-2 text-center text-2xl text-[#8BC34A]">✅</td>
+                                        <td class="p-2 text-center text-2xl text-[#F95D6A]">❌</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="reception" class="mb-16">
+                 <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#FFA600]">現実的な評価：市場の反応</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card rounded-xl shadow-2xl p-6 md:p-8 text-center">
+                        <div class="text-6xl mb-4">😐</div>
+                        <h3 class="text-xl font-bold mb-2">消費者：賛否両論</h3>
+                        <p>「スーパー秘書」というビジョンは強力ですが、現状の消費者体験は基盤となるRakuten Linkアプリの使い勝手に課題があり、評価は芳しくありません。</p>
+                    </div>
+                    <div class="card rounded-xl shadow-2xl p-6 md:p-8 text-center">
+                        <div class="text-6xl mb-4">👍</div>
+                        <h3 class="text-xl font-bold mb-2">法人・出店者：明確な価値</h3>
+                        <p>商品説明文の生成や顧客からの問い合わせ対応など、具体的な課題を解決するB2B・B2Mツールは、即時的で測定可能なROIを提供し、高く評価されています。</p>
+                    </div>
+                 </div>
+            </section>
+            
+            <section id="verdict" class="mb-16">
+                <div class="card rounded-xl shadow-2xl p-6 md:p-8">
+                    <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 text-[#FFA600]">最終結論：優位性は文脈に依存する</h2>
+                    <p class="text-center text-lg mb-8 max-w-3xl mx-auto">楽天AIは普遍的に優れているわけではありません。その真価は、ユーザーの生活やビジネスが楽天エコシステムに深く根ざしている場合にのみ発揮されます。楽天は自らのホームグラウンドで、異なるゲームを戦っているのです。</p>
+                    <div class="relative h-80 flex justify-center items-center">
+                        <div class="venn-circle bg-[#D45087] bg-opacity-70" style="position: absolute; left: 50%; transform: translateX(-75%);">
+                            <p>最も強力で柔軟な汎用AIを求めるユーザー</p>
+                        </div>
+                        <div class="venn-circle bg-[#FF7C43] bg-opacity-70" style="position: absolute; left: 50%; transform: translateX(-25%);">
+                            <p>楽天エコシステムに深く関わるユーザー</p>
+                        </div>
+                         <div class="absolute text-center font-extrabold text-black" style="left: 50%; top: 50%; transform: translate(-50%, -50%); width: 150px;">
+                            <p class="bg-[#FFA600] p-2 rounded">楽天AIのスイートスポット</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 text-sm text-gray-400">
+            <p>「楽天AIに関する分析レポート」を基に作成。本資料は情報提供を目的とした視覚的な解釈です。</p>
+            <p>作成日：2025年7月31日</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines.filter(line => line.length > 0);
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ffffff',
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#ffffff',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.2)'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#ffffff',
+                        font: {
+                            size: 12
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                }
+            }
+        };
+
+        const benchmarkData = {
+            rawLabels: [
+                'RakutenAI-2.0-8x7B',
+                'PLaMo 100B',
+                'Sarashina2-70B',
+                'Llama-3-Swallow-70B-v0.1',
+                'Swallow-MX-8x7B-NVE-0.1'
+            ],
+            datasets: [{
+                label: 'LM-Harness日本語ベンチマーク 平均スコア',
+                data: [72.29, 71.45, 71.09, 68.15, 66.17],
+                backgroundColor: [
+                    '#FFA600',
+                    '#FF7C43',
+                    '#F95D6A',
+                    '#D45087',
+                    '#A05195',
+                ],
+                borderColor: '#ffffff',
+                borderWidth: 1
+            }]
+        };
+
+        const processedLabels = benchmarkData.rawLabels.map(label => wrapLabel(label, 16));
+
+        new Chart(document.getElementById('japaneseBenchmarkChart'), {
+            type: 'bar',
+            data: {
+                labels: processedLabels,
+                datasets: benchmarkData.datasets
+            },
+            options: {
+                ...commonChartOptions,
+                indexAxis: 'y',
+                 scales: {
+                    y: {
+                        ticks: {
+                            color: '#ffffff',
+                            font: {
+                                size: 10
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        }
+                    },
+                    x: {
+                        beginAtZero: false,
+                        min: 60,
+                        ticks: {
+                            color: '#ffffff',
+                            font: {
+                                size: 12
+                            }
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.2)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
