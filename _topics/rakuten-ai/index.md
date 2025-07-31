@@ -3,12 +3,16 @@ audio: /share-deepresearch/assets/audio/rakuten-ai.mp3
 category: ai
 date: 2025/07/31
 description: 楽天AIは、楽天エコシステムとの深い統合により、他のAIツールと比較して独自の競争優位性を持つ。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 楽天がサービスを開始したRakuten AIというサービスが、ChatGPTやGeminiなど他のツールと比較してどのような点で優れているのか調査して欲しい。明確な優位性が無い場合はその旨を報告して。
 supplementary_materials:
-  - title: 楽天AI：エコシステムがもたらす優位性 インフォグラフィック
-    url: /share-deepresearch/topics/rakuten-ai/infographic.html
-tags: 
+- title: 楽天AI：エコシステムがもたらす優位性 インフォグラフィック
+  url: /share-deepresearch/topics/rakuten-ai/infographic.html
+tags:
 - AIツール
 title: Rakuten AIに関する分析レポート：グローバルAI市場における競争優位性の評価
 ---
