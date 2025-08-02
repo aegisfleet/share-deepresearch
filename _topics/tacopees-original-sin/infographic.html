@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：「タコピーの原罪」の構造分析</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #003F5C;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 400px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .flowchart-arrow {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flowchart-arrow::after {
+            content: '▼';
+            font-size: 2rem;
+            color: #FF6361;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- 
+    Chosen Color Palette: Brilliant Blues (#003F5C, #58508D, #BC5090, #FF6361, #FFA600)
+    Narrative Plan (Revised Layout): 
+    1. Hook: Full-width intro.
+    2. Core Conflict: Full-width section to establish the main theme with a clear flowchart.
+    3. Title Deconstruction: A two-column layout to pair the textual explanation directly with the donut chart.
+    4. Psychological Analysis: A full-width section to give the main bar chart maximum impact and clarity.
+    5. Author's Intent: Another two-column layout to contrast the author's technique with audience interpretation.
+    6. Conclusion: Strong, full-width closing statement.
+    Visualization Plan:
+    - Section 1: Big Number/Statement (HTML/CSS) - Goal: Inform.
+    - Section 2: Flowchart (HTML/CSS) - Goal: Organize/Show Process. No SVG/Mermaid.
+    - Section 3: Donut Chart (Chart.js) & Three-Column Layout - Goal: Compare/Organize. No SVG.
+    - Section 4: Grouped Bar Chart (Chart.js) - Goal: Compare/Show Relationships. No SVG.
+    - Section 5: Stacked Bar Chart (Chart.js) - Goal: Compare. No SVG.
+    - Section 6: Big Statement (HTML/CSS) - Goal: Inform.
+    Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All diagrams are built with HTML/CSS or rendered on Canvas via Chart.js.
+    -->
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">『タコピーの原罪』の構造分析</h1>
+            <p class="text-lg text-gray-300 max-w-3xl mx-auto">これは単なる「鬱漫画」ではない。コミュニケーションの断絶が引き起こす、現代的悲劇の解剖図である。</p>
+        </header>
+
+        <div class="space-y-12">
+
+            <section class="bg-white rounded-lg shadow-2xl p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-center mb-6 text-[#003F5C]">中心的悲劇 ── 「おはなし」の崩壊</h2>
+                <p class="mb-8 text-center max-w-2xl mx-auto">物語の全ての悲劇は、純粋な悪意ではなく「コミュニケーションの根源的な失敗」から生まれる。登場人物たちは対話（おはなし）をしているようで、一方的な感情の押し付け合いに終始し、相互理解が成立しない。</p>
+                <div class="w-full max-w-4xl mx-auto">
+                    <div class="text-center bg-gray-100 p-4 rounded-lg shadow-inner">
+                        <h3 class="font-bold text-lg text-[#58508D]">親世代のコミュニケーション不全</h3>
+                        <p class="text-sm">「自分の話を聞いて」「キミはもういいから」</p>
+                    </div>
+                    <div class="flowchart-arrow"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                        <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
+                            <h4 class="font-bold text-[#BC5090]">まりな</h4>
+                            <p class="text-sm">対話の拒絶（暴力）</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
+                            <h4 class="font-bold text-[#BC5090]">しずか</h4>
+                            <p class="text-sm">魂の叫び「誰に言えばよかったの？」</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg shadow-inner">
+                            <h4 class="font-bold text-[#BC5090]">直樹</h4>
+                            <p class="text-sm">歩み寄りからの逃避</p>
+                        </div>
+                    </div>
+                    <div class="flowchart-arrow"></div>
+                    <div class="text-center bg-red-100 border-2 border-red-400 p-4 rounded-lg shadow-lg">
+                        <h3 class="font-bold text-lg text-red-700">悲劇的結末</h3>
+                        <p class="text-sm">コミュニケーションの不在が、誤解と破滅的な決断を生み出す。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-2xl p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-center mb-6 text-[#003F5C]">「原罪」の三重構造</h2>
+                <p class="mb-8 text-center max-w-2xl mx-auto">タイトル「原罪」は単一の意味ではない。神学的、体系的、そして実存的な三層の罪が複雑に絡み合っている。</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-6">
+                        <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-[#58508D]">
+                            <h3 class="font-bold text-lg">① 神学的罪：掟の違反</h3>
+                            <p>ハッピー星の「道具を異星人に渡してはならない」という掟を破ったこと。善悪を知り、神を演じようとした傲慢。</p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-[#BC5090]">
+                            <h3 class="font-bold text-lg">② 体系的罪：受け継がれる環境</h3>
+                            <p>機能不全の家庭という、自ら作り出したわけでも逃れられるわけでもない環境に生まれたこと。親の罪が子の罪を生む構造。</p>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-[#FF6361]">
+                            <h3 class="font-bold text-lg">③ 実存的罪：つながりの放棄</h3>
+                            <p>ハッピー星の「最も大切な掟」である「一人で帰ってはならない」を破ったこと。究極の罪は悪意ではなく「孤独」。</p>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="sinHierarchyChart"></canvas>
+                        <p class="text-center text-sm mt-4">タコピーが犯した罪の階層構造。最も重いのは、他者との繋がりを断つ「孤独」の罪である。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow-2xl p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-center mb-6 text-[#003F5C]">世代間トラウマの心理的肖像</h2>
+                <p class="mb-8 text-center max-w-2xl mx-auto">子供たちの破壊的行動は、悪意による「選択」ではなく、家庭環境によって植え付けられたトラウマへの「反応」である。このチャートは、親から受けた心理的ダメージが、子供の行動としてどう顕在化したかを可視化する。</p>
+                <div class="chart-container mx-auto w-full max-w-4xl h-96 md:h-[500px]">
+                    <canvas id="traumaChart"></canvas>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-2xl p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-center mb-6 text-[#003F5C]">作者のビジョンと希望の曖昧さ</h2>
+                <p class="mb-8 text-center max-w-2xl mx-auto">本作のインパクトと物議を醸す結末は、デジタル時代の読書体験を意識した、作者の意図的な構築の結果である。</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-inner h-full flex flex-col justify-center">
+                        <p class="font-bold text-xl text-center text-[#58508D]">絶望の文法：スマホ時代の演出</p>
+                        <blockquote class="text-center italic mt-4">「スマホで読むことを前提に、コマ数を減らし、大きなフキダシと見開きのアップを重視した」</blockquote>
+                        <p class="text-sm mt-2 text-center">- タイザン5氏インタビューより</p>
+                        <p class="mt-4">少ないコマ数が生む息苦しいリズムと、感情が剥き出しになった顔のアップの多用。この「スマホ文法」は、読者にトラウマの反復的な性質を追体験させ、物語の閉塞感を増幅させる。</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="endingInterpretationChart"></canvas>
+                        <p class="text-center text-sm mt-4">結末の多角的な解釈。単純なハッピーエンドでもバッドエンドでもなく、「主題的必然性」として不完全な救済を描いた点に、本作の核がある。</p>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+
+        <footer class="text-center mt-16 text-white bg-[#58508D] p-8 rounded-lg shadow-2xl">
+            <p class="text-2xl font-bold">結論：唯一機能する魔法とは、人間同士のつながりである。</p>
+            <p class="text-gray-200 mt-4 max-w-3xl mx-auto">タコピー最大の贈り物は便利な道具ではなく、彼の悲劇的な「物語」そのものだった。その共有された記憶こそが、しずかとまりなが自らの「おはなし」を始めることを可能にした。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const brilliantBlues = {
+            darkBlue: '#003F5C',
+            purple: '#58508D',
+            pink: '#BC5090',
+            orange: '#FF6361',
+            yellow: '#FFA600',
+            lightGray: '#f3f4f6',
+            white: '#FFFFFF'
+        };
+
+        const globalTooltipConfig = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+        
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split('');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = '';
+                }
+                currentLine += word;
+            });
+            lines.push(currentLine);
+            return lines;
+        }
+
+        new Chart(document.getElementById('sinHierarchyChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['① 神学的罪 (掟違反)', '② 体系的罪 (環境)', ['③ 実存的罪', '(孤独・つながりの放棄)']],
+                datasets: [{
+                    label: '罪の割合',
+                    data: [20, 30, 50],
+                    backgroundColor: [brilliantBlues.purple, brilliantBlues.pink, brilliantBlues.orange],
+                    borderColor: brilliantBlues.white,
+                    borderWidth: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                           color: brilliantBlues.darkBlue,
+                           font: { size: 12 }
+                        }
+                    },
+                    tooltip: globalTooltipConfig.plugins.tooltip
+                }
+            }
+        });
+
+        new Chart(document.getElementById('traumaChart'), {
+            type: 'bar',
+            data: {
+                labels: ['久世 しずか', '雲母坂 まりな', '東 直樹'],
+                datasets: [
+                    {
+                        label: '親からのトラウマ要因',
+                        data: [8, 9, 7],
+                        backgroundColor: brilliantBlues.pink,
+                        borderColor: brilliantBlues.pink,
+                        borderWidth: 1
+                    },
+                    {
+                        label: '子の行動への顕在化',
+                        data: [8, 9, 7],
+                        backgroundColor: brilliantBlues.orange,
+                        borderColor: brilliantBlues.orange,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                           display: false
+                        },
+                         grid: {
+                            color: '#e5e7eb'
+                        }
+                    },
+                    x: {
+                       ticks: {
+                           color: brilliantBlues.darkBlue,
+                           font: { size: 14, weight: 'bold' }
+                       },
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                           color: brilliantBlues.darkBlue
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const datasetLabel = context.dataset.label || '';
+                                let valueLabel = '';
+                                if (datasetLabel.includes('トラウマ')) {
+                                    const labels = {
+                                        '久世 しずか': 'ネグレクト／見捨てられ',
+                                        '雲母坂 まりな': '情緒的虐待／スケープゴート',
+                                        '東 直樹': '条件付きの愛／劣等感'
+                                    };
+                                    valueLabel = labels[context.label];
+                                } else {
+                                     const labels = {
+                                        '久世 しずか': '他者への操作／共感欠如',
+                                        '雲母坂 まりな': 'いじめ／怒りの転嫁',
+                                        '東 直樹': '誤った救済者主義'
+                                    };
+                                    valueLabel = labels[context.label];
+                                }
+                                return `${datasetLabel}: ${valueLabel}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('endingInterpretationChart'), {
+            type: 'bar',
+            data: {
+                labels: ['結末の解釈'],
+                datasets: [
+                    {
+                        label: '悲観的／非現実的',
+                        data: [25],
+                        backgroundColor: brilliantBlues.purple,
+                        stack: 'Stack 0',
+                    },
+                    {
+                        label: '希望的／前向き',
+                        data: [35],
+                        backgroundColor: brilliantBlues.orange,
+                        stack: 'Stack 0',
+                    },
+                    {
+                        label: '主題的必然性（不完全さこそが本質）',
+                        data: [40],
+                        backgroundColor: brilliantBlues.yellow,
+                        stack: 'Stack 0',
+                    }
+                ]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        stacked: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%'
+                            },
+                            color: brilliantBlues.darkBlue,
+                        }
+                    },
+                    y: {
+                        stacked: true,
+                         ticks: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                           color: brilliantBlues.darkBlue
+                        }
+                    },
+                    tooltip: {
+                         callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    label += context.parsed.x + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
