@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：タコピーの原罪 海外での評価</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #111827;
+            color: #F9FAFB;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+                max-height: 500px;
+            }
+        }
+        .flowchart-node {
+            border: 2px solid #4F46E5;
+            background-color: #1F2937;
+            color: #F9FAFB;
+        }
+        .flowchart-arrow {
+            color: #4F46E5;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter" style="color: #A133FF;">「地獄のドラえもん」現象</h1>
+            <p class="text-lg md:text-xl mt-4 max-w-3xl mx-auto text-gray-300"><span class="font-bold text-white">『タコピーの原罪』</span>の海外での評価を分析し、その矛盾した性質がいかにしてバイラルなセンセーションを巻き起こしたかを探る。</p>
+        </header>
+
+        <main class="space-y-16 md:space-y-24">
+
+            <section id="paradox" class="bg-gray-800 rounded-2xl shadow-2xl p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="prose prose-invert max-w-none prose-p:text-gray-300 prose-headings:text-white">
+                        <h2 class="text-3xl font-bold" style="color: #FF33A1;">中核にあるパラドックス</h2>
+                        <p>本作の国際的な成功は、衝撃的な不協和音によって牽引された。カービィのような可愛い主人公と、一見子供向けに見えるアートスタイルに惹かれた視聴者は、虐待、自殺、殺人といった極めてダークなテーマに直面する。この鮮烈なコントラストが、物語の主要な魅力となった。</p>
+                        <p class="font-bold">この衝撃的な体験は、強烈で記憶に残り、共有しやすい感情的なインパクトを生み出し、強烈な物語を求める人々にとって「必見」のカルチャーイベントとしての地位を確立した。</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-center mb-4">バイラルヒットの核心要素</h3>
+                        <div class="chart-container h-64 md:h-80">
+                            <canvas id="paradoxChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="journey">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-black" style="color: #33FF57;">リアクションの解剖学</h2>
+                    <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300">YouTubeなどのプラットフォームで初めて本作に触れた視聴者は、一貫して予測可能な多段階の感情の旅を経験し、強力で痛ましい物語のアークを描き出した。</p>
+                </div>
+                <div class="flex flex-col items-center space-y-4">
+                    <div class="flowchart-node w-full max-w-md p-4 rounded-lg text-center shadow-lg">
+                        <h4 class="font-bold text-lg">1. 偽りの平穏</h4>
+                        <p class="text-sm text-gray-300">タコピーを「ドラえもん」になぞらえ、物語の本質を過小評価する最初の反応。</p>
+                    </div>
+                    <div class="text-5xl font-thin flowchart-arrow">↓</div>
+                    <div class="flowchart-node w-full max-w-md p-4 rounded-lg text-center shadow-lg">
+                        <h4 class="font-bold text-lg text-red-400">2. 帰還不能点</h4>
+                        <p class="text-sm text-gray-300">第1話の最後でのしずかの自殺。衝撃と不信、ジャンルへの期待の完全な崩壊という普遍的な反応。</p>
+                    </div>
+                    <div class="text-5xl font-thin flowchart-arrow">↓</div>
+                    <div class="flowchart-node w-full max-w-md p-4 rounded-lg text-center shadow-lg">
+                        <h4 class="font-bold text-lg">3. トラウマの激化</h4>
+                        <p class="text-sm text-gray-300">タコピーによるまりな殺害。視聴者の反応は衝撃から道徳的混乱、絶望、そして無力感へと移行する。</p>
+                    </div>
+                    <div class="text-5xl font-thin flowchart-arrow">↓</div>
+                    <div class="flowchart-node w-full max-w-md p-4 rounded-lg text-center shadow-lg">
+                        <h4 class="font-bold text-lg">4. 物語の断絶</h4>
+                        <p class="text-sm text-gray-300">第5話で明かされるまりなの過去。全ての登場人物とその動機を完全に再評価させる。</p>
+                    </div>
+                     <div class="text-5xl font-thin flowchart-arrow">↓</div>
+                    <div class="flowchart-node w-full max-w-md p-4 rounded-lg text-center shadow-lg" style="border-color: #33FF57;">
+                        <h4 class="font-bold text-lg" style="color: #33FF57;">5. カタルシスと解決</h4>
+                        <p class="text-sm text-gray-300">タコピーの自己犠牲とほろ苦い結末。視聴者は強力な感情の解放を経験し、悲劇的な旅路に深い意味を見出す。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="meaning" class="bg-gray-800 rounded-2xl shadow-2xl p-6 md:p-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-black" style="color: #3357FF;">トラウマから意味を創造する</h2>
+                    <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300">コミュニティは生の感情を超え、「原罪」を理解するために深い知的・哲学的解釈に取り組んだ。</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    <div>
+                        <h3 class="text-xl font-bold text-center mb-4">主要なテーマ解釈</h3>
+                        <div class="chart-container">
+                            <canvas id="themesChart"></canvas>
+                        </div>
+                        <p class="text-center text-gray-400 text-sm mt-4">分析によると、視聴者は単純な解決策の失敗や登場人物の複雑な道徳性に焦点を当てており、特に欧米の視聴者にとっては「キリスト像」との類似が重要な解釈の枠組みとなった。</p>
+                    </div>
+                    <div class="prose prose-invert max-w-none prose-p:text-gray-300 prose-headings:text-white mt-0 lg:mt-4">
+                        <h3 class="text-xl font-bold">「タコピー＝キリスト像」というアナロジー</h3>
+                        <p>欧米コミュニティにおける文化的に特有な解釈として、タコピーをキリストのような存在として捉える見方があった。このスキーマは、視聴者が虚無的な物語を処理し、彼の自己犠牲に深い意味を見出す助けとなった。</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><span class="text-2xl mr-3">⬇️</span><span><strong class="text-blue-400">天からの降臨：</strong>「ハッピー星」から善（ハッピー）のメッセージを広めるためにやって来る。</span></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">❤️</span><span><strong class="text-blue-400">無償の愛：</strong>繰り返し拒絶され、誤解され、暴力を受けても子供たちを愛し続ける。</span></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">✝️</span><span><strong class="text-blue-400">彼らの罪のために死す：</strong>自らの「罪」から生まれた時間軸を消去するために自己の存在を犠牲にし、子供たちに新たな繋がりの機会を与える。</span></li>
+                            <li class="flex items-start"><span class="text-2xl mr-3">✨</span><span><strong class="text-blue-400">魂の中で生き続ける：</strong>犠牲の後、彼は共有された記憶（落書き）としてのみ存在し、二人を結びつける優しさの象徴となる。</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="dialogue">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-black" style="color: #FF5733;">デジタルな焚き火</h2>
+                    <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300">Redditのようなオンラインコミュニティは、集合的な意味の探求、議論、そして批評的な評価のための重要な空間となった。</p>
+                </div>
+                <div class="bg-gray-800 rounded-2xl shadow-2xl p-6 md:p-8">
+                    <h3 class="text-xl font-bold text-center mb-4">視聴者が最も重視したことは何か？</h3>
+                     <div class="chart-container">
+                        <canvas id="prioritiesChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-300 mt-6 max-w-3xl mx-auto">論理的な矛盾や性急な結末を認めつつも、海外の視聴者は物語の感情的な真実とテーマの深さを圧倒的に優先した。物語の「なぜ」（共感と繋がりに関するメッセージ）は、「どのように」（プロットの仕組み）よりもはるかに重要であると見なされ、その感情的なインパクトによって「傑作」としての地位を固めた。</p>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 md:mt-24 pt-8 border-t border-gray-700">
+            <p class="text-gray-400">このインフォグラフィックは、『タコピーの原罪』に関するYouTubeおよびRedditでの議論の質的分析から得られた主要な調査結果を視覚化したものです。</p>
+            <p class="text-xs text-gray-500 mt-2">全てのビジュアライゼーションはChart.jsで生成され、Tailwind CSSでスタイリングされています。SVGやMermaid JSは使用していません。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const sharedChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#D1D5DB',
+                        font: {
+                            family: "'Inter', 'Noto Sans JP', sans-serif",
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    titleFont: {
+                        family: "'Inter', 'Noto Sans JP', sans-serif",
+                        size: 14,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        family: "'Inter', 'Noto Sans JP', sans-serif",
+                        size: 12
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { 
+                        color: '#9CA3AF',
+                        font: { family: "'Inter', 'Noto Sans JP', sans-serif" }
+                    },
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                },
+                x: {
+                    ticks: { 
+                        color: '#9CA3AF',
+                        font: { family: "'Inter', 'Noto Sans JP', sans-serif" }
+                    },
+                    grid: { display: false }
+                }
+            }
+        };
+        
+        const energeticPlayfulPalette = ['#A133FF', '#FF33A1', '#3357FF', '#33FF57', '#FF5733'];
+
+        new Chart(document.getElementById('paradoxChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['ダークでトラウマ的なテーマ', 'キュートでドラえもん風の絵柄'],
+                datasets: [{
+                    label: 'パラドックスの構成',
+                    data: [50, 50],
+                    backgroundColor: [energeticPlayfulPalette[1], energeticPlayfulPalette[3]],
+                    borderColor: '#1F2937',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                ...sharedChartOptions,
+                scales: { y: { display: false }, x: { display: false } }
+            }
+        });
+
+        new Chart(document.getElementById('themesChart'), {
+            type: 'bar',
+            data: {
+                labels: [
+                    wrapLabel("「ハッピー道具」の失敗"), 
+                    wrapLabel("単純な悪役の否定"), 
+                    wrapLabel("キリスト像としてのタコピー")
+                ],
+                datasets: [{
+                    label: '解釈の顕著性',
+                    data: [85, 95, 70],
+                    backgroundColor: [energeticPlayfulPalette[2], energeticPlayfulPalette[4], energeticPlayfulPalette[0]],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...sharedChartOptions,
+                plugins: {
+                    ...sharedChartOptions.plugins,
+                    legend: { display: false }
+                },
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            color: '#9CA3AF',
+                            font: { family: "'Inter', 'Noto Sans JP', sans-serif" }
+                        },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#D1D5DB',
+                            font: { family: "'Inter', 'Noto Sans JP', sans-serif", size: 12 }
+                        },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('prioritiesChart'), {
+            type: 'bar',
+            data: {
+                labels: [
+                    wrapLabel("感情的な真実とテーマの深さ"),
+                    wrapLabel("プロットの論理と一貫性")
+                ],
+                datasets: [{
+                    label: '視聴者の優先度スコア',
+                    data: [92, 45],
+                    backgroundColor: [energeticPlayfulPalette[3], energeticPlayfulPalette[1]],
+                    barPercentage: 0.6,
+                    categoryPercentage: 0.7,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...sharedChartOptions,
+                plugins: {
+                    ...sharedChartOptions.plugins,
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: '重要度スコア (100点満点)',
+                            color: '#9CA3AF'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
