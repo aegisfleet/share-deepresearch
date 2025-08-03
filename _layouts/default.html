@@ -211,9 +211,15 @@
                 if (window.scrollY > 300) {
                     scrollButton.classList.add('visible');
                     if (homeButton) homeButton.classList.add('visible');
+                    // テーマボタンを非表示にする
+                    themeToggle.style.opacity = '0';
+                    themeToggle.style.pointerEvents = 'none';
                 } else {
                     scrollButton.classList.remove('visible');
                     if (homeButton) homeButton.classList.remove('visible');
+                    // テーマボタンを表示する
+                    themeToggle.style.opacity = '1';
+                    themeToggle.style.pointerEvents = 'auto';
                 }
             });
 
@@ -498,6 +504,7 @@
             padding: 5px 10px;
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.3s ease;
         }
         #theme-toggle:hover {
             background: var(--secondary-color);
