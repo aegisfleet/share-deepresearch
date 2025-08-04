@@ -4,9 +4,9 @@ category: ai
 date: 2025-07-29
 description: Serenaは、LLMをローカルのコードベースで直接動作するフル機能の自律型エージェントへと昇華させることを目的とした、強力なオープンソースのコーディングエージェントツールキットです。
 ga4_metrics:
-  avgSessionDuration: 73.86136668421052
-  pageViews: 19
-  users: 11
+  avgSessionDuration: 70.16829835
+  pageViews: 20
+  users: 12
 layout: topic
 prompt: このリポジトリが行っている内容を詳しく知りたい。https://github.com/oraios/serena
 supplementary_materials:
