@@ -3,12 +3,16 @@ audio: /share-deepresearch/assets/audio/github-models-and-actions-integration.mp
 category: ai
 date: 2025-08-05
 description: GitHub Modelsを活用した開発ワークフローの自動化に関する戦略的・技術的ガイド。AI統合の背景、実装方法、セキュリティ考慮事項を解説。
+ga4_metrics:
+  avgSessionDuration: 150.343969
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: この記事に書かれている内容を分かりやすくまとめて欲しい。https://github.blog/ai-and-ml/generative-ai/automate-your-project-with-github-models-in-actions/
 supplementary_materials:
-  - title: GitHub Modelsによる開発ワークフロー自動化 インフォグラフィック
-    url: /share-deepresearch/topics/github-models-and-actions-integration/infographic.html
-tags: 
+- title: GitHub Modelsによる開発ワークフロー自動化 インフォグラフィック
+  url: /share-deepresearch/topics/github-models-and-actions-integration/infographic.html
+tags:
 - GitHub
 - GitHub Actions
 title: GitHub Modelsによる開発ワークフロー自動化のための戦略的・技術的ガイド
