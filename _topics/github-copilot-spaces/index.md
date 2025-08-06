@@ -4,7 +4,7 @@ category: ai
 date: 2025-05-31
 ga4_metrics:
   avgSessionDuration: 204.98126677777776
-  pageViews: 16
+  pageViews: 17
   users: 15
 layout: topic
 prompt: GitHub Copilot Spacesについて最新情報を調査し、具体的な活用事例をまとめて欲しい。

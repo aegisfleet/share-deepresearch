@@ -3,12 +3,16 @@ audio: /share-deepresearch/assets/audio/jstqb-test-management-v3.mp3
 category: research
 date: 2025-08-06
 description: JSTQB Advanced Level テストマネジメント シラバス v3.0の変更点と、近年のテストマネジメントに必要な事項をまとめたレポートです。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: JSTQB Advanced Level シラバス 日本語版 テストマネジメント Version3.0について、過去のシラバスと比較してどのような変更が入っているのか詳しく調査して欲しい。また、変更点に対して深掘りを行い、近年テストマネジメントで必要になっている事項をまとめて欲しい。
 supplementary_materials:
-  - title: JSTQB ALTM v3.0：テストマネジメントの進化 インフォグラフィック
-    url: /share-deepresearch/topics/jstqb-test-management-v3/infographic.html
-tags: 
+- title: JSTQB ALTM v3.0：テストマネジメントの進化 インフォグラフィック
+  url: /share-deepresearch/topics/jstqb-test-management-v3/infographic.html
+tags:
 - テスト
 title: 品質リーダーシップの新時代を航行する：JSTQB Advanced Level テストマネジメント シラバス v3.0の決定版分析
 ---
