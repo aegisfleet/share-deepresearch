@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSTQB ALTM v3.0: テストマネジメントの進化 インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #7A5195, #BC5090, #EF5675);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .flow-box {
+            border: 2px solid #003F5C;
+            background-color: #f8fafc;
+        }
+        .flow-arrow {
+            color: #7A5195;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12 md:mb-20">
+            <h1 class="text-4xl md:text-6xl font-black text-[#003F5C] mb-4">テストマネジメントの進化</h1>
+            <p class="text-xl md:text-2xl font-bold gradient-text">JSTQB Advanced Level シラバス v3.0が示す新時代</p>
+            <p class="mt-4 max-w-3xl mx-auto text-gray-600">2012年版からのメジャーアップデートは、単なる改訂ではありません。それは、アジャイルとDevOpsが主流となった現代における、品質リーダーシップの役割そのものを再定義する、思想的な転換です。</p>
+        </header>
+
+        <main class="space-y-16 md:space-y-24">
+
+            <section id="paradigm-shift" class="text-center">
+                <h2 class="text-3xl font-bold text-[#003F5C] mb-8">「役割」から「活動」へ：根本的なパラダイムシフト</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                    <div class="card p-8">
+                        <div class="text-7xl font-extrabold text-[#BC5090]">v2012</div>
+                        <div class="mt-2 text-xl font-bold text-gray-700">テストマネージャ</div>
+                        <p class="mt-2 text-gray-500">特定の「役割」に焦点を当てた、プロセス重視の構造。</p>
+                    </div>
+                    <div class="flex justify-center items-center">
+                        <div class="text-6xl font-black text-[#7A5195] animate-pulse">→</div>
+                        <div class="ml-4">
+                            <div class="text-6xl md:text-8xl font-black text-[#FFA600]">12<span class="text-4xl md:text-5xl">年</span></div>
+                            <p class="font-bold text-gray-600">の技術的進化</p>
+                        </div>
+                    </div>
+                    <div class="card p-8">
+                        <div class="text-7xl font-extrabold text-[#EF5675]">v3.0</div>
+                        <div class="mt-2 text-xl font-bold text-gray-700">テストマネジメント</div>
+                        <p class="mt-2 text-gray-500">誰が実行するかに依らない「活動」中心の、適応的な実践。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="structure-change">
+                <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-12">構造改革：7つの章から、3つの柱へ</h2>
+                <div class="flex flex-col md:flex-row items-start justify-center gap-4 md:gap-8">
+                    <div class="w-full md:w-2/5">
+                        <h3 class="font-bold text-xl text-center mb-4 text-[#374C80]">v2012 シラバス (7章構成)</h3>
+                        <div class="space-y-2">
+                            <div class="flow-box p-2 rounded-md text-center text-sm">1. テストプロセス</div>
+                            <div class="flow-box p-2 rounded-md text-center text-sm">2. テストマネジメント</div>
+                            <div class="flow-box p-2 rounded-md text-center text-sm bg-red-100 border-red-500">3. レビュー <span class="font-bold">(対象範囲外へ)</span></div>
+                            <div class="flow-box p-2 rounded-md text-center text-sm">4. 欠陥マネジメント</div>
+                            <div class="flow-box p-2 rounded-md text-center text-sm">5. テストプロセスの改善</div>
+                            <div class="flow-box p-2 rounded-md text-center text-sm">6. テストツールと自動化</div>
+                            <div class="flow-box p-2 rounded-md text-center text-sm">7. ピープルスキル</div>
+                        </div>
+                    </div>
+
+                    <div class="hidden md:flex flex-col items-center justify-center w-1/5 pt-16">
+                        <div class="flow-arrow text-5xl mb-2">→</div>
+                        <div class="font-bold text-[#7A5195]">統合 & 再構築</div>
+                    </div>
+                    
+                    <div class="w-full md:w-2/5 mt-8 md:mt-0">
+                        <h3 class="font-bold text-xl text-center mb-4 text-[#BC5090]">v3.0 シラバス (3つの柱)</h3>
+                        <div class="space-y-4">
+                            <div class="card p-4">
+                                <h4 class="font-bold text-lg text-[#003F5C]">1. テスト活動のマネジメント</h4>
+                                <p class="text-sm text-gray-600 mt-1">計画、RBT、プロセス改善、ツール等を統合。ハイブリッドモデルに焦点。</p>
+                            </div>
+                            <div class="card p-4">
+                                <h4 class="font-bold text-lg text-[#003F5C]">2. プロダクトのマネジメント</h4>
+                                <p class="text-sm text-gray-600 mt-1">メトリクス、見積もり、アジャイル時代の欠陥マネジメントを統合。</p>
+                            </div>
+                            <div class="card p-4">
+                                <h4 class="font-bold text-lg text-[#003F5C]">3. チームのマネジメント</h4>
+                                <p class="text-sm text-gray-600 mt-1">コンピテンシーモデルに基づくチーム育成と、ビジネス価値の実証に進化。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <p class="text-center mt-8 text-gray-600">v2012の断片的なトピックは、現代のマネジメント哲学である「仕事（活動）」「成果（プロダクト）」「人（チーム）」という、より直感的で実践的な3つの柱に再編されました。</p>
+            </section>
+
+            <section id="deep-dive">
+                <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-12">重要変更点の深掘り</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <div class="card">
+                        <h3 class="font-bold text-xl text-[#374C80] mb-4">活動のマネジメント</h3>
+                        <p class="text-gray-600 mb-4">シラバスの中心であり、最長の学習時間(750分)が割り当てられています。ハイブリッド開発モデルや進化したリスクベースドテスト(RBT)が核となります。</p>
+                        <div class="chart-container h-64 md:h-72">
+                            <canvas id="learningTimeChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-gray-500 mt-2">学習時間の配分</p>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="font-bold text-xl text-[#7A5195] mb-4">プロダクトのマネジメント</h3>
+                        <p class="text-gray-600 mb-4">品質をデータで語る時代へ。特に「品質コスト」の概念が導入され、テスト活動のROIをビジネス言語で説明する能力が求められます。</p>
+                        <div class="chart-container h-64 md:h-72">
+                            <canvas id="qualityCostChart"></canvas>
+                        </div>
+                         <p class="text-center text-sm text-gray-500 mt-2">品質コストモデルの構成要素</p>
+                    </div>
+
+                    <div class="card md:col-span-2 lg:col-span-1">
+                        <h3 class="font-bold text-xl text-[#BC5090] mb-4">チームのマネジメント</h3>
+                        <p class="text-gray-600 mb-4">単なるスキルリストから、体系的なコンピテンシーモデルへ進化。「ソフトスキル」が公式に重要な能力として位置づけられました。</p>
+                        <div class="chart-container h-64 md:h-72">
+                            <canvas id="competencyChart"></canvas>
+                        </div>
+                        <p class="text-center text-sm text-gray-500 mt-2">4つのコンピテンシー領域</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="new-competencies">
+                <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-12">現代の品質リーダーに求められるコンピテンシー</h2>
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="py-3 px-4 bg-[#003F5C] text-white font-bold rounded-tl-lg">コンピテンシー領域</th>
+                                <th class="py-3 px-4 bg-[#374C80] text-white font-bold">v2012時代 (プロセス遂行者)</th>
+                                <th class="py-3 px-4 bg-[#7A5195] text-white font-bold">v3.0時代 (アジャイルファシリテータ)</th>
+                                <th class="py-3 px-4 bg-[#BC5090] text-white font-bold rounded-tr-lg">未来志向 (AI品質ストラテジスト)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="py-3 px-4 font-bold">戦略・ビジネス</td>
+                                <td class="py-3 px-4 text-sm">プロジェクトリスク管理</td>
+                                <td class="py-3 px-4 text-sm">品質リスクとビジネス価値の連携、ROI分析</td>
+                                <td class="py-3 px-4 text-sm">AIツール導入のビジネスケース構築、予測的品質管理</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 font-bold">技術・ツール</td>
+                                <td class="py-3 px-4 text-sm">特定ツールの操作</td>
+                                <td class="py-3 px-4 text-sm">ツール選定・ROI評価、ライフサイクル管理</td>
+                                <td class="py-3 px-4 text-sm">CI/CDパイプラインへのテスト統合、AIツールの評価</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 font-bold">プロセス・方法論</td>
+                                <td class="py-3 px-4 text-sm">TMMi等の形式的プロセス</td>
+                                <td class="py-3 px-4 text-sm">ふりかえりによる継続的改善、ハイブリッド環境管理</td>
+                                <td class="py-3 px-4 text-sm">継続的テスト戦略の設計、非決定論的AIのテスト戦略</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="py-3 px-4 font-bold rounded-bl-lg">リーダーシップ・人材</td>
+                                <td class="py-3 px-4 text-sm">タスク割り当てと追跡</td>
+                                <td class="py-3 px-4 text-sm">コンピテンシーモデルに基づく育成、コーチング</td>
+                                <td class="py-3 px-4 text-sm rounded-br-lg">AIによる客観的スキル評価、品質文化の醸成</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 md:mt-24 pt-8 border-t border-gray-300">
+            <p class="text-lg font-bold text-[#003F5C]">結論：品質リーダーは、戦略的ビジネスパートナーへ</p>
+            <p class="mt-2 max-w-3xl mx-auto text-gray-600">JSTQB ALTM v3.0は、テストマネジメントがもはや技術的な管理業務ではなく、ビジネスの成功に直接貢献する戦略的機能であることを明確に示しています。未来のリーダーは、技術、ビジネス、人材育成のすべてに精通した、真の品質ストラテジストとなるでしょう。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const brilliantBlues = {
+            darkBlue: '#003F5C',
+            midBlue: '#374C80',
+            purple: '#7A5195',
+            magenta: '#BC5090',
+            pink: '#EF5675',
+            orange: '#FF764A',
+            yellow: '#FFA600'
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const learningTimeCtx = document.getElementById('learningTimeChart');
+            if(learningTimeCtx) {
+                new Chart(learningTimeCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [
+                            wrapLabel('1. テスト活動のマネジメント'), 
+                            wrapLabel('2. プロダクトのマネジメント'), 
+                            wrapLabel('3. チームのマネジメント')
+                        ],
+                        datasets: [{
+                            label: '学習時間 (分)',
+                            data: [750, 435, 255],
+                            backgroundColor: [
+                                brilliantBlues.purple,
+                                brilliantBlues.pink,
+                                brilliantBlues.yellow
+                            ],
+                            borderColor: '#ffffff',
+                            borderWidth: 4,
+                            hoverOffset: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        family: "'Noto Sans JP', sans-serif"
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    title: tooltipTitleCallback
+                                }
+                            },
+                            title: {
+                                display: false
+                            }
+                        },
+                        cutout: '60%'
+                    }
+                });
+            }
+
+            const qualityCostCtx = document.getElementById('qualityCostChart');
+            if(qualityCostCtx) {
+                new Chart(qualityCostCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: [
+                            wrapLabel('予防コスト (Prevention)'), 
+                            wrapLabel('評定コスト (Appraisal)'), 
+                            wrapLabel('内部失敗コスト (Internal Failure)'), 
+                            wrapLabel('外部失敗コスト (External Failure)')
+                        ],
+                        datasets: [{
+                            label: 'コストの重要度',
+                            data: [70, 80, 90, 100],
+                            backgroundColor: [
+                                brilliantBlues.midBlue,
+                                brilliantBlues.purple,
+                                brilliantBlues.magenta,
+                                brilliantBlues.pink
+                            ],
+                            borderRadius: 5
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    title: tooltipTitleCallback
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'シフトレフトで失敗コストを削減',
+                                font: {
+                                    family: "'Noto Sans JP', sans-serif"
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                grid: {
+                                    display: false
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const competencyCtx = document.getElementById('competencyChart');
+            if(competencyCtx) {
+                new Chart(competencyCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: [
+                            wrapLabel('専門的能力 (Technical)'), 
+                            wrapLabel('方法論的能力 (Methodological)'), 
+                            wrapLabel('社会的能力 (Social)'), 
+                            wrapLabel('個人的能力 (Personal)')
+                        ],
+                        datasets: [{
+                            label: '現代の品質リーダー',
+                            data: [8, 9, 10, 9],
+                            fill: true,
+                            backgroundColor: 'rgba(188, 80, 144, 0.2)',
+                            borderColor: brilliantBlues.magenta,
+                            pointBackgroundColor: brilliantBlues.magenta,
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: brilliantBlues.magenta
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    title: tooltipTitleCallback
+                                }
+                            }
+                        },
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                angleLines: {
+                                    color: '#e2e8f0'
+                                },
+                                grid: {
+                                    color: '#e2e8f0'
+                                },
+                                pointLabels: {
+                                    font: {
+                                        size: 11,
+                                        family: "'Noto Sans JP', sans-serif"
+                                    },
+                                    color: '#475569'
+                                },
+                                ticks: {
+                                    backdropColor: 'transparent',
+                                    color: '#64748b'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
