@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/github-copilot-spaces.mp3
 category: ai
 date: 2025-05-31
 ga4_metrics:
-  avgSessionDuration: 217.0389883529412
+  avgSessionDuration: 217.03898835294117
   pageViews: 16
   users: 14
 layout: topic
