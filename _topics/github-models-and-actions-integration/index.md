@@ -4,7 +4,7 @@ category: ai
 date: 2025-08-05
 description: GitHub Modelsを活用した開発ワークフローの自動化に関する戦略的・技術的ガイド。AI統合の背景、実装方法、セキュリティ考慮事項を解説。
 ga4_metrics:
-  avgSessionDuration: 50.11465633333333
+  avgSessionDuration: 51.24923066666667
   pageViews: 2
   users: 1
 layout: topic
