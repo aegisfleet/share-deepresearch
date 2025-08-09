@@ -4,7 +4,7 @@ category: ai
 date: 2025-06-01
 description: GitHub Copilotは、単なるコード補完ツールから、より自律的な「コーディングエージェント」へと進化を遂げつつあります。
 ga4_metrics:
-  avgSessionDuration: 258.0175183
+  avgSessionDuration: 251.57167143333334
   pageViews: 25
   users: 24
 layout: topic
