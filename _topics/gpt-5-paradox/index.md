@@ -3,12 +3,16 @@ audio: /share-deepresearch/assets/audio/gpt-5-paradox.mp3
 category: ai
 date: 2025-08-10
 description: OpenAIのGPT-5は、過去のモデルに比べて使いにくいという声が多く上がっています。本レポートでは、具体的な使用例を集め、その対策をまとめます。
+ga4_metrics:
+  avgSessionDuration: 334.577727
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: OpenAIのGPT-5が過去のモデルに比べて使いにくいと言われているが、具体的に悪くなっている使用例を集め、その対策をまとめて欲しい。
 supplementary_materials:
-  - title: The GPT-5 Paradox：An Interactive Infographic
-    url: /share-deepresearch/topics/gpt-5-paradox/infographic.html
-tags: 
+- title: The GPT-5 Paradox：An Interactive Infographic
+  url: /share-deepresearch/topics/gpt-5-paradox/infographic.html
+tags:
 - AIツール
 - AIモデル
 title: GPT-5のパラドックス：性能低下の報告と、その真の能力を引き出すための包括的ガイド
