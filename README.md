@@ -304,6 +304,10 @@ bundle install
 bundle exec jekyll serve --config _config_dev.yml
 ```
 
+## キャラクター
+
+![キャラクター](assets/images/character.png)
+
 ## ライセンス
 
 このプロジェクトはMITライセンスの下で公開されています。
