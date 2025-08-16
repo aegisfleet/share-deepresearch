@@ -4,8 +4,8 @@ category: engineering
 date: 2025-06-24
 description: GitHub Actionsのコスト構造を評価するにあたり、まずGitHubが提供するフルマネージドサービスであるGitHubホステッドランナーの性能とコストのベースラインを確立することが不可欠です。
 ga4_metrics:
-  avgSessionDuration: 132.5244032857143
-  pageViews: 6
+  avgSessionDuration: 133.44321185714287
+  pageViews: 7
   users: 5
 layout: topic
 prompt: GitHub Actionsで使用できるGitHubホステッドランナーについて、自前でセルフホステッドランナーを用意するより価格的に安いのか比較を行いたい。larger
