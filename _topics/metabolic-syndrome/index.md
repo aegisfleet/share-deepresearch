@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/metabolic-syndrome.mp3
 category: research
 date: 2025-06-16
 ga4_metrics:
-  avgSessionDuration: 146.8061146
-  pageViews: 11
-  users: 6
+  avgSessionDuration: 133.4601041818182
+  pageViews: 12
+  users: 7
 layout: topic
 prompt: メタボリックシンドロームがなぜ起きるのか理論的に説明して欲しい。特に年齢との相関について詳しく知りたい。
 supplementary_materials:
