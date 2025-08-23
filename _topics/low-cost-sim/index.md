@@ -3,12 +3,16 @@ audio: /share-deepresearch/assets/audio/low-cost-sim.mp3
 category: research
 date: 2025-08-23
 description: 2代目スマホ向けに月額500円以下のSIM/eSIMプランを徹底比較し、最適な選択肢を提案します。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 2代目のスマホ用に月額料金が安いSIM/eSIMを検討している。具体的には月の料金が500円以下であり、SMSが利用できることが条件となる。povoのようなプランも検討対象に含める。対象プランの調査を行い、比較表を作成して欲しい。
 supplementary_materials:
-  - title: 戦略的SIM選択ガイド | 月500円以下プラン徹底比較インフォグラフィック
-    url: /share-deepresearch/topics/low-cost-sim/infographic.html
-tags: 
+- title: 戦略的SIM選択ガイド | 月500円以下プラン徹底比較インフォグラフィック
+  url: /share-deepresearch/topics/low-cost-sim/infographic.html
+tags:
 - 市場調査
 title: 2代目スマホ向け月額500円以下SIM/eSIMの戦略的分析：コストと利便性の最適解
 ---
