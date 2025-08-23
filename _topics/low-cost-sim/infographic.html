@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>戦略的SIM選択ガイド | 月500円以下プラン徹底比較インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#F0F4F8]">
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-[#0D1B2A] mb-2">戦略的SIM選択ガイド</h1>
+            <p class="text-lg md:text-xl text-[#4A4A4A]">2代目スマホに最適！月額500円以下プランの徹底比較</p>
+        </header>
+
+        <main class="space-y-16">
+            
+            <section class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#0D1B2A] mb-4 text-center">市場の二極化：あなたはどっちのタイプ？</h2>
+                <p class="text-center text-[#4A4A4A] mb-8 max-w-3xl mx-auto">月500円以下のSIM市場は、単純な価格競争ではありません。ユーザーの志向性に合わせた2つの異なるサービスモデルが存在します。自身のスタイルに合ったモデルを理解することが、最適なプラン選択の第一歩です。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-[#F0F4F8] p-6 rounded-lg border-l-4 border-[#FF6B6B]">
+                        <h3 class="text-xl font-bold text-[#0D1B2A] mb-2">変動コスト管理型 (povo 2.0)</h3>
+                        <p class="text-[#4A4A4A] mb-4">基本料0円から始め、必要な時に必要な分だけデータや通話機能を追加購入（トッピング）するモデルです。</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><span class="text-[#FF6B6B] mr-2">✔</span> コストを極限まで最適化したい人向け</li>
+                            <li class="flex items-center"><span class="text-[#FF6B6B] mr-2">✔</span> 半年に一度の簡単な管理を厭わない人</li>
+                            <li class="flex items-center"><span class="text-[#FF6B6B] mr-2">✔</span> 初期費用を完全に0にしたい人</li>
+                        </ul>
+                    </div>
+                    <div class="bg-[#F0F4F8] p-6 rounded-lg border-l-4 border-[#4ECDC4]">
+                        <h3 class="text-xl font-bold text-[#0D1B2A] mb-2">固定コスト予測型 (日本通信SIMなど)</h3>
+                        <p class="text-[#4A4A4A] mb-4">毎月決まった低料金を支払う、シンプルで分かりやすい従来型のモデルです。</p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center"><span class="text-[#4ECDC4] mr-2">✔</span> 面倒な管理はしたくない人向け</li>
+                            <li class="flex items-center"><span class="text-[#4ECDC4] mr-2">✔</span> 毎月の支出を完全に固定したい人</li>
+                            <li class="flex items-center"><span class="text-[#4ECDC4] mr-2">✔</span> 時々データ通信も利用する可能性がある人</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                    <h2 class="text-2xl font-bold text-[#0D1B2A] mb-4">驚異のコスト差：初年度総コスト比較</h2>
+                    <p class="text-[#4A4A4A] mb-6">プラン選択で最も重要な指標の一つが、初期費用を含めた初年度の総コストです。povo 2.0の初期費用0円というアドバンテージが、他プランを圧倒する結果を生み出しています。</p>
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="firstYearCostChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 text-center">
+                     <h2 class="text-2xl font-bold text-[#0D1B2A] mb-4">povo 2.0の真のコスト</h2>
+                     <p class="text-[#4A4A4A] mb-6">povo 2.0は基本料0円ですが、回線維持には180日ごとの有料トッピング購入が必要です。最も安価なトッピング（250円）を利用した場合、年間の維持コストはわずか500円に抑えられます。</p>
+                    <div class="bg-[#FFD166] text-[#0D1B2A] rounded-lg p-6 inline-block">
+                        <div class="text-2xl font-bold">年間最低維持コスト</div>
+                        <div class="text-6xl font-black my-2">500<span class="text-3xl">円</span></div>
+                        <div class="text-lg">(月額実効コスト 約42円)</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#0D1B2A] mb-4 text-center">固定料金プラン徹底解剖</h2>
+                <p class="text-center text-[#4A4A4A] mb-8 max-w-3xl mx-auto">「セット・アンド・フォーゲット」の利便性を求めるなら固定料金プランが最適です。しかし、各社でデータ量や通話料に大きな違いがあり、用途に合わせた選択が重要になります。</p>
+                <div class="chart-container h-96 md:h-[500px]">
+                    <canvas id="fixedPlanComparisonChart"></canvas>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#0D1B2A] mb-4 text-center">あなたに最適なプランは？選択フローチャート</h2>
+                <p class="text-center text-[#4A4A4A] mb-8 max-w-3xl mx-auto">いくつかの簡単な質問に答えるだけで、あなたの使い方に最も合ったSIMプランが見つかります。</p>
+                <div class="space-y-6">
+                    <div class="bg-[#F0F4F8] p-6 rounded-lg text-center">
+                        <p class="text-xl font-bold text-[#0D1B2A]">Q1. SIMカードの維持に、少しでも手間をかけたくない？</p>
+                    </div>
+                    <div class="flex justify-center items-center my-4">
+                        <div class="w-px h-12 bg-gray-300"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                        <div>
+                            <div class="mb-4"><span class="bg-[#4ECDC4] text-white font-bold py-1 px-3 rounded-full">はい</span></div>
+                            <div class="bg-[#F0F4F8] p-6 rounded-lg">
+                                <p class="text-xl font-bold text-[#0D1B2A]">Q2. たまにデータ通信（1GB程度）や短い通話をする？</p>
+                                 <div class="flex justify-center items-center my-4">
+                                    <div class="w-px h-8 bg-gray-300"></div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <div class="mb-2"><span class="bg-[#4ECDC4] text-white font-bold py-1 px-3 rounded-full">はい</span></div>
+                                        <div class="bg-white p-4 rounded-lg shadow">
+                                            <h4 class="font-bold text-[#0D1B2A]">日本通信SIM</h4>
+                                            <p class="text-sm text-[#4A4A4A]">データと通話のバランス良し</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="mb-2"><span class="bg-[#FF6B6B] text-white font-bold py-1 px-3 rounded-full">いいえ</span></div>
+                                        <div class="bg-white p-4 rounded-lg shadow">
+                                            <h4 class="font-bold text-[#0D1B2A]">HISモバイル</h4>
+                                            <p class="text-sm text-[#4A4A4A]">通話料が最安</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                             <div class="mb-4"><span class="bg-[#FF6B6B] text-white font-bold py-1 px-3 rounded-full">いいえ</span></div>
+                             <div class="bg-white p-6 rounded-lg shadow-lg border-2 border-[#FFD166]">
+                                <h3 class="text-2xl font-black text-[#0D1B2A]">povo 2.0</h3>
+                                <p class="text-[#4A4A4A]">究極のコストパフォーマンスを求めるあなたへ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-300">
+            <p class="text-sm text-gray-500">&copy; 2025 戦略的SIM選択ガイド. All Rights Reserved.</p>
+            <p class="text-xs text-gray-400 mt-2">このインフォグラフィックは提供されたレポートに基づき作成されたものであり、最新の情報は各通信事業者の公式サイトでご確認ください。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        const energeticPlayfulPalette = {
+            red: '#FF6B6B',
+            green: '#4ECDC4',
+            yellow: '#FFD166',
+            darkBlue: '#0D1B2A',
+            lightGray: '#F0F4F8',
+            textColor: '#4A4A4A'
+        };
+
+        const firstYearCostCtx = document.getElementById('firstYearCostChart').getContext('2d');
+        new Chart(firstYearCostCtx, {
+            type: 'bar',
+            data: {
+                labels: ['povo 2.0', '日本通信SIM', 'HISモバイル', 'mineo'],
+                datasets: [{
+                    label: '初年度総コスト (円)',
+                    data: [500, 6780, 6660, 6740],
+                    backgroundColor: [
+                        energeticPlayfulPalette.yellow,
+                        energeticPlayfulPalette.green,
+                        energeticPlayfulPalette.green,
+                        energeticPlayfulPalette.green,
+                    ],
+                    borderColor: energeticPlayfulPalette.darkBlue,
+                    borderWidth: 2,
+                    borderRadius: 5,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'コスト (円)',
+                            color: energeticPlayfulPalette.textColor,
+                            font: { size: 14 }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const fixedPlanComparisonCtx = document.getElementById('fixedPlanComparisonChart').getContext('2d');
+        new Chart(fixedPlanComparisonCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    wrapLabel('日本通信SIM (合理的シンプル290)'), 
+                    wrapLabel('HISモバイル (自由自在290)'), 
+                    wrapLabel('mineo (マイそくスーパーライト)')
+                ],
+                datasets: [
+                {
+                    label: '月額料金 (円)',
+                    data: [290, 280, 250],
+                    backgroundColor: energeticPlayfulPalette.green,
+                    stack: 'Stack 0',
+                },
+                {
+                    label: '通話料 (円/30秒)',
+                    data: [11, 9, 22],
+                    backgroundColor: energeticPlayfulPalette.red,
+                    stack: 'Stack 1',
+                },
+                {
+                    label: 'データ量 (MB)',
+                    data: [1024, 100, 0],
+                    backgroundColor: energeticPlayfulPalette.yellow,
+                    stack: 'Stack 2',
+                },
+            ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                size: 10
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    if (context.dataset.label === 'データ量 (MB)') {
+                                        if(context.raw === 0) return label + '速度制限(32kbps)';
+                                        label += context.raw + ' MB';
+                                    } else {
+                                        label += context.parsed.y + ' 円';
+                                    }
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
