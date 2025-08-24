@@ -4,7 +4,7 @@ category: research
 date: 2025-08-23
 description: 2代目スマホ向けに月額500円以下のSIM/eSIMプランを徹底比較し、最適な選択肢を提案します。
 ga4_metrics:
-  avgSessionDuration: 366.366874
+  avgSessionDuration: 340.475212
   pageViews: 1
   users: 1
 layout: topic
