@@ -4,9 +4,9 @@ category: research
 date: 2025-05-24
 description: 本報告書は、小泉進次郎氏の農林水産大臣就任が、日本の米農家に対してどのような影響をもたらしうるのか、同氏の過去の政策への関与や発言、現在の農業政策の状況、専門家の見解などを踏まえ、プラスとマイナスの両側面から推測的分析を行うことを目的とする。
 ga4_metrics:
-  avgSessionDuration: 277.5215793
-  pageViews: 14
-  users: 6
+  avgSessionDuration: 647.775686
+  pageViews: 6
+  users: 3
 layout: topic
 prompt: 小泉進次郎が農林水産省の大臣になったことは、米農家にとってプラスになるのか、マイナスになるのか推測したい。
 supplementary_materials:
