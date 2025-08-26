@@ -4,9 +4,9 @@ category: ai
 date: 2025-05-22
 description: 本レポートは、自己回帰（AR）モデルとテキスト拡散モデルの技術的な詳細分析を提供し、特にGemini Diffusionのような拡散モデルの特性、比較性能、限界、そして将来の展望に焦点を当てて解説します。
 ga4_metrics:
-  avgSessionDuration: 162.573357
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 100.54256785714286
+  pageViews: 10
+  users: 6
 layout: topic
 prompt: Gemini Diffusionに代表されるテキスト拡散モデルの性能の限界を知りたい。自己回帰モデルや拡散モデルのようなモデルごとの特徴を調査し、拡散モデルの将来性についてまとめて欲しい。
 supplementary_materials:
