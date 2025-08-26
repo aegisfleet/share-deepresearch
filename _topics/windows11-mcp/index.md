@@ -4,9 +4,9 @@ category: ai
 date: 2025-05-26
 description: 本レポートは、Windows 11におけるModel Context Protocol (MCP)のネイティブサポートが、エンドユーザー、開発者、そして企業にとって何を意味するのか、またMicrosoftがこの技術をどのように活用し、AIコンピューティングの未来をどのように描いているのかについて、詳細に分析・解説する。
 ga4_metrics:
-  avgSessionDuration: 7.039246
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 15.508094600000002
+  pageViews: 5
+  users: 5
 layout: topic
 prompt: Windows11でModel Context Protocol（MCP）がネイティブ対応される予定だが、これは誰にとってどのような意味があるのか知りたい。また、Microsoftはどのような使用方法を想定しているのかも併せて調査して欲しい。
 supplementary_materials:
