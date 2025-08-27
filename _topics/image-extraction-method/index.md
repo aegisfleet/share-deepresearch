@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/image-extraction-method.mp3
 category: engineering
 date: 2025-06-06
 ga4_metrics:
-  avgSessionDuration: 330.889519
-  pageViews: 5
-  users: 2
+  avgSessionDuration: 269.94319920000004
+  pageViews: 6
+  users: 3
 layout: topic
 prompt: UIの変更に伴いマニュアルに使用している画像の差し替えが発生した。UIの変更に影響がある画像だけを抽出したいが、良い方法はあるだろうか。画像はpngで管理している。
 supplementary_materials:
