@@ -4,8 +4,8 @@ category: engineering
 date: 2025-06-14
 description: 本レポートは、スクラムガイド2020とスクラムガイド・エクスパンションパックの詳細な比較分析を提供し、スクラムの進化、特にアウトプットからアウトカムへの焦点のシフト、EBMの統合、そしてAIのチームへの統合といった現代の現実への対応を解説する。
 ga4_metrics:
-  avgSessionDuration: 39.457285125
-  pageViews: 8
+  avgSessionDuration: 163.63947322222222
+  pageViews: 9
   users: 7
 layout: topic
 prompt: Scrum Guide Expansion Packの内容について、元々のスクラムガイドと対比させてどこが拡張されたのかまとめて欲しい。
