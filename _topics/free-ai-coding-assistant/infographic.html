@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>インフォグラフィック：無料AIコーディングアシスタントの現状 (2025年)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #F3F4F6;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #00F0B5, #00E0F0, #00A0F0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #1F2937;
+            border: 1px solid #374151;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #4B5563;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-12 md:my-16">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight">
+                <span class="gradient-text">無料AIコーディングアシスタント</span>の現状
+            </h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">GitHub Copilotの代替となる、サブスクリプション不要で利用可能な開発者向けツールの2025年分析。</p>
+        </header>
+
+        <main class="space-y-16 md:space-y-24">
+
+            <section id="spectrum-of-free">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">「無料」のスペクトラム</h2>
+                    <p class="mt-2 text-gray-400 max-w-2xl mx-auto">AIアシスタント市場における「無料」は単一の概念ではありません。それはビジネスモデルのスペクトラムであり、それぞれ開発者にとって異なるトレードオフが存在します。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="card rounded-lg p-6 flex flex-col items-center">
+                        <div class="text-5xl mb-4">🎁</div>
+                        <h3 class="font-bold text-lg text-white">寛大な無料枠</h3>
+                        <p class="text-sm text-gray-400 mt-2">巨大な技術エコシステムに支えられた、非常に高い利用上限。目標はユーザー獲得です。</p>
+                    </div>
+                    <div class="card rounded-lg p-6 flex flex-col items-center">
+                        <div class="text-5xl mb-4">🎟️</div>
+                        <h3 class="font-bold text-lg text-white">クレジットベース</h3>
+                        <p class="text-sm text-gray-400 mt-2">基本機能は無制限ですが、高度なAIモデルは毎月のクレジットを消費します。</p>
+                    </div>
+                    <div class="card rounded-lg p-6 flex flex-col items-center">
+                        <div class="text-5xl mb-4">🔒</div>
+                        <h3 class="font-bold text-lg text-white">機能制限</h3>
+                        <p class="text-sm text-gray-400 mt-2">中核機能は利用可能ですが、最も強力な機能には有料アップグレードが必要です。</p>
+                    </div>
+                    <div class="card rounded-lg p-6 flex flex-col items-center">
+                        <div class="text-5xl mb-4">🏠</div>
+                        <h3 class="font-bold text-lg text-white">セルフホスト</h3>
+                        <p class="text-sm text-gray-400 mt-2">ソフトウェアは無料ですが、完全なプライバシーのためにハードウェアと保守のコストを負担します。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cloud-titans">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">クラウドの巨人たち：寛大さの対決</h2>
+                    <p class="mt-2 text-gray-400 max-w-2xl mx-auto">GoogleとAmazonは、自社のクラウドプラットフォームを活用し、開発者をエコシステムに引き込むという戦略的目標のもと、強力なツールを提供しています。</p>
+                </div>
+                <div class="card rounded-lg p-6 md:p-8">
+                    <h3 class="text-xl font-bold text-center mb-2">月間AIアシスタントリクエスト数</h3>
+                    <p class="text-center text-sm text-gray-400 mb-8">主要なAI機能の無料月間上限を比較すると、戦略の大きな違いが明らかになります。Geminiの上限は、ほとんどの開発者にとって事実上無制限です。</p>
+                    <div class="chart-container">
+                        <canvas id="cloudTitansChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="independents">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">独立系イノベーター：バランスの探求</h2>
+                    <p class="mt-2 text-gray-400 max-w-2xl mx-auto">コストを補助するクラウド帝国を持たない独立系ツールは、ユーザーの成長と持続可能性のバランスを取るために、巧みなフリーミアムモデルを使用しています。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-lg text-white">Windsurf</h3>
+                        <p class="text-sm text-gray-400 mb-4">無料での無制限の基本補完提供に重点を置き、プレミアムモデルはクレジット制です。</p>
+                        <div class="chart-container h-64">
+                            <canvas id="windsurfChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-lg text-white">Cursor</h3>
+                        <p class="text-sm text-gray-400 mb-4">AIネイティブのエディタで、無料枠ではその高度なエージェント機能の一部を体験できます。</p>
+                        <div class="chart-container h-64">
+                            <canvas id="cursorChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-lg text-white">Bito</h3>
+                        <p class="text-sm text-gray-400 mb-4">PR要約のようなチームワークフローに特化し、1日のリクエスト数に制限があります。</p>
+                        <div class="chart-container h-64">
+                            <canvas id="bitoChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="self-hosted">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">主権の選択：TabbyMLによるセルフホスティング</h2>
+                    <p class="mt-2 text-gray-400 max-w-2xl mx-auto">データプライバシーが譲れない開発者や企業にとって、セルフホスティングは究極の解決策です。あなたのコードは決してあなたのインフラから外に出ません。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="card rounded-lg p-8">
+                        <h3 class="font-bold text-lg text-white text-center">クラウドAIのデータフロー</h3>
+                        <div class="mt-6 flex flex-col items-center space-y-4">
+                            <div class="bg-gray-700 p-4 rounded-lg text-center w-full">💻<br>あなたのコード</div>
+                            <div class="flow-arrow">↓</div>
+                            <div class="bg-purple-900/50 border border-purple-500 p-4 rounded-lg text-center w-full">☁️<br>外部AIサーバー</div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-6 text-center">データは処理のために第三者に送信されます。プライバシーやIPに関する潜在的な懸念があります。</p>
+                    </div>
+                    <div class="card rounded-lg p-8 border-2 border-cyan-400 shadow-lg shadow-cyan-500/10">
+                         <h3 class="font-bold text-lg text-white text-center">TabbyML（セルフホスト）</h3>
+                        <div class="mt-6 flex flex-col items-center space-y-4 border-2 border-dashed border-gray-600 p-4 rounded-lg">
+                             <div class="bg-gray-700 p-4 rounded-lg text-center w-full">💻<br>あなたのコード</div>
+                             <div class="flow-arrow">↓</div>
+                            <div class="bg-cyan-900/50 border border-cyan-500 p-4 rounded-lg text-center w-full">🏠<br>あなたのプライベートサーバー</div>
+                        </div>
+                         <p class="text-xs text-gray-500 mt-6 text-center">データはあなたの管理下に留まります。完全なプライバシーですが、インフラの管理が必要です。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="decision-guide">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">意思決定ガイド：あなたの理想のAIペアプログラマー</h2>
+                    <p class="mt-2 text-gray-400 max-w-2xl mx-auto">あなたの主な動機は何ですか？あなたのニーズに最も合うツールを見つけるための道筋をたどりましょう。</p>
+                </div>
+                <div class="card rounded-lg p-6 md:p-8">
+                    <div class="space-y-8">
+                        <div class="text-center">
+                            <p class="font-bold text-xl text-white">あなたの最優先事項は？</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                            <div class="flex flex-col items-center">
+                                <div class="bg-gray-800 rounded-full p-4 border border-gray-600">
+                                    <p class="font-semibold">最大級の機能、ゼロコスト</p>
+                                </div>
+                                <div class="flow-arrow my-2">↓</div>
+                                <div class="card p-4 rounded-lg w-full bg-gray-900">
+                                    <p class="font-bold text-cyan-400">Gemini Code Assist</p>
+                                    <p class="text-xs text-gray-400 mt-1">学生、学習者、個人開発者向け。</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="bg-gray-800 rounded-full p-4 border border-gray-600">
+                                    <p class="font-semibold">絶対的なプライバシーと管理</p>
+                                </div>
+                                <div class="flow-arrow my-2">↓</div>
+                                <div class="card p-4 rounded-lg w-full bg-gray-900">
+                                    <p class="font-bold text-cyan-400">TabbyML</p>
+                                    <p class="text-xs text-gray-400 mt-1">セキュリティを重視するプロや企業向け。</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="bg-gray-800 rounded-full p-4 border border-gray-600">
+                                    <p class="font-semibold">特定エコシステムとの統合</p>
+                                </div>
+                                <div class="flow-arrow my-2">↓</div>
+                                <div class="card p-4 rounded-lg w-full bg-gray-900">
+                                    <p class="font-bold text-cyan-400">Amazon Q Developer</p>
+                                    <p class="text-xs text-gray-400 mt-1">主にAWSで構築する開発者向け。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 md:mt-24 py-8 border-t border-gray-800">
+            <p class="text-sm text-gray-500">データは2025年版 無料AIコーディングアシスタント分析レポートに基づいています。すべての上限と機能は2025年8月時点のデータに基づきます。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (str, maxLen = 16) => {
+            if (str.length <= maxLen) {
+                return str;
+            }
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLen) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines.filter(line => line);
+        };
+
+        const sharedTooltipCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: '#9CA3AF'
+                    }
+                }
+            },
+            maintainAspectRatio: false,
+            responsive: true,
+        };
+
+        const energeticPalette = ['#00F0B5', '#00E0F0', '#00A0F0', '#9040F0', '#F040A0'];
+        const grayColor = '#4B5563';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const cloudTitansCtx = document.getElementById('cloudTitansChart').getContext('2d');
+            new Chart(cloudTitansCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Gemini Code Assist', 'Amazon Q Developer'],
+                    datasets: [{
+                        label: '月間AIリクエスト数',
+                        data: [180000, 50],
+                        backgroundColor: [energeticPalette[1], energeticPalette[3]],
+                        borderColor: ['#00E0F0', '#9040F0'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...sharedTooltipCallback,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: 'リクエスト数（対数スケール）',
+                                color: '#9CA3AF'
+                            },
+                            ticks: { color: '#9CA3AF' },
+                            grid: { color: '#374151' }
+                        },
+                        y: {
+                            ticks: { color: '#D1D5DB', font: { size: 14 } },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            const windsurfCtx = document.getElementById('windsurfChart').getContext('2d');
+            new Chart(windsurfCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['無制限の基本補完', 'プレミアムクレジット'],
+                    datasets: [{
+                        data: [95, 5],
+                        backgroundColor: [energeticPalette[0], grayColor],
+                        borderColor: '#1F2937',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    ...sharedTooltipCallback,
+                    cutout: '70%',
+                }
+            });
+
+            const cursorCtx = document.getElementById('cursorChart').getContext('2d');
+            new Chart(cursorCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['限定的な無料利用', '有料/Proプラン'],
+                    datasets: [{
+                        data: [20, 80],
+                        backgroundColor: [energeticPalette[2], grayColor],
+                        borderColor: '#1F2937',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    ...sharedTooltipCallback,
+                    cutout: '70%',
+                }
+            });
+
+            const bitoCtx = document.getElementById('bitoChart').getContext('2d');
+            new Chart(bitoCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['無料のデイリーリクエスト', '有料/Teamプラン'],
+                    datasets: [{
+                        data: [30, 70],
+                        backgroundColor: [energeticPalette[4], grayColor],
+                        borderColor: '#1F2937',
+                        borderWidth: 4
+                    }]
+                },
+                options: {
+                    ...sharedTooltipCallback,
+                    cutout: '70%',
+                }
+            });
+
+        });
+    </script>
+
+</body>
+</html>

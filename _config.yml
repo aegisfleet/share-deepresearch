@@ -32,16 +32,22 @@ timezone: Asia/Tokyo
 include:
   - _topics
   - "**/*.mp3"
+  - "**/*.mp4"
   - "**/*.md"
 
 # メディアファイルの処理を許可
 keep_files:
   - .mp3
+  - .mp4
 
 # メディアファイルの設定
 defaults:
   - scope:
       path: "**/*.mp3"
+    values:
+      sitemap: false
+  - scope:
+      path: "**/*.mp4"
     values:
       sitemap: false
 
