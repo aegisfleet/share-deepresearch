@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/claude-code-research.mp3
 category: ai
 date: 2025-05-25
 ga4_metrics:
-  avgSessionDuration: 245.37003533333333
-  pageViews: 4
+  avgSessionDuration: 4.990911
+  pageViews: 2
   users: 2
 layout: topic
 prompt: AnthropicのClaude Codeの使用例を詳細に調査したい。特にVScodeとの連携、GitHub Actionsとの連携についてはより深堀りして欲しい。
