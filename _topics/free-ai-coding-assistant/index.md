@@ -1,17 +1,21 @@
 ---
 audio: /share-deepresearch/assets/audio/free-ai-coding-assistant.mp3
-video: /share-deepresearch/assets/video/free-ai-coding-assistant.mp4
 category: ai
 date: 2025-08-29
 description: GitHub Copilotに代表されるコーディング用のAIエージェントで無料で使えるものを調査し、各ツールの無料利用の範囲を比較分析します。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: GitHub Copilotに代表されるコーディング用のAIエージェントで無料で使えるものを調べて欲しい。各ツールにおいてどの程度無料で使えるのかも知りたい。
 supplementary_materials:
-  - title: インフォグラフィック：無料AIコーディングアシスタントの現状 (2025年)
-    url: /share-deepresearch/topics/free-ai-coding-assistant/infographic.html
-tags: 
+- title: インフォグラフィック：無料AIコーディングアシスタントの現状 (2025年)
+  url: /share-deepresearch/topics/free-ai-coding-assistant/infographic.html
+tags:
 - AIツール
 title: 無料で利用可能なAIコーディングアシスタント：2025年版 徹底比較分析レポート
+video: /share-deepresearch/assets/video/free-ai-coding-assistant.mp4
 ---
 
 # **無料で利用可能なAIコーディングアシスタント：2025年版 徹底比較分析レポート**
