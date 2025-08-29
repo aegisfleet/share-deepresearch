@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Topologies in Action: Real-World Organization Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #F8FAFC;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#005F73] mb-2">チームトポロジーの実践</h1>
+            <p class="text-lg md:text-xl text-[#0A9396]">価値あるソフトウェアを迅速に届けるための、実世界における組織設計</p>
+        </header>
+
+        <main class="space-y-12">
+            <section id="intro" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#005F73] mb-4 text-center">なぜ組織設計が重要なのか？</h2>
+                <p class="text-lg text-gray-700 mb-6 text-center max-w-3xl mx-auto">
+                    多くの組織では、チーム間の依存関係が複雑化し、コミュニケーションのコストが増大することで、開発速度が低下します。「チームトポロジー」は、この問題を解決するために、チームの認知負荷を管理し、価値の流れ（フロー）を最適化する明確なパターンを提供します。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
+                    <div class="bg-[#E9D8A6] bg-opacity-20 p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold text-[#CA6702]">75%</h3>
+                        <p class="text-gray-600">の組織が、チーム間の不明確な責任範囲がプロジェクトの遅延原因だと報告しています。</p>
+                    </div>
+                    <div class="bg-[#94D2BD] bg-opacity-20 p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold text-[#0A9396]">認知負荷の低減</h3>
+                        <p class="text-gray-600">が、チームの生産性と幸福度を向上させる最も重要な要因の一つです。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="team-types">
+                <h2 class="text-3xl font-bold text-[#005F73] mb-6 text-center">4つの基本的なチームタイプ</h2>
+                <p class="text-lg text-gray-700 mb-8 text-center max-w-3xl mx-auto">
+                    組織のニーズに応じて、これらのチームタイプを組み合わせることで、適応性の高い構造を構築します。多くの先進的な組織では、ビジネス価値に直接貢献するストリームアラインドチームが大多数を占めます。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="chart-container">
+                            <canvas id="teamDistributionChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-white rounded-lg shadow-md p-4 flex items-center">
+                            <span class="text-4xl mr-4">🚀</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-[#0A9396]">ストリームアラインドチーム</h3>
+                                <p class="text-gray-600">特定のビジネスドメインや価値の流れに沿って編成されるチーム。<strong>例:</strong> Adidasのeコマース製品チーム。</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-4 flex items-center">
+                            <span class="text-4xl mr-4">🏗️</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-[#EE9B00]">プラットフォームチーム</h3>
+                                <p class="text-gray-600">ストリームアラインドチームが利用する内部プラットフォームを開発・運用するチーム。<strong>例:</strong> Uswitchのインフラプラットフォームチーム。</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-4 flex items-center">
+                            <span class="text-4xl mr-4">🧩</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-[#CA6702]">コンプリケイテッド・サブシステムチーム</h3>
+                                <p class="text-gray-600">専門的な知識を要する複雑なサブシステムを担当するチーム。<strong>例:</strong> 金融機関における不正検知アルゴリズムチーム。</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-4 flex items-center">
+                            <span class="text-4xl mr-4">🧑‍🏫</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-[#BB3E03]">イネイブリングチーム</h3>
+                                <p class="text-gray-600">特定の技術領域で他のチームを支援し、能力向上を促す専門家チーム。<strong>例:</strong> PureGymのDevOpsベストプラクティス導入支援チーム。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="interaction-modes">
+                <h2 class="text-3xl font-bold text-[#005F73] mb-6 text-center">3つのコアな連携モード</h2>
+                 <p class="text-lg text-gray-700 mb-8 text-center max-w-3xl mx-auto">
+                    チーム間の連携は意図的に設計されるべきです。目的応じて適切なモードを選択することで、不要なコミュニケーションコストを削減し、チームの自律性を高めます。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="text-4xl mb-3">🤝</div>
+                        <h3 class="text-xl font-bold text-[#0A9396] mb-2">コラボレーション</h3>
+                        <p class="text-gray-600">2つのチームが密接に連携し、共通の目標に向かう。新しい技術の導入や問題領域の発見フェーズで有効。</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="text-4xl mb-3">📦</div>
+                        <h3 class="text-xl font-bold text-[#EE9B00] mb-2">X-as-a-Service</h3>
+                        <p class="text-gray-600">一方のチームがもう一方のチームにサービスを提供する。プラットフォームチームが提供するAPIなどが典型例。</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="text-4xl mb-3">👨‍🏫</div>
+                        <h3 class="text-xl font-bold text-[#CA6702] mb-2">ファシリテーション</h3>
+                        <p class="text-gray-600">一方のチームがもう一方のチームを支援し、知識のギャップを埋める。イネイブリングチームの活動がこれにあたる。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="case-studies">
+                <h2 class="text-3xl font-bold text-[#005F73] mb-6 text-center">導入企業の実践事例</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-2xl font-bold text-[#0A9396] mb-3">事例1: Uswitch (英国の価格比較サイト)</h3>
+                        <p class="text-gray-700 mb-4"><strong class="text-[#005F73]">課題:</strong> 従来型のコンポーネントチーム（フロントエンド、バックエンドなど）によるサイロ化と、デプロイまでの長いリードタイム。</p>
+                        <p class="text-gray-700 mb-4"><strong class="text-[#005F73]">解決策:</strong> 顧客価値に沿った複数のストリームアラインドチームを設立。彼らを支えるための堅牢なプラットフォームチームを組織し、「Thinnest Viable Platform (実現可能な最小のプラットフォーム)」から始めて段階的に機能を拡充。</p>
+                        <p class="text-gray-700"><strong class="text-[#005F73]">成果:</strong> デプロイ頻度が週次から日次（10倍以上）に向上。チームのオーナーシップとモチベーションが大幅に改善。</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-2xl font-bold text-[#0A9396] mb-3">事例2: Adidas (グローバルスポーツ用品企業)</h3>
+                        <p class="text-gray-700 mb-4"><strong class="text-[#005F73]">課題:</strong> デジタル部門の急成長に伴い、数百人のエンジニアを抱える組織の複雑性が増大。チーム間の調整コストが開発のボトルネックに。</p>
+                        <p class="text-gray-700 mb-4"><strong class="text-[#005F73]">解決策:</strong> デジタルプラットフォームを構築し、セルフサービスで利用できるツールやAPIを提供。これにより、各製品を担当するストリームアラインドチームは、インフラを意識することなく、ビジネス価値の創出に集中できるようになった。</p>
+                        <p class="text-gray-700"><strong class="text-[#005F73]">成果:</strong> 新機能の市場投入までの時間が短縮され、チームの自律性が向上。プラットフォームの利用により、開発体験も改善。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="outcomes">
+                <h2 class="text-3xl font-bold text-[#005F73] mb-6 text-center">導入による定量的成果</h2>
+                <p class="text-lg text-gray-700 mb-8 text-center max-w-3xl mx-auto">
+                    チームトポロジーを導入した多くの組織では、開発者体験の向上とビジネス成果の両面で顕著な改善が見られます。これは、チームの認知負荷が適切に管理され、フローが最適化された結果です。
+                </p>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="chart-container h-[400px] md:h-[450px]">
+                        <canvas id="outcomesChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 pt-8 border-t border-gray-200">
+            <p class="text-gray-600">このインフォグラフィックは、Matthew Skelton氏とManuel Pais氏の著書「チームトポロジー」および公開されている導入事例を基に作成されました。</p>
+        </footer>
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxWidth) => {
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).length > maxWidth) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine += (currentLine ? ' ' : '') + word;
+                }
+            });
+            lines.push(currentLine);
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const brilliantBluesPalette = {
+            primary: '#0A9396',
+            accent1: '#EE9B00',
+            accent2: '#CA6702',
+            accent3: '#9B2226',
+            secondary: '#94D2BD',
+            dark: '#005F73'
+        };
+
+        const teamDistributionCtx = document.getElementById('teamDistributionChart').getContext('2d');
+        new Chart(teamDistributionCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['ストリームアラインド', 'プラットフォーム', 'イネイブリング', 'コンプリケイテッド・サブシステム'],
+                datasets: [{
+                    label: 'チームタイプの分布',
+                    data: [65, 20, 10, 5],
+                    backgroundColor: [
+                        brilliantBluesPalette.primary,
+                        brilliantBluesPalette.accent1,
+                        brilliantBluesPalette.accent2,
+                        brilliantBluesPalette.secondary
+                    ],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '先進的組織におけるチームタイプの典型的な分布',
+                        font: { size: 16 }
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const outcomesCtx = document.getElementById('outcomesChart').getContext('2d');
+        const originalLabels = [
+            'デプロイ頻度', 
+            '変更のリードタイム', 
+            'チームの認知負荷 (自己評価)', 
+            '開発者の満足度'
+        ];
+        const wrappedLabels = originalLabels.map(label => wrapLabel(label, 16));
+        new Chart(outcomesCtx, {
+            type: 'bar',
+            data: {
+                labels: wrappedLabels,
+                datasets: [
+                    {
+                        label: '導入前',
+                        data: [15, 80, 75, 50],
+                        backgroundColor: brilliantBluesPalette.secondary,
+                        borderColor: brilliantBluesPalette.secondary,
+                        borderWidth: 1
+                    },
+                    {
+                        label: '導入後',
+                        data: [85, 25, 30, 90],
+                        backgroundColor: brilliantBluesPalette.primary,
+                        borderColor: brilliantBluesPalette.primary,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '導入前後の主要メトリクス比較 (複数事例の平均)',
+                        font: { size: 16 }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
