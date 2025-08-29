@@ -18,7 +18,7 @@ layout: default
     <p class="meta">作成日: {{ page.date | date: "%Y年%m月%d日" }}</p>
     {% endif %}{% if page.audio %}
     <div class="audio-player">
-        <h2>音声概要</h2>
+        <h2>音声解説</h2>
         <audio controls preload="auto">
             <source src="{{ page.audio }}" type="audio/mpeg">
             お使いのブラウザは音声プレーヤーをサポートしていません。
@@ -26,7 +26,7 @@ layout: default
     </div>
     {% endif %}{% if page.video %}
     <div class="video-player">
-        <h2>動画概要</h2>
+        <h2>動画解説</h2>
         <video controls preload="auto" style="max-width: 100%;">
             <source src="{{ page.video }}" type="video/mp4">
             お使いのブラウザは動画プレーヤーをサポートしていません。
