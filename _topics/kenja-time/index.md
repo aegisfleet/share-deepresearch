@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/kenja-time.mp3
 category: playful
 date: 2025-05-26
 ga4_metrics:
-  avgSessionDuration: 16.0858386
+  avgSessionDuration: 17.6887196
   pageViews: 4
   users: 4
 layout: topic
