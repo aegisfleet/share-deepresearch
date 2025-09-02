@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JMeter: ブラウザ操作ログから堅牢なテストシナリオを作成</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <!--
+    シナリオ構成案:
+    1. 導入: ブラウザ操作を記録するメリットを説明し、大まかなプロセスフローを示す。
+    2. 記録プロセス: JMeterのHTTP(S) Test Script Recorderの技術的な設定方法を詳述する。
+    3. 効率的なシナリオ作成: 記録された生データから不要な情報を取り除き、リクエストをグループ化することでクリーンにする手法に焦点を当てる。その効果をチャートで視覚化する。
+    4. よくある問題への対処: 最も重要な課題である動的トークン（相関付け）、ハードコーディングされたデータ（パラメータ化）、思考時間、レスポンス検証（アサーション）を取り上げ、明確な解決策と視覚的な補助を提供する。
+    5. ベストプラクティス: 信頼性と保守性の高いテスト計画を作成するための重要なヒントをまとめて締めくくる。
+
+    視覚化要素の選択:
+    - プロセスフロー（導入部＆相関付け）: ゴール=整理, 手法=Tailwind CSSを使用した構造化HTML/CSS。理由=複雑なグラフィックなしで手順を明確に示すため。SVG不使用を確認。
+    - セットアップ図（記録）: ゴール=整理, 手法=構造化HTML/CSS。理由=コンポーネント間の関係性を効果的に視覚化するため。SVG不使用を確認。
+    - 棒グラフ（フィルタリング）: ゴール=比較, 手法=Chart.js/Canvas。理由=関連性のないリクエストを除外するメリットを視覚的に強く訴えるため。SVG不使用を確認。
+    - Before/After構造（グループ化）: ゴール=整理, 手法=スタイル付きHTMLリスト。理由=テスト計画の構造をシンプルかつ明確に比較できるため。SVG不使用を確認。
+    - 折れ線グラフ（思考時間）: ゴール=変化, 手法=Chart.js/Canvas。理由=タイマーが時間経過とともにより現実的な負荷パターンをどのように作り出すかを示すため。SVG不使用を確認。
+    - 問題/解決策テーブル（よくある問題）: ゴール=整理, 手法=スタイル付きHTML div。理由=トラブルシューティングのための構造化され、見やすいフォーマットのため。SVG不使用を確認。
+
+    カラーパレット: Energetic & Playful
+    このファイルではMermaid JSおよびSVGは一切使用していません。
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            background-color: #F0F4F8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #FFD166;
+            line-height: 1;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="text-[#073B4C]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#118AB2]">JMeterをマスターする</h1>
+            <p class="text-lg md:text-xl mt-2 text-[#073B4C]">ブラウザ操作ログから堅牢なテストシナリオへ</p>
+        </header>
+
+        <section class="mb-12">
+            <div class="card text-center">
+                <h2 class="text-2xl font-bold mb-4 text-[#118AB2]">なぜ記録するのか？現実的なテストへの道筋</h2>
+                <p class="max-w-3xl mx-auto mb-6">
+                    手動でWebテストシナリオを作成するのは時間がかかり、ミスも起こりがちです。JMeterのプロキシ経由でブラウザ操作を記録すれば、実際のHTTPリクエストの順序を正確に捉え、数時間ではなく数分で現実的なパフォーマンステストの土台を築くことができます。
+                </p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="p-4 bg-gray-100 rounded-lg shadow-inner"><span class="font-bold">1. ブラウザ操作</span></div>
+                    <div class="flow-arrow transform md:rotate-0 rotate-90">&rarr;</div>
+                    <div class="p-4 bg-gray-100 rounded-lg shadow-inner"><span class="font-bold">2. プロキシ記録</span></div>
+                    <div class="flow-arrow transform md:rotate-0 rotate-90">&rarr;</div>
+                    <div class="p-4 bg-gray-100 rounded-lg shadow-inner"><span class="font-bold">3. JMeterシナリオ</span></div>
+                    <div class="flow-arrow transform md:rotate-0 rotate-90">&rarr;</div>
+                    <div class="p-4 bg-gray-100 rounded-lg shadow-inner"><span class="font-bold">4. 洗練化</span></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="card">
+                <h3 class="text-xl font-bold mb-4 text-[#06D6A0]">1. 記録プロセス：準備</h3>
+                 <p class="mb-4">記録機能の核となるのが「HTTP(S) Test Script Recorder」です。これはプロキシとして動作し、ブラウザとWebサーバー間の通信を傍受します。適切な設定が、クリーンな記録を得るための鍵となります。</p>
+                <ul class="space-y-3">
+                    <li class="flex items-start"><span class="font-bold text-[#118AB2] mr-2">Step 1:</span><span>テスト計画のWorkbenchまたはスレッドグループに「HTTP(S) Test Script Recorder」を追加します。</span></li>
+                    <li class="flex items-start"><span class="font-bold text-[#118AB2] mr-2">Step 2:</span><span>ポート（例: 8888）を設定し、記録したステップを保存する「ターゲットコントローラ」を選択します。</span></li>
+                    <li class="flex items-start"><span class="font-bold text-[#118AB2] mr-2">Step 3:</span><span>レコーダーを開始します。JMeterが一時的なセキュリティ証明書（ApacheJMeterTemporaryRootCA.crt）を生成します。</span></li>
+                    <li class="flex items-start"><span class="font-bold text-[#118AB2] mr-2">Step 4:</span><span>HTTPS通信を復号化するため、この証明書をブラウザの信頼された認証局にインストールします。</span></li>
+                     <li class="flex items-start"><span class="font-bold text-[#118AB2] mr-2">Step 5:</span><span>ブラウザのプロキシ設定を、指定したポートのlocalhost（例: 127.0.0.1:8888）に向けます。</span></li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                 <h3 class="text-xl font-bold mb-4 text-[#06D6A0]">2. 効率的なシナリオ作成：ノイズの除去</h3>
+                <p class="mb-4">記録直後のデータには、画像、CSS、JavaScriptファイルといった静的アセットへのリクエストなどの「ノイズ」が大量に含まれています。これらを除外することが、効率的で的を絞ったテストシナリオを作成する第一歩です。</p>
+                <div class="chart-container">
+                    <canvas id="filteringChart"></canvas>
+                </div>
+                 <p class="text-center text-sm mt-2">フィルタリングにより不要なサンプラーが大幅に減り、サーバーサイドのロジックに集中したテストが可能になります。</p>
+            </div>
+
+            <div class="md:col-span-2 card">
+                <h3 class="text-xl font-bold mb-4 text-center text-[#FF6B6B]">3. よくある問題への対処：記録から堅牢なシナリオへ</h3>
+                <p class="text-center max-w-4xl mx-auto mb-6">記録されたスクリプトは単なる出発点です。信頼性の高いテストにするためには、動的なデータを扱い、ユーザー入力をパラメータ化し、検証を追加する必要があります。これらは最も一般的に直面する課題です。</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h4 class="font-bold text-lg mb-2">問題：動的トークンとセッションID</h4>
+                        <p class="text-sm mb-3">多くのアプリケーションでは、セキュリティのために動的トークン（CSRFトークンやセッションIDなど）が使用されます。記録されたトークンは一度のセッションでしか有効でなく、再実行すると失敗します。</p>
+                        <div class="p-3 bg-green-50 rounded-lg">
+                            <h5 class="font-semibold text-green-800">解決策：相関付け（Correlation）</h5>
+                            <p class="text-sm text-green-700">「正規表現抽出」などの後処理要素を使い、サーバーのレスポンスから動的な値を抽出します。それを変数（例: `${csrf_token}`）に格納し、後続のリクエストで使用します。</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h4 class="font-bold text-lg mb-2">問題：ハードコーディングされたユーザーデータ</h4>
+                        <p class="text-sm mb-3">記録には、ログイン時に使用した特定のユーザー名やパスワードがそのまま含まれます。複数のユーザーをシミュレートするには、これらの固定値を置き換える必要があります。</p>
+                         <div class="p-3 bg-green-50 rounded-lg">
+                            <h5 class="font-semibold text-green-800">解決策：パラメータ化（Parameterization）</h5>
+                            <p class="text-sm text-green-700">「CSV Data Set Config」要素を使用します。ユーザー情報を含むCSVファイルを作成すると、JMeterがそのファイルからデータを読み込み、各仮想ユーザーがユニークなデータ（例: `${username}`, `${password}`）でテストを実行できます。</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h4 class="font-bold text-lg mb-2">問題：非現実的な実行ペース</h4>
+                        <p class="text-sm mb-3">デフォルトでは、JMeterは可能な限り高速にリクエストを送信しますが、これは実際のユーザー行動とは異なります。ユーザーは操作の合間に一時停止します（思考時間）。</p>
+                        <div class="p-3 bg-green-50 rounded-lg">
+                            <h5 class="font-semibold text-green-800">解決策：タイマー</h5>
+                            <p class="text-sm text-green-700">「トランザクションコントローラ」内に「一様乱数タイマ」などを追加します。これにより、ステップ間に現実的なランダムな遅延が挿入され、より正確な負荷プロファイルが作成されます。</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 border border-gray-200 rounded-lg">
+                        <h4 class="font-bold text-lg mb-2">問題：検証の欠如</h4>
+                        <p class="text-sm mb-3">ステータスコードが「200 OK」でも、ページが正しいとは限りません。サーバーが成功コードと共にエラーページを返す可能性があります。テストではレスポンス内容の検証が必要です。</p>
+                        <div class="p-3 bg-green-50 rounded-lg">
+                            <h5 class="font-semibold text-green-800">解決策：アサーション（Assertions）</h5>
+                            <p class="text-sm text-green-700">サンプラーに「Response Assertion」を追加します。ログイン後の「ようこそ、[ユーザー名]さん」や目的のページのタイトルなど、成功を確認するための特定のテキストが存在するかをチェックするように設定します。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <div class="card">
+                <h3 class="text-xl font-bold mb-4 text-[#FFD166]">4. シナリオの整理</h3>
+                <p class="mb-4">記録されたリクエストがフラットに並んでいるだけでは、可読性が低く分析も困難です。関連するステップを「トランザクションコントローラ」でグループ化し、ユーザーの操作フローに沿った、クリーンで論理的な構造を作成しましょう。</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <h4 class="font-semibold mb-2">整理前（記録直後）</h4>
+                        <ul class="text-sm list-disc list-inside bg-red-50 p-3 rounded">
+                            <li>GET /login</li>
+                            <li>POST /login_handler</li>
+                            <li>GET /redirect</li>
+                            <li>GET /dashboard</li>
+                            <li>GET /dashboard/data</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">整理後（コントローラ使用）</h4>
+                         <ul class="text-sm list-disc list-inside bg-green-50 p-3 rounded">
+                             <li><span class="font-bold">ログイン処理</span>
+                                <ul class="list-disc list-inside ml-4">
+                                    <li>POST /login_handler</li>
+                                 </ul>
+                             </li>
+                             <li><span class="font-bold">ダッシュボード表示</span>
+                                 <ul class="list-disc list-inside ml-4">
+                                    <li>GET /dashboard</li>
+                                    <li>GET /dashboard/data</li>
+                                 </ul>
+                            </li>
+                         </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="text-xl font-bold mb-4 text-[#FFD166]">5. 現実的なユーザー負荷のシミュレーション</h3>
+                <p class="mb-4">タイマーを追加することで、サーバーへの瞬間的な過負荷を防ぎ、より自然なユーザーフローをシミュレートできます。このグラフは、タイマーがリクエストのペースを調整し、非現実的な初期スパイクではなく持続的な負荷を生み出す様子を示しています。</p>
+                <div class="chart-container">
+                    <canvas id="pacingChart"></canvas>
+                </div>
+                <p class="text-center text-sm mt-2">タイマーは、テスト期間を通じて安定した現実的な負荷パターンを作り出します。</p>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const tooltipTitleCallback = function(tooltipItems) {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+          return label.join(' ');
+        } else {
+          return label;
+        }
+    };
+
+    const wrapLabel = (label) => {
+        const maxLength = 16;
+        if (typeof label === 'string' && label.length > maxLength) {
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        }
+        return label;
+    };
+
+
+    const filteringCtx = document.getElementById('filteringChart').getContext('2d');
+    new Chart(filteringCtx, {
+        type: 'bar',
+        data: {
+            labels: ['記録直後', 'フィルタリング後'],
+            datasets: [{
+                label: 'サンプラー数',
+                data: [150, 25],
+                backgroundColor: ['#FF6B6B', '#06D6A0'],
+                borderColor: ['#FF6B6B', '#06D6A0'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { title: tooltipTitleCallback } }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'リクエスト数' }
+                }
+            }
+        }
+    });
+
+    const pacingCtx = document.getElementById('pacingChart').getContext('2d');
+    new Chart(pacingCtx, {
+        type: 'line',
+        data: {
+            labels: ['0秒', '5秒', '10秒', '15秒', '20秒', '25秒', '30秒'],
+            datasets: [
+                {
+                    label: 'タイマーなし (スパイク発生)',
+                    data: [100, 20, 10, 5, 2, 1, 0],
+                    borderColor: '#FF6B6B',
+                    backgroundColor: 'rgba(255, 107, 107, 0.2)',
+                    fill: true,
+                    tension: 0.1
+                },
+                {
+                    label: 'タイマーあり (持続的負荷)',
+                    data: [10, 12, 11, 10, 13, 12, 11],
+                    borderColor: '#118AB2',
+                    backgroundColor: 'rgba(17, 138, 178, 0.2)',
+                    fill: true,
+                    tension: 0.1
+                }
+            ]
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                tooltip: { callbacks: { title: tooltipTitleCallback } },
+                legend: { position: 'bottom' }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'アクティブユーザー数 / リクエスト数' }
+                },
+                x: {
+                     title: { display: true, text: 'テスト時間' }
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

@@ -33,7 +33,7 @@
 ---
 audio: /share-deepresearch/assets/audio/your-topic.mp3
 video: /share-deepresearch/assets/video/your-topic.mp4
-category: ai  # ai, research, code, tutorial のいずれかを指定
+category: ai  # ai, engineering, playful, research, study のいずれかを指定
 date: YYYY-MM-DD
 description: トピックの簡単な説明（150文字程度）
 layout: topic
