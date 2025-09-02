@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/point-activities.mp3
 category: research
 date: 2025-05-31
 ga4_metrics:
-  avgSessionDuration: 85.4789715
-  pageViews: 2
-  users: 2
+  avgSessionDuration: 19.104342
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: ポイント活動の最新情報を集めたい。これから予定されているキャンペーンも含めてどのサービスが一番ポイントを貯められるのか教えて欲しい。
 supplementary_materials:
