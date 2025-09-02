@@ -1,17 +1,21 @@
 ---
 audio: /share-deepresearch/assets/audio/jmeter-practical-guide.mp3
-video: /share-deepresearch/assets/video/jmeter-practical-guide.mp4
 category: engineering
 date: 2025-09-02
 description: JMeterを使用してブラウザ操作のログから堅牢なテストシナリオを作成する方法を解説します。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: JMeterでブラウザ操作のログを用いてログインから特定のページアクセスを確認するテストシナリオを作成したい。プロキシ経由で取得したログから効率良くテストシナリオを作成するポイントや実装時に良く発生する問題を調査して欲しい。
 supplementary_materials:
-  - title: JMeter：ブラウザ操作ログから堅牢なテストシナリオを作成
-    url: /share-deepresearch/topics/jmeter-practical-guide/infographic.html
-tags: 
+- title: JMeter：ブラウザ操作ログから堅牢なテストシナリオを作成
+  url: /share-deepresearch/topics/jmeter-practical-guide/infographic.html
+tags:
 - テストツール
 title: JMeterプロキシ記録機能を用いた実践的テストシナリオ構築ガイド
+video: /share-deepresearch/assets/video/jmeter-practical-guide.mp4
 ---
 
 # **JMeterプロキシ記録機能を用いた実践的テストシナリオ構築ガイド**
