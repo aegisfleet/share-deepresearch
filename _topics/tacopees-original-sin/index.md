@@ -4,7 +4,7 @@ category: research
 date: 2025-08-02
 description: 『タコピーの原罪』の深層分析。コミュニケーション不全、原罪の概念、トラウマの影響を解剖し、物語技法と作者の意図を考察する。
 ga4_metrics:
-  avgSessionDuration: 282.56826764285717
+  avgSessionDuration: 317.93463825
   pageViews: 28
   users: 21
 layout: topic
