@@ -1,14 +1,18 @@
 ---
 audio: /share-deepresearch/assets/audio/github-spec-kit-vs-aws-kiro.m4a
-video: /share-deepresearch/assets/video/github-spec-kit-vs-aws-kiro.mp4
 category: ai
 date: 2025-09-03
 description: GitHubのSpec KitとAWSのKiroの比較分析。両者の特徴や思想的な違いを探る。
+ga4_metrics:
+  avgSessionDuration: 868.547518
+  pageViews: 2
+  users: 1
 layout: topic
 prompt: GitHubのSpec Kitについて調査して欲しい。例えばAWSのKiroは同じようにスペックを作成するツールとなるが、他のAIツールと比較して思想的な違いがあるのかなど詳しく特徴をまとめて欲しい。
-tags: 
+tags:
 - AIツール
 title: 実行可能な意図の夜明け：GitHub Spec Kit、AWS Kiro、および仕様駆動開発パラダイムの比較分析
+video: /share-deepresearch/assets/video/github-spec-kit-vs-aws-kiro.mp4
 ---
 
 # **実行可能な意図の夜明け：GitHub Spec Kit、AWS Kiro、および仕様駆動開発パラダイムの比較分析**
