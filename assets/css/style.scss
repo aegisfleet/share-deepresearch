@@ -722,6 +722,23 @@ ul, ol {
         padding-left: 1rem;
         list-style-position: outside;
     }
+
+    .ga4-metrics .metrics-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+
+    .ga4-metrics .metric {
+        padding: 0.5rem;
+    }
+
+    .ga4-metrics .metric-label {
+        font-size: 0.75rem;
+    }
+
+    .ga4-metrics .metric-value {
+        font-size: 1.3rem;
+    }
 }
 
 img {
