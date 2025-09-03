@@ -33,12 +33,14 @@ include:
   - _topics
   - "**/*.mp3"
   - "**/*.mp4"
+  - "**/*.m4a"
   - "**/*.md"
 
 # メディアファイルの処理を許可
 keep_files:
   - .mp3
   - .mp4
+  - .m4a
 
 # メディアファイルの設定
 defaults:
@@ -48,6 +50,10 @@ defaults:
       sitemap: false
   - scope:
       path: "**/*.mp4"
+    values:
+      sitemap: false
+  - scope:
+      path: "**/*.m4a"
     values:
       sitemap: false
 
