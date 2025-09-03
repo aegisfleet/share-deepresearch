@@ -1,14 +1,18 @@
 ---
 audio: /share-deepresearch/assets/audio/ai-driven-development-life-cycle.m4a
-video: /share-deepresearch/assets/video/ai-driven-development-life-cycle.mp4
 category: ai
 date: 2025-09-03
 description: AI-DLCは、ソフトウェア開発におけるAIの役割を再定義し、開発プロセス全体を通じてAIを中心的な協力者として位置づける新しいアプローチです。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: AI-DLC（AI-Driven Development Life Cycle）について調査して欲しい。実際に開発を行った事例を集めて、どのような課題があるのかまとめて欲しい。
-tags: 
+tags:
 - 開発手法
 title: AI駆動開発ライフサイクル（AI-DLC）：ソフトウェアエンジニアリングの新パラダイム、導入事例、および重大な課題に関する戦略的分析
+video: /share-deepresearch/assets/video/ai-driven-development-life-cycle.mp4
 ---
 
 # **AI駆動開発ライフサイクル（AI-DLC）：ソフトウェアエンジニアリングの新パラダイム、導入事例、および重大な課題に関する戦略的分析**
