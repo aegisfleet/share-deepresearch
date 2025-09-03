@@ -1,15 +1,19 @@
 ---
 audio: /share-deepresearch/assets/audio/spec-kit-practical-guide.m4a
-video: /share-deepresearch/assets/video/spec-kit-practical-guide.mp4
 category: engineering
 date: 2025-09-03
 description: GitHubのSpec Kitを活用したAI駆動開発の実践的なガイドです。セットアップから具体的な使用例まで、詳細に解説します。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: GitHubのSpec Kitのハンズオン資料を作成したい。セットアップから実際の使用例を丁寧に解説して欲しい。
-tags: 
+tags:
 - AIツール
 - 開発手法
 title: AI駆動開発ハンズオンガイド：GitHub Spec Kitの徹底活用
+video: /share-deepresearch/assets/video/spec-kit-practical-guide.mp4
 ---
 
 # **AI駆動開発ハンズオンガイド：GitHub Spec Kitの徹底活用**
