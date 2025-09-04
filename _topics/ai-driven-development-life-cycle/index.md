@@ -4,9 +4,9 @@ category: ai
 date: 2025-09-03
 description: AI-DLCは、ソフトウェア開発におけるAIの役割を再定義し、開発プロセス全体を通じてAIを中心的な協力者として位置づける新しいアプローチです。
 ga4_metrics:
-  avgSessionDuration: 128.82247266666667
-  pageViews: 5
-  users: 2
+  avgSessionDuration: 569.2815840000001
+  pageViews: 7
+  users: 4
 layout: topic
 prompt: AI-DLC（AI-Driven Development Life Cycle）について調査して欲しい。実際に開発を行った事例を集めて、どのような課題があるのかまとめて欲しい。
 tags:
