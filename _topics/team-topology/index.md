@@ -4,7 +4,7 @@ category: research
 date: 2025-08-30
 description: チームトポロジーの原則に基づいた組織設計の実践例を紹介し、効果的なチーム作りのための具体的なアプローチを探る。
 ga4_metrics:
-  avgSessionDuration: 212.64283165
+  avgSessionDuration: 212.95414245
   pageViews: 24
   users: 14
 layout: topic
