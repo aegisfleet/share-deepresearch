@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/old-testament-word.mp3
 category: playful
 date: 2025-06-08
 ga4_metrics:
-  avgSessionDuration: 14.7045235
-  pageViews: 4
-  users: 4
+  avgSessionDuration: 17.888853333333333
+  pageViews: 3
+  users: 3
 layout: topic
 prompt: 旧約聖書に登場する中二病的な単語をできるだけ多く集めて欲しい。
 supplementary_materials:

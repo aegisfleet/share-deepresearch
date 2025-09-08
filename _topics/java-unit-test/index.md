@@ -5,9 +5,9 @@ date: 2025-06-05
 description: 現代のソフトウェア開発において、迅速な高品質ソフトウェアの提供というプレッシャーは増す一方であり、Javaエコシステムにおけるユニットテストの重要性はますます高まっています。本レポートは、Javaのユニットテスト作成を自動化し、かつ無料で使用できるツールを求めるユーザーの具体的なニーズに応えるものです。さらに、生成AIツールを検討する場合には、Azureサービス（例：Azure
   OpenAI）との連携が可能であることが条件として挙げられています。
 ga4_metrics:
-  avgSessionDuration: 204.65826057142857
-  pageViews: 8
-  users: 6
+  avgSessionDuration: 13.9045545
+  pageViews: 2
+  users: 2
 layout: topic
 prompt: Javaのユニットテストを自動で作成したい。前提条件として無料で使用できる必要がある。生成AIを使用する場合はAzureと接続できるものとする。
 supplementary_materials:
