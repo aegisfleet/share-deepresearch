@@ -1,14 +1,18 @@
 ---
 audio: /share-deepresearch/assets/audio/the-responsibility-paradox.mp4
-video: /share-deepresearch/assets/video/the-responsibility-paradox.mp4
 category: enginieering
 date: 2025-09-12
 description: 任分界点を明確にすることは重要だが、過度な明確化は「自分の仕事しかしない」人材を生み、組織の柔軟性や協働を阻害する。本稿では、この「責任のパラドックス」を解明し、構造、文化、リーダーシップ、制度の4つの側面から統合的な解決策を提示する。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 責任分界点を明確にするのは良いことだと思うが、やり過ぎると自分の範疇した仕事をしない人が出てくるように思う。このような議論について過去の実例や経験を調査し、具体的にどうして行くのが良いのか解決策を提示して欲しい。
-tags: 
+tags:
 - 組織戦略
 title: 責任のパラドックス：境界線を越えて協働を育む組織戦略
+video: /share-deepresearch/assets/video/the-responsibility-paradox.mp4
 ---
 
 # **責任のパラドックス：境界線を越えて協働を育む組織戦略**
