@@ -31,7 +31,7 @@
 
 ```yaml
 ---
-audio: /share-deepresearch/assets/audio/your-topic.m4a
+audio: /share-deepresearch/assets/audio/your-topic.mp4
 video: /share-deepresearch/assets/video/your-topic.mp4
 category: ai  # ai, engineering, playful, research, study のいずれかを指定
 date: YYYY-MM-DD
