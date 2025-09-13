@@ -4,7 +4,7 @@ category: research
 date: 2025-08-03
 description: 『タコピーの原罪』が海外でどのように受容され、視聴者がどのような感情的体験をしたのかを、YouTubeのリアクション動画を通じて分析する。特に、視聴者が物語の衝撃的な展開に対してどのように反応し、どのような意味を見出したのかを探る。
 ga4_metrics:
-  avgSessionDuration: 430.47428728571424
+  avgSessionDuration: 431.3484092857143
   pageViews: 9
   users: 6
 layout: topic
