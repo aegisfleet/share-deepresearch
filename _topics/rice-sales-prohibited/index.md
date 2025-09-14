@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/rice-sales-prohibited.mp3
 category: research
 date: 2025-06-15
 ga4_metrics:
-  avgSessionDuration: 5.711028
-  pageViews: 2
-  users: 2
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: メルカリで穀物類の出品が禁止されたが、実際メルカリで販売されていた穀物類で農家からの直接の出品はどれぐらいの割合だったのか調べて欲しい。
 supplementary_materials:
