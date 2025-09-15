@@ -1,14 +1,18 @@
 ---
 audio: /share-deepresearch/assets/audio/nondeterminism-in-llm-inference.mp4
-video: /share-deepresearch/assets/video/nondeterminism-in-llm-inference.mp4
 category: ai
 date: 2025-09-15
 description: LLM推論における非決定性の要因を多角的に分析し、バッチ不変性や数値精度の影響を探る。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 「Defeating Nondeterminism in LLM Inference」で語られている内容を多角的に検証して信憑性を確かめて欲しい。
-tags: 
+tags:
 - LLM推論
 title: LLM推論における非決定性の多角的検証：バッチ不変性、数値精度、およびシステムレベル効果の統合的分析
+video: /share-deepresearch/assets/video/nondeterminism-in-llm-inference.mp4
 ---
 
 # **LLM推論における非決定性の多角的検証：バッチ不変性、数値精度、およびシステムレベル効果の統合的分析**
