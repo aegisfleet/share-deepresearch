@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/github-copilot-spaces.mp3
 category: ai
 date: 2025-05-31
 ga4_metrics:
-  avgSessionDuration: 268.7423211904762
-  pageViews: 25
+  avgSessionDuration: 218.11404134999998
+  pageViews: 24
   users: 20
 layout: topic
 prompt: GitHub Copilot Spacesについて最新情報を調査し、具体的な活用事例をまとめて欲しい。
