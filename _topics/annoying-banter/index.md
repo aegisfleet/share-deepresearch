@@ -4,9 +4,9 @@ category: research
 date: 2025-06-17
 description: 本稿は、X（旧Twitter）などのソーシャルメディアプラットフォーム上で観察される、見知らぬ他者の投稿に対して執拗かつ無意味に、あるいは敵意をもって関与する「ダル絡み」と呼ばれる現象について、その背後にある精神状態を深く掘り下げることを目的とする。この行動は、単なる迷惑行為や「荒らし」という言葉で片付けられることが多いが、実際には個人の心理、社会力学、そしてテクノロジーが複雑に絡み合った、多層的な現象である。
 ga4_metrics:
-  avgSessionDuration: 10.374205
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: "\U0001D54F（Twitter）を見ていると他人のポストにダル絡みする人が居るが、見ず知らずの他人に対して敵意を向ける人の精神状態について詳しく教えて欲しい。"
 supplementary_materials:
