@@ -4,7 +4,7 @@ category: research
 date: 2025-08-06
 description: JSTQB Advanced Level テストマネジメント シラバス v3.0の変更点と、近年のテストマネジメントに必要な事項をまとめたレポートです。
 ga4_metrics:
-  avgSessionDuration: 185.7337354375
+  avgSessionDuration: 185.91205715625
   pageViews: 34
   users: 22
 layout: topic
