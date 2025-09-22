@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/resignation-agency.mp3
 category: research
 date: 2025-06-01
 ga4_metrics:
-  avgSessionDuration: 4.432002
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 退職代行サービスの詳細を知りたい。何を代行してくれるのか、代金はいくらぐらいなのか、退職後にも何かサービスがあるのかなど、詳しく教えて欲しい。
 supplementary_materials:

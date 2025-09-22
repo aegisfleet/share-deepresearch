@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/half-price-nigiri-sushi.mp3
 category: playful
 date: 2025-06-20
 ga4_metrics:
-  avgSessionDuration: 11.078704
-  pageViews: 2
-  users: 1
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: スーパーで半額になったにぎり寿司は半額以上の価値があるのか調査したい。まぐろの鮮度を基準にして、8時間経過した時点の鮮度がどうなるかという視点でまとめて欲しい。
 supplementary_materials:
