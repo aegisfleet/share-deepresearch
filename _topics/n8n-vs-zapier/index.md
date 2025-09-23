@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/n8n-vs-zapier.mp3
 category: engineering
 date: 2025-06-03
 ga4_metrics:
-  avgSessionDuration: 77.86093683333333
-  pageViews: 5
-  users: 5
+  avgSessionDuration: 6.840033
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: n8nとZapierの比較を行いたい。特にSlackとGitHubへの連携については資料に必ず入れて欲しい。
 supplementary_materials:
