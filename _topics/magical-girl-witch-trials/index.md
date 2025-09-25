@@ -1,14 +1,18 @@
 ---
 audio: /share-deepresearch/assets/audio/magical-girl-witch-trials.mp4
-video: /share-deepresearch/assets/video/magical-girl-witch-trials.mp4
 category: playful
 date: 2025-09-25
 description: 『魔法少女ノ魔女裁判』の物語構造と世界観を徹底分析し、登場人物たちの心理的葛藤や魔法の本質に迫る。
+ga4_metrics:
+  avgSessionDuration: 617.699655
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: 魔法少女ノ魔女裁判のストーリーをなぞりながら、物語の設定について公式資料を基にして詳しく解説してほしい。物語の結末についてネタバレしても問題ない。
-tags: 
+tags:
 - 考察
 title: 檻の中の歌鳥の評決：『魔法少女ノ魔女裁判』の物語構造と世界観の徹底分析
+video: /share-deepresearch/assets/video/magical-girl-witch-trials.mp4
 ---
 
 # **檻の中の歌鳥の評決：『魔法少女ノ魔女裁判』の物語構造と世界観の徹底分析**
