@@ -4,7 +4,7 @@ category: ai
 date: 2025-09-15
 description: LLM推論における非決定性の要因を多角的に分析し、バッチ不変性や数値精度の影響を探る。
 ga4_metrics:
-  avgSessionDuration: 284.106385
+  avgSessionDuration: 282.05343657142856
   pageViews: 5
   users: 4
 layout: topic
