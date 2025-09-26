@@ -4,7 +4,7 @@ category: engineering
 date: 2025-09-12
 description: 任分界点を明確にすることは重要だが、過度な明確化は「自分の仕事しかしない」人材を生み、組織の柔軟性や協働を阻害する。本稿では、この「責任のパラドックス」を解明し、構造、文化、リーダーシップ、制度の4つの側面から統合的な解決策を提示する。
 ga4_metrics:
-  avgSessionDuration: 5.195028
+  avgSessionDuration: 54.9039355
   pageViews: 2
   users: 1
 layout: topic
