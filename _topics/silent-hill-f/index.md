@@ -4,7 +4,7 @@ category: playful
 date: 2025-09-24
 description: サイレントヒルfの物語とテーマ性を深く掘り下げ、公式資料に基づいて詳細に解説します。ネタバレを含む内容ですので、未プレイの方はご注意ください。
 ga4_metrics:
-  avgSessionDuration: 287.23263342857143
+  avgSessionDuration: 248.66199942857142
   pageViews: 7
   users: 3
 layout: topic
