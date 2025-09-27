@@ -4,8 +4,8 @@ category: playful
 date: 2025-09-24
 description: サイレントヒルfの物語とテーマ性を深く掘り下げ、公式資料に基づいて詳細に解説します。ネタバレを含む内容ですので、未プレイの方はご注意ください。
 ga4_metrics:
-  avgSessionDuration: 204.67847433333336
-  pageViews: 8
+  avgSessionDuration: 184.21062690000002
+  pageViews: 9
   users: 3
 layout: topic
 prompt: サイレントヒルfのストーリーをなぞりながら、物語の設定について公式資料を基にして詳しく解説してほしい。ネタバレしても問題ない。
