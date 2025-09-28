@@ -10,7 +10,7 @@ ga4_metrics:
 layout: topic
 prompt: サイレントヒルfのストーリーをなぞりながら、物語の設定について公式資料を基にして詳しく解説してほしい。ネタバレしても問題ない。
 supplementary_materials:
-  - title: Googleスライドでのプレゼンテーション
+  - title: Googleスライド
     gslide: https://docs.google.com/presentation/d/e/2PACX-1vQWFBUMORybpHDjblaa4VmmFJjOBz_CZuWQUkfcWmbt6gPpBJw82Kw7gim2aGpCXQewbWnKl3j1cXvC/pubembed?start=false&loop=false&delayms=3000
 tags:
 - 考察
