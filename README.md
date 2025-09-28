@@ -43,6 +43,8 @@ supplementary_materials:
     url: /share-deepresearch/topics/your-topic/infographic.html
   - title: プレゼンテーション
     url: /share-deepresearch/topics/your-topic/reveal.html
+  - title: Googleスライドでのプレゼンテーション
+    gslide: https://docs.google.com/presentation/~/pubembed?start=false&loop=false
 tags: 
 - タグ1
 - タグ2

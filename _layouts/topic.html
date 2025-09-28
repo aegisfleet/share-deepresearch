@@ -38,7 +38,14 @@ layout: default
     <div class="supplementary-materials">
         <h2>補足資料</h2>
         {% for material in page.supplementary_materials %}
-        <p><a href="{{ material.url }}" target="_blank">{{ material.title }}</a></p>
+            {% if material.gslide %}
+                <h3>{{ material.title }}</h3>
+                <div class="google-slide-container">
+                    <iframe src="{{ material.gslide }}" frameborder="0" width="1440" height="839" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                </div>
+            {% else %}
+                <p><a href="{{ material.url }}" target="_blank">{{ material.title }}</a></p>
+            {% endif %}
         {% endfor %}
     </div>
     {% endif %}
