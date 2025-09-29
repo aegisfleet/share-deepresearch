@@ -1,14 +1,18 @@
 ---
 audio: /share-deepresearch/assets/audio/jpyc.mp4
-video: /share-deepresearch/assets/video/jpyc.mp4
 category: research
 date: 2025-09-29
 description: 日本円建てステーブルコイン「JPYC」の活用事例と将来展望を探る。
+ga4_metrics:
+  avgSessionDuration: 92.320958
+  pageViews: 2
+  users: 2
 layout: topic
 prompt: 円建てステーブルコイン（JPYC）の活用事例について調査して欲しい。どのような使い方が想定されるだろうか？
-tags: 
+tags:
 - 経済学
 title: JPYCレポート：日本を代表する円建てステーブルコインの戦略的活用事例と将来展望
+video: /share-deepresearch/assets/video/jpyc.mp4
 ---
 
 # **JPYCレポート：日本を代表する円建てステーブルコインの戦略的活用事例と将来展望**
