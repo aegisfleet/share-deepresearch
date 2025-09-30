@@ -6,7 +6,7 @@ description: 本レポートは、継続的インテグレーション/継続的
 ga4_metrics:
   avgSessionDuration: 0.0
   pageViews: 0
-  users: 0
+  users: 1
 layout: topic
 prompt: CI/CDを主体に行なっているチームがDevOpsを目指している。それぞれの役割を比較してDevOpsを行うにあたり必要なものが何になるのかまとめて欲しい。
 supplementary_materials:
