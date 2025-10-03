@@ -1,15 +1,19 @@
 ---
 audio: /share-deepresearch/assets/audio/sora-2-technical-deconstruction.m4a
-video: /share-deepresearch/assets/video/sora-2-technical-deconstruction.mp4
 category: research
 date: 2025-10-03
 description: OpenAIのSora2は、簡単なプロンプトでストーリー性のある動画を生成する技術を持つ。このレポートでは、その仕組みや工夫について詳しく調査する。
+ga4_metrics:
+  avgSessionDuration: 13.708428
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: OpenAIのSora2は簡単なプロンプトでストーリー性のある動画が作成されるが、その仕組や工夫している箇所について調査して欲しい。
-tags: 
+tags:
 - AIモデル
 - 動画生成
 title: Sora 2の解体新書：ワールドシミュレーターとしてのアーキテクチャ分析
+video: /share-deepresearch/assets/video/sora-2-technical-deconstruction.mp4
 ---
 
 # **Sora 2の解体新書：ワールドシミュレーターとしてのアーキテクチャ分析**
