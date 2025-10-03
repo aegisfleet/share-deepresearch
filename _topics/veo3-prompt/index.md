@@ -14,6 +14,7 @@ supplementary_materials:
   url: /share-deepresearch/topics/veo3-prompt/infographic.html
 tags:
 - AIモデル
+- 動画生成
 title: AIビデオ生成技術の最前線：Google Veo 3 徹底解剖
 ---
 
