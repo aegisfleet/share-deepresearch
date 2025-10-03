@@ -4,9 +4,9 @@ category: ai
 date: 2025-05-29
 description: 本報告書は、2025年5月28日に成立した「人工知能関連技術の研究開発及び活用の推進に関する法律」（以下、「AI推進法」または「本法」）が、日本のAI研究開発、産業、社会、そしてガバナンスに与える多岐にわたる影響を分析するものである。本法は、AI技術の戦略的推進と社会実装を目的とした日本初の包括的な法的枠組みであり、その中核には内閣総理大臣を長とする「人工知能戦略本部」（AI戦略本部）の設置と、国家戦略の指針となる「人工知能基本計画」（AI基本計画）の策定が据えられている。
 ga4_metrics:
-  avgSessionDuration: 24.660747
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: AI関連技術の研究開発・活用推進法の内容から、どのような影響が出るのかまとめて欲しい。
 supplementary_materials:
