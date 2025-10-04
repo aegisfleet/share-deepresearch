@@ -4,7 +4,7 @@ category: research
 date: 2025-10-03
 description: OpenAIのSora2は、簡単なプロンプトでストーリー性のある動画を生成する技術を持つ。このレポートでは、その仕組みや工夫について詳しく調査する。
 ga4_metrics:
-  avgSessionDuration: 8.579785
+  avgSessionDuration: 529.710455
   pageViews: 3
   users: 2
 layout: topic
