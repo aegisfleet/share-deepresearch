@@ -4,9 +4,9 @@ category: research
 date: 2025-07-06
 description: 2025年のAmazonプライムデーで注目すべき商品をカテゴリ毎にまとめ、商品の内容、割引率、評判を調査した完全攻略ガイド。史上最大規模のセールを制するための専門的戦略と注目商品125選を紹介。
 ga4_metrics:
-  avgSessionDuration: 85.214007
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 2025年のAmazonプライムデーで注目すべき商品をまとめたい。商品の内容、割引率、評判と調査し、商品をカテゴリ毎にまとめて欲しい。
 supplementary_materials:
