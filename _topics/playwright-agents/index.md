@@ -1,15 +1,19 @@
 ---
 audio: /share-deepresearch/assets/audio/playwright-agents.m4a
-video: /share-deepresearch/assets/video/playwright-agents.mp4
 category: ai
 date: 2025-10-07
 description: Playwright Agentsは、AIを活用してテスト自動化を効率化する新しいアプローチです。本レポートでは、そのアーキテクチャ、基盤技術、実装ワークフロー、CI/CD統合、そして現状の課題と限界について詳細に分析します。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: Playwright Agentsについて調査してまとめて欲しい。
-tags: 
+tags:
 - Playwright
 - AI Agent
 title: Playwright Agentsの詳細分析：アーキテクチャ、実装、および戦略的評価
+video: /share-deepresearch/assets/video/playwright-agents.mp4
 ---
 
 # **Playwright Agentsの詳細分析：アーキテクチャ、実装、および戦略的評価**

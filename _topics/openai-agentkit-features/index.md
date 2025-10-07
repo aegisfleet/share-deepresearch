@@ -1,14 +1,18 @@
 ---
 audio: /share-deepresearch/assets/audio/openai-agentkit-features.m4a
-video: /share-deepresearch/assets/video/openai-agentkit-features.mp4
 category: ai
 date: 2025-10-07
 description: OpenAIが提供する「AgentKit」は、エンドツーエンドのエージェント型AIプラットフォームであり、開発者が自律的なAIエージェントを迅速に構築、デプロイ、最適化するためのツールを提供します。
+ga4_metrics:
+  avgSessionDuration: 696.9882076666667
+  pageViews: 5
+  users: 3
 layout: topic
 prompt: OpenAIが提供する「AgentKit」で何ができるのかまとめたい。
-tags: 
+tags:
 - AIツール
 title: OpenAI AgentKit：エンドツーエンドのエージェント型AIプラットフォームに関する包括的分析
+video: /share-deepresearch/assets/video/openai-agentkit-features.mp4
 ---
 
 # **OpenAI AgentKit: エンドツーエンドのエージェント型AIプラットフォームに関する包括的分析**
