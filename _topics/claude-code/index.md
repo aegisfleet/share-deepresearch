@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/claude-code.mp3
 category: ai
 date: 2025-06-10
 ga4_metrics:
-  avgSessionDuration: 945.089545
+  avgSessionDuration: 472.5447725
   pageViews: 1
   users: 1
 layout: topic
