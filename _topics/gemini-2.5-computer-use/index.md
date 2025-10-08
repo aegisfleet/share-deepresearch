@@ -1,15 +1,19 @@
 ---
 audio: /share-deepresearch/assets/audio/gemini-2.5-computer-use.m4a
-video: /share-deepresearch/assets/video/gemini-2.5-computer-use.mp4
 category: ai
 date: 2025-10-08
 description: GoogleのGemini 2.5 Computer Useモデルに関する詳細な分析レポートです。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: gemini-2.5-computer-use-preview-10-2025がどのようなものか調査して欲しい。
-tags: 
+tags:
 - AIツール
 - Gemini
 title: GoogleのGemini 2.5 Computer Useモデルに関する分析レポート
+video: /share-deepresearch/assets/video/gemini-2.5-computer-use.mp4
 ---
 
 # **GoogleのGemini 2.5 Computer Useモデルに関する分析レポート**
