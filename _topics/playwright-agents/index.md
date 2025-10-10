@@ -4,9 +4,9 @@ category: ai
 date: 2025-10-07
 description: Playwright Agentsは、AIを活用してテスト自動化を効率化する新しいアプローチです。本レポートでは、そのアーキテクチャ、基盤技術、実装ワークフロー、CI/CD統合、そして現状の課題と限界について詳細に分析します。
 ga4_metrics:
-  avgSessionDuration: 50.58389915
-  pageViews: 18
-  users: 9
+  avgSessionDuration: 49.44676028571429
+  pageViews: 19
+  users: 10
 layout: topic
 prompt: Playwright Agentsについて調査してまとめて欲しい。
 tags:
