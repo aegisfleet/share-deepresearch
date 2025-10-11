@@ -1,14 +1,18 @@
 ---
 audio: /share-deepresearch/assets/audio/gemini-enterprise.m4a
-video: /share-deepresearch/assets/video/gemini-enterprise.mp4
 category: ai
 date: 2025-10-11
 description: Gemini Enterpriseは、Googleが提供するエージェント型AIプラットフォームであり、企業のデジタルトランスフォーメーションを加速させるための統合されたソリューションです。その機能と使用例を詳細に分析します。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: Gemini Enterpriseが提供している機能をまとめたい。また、その機能をどのように組み合わせて使うのか、その使用例を調査して欲しい。
-tags: 
+tags:
 - Gemini
 title: Gemini Enterprise：事業変革を推進するエージェント型AIプラットフォームの詳細分析
+video: /share-deepresearch/assets/video/gemini-enterprise.mp4
 ---
 
 # **Gemini Enterprise: 事業変革を推進するエージェント型AIプラットフォームの詳細分析**
