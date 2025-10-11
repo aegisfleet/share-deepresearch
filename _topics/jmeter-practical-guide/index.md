@@ -4,7 +4,7 @@ category: engineering
 date: 2025-09-02
 description: JMeterを使用してブラウザ操作のログから堅牢なテストシナリオを作成する方法を解説します。
 ga4_metrics:
-  avgSessionDuration: 179.95222299999998
+  avgSessionDuration: 180.47379713333333
   pageViews: 12
   users: 9
 layout: topic
