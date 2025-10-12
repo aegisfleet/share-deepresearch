@@ -15,45 +15,17 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
 
-      - name: Clean citation sections in Markdown files
-        run: |
-          for file in $(find ./_topics -type f -name "index.md"); do
-            temp_file=$(mktemp)
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
 
-            in_citation=false
-            citation_heading_level=0
-
-            content=$(<"$file")
-            content="${content}"$'\n'
-
-            while IFS= read -r line || [ -n "$line" ]; do
-              if [[ $line =~ ^(#+)[[:space:]]*\*?\*?引用文献\*?\*? ]]; then
-                in_citation=true
-                citation_heading_level=${#BASH_REMATCH[1]}
-                echo "$line" >> "$temp_file"
-                continue
-              fi
-              if $in_citation && [[ $line =~ ^(#+)[[:space:]] ]]; then
-                current_level=${#BASH_REMATCH[1]}
-                if (( current_level <= citation_heading_level )); then
-                  in_citation=false
-                fi
-              fi
-              if $in_citation; then
-                echo "${line//| /}" >> "$temp_file"
-              else
-                echo "$line" >> "$temp_file"
-              fi
-            done <<< "$content"
-
-            sed -i '${/^$/d}' "$temp_file"
-
-            mv "$temp_file" "$file"
-          done
+      - name: Format Citations
+        run: python scripts/format_citations.py '_topics/**/index.md'
 
       - name: Update HTML files
         run: |
