@@ -4,9 +4,9 @@ category: ai
 date: 2025-10-11
 description: OpenAgentsは、AIエージェント間の協調を促進するためのフレームワークであり、マルチエージェントシステムの未来に向けた重要なステップです。
 ga4_metrics:
-  avgSessionDuration: 1189.074164
-  pageViews: 2
-  users: 1
+  avgSessionDuration: 859.8939625
+  pageViews: 5
+  users: 2
 layout: topic
 prompt: OpenAgentsについて調べて欲しい。今後どのようにAI同士の連携を実装すれば良いだろうか。
 tags:
@@ -230,4 +230,3 @@ MASの未来を、単純なオーケストレーションを超えて探求す�
 48. A Multi-Agent Reinforcement Learning Approach for Efficient Client Selection in Federated Learning, 10月 11, 2025にアクセス、 [https://ojs.aaai.org/index.php/AAAI/article/view/20894/20653](https://ojs.aaai.org/index.php/AAAI/article/view/20894/20653)  
 49. FLaMAS: Federated Learning Based on a SPADE MAS \- MDPI, 10月 11, 2025にアクセス、 [https://www.mdpi.com/2076-3417/12/7/3701](https://www.mdpi.com/2076-3417/12/7/3701)  
 50. FLDQN: Cooperative Multi-Agent Federated Reinforcement Learning for Solving Travel Time Minimization Problems in Dynamic Environments Using SUMO Simulation \- MDPI, 10月 11, 2025にアクセス、 [https://www.mdpi.com/1424-8220/25/3/911](https://www.mdpi.com/1424-8220/25/3/911)
-
