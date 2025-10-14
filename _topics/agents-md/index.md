@@ -1,15 +1,19 @@
 ---
 audio: /share-deepresearch/assets/audio/agents-md.m4a
-video: /share-deepresearch/assets/video/agents-md.mp4
 category: ai
 date: 2025-10-14
 description: AGENTS.mdは、AIコーディングエージェントにプロジェクトの文脈を正確に伝えるための標準化された手法です。ツール間の互換性や実装の違いについて詳しく調査します。
+ga4_metrics:
+  avgSessionDuration: 655.145488
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: AGENTS.mdについて調査して欲しい。主に対応しているツール間の互換性について知りたい。ツール毎で仕様が違う部分があるのだろうか。
-tags: 
+tags:
 - AI Agent
 - AIツール
 title: AGENTS.md標準に関する分析レポート：ツール間の互換性と実装のニュアンスに関する詳細な考察
+video: /share-deepresearch/assets/video/agents-md.mp4
 ---
 
 # **AGENTS.md標準に関する分析レポート：ツール間の互換性と実装のニュアンスに関する詳細な考察**
