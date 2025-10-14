@@ -18,6 +18,8 @@ jobs:
         uses: actions/checkout@v5
         with:
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
+          sparse-checkout: |
+            **/*.md
 
       - name: Clean citation sections in Markdown files
         run: |
