@@ -1,14 +1,18 @@
 ---
 audio: /share-deepresearch/assets/audio/private-assets-in-emergencies.m4a
-video: /share-deepresearch/assets/video/private-assets-in-emergencies.mp4
 category: research
 date: 2025-10-14
 description: 本レポートは、有事における私有資産に対する国家権力の行使に関する比較分析を提供し、日本、米国、英国、ドイツ、中国の法制度を詳細に検討しています。各国の法的枠組み、憲法的抑制、補償メカニズムの違いを明らかにし、グローバルな資産保有者にとってのリスクと戦略的インプリケーションを探ります。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 有事の際に個人や企業の資産を差し押さえできる法律について調査し、それぞれの国における方向性の違いをまとめて欲しい。
-tags: 
+tags:
 - 政治
 title: 有事における私有資産：国家権力と財産権の比較分析
+video: /share-deepresearch/assets/video/private-assets-in-emergencies.mp4
 ---
 
 # **有事における私有資産：国家権力と財産権の比較分析**
