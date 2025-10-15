@@ -4,9 +4,9 @@ category: ai
 date: 2025-07-15
 description: Kiro IDEは、AIを活用したスペック駆動開発の新しいアプローチを提供し、他のAIエディターと比較してどのような違いがあるのかを分析します。
 ga4_metrics:
-  avgSessionDuration: 120.23398194736843
-  pageViews: 17
-  users: 14
+  avgSessionDuration: 49.0750775
+  pageViews: 3
+  users: 3
 layout: topic
 prompt: KiroというIDEについて詳しく調査を行い、他のAIエディターと比較してどのような違いがあるのかまとめて欲しい。
 supplementary_materials:
