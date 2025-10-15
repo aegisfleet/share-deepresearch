@@ -4,9 +4,9 @@ category: ai
 date: 2025-10-14
 description: AGENTS.mdは、AIコーディングエージェントにプロジェクトの文脈を正確に伝えるための標準化された手法です。ツール間の互換性や実装の違いについて詳しく調査します。
 ga4_metrics:
-  avgSessionDuration: 337.2888585
-  pageViews: 2
-  users: 2
+  avgSessionDuration: 227.85085999999998
+  pageViews: 3
+  users: 3
 layout: topic
 prompt: AGENTS.mdについて調査して欲しい。主に対応しているツール間の互換性について知りたい。ツール毎で仕様が違う部分があるのだろうか。
 tags:
