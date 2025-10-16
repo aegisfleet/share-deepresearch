@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/metabolic-syndrome.mp3
 category: research
 date: 2025-06-16
 ga4_metrics:
-  avgSessionDuration: 110.0655536
+  avgSessionDuration: 111.2363654
   pageViews: 7
   users: 4
 layout: topic
