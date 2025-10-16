@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/haconiwa.mp3
 category: ai
 date: 2025-06-14
 ga4_metrics:
-  avgSessionDuration: 5.059098857142857
+  avgSessionDuration: 10.340528
   pageViews: 6
   users: 6
 layout: topic
