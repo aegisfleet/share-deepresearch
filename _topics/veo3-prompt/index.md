@@ -4,7 +4,7 @@ category: ai
 date: 2025-05-26
 description: 本レポートは、Google Veo 3の高品質ビデオ生成能力を最大限に引き出すためのプロンプトエンジニアリングガイドである。実写とアニメーションの両スタイルにおいて、被写体、アクション、コンテキスト、スタイル、カメラワーク、照明、オーディオといった要素を詳細に記述する戦略を解説し、具体的なプロンプト例を通じてその応用を示す。
 ga4_metrics:
-  avgSessionDuration: 0.0
+  avgSessionDuration: 1707.724942
   pageViews: 1
   users: 1
 layout: topic

@@ -4,7 +4,7 @@ category: ai
 date: 2025-10-11
 description: Gemini Enterpriseは、Googleが提供するエージェント型AIプラットフォームであり、企業のデジタルトランスフォーメーションを加速させるための統合されたソリューションです。その機能と使用例を詳細に分析します。
 ga4_metrics:
-  avgSessionDuration: 91.69028975
+  avgSessionDuration: 72.2594875
   pageViews: 16
   users: 3
 layout: topic
