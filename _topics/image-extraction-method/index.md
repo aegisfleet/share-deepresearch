@@ -4,7 +4,7 @@ category: engineering
 date: 2025-06-06
 ga4_metrics:
   avgSessionDuration: 10.947306333333332
-  pageViews: 2
+  pageViews: 3
   users: 3
 layout: topic
 prompt: UIの変更に伴いマニュアルに使用している画像の差し替えが発生した。UIの変更に影響がある画像だけを抽出したいが、良い方法はあるだろうか。画像はpngで管理している。
