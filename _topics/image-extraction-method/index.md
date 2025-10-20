@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/image-extraction-method.mp3
 category: engineering
 date: 2025-06-06
 ga4_metrics:
-  avgSessionDuration: 10.947306333333332
+  avgSessionDuration: 38.25693966666667
   pageViews: 3
   users: 3
 layout: topic
