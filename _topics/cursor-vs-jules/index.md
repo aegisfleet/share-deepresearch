@@ -4,9 +4,9 @@ category: ai
 date: 2025-07-01
 description: 本レポートは、Cognition AI社が提供するAIコーディングエージェント「Cursor」とGoogleの「Jules」のブラウザ操作機能を比較分析します。両者の特徴、利点、ユースケースを明らかにし、開発者が最適なツールを選択するための指針を提供します。
 ga4_metrics:
-  avgSessionDuration: 13.222719
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: Cursorがブラウザで操作できるAIエージェント機能をリリースした。そこでCursorのブラウザ操作に関して調査をGoogleのJulesと比較しながら機能をまとめて欲しい。CursorはIDEでも使用できるが、そこは比較対象外とする。
 supplementary_materials:
