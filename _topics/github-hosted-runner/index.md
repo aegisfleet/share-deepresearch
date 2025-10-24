@@ -4,7 +4,7 @@ category: engineering
 date: 2025-06-24
 description: GitHub Actionsのコスト構造を評価するにあたり、まずGitHubが提供するフルマネージドサービスであるGitHubホステッドランナーの性能とコストのベースラインを確立することが不可欠です。
 ga4_metrics:
-  avgSessionDuration: 63.91048
+  avgSessionDuration: 65.776444
   pageViews: 3
   users: 3
 layout: topic
