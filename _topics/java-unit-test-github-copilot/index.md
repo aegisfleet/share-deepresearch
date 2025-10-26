@@ -4,7 +4,7 @@ category: ai
 date: 2025-06-05
 ga4_metrics:
   avgSessionDuration: 136.87293301851852
-  pageViews: 88
+  pageViews: 89
   users: 61
 layout: topic
 prompt: Javaのユニットテストを自動で作成したい。GitHub Copilotでユニットテストを作成する方法をまとめて欲しい。
