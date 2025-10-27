@@ -4,7 +4,7 @@ category: ai
 date: 2025-06-09
 description: ソフトウェア開発の複雑性が増す現代において、効率的なプロジェクト管理と迅速なイシュー対応は成功の鍵となります。GitHub Issueは、バグ追跡、機能リクエスト、タスク管理など、開発プロセスにおけるコミュニケーションとコラボレーションの中心的な役割を担っています。しかし、Issueの量が増大するにつれて、その管理は開発チームにとって大きな負担となり得ます。
 ga4_metrics:
-  avgSessionDuration: 25.55111375
+  avgSessionDuration: 23.37661055555556
   pageViews: 9
   users: 6
 layout: topic
