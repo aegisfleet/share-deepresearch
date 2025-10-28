@@ -17,7 +17,7 @@
     --header-bg: #f1f1f1;
     --header-text: #333333;
     --footer-bg: #f1f1f1;
-    --code-bg: #f5f5f5;
+    --code-bg: #f6f8fa;
     --blockquote-bg: #f9f9f9;
     --blockquote-border: #ff7733;
     --table-header-bg: #f1f1f1;
@@ -46,7 +46,7 @@
     --blockquote-border: #ff7733;
     --table-header-bg: #2d2d2d;
     --table-row-even-bg: rgba(45, 45, 45, 0.5);
-    --box-shadow-color: rgba(0, 0, 0, 0.3);
+    --box-shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -61,18 +61,238 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-pre, code {
+/* コードブロックの基本スタイル */
+pre,
+code {
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word;
     max-width: 100%;
     background-color: var(--code-bg);
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
 .highlight pre {
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word;
+}
+
+/* Prism.js コードハイライトのスタイル */
+pre[class*="language-"],
+.highlighter-rouge .highlight pre,
+.highlight pre {
+    background: var(--code-bg) !important;
+    border: 2px solid #d0d7de;
+    border-radius: 8px;
+    padding: 1rem !important;
+    margin: 1.5rem 0 !important;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+code[class*="language-"],
+.highlighter-rouge code,
+.highlight code {
+    background: transparent !important;
+    color: var(--text-color) !important;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    text-shadow: none !important;
+}
+
+/* インラインコード */
+:not(pre)>code[class*="language-"] {
+    background: #f6f8fa !important;
+    color: #24292e !important;
+    padding: 0.2rem 0.4rem !important;
+    border-radius: 4px;
+    border: 1px solid #d0d7de !important;
+    font-size: 0.9em;
+    font-weight: 600;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    text-shadow: none !important;
+}
+
+/* 行番号のスタイル */
+.line-numbers .line-numbers-rows {
+    border-right: 1px solid var(--secondary-color) !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+}
+
+.line-numbers-rows>span:before {
+    color: var(--secondary-color) !important;
+}
+
+/* コピーボタンのスタイル */
+.prism-copy-button {
+    background: var(--primary-color) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 0.3rem 0.6rem !important;
+    font-size: 0.8rem !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.prism-copy-button:hover {
+    background: var(--link-hover-color) !important;
+}
+
+/* ダークテーマでのコードハイライト */
+[data-theme="dark"] pre[class*="language-"] {
+    background: var(--code-bg) !important;
+    border: 2px solid #404040 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+[data-theme="dark"] code[class*="language-"] {
+    color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] :not(pre)>code[class*="language-"] {
+    background: var(--code-bg) !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #404040 !important;
+    font-weight: 600;
+    text-shadow: none !important;
+}
+
+[data-theme="dark"] .line-numbers .line-numbers-rows {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-right-color: #404040 !important;
+}
+
+[data-theme="dark"] .line-numbers-rows>span:before {
+    color: #a0a0a0 !important;
+}
+
+/* ライトテーマ用のオレンジ調統一カラー */
+:root .token.comment,
+:root .token.prolog,
+:root .token.doctype,
+:root .token.cdata {
+    color: #cc6600 !important;
+    opacity: 0.7;
+}
+
+:root .token.punctuation {
+    color: #333333 !important;
+}
+
+:root .token.property,
+:root .token.tag,
+:root .token.boolean,
+:root .token.number,
+:root .token.constant,
+:root .token.symbol,
+:root .token.deleted {
+    color: #ff7733 !important;
+    font-weight: 600;
+}
+
+:root .token.selector,
+:root .token.attr-name,
+:root .token.string,
+:root .token.char,
+:root .token.builtin,
+:root .token.inserted {
+    color: #e6692d !important;
+    font-weight: 500;
+}
+
+:root .token.operator,
+:root .token.entity,
+:root .token.url,
+:root .language-css .token.string,
+:root .style .token.string {
+    color: #333333 !important;
+}
+
+:root .token.atrule,
+:root .token.attr-value,
+:root .token.keyword {
+    color: #cc5500 !important;
+    font-weight: 600;
+}
+
+:root .token.function,
+:root .token.class-name {
+    color: #ff8844 !important;
+    font-weight: 600;
+}
+
+:root .token.regex,
+:root .token.important,
+:root .token.variable {
+    color: #dd5522 !important;
+    font-weight: 500;
+}
+
+/* ダークテーマ用のオレンジ調統一カラー */
+[data-theme="dark"] .token.comment,
+[data-theme="dark"] .token.prolog,
+[data-theme="dark"] .token.doctype,
+[data-theme="dark"] .token.cdata {
+    color: #ff9966 !important;
+    opacity: 0.7;
+}
+
+[data-theme="dark"] .token.punctuation {
+    color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .token.property,
+[data-theme="dark"] .token.tag,
+[data-theme="dark"] .token.boolean,
+[data-theme="dark"] .token.number,
+[data-theme="dark"] .token.constant,
+[data-theme="dark"] .token.symbol,
+[data-theme="dark"] .token.deleted {
+    color: #ff7733 !important;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .token.selector,
+[data-theme="dark"] .token.attr-name,
+[data-theme="dark"] .token.string,
+[data-theme="dark"] .token.char,
+[data-theme="dark"] .token.builtin,
+[data-theme="dark"] .token.inserted {
+    color: #ffaa77 !important;
+    font-weight: 500;
+}
+
+[data-theme="dark"] .token.operator,
+[data-theme="dark"] .token.entity,
+[data-theme="dark"] .token.url,
+[data-theme="dark"] .language-css .token.string,
+[data-theme="dark"] .style .token.string {
+    color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .token.atrule,
+[data-theme="dark"] .token.attr-value,
+[data-theme="dark"] .token.keyword {
+    color: #ff8844 !important;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .token.function,
+[data-theme="dark"] .token.class-name {
+    color: #ffbb88 !important;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .token.regex,
+[data-theme="dark"] .token.important,
+[data-theme="dark"] .token.variable {
+    color: #ff6622 !important;
+    font-weight: 500;
 }
 
 .main-content {
@@ -90,10 +310,21 @@ pre, code {
     margin-right: 0.3rem;
 }
 
-.topic h1::before { content: "📚 "; }
-.topic h2::before { content: "✨ "; }
-.topic h3::before { content: "💡 "; }
-.tag::before { content: "🏷️ "; }
+.topic h1::before {
+    content: "📚 ";
+}
+
+.topic h2::before {
+    content: "✨ ";
+}
+
+.topic h3::before {
+    content: "💡 ";
+}
+
+.tag::before {
+    content: "🏷️ ";
+}
 
 a {
     color: var(--link-color);
@@ -152,7 +383,9 @@ a:hover {
     margin-right: 8px;
 }
 
-.page-header p::before { content: "📝 "; }
+.page-header p::before {
+    content: "📝 ";
+}
 
 .main-content {
     max-width: 1600px;
@@ -350,14 +583,19 @@ a:hover {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        &::before { content: "📊"; }
+
+        &::before {
+            content: "📊";
+        }
     }
+
     .metrics-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 1.5rem;
         margin-top: 1rem;
     }
+
     .metric {
         display: flex;
         flex-direction: column;
@@ -367,13 +605,18 @@ a:hover {
         background: var(--card-background);
         border-radius: 6px;
         transition: transform 0.2s ease;
-        &:hover { transform: translateY(-2px); }
+
+        &:hover {
+            transform: translateY(-2px);
+        }
     }
+
     .metric-label {
         font-size: 0.9rem;
         color: var(--secondary-color);
         margin-bottom: 0.5rem;
     }
+
     .metric-value {
         font-size: 1.5rem;
         font-weight: 600;
@@ -381,11 +624,25 @@ a:hover {
     }
 }
 
-.topic-list li[data-category="ai"]::before { content: "🤖"; }
-.topic-list li[data-category="research"]::before { content: "🔍"; }
-.topic-list li[data-category="engineering"]::before { content: "💻"; }
-.topic-list li[data-category="study"]::before { content: "✏️"; }
-.topic-list li[data-category="playful"]::before { content: "🤪"; }
+.topic-list li[data-category="ai"]::before {
+    content: "🤖";
+}
+
+.topic-list li[data-category="research"]::before {
+    content: "🔍";
+}
+
+.topic-list li[data-category="engineering"]::before {
+    content: "💻";
+}
+
+.topic-list li[data-category="study"]::before {
+    content: "✏️";
+}
+
+.topic-list li[data-category="playful"]::before {
+    content: "🤪";
+}
 
 .topic-list li a {
     color: var(--link-color);
@@ -451,7 +708,9 @@ a:hover {
     font-size: 0.9rem;
 }
 
-.site-footer p::before { content: "🌈 "; }
+.site-footer p::before {
+    content: "🌈 ";
+}
 
 .scroll-to-top {
     position: fixed;
@@ -474,7 +733,8 @@ a:hover {
 
 .theme-toggle-button {
     position: fixed;
-    top: 20px; /* 右上に配置 */
+    top: 20px;
+    /* 右上に配置 */
     right: 20px;
     background-color: var(--primary-color);
     color: white;
@@ -489,7 +749,8 @@ a:hover {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     font-size: 24px;
     line-height: 1;
-    z-index: 1000; /* 他の要素より手前に表示 */
+    z-index: 1000;
+    /* 他の要素より手前に表示 */
 }
 
 .theme-toggle-button:hover {
@@ -543,7 +804,9 @@ a:hover {
     line-height: 1;
 }
 
-.prompt-section h2::before { content: "🤖 "; }
+.prompt-section h2::before {
+    content: "🤖 ";
+}
 
 .prompt-content {
     background-color: var(--code-bg);
@@ -559,27 +822,33 @@ a:hover {
 }
 
 .category-filter {
-  margin: 2em 0;
-  text-align: center;
-  label {
-    margin-right: 1em;
-    font-weight: bold;
-  }
-  select {
-    padding: 0.5em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1em;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    cursor: pointer;
-    &:hover { border-color: #666; }
-    &:focus {
-      outline: none;
-      border-color: #0366d6;
-      box-shadow: 0 0 0 2px rgba(3, 102, 214, 0.2);
+    margin: 2em 0;
+    text-align: center;
+
+    label {
+        margin-right: 1em;
+        font-weight: bold;
     }
-  }
+
+    select {
+        padding: 0.5em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1em;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        cursor: pointer;
+
+        &:hover {
+            border-color: #666;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: #0366d6;
+            box-shadow: 0 0 0 2px rgba(3, 102, 214, 0.2);
+        }
+    }
 }
 
 .category-filter {
@@ -614,7 +883,9 @@ a:hover {
     color: var(--text-color);
 }
 
-.topic h1, .topic h2, .topic h3 {
+.topic h1,
+.topic h2,
+.topic h3 {
     margin: 0.3rem 0 1rem;
     padding: 0.8rem 1rem 0.8rem 3.5rem;
     position: relative;
@@ -660,7 +931,8 @@ a:hover {
     padding: 0 0.2rem;
 }
 
-.topic ul, .topic ol {
+.topic ul,
+.topic ol {
     margin: 1.2rem 0;
     padding-left: 2rem;
 }
@@ -690,7 +962,8 @@ a:hover {
     border-radius: 0 8px 8px 0;
 }
 
-ul, ol {
+ul,
+ol {
     padding-left: 1.5rem;
     margin-left: 0;
     list-style-position: outside;
@@ -700,12 +973,14 @@ ul, ol {
     .topic-list {
         grid-template-columns: 1fr;
     }
+
     .main-content {
         padding: 0.5rem;
         max-width: 100vw;
         width: 100%;
         box-sizing: border-box;
     }
+
     .topic {
         padding: 1rem;
         width: 100%;
@@ -714,11 +989,14 @@ ul, ol {
         word-wrap: break-word;
         overflow-wrap: break-word;
     }
+
     .topic-list li {
         width: 100%;
         box-sizing: border-box;
     }
-    ul, ol {
+
+    ul,
+    ol {
         padding-left: 1rem;
         list-style-position: outside;
     }
@@ -786,4 +1064,156 @@ img {
 .main-content table::-webkit-scrollbar-thumb {
     background-color: var(--secondary-color);
     border-radius: 4px;
+}
+
+/* Prism.js プラグイン用の追加スタイル */
+
+/* ツールバーのスタイル */
+.prism-toolbar {
+    position: relative;
+    top: 0;
+    right: 0;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.prism-toolbar-item {
+    display: inline-block !important;
+    margin: 0 0.2rem !important;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    pre[class*="language-"] {
+        padding: 0.8rem !important;
+        font-size: 0.8rem;
+        margin: 1rem 0 !important;
+    }
+
+    .prism-copy-button {
+        padding: 0.2rem 0.4rem !important;
+        font-size: 0.7rem !important;
+    }
+
+    /* モバイルでは行番号を非表示にしてスペースを節約 */
+    .line-numbers .line-numbers-rows {
+        display: none !important;
+    }
+
+    .line-numbers pre[class*="language-"] {
+        padding-left: 1rem !important;
+    }
+}
+
+/* コードブロックのスクロールバーのスタイル */
+pre[class*="language-"]::-webkit-scrollbar {
+    height: 8px;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-track {
+    background: var(--background-color);
+    border-radius: 4px;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 4px;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-color);
+}
+
+/* 
+Rouge の既存スタイルを無効化 */
+.rouge-table {
+    display: none !important;
+}
+
+.highlighter-rouge {
+    background: transparent !important;
+}
+
+.highlighter-rouge .highlight {
+    background: transparent !important;
+}
+
+/* Rouge から Prism.js への移行用スタイル */
+.highlighter-rouge .highlight pre {
+    background: var(--code-bg) !important;
+    color: var(--text-color) !important;
+}
+
+.rouge-gutter {
+    display: none !important;
+}
+
+.rouge-code {
+    padding: 0 !important;
+}
+
+/* 言語ラベルの表示 */
+pre[class*="language-"]:before {
+    content: attr(data-language);
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    z-index: 1;
+}
+
+pre[class*="language-"] {
+    position: relative;
+}
+
+/* ライトテーマでのより強いコントラスト */
+:root .token.important {
+    background: #ff7733 !important;
+    color: #fff !important;
+    padding: 0.1rem 0.2rem;
+    border-radius: 2px;
+}
+
+:root .token.bold {
+    font-weight: bold !important;
+}
+
+/* コードブロックのタイトル表示 */
+pre[class*="language-"][data-language]:before {
+    content: attr(data-language);
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    z-index: 1;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* すべてのコード要素とトークンの影を完全に無効化 */
+pre[class*="language-"] *,
+code[class*="language-"] *,
+.token {
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+[data-theme="dark"] pre[class*="language-"] *,
+[data-theme="dark"] code[class*="language-"] *,
+[data-theme="dark"] .token {
+    text-shadow: none !important;
+    box-shadow: none !important;
 }
