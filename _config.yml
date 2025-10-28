@@ -11,6 +11,13 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
+# コードハイライトの設定（Prism.jsを使用するためRougeを無効化）
+highlighter: none
+markdown: kramdown
+kramdown:
+  syntax_highlighter_opts:
+    disable: true
+
 # ナビゲーションの設定
 collections:
   topics:

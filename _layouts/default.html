@@ -25,6 +25,11 @@
     </script>
 
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    
+    <!-- Prism.js CSS for code highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
 
     <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon/favicon-32x32.png' | relative_url }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon/favicon-16x16.png' | relative_url }}">
@@ -531,6 +536,56 @@
             color: white;
         }
     </style>
+
+    <!-- Prism.js JavaScript for code highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+    
+    <script>
+        // Prism.js の設定
+        Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/';
+        
+        // ページ読み込み後にコードブロックを処理
+        document.addEventListener('DOMContentLoaded', function() {
+            // 既存のコードブロックを処理
+            document.querySelectorAll('pre code, .highlight code, .highlighter-rouge code').forEach(function(block) {
+                // 既存のクラスを保持しつつ、言語クラスを追加
+                let existingClasses = block.className;
+                
+                // 言語が指定されていない場合はプレーンテキストとして扱う
+                if (!existingClasses.includes('language-')) {
+                    block.className = existingClasses + ' language-text';
+                }
+                
+                // 親要素に行番号クラスを追加
+                let preElement = block.closest('pre');
+                if (preElement && !preElement.className.includes('line-numbers')) {
+                    preElement.className += ' line-numbers';
+                }
+            });
+            
+            // 既存のRougeハイライトを Prism.js 用に変換
+            document.querySelectorAll('.highlighter-rouge .highlight pre').forEach(function(pre) {
+                let code = pre.querySelector('code');
+                if (code) {
+                    // Rouge の構造を Prism.js 用に調整
+                    let languageMatch = pre.closest('.highlighter-rouge').className.match(/language-(\w+)/);
+                    if (languageMatch) {
+                        code.className = 'language-' + languageMatch[1];
+                    } else {
+                        code.className = 'language-text';
+                    }
+                    pre.className += ' line-numbers';
+                }
+            });
+            
+            // Prism.js を実行
+            Prism.highlightAll();
+        });
+    </script>
 </body>
 </html>
 
