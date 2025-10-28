@@ -25,6 +25,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install google-analytics-data
           pip install python-frontmatter
+          pip install packaging
 
       - name: Create credentials file
         run: |
