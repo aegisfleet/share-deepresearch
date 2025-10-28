@@ -359,6 +359,12 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 [data-theme="dark"] .toc-link:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--tag-hover-bg);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .toc-link.toc-active {
+    background-color: var(--primary-color);
+    color: white;
 }
 </style>
