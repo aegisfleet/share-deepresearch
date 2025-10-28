@@ -92,7 +92,17 @@ layout: default
     </div>
     {% endif %}
 
-    {{ content }}
+    <!-- 目次 -->
+    <div id="table-of-contents" class="toc-container">
+        <h2 class="toc-title">📋 目次</h2>
+        <nav id="toc-nav" class="toc-nav">
+            <!-- JavaScriptで動的に生成 -->
+        </nav>
+    </div>
+
+    <div id="main-content" class="main-content">
+        {{ content }}
+    </div>
 
     {% if page.tags %}
     <div class="tags">
@@ -105,3 +115,250 @@ layout: default
 </article>
 
 <button class="scroll-to-home" aria-label="トップへ戻る"></button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 目次生成機能
+    function generateTableOfContents() {
+        const tocNav = document.getElementById('toc-nav');
+        const tocContainer = document.getElementById('table-of-contents');
+        // contentエリア内の見出しのみを対象にする
+        const headings = document.querySelectorAll('#main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6');
+        
+        if (headings.length === 0) {
+            tocContainer.style.display = 'none';
+            return;
+        }
+
+        const tocList = document.createElement('ul');
+        tocList.className = 'toc-list';
+        
+        headings.forEach((heading, index) => {
+            // IDがない場合は自動生成
+            if (!heading.id) {
+                heading.id = 'heading-' + index;
+            }
+            
+            const listItem = document.createElement('li');
+            listItem.className = 'toc-item toc-level-' + heading.tagName.toLowerCase();
+            
+            const link = document.createElement('a');
+            link.href = '#' + heading.id;
+            link.textContent = heading.textContent;
+            link.className = 'toc-link';
+            
+            // スムーズスクロール
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.getElementById(heading.id);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+            
+            listItem.appendChild(link);
+            tocList.appendChild(listItem);
+        });
+        
+        tocNav.appendChild(tocList);
+    }
+
+    // 目次の表示/非表示切り替え
+    function setupTocToggle() {
+        const tocTitle = document.querySelector('.toc-title');
+        const tocNav = document.getElementById('toc-nav');
+        
+        if (tocTitle && tocNav) {
+            tocTitle.style.cursor = 'pointer';
+            tocTitle.addEventListener('click', function() {
+                tocNav.classList.toggle('toc-collapsed');
+                const isCollapsed = tocNav.classList.contains('toc-collapsed');
+                tocTitle.textContent = isCollapsed ? '📋 目次 (クリックで展開)' : '📋 目次';
+            });
+        }
+    }
+
+    // アクティブな見出しのハイライト
+    function setupActiveHeadingHighlight() {
+        // contentエリア内の見出しのみを対象にする
+        const headings = document.querySelectorAll('#main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6');
+        const tocLinks = document.querySelectorAll('.toc-link');
+        
+        if (headings.length === 0 || tocLinks.length === 0) return;
+
+        function updateActiveHeading() {
+            let activeHeading = null;
+            const scrollPosition = window.scrollY + 100; // オフセット
+
+            headings.forEach(heading => {
+                if (heading.offsetTop <= scrollPosition) {
+                    activeHeading = heading;
+                }
+            });
+
+            // すべてのリンクからactiveクラスを削除
+            tocLinks.forEach(link => link.classList.remove('toc-active'));
+
+            // アクティブな見出しに対応するリンクにactiveクラスを追加
+            if (activeHeading) {
+                const activeLink = document.querySelector('.toc-link[href="#' + activeHeading.id + '"]');
+                if (activeLink) {
+                    activeLink.classList.add('toc-active');
+                }
+            }
+        }
+
+        // スクロール時にアクティブな見出しを更新
+        window.addEventListener('scroll', updateActiveHeading);
+        updateActiveHeading(); // 初期実行
+    }
+
+    // 初期化
+    generateTableOfContents();
+    setupTocToggle();
+    setupActiveHeadingHighlight();
+});
+</script>
+
+<style>
+/* 目次のスタイル */
+.toc-container {
+    background: var(--card-background, #f8f9fa);
+    border: 1px solid var(--secondary-color, #e9ecef);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toc-title {
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--primary-color, #0366d6);
+    border-bottom: 2px solid var(--primary-color, #0366d6);
+    padding-bottom: 0.5rem;
+    user-select: none;
+}
+
+.toc-nav {
+    transition: all 0.3s ease;
+}
+
+.toc-nav.toc-collapsed {
+    display: none;
+}
+
+.toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-item {
+    margin: 0.3rem 0;
+}
+
+.toc-link {
+    display: block;
+    padding: 0.4rem 0.8rem;
+    text-decoration: none;
+    color: var(--text-color, #333);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.toc-link:hover {
+    background-color: var(--secondary-color, #e9ecef);
+    color: var(--primary-color, #0366d6);
+    text-decoration: none;
+}
+
+.toc-link.toc-active {
+    background-color: var(--primary-color, #0366d6);
+    color: white;
+    font-weight: bold;
+}
+
+/* 見出しレベルに応じたインデント */
+.toc-level-h1 .toc-link {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.toc-level-h2 .toc-link {
+    padding-left: 1.5rem;
+}
+
+.toc-level-h3 .toc-link {
+    padding-left: 2.5rem;
+    font-size: 0.85rem;
+}
+
+.toc-level-h4 .toc-link {
+    padding-left: 3.5rem;
+    font-size: 0.8rem;
+}
+
+.toc-level-h5 .toc-link {
+    padding-left: 4.5rem;
+    font-size: 0.75rem;
+}
+
+.toc-level-h6 .toc-link {
+    padding-left: 5.5rem;
+    font-size: 0.75rem;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .toc-container {
+        margin: 1rem 0;
+        padding: 0.8rem;
+    }
+    
+    .toc-title {
+        font-size: 1rem;
+    }
+    
+    .toc-link {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.85rem;
+    }
+    
+    .toc-level-h2 .toc-link {
+        padding-left: 1rem;
+    }
+    
+    .toc-level-h3 .toc-link {
+        padding-left: 1.5rem;
+    }
+    
+    .toc-level-h4 .toc-link {
+        padding-left: 2rem;
+    }
+    
+    .toc-level-h5 .toc-link,
+    .toc-level-h6 .toc-link {
+        padding-left: 2.5rem;
+    }
+}
+
+/* ダークテーマ対応 */
+[data-theme="dark"] .toc-container {
+    background: var(--card-background);
+    border-color: var(--secondary-color);
+}
+
+[data-theme="dark"] .toc-link {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .toc-link:hover {
+    background-color: var(--secondary-color);
+}
+</style>
