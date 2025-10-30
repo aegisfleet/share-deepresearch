@@ -289,7 +289,7 @@ JaCoCoの最も強力な利用法の一つは、CI/CDパイプラインに品質
 | CI/CDプラットフォーム | 設定スニペット例 | 主要パラメータ | 説明 |  |
 | :---- | :---- | :---- | :---- | :---- |
 | **Jenkins (Pipeline)** | recordCoverage(tools: \[\[parser: 'JACOCO'\]\], qualityGates:\]) | metric: LINE, BRANCH等 baseline: MODIFIED\_FILES, MODIFIED\_LINES threshold: 80.0 | Jenkins Coverage Plugin 75 を使用。 | baselineパラメータでMODIFIED\_FILES（変更ファイル）やMODIFIED\_LINES（変更行）を指定することで、差分カバレッジを品質ゲートの基準にできる。 |
-| **GitHub Actions** | uses: madrapps/jacoco-report@v1.7.2 with: paths: '\*\*/build/reports/jacoco/\*\*/\*.xml' token: ${{ secrets.GITHUB\_TOKEN }} min-coverage-changed-files: 80 | paths: レポートXMLへのパス token: GitHubトークン min-coverage-changed-files: 変更ファイルの最小カバレッジ率 | madrapps/jacoco-report 76 のようなActionを使用。 | min-coverage-changed-files入力で差分カバレッジのしきい値を設定し、PRにコメントを投稿したり、しきい値未達の場合にワークフローを失敗させたりできる。 |
+| **GitHub Actions** | uses: madrapps/jacoco-report@v1.7.2 with: paths: '\*\*/build/reports/jacoco/\*\*/\*.xml' token: `${{ secrets.GITHUB_TOKEN }}` min-coverage-changed-files: 80 | paths: レポートXMLへのパス token: GitHubトークン min-coverage-changed-files: 変更ファイルの最小カバレッジ率 | madrapps/jacoco-report 76 のようなActionを使用。 | min-coverage-changed-files入力で差分カバレッジのしきい値を設定し、PRにコメントを投稿したり、しきい値未達の場合にワークフローを失敗させたりできる。 |
 
 品質ゲートの考え方は、「プロジェクト全体のカバレッジはいくつか？」という問いから、「このPull Requestはコードの品質を悪化させていないか？」という、より実践的で開発者にとって行動可能な問いへと進化している。この変化は、大規模なコードベースを維持しながら漸進的な改善を促すための、ソフトウェア品質管理におけるプラグマティックな進化である。現代の開発チームがJaCoCoを導入する際には、最初からこの差分カバレッジ戦略を採用することが、最も効果的で持続可能なアプローチと言える。
 
