@@ -260,6 +260,7 @@ jobs:
 ワークフローYAMLの例（推定）:  
 PRレビューに関する直接的なワークフローログは見つかりませんでしたが、Issueトリアージの例と機能説明に基づき、以下のようなワークフローが構成されると推定できます。
 
+{% raw %}
 ```YAML
 name: Gemini Automated PR Review
 
@@ -304,6 +305,7 @@ jobs:
             3.  Verify that the changes adhere to our project's coding standards, which are defined in the `GEMINI.md` file.  
             4.  Post your feedback as a single, constructive review comment on the pull request. If there are no major issues, state that the PR looks good to approve.
 ```
+{% endraw %}
 
 これらの事例は、gemini-cli-actionが単なるCIジョブではなく、**プログラマブルなリポジトリボット**として機能することを示しています。人間のコメントをトリガーとし 6、自然言語のプロンプトに基づいて外部ツール（
 
