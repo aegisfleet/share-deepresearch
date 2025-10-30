@@ -201,24 +201,24 @@ Red Hat Community of Practice (CoP) は、ロールの設計に関するより�
 ロジックは全てロールにカプセル化し、Playbookはそれらを呼び出すだけ、あるいはPlaybook同士をインポートします。
 
 ```YAML
-# common.yml (Playbook)  
-- name: Apply common configuration  
-  hosts: all  
-  roles:  
+# common.yml (Playbook)
+- name: Apply common configuration
+  hosts: all
+  roles:
     - common  # タスクは 'common' ロールにカプセル化
 ```
 
 ```YAML
-# webservers.yml (Playbook)  
-- name: Configure web servers  
-  hosts: webservers  
-  roles:  
+# webservers.yml (Playbook)
+- name: Configure web servers
+  hosts: webservers
+  roles:
     - nginx
 ```
 
 ```YAML
-# site.yml (スーパーPlaybook) \[1, 18\]  
-- import_playbook: common.yml  
+# site.yml (スーパーPlaybook) [1, 18]
+- import_playbook: common.yml
 - import_playbook: webservers.yml
 ```
 
@@ -233,16 +233,16 @@ Playbookをシンプルに保つ（Keep playbooks as simple as possible）3 こ�
 requirements.yml の例 19:
 
 ```YAML
-# requirements.yml  
-roles:  
-  # Galaxyから  
-  - src: community.general.nginx  
-    version: 1.0.0  
+# requirements.yml
+roles:
+  # Galaxyから
+  - src: community.general.nginx
+    version: 1.0.0
     name: nginx
 
-  # プライベートGitリポジトリから   
-  - src: git+https://git.example.com/private/ansible-role-common.git  
-    version: v1.2.0  
+  # プライベートGitリポジトリから
+  - src: git+https://git.example.com/private/ansible-role-common.git
+    version: v1.2.0
     name: our_common_role
 ```
 
