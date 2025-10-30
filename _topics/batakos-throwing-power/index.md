@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/batakos-throwing-power.mp3
 category: playful
 date: 2025-06-21
 ga4_metrics:
-  avgSessionDuration: 123.55661551515152
-  pageViews: 33
+  avgSessionDuration: 123.74288184848486
+  pageViews: 34
   users: 30
 layout: topic
 prompt: バタコさんがアンパンマンの顔を投げる時の速度はどのくらいなのか理論的に説明して欲しい。
