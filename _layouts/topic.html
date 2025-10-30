@@ -278,6 +278,17 @@ document.addEventListener('DOMContentLoaded', function() {
     text-decoration: none;
 }
 
+/* ライトテーマでの目次文字色を明示的に黒に設定 */
+:root .toc-link,
+[data-theme="light"] .toc-link {
+    color: #333333;
+}
+
+:root .toc-link:hover,
+[data-theme="light"] .toc-link:hover {
+    color: #333333;
+}
+
 .toc-link.toc-active {
     background-color: var(--primary-color, #0366d6);
     color: white;
