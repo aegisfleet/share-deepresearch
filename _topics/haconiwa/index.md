@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/haconiwa.mp3
 category: ai
 date: 2025-06-14
 ga4_metrics:
-  avgSessionDuration: 9.560536714285714
-  pageViews: 5
+  avgSessionDuration: 10.445328714285713
+  pageViews: 6
   users: 6
 layout: topic
 prompt: 箱庭というプロジェクトについて、中の技術的要素を体系的にまとめて欲しい。https://github.com/dai-motoki/haconiwa
