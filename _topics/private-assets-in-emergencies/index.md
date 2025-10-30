@@ -4,7 +4,7 @@ category: research
 date: 2025-10-14
 description: 本レポートは、有事における私有資産に対する国家権力の行使に関する比較分析を提供し、日本、米国、英国、ドイツ、中国の法制度を詳細に検討しています。各国の法的枠組み、憲法的抑制、補償メカニズムの違いを明らかにし、グローバルな資産保有者にとってのリスクと戦略的インプリケーションを探ります。
 ga4_metrics:
-  avgSessionDuration: 74.88736155555554
+  avgSessionDuration: 68.07286944444445
   pageViews: 16
   users: 4
 layout: topic
