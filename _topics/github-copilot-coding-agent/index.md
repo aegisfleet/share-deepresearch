@@ -1,14 +1,18 @@
 ---
 audio: /share-deepresearch/assets/audio/github-copilot-coding-agent.m4a
-video: /share-deepresearch/assets/video/github-copilot-coding-agent.mp4
 category: ai
 date: 2025-10-30
-description: "GitHub Copilot Coding Agentで他のリポジトリやAWS・Jenkinsなど外部サービスへの権限付きアクセスを実現するためのセキュリティアーキテクチャと実装方法を解説"
+description: GitHub Copilot Coding Agentで他のリポジトリやAWS・Jenkinsなど外部サービスへの権限付きアクセスを実現するためのセキュリティアーキテクチャと実装方法を解説
+ga4_metrics:
+  avgSessionDuration: 771.904211
+  pageViews: 3
+  users: 1
 layout: topic
-prompt: "GitHub Copilot Coding Agentの使い方を調査したい。特に他のリポジトリのファイルを参照したり、AWSやJenkinsといった他のサービスからログを取得するなど、権限が必要な作業をどのようにすれば行えるのかが知りたい。"
-tags: 
+prompt: GitHub Copilot Coding Agentの使い方を調査したい。特に他のリポジトリのファイルを参照したり、AWSやJenkinsといった他のサービスからログを取得するなど、権限が必要な作業をどのようにすれば行えるのかが知りたい。
+tags:
 - AI Agent
-title: "GitHub Copilot Coding Agent: 外部リソースアクセスのための高度なインテグレーションとセキュリティアーキテクチャ"
+title: 'GitHub Copilot Coding Agent: 外部リソースアクセスのための高度なインテグレーションとセキュリティアーキテクチャ'
+video: /share-deepresearch/assets/video/github-copilot-coding-agent.mp4
 ---
 
 # **GitHub Copilot Coding Agent: 外部リソースアクセスのための高度なインテグレーションとセキュリティアーキテクチャ**
