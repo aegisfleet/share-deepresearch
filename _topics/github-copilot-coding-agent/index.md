@@ -1,5 +1,5 @@
 ---
-audio: /share-deepresearch/assets/video/github-copilot-coding-agent.m4a
+audio: /share-deepresearch/assets/audio/github-copilot-coding-agent.m4a
 video: /share-deepresearch/assets/video/github-copilot-coding-agent.mp4
 category: ai
 date: 2025-10-30
