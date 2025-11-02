@@ -9,6 +9,9 @@ ga4_metrics:
   users: 6
 layout: topic
 prompt: Ansibleの良い書き方について調査したい。YAMLの数が増えて管理が煩雑になっており、どのように整理するのが良いか、事例を集めたい。
+supplementary_materials:
+  - title: Ansibleの「良い書き方」
+    gslide: https://docs.google.com/presentation/d/e/2PACX-1vTZitmYWPpuMp9Njj3oUPQTNbJmVT1sXxWgycAh3uuGR9suRLhDhqvmX__bx89jbtAkwNVehwfmqgvv/pubembed?start=false&loop=false
 tags:
 - リファクタリング
 title: Ansibleの「良い書き方」：煩雑化したYAMLを体系的自動化資産に変えるリファクタリング戦略
