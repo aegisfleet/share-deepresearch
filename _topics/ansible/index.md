@@ -4,14 +4,14 @@ category: engineering
 date: 2025-10-27
 description: AnsibleのYAML管理のベストプラクティスを探求し、煩雑化した設定を整理する方法を提案します。
 ga4_metrics:
-  avgSessionDuration: 450.08035724999996
-  pageViews: 70
+  avgSessionDuration: 464.6696850769231
+  pageViews: 72
   users: 6
 layout: topic
 prompt: Ansibleの良い書き方について調査したい。YAMLの数が増えて管理が煩雑になっており、どのように整理するのが良いか、事例を集めたい。
 supplementary_materials:
-  - title: Ansibleの「良い書き方」
-    gslide: https://docs.google.com/presentation/d/e/2PACX-1vTZitmYWPpuMp9Njj3oUPQTNbJmVT1sXxWgycAh3uuGR9suRLhDhqvmX__bx89jbtAkwNVehwfmqgvv/pubembed?start=false&loop=false
+- gslide: https://docs.google.com/presentation/d/e/2PACX-1vTZitmYWPpuMp9Njj3oUPQTNbJmVT1sXxWgycAh3uuGR9suRLhDhqvmX__bx89jbtAkwNVehwfmqgvv/pubembed?start=false&loop=false
+  title: Ansibleの「良い書き方」
 tags:
 - リファクタリング
 title: Ansibleの「良い書き方」：煩雑化したYAMLを体系的自動化資産に変えるリファクタリング戦略
