@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/java-unit-test-github-copilot.mp3
 category: ai
 date: 2025-06-05
 ga4_metrics:
-  avgSessionDuration: 170.7017983818182
+  avgSessionDuration: 170.86648261261263
   pageViews: 97
   users: 67
 layout: topic
