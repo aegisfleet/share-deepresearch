@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/old-testament-word.mp3
 category: playful
 date: 2025-06-08
 ga4_metrics:
-  avgSessionDuration: 17.041614
+  avgSessionDuration: 17.041614000000003
   pageViews: 6
   users: 4
 layout: topic
