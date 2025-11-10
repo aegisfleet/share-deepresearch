@@ -4,9 +4,9 @@ category: ai
 date: 2025-05-27
 description: 本レポートは、Devinを代表とする自律型AIエージェントの現状を調査し、主要な競合AIエージェントの特徴と優位性を比較分析します。技術的課題や倫理的考察、今後の展望についても解説します。
 ga4_metrics:
-  avgSessionDuration: 154.018269875
-  pageViews: 6
-  users: 5
+  avgSessionDuration: 138.08253299999998
+  pageViews: 7
+  users: 6
 layout: topic
 prompt: Devinを代表とする自立型のAIエージェントを調査したい。現在広く普及しているAIエージェントについて、その特徴と各エージェントの優位性についてまとめて欲しい。
 supplementary_materials:
