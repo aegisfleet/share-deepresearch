@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/kenja-time.mp3
 category: playful
 date: 2025-05-26
 ga4_metrics:
-  avgSessionDuration: 5.5302524
-  pageViews: 4
-  users: 4
+  avgSessionDuration: 5.425313500000001
+  pageViews: 5
+  users: 5
 layout: topic
 prompt: 賢者タイムの起源を知りたい。誰が言い出したのか突き止めて欲しい。
 supplementary_materials:

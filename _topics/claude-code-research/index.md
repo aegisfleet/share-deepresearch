@@ -4,8 +4,8 @@ category: ai
 date: 2025-05-25
 ga4_metrics:
   avgSessionDuration: 0.0
-  pageViews: 0
-  users: 0
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: AnthropicのClaude Codeの使用例を詳細に調査したい。特にVScodeとの連携、GitHub Actionsとの連携についてはより深堀りして欲しい。
 supplementary_materials:
