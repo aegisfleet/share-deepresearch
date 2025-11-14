@@ -4,7 +4,7 @@ category: ai
 date: 2025/07/31
 description: 楽天AIは、楽天エコシステムとの深い統合により、他のAIツールと比較して独自の競争優位性を持つ。
 ga4_metrics:
-  avgSessionDuration: 7.518359500000001
+  avgSessionDuration: 7.5183595
   pageViews: 2
   users: 2
 layout: topic
