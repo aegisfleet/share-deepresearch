@@ -24,12 +24,13 @@
         })();
     </script>
 
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    
     <!-- Prism.js CSS for code highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
+    
+    <!-- Custom styles (loaded after Prism.js to override) -->
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 
     <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon/favicon-32x32.png' | relative_url }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon/favicon-16x16.png' | relative_url }}">
