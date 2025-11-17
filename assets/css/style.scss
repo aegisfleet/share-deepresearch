@@ -148,10 +148,11 @@ code[class*="language-"],
     border: 2px solid #404040 !important;
     box-shadow: none !important;
     text-shadow: none !important;
+    color: #ffffff !important;
 }
 
 [data-theme="dark"] code[class*="language-"] {
-    color: #e0e0e0 !important;
+    color: #ffffff !important;
 }
 
 [data-theme="dark"] :not(pre)>code[class*="language-"] {
@@ -168,7 +169,7 @@ code[class*="language-"],
 }
 
 [data-theme="dark"] .line-numbers-rows>span:before {
-    color: #a0a0a0 !important;
+    color: #ffaa77 !important;
 }
 
 /* ライトテーマ用のオレンジ調統一カラー */
@@ -211,6 +212,7 @@ code[class*="language-"],
 :root .language-css .token.string,
 :root .style .token.string {
     color: #333333 !important;
+    background: none !important;
 }
 
 :root .token.atrule,
@@ -243,7 +245,8 @@ code[class*="language-"],
 }
 
 [data-theme="dark"] .token.punctuation {
-    color: #e0e0e0 !important;
+    color: #ff9966 !important;
+    opacity: 1;
 }
 
 [data-theme="dark"] .token.property,
@@ -272,7 +275,9 @@ code[class*="language-"],
 [data-theme="dark"] .token.url,
 [data-theme="dark"] .language-css .token.string,
 [data-theme="dark"] .style .token.string {
-    color: #e0e0e0 !important;
+    color: #ffaa77 !important;
+    font-weight: 500;
+    background: none !important;
 }
 
 [data-theme="dark"] .token.atrule,
@@ -1209,6 +1214,7 @@ code[class*="language-"] *,
 .token {
     text-shadow: none !important;
     box-shadow: none !important;
+    background: none !important;
 }
 
 [data-theme="dark"] pre[class*="language-"] *,
@@ -1216,4 +1222,16 @@ code[class*="language-"] *,
 [data-theme="dark"] .token {
     text-shadow: none !important;
     box-shadow: none !important;
+    background: none !important;
+}
+
+/* ダークテーマのプレーンテキスト（トークンクラスなし）をすべて白にする */
+[data-theme="dark"] pre[class*="language-"],
+[data-theme="dark"] code[class*="language-"] {
+    color: #ffffff !important;
+}
+
+/* ダークテーマのコードブロック内の全テキストノードを明るくする */
+[data-theme="dark"] pre[class*="language-"] {
+    color: #ffffff !important;
 }
