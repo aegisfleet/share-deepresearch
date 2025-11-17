@@ -1,15 +1,19 @@
 ---
 audio: /share-deepresearch/assets/audio/java-remote-debug-with-vscode.m4a
-video: /share-deepresearch/assets/video/java-remote-debug-with-vscode.mp4
 category: engineering
 date: 2025-11-17
 description: Tomcat上で動作するJavaアプリケーションのリモートデバッグをVSCodeで実現するための完全ガイド。ブレイクポイントやステップ実行などの高度なデバッグ機能の設定方法を詳述します。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: Tomcat上で動作するJavaアプリケーションのリモートデバッグをVSCodeを使用して実現したい。出来ればブレイクポイントやステップ実行ができる環境が良い。どのようなやり方があるか調査して欲しい。
-tags: 
+tags:
 - Java
 - VSCode
 title: VSCodeによるTomcat Javaアプリケーションの完全リモートデバッグガイド
+video: /share-deepresearch/assets/video/java-remote-debug-with-vscode.mp4
 ---
 
 # **VSCodeによるTomcat Javaアプリケーションの完全リモートデバッグガイド**
