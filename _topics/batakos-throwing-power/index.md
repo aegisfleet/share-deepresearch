@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/batakos-throwing-power.mp3
 category: playful
 date: 2025-06-21
 ga4_metrics:
-  avgSessionDuration: 138.6323862903226
+  avgSessionDuration: 134.30042281250002
   pageViews: 32
   users: 29
 layout: topic
