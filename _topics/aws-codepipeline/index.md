@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/aws-codepipeline.mp3
 category: engineering
 date: 2025-06-02
 ga4_metrics:
-  avgSessionDuration: 79.05442388461539
+  avgSessionDuration: 79.05442388461537
   pageViews: 48
   users: 41
 layout: topic
