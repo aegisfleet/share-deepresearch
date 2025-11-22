@@ -4,9 +4,9 @@ category: research
 date: 2025-08-23
 description: 2代目スマホ向けに月額500円以下のSIM/eSIMプランを徹底比較し、最適な選択肢を提案します。
 ga4_metrics:
-  avgSessionDuration: 340.475212
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 2代目のスマホ用に月額料金が安いSIM/eSIMを検討している。具体的には月の料金が500円以下であり、SMSが利用できることが条件となる。povoのようなプランも検討対象に含める。対象プランの調査を行い、比較表を作成して欲しい。
 supplementary_materials:
