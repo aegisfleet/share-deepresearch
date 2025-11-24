@@ -6,6 +6,9 @@ date: 2025-11-24
 description: 中国におけるレアアース精錬の環境および健康への影響を、具体的な事例を通じて包括的に評価する報告書。
 layout: topic
 prompt: 中国におけるレアアースの精錬に関わる被害について、具体的な事例を集めて実態を調査したい。
+supplementary_materials:
+- title: スライド資料
+  pdf: /share-deepresearch/topics/chinas-rare-earth-refining-environment/slide.pdf
 tags: 
 - 環境
 - 健康

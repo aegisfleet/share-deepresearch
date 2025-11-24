@@ -51,12 +51,32 @@ layout: default
   width: 100%;
   height: 100%;
 }
+
+.pdf-container {
+  position: relative;
+  width: 100%;
+  padding-top: 75%; /* Aspect Ratio 4:3 for PDF */
+}
+
+.pdf-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 84%;
+  border: 1px solid #ddd;
+}
 </style>
         {% for material in page.supplementary_materials %}
             {% if material.gslide %}
                 <h3>{{ material.title }}</h3>
                 <div class="google-slide-container">
                     <iframe src="{{ material.gslide }}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+                </div>
+            {% elsif material.pdf %}
+                <h3>{{ material.title }}</h3>
+                <div class="pdf-container">
+                    <iframe src="{{ material.pdf }}" frameborder="0" allowfullscreen="true"></iframe>
                 </div>
             {% else %}
                 <p><a href="{{ material.url }}" target="_blank">{{ material.title }}</a></p>
