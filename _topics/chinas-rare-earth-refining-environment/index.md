@@ -4,7 +4,7 @@ category: research
 date: 2025-11-24
 description: 中国におけるレアアース精錬の環境および健康への影響を、具体的な事例を通じて包括的に評価する報告書。
 ga4_metrics:
-  avgSessionDuration: 350.146016125
+  avgSessionDuration: 347.899920625
   pageViews: 44
   users: 6
 layout: topic
