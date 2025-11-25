@@ -45,6 +45,8 @@ supplementary_materials:
     url: /share-deepresearch/topics/your-topic/reveal.html
   - title: Googleスライド
     gslide: https://docs.google.com/presentation/~/pubembed?start=false&loop=false
+  - title: スライド資料
+    pdf: /share-deepresearch/topics/your-topic/slide.pdf
 tags: 
 - タグ1
 - タグ2
