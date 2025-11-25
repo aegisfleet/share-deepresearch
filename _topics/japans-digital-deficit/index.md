@@ -1,17 +1,21 @@
 ---
 audio: /share-deepresearch/assets/audio/japans-digital-deficit.m4a
-video: /share-deepresearch/assets/video/japans-digital-deficit.mp4
 category: research
 date: 2025-11-25
 description: 日本のデジタル赤字の現状と、これからの見通しについての包括的な調査報告書です。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 日本のデジタル赤字の現状と、これからの見通しについて調査して欲しい。
 supplementary_materials:
-  - title: スライド資料
-    pdf: /share-deepresearch/topics/japans-digital-deficit/slide.pdf
-tags: 
+- pdf: /share-deepresearch/topics/japans-digital-deficit/slide.pdf
+  title: スライド資料
+tags:
 - 経済
 title: 日本のデジタル赤字：構造的要因、経済的影響、および将来的展望に関する包括的調査報告書
+video: /share-deepresearch/assets/video/japans-digital-deficit.mp4
 ---
 
 # **日本のデジタル赤字：構造的要因、経済的影響、および将来的展望に関する包括的調査報告書**
