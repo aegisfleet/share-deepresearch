@@ -128,15 +128,15 @@ Nano Banana Proの推論エンジンは、自然言語の長文よりも、構�
 
 **スライド生成用プロンプトの構造例:**
 
-# **Role**
+#### **Role**
 
 Professional Presentation Designer
 
-# **Task**
+#### **Task**
 
 Generate a background image for a slide about "Quarterly Revenue Growth".
 
-# **Constraints (Do NOT change)**
+#### **Constraints (Do NOT change)**
 
 * Style: Swiss Design Style (Clean, Grid-based)  
 * Background Color: Pure White (\#FFFFFF)  
@@ -144,7 +144,7 @@ Generate a background image for a slide about "Quarterly Revenue Growth".
 * Lighting: Softbox from Top-Left  
 * Negative Space: Leave the top-left 40% empty for text overlay
 
-# **Subject Description**
+#### **Subject Description**
 
 A stylized bar chart growing upwards, represented by simple geometric pillars.
 
