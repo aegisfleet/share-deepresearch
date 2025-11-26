@@ -1,18 +1,22 @@
 ---
 audio: /share-deepresearch/assets/audio/nano-banana-pro.m4a
-video: /share-deepresearch/assets/video/nano-banana-pro.mp4
 category: ai
 date: 2025-11-26
 description: 本レポートは、Googleの最新画像生成モデル「Nano Banana Pro」（正式名称：Gemini 3 Pro Image）を用いて、スライド資料全体の視覚的トーン（雰囲気、照明、配色、描画スタイル）を統一するための技術的アプローチと実践的ワークフローを詳細に調査・分析したものである。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: Nano Banana Proを使ってスライドの資料を作成したいのだが、生成される画像のスタイル（雰囲気）が毎回違うので、統一させるテクニックを調査して欲しい。
 supplementary_materials:
-  - title: スライド資料
-    pdf: /share-deepresearch/topics/nano-banana-pro/slide.pdf
-tags: 
+- pdf: /share-deepresearch/topics/nano-banana-pro/slide.pdf
+  title: スライド資料
+tags:
 - AIツール
 - Gemini
 title: Nano Banana Pro (Gemini 3 Pro Image) を活用したプレゼンテーション資料における視覚的一貫性の確立とスタイル制御に関する包括的技術レポート
+video: /share-deepresearch/assets/video/nano-banana-pro.mp4
 ---
 
 # **Nano Banana Pro (Gemini 3 Pro Image) を活用したプレゼンテーション資料における視覚的一貫性の確立とスタイル制御に関する包括的技術レポート**
