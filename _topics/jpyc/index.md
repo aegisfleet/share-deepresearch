@@ -4,9 +4,9 @@ category: research
 date: 2025-09-29
 description: 日本円建てステーブルコイン「JPYC」の活用事例と将来展望を探る。
 ga4_metrics:
-  avgSessionDuration: 167.0043600769231
-  pageViews: 14
-  users: 7
+  avgSessionDuration: 157.08993457142856
+  pageViews: 15
+  users: 8
 layout: topic
 prompt: 円建てステーブルコイン（JPYC）の活用事例について調査して欲しい。どのような使い方が想定されるだろうか？
 tags:
