@@ -4,9 +4,9 @@ category: ai
 date: 2025-11-26
 description: 本レポートは、Googleの最新画像生成モデル「Nano Banana Pro」（正式名称：Gemini 3 Pro Image）を用いて、スライド資料全体の視覚的トーン（雰囲気、照明、配色、描画スタイル）を統一するための技術的アプローチと実践的ワークフローを詳細に調査・分析したものである。
 ga4_metrics:
-  avgSessionDuration: 517.6864433333333
-  pageViews: 4
-  users: 3
+  avgSessionDuration: 415.789947
+  pageViews: 5
+  users: 4
 layout: topic
 prompt: Nano Banana Proを使ってスライドの資料を作成したいのだが、生成される画像のスタイル（雰囲気）が毎回違うので、統一させるテクニックを調査して欲しい。
 supplementary_materials:
