@@ -4,8 +4,8 @@ category: ai
 date: 2025-08-29
 description: GitHub Copilotに代表されるコーディング用のAIエージェントで無料で使えるものを調査し、各ツールの無料利用の範囲を比較分析します。
 ga4_metrics:
-  avgSessionDuration: 171.04915327272727
-  pageViews: 16
+  avgSessionDuration: 142.83857181818183
+  pageViews: 14
   users: 11
 layout: topic
 prompt: GitHub Copilotに代表されるコーディング用のAIエージェントで無料で使えるものを調べて欲しい。各ツールにおいてどの程度無料で使えるのかも知りたい。
