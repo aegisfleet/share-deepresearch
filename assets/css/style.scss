@@ -23,6 +23,7 @@
     --table-header-bg: #f1f1f1;
     --table-row-even-bg: #f9f9f9;
     --box-shadow-color: rgba(0, 0, 0, 0.1);
+    --hr-color: #666666;
 }
 
 [data-theme='dark'] {
@@ -47,6 +48,7 @@
     --table-header-bg: #2d2d2d;
     --table-row-even-bg: rgba(45, 45, 45, 0.5);
     --box-shadow-color: rgba(0, 0, 0, 0.1);
+    --hr-color: #cccccc;
 }
 
 body {
@@ -1029,6 +1031,12 @@ img {
     height: auto;
     display: block;
     margin: 1rem auto;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--hr-color);
+    margin: 2rem 0;
 }
 
 .main-content table {
