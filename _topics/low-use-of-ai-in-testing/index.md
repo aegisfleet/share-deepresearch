@@ -5,9 +5,9 @@ date: 2025-11-29
 description: AIはコーディングでは97.5%の採用率に達した一方、テスト自動化では55.7%に留まっている。本調査はこの「普及の断層」が確実な業界トレンドであることを立証し、テストオラクル問題、フレーキーテスト、Vibe
   Codingの弊害、スキルギャップなど、技術的・運用的・組織的な構造的要因を多角的に分析する。
 ga4_metrics:
-  avgSessionDuration: 0.0
-  pageViews: 0
-  users: 0
+  avgSessionDuration: 220.5236285
+  pageViews: 3
+  users: 2
 layout: topic
 prompt: ソフトウェアの設計やコーディングにはAIの活用が進んでいるが、テストにおいては使用率が低いという調査データがある。そのデータが業界全体の傾向なのか調査し、なぜテストにおけるAIの使用率が低いのかまとめて欲しい。
 supplementary_materials:
