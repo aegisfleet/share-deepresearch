@@ -1,17 +1,22 @@
 ---
 audio: /share-deepresearch/assets/audio/low-use-of-ai-in-testing.m4a
-video: /share-deepresearch/assets/video/low-use-of-ai-in-testing.mp4
 category: engineering
 date: 2025-11-29
-description: AIはコーディングでは97.5%の採用率に達した一方、テスト自動化では55.7%に留まっている。本調査はこの「普及の断層」が確実な業界トレンドであることを立証し、テストオラクル問題、フレーキーテスト、Vibe Codingの弊害、スキルギャップなど、技術的・運用的・組織的な構造的要因を多角的に分析する。
+description: AIはコーディングでは97.5%の採用率に達した一方、テスト自動化では55.7%に留まっている。本調査はこの「普及の断層」が確実な業界トレンドであることを立証し、テストオラクル問題、フレーキーテスト、Vibe
+  Codingの弊害、スキルギャップなど、技術的・運用的・組織的な構造的要因を多角的に分析する。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: ソフトウェアの設計やコーディングにはAIの活用が進んでいるが、テストにおいては使用率が低いという調査データがある。そのデータが業界全体の傾向なのか調査し、なぜテストにおけるAIの使用率が低いのかまとめて欲しい。
 supplementary_materials:
-  - title: スライド資料
-    pdf: /share-deepresearch/topics/low-use-of-ai-in-testing/slide.pdf
-tags: 
+- pdf: /share-deepresearch/topics/low-use-of-ai-in-testing/slide.pdf
+  title: スライド資料
+tags:
 - テスト自動化
 title: ソフトウェア品質保証の未来とAIの乖離：コーディングにおけるAI普及とテスト自動化における停滞の構造的要因に関する包括的調査報告書
+video: /share-deepresearch/assets/video/low-use-of-ai-in-testing.mp4
 ---
 
 # **ソフトウェア品質保証の未来とAIの乖離：コーディングにおけるAI普及とテスト自動化における停滞の構造的要因に関する包括的調査報告書**
