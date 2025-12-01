@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/blood-pressure-measuring.mp3
 category: research
 date: 2025-06-08
 ga4_metrics:
-  avgSessionDuration: 1066.521382
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 536.43707
+  pageViews: 2
+  users: 2
 layout: topic
 prompt: 血圧が測れるスマートデバイスを調べて、その性能や価格を比較して欲しい。
 supplementary_materials:
