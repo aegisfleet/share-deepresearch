@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/blood-pressure-measuring.mp3
 category: research
 date: 2025-06-08
 ga4_metrics:
-  avgSessionDuration: 536.43707
+  avgSessionDuration: 357.6247133333333
   pageViews: 2
   users: 2
 layout: topic
