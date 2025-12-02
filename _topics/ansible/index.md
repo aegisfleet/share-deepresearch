@@ -4,9 +4,9 @@ category: engineering
 date: 2025-10-27
 description: AnsibleのYAML管理のベストプラクティスを探求し、煩雑化した設定を整理する方法を提案します。
 ga4_metrics:
-  avgSessionDuration: 405.72850973333334
-  pageViews: 75
-  users: 7
+  avgSessionDuration: 380.846155375
+  pageViews: 76
+  users: 8
 layout: topic
 prompt: Ansibleの良い書き方について調査したい。YAMLの数が増えて管理が煩雑になっており、どのように整理するのが良いか、事例を集めたい。
 supplementary_materials:
