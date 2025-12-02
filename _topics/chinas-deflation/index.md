@@ -1,18 +1,22 @@
 ---
 audio: /share-deepresearch/assets/audio/chinas-deflation.m4a
-video: /share-deepresearch/assets/video/chinas-deflation.mp4
 category: research
 date: 2025-12-02
 description: 中国経済は深刻なデフレ圧力に直面している。本報告書では、不動産バブルの崩壊、人口動態の変化、政策主導の供給過剰が複合的に作用していることを指摘し、政府の対策がなぜ効果を発揮していないのかを分析する。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 中国のデフレについて調査したい。根本的な原因は何なのだろうか？政府の対策が意味を成していないのだろうか。
 supplementary_materials:
-  - title: スライド資料
-    pdf: /share-deepresearch/topics/chinas-deflation/slide.pdf
-tags: 
+- pdf: /share-deepresearch/topics/chinas-deflation/slide.pdf
+  title: スライド資料
+tags:
 - 経済
 - 政治
 title: 中国経済におけるデフレの構造的要因と政策有効性の包括的分析
+video: /share-deepresearch/assets/video/chinas-deflation.mp4
 ---
 
 # **中国経済におけるデフレの構造的要因と政策有効性の包括的分析**
