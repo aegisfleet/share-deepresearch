@@ -4,7 +4,7 @@ category: engineering
 date: 2025-10-27
 description: AnsibleのYAML管理のベストプラクティスを探求し、煩雑化した設定を整理する方法を提案します。
 ga4_metrics:
-  avgSessionDuration: 360.72101658823533
+  avgSessionDuration: 360.7210165882353
   pageViews: 77
   users: 8
 layout: topic
