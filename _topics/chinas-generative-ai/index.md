@@ -1,17 +1,21 @@
 ---
 audio: /share-deepresearch/assets/audio/chinas-generative-ai.m4a
-video: /share-deepresearch/assets/video/chinas-generative-ai.mp4
 category: ai
 date: 2025-12-03
 description: 中国における生成AIの急速な普及の背景とその利用実態を多角的に分析し、主要な構造的要因と具体的なユースケースを明らかにする。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 中国は生成AIの使用率が他国に比べて高いと言われているが、なぜ高いのだろうか？また、中国では生成AIをどのように利用している？
 supplementary_materials:
-  - title: スライド資料
-    pdf: /share-deepresearch/topics/chinas-generative-ai/slide.pdf
-tags: 
+- pdf: /share-deepresearch/topics/chinas-generative-ai/slide.pdf
+  title: スライド資料
+tags:
 - 市場調査
 title: 中国における生成AIの急速な普及：その要因と利用実態に関する包括的分析
+video: /share-deepresearch/assets/video/chinas-generative-ai.mp4
 ---
 
 # 中国における生成AIの急速な普及：その要因と利用実態に関する包括的分析
