@@ -4,9 +4,9 @@ category: research
 date: 2025-12-02
 description: 中国経済は深刻なデフレ圧力に直面している。本報告書では、不動産バブルの崩壊、人口動態の変化、政策主導の供給過剰が複合的に作用していることを指摘し、政府の対策がなぜ効果を発揮していないのかを分析する。
 ga4_metrics:
-  avgSessionDuration: 1052.827985
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 533.6109534999999
+  pageViews: 2
+  users: 2
 layout: topic
 prompt: 中国のデフレについて調査したい。根本的な原因は何なのだろうか？政府の対策が意味を成していないのだろうか。
 supplementary_materials:
