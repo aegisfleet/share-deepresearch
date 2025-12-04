@@ -4,9 +4,9 @@ category: engineering
 date: 2025-09-03
 description: GitHubのSpec Kitを活用したAI駆動開発の実践的なガイドです。セットアップから具体的な使用例まで、詳細に解説します。
 ga4_metrics:
-  avgSessionDuration: 227.77913395238093
-  pageViews: 21
-  users: 18
+  avgSessionDuration: 106.11955452941177
+  pageViews: 17
+  users: 15
 layout: topic
 prompt: GitHubのSpec Kitのハンズオン資料を作成したい。セットアップから実際の使用例を丁寧に解説して欲しい。
 tags:
