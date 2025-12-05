@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/jacoco.mp3
 category: engineering
 date: 2025-06-18
 ga4_metrics:
-  avgSessionDuration: 85.27227327777778
+  avgSessionDuration: 85.27227327777777
   pageViews: 18
   users: 17
 layout: topic
