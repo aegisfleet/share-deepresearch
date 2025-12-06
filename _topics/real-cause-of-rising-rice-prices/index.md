@@ -1,17 +1,21 @@
 ---
 audio: /share-deepresearch/assets/audio/real-cause-of-rising-rice-prices.m4a
-video: /share-deepresearch/assets/video/real-cause-of-rising-rice-prices.mp4
 category: research
 date: 2025-12-06
 description: 2025年にお米の価格が未だ下がらない理由（真因）を調査し、今後の米価格の予想をまとめた包括的な調査報告書。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 2025年にお米の価格が未だ下がらない理由（真因）を調査し、今後の米価格の予想をして欲しい。
 supplementary_materials:
-  - title: スライド資料
-    pdf: /share-deepresearch/topics/real-cause-of-rising-rice-prices/slide.pdf
-tags: 
+- pdf: /share-deepresearch/topics/real-cause-of-rising-rice-prices/slide.pdf
+  title: スライド資料
+tags:
 - 米
 title: 2025年日本国内における米価高止まりの構造的要因分析および2026年以降の市場展望に関する包括的調査報告書
+video: /share-deepresearch/assets/video/real-cause-of-rising-rice-prices.mp4
 ---
 
 # **2025年日本国内における米価高止まりの構造的要因分析および2026年以降の市場展望に関する包括的調査報告書**
