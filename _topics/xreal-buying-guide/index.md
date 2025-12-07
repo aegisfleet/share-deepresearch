@@ -4,9 +4,9 @@ category: research
 date: 2025-07-07
 description: XREALの製品を比較し、購入者レビューを基に最適なモデルを提案するガイド。ARグラスとコンパニオンデバイスの違いを解説。
 ga4_metrics:
-  avgSessionDuration: 3.466014
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: XREALの製品の購入を検討しているが、どれを買うのが良いか迷っている。それぞれの製品の機能や重量などのスペックを比較して、購入者レビューを基に最適な製品を提案して欲しい。
 supplementary_materials:
