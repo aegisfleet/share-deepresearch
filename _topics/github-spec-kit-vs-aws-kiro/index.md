@@ -4,7 +4,7 @@ category: ai
 date: 2025-09-03
 description: GitHubのSpec KitとAWSのKiroの比較分析。両者の特徴や思想的な違いを探る。
 ga4_metrics:
-  avgSessionDuration: 115.51673374796748
+  avgSessionDuration: 116.44559273170732
   pageViews: 108
   users: 88
 layout: topic
