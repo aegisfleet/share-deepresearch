@@ -4,9 +4,9 @@ category: research
 date: 2025-09-10
 description: 2025年10月以降のふるさと納税はポイント還元が廃止され、サイト選びの基準が大きく変わります。本レポートでは、ポイント還元廃止後のふるさと納税ポータルサイトの最適解を、品揃え、寄付金額、ユーザー体験、エコシステム連携の4つの評価軸で徹底分析し、寄付者タイプ別の戦略を提言します。
 ga4_metrics:
-  avgSessionDuration: 306.0383414
-  pageViews: 5
-  users: 3
+  avgSessionDuration: 116.0449
+  pageViews: 2
+  users: 2
 layout: topic
 prompt: 2025年10月にふるさと納税はポイント還元が無くなるのだが、ポイントが付かない前提で考えた際にふるさと納税ポータルサイトはどこを使うのが良いか調査して欲しい。
 tags:
