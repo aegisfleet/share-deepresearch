@@ -96,7 +96,7 @@ jobs:
           node scripts/screenshot.js
 
       - name: Upload screenshots artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: pr-screenshots
           path: |
