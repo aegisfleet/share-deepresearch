@@ -4,7 +4,7 @@ category: ai
 date: 2025-12-03
 description: 中国における生成AIの急速な普及の背景とその利用実態を多角的に分析し、主要な構造的要因と具体的なユースケースを明らかにする。
 ga4_metrics:
-  avgSessionDuration: 368.175987
+  avgSessionDuration: 294.54078960000004
   pageViews: 4
   users: 2
 layout: topic
