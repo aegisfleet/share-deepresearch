@@ -4,9 +4,9 @@ category: ai
 date: 2025-08-10
 description: OpenAIのGPT-5は、過去のモデルに比べて使いにくいという声が多く上がっています。本レポートでは、具体的な使用例を集め、その対策をまとめます。
 ga4_metrics:
-  avgSessionDuration: 105.9690224888889
-  pageViews: 41
-  users: 30
+  avgSessionDuration: 108.11935427272728
+  pageViews: 40
+  users: 29
 layout: topic
 prompt: OpenAIのGPT-5が過去のモデルに比べて使いにくいと言われているが、具体的に悪くなっている使用例を集め、その対策をまとめて欲しい。
 supplementary_materials:
