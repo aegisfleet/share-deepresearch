@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/openhands-mcp.mp3
 category: ai
 date: 2025-05-27
 ga4_metrics:
-  avgSessionDuration: 228.631121
-  pageViews: 2
-  users: 1
+  avgSessionDuration: 153.636144
+  pageViews: 3
+  users: 2
 layout: topic
 prompt: OpenHandsとGitHub ActionsとPlaywright-MCPを使って、ワークフローの中でブラウザ操作の自動化を行いたい。実現可能か調査し、可能であれば具体的な使用例をまとめて欲しい。
 supplementary_materials:
