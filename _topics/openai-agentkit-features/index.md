@@ -4,9 +4,9 @@ category: ai
 date: 2025-10-07
 description: OpenAIが提供する「AgentKit」は、エンドツーエンドのエージェント型AIプラットフォームであり、開発者が自律的なAIエージェントを迅速に構築、デプロイ、最適化するためのツールを提供します。
 ga4_metrics:
-  avgSessionDuration: 76.63681066666666
-  pageViews: 2
-  users: 2
+  avgSessionDuration: 102.831662
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: OpenAIが提供する「AgentKit」で何ができるのかまとめたい。
 tags:
