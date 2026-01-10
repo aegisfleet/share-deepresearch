@@ -940,13 +940,62 @@ a:hover {
 
 .topic ul,
 .topic ol {
-    margin: 1.2rem 0;
-    padding-left: 2rem;
+    margin: 1.5rem 0;
 }
 
-.topic li {
-    margin: 0.5rem 0;
-    line-height: 1.6;
+/* Custom Ordered List */
+.topic ol {
+    list-style: none;
+    counter-reset: topic-counter;
+    padding-left: 0;
+
+    li {
+        counter-increment: topic-counter;
+        position: relative;
+        padding-left: 2.5rem;
+        margin-bottom: 1rem;
+        line-height: 1.7;
+
+        &::before {
+            content: counter(topic-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.8rem;
+            height: 1.8rem;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 1.8rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+
+/* Custom Unordered List */
+.topic ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+        position: relative;
+        padding-left: 1.8rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.7;
+
+        &::before {
+            content: "✔️";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 1rem;
+            color: var(--primary-color);
+            /* Optional: Make it an SVG or simple shape if preferred later */
+        }
+    }
 }
 
 .topic a {
@@ -1039,44 +1088,102 @@ hr {
     margin: 2rem 0;
 }
 
-.main-content table {
+/* Table styles with wrapper for rounded corners + responsive scroll */
+.table-wrapper {
     display: block;
     width: 100%;
-    max-width: 100%;
     overflow-x: auto;
+    margin: 2em 0;
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+    /* Rounded corners on the wrapper */
+    box-shadow: 0 2px 8px var(--box-shadow-color);
+}
+
+.table-wrapper::-webkit-scrollbar {
+    height: 10px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: var(--background-color);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    border: 2px solid var(--background-color);
+}
+
+.main-content table {
+    width: 100%;
     border-collapse: collapse;
-    margin: 1em 0;
+    /* Ensure solid lines */
+    border-spacing: 0;
+    margin: 0;
+    /* Wrapper handles margin */
+    border: none;
+    /* Wrapper handles outer border */
+    box-shadow: none;
+    /* Wrapper handles shadow */
+    border-radius: 0;
+    /* Wrapper handles radius */
 }
 
 .main-content table th,
 .main-content table td {
-    min-width: 120px;
-    padding: 8px;
+    min-width: 140px;
+    padding: 12px 15px;
     border: 1px solid var(--secondary-color);
-    white-space: nowrap;
+    /* All sides have border */
+    white-space: normal;
+}
+
+/* Remove double borders */
+.main-content table tr:first-child th {
+    border-top: none;
+}
+
+.main-content table th,
+.main-content table td {
+    border-left: none;
+    /* Left border handled by previous cell or wrapper */
+}
+
+.main-content table th:first-child,
+.main-content table td:first-child {
+    border-left: none;
+    /* First column has no left border (wrapper has it) */
+}
+
+.main-content table th:last-child,
+.main-content table td:last-child {
+    border-right: none;
+    /* Last column has no right border (wrapper has it) */
+}
+
+.main-content table tr:last-child td {
+    border-bottom: none;
+    /* Last row has no bottom border (wrapper has it) */
 }
 
 .main-content table th {
     background-color: var(--table-header-bg);
     font-weight: bold;
     text-align: left;
+    color: var(--text-color);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .main-content table tr:nth-child(even) {
     background-color: var(--table-row-even-bg);
 }
 
-.main-content table::-webkit-scrollbar {
-    height: 8px;
-}
-
-.main-content table::-webkit-scrollbar-track {
-    background: var(--background-color);
-}
-
-.main-content table::-webkit-scrollbar-thumb {
-    background-color: var(--secondary-color);
-    border-radius: 4px;
+.main-content table tr:hover {
+    background-color: rgba(255, 119, 51, 0.05);
 }
 
 /* Prism.js プラグイン用の追加スタイル */
