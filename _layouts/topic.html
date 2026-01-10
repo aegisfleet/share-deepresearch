@@ -207,28 +207,37 @@ layout: default
         <button id="tts-close" class="tts-close-btn" aria-label="閉じる">✕</button>
     </div>
     <div class="tts-player-controls">
-        <div class="tts-buttons">
-            <button id="tts-prev" class="tts-btn" aria-label="前へ" title="前のセクション">⏮️</button>
-            <button id="tts-play" class="tts-btn tts-btn-main" aria-label="再生" title="再生/一時停止">▶️</button>
-            <button id="tts-stop" class="tts-btn" aria-label="停止" title="停止">⏹️</button>
-            <button id="tts-next" class="tts-btn" aria-label="次へ" title="次のセクション">⏭️</button>
-        </div>
-        <div class="tts-progress-container">
-            <div id="tts-progress-bar" class="tts-progress-bar">
-                <div id="tts-progress" class="tts-progress"></div>
+        <div class="tts-row-main">
+            <div class="tts-buttons">
+                <button id="tts-prev" class="tts-btn" aria-label="前へ" title="前のセクション">⏮️</button>
+                <button id="tts-play" class="tts-btn tts-btn-main" aria-label="再生" title="再生/一時停止">▶️</button>
+                <button id="tts-next" class="tts-btn" aria-label="次へ" title="次のセクション">⏭️</button>
             </div>
-            <span id="tts-progress-text" class="tts-progress-text">0 / 0</span>
+            <div class="tts-progress-container">
+                <div id="tts-progress-bar" class="tts-progress-bar">
+                    <div id="tts-progress" class="tts-progress"></div>
+                </div>
+                <span id="tts-progress-text" class="tts-progress-text">0 / 0</span>
+            </div>
         </div>
-        <div class="tts-speed-container">
-            <label for="tts-speed">速度:</label>
-            <select id="tts-speed" class="tts-speed-select">
-                <option value="0.5">0.5x</option>
-                <option value="0.75">0.75x</option>
-                <option value="1">1.0x</option>
-                <option value="1.25" selected>1.25x</option>
-                <option value="1.5">1.5x</option>
-                <option value="2">2.0x</option>
-            </select>
+        <div class="tts-row-options">
+            <div class="tts-speed-container">
+                <label for="tts-speed">速度:</label>
+                <select id="tts-speed" class="tts-speed-select">
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1">1.0x</option>
+                    <option value="1.25" selected>1.25x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2.0x</option>
+                </select>
+            </div>
+            <div class="tts-voice-container">
+                <label for="tts-voice">音声:</label>
+                <select id="tts-voice" class="tts-voice-select">
+                    <option value="">読み込み中...</option>
+                </select>
+            </div>
         </div>
     </div>
 </div>
@@ -381,12 +390,12 @@ layout: default
                 this.openBtn = document.getElementById('tts-open-btn');
                 this.closeBtn = document.getElementById('tts-close');
                 this.playBtn = document.getElementById('tts-play');
-                this.stopBtn = document.getElementById('tts-stop');
                 this.prevBtn = document.getElementById('tts-prev');
                 this.nextBtn = document.getElementById('tts-next');
                 this.progressBar = document.getElementById('tts-progress');
                 this.progressText = document.getElementById('tts-progress-text');
                 this.speedSelect = document.getElementById('tts-speed');
+                this.voiceSelect = document.getElementById('tts-voice');
             }
 
             extractTextBlocks() {
@@ -443,18 +452,69 @@ layout: default
             }
 
             loadVoices() {
-                const setVoice = () => {
+                const populateVoices = () => {
                     const voices = this.synth.getVoices();
-                    // 日本語の音声を探す
-                    const japaneseVoice = voices.find(v => v.lang.startsWith('ja'));
-                    if (japaneseVoice) {
-                        this.voice = japaneseVoice;
+                    if (voices.length === 0) return;
+
+                    // 日本語の音声をフィルタ
+                    const japaneseVoices = voices.filter(v => v.lang.startsWith('ja'));
+                    const otherVoices = voices.filter(v => !v.lang.startsWith('ja'));
+
+                    // ドロップダウンを更新
+                    this.voiceSelect.innerHTML = '';
+
+                    // 日本語音声を先に追加
+                    if (japaneseVoices.length > 0) {
+                        const jaGroup = document.createElement('optgroup');
+                        jaGroup.label = '日本語';
+
+                        // Google 日本語を優先して検索
+                        const googleJaVoice = japaneseVoices.find(v =>
+                            v.name.toLowerCase().includes('google') && v.lang.startsWith('ja')
+                        );
+                        const defaultVoice = googleJaVoice || japaneseVoices[0];
+
+                        japaneseVoices.forEach((voice) => {
+                            const option = document.createElement('option');
+                            option.value = voice.name;
+                            option.textContent = voice.name.replace(/\s*\(.*\)$/, '');
+                            if (voice === defaultVoice) option.selected = true;
+                            jaGroup.appendChild(option);
+                        });
+                        this.voiceSelect.appendChild(jaGroup);
+
+                        // デフォルトでGoogle日本語または最初の日本語音声を選択
+                        this.voice = defaultVoice;
+                    }
+
+                    // その他の音声を追加（主要な言語のみ）
+                    const majorLangs = ['en', 'zh', 'ko', 'es', 'fr', 'de'];
+                    const filteredOtherVoices = otherVoices.filter(v =>
+                        majorLangs.some(lang => v.lang.startsWith(lang))
+                    );
+
+                    if (filteredOtherVoices.length > 0) {
+                        const otherGroup = document.createElement('optgroup');
+                        otherGroup.label = 'その他';
+                        filteredOtherVoices.slice(0, 10).forEach(voice => {
+                            const option = document.createElement('option');
+                            option.value = voice.name;
+                            const langName = voice.lang.split('-')[0].toUpperCase();
+                            option.textContent = `${voice.name.replace(/\s*\(.*\)$/, '')} [${langName}]`;
+                            otherGroup.appendChild(option);
+                        });
+                        this.voiceSelect.appendChild(otherGroup);
+                    }
+
+                    // 日本語音声がない場合は最初の音声を使用
+                    if (!this.voice && voices.length > 0) {
+                        this.voice = voices[0];
                     }
                 };
 
-                setVoice();
+                populateVoices();
                 if (speechSynthesis.onvoiceschanged !== undefined) {
-                    speechSynthesis.onvoiceschanged = setVoice;
+                    speechSynthesis.onvoiceschanged = populateVoices;
                 }
             }
 
@@ -465,7 +525,6 @@ layout: default
 
                 // 再生コントロール
                 this.playBtn.addEventListener('click', () => this.togglePlay());
-                this.stopBtn.addEventListener('click', () => this.stop());
                 this.prevBtn.addEventListener('click', () => this.prev());
                 this.nextBtn.addEventListener('click', () => this.next());
 
@@ -474,8 +533,24 @@ layout: default
                     this.rate = parseFloat(e.target.value);
                     // 再生中なら再読み上げ
                     if (this.isPlaying && !this.isPaused) {
+                        this.utteranceId++;
                         this.synth.cancel();
                         this.speakBlock(this.currentBlockIndex);
+                    }
+                });
+
+                // 音声変更
+                this.voiceSelect.addEventListener('change', (e) => {
+                    const voices = this.synth.getVoices();
+                    const selectedVoice = voices.find(v => v.name === e.target.value);
+                    if (selectedVoice) {
+                        this.voice = selectedVoice;
+                        // 再生中なら再読み上げ
+                        if (this.isPlaying && !this.isPaused) {
+                            this.utteranceId++;
+                            this.synth.cancel();
+                            this.speakBlock(this.currentBlockIndex);
+                        }
                     }
                 });
 
@@ -906,6 +981,19 @@ layout: default
 
     .tts-player-controls {
         display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .tts-row-main {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .tts-row-options {
+        display: flex;
         align-items: center;
         gap: 1rem;
         flex-wrap: wrap;
@@ -1000,11 +1088,33 @@ layout: default
         cursor: pointer;
     }
 
+    .tts-voice-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .tts-voice-container label {
+        font-size: 0.85rem;
+        color: var(--secondary-color);
+    }
+
+    .tts-voice-select {
+        background: var(--card-background);
+        border: 1px solid var(--tag-border);
+        border-radius: 4px;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.85rem;
+        color: var(--text-color);
+        cursor: pointer;
+        max-width: 150px;
+    }
+
     /* TTS起動ボタン */
     .tts-open-btn {
         position: fixed;
         bottom: 80px;
-        left: 20px;
+        right: 20px;
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -1056,7 +1166,11 @@ layout: default
             padding: 0.5rem;
         }
 
-        .tts-player-controls {
+        .tts-row-main {
+            gap: 0.5rem;
+        }
+
+        .tts-row-options {
             gap: 0.5rem;
         }
 
@@ -1073,15 +1187,25 @@ layout: default
         }
 
         .tts-progress-container {
-            min-width: 100px;
+            min-width: 80px;
+            flex: 1;
         }
 
-        .tts-speed-container {
+        .tts-speed-container label,
+        .tts-voice-container label {
             display: none;
         }
 
+        .tts-speed-select,
+        .tts-voice-select {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.3rem;
+            max-width: 100px;
+        }
+
         .tts-open-btn {
-            bottom: 140px;
+            bottom: 80px;
+            right: 20px;
             width: 45px;
             height: 45px;
             font-size: 1.3rem;
