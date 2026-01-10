@@ -583,8 +583,20 @@
                 }
             });
             
-            // Prism.js を実行
+    // Prism.js を実行
             Prism.highlightAll();
+
+            // Table wrapper for responsive layout and rounded corners
+            const tables = document.querySelectorAll('.main-content table, .topic table');
+            tables.forEach(table => {
+                // Check if already wrapped to avoid duplication if script runs twice
+                if (!table.parentElement.classList.contains('table-wrapper')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'table-wrapper';
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
+            });
         });
     </script>
 </body>
