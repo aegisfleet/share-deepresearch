@@ -231,16 +231,16 @@ FPM社は、千葉市から受託していた「ちばシティポイント」�
 
 #### **引用文献**
 
-1. としポ-広島広域都市圏ポイント【広島県】 | フェリカポケットマーケティング株式会社｜地域通貨, 1月 10, 2026にアクセス、 [https://felicapocketmk.co.jp/case/912/](https://felicapocketmk.co.jp/case/912/)  
+1. としポ-広島広域都市圏ポイント【広島県】 フェリカポケットマーケティング株式会社｜地域通貨, 1月 10, 2026にアクセス、 [https://felicapocketmk.co.jp/case/912/](https://felicapocketmk.co.jp/case/912/)  
 2. 2026年第1回1月臨時会 議案討論 大西オサム ｜ 日本共産党 広島市会 ..., 1月 10, 2026にアクセス、 [https://www.jcp-hiro-shigi.jp/parliament/7207](https://www.jcp-hiro-shigi.jp/parliament/7207)  
 3. 令和４年度 地方創生推進交付金・地方創生拠点整備交付金 活用事業について \- 山口市, 1月 10, 2026にアクセス、 [https://www.city.yamaguchi.lg.jp/uploaded/attachment/92407.pdf](https://www.city.yamaguchi.lg.jp/uploaded/attachment/92407.pdf)  
 4. ちばシティポイント実証実験がサイバー攻撃被害, 1月 10, 2026にアクセス、 [https://cybersecurity-jp.com/news/59096](https://cybersecurity-jp.com/news/59096)  
 5. 広島広域都市圏発展ビジョン 2024 年 3 月改訂 広 島 市 \- 平生町, 1月 10, 2026にアクセス、 [https://www.town.hirao.lg.jp/material/files/group/12/R6hiroshimakouiki\_vision.pdf](https://www.town.hirao.lg.jp/material/files/group/12/R6hiroshimakouiki_vision.pdf)  
-6. 広島広域都市圏ポイント | 事例・実績 | ADPLEX Co., Ltd., 1月 10, 2026にアクセス、 [https://www.adplex.co.jp/works/point.html](https://www.adplex.co.jp/works/point.html)  
+6. 広島広域都市圏ポイント 事例・実績 ADPLEX Co., Ltd., 1月 10, 2026にアクセス、 [https://www.adplex.co.jp/works/point.html](https://www.adplex.co.jp/works/point.html)  
 7. よくある質問 \- としポ \- 広島広域都市圏ポイント, 1月 10, 2026にアクセス、 [https://koikitoshiken.yomsubi.com/qa/](https://koikitoshiken.yomsubi.com/qa/)  
 8. としポ-広島広域都市圏ポイントアプリ \- 地域通貨・プレミアム商品券のデジタルソリューション よむすび, 1月 10, 2026にアクセス、 [https://yomsubi.com/%E5%BA%83%E5%B3%B6%E5%BA%83%E5%9F%9F%E9%83%BD%E5%B8%82%E5%9C%8F%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%82%A2%E3%83%97%E3%83%AA/](https://yomsubi.com/%E5%BA%83%E5%B3%B6%E5%BA%83%E5%9F%9F%E9%83%BD%E5%B8%82%E5%9C%8F%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%82%A2%E3%83%97%E3%83%AA/)  
 9. 広島広域都市圏ポイント「としポ」｜広島市公式ウェブサイト, 1月 10, 2026にアクセス、 [https://www.city.hiroshima.lg.jp/shisei/gyosei/1021776/1027274/1017041.html](https://www.city.hiroshima.lg.jp/shisei/gyosei/1021776/1027274/1017041.html)  
-10. としポについて | としポ \- 広島広域都市圏ポイント, 1月 10, 2026にアクセス、 [https://koikitoshiken.yomsubi.com/about/](https://koikitoshiken.yomsubi.com/about/)  
+10. としポについて としポ \- 広島広域都市圏ポイント, 1月 10, 2026にアクセス、 [https://koikitoshiken.yomsubi.com/about/](https://koikitoshiken.yomsubi.com/about/)  
 11. 千葉市委託事業において弊社が管理するサーバ上のデータベースへの不正アクセスについて \- フェリカポケットマーケティング株式会社, 1月 10, 2026にアクセス、 [https://www.felicapocketmk.co.jp/wp-content/uploads/2021/10/%E5%8D%83%E8%91%89%E5%B8%82%E5%A7%94%E8%A8%97%E4%BA%8B%E6%A5%AD%E3%81%AB%E3%81%8A%E3%81%84%E3%81%A6%E5%BC%8A%E7%A4%BE%E3%81%8C%E7%AE%A1%E7%90%86%E3%81%99%E3%82%8B%E3%82%B5%E3%83%BC%E3%83%90%E4%B8%8A%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%B8%E3%81%AE%E4%B8%8D%E6%AD%A3%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6.pdf](https://www.felicapocketmk.co.jp/wp-content/uploads/2021/10/%E5%8D%83%E8%91%89%E5%B8%82%E5%A7%94%E8%A8%97%E4%BA%8B%E6%A5%AD%E3%81%AB%E3%81%8A%E3%81%84%E3%81%A6%E5%BC%8A%E7%A4%BE%E3%81%8C%E7%AE%A1%E7%90%86%E3%81%99%E3%82%8B%E3%82%B5%E3%83%BC%E3%83%90%E4%B8%8A%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%B8%E3%81%AE%E4%B8%8D%E6%AD%A3%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6.pdf)  
 12. 広島広域都市圏地域共通ポイント制度に係る, 1月 10, 2026にアクセス、 [https://www.city.hiroshima.lg.jp/\_res/projects/default\_project/\_page\_/001/013/191/313731\_593860\_misc.pdf](https://www.city.hiroshima.lg.jp/_res/projects/default_project/_page_/001/013/191/313731_593860_misc.pdf)  
 13. 令和３年度当初予算のポイント \- 広島市, 1月 10, 2026にアクセス、 [https://www.city.hiroshima.lg.jp/\_res/projects/default\_project/\_page\_/001/039/426/136229.pdf](https://www.city.hiroshima.lg.jp/_res/projects/default_project/_page_/001/039/426/136229.pdf)  
