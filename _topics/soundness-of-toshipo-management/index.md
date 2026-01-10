@@ -1,17 +1,21 @@
 ---
 audio: /share-deepresearch/assets/audio/soundness-of-toshipo-management.m4a
-video: /share-deepresearch/assets/video/soundness-of-toshipo-management.mp4
 category: research
 date: 2026-01-10
 description: 広島広域都市圏ポイント「としポ」の運営実態を、委託構造、財務的持続可能性、ベンダーロックインのリスク、およびセキュリティ面から多角的に分析した包括的監査報告書。行政による公金注入の現状と、特定企業への技術的依存がもたらす健全性への疑義を浮き彫りにします。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 広島広域都市圏ポイント「としポ」の運営について調査したい。どのような仕組みで管理、運営されているのか、運営を継続させるための仕組みはどうなっているのか、特定の企業や政治団体との癒着はあるのか、など、多角的に調査して運営が健全か確認して欲しい。
 supplementary_materials:
-  - title: スライド資料
-    pdf: /share-deepresearch/topics/soundness-of-toshipo-management/slide.pdf
-tags: 
+- pdf: /share-deepresearch/topics/soundness-of-toshipo-management/slide.pdf
+  title: スライド資料
+tags:
 - 広島
 title: 広島広域都市圏ポイント「としポ」運営実態および持続可能性に関する包括的監査報告書
+video: /share-deepresearch/assets/video/soundness-of-toshipo-management.mp4
 ---
 
 # **広島広域都市圏ポイント「としポ」運営実態および持続可能性に関する包括的監査報告書**

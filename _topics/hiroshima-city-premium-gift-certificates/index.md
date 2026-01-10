@@ -1,18 +1,22 @@
 ---
 audio: /share-deepresearch/assets/audio/hiroshima-city-premium-gift-certificates.m4a
-video: /share-deepresearch/assets/video/hiroshima-city-premium-gift-certificates.mp4
 category: research
 date: 2026-01-10
 description: 2026年1月9日に広島市議会で可決されたプレミアム付き商品券事業の背景を徹底分析。市民に自己負担を求める理由を「経済波及効果の最大化」「デジタルアプリ『としポ』普及戦略」「2027年統一地方選挙への政治的思惑」の3つの観点から解明する調査報告書。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 広島市は2026年1月9日に自己負担を伴うプレミアム付き商品券の発行を広島市議会が可決で可決したが、この背景にはどのような思惑があるのだろうか？わざわざ自己負担を強いるのは何故なのか調査して欲しい。
 supplementary_materials:
-  - title: スライド資料
-    pdf: /share-deepresearch/topics/hiroshima-city-premium-gift-certificates/slide.pdf
-tags: 
+- pdf: /share-deepresearch/topics/hiroshima-city-premium-gift-certificates/slide.pdf
+  title: スライド資料
+tags:
 - 広島
 - 経済学
 title: 広島市2026年プレミアム付き商品券発行事業に関する包括的調査報告書：財政的合理性、デジタル戦略、および政治的力学の相関分析
+video: /share-deepresearch/assets/video/hiroshima-city-premium-gift-certificates.mp4
 ---
 
 # **広島市2026年プレミアム付き商品券発行事業に関する包括的調査報告書：財政的合理性、デジタル戦略、および政治的力学の相関分析**
