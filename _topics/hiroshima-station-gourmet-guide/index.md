@@ -15,6 +15,7 @@ supplementary_materials:
 - title: 広島駅 至高の生ビール探求ガイド
   url: /share-deepresearch/topics/hiroshima-station-gourmet-guide/reveal.html
 tags:
+- 広島
 - グルメ
 title: 広島駅美食家ガイド：6名様の宴席を彩る、至高の生ビールとダイニングの厳選レポート
 ---

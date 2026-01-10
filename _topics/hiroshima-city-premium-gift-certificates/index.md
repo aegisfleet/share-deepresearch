@@ -10,6 +10,7 @@ supplementary_materials:
   - title: スライド資料
     pdf: /share-deepresearch/topics/hiroshima-city-premium-gift-certificates/slide.pdf
 tags: 
+- 広島
 - 経済学
 title: 広島市2026年プレミアム付き商品券発行事業に関する包括的調査報告書：財政的合理性、デジタル戦略、および政治的力学の相関分析
 ---
