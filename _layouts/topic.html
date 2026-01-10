@@ -4,12 +4,13 @@ layout: default
 
 <article class="topic" data-type="{{ page.type | default: 'default' }}">
     <h1>{{ page.title }}</h1>
-    
+
     {% if page.tags %}
     <div class="tags">
         タグ:
         {% for tag in page.tags %}
-        <span class="tag" onclick="window.location.href='{{ '/' | relative_url }}?tag={{ tag | url_encode }}'">{{ tag }}</span>
+        <span class="tag" onclick="window.location.href='{{ '/' | relative_url }}?tag={{ tag | url_encode }}'">{{ tag
+            }}</span>
         {% endfor %}
     </div>
     {% endif %}
@@ -40,63 +41,65 @@ layout: default
     <div class="supplementary-materials">
         <h2>補足資料</h2>
         <style>
-.google-slide-container {
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%; /* Aspect Ratio 1280:720 (16:9) */
-}
+            .google-slide-container {
+                position: relative;
+                width: 100%;
+                padding-top: 56.25%;
+                /* Aspect Ratio 1280:720 (16:9) */
+            }
 
-.google-slide-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
+            .google-slide-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
 
-.pdf-container {
-  position: relative;
-  width: 100%;
-  padding-top: 62%;
-}
+            .pdf-container {
+                position: relative;
+                width: 100%;
+                padding-top: 62%;
+            }
 
-.pdf-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 98%;
-  border: 1px solid #ddd;
-}
-</style>
+            .pdf-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 98%;
+                border: 1px solid #ddd;
+            }
+        </style>
         {% for material in page.supplementary_materials %}
-            {% if material.gslide %}
-                <h3>{{ material.title }}</h3>
-                <div class="google-slide-container">
-                    <iframe src="{{ material.gslide }}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        {% if material.gslide %}
+        <h3>{{ material.title }}</h3>
+        <div class="google-slide-container">
+            <iframe src="{{ material.gslide }}" frameborder="0" allowfullscreen="true" mozallowfullscreen="true"
+                webkitallowfullscreen="true"></iframe>
+        </div>
+        {% elsif material.pdf %}
+        <h3>{{ material.title }}</h3>
+        <div id="pdf-player-{{ forloop.index }}">
+            <!-- JavaScript will dynamically load the PDF iframe or a fallback button -->
+            <noscript>
+                <div class="pdf-container">
+                    <iframe src="{{ material.pdf }}" frameborder="0" allowfullscreen="true"></iframe>
                 </div>
-            {% elsif material.pdf %}
-                <h3>{{ material.title }}</h3>
-                <div id="pdf-player-{{ forloop.index }}">
-                    <!-- JavaScript will dynamically load the PDF iframe or a fallback button -->
-                    <noscript>
-                        <div class="pdf-container">
-                            <iframe src="{{ material.pdf }}" frameborder="0" allowfullscreen="true"></iframe>
-                        </div>
-                    </noscript>
-                </div>
-                <script>
-                    (function() {
-                        const wrapper = document.getElementById('pdf-player-{{ forloop.index }}');
-                        const pdfUrl = "{{ material.pdf }}";
-                        const ua = navigator.userAgent.toLowerCase();
-                        const isMobile = /iphone|ipad|ipod|android/.test(ua);
-                        const isLine = /line/.test(ua);
+            </noscript>
+        </div>
+        <script>
+            (function () {
+                const wrapper = document.getElementById('pdf-player-{{ forloop.index }}');
+                const pdfUrl = "{{ material.pdf }}";
+                const ua = navigator.userAgent.toLowerCase();
+                const isMobile = /iphone|ipad|ipod|android/.test(ua);
+                const isLine = /line/.test(ua);
 
-                        if (isMobile || isLine) {
-                            // LINE内蔵ブラウザやモバイル環境では、iframeによる自動リダイレクトを防ぐため
-                            // 直接PDFを開くためのボタンを動的に表示します。
-                            wrapper.innerHTML = `
+                if (isMobile || isLine) {
+                    // LINE内蔵ブラウザやモバイル環境では、iframeによる自動リダイレクトを防ぐため
+                    // 直接PDFを開くためのボタンを動的に表示します。
+                    wrapper.innerHTML = `
                                 <div class="mobile-pdf-link" style="
                                     margin: 1rem 0;
                                     padding: 1.5rem;
@@ -130,19 +133,19 @@ layout: default
                                     </p>
                                 </div>
                             `;
-                        } else {
-                            // PC環境では従来通り iframe を使用
-                            wrapper.innerHTML = `
+                } else {
+                    // PC環境では従来通り iframe を使用
+                    wrapper.innerHTML = `
                                 <div class="pdf-container">
                                     <iframe src="${pdfUrl}" frameborder="0" allowfullscreen="true"></iframe>
                                 </div>
                             `;
-                        }
-                    })();
-                </script>
-            {% else %}
-                <p><a href="{{ material.url }}" target="_blank">{{ material.title }}</a></p>
-            {% endif %}
+                }
+            })();
+        </script>
+        {% else %}
+        <p><a href="{{ material.url }}" target="_blank">{{ material.title }}</a></p>
+        {% endif %}
         {% endfor %}
     </div>
     {% endif %}
@@ -190,279 +193,898 @@ layout: default
     <div class="tags">
         タグ:
         {% for tag in page.tags %}
-        <span class="tag" onclick="window.location.href='{{ '/' | relative_url }}?tag={{ tag | url_encode }}'">{{ tag }}</span>
+        <span class="tag" onclick="window.location.href='{{ '/' | relative_url }}?tag={{ tag | url_encode }}'">{{ tag
+            }}</span>
         {% endfor %}
     </div>
     {% endif %}
 </article>
 
+<!-- TTS読み上げプレーヤー -->
+<div id="tts-player" class="tts-player">
+    <div class="tts-player-header">
+        <span class="tts-player-title">🔊 テキスト読み上げ</span>
+        <button id="tts-close" class="tts-close-btn" aria-label="閉じる">✕</button>
+    </div>
+    <div class="tts-player-controls">
+        <div class="tts-buttons">
+            <button id="tts-prev" class="tts-btn" aria-label="前へ" title="前のセクション">⏮️</button>
+            <button id="tts-play" class="tts-btn tts-btn-main" aria-label="再生" title="再生/一時停止">▶️</button>
+            <button id="tts-stop" class="tts-btn" aria-label="停止" title="停止">⏹️</button>
+            <button id="tts-next" class="tts-btn" aria-label="次へ" title="次のセクション">⏭️</button>
+        </div>
+        <div class="tts-progress-container">
+            <div id="tts-progress-bar" class="tts-progress-bar">
+                <div id="tts-progress" class="tts-progress"></div>
+            </div>
+            <span id="tts-progress-text" class="tts-progress-text">0 / 0</span>
+        </div>
+        <div class="tts-speed-container">
+            <label for="tts-speed">速度:</label>
+            <select id="tts-speed" class="tts-speed-select">
+                <option value="0.5">0.5x</option>
+                <option value="0.75">0.75x</option>
+                <option value="1">1.0x</option>
+                <option value="1.25" selected>1.25x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2.0x</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- TTS起動ボタン（プレーヤーが非表示時に表示） -->
+<button id="tts-open-btn" class="tts-open-btn" aria-label="テキスト読み上げを開始">
+    🔊
+</button>
+
 <button class="scroll-to-home" aria-label="トップへ戻る"></button>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // 目次生成機能
-    function generateTableOfContents() {
-        const tocNav = document.getElementById('toc-nav');
-        const tocContainer = document.getElementById('table-of-contents');
-        // contentエリア内の見出しのみを対象にする
-        const headings = document.querySelectorAll('#main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6');
-        
-        if (headings.length === 0) {
-            tocContainer.style.display = 'none';
+    document.addEventListener('DOMContentLoaded', function () {
+        // 目次生成機能
+        function generateTableOfContents() {
+            const tocNav = document.getElementById('toc-nav');
+            const tocContainer = document.getElementById('table-of-contents');
+            // contentエリア内の見出しのみを対象にする
+            const headings = document.querySelectorAll('#main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6');
+
+            if (headings.length === 0) {
+                tocContainer.style.display = 'none';
+                return;
+            }
+
+            const tocList = document.createElement('ul');
+            tocList.className = 'toc-list';
+
+            headings.forEach((heading, index) => {
+                // IDがない場合は自動生成
+                if (!heading.id) {
+                    heading.id = 'heading-' + index;
+                }
+
+                const listItem = document.createElement('li');
+                listItem.className = 'toc-item toc-level-' + heading.tagName.toLowerCase();
+
+                const link = document.createElement('a');
+                link.href = '#' + heading.id;
+                link.textContent = heading.textContent;
+                link.className = 'toc-link';
+
+                // スムーズスクロール
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.getElementById(heading.id);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+
+                listItem.appendChild(link);
+                tocList.appendChild(listItem);
+            });
+
+            tocNav.appendChild(tocList);
+        }
+
+        // 目次の表示/非表示切り替え
+        function setupTocToggle() {
+            const tocTitle = document.querySelector('.toc-title');
+            const tocNav = document.getElementById('toc-nav');
+
+            if (tocTitle && tocNav) {
+                tocTitle.style.cursor = 'pointer';
+                tocTitle.addEventListener('click', function () {
+                    tocNav.classList.toggle('toc-collapsed');
+                    const isCollapsed = tocNav.classList.contains('toc-collapsed');
+                    tocTitle.textContent = isCollapsed ? '📋 目次 (クリックで展開)' : '📋 目次';
+                });
+            }
+        }
+
+        // アクティブな見出しのハイライト
+        function setupActiveHeadingHighlight() {
+            // contentエリア内の見出しのみを対象にする
+            const headings = document.querySelectorAll('#main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6');
+            const tocLinks = document.querySelectorAll('.toc-link');
+
+            if (headings.length === 0 || tocLinks.length === 0) return;
+
+            function updateActiveHeading() {
+                let activeHeading = null;
+                const scrollPosition = window.scrollY + 100; // オフセット
+
+                headings.forEach(heading => {
+                    if (heading.offsetTop <= scrollPosition) {
+                        activeHeading = heading;
+                    }
+                });
+
+                // すべてのリンクからactiveクラスを削除
+                tocLinks.forEach(link => link.classList.remove('toc-active'));
+
+                // アクティブな見出しに対応するリンクにactiveクラスを追加
+                if (activeHeading) {
+                    const activeLink = document.querySelector('.toc-link[href="#' + activeHeading.id + '"]');
+                    if (activeLink) {
+                        activeLink.classList.add('toc-active');
+                    }
+                }
+            }
+
+            // スクロール時にアクティブな見出しを更新
+            window.addEventListener('scroll', updateActiveHeading);
+            updateActiveHeading(); // 初期実行
+        }
+
+        // 初期化
+        generateTableOfContents();
+        setupTocToggle();
+        setupActiveHeadingHighlight();
+    });
+</script>
+
+<!-- TTS読み上げ機能のスクリプト -->
+<script>
+    (function () {
+        // Web Speech API対応チェック
+        if (!('speechSynthesis' in window)) {
+            console.warn('Web Speech API is not supported in this browser.');
+            const openBtn = document.getElementById('tts-open-btn');
+            if (openBtn) openBtn.style.display = 'none';
             return;
         }
 
-        const tocList = document.createElement('ul');
-        tocList.className = 'toc-list';
-        
-        headings.forEach((heading, index) => {
-            // IDがない場合は自動生成
-            if (!heading.id) {
-                heading.id = 'heading-' + index;
+        class TextToSpeechReader {
+            constructor() {
+                this.synth = window.speechSynthesis;
+                this.blocks = [];
+                this.currentBlockIndex = 0;
+                this.isPlaying = false;
+                this.isPaused = false;
+                this.rate = 1.25;
+                this.voice = null;
+                this.currentUtterance = null;
+                this.utteranceId = 0;  // 発話のキャンセル検出用ID
+
+                this.initElements();
+                this.extractTextBlocks();
+                this.bindEvents();
+                this.loadVoices();
             }
-            
-            const listItem = document.createElement('li');
-            listItem.className = 'toc-item toc-level-' + heading.tagName.toLowerCase();
-            
-            const link = document.createElement('a');
-            link.href = '#' + heading.id;
-            link.textContent = heading.textContent;
-            link.className = 'toc-link';
-            
-            // スムーズスクロール
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.getElementById(heading.id);
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+
+            initElements() {
+                this.player = document.getElementById('tts-player');
+                this.openBtn = document.getElementById('tts-open-btn');
+                this.closeBtn = document.getElementById('tts-close');
+                this.playBtn = document.getElementById('tts-play');
+                this.stopBtn = document.getElementById('tts-stop');
+                this.prevBtn = document.getElementById('tts-prev');
+                this.nextBtn = document.getElementById('tts-next');
+                this.progressBar = document.getElementById('tts-progress');
+                this.progressText = document.getElementById('tts-progress-text');
+                this.speedSelect = document.getElementById('tts-speed');
+            }
+
+            extractTextBlocks() {
+                const mainContent = document.getElementById('main-content');
+                if (!mainContent) return;
+
+                // DOM順序で全ての読み上げ対象要素を取得
+                const allElements = mainContent.querySelectorAll(
+                    'h1, h2, h3, h4, h5, h6, p, li, blockquote, table'
+                );
+
+                allElements.forEach((el) => {
+                    // コードブロック内の要素はスキップ
+                    if (el.closest('pre') || el.closest('code')) return;
+
+                    // テーブルの場合は特別処理
+                    if (el.tagName === 'TABLE') {
+                        const caption = el.querySelector('caption');
+                        const headerRow = el.querySelector('thead tr, tr:first-child');
+                        let text = caption ? caption.innerText + '。' : '表があります。';
+
+                        // ヘッダー行のテキストを取得
+                        if (headerRow) {
+                            const headers = Array.from(headerRow.querySelectorAll('th, td'))
+                                .map(cell => cell.innerText.trim())
+                                .filter(t => t.length > 0);
+                            if (headers.length > 0) {
+                                text += '項目は、' + headers.join('、') + 'です。';
+                            }
+                        }
+
+                        this.blocks.push({
+                            index: this.blocks.length,
+                            element: el,
+                            text: text
+                        });
+                        return;
+                    }
+
+                    // テーブル内の要素はスキップ（テーブル自体で処理済み）
+                    if (el.closest('table')) return;
+
+                    const text = el.innerText.trim();
+                    if (text && text.length > 0) {
+                        this.blocks.push({
+                            index: this.blocks.length,
+                            element: el,
+                            text: text
+                        });
+                    }
+                });
+
+                this.updateProgress();
+            }
+
+            loadVoices() {
+                const setVoice = () => {
+                    const voices = this.synth.getVoices();
+                    // 日本語の音声を探す
+                    const japaneseVoice = voices.find(v => v.lang.startsWith('ja'));
+                    if (japaneseVoice) {
+                        this.voice = japaneseVoice;
+                    }
+                };
+
+                setVoice();
+                if (speechSynthesis.onvoiceschanged !== undefined) {
+                    speechSynthesis.onvoiceschanged = setVoice;
                 }
-            });
-            
-            listItem.appendChild(link);
-            tocList.appendChild(listItem);
+            }
+
+            bindEvents() {
+                // プレーヤーの開閉
+                this.openBtn.addEventListener('click', () => this.showPlayer());
+                this.closeBtn.addEventListener('click', () => this.hidePlayer());
+
+                // 再生コントロール
+                this.playBtn.addEventListener('click', () => this.togglePlay());
+                this.stopBtn.addEventListener('click', () => this.stop());
+                this.prevBtn.addEventListener('click', () => this.prev());
+                this.nextBtn.addEventListener('click', () => this.next());
+
+                // 速度変更
+                this.speedSelect.addEventListener('change', (e) => {
+                    this.rate = parseFloat(e.target.value);
+                    // 再生中なら再読み上げ
+                    if (this.isPlaying && !this.isPaused) {
+                        this.synth.cancel();
+                        this.speakBlock(this.currentBlockIndex);
+                    }
+                });
+
+                // キーボードショートカット
+                document.addEventListener('keydown', (e) => {
+                    // 入力フィールド内での操作は無視
+                    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+                    if (e.code === 'Space' && this.player.classList.contains('visible')) {
+                        e.preventDefault();
+                        this.togglePlay();
+                    }
+                });
+
+                // プログレスバーのクリックでジャンプ
+                document.getElementById('tts-progress-bar').addEventListener('click', (e) => {
+                    if (this.blocks.length === 0) return;
+                    const rect = e.target.getBoundingClientRect();
+                    const percent = (e.clientX - rect.left) / rect.width;
+                    const targetIndex = Math.floor(percent * this.blocks.length);
+                    this.jumpTo(targetIndex);
+                });
+            }
+
+            showPlayer() {
+                this.player.classList.add('visible');
+                this.openBtn.classList.add('hidden');
+            }
+
+            hidePlayer() {
+                this.stop();
+                this.player.classList.remove('visible');
+                this.openBtn.classList.remove('hidden');
+            }
+
+            togglePlay() {
+                if (this.isPlaying) {
+                    if (this.isPaused) {
+                        this.resume();
+                    } else {
+                        this.pause();
+                    }
+                } else {
+                    this.play();
+                }
+            }
+
+            play() {
+                if (this.blocks.length === 0) return;
+                this.isPlaying = true;
+                this.isPaused = false;
+                this.playBtn.textContent = '⏸️';
+                this.speakBlock(this.currentBlockIndex);
+            }
+
+            pause() {
+                this.synth.pause();
+                this.isPaused = true;
+                this.playBtn.textContent = '▶️';
+            }
+
+            resume() {
+                this.synth.resume();
+                this.isPaused = false;
+                this.playBtn.textContent = '⏸️';
+            }
+
+            stop() {
+                this.utteranceId++;  // 古いonendを無効化
+                this.synth.cancel();
+                this.isPlaying = false;
+                this.isPaused = false;
+                this.currentBlockIndex = 0;
+                this.playBtn.textContent = '▶️';
+                this.removeAllHighlights();
+                this.updateProgress();
+            }
+
+            prev() {
+                if (this.currentBlockIndex > 0) {
+                    this.jumpTo(this.currentBlockIndex - 1);
+                }
+            }
+
+            next() {
+                if (this.currentBlockIndex < this.blocks.length - 1) {
+                    this.jumpTo(this.currentBlockIndex + 1);
+                }
+            }
+
+            jumpTo(index) {
+                if (index < 0 || index >= this.blocks.length) return;
+
+                // 再生中または一時停止中なら、ジャンプ後も再生を続ける
+                const shouldPlay = this.isPlaying;
+
+                // 現在の発話をキャンセル（これにより古いonendが無効になる）
+                this.utteranceId++;
+                this.synth.cancel();
+                this.removeAllHighlights();
+                this.currentBlockIndex = index;
+                this.updateProgress();
+
+                if (shouldPlay) {
+                    // 一時停止状態を解除して再生
+                    this.isPaused = false;
+                    this.playBtn.textContent = '⏸️';
+                    this.speakBlock(index);
+                } else {
+                    // ジャンプ先をハイライトとスクロール表示
+                    this.highlightBlock(this.blocks[index].element);
+                    this.scrollToBlock(this.blocks[index].element);
+                }
+            }
+
+            speakBlock(index) {
+                if (index >= this.blocks.length) {
+                    this.stop();
+                    return;
+                }
+
+                const block = this.blocks[index];
+                const utterance = new SpeechSynthesisUtterance(block.text);
+                utterance.lang = 'ja-JP';
+                utterance.rate = this.rate;
+                if (this.voice) utterance.voice = this.voice;
+
+                this.currentUtterance = utterance;
+
+                // この発話のIDを記録
+                const thisUtteranceId = this.utteranceId;
+
+                // ハイライト適用
+                this.removeAllHighlights();
+                this.highlightBlock(block.element);
+
+                // 自動スクロール
+                this.scrollToBlock(block.element);
+
+                // 進捗更新
+                this.updateProgress();
+
+                // 読み上げ完了時
+                utterance.onend = () => {
+                    // この発話がキャンセルされた（別の発話が開始された）場合は何もしない
+                    if (thisUtteranceId !== this.utteranceId) return;
+                    if (!this.isPlaying) return;
+
+                    this.removeHighlight(block.element);
+                    if (this.currentBlockIndex < this.blocks.length - 1) {
+                        this.currentBlockIndex++;
+                        this.speakBlock(this.currentBlockIndex);
+                    } else {
+                        this.stop();
+                    }
+                };
+
+                // エラー時
+                utterance.onerror = (event) => {
+                    // この発話がキャンセルされた場合は何もしない
+                    if (thisUtteranceId !== this.utteranceId) return;
+
+                    // 'interrupted' エラーはキャンセルによるものなので無視
+                    if (event.error === 'interrupted') return;
+
+                    console.error('SpeechSynthesis error:', event.error);
+                    // エラーでも次に進む試み
+                    if (this.isPlaying && this.currentBlockIndex < this.blocks.length - 1) {
+                        this.currentBlockIndex++;
+                        setTimeout(() => this.speakBlock(this.currentBlockIndex), 100);
+                    } else {
+                        this.stop();
+                    }
+                };
+
+                this.synth.speak(utterance);
+            }
+
+            highlightBlock(element) {
+                element.classList.add('tts-current-block');
+            }
+
+            removeHighlight(element) {
+                element.classList.remove('tts-current-block');
+            }
+
+            removeAllHighlights() {
+                document.querySelectorAll('.tts-current-block').forEach(el => {
+                    el.classList.remove('tts-current-block');
+                });
+            }
+
+            scrollToBlock(element) {
+                const rect = element.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const targetY = scrollTop + rect.top - (window.innerHeight / 3);
+
+                window.scrollTo({
+                    top: Math.max(0, targetY),
+                    behavior: 'smooth'
+                });
+            }
+
+            updateProgress() {
+                const total = this.blocks.length;
+                const current = this.currentBlockIndex + 1;
+                const percent = total > 0 ? (current / total) * 100 : 0;
+
+                this.progressBar.style.width = `${percent}%`;
+                this.progressText.textContent = `${current} / ${total}`;
+            }
+        }
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', () => {
+            new TextToSpeechReader();
         });
-        
-        tocNav.appendChild(tocList);
-    }
-
-    // 目次の表示/非表示切り替え
-    function setupTocToggle() {
-        const tocTitle = document.querySelector('.toc-title');
-        const tocNav = document.getElementById('toc-nav');
-        
-        if (tocTitle && tocNav) {
-            tocTitle.style.cursor = 'pointer';
-            tocTitle.addEventListener('click', function() {
-                tocNav.classList.toggle('toc-collapsed');
-                const isCollapsed = tocNav.classList.contains('toc-collapsed');
-                tocTitle.textContent = isCollapsed ? '📋 目次 (クリックで展開)' : '📋 目次';
-            });
-        }
-    }
-
-    // アクティブな見出しのハイライト
-    function setupActiveHeadingHighlight() {
-        // contentエリア内の見出しのみを対象にする
-        const headings = document.querySelectorAll('#main-content h1, #main-content h2, #main-content h3, #main-content h4, #main-content h5, #main-content h6');
-        const tocLinks = document.querySelectorAll('.toc-link');
-        
-        if (headings.length === 0 || tocLinks.length === 0) return;
-
-        function updateActiveHeading() {
-            let activeHeading = null;
-            const scrollPosition = window.scrollY + 100; // オフセット
-
-            headings.forEach(heading => {
-                if (heading.offsetTop <= scrollPosition) {
-                    activeHeading = heading;
-                }
-            });
-
-            // すべてのリンクからactiveクラスを削除
-            tocLinks.forEach(link => link.classList.remove('toc-active'));
-
-            // アクティブな見出しに対応するリンクにactiveクラスを追加
-            if (activeHeading) {
-                const activeLink = document.querySelector('.toc-link[href="#' + activeHeading.id + '"]');
-                if (activeLink) {
-                    activeLink.classList.add('toc-active');
-                }
-            }
-        }
-
-        // スクロール時にアクティブな見出しを更新
-        window.addEventListener('scroll', updateActiveHeading);
-        updateActiveHeading(); // 初期実行
-    }
-
-    // 初期化
-    generateTableOfContents();
-    setupTocToggle();
-    setupActiveHeadingHighlight();
-});
+    })();
 </script>
 
 <style>
-/* 目次のスタイル */
-.toc-container {
-    background: var(--card-background, #f8f9fa);
-    border: 1px solid var(--secondary-color, #e9ecef);
-    border-radius: 8px;
-    padding: 1rem;
-    margin: 1.5rem 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.toc-title {
-    margin: 0 0 1rem 0;
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: var(--primary-color, #0366d6);
-    border-bottom: 2px solid var(--primary-color, #0366d6);
-    padding-bottom: 0.5rem;
-    user-select: none;
-}
-
-.toc-nav {
-    transition: all 0.3s ease;
-}
-
-.toc-nav.toc-collapsed {
-    display: none;
-}
-
-.toc-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.toc-item {
-    margin: 0.3rem 0;
-}
-
-.toc-link {
-    display: block;
-    padding: 0.4rem 0.8rem;
-    text-decoration: none;
-    color: var(--text-color, #333);
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    font-size: 1.1rem;
-}
-
-.toc-link:hover {
-    background-color: var(--secondary-color, #e9ecef);
-    color: var(--primary-color, #0366d6);
-    text-decoration: none;
-}
-
-/* ライトテーマでの目次文字色を明示的に黒に設定 */
-:root .toc-link,
-[data-theme="light"] .toc-link {
-    color: #333333;
-}
-
-:root .toc-link:hover,
-[data-theme="light"] .toc-link:hover {
-    color: #333333;
-}
-
-.toc-link.toc-active {
-    background-color: var(--primary-color, #0366d6);
-    color: white;
-    font-weight: bold;
-}
-
-/* 見出しレベルに応じたインデント */
-.toc-level-h1 .toc-link {
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-.toc-level-h2 .toc-link {
-    padding-left: 1.5rem;
-    font-size: 1.1rem;
-}
-
-.toc-level-h3 .toc-link {
-    padding-left: 2.5rem;
-    font-size: 1rem;
-}
-
-.toc-level-h4 .toc-link {
-    padding-left: 3.5rem;
-    font-size: 0.95rem;
-}
-
-.toc-level-h5 .toc-link {
-    padding-left: 4.5rem;
-    font-size: 0.9rem;
-}
-
-.toc-level-h6 .toc-link {
-    padding-left: 5.5rem;
-    font-size: 0.9rem;
-}
-
-/* レスポンシブ対応 */
-@media (max-width: 768px) {
+    /* 目次のスタイル */
     .toc-container {
-        margin: 1rem 0;
-        padding: 0.8rem;
+        background: var(--card-background, #f8f9fa);
+        border: 1px solid var(--secondary-color, #e9ecef);
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1.5rem 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    
+
     .toc-title {
-        font-size: 1rem;
+        margin: 0 0 1rem 0;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: var(--primary-color, #0366d6);
+        border-bottom: 2px solid var(--primary-color, #0366d6);
+        padding-bottom: 0.5rem;
+        user-select: none;
     }
-    
+
+    .toc-nav {
+        transition: all 0.3s ease;
+    }
+
+    .toc-nav.toc-collapsed {
+        display: none;
+    }
+
+    .toc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .toc-item {
+        margin: 0.3rem 0;
+    }
+
     .toc-link {
-        padding: 0.3rem 0.6rem;
+        display: block;
+        padding: 0.4rem 0.8rem;
+        text-decoration: none;
+        color: var(--text-color, #333);
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        font-size: 1.1rem;
+    }
+
+    .toc-link:hover {
+        background-color: var(--secondary-color, #e9ecef);
+        color: var(--primary-color, #0366d6);
+        text-decoration: none;
+    }
+
+    /* ライトテーマでの目次文字色を明示的に黒に設定 */
+    :root .toc-link,
+    [data-theme="light"] .toc-link {
+        color: #333333;
+    }
+
+    :root .toc-link:hover,
+    [data-theme="light"] .toc-link:hover {
+        color: #333333;
+    }
+
+    .toc-link.toc-active {
+        background-color: var(--primary-color, #0366d6);
+        color: white;
+        font-weight: bold;
+    }
+
+    /* 見出しレベルに応じたインデント */
+    .toc-level-h1 .toc-link {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .toc-level-h2 .toc-link {
+        padding-left: 1.5rem;
+        font-size: 1.1rem;
+    }
+
+    .toc-level-h3 .toc-link {
+        padding-left: 2.5rem;
         font-size: 1rem;
     }
-    
-    .toc-level-h2 .toc-link {
-        padding-left: 1rem;
+
+    .toc-level-h4 .toc-link {
+        padding-left: 3.5rem;
         font-size: 0.95rem;
     }
-    
-    .toc-level-h3 .toc-link {
-        padding-left: 1.5rem;
+
+    .toc-level-h5 .toc-link {
+        padding-left: 4.5rem;
         font-size: 0.9rem;
     }
-    
-    .toc-level-h4 .toc-link {
-        padding-left: 2rem;
-        font-size: 0.85rem;
-    }
-    
-    .toc-level-h5 .toc-link,
+
     .toc-level-h6 .toc-link {
-        padding-left: 2.5rem;
-        font-size: 0.85rem;
+        padding-left: 5.5rem;
+        font-size: 0.9rem;
     }
-}
 
-/* ダークテーマ対応 */
-[data-theme="dark"] .toc-container {
-    background: var(--card-background);
-    border-color: var(--secondary-color);
-}
+    /* レスポンシブ対応 */
+    @media (max-width: 768px) {
+        .toc-container {
+            margin: 1rem 0;
+            padding: 0.8rem;
+        }
 
-[data-theme="dark"] .toc-link {
-    color: var(--text-color);
-}
+        .toc-title {
+            font-size: 1rem;
+        }
 
-[data-theme="dark"] .toc-link:hover {
-    background-color: var(--tag-hover-bg);
-    color: var(--text-color);
-}
+        .toc-link {
+            padding: 0.3rem 0.6rem;
+            font-size: 1rem;
+        }
 
-[data-theme="dark"] .toc-link.toc-active {
-    background-color: var(--primary-color);
-    color: white;
-}
+        .toc-level-h2 .toc-link {
+            padding-left: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .toc-level-h3 .toc-link {
+            padding-left: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .toc-level-h4 .toc-link {
+            padding-left: 2rem;
+            font-size: 0.85rem;
+        }
+
+        .toc-level-h5 .toc-link,
+        .toc-level-h6 .toc-link {
+            padding-left: 2.5rem;
+            font-size: 0.85rem;
+        }
+    }
+
+    /* ダークテーマ対応 */
+    [data-theme="dark"] .toc-container {
+        background: var(--card-background);
+        border-color: var(--secondary-color);
+    }
+
+    [data-theme="dark"] .toc-link {
+        color: var(--text-color);
+    }
+
+    [data-theme="dark"] .toc-link:hover {
+        background-color: var(--tag-hover-bg);
+        color: var(--text-color);
+    }
+
+    [data-theme="dark"] .toc-link.toc-active {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    /* TTS読み上げプレーヤーのスタイル */
+    .tts-player {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--card-background);
+        border-top: 2px solid var(--primary-color);
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        padding: 0.75rem 1rem;
+    }
+
+    .tts-player.visible {
+        transform: translateY(0);
+    }
+
+    .tts-player-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .tts-player-title {
+        font-weight: bold;
+        font-size: 0.9rem;
+        color: var(--text-color);
+    }
+
+    .tts-close-btn {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: var(--secondary-color);
+        padding: 0.25rem;
+        line-height: 1;
+        transition: color 0.2s;
+    }
+
+    .tts-close-btn:hover {
+        color: var(--primary-color);
+    }
+
+    .tts-player-controls {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .tts-buttons {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .tts-btn {
+        background: var(--tag-bg);
+        border: 1px solid var(--tag-border);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+    }
+
+    .tts-btn:hover {
+        background: var(--tag-hover-bg);
+        transform: scale(1.05);
+    }
+
+    .tts-btn-main {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+        width: 48px;
+        height: 48px;
+        font-size: 1.3rem;
+    }
+
+    .tts-btn-main:hover {
+        background: var(--link-hover-color);
+    }
+
+    .tts-progress-container {
+        flex: 1;
+        min-width: 150px;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .tts-progress-bar {
+        flex: 1;
+        height: 8px;
+        background: var(--tag-bg);
+        border-radius: 4px;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .tts-progress {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary-color), var(--link-hover-color));
+        border-radius: 4px;
+        width: 0%;
+        transition: width 0.3s ease;
+    }
+
+    .tts-progress-text {
+        font-size: 0.8rem;
+        color: var(--secondary-color);
+        white-space: nowrap;
+        min-width: 50px;
+    }
+
+    .tts-speed-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .tts-speed-container label {
+        font-size: 0.85rem;
+        color: var(--secondary-color);
+    }
+
+    .tts-speed-select {
+        background: var(--card-background);
+        border: 1px solid var(--tag-border);
+        border-radius: 4px;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.85rem;
+        color: var(--text-color);
+        cursor: pointer;
+    }
+
+    /* TTS起動ボタン */
+    .tts-open-btn {
+        position: fixed;
+        bottom: 80px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .tts-open-btn:hover {
+        transform: scale(1.1);
+        background: var(--link-hover-color);
+    }
+
+    .tts-open-btn.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* 読み上げ中のブロックのハイライト */
+    .tts-current-block {
+        background: linear-gradient(90deg, rgba(255, 119, 51, 0.15) 0%, rgba(255, 119, 51, 0.08) 100%);
+        border-left: 4px solid var(--primary-color);
+        padding-left: 1rem !important;
+        margin-left: -1rem;
+        border-radius: 0 8px 8px 0;
+        transition: all 0.3s ease;
+    }
+
+    /* ダークテーマ対応 */
+    [data-theme="dark"] .tts-player {
+        background: var(--card-background);
+        border-top-color: var(--primary-color);
+    }
+
+    [data-theme="dark"] .tts-current-block {
+        background: linear-gradient(90deg, rgba(255, 119, 51, 0.2) 0%, rgba(255, 119, 51, 0.1) 100%);
+    }
+
+    /* レスポンシブ対応 */
+    @media (max-width: 768px) {
+        .tts-player {
+            padding: 0.5rem;
+        }
+
+        .tts-player-controls {
+            gap: 0.5rem;
+        }
+
+        .tts-btn {
+            width: 36px;
+            height: 36px;
+            font-size: 1rem;
+        }
+
+        .tts-btn-main {
+            width: 42px;
+            height: 42px;
+            font-size: 1.2rem;
+        }
+
+        .tts-progress-container {
+            min-width: 100px;
+        }
+
+        .tts-speed-container {
+            display: none;
+        }
+
+        .tts-open-btn {
+            bottom: 140px;
+            width: 45px;
+            height: 45px;
+            font-size: 1.3rem;
+        }
+    }
 </style>
