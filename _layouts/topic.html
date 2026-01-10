@@ -1142,12 +1142,30 @@ layout: default
 
     /* 読み上げ中のブロックのハイライト */
     .tts-current-block {
-        background: linear-gradient(90deg, rgba(255, 119, 51, 0.15) 0%, rgba(255, 119, 51, 0.08) 100%);
-        border-left: 4px solid var(--primary-color);
-        padding-left: 1rem !important;
-        margin-left: -1rem;
-        border-radius: 0 8px 8px 0;
-        transition: all 0.3s ease;
+        background: rgba(255, 119, 51, 0.08);
+        /* 背景を極薄く */
+        position: relative;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        /* 軽い影のみ、線は擬似要素で描画 */
+        transform: translateY(-2px);
+        /* 少し浮き上がらせる */
+        border-radius: 8px;
+        /* Hタグのデザインに合わせる */
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1;
+    }
+
+    .tts-current-block::after {
+        content: "";
+        position: absolute;
+        left: -12px;
+        /* さらに外側に配置して競合を避ける */
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background-color: var(--primary-color);
+        border-radius: 2px;
+        opacity: 1;
     }
 
     /* ダークテーマ対応 */
@@ -1157,7 +1175,7 @@ layout: default
     }
 
     [data-theme="dark"] .tts-current-block {
-        background: linear-gradient(90deg, rgba(255, 119, 51, 0.2) 0%, rgba(255, 119, 51, 0.1) 100%);
+        background: rgba(255, 119, 51, 0.15);
     }
 
     /* レスポンシブ対応 */
