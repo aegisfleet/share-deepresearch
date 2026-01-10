@@ -77,9 +77,69 @@ layout: default
                 </div>
             {% elsif material.pdf %}
                 <h3>{{ material.title }}</h3>
-                <div class="pdf-container">
-                    <iframe src="{{ material.pdf }}" frameborder="0" allowfullscreen="true"></iframe>
+                <div id="pdf-player-{{ forloop.index }}">
+                    <!-- JavaScript will dynamically load the PDF iframe or a fallback button -->
+                    <noscript>
+                        <div class="pdf-container">
+                            <iframe src="{{ material.pdf }}" frameborder="0" allowfullscreen="true"></iframe>
+                        </div>
+                    </noscript>
                 </div>
+                <script>
+                    (function() {
+                        const wrapper = document.getElementById('pdf-player-{{ forloop.index }}');
+                        const pdfUrl = "{{ material.pdf }}";
+                        const ua = navigator.userAgent.toLowerCase();
+                        const isMobile = /iphone|ipad|ipod|android/.test(ua);
+                        const isLine = /line/.test(ua);
+
+                        if (isMobile || isLine) {
+                            // LINE内蔵ブラウザやモバイル環境では、iframeによる自動リダイレクトを防ぐため
+                            // 直接PDFを開くためのボタンを動的に表示します。
+                            wrapper.innerHTML = `
+                                <div class="mobile-pdf-link" style="
+                                    margin: 1rem 0;
+                                    padding: 1.5rem;
+                                    background: var(--card-background, #f8f9fa);
+                                    border: 2px dashed var(--primary-color, #0366d6);
+                                    border-radius: 12px;
+                                    text-align: center;
+                                    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                                ">
+                                    <p style="font-weight: bold; margin-bottom: 1rem; color: var(--text-color);">
+                                        資料（PDF）の閲覧はこちら
+                                    </p>
+                                    <a href="${pdfUrl}" target="_blank" style="
+                                        display: inline-flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        padding: 12px 24px;
+                                        background: var(--primary-color, #0366d6);
+                                        color: white;
+                                        border-radius: 50px;
+                                        text-decoration: none;
+                                        font-weight: bold;
+                                        transition: transform 0.2s, box-shadow 0.2s;
+                                        box-shadow: 0 4px 15px rgba(3, 102, 214, 0.3);
+                                    " onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 6px 20px rgba(3, 102, 214, 0.4)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(3, 102, 214, 0.3)';">
+                                        <span style="font-size: 1.2rem; margin-right: 8px;">📄</span>
+                                        PDF資料を別タブで開く
+                                    </a>
+                                    <p style="font-size: 0.8rem; color: #666; margin-top: 0.8rem;">
+                                        ※モバイル環境に最適化するため、別画面で表示します
+                                    </p>
+                                </div>
+                            `;
+                        } else {
+                            // PC環境では従来通り iframe を使用
+                            wrapper.innerHTML = `
+                                <div class="pdf-container">
+                                    <iframe src="${pdfUrl}" frameborder="0" allowfullscreen="true"></iframe>
+                                </div>
+                            `;
+                        }
+                    })();
+                </script>
             {% else %}
                 <p><a href="{{ material.url }}" target="_blank">{{ material.title }}</a></p>
             {% endif %}
