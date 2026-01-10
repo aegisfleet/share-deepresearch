@@ -600,6 +600,11 @@ layout: default
 
             play() {
                 if (this.blocks.length === 0) return;
+
+                // 初回再生時や詰まった状態を解消するため、エンジンをリセット
+                this.synth.cancel();
+                this.synth.resume();
+
                 this.isPlaying = true;
                 this.isPaused = false;
                 this.playBtn.textContent = '⏸️';
