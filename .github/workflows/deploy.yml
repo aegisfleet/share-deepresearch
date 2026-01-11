@@ -32,9 +32,7 @@ jobs:
 
       - name: Pre-process Markdown (Bold brackets replacement)
         run: |
-          # **「...」** を <strong>「...」</strong> に置換
-          # \*\*「 も含む（意図しないエスケープの救済）
-          find _topics -name "*.md" -print0 | xargs -0 sed -i -E 's/\\\*\*「/<strong>「/g; s/(\*\*)?「([^」]+)」(\*\*)?/<strong>「\2」<\/strong>/g'
+          python3 scripts/fix_bold_brackets.py _topics
 
       - name: Build with Jekyll
         run: bundle exec jekyll build
