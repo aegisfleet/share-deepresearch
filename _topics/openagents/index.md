@@ -4,9 +4,9 @@ category: ai
 date: 2025-10-11
 description: OpenAgentsは、AIエージェント間の協調を促進するためのフレームワークであり、マルチエージェントシステムの未来に向けた重要なステップです。
 ga4_metrics:
-  avgSessionDuration: 6.560527
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: OpenAgentsについて調べて欲しい。今後どのようにAI同士の連携を実装すれば良いだろうか。
 tags:
