@@ -3,8 +3,8 @@ audio: /share-deepresearch/assets/audio/java-unit-test-github-copilot.mp3
 category: ai
 date: 2025-06-05
 ga4_metrics:
-  avgSessionDuration: 139.50897823391813
-  pageViews: 154
+  avgSessionDuration: 137.4039974882353
+  pageViews: 153
   users: 82
 layout: topic
 prompt: Javaのユニットテストを自動で作成したい。GitHub Copilotでユニットテストを作成する方法をまとめて欲しい。
