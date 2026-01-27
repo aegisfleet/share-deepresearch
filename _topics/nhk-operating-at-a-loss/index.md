@@ -1,17 +1,21 @@
 ---
 audio: /share-deepresearch/assets/audio/nhk-operating-at-a-loss.m4a
-video: /share-deepresearch/assets/video/nhk-operating-at-a-loss.mp4
 category: research
 date: 2026-01-27
 description: NHKの構造的な赤字経営の背景と、2025年のインターネット業務必須化、放送波の削減、英国BBCの事例分析を通じて、2030年代に向けた公共放送の持続可能性と未来像を包括的に解説します。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: NHKが赤字経営が続いている状況だが、このまま赤字が続いた場合のNHKの行く末についてまとめて欲しい。
 supplementary_materials:
-  - title: スライド資料
-    pdf: /share-deepresearch/topics/nhk-operating-at-a-loss/slide.pdf
-tags: 
+- pdf: /share-deepresearch/topics/nhk-operating-at-a-loss/slide.pdf
+  title: スライド資料
+tags:
 - 経営
 title: NHKの構造的赤字と2030年代の存続モデル：公共放送の財政的持続可能性と機能変容に関する包括的分析
+video: /share-deepresearch/assets/video/nhk-operating-at-a-loss.mp4
 ---
 
 # **NHKの構造的赤字と2030年代の存続モデル：公共放送の財政的持続可能性と機能変容に関する包括的分析**
