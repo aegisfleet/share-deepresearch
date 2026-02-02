@@ -4,9 +4,9 @@ category: study
 date: 2025-05-25
 description: 化学基礎は、私たちの身の回りにある物質がどのように成り立ち、どのように変化するのかを理解するための、いわば「物質の科学」への入り口です。洗剤や食品、医薬品といった日用品から、新しい材料の開発や環境問題の解決に至るまで、化学は私たちの生活や社会と深く結びついています。新学習指導要領においても、「化学と人間生活」が導入として位置づけられ、化学の学習の動機付けが図られています。
 ga4_metrics:
-  avgSessionDuration: 185.6430868
-  pageViews: 9
-  users: 9
+  avgSessionDuration: 206.27009644444445
+  pageViews: 8
+  users: 8
 layout: topic
 prompt: 化学基礎に出てくる単語の復習にしようする資料を作成したい。高校生が理解できる内容で丁寧にまとめて欲しい。
 supplementary_materials:
