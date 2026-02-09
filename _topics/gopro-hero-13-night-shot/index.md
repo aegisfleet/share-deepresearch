@@ -4,9 +4,9 @@ category: research
 date: 2025-07-15
 description: GoPro HERO 13を夜間撮影で使う際の最適なセッティングを調べ、手持ちで歩きながら撮影するためのガイド。
 ga4_metrics:
-  avgSessionDuration: 583.3812801818182
-  pageViews: 13
-  users: 10
+  avgSessionDuration: 552.5433969
+  pageViews: 11
+  users: 9
 layout: topic
 prompt: GoPro HERO 13を夜間撮影で使う際の最適なセッティングを調べて欲しい。手持ちで歩きながら撮影する想定となる。
 supplementary_materials:
