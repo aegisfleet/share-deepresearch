@@ -5,8 +5,8 @@ date: 2025-05-28
 description: 本レポートは、継続的インテグレーション/継続的デリバリー（CI/CD）を主体とするチームが、より包括的なDevOpsモデルへの移行を目指す際に直面する課題と機会を分析する。CI/CDはDevOpsの重要な技術的要素であるが、真のDevOpsトランスフォーメーションは、単なるパイプラインの自動化を超え、文化、プロセス、テクノロジー全般にわたる戦略的進化を必要とする。
 ga4_metrics:
   avgSessionDuration: 0.0
-  pageViews: 1
-  users: 1
+  pageViews: 2
+  users: 2
 layout: topic
 prompt: CI/CDを主体に行なっているチームがDevOpsを目指している。それぞれの役割を比較してDevOpsを行うにあたり必要なものが何になるのかまとめて欲しい。
 supplementary_materials:
