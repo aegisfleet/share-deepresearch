@@ -4,7 +4,7 @@ category: research
 date: 2025-11-25
 description: 日本のデジタル赤字の現状と、これからの見通しについての包括的な調査報告書です。
 ga4_metrics:
-  avgSessionDuration: 267.95064683333334
+  avgSessionDuration: 229.67198299999998
   pageViews: 10
   users: 6
 layout: topic
