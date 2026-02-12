@@ -4,9 +4,9 @@ category: ai
 date: 2025/07/31
 description: 楽天AIは、楽天エコシステムとの深い統合により、他のAIツールと比較して独自の競争優位性を持つ。
 ga4_metrics:
-  avgSessionDuration: 28.576782
-  pageViews: 3
-  users: 2
+  avgSessionDuration: 42.70344
+  pageViews: 2
+  users: 1
 layout: topic
 prompt: 楽天がサービスを開始したRakuten AIというサービスが、ChatGPTやGeminiなど他のツールと比較してどのような点で優れているのか調査して欲しい。明確な優位性が無い場合はその旨を報告して。
 supplementary_materials:
