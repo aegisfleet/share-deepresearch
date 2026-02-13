@@ -3,7 +3,7 @@ audio: /share-deepresearch/assets/audio/openhands-mcp.mp3
 category: ai
 date: 2025-05-27
 ga4_metrics:
-  avgSessionDuration: 116.65797125
+  avgSessionDuration: 93.32637700000001
   pageViews: 4
   users: 2
 layout: topic
