@@ -4,8 +4,8 @@ category: research
 date: 2025-06-27
 description: Steamサマーセール2025で割引率が高く、評価の高いゲームをジャンル別にまとめ、専門家の視点から厳選したマストバイゲームを紹介します。アクション、RPG、シューター、インディーゲームなど、多彩なジャンルのおすすめタイトルを徹底解説。
 ga4_metrics:
-  avgSessionDuration: 6.35904
-  pageViews: 1
+  avgSessionDuration: 188.263926
+  pageViews: 2
   users: 1
 layout: topic
 prompt: Steamサマーセールで割引率が高く、評価の高いゲームをジャンル別にまとめて欲しい。
