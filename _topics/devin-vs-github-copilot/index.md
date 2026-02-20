@@ -1,4 +1,4 @@
-﻿---
+---
 audio: /share-deepresearch/assets/audio/devin-vs-github-copilot.m4a
 video: /share-deepresearch/assets/video/devin-vs-github-copilot.mp4
 category: ai
