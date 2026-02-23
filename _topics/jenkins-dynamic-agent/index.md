@@ -4,9 +4,9 @@ category: engineering
 date: 2025-11-17
 description: Jenkinsの動的エージェント機能を活用し、AWS EC2上でCI/CDパイプラインのリソースを最適化するスケーリング戦略を包括的に分析・比較します。
 ga4_metrics:
-  avgSessionDuration: 7.460817
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: Jenkinsで使用するノードをジョブの状況に合わせて動的に増減させたい。ノードはAWSのEC2を利用する想定となっている。どのようなやり方があるか調査して欲しい。
 tags:
