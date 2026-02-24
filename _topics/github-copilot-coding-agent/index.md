@@ -4,9 +4,9 @@ category: ai
 date: 2025-10-30
 description: GitHub Copilot Coding Agentで他のリポジトリやAWS・Jenkinsなど外部サービスへの権限付きアクセスを実現するためのセキュリティアーキテクチャと実装方法を解説
 ga4_metrics:
-  avgSessionDuration: 127.03280538461539
-  pageViews: 11
-  users: 6
+  avgSessionDuration: 118.940927
+  pageViews: 12
+  users: 7
 layout: topic
 prompt: GitHub Copilot Coding Agentの使い方を調査したい。特に他のリポジトリのファイルを参照したり、AWSやJenkinsといった他のサービスからログを取得するなど、権限が必要な作業をどのようにすれば行えるのかが知りたい。
 tags:
