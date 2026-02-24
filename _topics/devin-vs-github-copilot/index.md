@@ -4,7 +4,7 @@ category: ai
 date: 2026-02-20
 description: 自律型AIソフトウェアエンジニアであるDevinとGitHub Copilot Coding Agentを多角的に比較。アーキテクチャ、自律性、コストパフォーマンスの違いを詳解し、データ分析やマーケットリサーチなど、開発以外の領域における戦略的活用法とベストプラクティスを提案します。
 ga4_metrics:
-  avgSessionDuration: 218.813305875
+  avgSessionDuration: 194.50071633333334
   pageViews: 8
   users: 7
 layout: topic
