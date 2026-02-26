@@ -4,7 +4,7 @@ category: ai
 date: 2025-10-30
 description: GitHub Copilot Coding Agentで他のリポジトリやAWS・Jenkinsなど外部サービスへの権限付きアクセスを実現するためのセキュリティアーキテクチャと実装方法を解説
 ga4_metrics:
-  avgSessionDuration: 92.83964944444445
+  avgSessionDuration: 92.83964944444443
   pageViews: 14
   users: 8
 layout: topic
