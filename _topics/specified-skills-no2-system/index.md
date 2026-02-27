@@ -1,17 +1,21 @@
 ---
 audio: /share-deepresearch/assets/audio/specified-skills-no2-system.m4a
-video: /share-deepresearch/assets/video/specified-skills-no2-system.mp4
 category: research
 date: 2026-02-27
 description: 特定技能2号制度の実態を、マクロ・ミクロの両面から分析。永住権への道筋や「移民政策」論争の背景、1号から2号への厳しい移行ハードル、最新の統計データに基づく産業別・国籍別の動向、そして議論の核心である家族帯同が地域社会に与える影響と課題について、多角的な視点で詳説します。
+ga4_metrics:
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: 「特定技能2号」の制度が移民政策だと言われているが、実態について調査して欲しい。家族の受け入れを行う点が問題視されているが、実際に条件に合致する人々の現状を知りたい。
 supplementary_materials:
-  - title: スライド資料
-    pdf: /share-deepresearch/topics/specified-skills-no2-system/slide.pdf
-tags: 
+- pdf: /share-deepresearch/topics/specified-skills-no2-system/slide.pdf
+  title: スライド資料
+tags:
 - 経済
 title: 特定技能2号制度の構造的実態と「移民政策」論争に関するマクロ・ミクロ統合的分析
+video: /share-deepresearch/assets/video/specified-skills-no2-system.mp4
 ---
 
 # **特定技能2号制度の構造的実態と「移民政策」論争に関するマクロ・ミクロ統合的分析**
