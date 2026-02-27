@@ -4,9 +4,9 @@ category: engineering
 date: 2025-09-02
 description: JMeterを使用してブラウザ操作のログから堅牢なテストシナリオを作成する方法を解説します。
 ga4_metrics:
-  avgSessionDuration: 200.0083673446602
-  pageViews: 196
-  users: 127
+  avgSessionDuration: 198.11801651923076
+  pageViews: 197
+  users: 128
 layout: topic
 prompt: JMeterでブラウザ操作のログを用いてログインから特定のページアクセスを確認するテストシナリオを作成したい。プロキシ経由で取得したログから効率良くテストシナリオを作成するポイントや実装時に良く発生する問題を調査して欲しい。
 supplementary_materials:
