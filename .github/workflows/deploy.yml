@@ -3,6 +3,10 @@ name: Deploy Jekyll with dynamic replacements
 on:
   push:
     branches: ["main"]
+  workflow_run:
+    workflows: ["Update GA4 Metrics"]
+    types:
+      - completed
   workflow_dispatch:
 
 permissions:
