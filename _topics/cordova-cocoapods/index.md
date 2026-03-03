@@ -4,9 +4,9 @@ category: engineering
 date: 2025-06-18
 description: 本レポートは、CordovaベースのiOSアプリケーション向けに、堅牢かつ自動化されたビルドおよびリリースパイプラインを確立するための、専門家レベルの包括的なガイドを提供することを目的とします。本稿では、Cordova、依存関係管理のためのCocoaPods、そしてビルドとコード署名自動化のためのfastlaneの統合について詳述します。
 ga4_metrics:
-  avgSessionDuration: 69.5631085
-  pageViews: 2
-  users: 2
+  avgSessionDuration: 15.865314
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: iOSのアプリをCordovaで作成する際、CocoaPodsによりライブラリの管理を行いたい。fastlaneで署名の設定を行う想定なのだが、ビルド環境の構成について調査を行い、署名のやり方など注意すべきポイントをまとめて欲しい。
 supplementary_materials:
