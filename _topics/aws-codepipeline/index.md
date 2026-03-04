@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/aws-codepipeline.mp3
 category: engineering
 date: 2025-06-02
 ga4_metrics:
-  avgSessionDuration: 109.33070963793104
-  pageViews: 51
-  users: 46
+  avgSessionDuration: 110.72447980701754
+  pageViews: 50
+  users: 45
 layout: topic
 prompt: AWS CodePipelineとCodeBuildで発生する問題をまとめたい。エンジニアが良く陥るあるあるネタや、発生頻度は低いが解決に時間が掛かる問題などを集めて欲しい。
 supplementary_materials:
