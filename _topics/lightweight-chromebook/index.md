@@ -4,9 +4,9 @@ category: research
 date: 2025-07-26
 description: 2024年以降に発売されたChromebookで1kgを切るモデルの調査結果をまとめたレポートです。
 ga4_metrics:
-  avgSessionDuration: 7.9374155
-  pageViews: 2
-  users: 2
+  avgSessionDuration: 30.423049666666667
+  pageViews: 3
+  users: 3
 layout: topic
 prompt: 2024年以降に発売されているChromebookで1kgを切るものを探して欲しい。
 supplementary_materials:
