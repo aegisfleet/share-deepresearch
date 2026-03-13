@@ -88,7 +88,8 @@ def update_markdown_files(metrics_dict):
         try:
             # ファイルのパスからURLパスを生成
             file_path = Path(md_file)
-            url_path = f"/topics/{str(file_path.parent.name)}/index/"
+            folder_name = file_path.parent.name
+            url_path = f"/topics/{folder_name}/index/"
             
             # GA4のメトリクスに含まれるパスバリエーションを試す
             possible_paths = [
@@ -96,8 +97,8 @@ def update_markdown_files(metrics_dict):
                 url_path[:-1],  # /topics/folder-name/index
                 url_path.lower(),  # /topics/folder-name/index/ (小文字)
                 url_path.lower()[:-1],  # /topics/folder-name/index (小文字)
-                f"/topics/{str(file_path.parent.name)}/",  # /topics/folder-name/
-                f"/topics/{str(file_path.parent.name)}",  # /topics/folder-name
+                f"/topics/{folder_name}/",  # /topics/folder-name/
+                f"/topics/{folder_name}",  # /topics/folder-name
             ]
             
             matched_path = None
