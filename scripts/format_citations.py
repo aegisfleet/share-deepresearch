@@ -5,7 +5,7 @@ import os
 
 FRONT_MATTER_REGEX = re.compile(r'---(.*?)---', re.DOTALL)
 DATE_REGEX = re.compile(r'date:\s*(\d{4}-\d{2}-\d{2})')
-CITATION_PATTERN = re.compile(r'(\d+)\\. (.*?)(?=\s+\d+\\. |$)')
+CITATION_PATTERN = re.compile(r'(\d+)\. (.*?)(?=\s+\d+\. |$)')
 
 def format_citations_in_file(file_path):
     """
@@ -55,13 +55,6 @@ def format_citations_in_file(file_path):
     if not first_line or first_line.startswith("1. "):
         return
 
-    # Corrected Regex Pattern:
-    # (\d+)     - Captures the number
-    # \\.      - Matches the literal "."
-    # \s       - Matches the space
-    # (.*?)     - Non-greedily captures the title and URL
-    # (?=...)   - Positive lookahead for the next citation or end of string
-    # Corrected: escaped backslashes in regex pattern
     matches = CITATION_PATTERN.findall(first_line)
 
     if not matches:
