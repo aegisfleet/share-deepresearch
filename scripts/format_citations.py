@@ -3,6 +3,10 @@ import sys
 from datetime import datetime
 import os
 
+FRONT_MATTER_REGEX = re.compile(r'---(.*?)---', re.DOTALL)
+DATE_REGEX = re.compile(r'date:\s*(\d{4}-\d{2}-\d{2})')
+CITATION_PATTERN = re.compile(r'(\d+)\. (.*?)(?=\s+\d+\. |$)')
+
 def format_citations_in_file(file_path):
     """
     Reads a markdown file, finds a single-line citation block, and reformats it
@@ -22,10 +26,10 @@ def format_citations_in_file(file_path):
 
     # Try to extract date from YAML front matter
     date_str = None
-    front_matter_match = re.search(r'---(.*?)---', content, re.DOTALL)
+    front_matter_match = FRONT_MATTER_REGEX.search(content)
     if front_matter_match:
         front_matter = front_matter_match.group(1)
-        date_match = re.search(r'date:\s*(\d{4}-\d{2}-\d{2})', front_matter)
+        date_match = DATE_REGEX.search(front_matter)
         if date_match:
             date_str = date_match.group(1)
 
@@ -51,14 +55,7 @@ def format_citations_in_file(file_path):
     if not first_line or first_line.startswith("1. "):
         return
 
-    # Corrected Regex Pattern:
-    # (\d+)     - Captures the number
-    # \\.      - Matches the literal "."
-    # \s       - Matches the space
-    # (.*?)     - Non-greedily captures the title and URL
-    # (?=...)   - Positive lookahead for the next citation or end of string
-    pattern = re.compile(r'(\d+)\\. (.*?)(?=\s+\d+\\. |$)' ) # Corrected: escaped backslashes in regex pattern
-    matches = pattern.findall(first_line)
+    matches = CITATION_PATTERN.findall(first_line)
 
     if not matches:
         return
