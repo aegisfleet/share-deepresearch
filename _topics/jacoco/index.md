@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/jacoco.mp3
 category: engineering
 date: 2025-06-18
 ga4_metrics:
-  avgSessionDuration: 123.95066295238095
-  pageViews: 20
-  users: 19
+  avgSessionDuration: 119.31764227272726
+  pageViews: 21
+  users: 20
 layout: topic
 prompt: JaCoCoの技術的な調査を行いたい。どの様にカバレッジを計測しているのか、精度や懸念など多角的に調べて欲しい。
 supplementary_materials:
