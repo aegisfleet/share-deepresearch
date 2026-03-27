@@ -33,19 +33,19 @@ def format_citations_in_file(file_path):
         if date_match:
             date_str = date_match.group(1)
 
+    dt_object = None
     if date_str:
         try:
             # Parse YYYY-MM-DD and format to M月 D, YYYY
             dt_object = datetime.strptime(date_str, '%Y-%m-%d')
-            date_accessed = f"{dt_object.month}月 {dt_object.day}, {dt_object.year}にアクセス、"
         except ValueError:
-            # Fallback if date parsing fails
-            now = datetime.now()
-            date_accessed = f"{now.month}月 {now.day}, {now.year}にアクセス、"
-    else:
-        # Fallback if date field is not found
-        now = datetime.now()
-        date_accessed = f"{now.month}月 {now.day}, {now.year}にアクセス、"
+            pass
+
+    if dt_object is None:
+        # Fallback if date field is not found or parsing fails
+        dt_object = datetime.now()
+
+    date_accessed = f"{dt_object.month}月 {dt_object.day}, {dt_object.year}にアクセス、"
 
     search_area_start = header_index + len(citation_header)
     search_area = content[search_area_start:]
