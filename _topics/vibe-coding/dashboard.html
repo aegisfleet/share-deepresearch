@@ -492,25 +492,25 @@
                 const contentDiv = document.createElement('div');
                 contentDiv.classList.add('accordion-content');
 
-                if (itemData.content) {
+                if ('content' in itemData && itemData.content != null) {
                     contentDiv.textContent = itemData.content;
                 } else {
                     const descStrong = document.createElement('strong');
                     descStrong.textContent = '説明: ';
                     contentDiv.appendChild(descStrong);
-                    contentDiv.appendChild(document.createTextNode(itemData.description));
+                    contentDiv.appendChild(document.createTextNode(itemData.description ?? ''));
                     contentDiv.appendChild(document.createElement('br'));
 
                     const exampleStrong = document.createElement('strong');
                     exampleStrong.textContent = '例: ';
                     contentDiv.appendChild(exampleStrong);
-                    contentDiv.appendChild(document.createTextNode(itemData.example));
+                    contentDiv.appendChild(document.createTextNode(itemData.example ?? ''));
                     contentDiv.appendChild(document.createElement('br'));
 
                     const mitigationStrong = document.createElement('strong');
                     mitigationStrong.textContent = '緩和策: ';
                     contentDiv.appendChild(mitigationStrong);
-                    contentDiv.appendChild(document.createTextNode(itemData.mitigation));
+                    contentDiv.appendChild(document.createTextNode(itemData.mitigation ?? ''));
                 }
 
                 button.addEventListener('click', () => {
