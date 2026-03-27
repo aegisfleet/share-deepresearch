@@ -480,11 +480,38 @@
 
                 const button = document.createElement('button');
                 button.classList.add('accordion-button');
-                button.innerHTML = `<span>${itemData.title}</span><span class="icon"></span>`;
+
+                const titleSpan = document.createElement('span');
+                titleSpan.textContent = itemData.title;
+                const iconSpan = document.createElement('span');
+                iconSpan.classList.add('icon');
+
+                button.appendChild(titleSpan);
+                button.appendChild(iconSpan);
                 
                 const contentDiv = document.createElement('div');
                 contentDiv.classList.add('accordion-content');
-                contentDiv.innerHTML = itemData.content;
+
+                if ('content' in itemData && itemData.content != null) {
+                    contentDiv.textContent = itemData.content;
+                } else {
+                    const descStrong = document.createElement('strong');
+                    descStrong.textContent = '説明: ';
+                    contentDiv.appendChild(descStrong);
+                    contentDiv.appendChild(document.createTextNode(itemData.description ?? ''));
+                    contentDiv.appendChild(document.createElement('br'));
+
+                    const exampleStrong = document.createElement('strong');
+                    exampleStrong.textContent = '例: ';
+                    contentDiv.appendChild(exampleStrong);
+                    contentDiv.appendChild(document.createTextNode(itemData.example ?? ''));
+                    contentDiv.appendChild(document.createElement('br'));
+
+                    const mitigationStrong = document.createElement('strong');
+                    mitigationStrong.textContent = '緩和策: ';
+                    contentDiv.appendChild(mitigationStrong);
+                    contentDiv.appendChild(document.createTextNode(itemData.mitigation ?? ''));
+                }
 
                 button.addEventListener('click', () => {
                     const isOpen = contentDiv.style.display === 'block';
@@ -547,16 +574,16 @@
 
         // Data for OWASP LLM Top 10 Table Accordion (Section V.B - Table 4)
         const owaspLlmTableData = [
-            { title: 'LLM01: プロンプトインジェクション', content: '<strong>説明:</strong> 攻撃者がLLMへの入力を操作し、意図しないコードを生成させる。<br><strong>例:</strong> ユーザーコメントに隠された指示で機密情報漏洩コード生成。<br><strong>緩和策:</strong> 入力検証、権限制限、人間レビュー、サンドボックス実行。' },
-            { title: 'LLM02: 機密情報漏洩', content: '<strong>説明:</strong> LLMが機密情報（APIキー等）をコードに埋め込む。<br><strong>例:</strong> デバッグ用プロンプトのAPIキーをハードコード。<br><strong>緩和策:</strong> 機密情報除去/マスキング、生成コードスキャン、最小権限。' },
-            { title: 'LLM03: サプライチェーンの脆弱性', content: '<strong>説明:</strong> AIが安全でないライブラリや脆弱なコードパターンを提案。LLMモデル自体の脆弱性。<br><strong>例:</strong> 古いライブラリや脆弱なスニペットを推奨。<br><strong>緩和策:</strong> 提案ライブラリ/コードの脆弱性スキャン(SCA)、信頼できるモデル選定。' },
-            { title: 'LLM04: データおよびモデルの汚染', content: '<strong>説明:</strong> トレーニングデータ等に悪意のあるデータが混入し、特定の条件下で脆弱/悪意のあるコードを生成。<br><strong>例:</strong> 公開データセット汚染でバックドア付きコード生成を誘導。<br><strong>緩和策:</strong> データ検証、モデル挙動監視、信頼できるデータソース使用。' },
-            { title: 'LLM05: 不適切な出力処理', content: '<strong>説明:</strong> LLM生成コードが検証/サニタイズなしに実行され、XSSやSQLi等を引き起こす。<br><strong>例:</strong> ユーザー入力に基づく動的HTML生成時のサニタイズ漏れ。<br><strong>緩和策:</strong> 生成コードを信頼できない入力として扱い、厳格な出力エンコーディング/検証/サニタイズ。' },
-            { title: 'LLM06: 過剰なエージェンシー', content: '<strong>説明:</strong> AIエージェントに過度な権限が付与され、悪用されると不正なコード自動デプロイ等が発生。<br><strong>例:</strong> AIエージェントが本番ファイルを誤削除。<br><strong>緩和策:</strong> AIエージェント権限最小化、重要操作は人間承認必須。' },
-            { title: 'LLM07: システムプロンプト漏洩', content: '<strong>説明:</strong> システムプロンプト内の内部ルールや機密情報が漏洩し、攻撃に悪用される。<br><strong>例:</strong> 巧妙なプロンプトで内部指示やセキュリティルールを暴露させる。<br><strong>緩和策:</strong> システムプロンプトに機密情報を含めない、行動制御は外部ガードレールで。' },
-            { title: 'LLM08: ベクトルおよび埋め込みの弱点', content: '<strong>説明:</strong> RAG使用時、ベクトルDBのコードスニペット等が不正アクセス/汚染され、不正確/脆弱なコード生成。<br><strong>例:</strong> ベクトルDBに脆弱コードスニペット注入。<br><strong>緩和策:</strong> ベクトルDBアクセス制御、格納データ検証、検索結果信頼性評価。' },
-            { title: 'LLM09: 誤情報', content: '<strong>説明:</strong> LLMがハルシネーションで存在しないAPIや誤ったプラクティスに基づいたコードを生成。<br><strong>例:</strong> 存在しない効率的な関数を提案。<br><strong>緩和策:</strong> 生成コード/技術の検証、信頼できる情報源との照合、RAGによる検証済み情報提供。' },
-            { title: 'LLM10: 無制限の推論消費', content: '<strong>説明:</strong> 大量/複雑なコード生成要求でリソースを枯渇させ、DoSや高額請求を引き起こす。<br><strong>例:</strong> 再帰的コード生成指示で無限ループに近い状態に。<br><strong>緩和策:</strong> APIレート制限、入力複雑さ制限、生成コードサイズ/実行時間監視。' }
+            { title: 'LLM01: プロンプトインジェクション', description: '攻撃者がLLMへの入力を操作し、意図しないコードを生成させる。', example: 'ユーザーコメントに隠された指示で機密情報漏洩コード生成。', mitigation: '入力検証、権限制限、人間レビュー、サンドボックス実行。' },
+            { title: 'LLM02: 機密情報漏洩', description: 'LLMが機密情報（APIキー等）をコードに埋め込む。', example: 'デバッグ用プロンプトのAPIキーをハードコード。', mitigation: '機密情報除去/マスキング、生成コードスキャン、最小権限。' },
+            { title: 'LLM03: サプライチェーンの脆弱性', description: 'AIが安全でないライブラリや脆弱なコードパターンを提案。LLMモデル自体の脆弱性。', example: '古いライブラリや脆弱なスニペットを推奨。', mitigation: '提案ライブラリ/コードの脆弱性スキャン(SCA)、信頼できるモデル選定。' },
+            { title: 'LLM04: データおよびモデルの汚染', description: 'トレーニングデータ等に悪意のあるデータが混入し、特定の条件下で脆弱/悪意のあるコードを生成。', example: '公開データセット汚染でバックドア付きコード生成を誘導。', mitigation: 'データ検証、モデル挙動監視、信頼できるデータソース使用。' },
+            { title: 'LLM05: 不適切な出力処理', description: 'LLM生成コードが検証/サニタイズなしに実行され、XSSやSQLi等を引き起こす。', example: 'ユーザー入力に基づく動的HTML生成時のサニタイズ漏れ。', mitigation: '生成コードを信頼できない入力として扱い、厳格な出力エンコーディング/検証/サニタイズ。' },
+            { title: 'LLM06: 過剰なエージェンシー', description: 'AIエージェントに過度な権限が付与され、悪用されると不正なコード自動デプロイ等が発生。', example: 'AIエージェントが本番ファイルを誤削除。', mitigation: 'AIエージェント権限最小化、重要操作は人間承認必須。' },
+            { title: 'LLM07: システムプロンプト漏洩', description: 'システムプロンプト内の内部ルールや機密情報が漏洩し、攻撃に悪用される。', example: '巧妙なプロンプトで内部指示やセキュリティルールを暴露させる。', mitigation: 'システムプロンプトに機密情報を含めない、行動制御は外部ガードレールで。' },
+            { title: 'LLM08: ベクトルおよび埋め込みの弱点', description: 'RAG使用時、ベクトルDBのコードスニペット等が不正アクセス/汚染され、不正確/脆弱なコード生成。', example: 'ベクトルDBに脆弱コードスニペット注入。', mitigation: 'ベクトルDBアクセス制御、格納データ検証、検索結果信頼性評価。' },
+            { title: 'LLM09: 誤情報', description: 'LLMがハルシネーションで存在しないAPIや誤ったプラクティスに基づいたコードを生成。', example: '存在しない効率的な関数を提案。', mitigation: '生成コード/技術の検証、信頼できる情報源との照合、RAGによる検証済み情報提供。' },
+            { title: 'LLM10: 無制限の推論消費', description: '大量/複雑なコード生成要求でリソースを枯渇させ、DoSや高額請求を引き起こす。', example: '再帰的コード生成指示で無限ループに近い状態に。', mitigation: 'APIレート制限、入力複雑さ制限、生成コードサイズ/実行時間監視。' }
         ];
         setupAccordion('owasp-llm-table-accordion', owaspLlmTableData);
 
