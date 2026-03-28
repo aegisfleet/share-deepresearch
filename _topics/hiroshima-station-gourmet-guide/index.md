@@ -4,9 +4,9 @@ category: research
 date: 2025-07-07
 description: 広島駅周辺での6名様の飲み会に最適な生ビール飲み放題プランを提供するお店を厳選しました。
 ga4_metrics:
-  avgSessionDuration: 18.364474333333334
-  pageViews: 3
-  users: 3
+  avgSessionDuration: 15.55687625
+  pageViews: 4
+  users: 4
 layout: topic
 prompt: 広島駅周辺で6名で夜飲み会を開くのに良さそうなお店を探して欲しい。条件としては発泡酒ではない生ビールが飲み放題プランに入っていること。
 supplementary_materials:
