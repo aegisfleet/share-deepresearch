@@ -4,9 +4,9 @@ category: research
 date: 2026-01-10
 description: 2026年1月9日に広島市議会で可決されたプレミアム付き商品券事業の背景を徹底分析。市民に自己負担を求める理由を「経済波及効果の最大化」「デジタルアプリ『としポ』普及戦略」「2027年統一地方選挙への政治的思惑」の3つの観点から解明する調査報告書。
 ga4_metrics:
-  avgSessionDuration: 42.534168
-  pageViews: 2
-  users: 2
+  avgSessionDuration: 26.556097599999998
+  pageViews: 3
+  users: 3
 layout: topic
 prompt: 広島市は2026年1月9日に自己負担を伴うプレミアム付き商品券の発行を広島市議会が可決で可決したが、この背景にはどのような思惑があるのだろうか？わざわざ自己負担を強いるのは何故なのか調査して欲しい。
 supplementary_materials:
