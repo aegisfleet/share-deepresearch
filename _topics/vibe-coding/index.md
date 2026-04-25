@@ -4,9 +4,9 @@ category: engineering
 date: 2025-05-25
 description: 本レポートは、Vibe Codingにおける品質担保の考え方を詳細に分析する。AI生成コードに内在する品質リスク、AIの「ブラックボックス」性、そして開発者のコード理解度が部分的な場合に品質保証が直面する課題を掘り下げ、高度なプロンプトエンジニアリング、包括的なテスト戦略、人間による監督、自動化された解析ツール、効果的なデバッグと修正プロセスといった多角的な戦略的アプローチを提示する。
 ga4_metrics:
-  avgSessionDuration: 153.03776564705882
-  pageViews: 14
-  users: 14
+  avgSessionDuration: 162.602626
+  pageViews: 13
+  users: 13
 layout: topic
 prompt: Vibe Codingを行う際のポイントをまとめたい。生成AIが作ったコードを基本的に信じることになるが、どのように品質を担保すれば良いのか、その考え方を知りたい。
 supplementary_materials:
