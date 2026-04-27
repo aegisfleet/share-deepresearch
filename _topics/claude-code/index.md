@@ -3,9 +3,9 @@ audio: /share-deepresearch/assets/audio/claude-code.mp3
 category: ai
 date: 2025-06-10
 ga4_metrics:
-  avgSessionDuration: 12.3438482
-  pageViews: 3
-  users: 3
+  avgSessionDuration: 3.1819
+  pageViews: 2
+  users: 2
 layout: topic
 prompt: Claude Codeが他のAIエージェントと比べて高く評価されている理由を調べて欲しい。併せてその裏付けとなる事例も集めては欲しい。
 supplementary_materials:
