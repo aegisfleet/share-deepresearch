@@ -5,7 +5,7 @@ date: 2025-05-27
 ga4_metrics:
   avgSessionDuration: 0.0
   pageViews: 0
-  users: 1
+  users: 0
 layout: topic
 prompt: OpenHandsとGitHub ActionsとPlaywright-MCPを使って、ワークフローの中でブラウザ操作の自動化を行いたい。実現可能か調査し、可能であれば具体的な使用例をまとめて欲しい。
 supplementary_materials:
