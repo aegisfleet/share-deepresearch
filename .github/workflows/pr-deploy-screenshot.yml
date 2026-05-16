@@ -12,13 +12,16 @@ jobs:
   build-and-screenshot:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup node_modules cache
-        uses: actions/cache@v5
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          version: 11
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
 
       - name: Setup bundle cache
         uses: actions/cache@v5
@@ -32,21 +35,21 @@ jobs:
         uses: actions/cache@v5
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('package.json') }}
+          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-playwright-
 
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ruby-dev nodejs npm libvips libnss3 libgtk-3-0 libgbm-dev \
+          sudo apt-get install -y ruby-dev libvips libnss3 libgtk-3-0 libgbm-dev \
             fonts-noto-cjk fonts-noto-cjk-extra fontconfig libfontconfig1 libfreetype6 \
             libxss1 libxshmfence-dev libatk-bridge2.0-0
           # Ubuntu 24.04以降のlibasound2はlibasound2t64にリネームされているため、存在すればそちらをインストール
           if apt-cache show libasound2t64 > /dev/null 2>&1; then sudo apt-get install -y libasound2t64; fi
           # フォントキャッシュの更新
           fc-cache -fv
-          npm -v
+          pnpm -v
 
       - name: Checkout code
         uses: actions/checkout@v6
@@ -61,7 +64,7 @@ jobs:
           gem install bundler
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
-          npm install
+          pnpm install --frozen-lockfile
 
       - name: Build site (Jekyll)
         run: |
@@ -88,7 +91,7 @@ jobs:
         run: |
           # キャッシュがない場合のみインストール
           if [ ! -d ~/.cache/ms-playwright ]; then
-            npx playwright install chromium
+            pnpm exec playwright install chromium
           fi
 
       - name: Capture screenshots
