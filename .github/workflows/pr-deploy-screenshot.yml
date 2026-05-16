@@ -12,6 +12,9 @@ jobs:
   build-and-screenshot:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
       - name: Install pnpm
         uses: pnpm/action-setup@8912a9102ac27614460f54aedde9e1e7f9aec20d # v6.0.5
 
@@ -48,9 +51,6 @@ jobs:
           # フォントキャッシュの更新
           fc-cache -fv
           pnpm -v
-
-      - name: Checkout code
-        uses: actions/checkout@v6
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
