@@ -112,7 +112,7 @@ layout: default
                                     <p style="font-weight: bold; margin-bottom: 1rem; color: var(--text-color);">
                                         資料（PDF）の閲覧はこちら
                                     </p>
-                                    <a href="${pdfUrl}" target="_blank" style="
+                                    <a href="${pdfUrl}" target="_blank" rel="noopener noreferrer" style="
                                         display: inline-flex;
                                         align-items: center;
                                         justify-content: center;
@@ -144,7 +144,7 @@ layout: default
             })();
         </script>
         {% else %}
-        <p><a href="{{ material.url }}" target="_blank">{{ material.title }}</a></p>
+        <p><a href="{{ material.url }}" target="_blank" rel="noopener noreferrer">{{ material.title }}</a></p>
         {% endif %}
         {% endfor %}
     </div>
