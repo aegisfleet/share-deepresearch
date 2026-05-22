@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, reopened]
 
 permissions:
-  contents: read
+  contents: write
   pull-requests: write
 
 jobs:
@@ -96,6 +96,40 @@ jobs:
         run: |
           node scripts/screenshot.js
 
+      - name: Deploy screenshots to assets branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 一時クローン先にassetsブランチを取得、存在しない場合は新規作成
+          if ! git clone --depth=1 --branch screenshot-assets https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git screenshots-repo; then
+            mkdir screenshots-repo
+            cd screenshots-repo
+            git init
+            git checkout -b screenshot-assets
+            git remote add origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+            touch .gitkeep
+            git add .gitkeep
+            git commit -m "Initial commit"
+            git push -u origin screenshot-assets
+            cd ..
+          fi
+          
+          cd screenshots-repo
+          PR_DIR="pr-${{ github.event.pull_request.number }}"
+          mkdir -p "$PR_DIR"
+          
+          cp ../screenshot-light.png "$PR_DIR/"
+          cp ../screenshot-dark.png "$PR_DIR/"
+          cp ../screenshot-article-light.png "$PR_DIR/"
+          cp ../screenshot-article-dark.png "$PR_DIR/"
+          
+          git add .
+          git commit -m "Upload screenshots for PR #${{ github.event.pull_request.number }} (Run #${{ github.run_id }})" || echo "No changes"
+          git push origin screenshot-assets
+
       - name: Upload screenshots artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
@@ -112,6 +146,15 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            [PR Preview Screenshots（ダウンロード）](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
-            
-            アーティファクトページからダウンロードできます。
+            ### 📸 PR Preview Screenshots
+
+            | Top Page (Light) | Top Page (Dark) |
+            | --- | --- |
+            | ![Top Light](https://raw.githubusercontent.com/${{ github.repository }}/screenshot-assets/pr-${{ github.event.pull_request.number }}/screenshot-light.png) | ![Top Dark](https://raw.githubusercontent.com/${{ github.repository }}/screenshot-assets/pr-${{ github.event.pull_request.number }}/screenshot-dark.png) |
+
+            | Article Page (Light) | Article Page (Dark) |
+            | --- | --- |
+            | ![Article Light](https://raw.githubusercontent.com/${{ github.repository }}/screenshot-assets/pr-${{ github.event.pull_request.number }}/screenshot-article-light.png) | ![Article Dark](https://raw.githubusercontent.com/${{ github.repository }}/screenshot-assets/pr-${{ github.event.pull_request.number }}/screenshot-article-dark.png) |
+
+            ---
+            [PR Preview Screenshots（Artifacts ダウンロード）](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
