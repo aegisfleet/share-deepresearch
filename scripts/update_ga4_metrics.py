@@ -110,7 +110,8 @@ def update_markdown_files(metrics_dict):
             if matched_path:
                 logger.info(f"ファイルを更新中: {md_file} (マッチしたパス: {matched_path})")
                 # Front Matterを更新
-                post = frontmatter.load(md_file)
+                with open(md_file, 'r', encoding='utf-8') as f:
+                    post = frontmatter.load(f)
                 metrics = metrics_dict[matched_path]
                 
                 post["ga4_metrics"] = {
@@ -122,7 +123,8 @@ def update_markdown_files(metrics_dict):
                 logger.warning(f"メトリクスが見つかりません: {url_path} ({md_file})")
                 logger.debug(f"試行したパス: {possible_paths}")
                 # Front Matterを更新（すべての値を0に設定）
-                post = frontmatter.load(md_file)
+                with open(md_file, 'r', encoding='utf-8') as f:
+                    post = frontmatter.load(f)
                 post["ga4_metrics"] = {
                     "pageViews": 0,
                     "users": 0,
@@ -130,9 +132,9 @@ def update_markdown_files(metrics_dict):
                 }
                 logger.info(f"メトリクスを0に設定: {md_file}")
             # ファイルを保存（最後に改行を追加）
-            with open(md_file, 'wb') as f:
+            with open(md_file, 'w', encoding='utf-8') as f:
                 frontmatter.dump(post, f)
-                f.write(b'\n')  # 最後に改行を追加
+                f.write('\n')  # 最後に改行を追加
             updated_files += 1
             logger.info(f"ファイルの更新完了: {md_file}")
         except Exception as e:
