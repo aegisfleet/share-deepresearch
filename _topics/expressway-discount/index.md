@@ -4,9 +4,9 @@ category: research
 date: 2025-05-28
 description: 2025年は、日本の高速道路料金割引制度にとって、いくつかの大きな変更点と、継続される主要な割引が混在する年となります。多くのドライバーが日常的に利用する高速道路の料金は、家計や事業運営に直接的な影響を与えるため、割引制度を理解し、賢く活用することが求められます。本レポートは、利用者がこれらの情報を整理し、2025年度において最適な割引を選択するための一助となることを目的としています。
 ga4_metrics:
-  avgSessionDuration: 143.39961266666668
-  pageViews: 10
-  users: 9
+  avgSessionDuration: 103.52671375
+  pageViews: 9
+  users: 8
 layout: topic
 prompt: 高速道路の割引制度について、2025年現在利用可能なものをまとめて欲しい。
 supplementary_materials:
