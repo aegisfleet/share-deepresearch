@@ -4,9 +4,9 @@ category: ai
 date: 2025-06-09
 description: ソフトウェア開発の複雑性が増す現代において、効率的なプロジェクト管理と迅速なイシュー対応は成功の鍵となります。GitHub Issueは、バグ追跡、機能リクエスト、タスク管理など、開発プロセスにおけるコミュニケーションとコラボレーションの中心的な役割を担っています。しかし、Issueの量が増大するにつれて、その管理は開発チームにとって大きな負担となり得ます。
 ga4_metrics:
-  avgSessionDuration: 8.70356457142857
-  pageViews: 6
-  users: 6
+  avgSessionDuration: 8.785963
+  pageViews: 5
+  users: 5
 layout: topic
 prompt: GitHub Issueの操作をトリガーに駆動できるAIエージェントの情報をまとめて欲しい。GitHub Actionsを利用する方法でも構わない。
 supplementary_materials:
