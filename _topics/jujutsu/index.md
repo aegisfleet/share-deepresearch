@@ -4,9 +4,9 @@ category: engineering
 date: 2025-07-22
 description: Jujutsuは、Gitの複雑さを解消し、開発者の生産性を向上させるために設計された次世代のバージョン管理システムです。
 ga4_metrics:
-  avgSessionDuration: 156.02284
-  pageViews: 5
-  users: 5
+  avgSessionDuration: 185.213788
+  pageViews: 4
+  users: 4
 layout: topic
 prompt: Jujutsuというツールについて調査を行って欲しい。
 supplementary_materials:
