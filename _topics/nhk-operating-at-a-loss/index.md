@@ -4,9 +4,9 @@ category: research
 date: 2026-01-27
 description: NHKの構造的な赤字経営の背景と、2025年のインターネット業務必須化、放送波の削減、英国BBCの事例分析を通じて、2030年代に向けた公共放送の持続可能性と未来像を包括的に解説します。
 ga4_metrics:
-  avgSessionDuration: 15.635323
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 23.238522666666665
+  pageViews: 2
+  users: 2
 layout: topic
 prompt: NHKが赤字経営が続いている状況だが、このまま赤字が続いた場合のNHKの行く末についてまとめて欲しい。
 supplementary_materials:
