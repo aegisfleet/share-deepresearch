@@ -4,9 +4,9 @@ category: engineering
 date: 2025-06-05
 description: 現代のソフトウェア開発において、ユニットテストは品質保証の根幹をなす要素です。しかし、手動によるユニットテストの作成と維持は、多大な時間と労力を要し、ヒューマンエラーの温床となり得るだけでなく、開発サイクルの遅延やメンテナンスコストの増大といった課題を抱えています。このような背景から、ユニットテスト生成の自動化は、開発者の生産性向上、コード品質の改善、フィードバックサイクルの高速化、そしてリグレッションの防止といった多岐にわたる恩恵をもたらす技術として注目されています。
 ga4_metrics:
-  avgSessionDuration: 105.30327836363637
-  pageViews: 10
-  users: 8
+  avgSessionDuration: 98.25494058333334
+  pageViews: 11
+  users: 9
 layout: topic
 prompt: Javaのユニットテストを自動で作成したい。EvoSuiteとRandoopの機能を比較して、実行環境や特徴などそれぞれのツールの良し悪しをまとめて欲しい。
 supplementary_materials:
