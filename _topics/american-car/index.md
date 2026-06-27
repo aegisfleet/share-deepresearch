@@ -4,7 +4,7 @@ category: research
 date: 2025-07-04
 description: 2025年に新車で購入可能なアメリカ製自動車の燃費性能を、20車種以上のデータを基に分析。MPGとMPGeの違い、換算方法、各メーカーの戦略を解説。
 ga4_metrics:
-  avgSessionDuration: 293.4944296
+  avgSessionDuration: 293.49442960000005
   pageViews: 15
   users: 11
 layout: topic
