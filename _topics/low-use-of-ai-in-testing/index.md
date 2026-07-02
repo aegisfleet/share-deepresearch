@@ -6,8 +6,8 @@ description: AIはコーディングでは97.5%の採用率に達した一方、
   Codingの弊害、スキルギャップなど、技術的・運用的・組織的な構造的要因を多角的に分析する。
 ga4_metrics:
   avgSessionDuration: 0.0
-  pageViews: 0
-  users: 0
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: ソフトウェアの設計やコーディングにはAIの活用が進んでいるが、テストにおいては使用率が低いという調査データがある。そのデータが業界全体の傾向なのか調査し、なぜテストにおけるAIの使用率が低いのかまとめて欲しい。
 supplementary_materials:

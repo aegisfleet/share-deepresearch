@@ -5,8 +5,8 @@ date: 2025-10-08
 description: GoogleのGemini 2.5 Computer Useモデルに関する詳細な分析レポートです。
 ga4_metrics:
   avgSessionDuration: 0.0
-  pageViews: 0
-  users: 0
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: gemini-2.5-computer-use-preview-10-2025がどのようなものか調査して欲しい。
 tags:

@@ -4,8 +4,8 @@ category: engineering
 date: 2025-06-03
 ga4_metrics:
   avgSessionDuration: 0.0
-  pageViews: 0
-  users: 0
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: n8nとZapierの比較を行いたい。特にSlackとGitHubへの連携については資料に必ず入れて欲しい。
 supplementary_materials:
