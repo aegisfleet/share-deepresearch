@@ -4,9 +4,9 @@ category: study
 date: 2026-04-10
 description: ホスト産業における新人研修と対人コミュニケーション技術を心理学の観点から徹底調査。非言語情報の活用から『さしすせそ』の賞賛術、深層心理への介入、組織的な役割分担までを網羅的に解説。ビジネスや日常でも応用可能な、感情労働の最前線で培われた究極のコミュニケーション技術体系を提示します。
 ga4_metrics:
-  avgSessionDuration: 16.168788
-  pageViews: 1
-  users: 1
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 0
 layout: topic
 prompt: ホストが新人の研修時に教えている対人コミュニケーションについて調査し、そのテクニックと効果についてまとめて欲しい。
 supplementary_materials:
