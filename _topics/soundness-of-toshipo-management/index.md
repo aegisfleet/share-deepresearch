@@ -4,7 +4,7 @@ category: research
 date: 2026-01-10
 description: 広島広域都市圏ポイント「としポ」の運営実態を、委託構造、財務的持続可能性、ベンダーロックインのリスク、およびセキュリティ面から多角的に分析した包括的監査報告書。行政による公金注入の現状と、特定企業への技術的依存がもたらす健全性への疑義を浮き彫りにします。
 ga4_metrics:
-  avgSessionDuration: 80.50404208955223
+  avgSessionDuration: 83.51047764925373
   pageViews: 138
   users: 129
 layout: topic
