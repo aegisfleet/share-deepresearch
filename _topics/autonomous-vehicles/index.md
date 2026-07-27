@@ -4,9 +4,9 @@ category: research
 date: 2025-06-29
 description: 完全自動運転技術の実態、事故率の比較分析、および事故発生時の搭乗者の行動についての調査報告書です。特に、米国と中国における商業サービスの現状を詳述し、事故事例を通じて安全性と技術的課題を探ります。
 ga4_metrics:
-  avgSessionDuration: 3.1016785
-  pageViews: 1
-  users: 2
+  avgSessionDuration: 0.0
+  pageViews: 0
+  users: 1
 layout: topic
 prompt: 既に完全自動運転が実現している国の実態調査を行いたい。完全自動運転車は人が運転する車より事故率は低いのだろうか。事故の事例の調査と事故が発生した際に搭乗者が行わないといけない行動についてまとめて欲しい。
 supplementary_materials:
