@@ -5,9 +5,9 @@ date: 2026-04-30
 description: 2026年4月時点でGoogleスプレッドシートを用いて日本株の終値を自動取得する手法を詳解。GOOGLEFINANCEの非対応やWebサイトのスクレイピング制限を回避するため、サーバーレスプロキシ、StooqのCSVデータ連携、公式のJPX
   J-Quants API V2、商用アドオン等の選択肢を比較し、安定した運用が可能なデータパイプラインの構築方法を解説する。
 ga4_metrics:
-  avgSessionDuration: 237.97673128571432
-  pageViews: 35
-  users: 31
+  avgSessionDuration: 245.5841848611111
+  pageViews: 36
+  users: 32
 layout: topic
 prompt: Googleスプレッドシートで日本株の株価を取得する方法を知りたい。1日の終値を見たいだけなのだが、GOOGLEFINANCEはTYOに対応しておらず、IMPORTXMLでも多くのサイトはスクレイピングの防止によりうまく値を取得することができない。2026年4月時点で実現可能な方法を調査して。
 supplementary_materials:
