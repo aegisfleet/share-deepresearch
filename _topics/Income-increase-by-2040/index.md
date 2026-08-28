@@ -4,9 +4,9 @@ category: research
 date: 2025-06-11
 description: 本報告書は、2040年までに日本国民の平均所得を5割増加させるという目標の実現可能性について、数値的根拠と経済予測に基づき専門的な分析を行うことを目的とする。所得向上は、特に成熟経済であり人口動態の課題に直面する日本において、国民生活の質的向上と持続可能な経済社会の構築に向けた重要なテーマである。この目標は非常に野心的であり、その達成は広範な影響をもたらすものと考えられる。
 ga4_metrics:
-  avgSessionDuration: 71.08471528571428
-  pageViews: 7
-  users: 7
+  avgSessionDuration: 66.80317633333333
+  pageViews: 6
+  users: 6
 layout: topic
 prompt: 2040年に日本人の平均所得を5割増させる事ができるのか、数値的根拠を示して解説して欲しい。
 supplementary_materials:
