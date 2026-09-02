@@ -6,7 +6,7 @@ description: GitHubのSpec KitとAWSのKiroの比較分析。両者の特徴や�
 ga4_metrics:
   avgSessionDuration: 102.65443737333334
   pageViews: 68
-  users: 61
+  users: 60
 layout: topic
 prompt: GitHubのSpec Kitについて調査して欲しい。例えばAWSのKiroは同じようにスペックを作成するツールとなるが、他のAIツールと比較して思想的な違いがあるのかなど詳しく特徴をまとめて欲しい。
 tags:
