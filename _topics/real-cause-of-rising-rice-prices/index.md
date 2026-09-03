@@ -4,9 +4,9 @@ category: research
 date: 2025-12-06
 description: 2025年にお米の価格が未だ下がらない理由（真因）を調査し、今後の米価格の予想をまとめた包括的な調査報告書。
 ga4_metrics:
-  avgSessionDuration: 21.789314375
-  pageViews: 8
-  users: 8
+  avgSessionDuration: 19.925769555555558
+  pageViews: 9
+  users: 9
 layout: topic
 prompt: 2025年にお米の価格が未だ下がらない理由（真因）を調査し、今後の米価格の予想をして欲しい。
 supplementary_materials:
