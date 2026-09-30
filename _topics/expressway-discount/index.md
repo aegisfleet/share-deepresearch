@@ -6,7 +6,7 @@ description: 2025年は、日本の高速道路料金割引制度にとって、
 ga4_metrics:
   avgSessionDuration: 0.0
   pageViews: 1
-  users: 1
+  users: 2
 layout: topic
 prompt: 高速道路の割引制度について、2025年現在利用可能なものをまとめて欲しい。
 supplementary_materials:
