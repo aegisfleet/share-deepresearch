@@ -4,8 +4,8 @@ category: playful
 date: 2025-06-08
 ga4_metrics:
   avgSessionDuration: 0.0
-  pageViews: 0
-  users: 0
+  pageViews: 1
+  users: 1
 layout: topic
 prompt: 旧約聖書に登場する中二病的な単語をできるだけ多く集めて欲しい。
 supplementary_materials:
