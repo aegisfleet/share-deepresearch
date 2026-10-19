@@ -4,9 +4,9 @@ category: playful
 date: 2025-09-25
 description: 『魔法少女ノ魔女裁判』の物語構造と世界観を徹底分析し、登場人物たちの心理的葛藤や魔法の本質に迫る。
 ga4_metrics:
-  avgSessionDuration: 6.7857625624999995
-  pageViews: 17
-  users: 16
+  avgSessionDuration: 5.013842666666666
+  pageViews: 16
+  users: 15
 layout: topic
 prompt: 魔法少女ノ魔女裁判のストーリーをなぞりながら、物語の設定について公式資料を基にして詳しく解説してほしい。物語の結末についてネタバレしても問題ない。
 tags:
