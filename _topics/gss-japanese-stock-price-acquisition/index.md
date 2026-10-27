@@ -5,7 +5,7 @@ date: 2026-04-30
 description: 2026年4月時点でGoogleスプレッドシートを用いて日本株の終値を自動取得する手法を詳解。GOOGLEFINANCEの非対応やWebサイトのスクレイピング制限を回避するため、サーバーレスプロキシ、StooqのCSVデータ連携、公式のJPX
   J-Quants API V2、商用アドオン等の選択肢を比較し、安定した運用が可能なデータパイプラインの構築方法を解説する。
 ga4_metrics:
-  avgSessionDuration: 173.19492827659576
+  avgSessionDuration: 179.0082940869565
   pageViews: 48
   users: 41
 layout: topic
