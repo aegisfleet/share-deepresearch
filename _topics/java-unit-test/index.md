@@ -6,8 +6,8 @@ description: 現代のソフトウェア開発において、迅速な高品質�
   OpenAI）との連携が可能であることが条件として挙げられています。
 ga4_metrics:
   avgSessionDuration: 0.0
-  pageViews: 2
-  users: 2
+  pageViews: 3
+  users: 3
 layout: topic
 prompt: Javaのユニットテストを自動で作成したい。前提条件として無料で使用できる必要がある。生成AIを使用する場合はAzureと接続できるものとする。
 supplementary_materials:
