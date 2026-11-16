@@ -4,8 +4,8 @@ category: research
 date: 2025-05-31
 ga4_metrics:
   avgSessionDuration: 0.0
-  pageViews: 0
-  users: 1
+  pageViews: 1
+  users: 2
 layout: topic
 prompt: なぜ日本人は自民党に不満がありつつも、自民党政権が続いているのか、その本質的な理由を知りたい。恐らく他に良い党が無いのが一番だと思うが、本当にそれだけだろうか。
 supplementary_materials:
