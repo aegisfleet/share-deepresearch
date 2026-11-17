@@ -4,7 +4,7 @@ category: engineering
 date: 2025-11-17
 description: Tomcat上で動作するJavaアプリケーションのリモートデバッグをVSCodeで実現するための完全ガイド。ブレイクポイントやステップ実行などの高度なデバッグ機能の設定方法を詳述します。
 ga4_metrics:
-  avgSessionDuration: 132.6788425
+  avgSessionDuration: 132.49908208333332
   pageViews: 37
   users: 23
 layout: topic

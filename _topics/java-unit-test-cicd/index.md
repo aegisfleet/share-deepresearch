@@ -4,9 +4,9 @@ category: ai
 date: 2025-06-05
 description: 現代のソフトウェア開発において、ユニットテストはコードの信頼性を担保し、リファクタリングを容易にし、アジャイル開発プラクティスを可能にするための基盤となる不可欠な要素です。ユニットテストは、コード変更によって意図しない振る舞い（リグレッション）が発生することを防ぐ最初の防衛線として機能します。特に、テスト駆動開発（TDD）のような手法では、ユニットテストがそのプロセスの中核を成しています。JUnitは、TDDや継続的インテグレーション（CI）ワークフローに最適な、主要なJavaテストフレームワークとして広く認識されています。
 ga4_metrics:
-  avgSessionDuration: 1.3521795
-  pageViews: 2
-  users: 2
+  avgSessionDuration: 0.9014530000000001
+  pageViews: 3
+  users: 3
 layout: topic
 prompt: Javaのユニットテストを自動で作成したい。CI/CD（GitHub Actions）で自動生成できると尚良い。
 supplementary_materials:
