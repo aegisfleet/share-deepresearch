@@ -4,7 +4,7 @@ category: research
 date: 2026-02-27
 description: 特定技能2号制度の実態を、マクロ・ミクロの両面から分析。永住権への道筋や「移民政策」論争の背景、1号から2号への厳しい移行ハードル、最新の統計データに基づく産業別・国籍別の動向、そして議論の核心である家族帯同が地域社会に与える影響と課題について、多角的な視点で詳説します。
 ga4_metrics:
-  avgSessionDuration: 5.245761400000001
+  avgSessionDuration: 5.2457614
   pageViews: 5
   users: 5
 layout: topic
